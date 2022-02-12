@@ -10,10 +10,11 @@ import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 interface NavItemProps {
     name: string,
     path: string,
-    icon: IconDefinition
+    icon: IconDefinition,
+    dataId: string
 }
 
-export const NavItem: React.FC<NavItemProps> = ({ name, path, icon }) => {
+export const NavItem: React.FC<NavItemProps> = ({ name, path, icon, dataId }) => {
     const { route } = useRouter();
 
     const isActive = route === path;
@@ -23,6 +24,7 @@ export const NavItem: React.FC<NavItemProps> = ({ name, path, icon }) => {
             <a
                 aria-label={name}
                 title={name}
+                data-test-id={dataId}
                 className="w-[112px] h-full flex flex-col justify-center items-center gap-2 relative"
             >
                 <div className={`w-full h-full flex justify-center items-center rounded-lg ${!isActive ? 'hover:bg-dark-100' : ''} my-1`}>
