@@ -9,21 +9,19 @@ export const Search: React.FC = () => {
     const [text, setText] = useState('');
 
     return (
-        <div className="flex">
-            <div className="w-[240px] h-10 flex justify-center items-center gap-3 text-dark-50 bg-dark-100 rounded-[50px] focus:outline-none">
-                <FontAwesomeIcon
-                    className="text-md"
-                    icon={faSearch}
-                />
+        <div className="w-[200px] lg:w-[220px] h-10 flex justify-center items-center gap-3 text-dark-50 bg-dark-100 rounded-[50px] focus:outline-none">
+            <FontAwesomeIcon
+                className="text-md"
+                icon={faSearch}
+            />
 
-                <input
-                    type="text"
-                    value={text}
-                    placeholder="Search User"
-                    className="bg-transparent focus:outline-none"
-                    onChange={e => setText(e.target.value)}
-                />
-            </div>
+            <input
+                type="text"
+                value={text}
+                placeholder="Search User"
+                className="w-[150px] lg:w-[170px] bg-transparent focus:outline-none"
+                onChange={e => setText(e.target.value)}
+            />
         </div>
     );
 }

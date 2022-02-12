@@ -19,6 +19,8 @@
       "@styles/*": ["styles/*"],
       "@pages/*": ["pages/*"],
       "@components/*": ["components/*"],
+      "@redux/*": ["redux/*"],
+      "@hooks/*": ["hooks/*"],
     }
 
   },
