@@ -46,7 +46,7 @@ const Login: NextPage = () => {
                     <Formik
                         initialValues={{ email: '', password: '' }}
                         validationSchema={LoginSchema}
-                        onSubmit={({ email, password }, { setSubmitting }) => handleSubmit(email, password, setSubmitting)}
+                        onSubmit={({ email, password }) => handleSubmit(email, password)}
                     >
                         {({ values, handleChange, handleBlur, handleSubmit }) => (
                             <form onSubmit={handleSubmit} className="w-full flex flex-col gap-6">
