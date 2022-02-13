@@ -88,7 +88,7 @@ const Login: NextPage = () => {
                     <div className="text-center">
                         <Link href="/register">
                             <a className="text-sm text-light-200 hover:underline">
-                                Don&apos;t have an account? <br /> Register!
+                                Don&apos;t have an account? <br /> Register
                             </a>
                         </Link>
                     </div>

@@ -63,10 +63,12 @@ export const useAuth = ({ middleware, redirectIfAuthenticated }: useAuthProps = 
     }
 
     const logout = async () => {
+        setIsRequestLoading(true);
+
         if (!error) {
             await axios.post('/logout');
-
             mutate();
+            setIsRequestLoading(false);
         }
 
         window.location.href = '/login';
