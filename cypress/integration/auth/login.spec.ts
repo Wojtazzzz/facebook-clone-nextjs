@@ -6,12 +6,14 @@ const PASSWORD = 'admin';
 
 
 describe('Login process', () => {
-    it('Can login to admin account', () => {
+    beforeEach(() => {
         cy.intercept('GET', `${BACKEND_URL}/sanctum/csrf-cookie`).as('csrfRequest');
         cy.intercept('POST', `${BACKEND_URL}/login`).as('loginRequest');
 
         cy.visit('/login');
+    });
 
+    it('Can login to admin account', () => {
         cy.get('input[name=email]').type(EMAIL);
         cy.get('input[name=password]').type(PASSWORD);
 
@@ -28,11 +30,6 @@ describe('Login process', () => {
     });
 
     it('Login to not existing account and check is request error visible', () => {
-        cy.intercept('GET', `${BACKEND_URL}/sanctum/csrf-cookie`).as('csrfRequest');
-        cy.intercept('POST', `${BACKEND_URL}/login`).as('loginRequest');
-
-        cy.visit('/login');
-
         cy.get('input[name=email]').type(EMAIL);
         cy.get('input[name=password]').type(PASSWORD + "s");
 
