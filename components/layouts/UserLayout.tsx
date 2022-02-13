@@ -4,7 +4,7 @@ import { Nav } from '@components/nav/Nav';
 import { Toggler } from '@components/nav/mobile/Toggler';
 
 
-export const Layout: React.FC = ({ children }) => {
+export const UserLayout: React.FC = ({ children }) => {
     return (
         <>
             <Nav />

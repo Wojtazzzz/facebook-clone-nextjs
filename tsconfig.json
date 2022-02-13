@@ -22,6 +22,9 @@
       "@components/*": ["components/*"],
       "@redux/*": ["redux/*"],
       "@hooks/*": ["hooks/*"],
+      "@lib/*": ["lib/*"],
+      "@enums/*": ["enums/*"],
+      "@validation/*": ["validation/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
