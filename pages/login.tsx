@@ -1,6 +1,9 @@
 import * as React from 'react';
 import { useState } from 'react';
 
+import Link from 'next/link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { GuestLayout } from '@components/layouts/GuestLayout';
 import { LoginForm } from '@components/auth/LoginForm';
 import { RegisterForm } from '@components/auth/RegisterForm';
@@ -17,7 +20,7 @@ const Login: NextPage = () => {
     return (
         <GuestLayout>
             <div className="flex flex-col md:flex-row justify-center gap-16">
-                <div className="w-full md:w-1/2">
+                <div className="w-full md:w-1/2 md:pt-8">
                     <div className="flex items-center gap-4 mb-5">
                         <SmallLogo />
                         <h1 className="text-4xl md:text-5xl text-primary font-bold">Facebook</h1>
@@ -28,6 +31,17 @@ const Login: NextPage = () => {
                         For safety you cannot create account with own credentials. Instead of you can create free account with random data.
                         All this accounts will be deleted after 10 days. Enjoy!
                     </span>
+
+                    <div className="mt-10">
+                        <Link href="https://github.com/CubeStorm">
+                            <a target="_blank" className="w-24 h-24 flex justify-center items-center text-light-100 hover:text-light-200 border-2 border-light-100 hover:border-light-200 rounded-md transition-colors">
+                                <FontAwesomeIcon
+                                    className="text-5xl"
+                                    icon={faGithub}
+                                />
+                            </a>
+                        </Link>
+                    </div>
                 </div>
 
                 <div className="w-full md:w-1/2 max-w-[400px] bg-dark-200 rounded-lg shadow-md p-4 md:p-5 lg:p-7">
@@ -45,8 +59,7 @@ const Login: NextPage = () => {
                         <span className="text-sm text-light-200 hover:underline">
                             {isLoginFormActive
                                 ? <> Don&apos;t have an account? <br /> Register </>
-                                : <> Have an account? <br /> Login </>
-                            }
+                                : <> Have an account? <br /> Login </>}
                         </span>
                     </div>
                 </div>
