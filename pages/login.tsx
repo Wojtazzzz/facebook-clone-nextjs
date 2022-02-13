@@ -25,7 +25,9 @@ const Login: NextPage = () => {
                     </div>
 
                     <span className="md:text-lg text-light-100 font-medium">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus velit explicabo aut corrupti tenetur nemo hic, veritatis, molestias, iure minima maiores voluptatibus magnam officiis quae quia modi fugit quod quibusdam?
+                        Welcome to Facebook-clone app! This is non-commercial and non-official version of <a href="https://facebook.com/" className="hover:underline">Facebook</a> social app.
+                        For safety you cannot create account with own credentials. Instead of you can create free account with random data.
+                        All this accounts will be deleted after 10 days. Enjoy!
                     </span>
                 </div>
 
