@@ -9,11 +9,19 @@ interface InputProps {
     name: string,
     value: string,
     placeholder: string,
+    isDisabled?: boolean,
     onChange: (event: ChangeEvent) => void,
     onBlur: (event: FocusEvent) => void
 }
 
-export const Input: React.FC<InputProps> = ({ type, name, value, placeholder, onChange }) => {
+export const Input: React.FC<InputProps> = ({
+    type,
+    name,
+    value,
+    placeholder,
+    isDisabled = false,
+    onChange
+}) => {
     return (
         <div className="flex flex-col gap-2">
             <input
@@ -22,16 +30,19 @@ export const Input: React.FC<InputProps> = ({ type, name, value, placeholder, on
                 value={value}
                 placeholder={placeholder}
                 required
-                className="text-light-50 placeholder-light-50 tracking-wide bg-transparent focus:outline-none ring-2 ring-dark-100 focus:ring-primary rounded-md py-2 px-4"
+                disabled={isDisabled}
+                className={`tracking-wide bg-transparent focus:outline-none ring-2 ring-dark-100 focus:ring-primary rounded-md ${isDisabled ? 'cursor-not-allowed text-dark-100 placeholder-light-100' : 'text-light-50 placeholder-light-50'} py-2 px-4`}
                 onChange={event => onChange(event)}
                 onBlur={event => onChange(event)}
             />
 
-            <ErrorMessage
-                name={name}
-                component="small"
-                className="text-xs text-red-400 font-medium"
-            />
+            {isDisabled || (
+                <ErrorMessage
+                    name={name}
+                    component="small"
+                    className="text-xs text-red-400 font-medium"
+                />
+            )}
         </div>
     );
 }
