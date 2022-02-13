@@ -16,12 +16,14 @@ export const Additions: React.FC = () => {
             <Item
                 name="Messenger"
                 icon={faFacebookMessenger}
+                dataId="navigation-addition-messenger"
                 action={() => console.log('Action..')}
             />
 
             <Item
                 name="Notifications"
                 icon={faBell}
+                dataId="navigation-addition-notifications"
                 action={() => console.log('Action..')}
             />
 
@@ -29,6 +31,7 @@ export const Additions: React.FC = () => {
                 <Item
                     name="Log out"
                     icon={faRightFromBracket}
+                    dataId="navigation-addition-logout"
                     action={handleLogout}
                 />
             </div>

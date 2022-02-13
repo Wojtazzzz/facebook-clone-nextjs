@@ -1,10 +1,8 @@
 const baseUrl = Cypress.config().baseUrl;
 
-describe('Error Page', () => {
-    it('Is error page exist', () => {
-        cy.request({ url: '/404', failOnStatusCode: false }).its('status').should('equal', 404);
+describe('404 Page', () => {
+    it('Is exists', () => {
         cy.visit('/404', { failOnStatusCode: false });
-
         cy.get('span').contains('This page isn\'t available').should('be.visible');
     });
 

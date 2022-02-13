@@ -1,7 +1,8 @@
 import * as React from 'react';
 
-import type { NextPage } from 'next';
 import { UserLayout } from '@components/layouts/UserLayout';
+
+import type { NextPage } from 'next';
 
 
 const Profile: NextPage = () => {
