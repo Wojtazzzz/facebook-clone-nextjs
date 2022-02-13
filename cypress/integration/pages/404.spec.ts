@@ -1,4 +1,4 @@
-const baseUrl = Cypress.config().baseUrl;
+const BASE_URL = Cypress.config().baseUrl;
 
 describe('404 Page', () => {
     it('Is exists', () => {
@@ -11,7 +11,7 @@ describe('404 Page', () => {
 
         cy.get('button').contains('Go to News Feed').click();
 
-        cy.url().should('eq', baseUrl + '/');
+        cy.url().should('eq', BASE_URL + '/');
     });
 });
 

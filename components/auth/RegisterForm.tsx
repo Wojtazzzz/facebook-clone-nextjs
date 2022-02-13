@@ -74,7 +74,7 @@ export const RegisterForm: React.FC = () => {
                     />
 
                     <Button
-                        title="Create random user"
+                        title="Create Random User"
                         isDisabled={isRequestLoading}
                         callback={handleCreateAccount}
                     />

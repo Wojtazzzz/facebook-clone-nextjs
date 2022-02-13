@@ -1,13 +1,12 @@
 import * as React from 'react';
 import { useState } from 'react';
 
-import Link from 'next/link';
 import { GuestLayout } from '@components/layouts/GuestLayout';
 import { LoginForm } from '@components/auth/LoginForm';
+import { RegisterForm } from '@components/auth/RegisterForm';
 import { SmallLogo } from '@components/SmallLogo';
 
 import type { NextPage } from 'next';
-import { RegisterForm } from '@components/auth/RegisterForm';
 
 
 const Login: NextPage = () => {

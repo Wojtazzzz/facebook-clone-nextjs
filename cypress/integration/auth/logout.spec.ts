@@ -1,4 +1,3 @@
-const BASE_URL = Cypress.config().baseUrl;
 const BACKEND_URL = 'http://localhost:8000';
 
 const EMAIL = 'admin@gmail.com';
