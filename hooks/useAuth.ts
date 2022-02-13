@@ -6,11 +6,10 @@ import axios from '@lib/axios';
 import { AuthMiddleware } from '@enums/AuthMiddleware';
 
 interface useAuthProps {
-    middleware?: AuthMiddleware,
-    redirectIfAuthenticated?: string
+    middleware?: AuthMiddleware
 }
 
-export const useAuth = ({ middleware, redirectIfAuthenticated }: useAuthProps = {}) => {
+export const useAuth = ({ middleware }: useAuthProps = {}) => {
     const [isRequestLoading, setIsRequestLoading] = useState(false);
     const router = useRouter();
 
@@ -75,7 +74,7 @@ export const useAuth = ({ middleware, redirectIfAuthenticated }: useAuthProps = 
     }
 
     useEffect(() => {
-        if (middleware === AuthMiddleware.GUEST && redirectIfAuthenticated && user) router.push('/login');
+        if (middleware === AuthMiddleware.GUEST && user) router.push('/');
         if (middleware === AuthMiddleware.AUTH && error) logout();
     }, [user, error])
 

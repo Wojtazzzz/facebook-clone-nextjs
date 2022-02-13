@@ -6,12 +6,6 @@ const PASSWORD = 'admin';
 
 
 describe('Login process', () => {
-    it('Is login page exists', () => {
-        cy.visit('/login');
-
-        cy.get('span').contains('This page isn\'t available').should('not.exist');
-    });
-
     it('Can login to admin account', () => {
         cy.intercept('GET', `${BACKEND_URL}/sanctum/csrf-cookie`).as('csrfRequest');
         cy.intercept('POST', `${BACKEND_URL}/login`).as('loginRequest');
@@ -23,9 +17,8 @@ describe('Login process', () => {
 
         cy.get('button[type="submit"]').click().should('be.disabled');
 
-        cy.wait('@csrfRequest').its('response.statusCode').should('eq', 204).then(() => {
-            cy.wait('@loginRequest').its('response.statusCode').should('eq', 204);
-        });
+        cy.wait('@csrfRequest').its('response.statusCode').should('eq', 204);
+        cy.wait('@loginRequest').its('response.statusCode').should('eq', 204);
 
         cy.intercept('GET', `${BACKEND_URL}/api/user`).as('userRequest');
 
