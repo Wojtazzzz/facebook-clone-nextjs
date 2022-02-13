@@ -4,7 +4,6 @@ const BACKEND_URL = 'http://localhost:8000';
 const EMAIL = 'admin@gmail.com';
 const PASSWORD = 'admin';
 
-
 describe('Login process', () => {
     beforeEach(() => {
         cy.intercept('GET', `${BACKEND_URL}/sanctum/csrf-cookie`).as('csrfRequest');

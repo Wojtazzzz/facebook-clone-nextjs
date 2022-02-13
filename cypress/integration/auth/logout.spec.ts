@@ -3,7 +3,6 @@ const BACKEND_URL = 'http://localhost:8000';
 const EMAIL = 'admin@gmail.com';
 const PASSWORD = 'admin';
 
-
 describe('Logout process', () => {
     it('Logged user try to logout', () => {
         cy.intercept('GET', `${BACKEND_URL}/sanctum/csrf-cookie`).as('csrfRequest');
