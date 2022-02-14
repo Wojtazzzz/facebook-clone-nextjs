@@ -7,12 +7,12 @@ import { config } from '@fortawesome/fontawesome-svg-core';
 
 import type { AppProps } from 'next/app';
 
-
 import '@fortawesome/fontawesome-svg-core/styles.css';
 config.autoAddCss = false;
 import '@styles/global.css';
 import '@styles/tailwind.css';
 import '@styles/input-autocomplete.css';
+import '@styles/skeleton-loading.css';
 
 
 function MyApp({ Component, pageProps }: AppProps) {

@@ -25,6 +25,7 @@
       "@lib/*": ["lib/*"],
       "@enums/*": ["enums/*"],
       "@validation/*": ["validation/*"],
+      "@ctypes/*": ["types/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

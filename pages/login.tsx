@@ -34,7 +34,7 @@ const Login: NextPage = () => {
 
                     <div className="mt-10">
                         <Link href="https://github.com/CubeStorm">
-                            <a target="_blank" className="w-24 h-24 flex justify-center items-center text-light-100 hover:text-light-200 border-2 border-light-100 hover:border-light-200 rounded-md transition-colors">
+                            <a target="_blank" rel="noopener noreferrer" className="w-24 h-24 flex justify-center items-center text-light-100 hover:text-light-200 border-2 border-light-100 hover:border-light-200 rounded-md transition-colors">
                                 <FontAwesomeIcon
                                     className="text-5xl"
                                     icon={faGithub}

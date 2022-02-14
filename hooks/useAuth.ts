@@ -4,6 +4,7 @@ import useSWR from 'swr';
 
 import axios from '@lib/axios';
 import { AuthMiddleware } from '@enums/AuthMiddleware';
+import { useAppDispatch } from './redux';
 
 interface useAuthProps {
     middleware?: AuthMiddleware
@@ -12,10 +13,10 @@ interface useAuthProps {
 export const useAuth = ({ middleware }: useAuthProps = {}) => {
     const [isRequestLoading, setIsRequestLoading] = useState(false);
     const router = useRouter();
+    const dispatch = useAppDispatch();
 
     const { data: user, error, mutate } = useSWR('/api/user', () =>
-        axios
-            .get('/api/user')
+        axios.get('/api/user')
             .then(res => res.data)
             .catch(error => {
                 if (error.response.status !== 409) throw error;
@@ -53,7 +54,6 @@ export const useAuth = ({ middleware }: useAuthProps = {}) => {
             .post('/login', props)
             .then(() => mutate())
             .catch(error => {
-
                 if (error.response.status !== 422) throw error
 
                 setErrors(Object.values(error.response.data.errors).flat())

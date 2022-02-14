@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface CounterState {
+interface NavState {
     isActive: boolean
 }
 
-const initialState: CounterState = {
+const initialState: NavState = {
     isActive: false
 }
 
