@@ -4,6 +4,7 @@ import { useAuth } from '@hooks/useAuth';
 import { Nav } from '@components/nav/Nav';
 import { Toggler } from '@components/nav/mobile/Toggler';
 import { Sidebar } from '@components/sidebar/Sidebar';
+import { Contacts } from '@components/contacts/Contacts';
 
 import { AuthMiddleware } from '@enums/AuthMiddleware';
 
@@ -22,7 +23,7 @@ export const UserLayout: React.FC = ({ children }) => {
                     {children}
                 </main>
 
-                {/* <Sidebar /> */}
+                <Contacts />
             </div>
 
             <Toggler />
