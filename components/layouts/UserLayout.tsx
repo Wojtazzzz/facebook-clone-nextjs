@@ -19,7 +19,7 @@ export const UserLayout: React.FC = ({ children }) => {
         <>
             <Nav />
 
-            <div className="flex justify-between relative mt-14">
+            <div className="flex justify-between relative translate-y-14">
                 <Sidebar />
 
                 <main className="h-screen overflow-y-scroll pb-14">
