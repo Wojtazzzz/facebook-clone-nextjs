@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { useAuth } from '@hooks/useAuth';
 
+import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHandLizard, faUser, faUsers } from '@fortawesome/free-solid-svg-icons';
+import { faHandLizard, faUsers } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { SideItem } from '@components/sidebar/SideItem';
 import { SideItemLoading } from '@components/sidebar/SideItemLoading';
-import Image from 'next/image';
 
 
 export const Sidebar: React.FC = () => {

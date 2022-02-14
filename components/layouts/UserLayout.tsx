@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useRouter } from 'next/router';
 import { useAuth } from '@hooks/useAuth';
 
 import { Nav } from '@components/nav/Nav';
@@ -12,6 +13,8 @@ import { AuthMiddleware } from '@enums/AuthMiddleware';
 export const UserLayout: React.FC = ({ children }) => {
     useAuth({ middleware: AuthMiddleware.AUTH });
 
+    const { route } = useRouter();
+
     return (
         <>
             <Nav />
@@ -23,7 +26,9 @@ export const UserLayout: React.FC = ({ children }) => {
                     {children}
                 </main>
 
-                <Contacts />
+                {route === '/' && (
+                    <Contacts />
+                )}
             </div>
 
             <Toggler />
