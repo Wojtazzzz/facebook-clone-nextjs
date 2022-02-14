@@ -62,11 +62,12 @@ export const useAuth = ({ middleware }: useAuthProps = {}) => {
     }
 
     const logout = async () => {
-        setIsRequestLoading(true);
-
         if (!error) {
+            setIsRequestLoading(true);
+
             await axios.post('/logout');
             mutate();
+
             setIsRequestLoading(false);
         }
 
