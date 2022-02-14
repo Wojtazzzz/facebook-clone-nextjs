@@ -1,26 +1,27 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useAuth } from '@hooks/useAuth';
 
 import { Header } from '@components/contacts/Header';
 import { ContactItem } from '@components/contacts/ContactItem';
-import axios from '@lib/axios';
+import { UserType } from '@ctypes/features/UserType';
 
 
 export const Contacts: React.FC = () => {
-    const [users, setUsers] = useState([]);
+    const { user } = useAuth();
 
-    useEffect(() => {
-        axios.get('/api/users')
-            .then(response => setUsers(response.data.users))
-    }, []);
+    const UsersComponent = new Array;
 
-    const UsersComponent = users.map(({ id, first_name, last_name }) => (
-        <ContactItem
-            key={id}
-            first_name={first_name}
-            last_name={last_name}
-        />
-    ));
+    if (user) {
+        user.friends.map(friend => {
+            UsersComponent.push(
+                <ContactItem
+                    key={friend.id}
+                    {...friend}
+                />
+            )
+        })
+    }
 
     return (
         <aside className="w-[300px] h-screen flex flex-col px-2 pr-4 py-5 overflow-y-scroll pb-14">

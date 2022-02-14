@@ -4,7 +4,9 @@ import useSWR from 'swr';
 
 import axios from '@lib/axios';
 import { AuthMiddleware } from '@enums/AuthMiddleware';
-import { useAppDispatch } from './redux';
+
+import type { UserType } from '@ctypes/features/UserType';
+
 
 interface useAuthProps {
     middleware?: AuthMiddleware
@@ -13,9 +15,8 @@ interface useAuthProps {
 export const useAuth = ({ middleware }: useAuthProps = {}) => {
     const [isRequestLoading, setIsRequestLoading] = useState(false);
     const router = useRouter();
-    const dispatch = useAppDispatch();
 
-    const { data: user, error, mutate } = useSWR('/api/user', () =>
+    const { data: user, error, mutate } = useSWR<UserType>('/api/user', () =>
         axios.get('/api/user')
             .then(res => res.data)
             .catch(error => {

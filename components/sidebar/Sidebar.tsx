@@ -6,6 +6,7 @@ import { faHandLizard, faUser, faUsers } from '@fortawesome/free-solid-svg-icons
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { SideItem } from '@components/sidebar/SideItem';
 import { SideItemLoading } from '@components/sidebar/SideItemLoading';
+import Image from 'next/image';
 
 
 export const Sidebar: React.FC = () => {
@@ -15,9 +16,16 @@ export const Sidebar: React.FC = () => {
         <aside className="w-[300px] h-screen flex flex-col px-2 py-5">
             {user
                 ? <SideItem
-                    title={`${user.first_name} ${user?.last_name}`}
+                    title={`${user.first_name} ${user.last_name}`}
                     link="/profile"
-                    icon={<FontAwesomeIcon icon={faUser} />}
+                    icon={<div className="w-[36px] h-[36px] relative">
+                        <Image
+                            className="rounded-full"
+                            layout="fill"
+                            src={user.image}
+                            alt=""
+                        />
+                    </div>}
                 />
                 : <SideItemLoading />}
 
