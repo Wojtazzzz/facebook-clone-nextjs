@@ -1,11 +1,11 @@
 import * as React from 'react';
+import { useAuth } from '@hooks/useAuth';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHandLizard, faUser, faUsers } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { SideItem } from '@components/sidebar/SideItem';
-import { useAuth } from '@hooks/useAuth';
-import { SideItemLoading } from './SideItemLoading';
+import { SideItemLoading } from '@components/sidebar/SideItemLoading';
 
 
 export const Sidebar: React.FC = () => {
@@ -16,23 +16,21 @@ export const Sidebar: React.FC = () => {
             {user
                 ? <SideItem
                     title={`${user.first_name} ${user?.last_name}`}
-                    link="/"
+                    link="/profile"
                     icon={<FontAwesomeIcon icon={faUser} />}
                 />
-                : <SideItemLoading />
-
-            }
+                : <SideItemLoading />}
 
             <SideItem
-                title="Zaczepki"
-                link="/"
-                icon={<FontAwesomeIcon icon={faHandLizard} />}
+                title="Friends"
+                link="/friends"
+                icon={<FontAwesomeIcon icon={faUsers} />}
             />
 
             <SideItem
-                title="Znajomi"
-                link="/"
-                icon={<FontAwesomeIcon icon={faUsers} />}
+                title="Pokes"
+                link="/pokes"
+                icon={<FontAwesomeIcon icon={faHandLizard} />}
             />
 
             <SideItem

@@ -22,7 +22,7 @@ export const UserLayout: React.FC = ({ children }) => {
                     {children}
                 </main>
 
-                <Sidebar />
+                {/* <Sidebar /> */}
             </div>
 
             <Toggler />
