@@ -15,7 +15,7 @@ export const Sidebar: React.FC = () => {
     const { isActive } = useAppSelector(store => store.sidebar);
 
     return (
-        <aside className={`w-[250px] lg:w-[300px] h-screen flex flex-col fixed lg:relative top-0 left-0 bg-dark-300 ${isActive ? '' : '-translate-x-[300px] lg:translate-x-[0px]'} transition-transform z-30 px-2 py-5`}>
+        <aside className={`w-full max-w-[250px] xl:max-w-[300px] h-screen flex flex-col fixed lg:relative top-0 left-0 bg-dark-300 ${isActive ? '' : '-translate-x-[300px] lg:translate-x-[0px]'} transition-transform z-30 px-2 py-5`}>
             {user
                 ? <SideItem
                     title={`${user.first_name} ${user.last_name}`}

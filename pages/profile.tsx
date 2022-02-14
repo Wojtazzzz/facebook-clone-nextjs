@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { UserLayout } from '@components/layouts/UserLayout';
+import { Header } from '@components/pages/profile/Header';
 
 import type { NextPage } from 'next';
 
@@ -8,8 +9,8 @@ import type { NextPage } from 'next';
 const Profile: NextPage = () => {
     return (
         <UserLayout>
-            <div className="bg-gray-600">
-                <span className="text-dark-200">Profile</span>
+            <div className="w-full">
+                <Header />
             </div>
         </UserLayout>
     )

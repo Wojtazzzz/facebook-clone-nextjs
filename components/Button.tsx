@@ -22,7 +22,7 @@ export const Button: React.FC<ButtonProps> = ({
         <button
             type={type}
             className={
-                `min-w-[210px] bg-${color} hover:opacity-90 text-sm md:text-base text-light-50 font-medium rounded-md transition-opacity mt-5 p-3 
+                `w-full bg-${color} hover:opacity-90 text-sm md:text-base text-light-50 font-medium rounded-md transition-opacity mt-5 p-2 
                 ${isDisabled ? 'opacity-60 hover:opacity-60 cursor-not-allowed' : ''} 
                 ${styles}
             `}

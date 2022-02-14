@@ -53,12 +53,14 @@ export const LoginForm: React.FC = () => {
 
                     <RequestErrors errors={requestErrors} />
 
-                    <Button
-                        type="submit"
-                        title="Login"
-                        isDisabled={isRequestLoading}
-                        callback={handleSubmit}
-                    />
+                    <div className="min-w-[210px] w-full">
+                        <Button
+                            type="submit"
+                            title="Login"
+                            isDisabled={isRequestLoading}
+                            callback={handleSubmit}
+                        />
+                    </div>
                 </form>
             )}
         </Formik>
