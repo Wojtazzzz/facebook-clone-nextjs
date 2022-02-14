@@ -9,7 +9,7 @@ import { Additions } from '@components/nav/additions/Additions';
 
 export const Nav: React.FC = () => {
     return (
-        <nav className="w-full h-14 flex justify-between md:justify-center fixed top-0 left-0 bg-dark-200 shadow-sm px-4">
+        <nav className="w-full h-14 flex justify-between md:justify-center fixed top-0 left-0 z-40 bg-dark-200 shadow-sm px-4">
             <div className="w-1/3 flex items-center gap-2 my-1">
                 <Logo />
 
