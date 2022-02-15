@@ -5,6 +5,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { UserLayout } from '@components/layouts/UserLayout';
 import { Button } from '@components/Button';
+import { Loader } from '@components/pages/friends/Loader';
+import { EmptyList } from '@components/pages/friends/EmptyList';
 
 import type { NextPage } from 'next';
 
@@ -22,15 +24,13 @@ const Friends: NextPage = () => {
                     href={`/profile/${id}`}
                 >
                     <a className="flex items-center gap-5 hover:bg-dark-100 rounded-lg transition-colors py-3 px-5">
-                        <div>
-                            <Image
-                                width="80"
-                                height="80"
-                                src={profile_image}
-                                alt={`${first_name} profile image`}
-                                className="rounded-full"
-                            />
-                        </div>
+                        <Image
+                            width="85"
+                            height="85"
+                            src={profile_image}
+                            alt={`${first_name} profile image`}
+                            className="rounded-full"
+                        />
 
                         <span className="md:text-xl text-light-200 font-medium">{first_name} {last_name}</span>
 
@@ -48,12 +48,12 @@ const Friends: NextPage = () => {
         <UserLayout>
             <div className="flex flex-col gap-6 text-black py-5 px-2">
                 {user
-                    ? FriendsComponent
-                    : (
-                        <span>Loading</span>
-                    )}
+                    ? FriendsComponent.length > 0
+                        ? FriendsComponent
+                        : <EmptyList title="Your list of friends is empty" />
+                    : <Loader />}
             </div>
-        </UserLayout >
+        </UserLayout>
     )
 }
 
