@@ -7,12 +7,10 @@ import { Input } from '@components/auth/Input';
 import { Button } from '@components/Button';
 import { RequestErrors } from '@components/auth/RequestErrors';
 
-import { AuthMiddleware } from '@enums/AuthMiddleware';
-
 
 export const RegisterForm: React.FC = () => {
     const [requestErrors, setRequestErrors] = useState([]);
-    const { register, isRequestLoading } = useAuth({ middleware: AuthMiddleware.GUEST });
+    const { register, isRequestLoading } = useAuth();
 
     const handleCreateAccount = () => register({ setErrors: setRequestErrors });
 

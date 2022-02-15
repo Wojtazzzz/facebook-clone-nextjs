@@ -12,7 +12,6 @@ config.autoAddCss = false;
 import '@styles/global.css';
 import '@styles/tailwind.css';
 import '@styles/input-autocomplete.css';
-import '@styles/skeleton-loading.css';
 
 
 function MyApp({ Component, pageProps }: AppProps) {

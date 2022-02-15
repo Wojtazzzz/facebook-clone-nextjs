@@ -8,13 +8,9 @@ import { AuthMiddleware } from '@enums/AuthMiddleware';
 import type { UserType } from '@ctypes/features/UserType';
 
 
-interface useAuthProps {
-    middleware?: AuthMiddleware
-}
-
-export const useAuth = ({ middleware }: useAuthProps = {}) => {
+export const useAuth = (middleware: AuthMiddleware | void) => {
     const [isRequestLoading, setIsRequestLoading] = useState(false);
-    const router = useRouter();
+    const { push } = useRouter();
 
     const { data: user, error, mutate } = useSWR<UserType>('/api/user', () =>
         axios.get('/api/user')
@@ -22,7 +18,7 @@ export const useAuth = ({ middleware }: useAuthProps = {}) => {
             .catch(error => {
                 if (error.response.status !== 409) throw error;
 
-                router.push('/verify-email');
+                push('/verify-email');
             })
     );
 
@@ -76,7 +72,7 @@ export const useAuth = ({ middleware }: useAuthProps = {}) => {
     }
 
     useEffect(() => {
-        if (middleware === AuthMiddleware.GUEST && user) router.push('/');
+        if (middleware === AuthMiddleware.GUEST && user) push('/');
         if (middleware === AuthMiddleware.AUTH && error) logout();
     }, [user, error])
 
@@ -85,6 +81,6 @@ export const useAuth = ({ middleware }: useAuthProps = {}) => {
         isRequestLoading,
         register,
         login,
-        logout,
+        logout
     }
 }

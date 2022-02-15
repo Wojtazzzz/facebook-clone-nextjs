@@ -11,7 +11,7 @@ import { AuthMiddleware } from '@enums/AuthMiddleware';
 
 
 export const UserLayout: React.FC = ({ children }) => {
-    useAuth({ middleware: AuthMiddleware.AUTH });
+    useAuth(AuthMiddleware.AUTH);
 
     const { route } = useRouter();
 

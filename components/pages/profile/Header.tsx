@@ -16,7 +16,7 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ user }) => {
     const { id, first_name, last_name, profile_image, background_image, friends } = user;
-    const { user: loggedUser } = useAuth({ middleware: AuthMiddleware.AUTH });
+    const { user: loggedUser } = useAuth();
 
     const isLoggedUser = (loggedUser?.id ?? -1) === id;
 

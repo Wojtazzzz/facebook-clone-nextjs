@@ -8,12 +8,11 @@ import { Button } from '@components/Button';
 import { RequestErrors } from '@components/auth/RequestErrors';
 
 import { LoginSchema } from '@validation/LoginSchema';
-import { AuthMiddleware } from '@enums/AuthMiddleware';
 
 
 export const LoginForm: React.FC = () => {
     const [requestErrors, setRequestErrors] = useState([]);
-    const { login, isRequestLoading } = useAuth({ middleware: AuthMiddleware.GUEST });
+    const { login, isRequestLoading } = useAuth();
 
     const handleSubmit = (email: string, password: string) => {
         login({
