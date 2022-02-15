@@ -19,7 +19,7 @@ export const Sidebar: React.FC = () => {
             {user
                 ? <SideItem
                     title={`${user.first_name} ${user.last_name}`}
-                    link="/profile"
+                    link={`/profile/${user.id}`}
                     icon={<div className="w-[36px] h-[36px] relative">
                         <Image
                             className="rounded-full"

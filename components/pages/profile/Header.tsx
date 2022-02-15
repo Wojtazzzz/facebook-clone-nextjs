@@ -1,102 +1,100 @@
 import * as React from 'react';
-import { useEffect } from 'react';
 import { useAuth } from '@hooks/useAuth';
 
 import Image from 'next/image';
-import SkeletonLoader from 'tiny-skeleton-loader-react';
 import { Button } from '@components/Button';
 
 import { AuthMiddleware } from '@enums/AuthMiddleware';
 
+import type { UserType } from '@ctypes/features/UserType';
+import Link from 'next/link';
 
-export const Header: React.FC = () => {
-    const { user } = useAuth({ middleware: AuthMiddleware.AUTH });
 
-    const FriendsHeadsComponent: React.ReactElement[] = [];
+interface HeaderProps {
+    user: UserType
+}
 
-    if (user) {
-        user.friends.map(({ id, first_name, last_name, profile_image }) => {
-            if (FriendsHeadsComponent.length >= 4) return;
+export const Header: React.FC<HeaderProps> = ({ user }) => {
+    const { id, first_name, last_name, profile_image, background_image, friends } = user;
+    const { user: loggedUser } = useAuth({ middleware: AuthMiddleware.AUTH });
 
-            FriendsHeadsComponent.push(
-                <Image
-                    key={id}
-                    width="32"
-                    height="32"
-                    src={profile_image}
-                    alt={`${first_name} ${last_name}`}
-                    title={`${first_name} ${last_name}`}
-                    className="rounded-full"
-                />
-            );
-        });
-    }
+    const isLoggedUser = (loggedUser?.id ?? -1) === id;
+
+
+    const FriendsHeadsComponent = friends.map(({ id, first_name, last_name, profile_image }, i) => {
+        if (i >= 5) return;
+
+        return (
+            <Link href={`/profile/${id}`} key={id}>
+                <a className="-mx-0.5">
+                    <Image
+                        key={id}
+                        width="32"
+                        height="32"
+                        src={profile_image}
+                        alt={`${first_name} ${last_name}`}
+                        title={`${first_name} ${last_name}`}
+                        className="rounded-full"
+                    />
+                </a>
+            </Link>
+        );
+    });
 
     return (
         <div className="w-full border-b-2 border-dark-100">
             <div className="w-full h-[200px] sm:h-[280px] md:h-[300px] lg:h-[350px] relative">
-                {user ? (
-                    <Image
-                        layout="fill"
-                        src={user.background_image}
-                        alt={`${user.first_name} background`}
-                        priority
-                        className="rounded-b-lg"
-                    />
-                ) : (
-                    <SkeletonLoader background="#242526" style={{ width: '100%', height: '100%' }} />
-                )}
-
+                <Image
+                    layout="fill"
+                    src={background_image}
+                    alt={`${first_name} background`}
+                    priority
+                    className="rounded-b-lg"
+                />
             </div>
 
             <div className="w-full flex flex-col md:flex-row justfy-between -translate-y-10 px-3 xs:px-5 sm:px-8 md:px-10 lg:px-12">
                 <div className="w-full flex items-center gap-5">
                     <div className="w-[120px] sm:w-[140px] lg:w-[168px] h-[120px] sm:h-[140px] lg:h-[168px] relative">
-                        {user ? (
-                            <Image
-                                layout="fill"
-                                src={user.profile_image}
-                                alt="User profile image"
-                                className="rounded-full border-4 border-dark-200"
-                            />
-                        ) : (
-                            <SkeletonLoader background="#242526" style={{ width: 168, height: 168 }} circle={true} />
-                        )}
+                        <Image
+                            layout="fill"
+                            src={profile_image}
+                            alt="User profile image"
+                            className="rounded-full border-4 border-dark-200"
+                        />
                     </div>
 
                     <div className="flex flex-col gap-1.5 mt-12">
-                        {user ? (
-                            <>
-                                <span className="text-2xl xl:text-3xl text-light-200 font-bold">
-                                    {user.first_name} {user.last_name}
-                                </span>
+                        <span className="text-2xl xl:text-3xl text-light-200 font-bold">
+                            {first_name} {last_name}
+                        </span>
 
-                                <span className="xl:text-lg text-light-100 font-medium -my-1.5">
-                                    {user.friends.length} Friends
-                                </span>
+                        <span className="xl:text-lg text-light-100 font-medium -my-1.5">
+                            {friends.length} Friends
+                        </span>
 
-                                <div className="flex">
-                                    {FriendsHeadsComponent}
-                                </div>
-                            </>
-                        ) : (
-                            <>
-                                <SkeletonLoader background="#242526" style={{ width: 180, height: 25 }} />
-                                <SkeletonLoader background="#242526" style={{ width: 100, height: 15 }} />
-                                <SkeletonLoader background="#242526" style={{ width: 130, height: 30 }} />
-                            </>
-                        )}
+                        <div className="flex">
+                            {FriendsHeadsComponent}
+                        </div>
                     </div>
                 </div>
 
                 <div className="w-full flex justify-end items-end gap-4 mb-6 mr-6">
-                    <div className="w-[130px] xl:w-[155px]">
-                        <Button title="Send message" />
-                    </div>
+                    {isLoggedUser ? (
+                        <div className="w-[130px] xl:w-[155px]">
+                            <Button title="Edit profil" />
+                        </div>
+                    ) : (
+                        <>
+                            <div className="w-[130px] xl:w-[155px]">
+                                <Button title="Send message" />
+                            </div>
 
-                    <div className="w-[130px] xl:w-[155px]">
-                        <Button title="Poke" />
-                    </div>
+                            <div className="w-[130px] xl:w-[155px]">
+                                <Button title="Poke" />
+                            </div>
+                        </>
+                    )}
                 </div>
             </div>
         </div>

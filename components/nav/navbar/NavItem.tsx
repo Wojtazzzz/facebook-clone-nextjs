@@ -15,9 +15,9 @@ interface NavItemProps {
 }
 
 export const NavItem: React.FC<NavItemProps> = ({ name, path, icon, dataId }) => {
-    const { route } = useRouter();
+    const { asPath } = useRouter();
 
-    const isActive = route === path;
+    const isActive = asPath === path;
 
     return (
         <Link href={path}>
