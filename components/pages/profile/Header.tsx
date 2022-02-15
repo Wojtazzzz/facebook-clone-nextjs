@@ -15,7 +15,7 @@ export const Header: React.FC = () => {
     const FriendsHeadsComponent: React.ReactElement[] = [];
 
     if (user) {
-        user.friends.map(({ id, first_name, last_name, image }) => {
+        user.friends.map(({ id, first_name, last_name, profile_image }) => {
             if (FriendsHeadsComponent.length >= 4) return;
 
             FriendsHeadsComponent.push(
@@ -23,7 +23,7 @@ export const Header: React.FC = () => {
                     key={id}
                     width="32"
                     height="32"
-                    src={image}
+                    src={profile_image}
                     alt={`${first_name} ${last_name}`}
                     title={`${first_name} ${last_name}`}
                     className="rounded-full"
@@ -35,13 +35,18 @@ export const Header: React.FC = () => {
     return (
         <div className="w-full border-b-2 border-dark-100">
             <div className="w-full h-[200px] sm:h-[280px] md:h-[300px] lg:h-[350px] relative">
-                <Image
-                    layout="fill"
-                    src="https://scontent.fktw1-1.fna.fbcdn.net/v/t1.18169-9/11201902_655426647927251_5385839609063367253_n.jpg?_nc_cat=101&ccb=1-5&_nc_sid=e3f864&_nc_ohc=mHUrIQh3ZNkAX_G3JIL&_nc_ht=scontent.fktw1-1.fna&oh=00_AT9J5Pb4AvxnxZU0KRUMaUFwlfXEKCXkUhL8cjjetY2aJQ&oe=622F7636"
-                    alt="User background"
-                    priority
-                    className="rounded-b-lg"
-                />
+                {user ? (
+                    <Image
+                        layout="fill"
+                        src={user.background_image}
+                        alt={`${user.first_name} background`}
+                        priority
+                        className="rounded-b-lg"
+                    />
+                ) : (
+                    <SkeletonLoader background="#242526" style={{ width: '100%', height: '100%' }} />
+                )}
+
             </div>
 
             <div className="w-full flex flex-col md:flex-row justfy-between -translate-y-10 px-3 xs:px-5 sm:px-8 md:px-10 lg:px-12">
@@ -50,7 +55,7 @@ export const Header: React.FC = () => {
                         {user ? (
                             <Image
                                 layout="fill"
-                                src={user.image}
+                                src={user.profile_image}
                                 alt="User profile image"
                                 className="rounded-full border-4 border-dark-200"
                             />

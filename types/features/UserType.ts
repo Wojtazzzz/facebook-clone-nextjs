@@ -5,6 +5,7 @@ export type UserType = {
     first_name: string,
     last_name: string,
     email: string,
-    image: string,
+    profile_image: string,
+    background_image: string,
     friends: FriendType[]
 }

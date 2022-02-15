@@ -7,14 +7,14 @@ import type { FriendType } from '@ctypes/features/FriendType';
 
 interface ContactItemProps extends FriendType { }
 
-export const ContactItem: React.FC<ContactItemProps> = ({ first_name, last_name, image }) => {
+export const ContactItem: React.FC<ContactItemProps> = ({ first_name, last_name, profile_image }) => {
     return (
         <div className="w-full flex items-center gap-3 hover:bg-dark-100 rounded-lg transition-colors cursor-pointer p-2">
             <div className="w-[36px] h-[36px] relative">
                 <Image
                     className="rounded-full"
                     layout="fill"
-                    src={image}
+                    src={profile_image}
                     alt=""
                 />
             </div>

@@ -24,7 +24,7 @@ export const Sidebar: React.FC = () => {
                         <Image
                             className="rounded-full"
                             layout="fill"
-                            src={user.image}
+                            src={user.profile_image}
                             alt=""
                         />
                     </div>}
