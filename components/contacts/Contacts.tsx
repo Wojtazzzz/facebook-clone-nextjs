@@ -8,11 +8,11 @@ import { ContactItem } from '@components/contacts/ContactItem';
 export const Contacts: React.FC = () => {
     const { user } = useAuth();
 
-    const ContactsComponent: React.ReactFragment[] = [];
+    const ContactsComponents: React.ReactFragment[] = [];
 
     if (user) {
         user.friends.map(friend =>
-            ContactsComponent.push(
+            ContactsComponents.push(
                 <ContactItem
                     key={friend.id}
                     {...friend}
@@ -26,7 +26,7 @@ export const Contacts: React.FC = () => {
             <Header />
 
             <div className="w-full">
-                {ContactsComponent}
+                {ContactsComponents}
             </div>
         </aside>
     );

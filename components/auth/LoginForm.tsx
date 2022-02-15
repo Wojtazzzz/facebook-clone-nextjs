@@ -11,15 +11,15 @@ import { LoginSchema } from '@validation/LoginSchema';
 
 
 export const LoginForm: React.FC = () => {
-    const [requestErrors, setRequestErrors] = useState([]);
     const { login, isRequestLoading } = useAuth();
+    const [requestErrors, setRequestErrors] = useState([]);
 
     const handleSubmit = (email: string, password: string) => {
         login({
             email,
             password,
             setErrors: setRequestErrors
-        })
+        });
     }
 
     return (

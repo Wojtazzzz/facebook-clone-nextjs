@@ -4,7 +4,7 @@ import { useAppSelector } from '@hooks/redux';
 import { faHome, faShop, faUser } from '@fortawesome/free-solid-svg-icons';
 import { Logo } from '@components/nav/mobile/Logo';
 import { NavItem } from '@components/nav/mobile/NavItem';
-import { Search } from '../Search';
+import { Search } from '@components/nav/Search';
 
 
 export const NavBar: React.FC = () => {

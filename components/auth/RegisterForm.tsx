@@ -9,8 +9,8 @@ import { RequestErrors } from '@components/auth/RequestErrors';
 
 
 export const RegisterForm: React.FC = () => {
-    const [requestErrors, setRequestErrors] = useState([]);
     const { register, isRequestLoading } = useAuth();
+    const [requestErrors, setRequestErrors] = useState([]);
 
     const handleCreateAccount = () => register({ setErrors: setRequestErrors });
 

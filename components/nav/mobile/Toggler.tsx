@@ -11,13 +11,12 @@ export const Toggler: React.FC = () => {
     const { isActive } = useAppSelector(store => store.nav);
     const dispatch = useAppDispatch();
 
-    const handleOpen = () => dispatch(toggleActive(true));
-    const handleClose = () => dispatch(toggleActive(false));
+    const handleToggleActive = () => dispatch(toggleActive(!isActive));
 
     return (
         <div
             className="w-[50px] h-[50px] flex md:hidden justify-center items-center fixed bottom-3 right-3 z-40 bg-dark-100 rounded-full"
-            onClick={isActive ? handleClose : handleOpen}
+            onClick={handleToggleActive}
         >
             <FontAwesomeIcon
                 className="text-xl text-light-100"

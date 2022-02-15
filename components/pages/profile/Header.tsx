@@ -19,7 +19,7 @@ export const Header: React.FC<HeaderProps> = ({ user }) => {
     const isLoggedUser = (loggedUser?.id ?? -1) === id;
 
 
-    const FriendsHeadsComponent = friends.map(({ id, first_name, last_name, profile_image }, i) => {
+    const FriendsHeadsComponents = friends.map(({ id, first_name, last_name, profile_image }, i) => {
         if (i >= 5) return;
 
         return (
@@ -72,7 +72,7 @@ export const Header: React.FC<HeaderProps> = ({ user }) => {
                         </span>
 
                         <div className="flex">
-                            {FriendsHeadsComponent}
+                            {FriendsHeadsComponents}
                         </div>
                     </div>
                 </div>
