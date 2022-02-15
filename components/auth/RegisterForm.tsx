@@ -65,20 +65,19 @@ export const RegisterForm: React.FC = () => {
 
                     <RequestErrors errors={requestErrors} />
 
-                    <div className="min-w-[210px] w-full">
+                    <Button
+                        type="button"
+                        title="Register"
+                        isDisabled={true}
+                        styles="w-full mt-3"
+                    />
 
-                        <Button
-                            type="button"
-                            title="Register"
-                            isDisabled={true}
-                        />
-
-                        <Button
-                            title="Create Random User"
-                            isDisabled={isRequestLoading}
-                            callback={handleCreateAccount}
-                        />
-                    </div>
+                    <Button
+                        title="Create Random User"
+                        isDisabled={isRequestLoading}
+                        callback={handleCreateAccount}
+                        styles="w-full mt-4"
+                    />
                 </form>
             )}
         </Formik>

@@ -6,13 +6,11 @@ import Image from 'next/image';
 import { UserLayout } from '@components/layouts/UserLayout';
 import { Button } from '@components/Button';
 
-import { AuthMiddleware } from '@enums/AuthMiddleware';
-
 import type { NextPage } from 'next';
 
 
 const Friends: NextPage = () => {
-    const { user } = useAuth(AuthMiddleware.AUTH);
+    const { user } = useAuth();
 
     const FriendsComponent: React.ReactFragment[] = [];
 
@@ -36,9 +34,10 @@ const Friends: NextPage = () => {
 
                         <span className="md:text-xl text-light-200 font-medium">{first_name} {last_name}</span>
 
-                        <div className="w-[150px] -mt-5 ml-auto">
-                            <Button title="Send message" />
-                        </div>
+                        <Button
+                            title="Send message"
+                            styles="w-[150px] ml-auto"
+                        />
                     </a>
                 </Link>
             );

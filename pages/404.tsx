@@ -1,7 +1,7 @@
 import * as React from 'react';
+import { useRouter } from 'next/router';
 
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import { Button } from '@components/Button';
 
 
@@ -16,18 +16,17 @@ export default function Custom404() {
                 width={112}
                 height={112}
                 src="/img/not_available.svg"
-                alt="Page not available"
+                alt="Page is not available"
             />
 
             <span className="text-lg text-light-100 font-bold text-center mt-2">This page isn&apos;t available</span>
             <span className="text-base text-light-100 text-center">The link may be broken, or the page may have been removed. Check to see if the link you&apos;re trying to open is correct.</span>
 
-            <div className="w-[300px]">
-                <Button
-                    title="Go to News Feed"
-                    callback={handleRedirect}
-                />
-            </div>
+            <Button
+                title="Go to Home Page"
+                callback={handleRedirect}
+                styles="w-[300px] mt-8"
+            />
         </div>
     );
 }

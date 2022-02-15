@@ -2,12 +2,10 @@ import * as React from 'react';
 import { useAuth } from '@hooks/useAuth';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { Button } from '@components/Button';
 
-import { AuthMiddleware } from '@enums/AuthMiddleware';
-
 import type { UserType } from '@ctypes/features/UserType';
-import Link from 'next/link';
 
 
 interface HeaderProps {
@@ -81,18 +79,21 @@ export const Header: React.FC<HeaderProps> = ({ user }) => {
 
                 <div className="w-full flex justify-end items-end gap-4 mb-6 mr-6">
                     {isLoggedUser ? (
-                        <div className="w-[130px] xl:w-[155px]">
-                            <Button title="Edit profil" />
-                        </div>
+                        <Button
+                            title="Edit profil"
+                            styles="w-[130px] xl:w-[155px]"
+                        />
                     ) : (
                         <>
-                            <div className="w-[130px] xl:w-[155px]">
-                                <Button title="Send message" />
-                            </div>
+                            <Button
+                                title="Send message"
+                                styles="w-[130px] xl:w-[155px]"
+                            />
 
-                            <div className="w-[130px] xl:w-[155px]">
-                                <Button title="Poke" />
-                            </div>
+                            <Button
+                                title="Poke"
+                                styles="w-[130px] xl:w-[155px]"
+                            />
                         </>
                     )}
                 </div>

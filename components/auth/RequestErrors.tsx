@@ -6,6 +6,10 @@ interface RequestErrorsProps {
 }
 
 export const RequestErrors: React.FC<RequestErrorsProps> = ({ errors = [] }) => {
+    const ErrorsComponents = errors.map(error => (
+        <li key={error}>{error}</li>
+    ));
+
     return (
         <>
             {errors.length > 0 && (
@@ -15,9 +19,7 @@ export const RequestErrors: React.FC<RequestErrorsProps> = ({ errors = [] }) => 
                     </div>
 
                     <ul className="mt-1 list-disc list-inside text-sm">
-                        {errors.map(error => (
-                            <li key={error}>{error}</li>
-                        ))}
+                        {ErrorsComponents}
                     </ul>
                 </div>
             )}

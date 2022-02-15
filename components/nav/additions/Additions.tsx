@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { useAuth } from '@hooks/useAuth';
+import { useAppDispatch } from '@hooks/redux';
 
 import { faBell, faEllipsisVertical, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { faFacebookMessenger } from '@fortawesome/free-brands-svg-icons';
 import { Item } from '@components/nav/additions/Item';
-import { useAppDispatch } from '@hooks/redux';
+
 import { toggleActive } from '@redux/slices/SidebarSlice';
 
 
