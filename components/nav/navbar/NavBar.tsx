@@ -14,21 +14,18 @@ export const NavBar: React.FC = () => {
                 name="Home"
                 path="/"
                 icon={faHome}
-                dataId="navigation-redirect-home"
             />
 
             <NavItem
                 name="Marketplace"
                 path="/marketplace"
                 icon={faShop}
-                dataId="navigation-redirect-marketplace"
             />
 
             <NavItem
                 name="User profile"
                 path={user ? `/profile/${user.id}` : '/profile/0'}
                 icon={faUser}
-                dataId="navigation-redirect-profile"
             />
         </div>
     );

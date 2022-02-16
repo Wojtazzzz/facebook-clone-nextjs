@@ -1,57 +1,70 @@
-const BASE_URL = Cypress.config().baseUrl;
-const BACKEND_URL = 'http://localhost:8000';
+const BASE_URL = Cypress.env('base_url');
+const BACKEND_URL = Cypress.env('backend_url');
 
-const EMAIL = 'admin@gmail.com';
-const PASSWORD = 'admin';
+const TEST_EMAIL = Cypress.env('test_email');
+const TEST_PASSWORD = Cypress.env('test_password');
 
-describe('Login process', () => {
+
+describe('Login', () => {
     beforeEach(() => {
-        cy.intercept('GET', `${BACKEND_URL}/sanctum/csrf-cookie`).as('csrfRequest');
-        cy.intercept('POST', `${BACKEND_URL}/login`).as('loginRequest');
+        cy.intercept('GET', `${BACKEND_URL}/sanctum/csrf-cookie`).as('csrf');
+        cy.intercept('POST', `${BACKEND_URL}/login`).as('login');
 
         cy.visit('/login');
     });
 
-    it('Can login to admin account', () => {
-        cy.get('input[name=email]').type(EMAIL);
-        cy.get('input[name=password]').type(PASSWORD);
+    it('Login to test account', () => {
+        cy.request(`${BACKEND_URL}/api/tests`).then(response => {
+            expect(response.status).to.eq(200);
+        });
+
+        cy.get('input[name="email"]').type(TEST_EMAIL);
+        cy.get('input[name="password"]').type(TEST_PASSWORD);
 
         cy.get('button[type="submit"]').click().should('be.disabled');
 
-        cy.wait('@csrfRequest').its('response.statusCode').should('eq', 204);
-        cy.wait('@loginRequest').its('response.statusCode').should('eq', 204);
+        cy.wait('@csrf').then(interception => {
+            expect(interception.response?.statusCode).to.eq(204);
+        });
 
-        cy.intercept('GET', `${BACKEND_URL}/api/user`).as('userRequest');
+        cy.wait('@login').then(interception => {
+            expect(interception.response?.statusCode).to.eq(204);
+        });
 
-        cy.url().should('eq', BASE_URL + '/')
+        cy.intercept('GET', `${BACKEND_URL}/api/user`).as('user');
 
-        cy.wait('@userRequest', { timeout: 8000 }).its('response.statusCode').should('eq', 200);
+        cy.wait('@user').then(interception => {
+            expect(interception.response?.statusCode).to.eq(200);
+        });
+
+        cy.url().should('eq', `${BASE_URL}/`);
     });
 
-    it('Login to not existing account and check is request error visible', () => {
-        cy.get('input[name=email]').type(EMAIL);
-        cy.get('input[name=password]').type(PASSWORD + "s");
+    it('Login to not existing account', () => {
+        cy.get('input[name="email"]').type(TEST_EMAIL);
+        cy.get('input[name="password"]').type('fake_user_password');
 
         cy.get('button[type="submit"]').click();
 
-        cy.wait('@csrfRequest').its('response.statusCode').should('eq', 204);
-        cy.wait('@loginRequest').its('response.statusCode').should('eq', 422);
+        cy.wait('@csrf').then(interception => {
+            expect(interception.response?.statusCode).to.eq(204);
+        });
 
-        cy.intercept('GET', `${BACKEND_URL}/api/user`).as('userRequest');
+        cy.wait('@login').then(interception => {
+            expect(interception.response?.statusCode).to.eq(422);
+        });
 
-        cy.url().should('eq', BASE_URL + '/login');
-
-        cy.wait('@userRequest', { timeout: 15000 }).its('response.statusCode').should('eq', 401);
+        cy.url().should('eq', `${BASE_URL}/login`);
 
         cy.get('form').within(() => {
             cy.get('div').contains('Whoops! Something went wrong.').should('be.visible');
         });
     });
 
-    it('Are visible formik error messages under fields', () => {
+    it('Check for formik validation messages', () => {
         cy.visit('/login');
 
-        cy.get('input[name=email]').type(' ');
+        cy.get('input[name="email"]').type(' ');
         cy.get('button[type="submit"]').click();
 
         cy.get('form').within(() => {
@@ -59,7 +72,7 @@ describe('Login process', () => {
             cy.get('small').contains('Password field is required').should('be.visible');
         });
 
-        cy.get('input[name=email]').type('some_string_which_is_not_correct_email');
+        cy.get('input[name="email"]').type('some_string_which_is_incorrect_email');
         cy.get('button[type="submit"]').click();
 
         cy.get('form').within(() => {

@@ -1,5 +1,6 @@
-const BASE_URL = Cypress.config().baseUrl;
-const BACKEND_URL = 'http://localhost:8000';
+const BASE_URL = Cypress.env('base_url');
+const BACKEND_URL = Cypress.env('backend_url');
+
 
 describe('Register process', () => {
     beforeEach(() => {
@@ -14,16 +15,22 @@ describe('Register process', () => {
         cy.get('span').contains('Don\'t have an account').should('be.visible')
     });
 
-    it('Can create random user', () => {
-        cy.intercept('POST', `${BACKEND_URL}/register`).as('registerRequest');
+    it('Registration and auto login after', () => {
+        cy.intercept('POST', `${BACKEND_URL}/register`).as('register');
 
         cy.get('button').contains('Create Random User').click().should('be.disabled');
 
-        cy.wait('@registerRequest', { timeout: 10000 }).its('response.statusCode').should('eq', 204);
+        cy.wait('@register').then(interception => {
+            expect(interception.response?.statusCode).to.eq(204);
 
-        cy.wait(1000);
+            cy.intercept('GET', `${BACKEND_URL}/api/user`).as('user');
+        });
 
-        cy.url().should('eq', BASE_URL + '/');
+        cy.url().should('eq', `${BASE_URL}/`);
+
+        cy.wait('@user').then(interception => {
+            expect(interception.response?.statusCode).to.eq(200);
+        });
     });
 });
 

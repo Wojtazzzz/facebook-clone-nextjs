@@ -11,7 +11,7 @@ export const NavBar: React.FC = () => {
     const { isActive } = useAppSelector(store => store.nav);
 
     return (
-        <div className={`w-[280px] h-screen bg-dark-200 fixed top-0 left-0 z-30 ${isActive ? 'translate-x-0' : '-translate-x-[280px]'} transition-transform shadow-md`}>
+        <div className={`w-[280px] h-screen lg:hidden fixed top-0 left-0 z-30 bg-dark-200 ${isActive ? 'translate-x-0' : '-translate-x-[280px]'} transition-transform shadow-md`}>
             <Logo />
 
             <div className="flex flex-col gap-6">

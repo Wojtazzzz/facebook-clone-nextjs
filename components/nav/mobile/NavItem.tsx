@@ -16,8 +16,8 @@ export const NavItem: React.FC<NavItemProps> = ({ name, path, icon }) => {
     return (
         <Link href={path}>
             <a
+                aria-label={`${name} redirect`}
                 title={name}
-                aria-label={name}
                 className="w-full h-[50px] flex items-center gap-3 border-b-dark-100 border-b-2 px-4"
             >
                 <div className="w-[26px]">

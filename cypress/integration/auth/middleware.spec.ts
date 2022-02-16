@@ -1,14 +1,14 @@
-const BASE_URL = Cypress.config().baseUrl;
-const BACKEND_URL = 'http://localhost:8000';
+const BASE_URL = Cypress.env('base_url');
+const BACKEND_URL = Cypress.env('backend_url');
 
-const EMAIL = 'admin@gmail.com';
-const PASSWORD = 'admin';
+const TEST_EMAIL = Cypress.env('test_email');
+const TEST_PASSWORD = Cypress.env('test_password');
 
-describe('Are middleware\'s redirects works', () => {
-    it('Redirecting from AuthLayout to UserLayout as not logged user', () => {
+
+describe('Are middleware\'s redirects correctly', () => {
+    it('Redirecting from GuestLayout to UserLayout as not logged user', () => {
         cy.visit('/');
-        cy.wait(1000);
-        cy.url().should('eq', BASE_URL + '/login');
+        cy.url().should('eq', `${BASE_URL}/login`);
     });
 
     it('Redirecting from GuestLayout to UserLayout as logged user', () => {
@@ -17,21 +17,28 @@ describe('Are middleware\'s redirects works', () => {
 
         cy.visit('/login');
 
-        cy.get('input[name=email]').type(EMAIL);
-        cy.get('input[name=password]').type(PASSWORD);
+        cy.get('input[name="email"]').type(TEST_EMAIL);
+        cy.get('input[name="password"]').type(TEST_PASSWORD);
 
         cy.get('button[type="submit"]').click();
 
-        cy.wait('@csrfRequest');
-        cy.wait('@loginRequest');
+        cy.wait('@csrfRequest').then(interception => {
+            expect(interception.response?.statusCode).to.eq(204);
+        });
 
-        cy.url().should('eq', BASE_URL + '/');
+        cy.wait('@loginRequest').then(interception => {
+            expect(interception.response?.statusCode).to.eq(204);
+
+            cy.intercept('GET', `${BACKEND_URL}/api/user`).as('userRequest');
+        });
 
         cy.visit('/login');
 
-        cy.wait(1000);
+        cy.wait('@userRequest').then(interception => {
+            expect(interception.response?.statusCode).to.eq(200);
+        });
 
-        cy.url().should('eq', BASE_URL + '/');
+        cy.url().should('eq', `${BASE_URL}/`);
     });
 });
 

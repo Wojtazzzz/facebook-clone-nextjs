@@ -1,7 +1,8 @@
-const BACKEND_URL = 'http://localhost:8000';
+const BACKEND_URL = Cypress.env('backend_url');
 
-const EMAIL = 'admin@gmail.com';
-const PASSWORD = 'admin';
+const TEST_EMAIL = Cypress.env('test_email');
+const TEST_PASSWORD = Cypress.env('test_password');
+
 
 describe('Logout process', () => {
     it('Logged user try to logout', () => {
@@ -11,19 +12,23 @@ describe('Logout process', () => {
 
         cy.visit('/login');
 
-        cy.get('input[name=email]').type(EMAIL);
-        cy.get('input[name=password]').type(PASSWORD);
-        cy.get('button[type="submit"]').click();
+        cy.get('input[name="email"]').type(TEST_EMAIL);
+        cy.get('input[name="password"]').type(`${TEST_PASSWORD}{enter}`);
 
-        cy.wait('@csrfRequest', { timeout: 10000 });
-        cy.wait('@loginRequest', { timeout: 10000 });
-        cy.intercept('GET', `${BACKEND_URL}/api/user`).as('userRequest');
+        cy.wait('@csrfRequest').then(() => {
+            cy.wait('@loginRequest').then(() => {
+                cy.intercept('GET', `${BACKEND_URL}/api/user`).as('userRequest');
+            });
+        });
 
-        cy.wait('@userRequest', { timeout: 10000 });
+        cy.wait('@userRequest').then(() => {
+            cy.get('nav').within(() => {
+                cy.get('button[aria-label="Log out"]').click();
+            });
+        });
 
-        cy.get('nav').within(() => {
-            cy.get('button[aria-label="Log out"]').click();
-            cy.wait('@logoutRequest', { timeout: 10000 }).its('response.statusCode').should('eq', 204);
+        cy.wait('@logoutRequest').then(interception => {
+            expect(interception.response?.statusCode).to.eq(204);
         });
     });
 });
