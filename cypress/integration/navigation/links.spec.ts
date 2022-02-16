@@ -38,7 +38,7 @@ describe('Navigation links', () => {
         cy.visit('/profile');
 
         cy.get('a[data-test-id="navigation-redirect-marketplace"]').click();
-        cy.wait(1000);
+        cy.wait(1000);z
         cy.url().should('eq', BASE_URL + '/marketplace');
     });
 
