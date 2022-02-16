@@ -1,17 +1,19 @@
-const BASE_URL = Cypress.config().baseUrl;
+const BASE_URL = Cypress.env('base_url');
+
 
 describe('404 Page', () => {
-    it('Is exists', () => {
+    beforeEach(() => {
         cy.visit('/404', { failOnStatusCode: false });
+    });
+
+    it('Is exists', () => {
         cy.get('span').contains('This page isn\'t available').should('be.visible');
     });
 
-    it('Is button redirect back', () => {
-        cy.visit('/404', { failOnStatusCode: false });
+    it('Redirect back by button', () => {
+        cy.get('button').contains('Go to Home Page').click();
 
-        cy.get('button').contains('Go to News Feed').click();
-
-        cy.url().should('eq', BASE_URL + '/');
+        cy.url().should('eq', `${BASE_URL}/`);
     });
 });
 

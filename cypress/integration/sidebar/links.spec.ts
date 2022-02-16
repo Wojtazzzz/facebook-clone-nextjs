@@ -1,8 +1,10 @@
-const BASE_URL = Cypress.config().baseUrl;
-const BACKEND_URL = 'http://localhost:8000/';
+const BASE_URL = Cypress.env('base_url');
+const BACKEND_URL = Cypress.env('backend_url');
 
-const EMAIL = 'admin@gmail.com';
-const PASSWORD = 'admin';
+const TEST_EMAIL = Cypress.env('test_email');
+const TEST_PASSWORD = Cypress.env('test_password');
+
+
 
 describe('Sidebar links', () => {
     beforeEach(() => {
@@ -11,45 +13,47 @@ describe('Sidebar links', () => {
 
         cy.visit('/login');
 
-        cy.get('input[name=email]').type(EMAIL);
-        cy.get('input[name=password]').type(PASSWORD);
+        cy.get('input[name="email"]').type(TEST_EMAIL);
+        cy.get('input[name="password"]').type(TEST_PASSWORD);
 
         cy.get('button[type="submit"]').click();
 
-        cy.wait('@csrfRequest');
-        cy.wait('@loginRequest');
-
-        cy.url().should('eq', BASE_URL + '/');
+        cy.wait('@csrfRequest').then(() => {
+            cy.wait('@loginRequest').then(() => {
+                cy.url().should('eq', `${BASE_URL}/`);
+            });
+        });
     });
 
     it('Check /profile redirect exists', () => {
-        cy.visit('/');
-
         cy.get('aside').within(() => {
             cy.get('a[href*="profile"]').click();
         });
 
-        cy.url().should('eq', BASE_URL + '/profile');
+        cy.wait(3000);
+        cy.url().should('eq', `${BASE_URL}/profile/1`);
     });
 
     it('Check /friends redirect exists', () => {
-        cy.visit('/');
-
         cy.get('aside').within(() => {
             cy.get('a[href*="friends"]').click();
         });
 
-        cy.url().should('eq', BASE_URL + '/friends');
+        cy.url().should('eq', `${BASE_URL}/friends`);
     });
 
     it('Check /pokes redirect exists', () => {
-        cy.visit('/');
-
         cy.get('aside').within(() => {
             cy.get('a[href*="pokes"]').click();
         });
 
-        cy.url().should('eq', BASE_URL + '/pokes');
+        cy.url().should('eq', `${BASE_URL}/pokes`);
+    });
+
+    it('Check github is visible', () => {
+        cy.get('aside').within(() => {
+            cy.get('a[href*="github"]').should('be.visible');
+        });
     });
 });
 

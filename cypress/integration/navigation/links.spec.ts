@@ -52,11 +52,13 @@ describe('Navigation links', () => {
     it('Check /profile redirect exists', () => {
         cy.visit('/');
 
-        cy.wait(3000); // waiting for fetch user data
+        cy.wait(1000); // waiting for fetch user data
 
         cy.get('nav > div[class="w-1/3 hidden md:block"]').within(() => {
             cy.get('a[aria-label="User profile redirect"]').should('be.visible').click();
         });
+
+        cy.wait(5000); // waiting for fetch user data
 
         cy.url().should('eq', `${BASE_URL}/profile/1`);
     });
