@@ -6,52 +6,52 @@ import { Loader } from '@components/pages/friends/Loader';
 import { EmptyList } from '@components/pages/friends/EmptyList';
 import { Header } from '@components/pages/friends/Header';
 import { User } from '@components/pages/friends/User';
-import { RequestActions } from '@components/pages/friends/RequestActions';
+import { InviteActions } from '@components/pages/friends/InviteActions';
 
 import axios from '@lib/axios';
 
 import type { NextPage } from 'next';
 
 
-const Requests: NextPage = () => {
-    const [requests, setRequests] = useState([]);
+const Invites: NextPage = () => {
+    const [invites, setInvites] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [isError, setIsError] = useState(false);
 
     useEffect(() => {
-        axios.get('/api/requests')
-            .then(response => setRequests(response.data.requests))
+        axios.get('/api/invites')
+            .then(response => setInvites(response.data.invites))
             .catch(() => setIsError(true))
             .finally(() => setIsLoading(false));
     }, []);
 
 
-    const RequestsComponents = requests.map(({ id, inviter }) => (
+    const InvitesComponents = invites.map(({ id, inviter }) => (
         <User
             key={id}
             path={`/profile/${id}`}
             name={`${inviter.first_name} ${inviter.last_name}`}
             profile_image={inviter.profile_image}
         >
-            <RequestActions />
+            <InviteActions />
         </User>
     ));
 
     return (
         <UserLayout>
             <div className="py-5 px-2">
-                <Header name="Requests" />
+                <Header name="Invites" />
 
                 <div className="flex flex-col gap-2">
                     {isLoading
                         ? <Loader />
-                        : RequestsComponents.length > 0
-                            ? RequestsComponents
-                            : <EmptyList title="Your list of requests is empty" />}
+                        : InvitesComponents.length > 0
+                            ? InvitesComponents
+                            : <EmptyList title="Your list of invites is empty" />}
                 </div>
             </div>
         </UserLayout>
     )
 }
 
-export default Requests;
+export default Invites;

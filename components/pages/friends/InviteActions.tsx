@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Button } from '@components/Button';
 
 
-export const RequestActions: React.FC = () => {
+export const InviteActions: React.FC = () => {
     return (
         <div className="flex gap-3 ml-auto">
             <Button

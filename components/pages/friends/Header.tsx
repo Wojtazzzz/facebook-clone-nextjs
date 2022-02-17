@@ -1,5 +1,6 @@
-import Link from 'next/link';
 import * as React from 'react';
+
+import Link from 'next/link';
 
 
 interface HeaderProps {
@@ -16,8 +17,8 @@ export const Header: React.FC<HeaderProps> = ({ name }) => {
                     <a className="text-xs text-light-100 hover:text-light-200 transition-colors">Suggests</a>
                 </Link>
 
-                <Link href="/friends/requests">
-                    <a className="text-xs text-light-100 hover:text-light-200 transition-colors">Requests</a>
+                <Link href="/friends/invites">
+                    <a className="text-xs text-light-100 hover:text-light-200 transition-colors">Invites</a>
                 </Link>
 
                 <Link href="/friends">
