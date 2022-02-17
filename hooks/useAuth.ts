@@ -10,7 +10,7 @@ import type { UserType } from '@ctypes/features/UserType';
 
 export const useAuth = (middleware: AuthMiddleware | void) => {
     const [isRequestLoading, setIsRequestLoading] = useState(false);
-    const { push } = useRouter();
+    const router = useRouter();
 
     const { data: user, error, mutate } = useSWR<UserType>('/api/user', () =>
         axios.get('/api/user')
@@ -18,7 +18,7 @@ export const useAuth = (middleware: AuthMiddleware | void) => {
             .catch(error => {
                 if (error.response.status !== 409) throw error;
 
-                push('/verify-email');
+                router.push('/verify-email');
             })
     );
 
@@ -72,7 +72,7 @@ export const useAuth = (middleware: AuthMiddleware | void) => {
     }
 
     useEffect(() => {
-        if (middleware === AuthMiddleware.GUEST && user) push('/');
+        if (middleware === AuthMiddleware.GUEST && user) router.push('/');
         if (middleware === AuthMiddleware.AUTH && error) logout();
     }, [user, error])
 

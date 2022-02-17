@@ -36,7 +36,7 @@ export const LoginForm: React.FC = () => {
                         type="email"
                         name="email"
                         value={values.email}
-                        placeholder="Adres e-mail"
+                        placeholder="Address e-mail"
                         onChange={handleChange}
                         onBlur={handleBlur}
                     />

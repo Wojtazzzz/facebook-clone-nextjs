@@ -10,8 +10,8 @@ interface InputProps {
     value: string,
     placeholder: string,
     isDisabled?: boolean,
-    onChange: (event: ChangeEvent) => void,
-    onBlur: (event: FocusEvent) => void
+    onChange?: (event: ChangeEvent) => void,
+    onBlur?: (event: FocusEvent) => void
 }
 
 export const Input: React.FC<InputProps> = ({
@@ -20,7 +20,8 @@ export const Input: React.FC<InputProps> = ({
     value,
     placeholder,
     isDisabled = false,
-    onChange
+    onChange,
+    onBlur
 }) => {
     return (
         <div className="flex flex-col gap-2">
@@ -29,11 +30,12 @@ export const Input: React.FC<InputProps> = ({
                 name={name}
                 value={value}
                 placeholder={placeholder}
+                aria-label={placeholder}
                 required
                 disabled={isDisabled}
                 className={`tracking-wide bg-transparent focus:outline-none ring-2 ring-dark-100 focus:ring-primary rounded-md ${isDisabled ? 'cursor-not-allowed text-dark-100 placeholder-light-100' : 'text-light-50 placeholder-light-50'} py-2 px-4`}
-                onChange={event => onChange(event)}
-                onBlur={event => onChange(event)}
+                onChange={onChange ? event => onChange(event) : undefined}
+                onBlur={onBlur ? event => onBlur(event) : undefined}
             />
 
             {isDisabled || (

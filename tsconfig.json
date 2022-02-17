@@ -14,7 +14,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "types": ["cypress"],
+    "types": ["cypress", "node", "jest", "@testing-library/jest-dom"],
     "baseUrl": ".",
     "paths": {
       "@styles/*": ["styles/*"],
@@ -25,7 +25,7 @@
       "@lib/*": ["lib/*"],
       "@enums/*": ["enums/*"],
       "@validation/*": ["validation/*"],
-      "@ctypes/*": ["types/*"],
+      "@ctypes/*": ["types/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
