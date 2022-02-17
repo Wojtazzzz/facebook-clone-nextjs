@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '@hooks/useAuth';
 
 import Image from 'next/image';
@@ -15,8 +16,11 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ user }) => {
     const { id, first_name, last_name, profile_image, background_image, friends } = user;
     const { user: loggedUser } = useAuth();
+    const [isUserLogged, setIsUserLogged] = useState(false);
 
-    const isLoggedUser = (loggedUser?.id ?? -1) === id;
+    useEffect(() => {
+        if (loggedUser) setIsUserLogged(loggedUser.id == id);
+    }, [loggedUser, id]);
 
 
     const FriendsHeadsComponents = friends.map(({ id, first_name, last_name, profile_image }, i) => {
@@ -57,7 +61,7 @@ export const Header: React.FC<HeaderProps> = ({ user }) => {
                         <Image
                             layout="fill"
                             src={profile_image}
-                            alt="User profile image"
+                            alt={`${first_name} profile image`}
                             className="rounded-full border-4 border-dark-200"
                         />
                     </div>
@@ -78,9 +82,10 @@ export const Header: React.FC<HeaderProps> = ({ user }) => {
                 </div>
 
                 <div className="w-full flex justify-end items-end gap-4 mb-6 mr-6">
-                    {isLoggedUser ? (
+                    {isUserLogged ? (
                         <Button
-                            title="Edit profil"
+                            title="Edit profile"
+                            isDisabled
                             styles="w-[130px] xl:w-[155px]"
                         />
                     ) : (
