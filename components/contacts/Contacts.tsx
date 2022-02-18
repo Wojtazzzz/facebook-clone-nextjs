@@ -16,7 +16,7 @@ export const Contacts: React.FC = () => {
     );
 
     return (
-        <aside className="w-full max-w-[250px] xl:max-w-[300px] h-screen flex flex-col px-2 pr-4 py-5 overflow-y-scroll pb-14">
+        <aside className="w-full max-w-[250px] xl:max-w-[300px] h-screen flex flex-col px-2 pr-4 py-5 overflow-y-scroll pb-16">
             <Header />
 
             <List
