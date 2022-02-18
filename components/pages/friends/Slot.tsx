@@ -16,11 +16,11 @@ export const Slot: React.FC<SlotProps> = ({ id, first_name, last_name, profile_i
                     width="85"
                     height="85"
                     src={profile_image}
-                    alt={`${id} ${first_name} ${last_name} profile image`}
+                    alt={`${first_name} ${last_name} profile image`}
                     className="rounded-full"
                 />
 
-                <span className="md:text-xl text-light-200 font-medium">{id} {first_name} {last_name}</span>
+                <span className="md:text-xl text-light-200 font-medium">{first_name} {last_name}</span>
 
                 {children}
             </a>

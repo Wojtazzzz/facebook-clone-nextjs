@@ -9,8 +9,8 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ name }) => {
     return (
-        <div className="flex justify-between">
-            <h5 className="text-3xl text-light-100 font-bold capitalize mb-4">{name}</h5>
+        <div className="w-full flex justify-between items-center sticky top-0 left-0 z-20 bg-dark-300 p-3">
+            <h5 className="text-3xl text-light-100 font-bold capitalize">{name}</h5>
 
             <div className="flex items-center gap-3">
                 <Link href="/friends">

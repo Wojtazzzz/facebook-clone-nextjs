@@ -37,7 +37,7 @@ export const FriendsList: React.FC = () => {
     );
 
     return (
-        <div className="py-5 px-2">
+        <div className="relative py-5 px-2">
             <Header name={type ?? 'Friends'} />
 
             <List
