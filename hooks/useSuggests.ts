@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import useSWRInfinite from 'swr/infinite'
 
 import axios from "@lib/axios";
 
@@ -9,35 +10,50 @@ export const useSuggests = () => {
     const [isInitialLoading, setIsInitialLoading] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
-    const [lastPage, setLastPage] = useState(1);
+    const [canFetch, setCanFetch] = useState(true);
 
-    const [suggests, setSuggests] = useState<UserType[]>([]);
+    const getKey = (pageIndex: number, previousPageData: []) => {
+        if (previousPageData && !previousPageData.length) return null;
+
+        return `/api/suggests?page=${++pageIndex}`;
+    }
+
+    const fetcher = (url: string) => axios.get(url)
+        .then(response => {
+            if (response.data.paginator.current_page === response.data.paginator.last_page) {
+                setCanFetch(false);
+            }
+
+            return response.data.paginator.data;
+        })
+        .catch(() => setIsError(true))
+        .finally(() => setIsInitialLoading(false));
+
+    const { data, size, setSize } = useSWRInfinite<UserType[]>(getKey, fetcher);
 
     useEffect(() => {
-        axios.get('/api/suggests?page=1')
-            .then(response => {
-                setSuggests(response.data.paginator.data)
-                setLastPage(response.data.paginator.last_page);
-            })
-            .catch(() => setIsError(true))
-            .finally(() => setIsInitialLoading(false));
-    }, [])
+        if (!data) return;
 
-    const loadMoreSuggests = (page = 1) => {
+        if (data.length > 0) {
+            setIsInitialLoading(false)
+        }
+
+        setIsLoading(false);
+    }, [data]);
+
+    const loadMore = () => {
+        if (!canFetch) return;
+
         setIsLoading(true);
-
-        axios.get(`/api/suggests?page=${page}`)
-            .then(response => setSuggests(data => [...data, ...response.data.paginator.data]))
-            .catch(() => setIsError(true))
-            .finally(() => setIsLoading(false));
+        setSize(size + 1);
     }
 
     return {
-        suggests,
-        lastPage,
+        data: data ?? [],
         isInitialLoading,
         isLoading,
         isError,
-        loadMoreSuggests
+        canFetch,
+        loadMore
     }
 }

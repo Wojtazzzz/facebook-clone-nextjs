@@ -1,36 +1,24 @@
 import * as React from 'react';
-import { useState } from 'react';
 import { useSuggests } from '@hooks/useSuggests';
 
 import { UserLayout } from '@components/layouts/UserLayout';
 import { Header } from '@components/pages/friends/Header';
 import { User } from '@components/pages/friends/User';
 import { SuggestActions } from '@components/pages/friends/SuggestActions';
-import { LoadMore } from '@components/pages/friends/LoadMore';
 import { List } from '@components/pages/friends/List';
 
 import type { NextPage } from 'next';
 
 
 const Suggests: NextPage = () => {
-    const { suggests, isInitialLoading, isLoading, isError, lastPage, loadMoreSuggests } = useSuggests();
-    const [pageToFetch, setPageToFetch] = useState(2);
+    const { data, isInitialLoading, isLoading, isError, canFetch, loadMore } = useSuggests();
 
-    const handleLoadMore = () => {
-        loadMoreSuggests(pageToFetch);
-        setPageToFetch(prevState => prevState + 1);
-    }
-
-    const SuggestsComponents = suggests.map(({ id, first_name, last_name, profile_image }) => (
-        <User
-            key={id}
-            path={`/profile/${id}`}
-            name={`${first_name} ${last_name}`}
-            profile_image={profile_image}
-        >
-            <SuggestActions />
-        </User>
-    ));
+    const slots = data.map(users =>
+        users.map(user =>
+            <User key={user.id} {...user}>
+                <SuggestActions />
+            </User>
+        ));
 
     return (
         <UserLayout>
@@ -38,17 +26,13 @@ const Suggests: NextPage = () => {
                 <Header name="Suggests" />
 
                 <List
-                    isLoading={isInitialLoading}
+                    isInitialLoading={isInitialLoading}
+                    isLoading={isLoading}
                     isError={isError}
-                    slots={SuggestsComponents}
+                    canFetch={canFetch}
+                    slots={slots}
+                    loadMore={loadMore}
                 />
-
-                {pageToFetch > lastPage || (
-                    <LoadMore
-                        isLoading={isLoading}
-                        callback={handleLoadMore}
-                    />
-                )}
             </div>
         </UserLayout>
     )
