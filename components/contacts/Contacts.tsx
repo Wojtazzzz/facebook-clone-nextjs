@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
 import { useFriends } from '@hooks/useFriends';
 
 import { Header } from '@components/contacts/Header';
