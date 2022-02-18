@@ -10,13 +10,7 @@ import { FriendsLists } from '@enums/FriendsType';
 
 
 export const Contacts: React.FC = () => {
-    const { data, isInitialLoading, isLoading, isError, loadMore } = useFriends(FriendsLists.FRIENDS);
-    const [isReachingEnd, setIsReachingEnd] = useState(false);
-
-    useEffect(() => {
-        const isEmpty = data?.[0]?.length === 0;
-        setIsReachingEnd(isEmpty || (data && data[data.length - 1]?.length < 10));
-    }, [data]);
+    const { data, isInitialLoading, isLoading, isError, isReachingEnd, loadMore } = useFriends(FriendsLists.FRIENDS);
 
     const slots = data.map(friends =>
         friends.map(friend => <Slot key={friend.id} {...friend} />)

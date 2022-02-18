@@ -11,6 +11,7 @@ export const useFriends = (type: FriendsLists) => {
     const [isInitialLoading, setIsInitialLoading] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
+    const [isReachingEnd, setIsReachingEnd] = useState(false);
 
     const getKey = (pageIndex: number, previousPageData: []) => {
         if (previousPageData && !previousPageData.length) return null;
@@ -46,6 +47,9 @@ export const useFriends = (type: FriendsLists) => {
         }
 
         setIsLoading(false);
+
+        const isEmpty = data?.[0]?.length === 0;
+        setIsReachingEnd(isEmpty || (data && data[data.length - 1]?.length < 10));
     }, [data]);
 
     const loadMore = () => {
@@ -58,8 +62,7 @@ export const useFriends = (type: FriendsLists) => {
         isInitialLoading,
         isLoading,
         isError,
-        size,
-        setSize,
+        isReachingEnd,
         loadMore
     }
 }

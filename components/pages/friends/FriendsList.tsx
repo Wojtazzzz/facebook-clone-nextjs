@@ -27,14 +27,7 @@ const getType = (type: string | string[] | undefined) => {
 
 export const FriendsList: React.FC = () => {
     const { query: { type } } = useRouter();
-    const { data, isInitialLoading, isLoading, isError, loadMore } = useFriends(getType(type));
-
-    const [isReachingEnd, setIsReachingEnd] = useState(false);
-
-    useEffect(() => {
-        const isEmpty = data?.[0]?.length === 0;
-        setIsReachingEnd(isEmpty || (data && data[data.length - 1]?.length < 10));
-    }, [data]);
+    const { data, isInitialLoading, isLoading, isError, isReachingEnd, loadMore } = useFriends(getType(type));
 
     const slots = data.map(users =>
         users.map(user =>
