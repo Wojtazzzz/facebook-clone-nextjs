@@ -1,9 +1,9 @@
 import * as React from 'react';
 
 import { ListLoading } from '@components/pages/friends/shared/ListLoading';
-import { EmptyList } from '@components/pages/friends/shared/EmptyList';
 import { ApiError } from '@components/ApiError';
 import { LoadMore } from '@components/pages/friends/shared/LoadMore';
+import { EmptyList } from '@components/EmptyList';
 
 
 interface ListProps {

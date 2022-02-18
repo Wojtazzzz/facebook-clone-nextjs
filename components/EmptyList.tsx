@@ -17,7 +17,7 @@ export const EmptyList: React.FC<EmptyListProps> = ({ title }) => {
                 alt="List is empty"
             />
 
-            <span className="text-2xl text-light-100 font-bold">{title}</span>
+            <span className="text-2xl text-light-100 text-center font-bold">{title}</span>
         </div>
     );
 }

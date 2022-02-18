@@ -1,7 +1,9 @@
 import * as React from 'react';
-import { ListLoading } from './shared/ListLoading';
 
-import { LoadMore } from './shared/LoadMore';
+import { ApiError } from '@components/ApiError';
+import { EmptyList } from '@components/EmptyList';
+import { LoadMore } from '@components/contacts/shared/LoadMore';
+import { ListLoading } from '@components/contacts/shared/ListLoading';
 
 
 interface ListProps {
@@ -19,12 +21,13 @@ export const List: React.FC<ListProps> = ({ isInitialLoading, isLoading, isError
     }
 
     if (isError) {
-        // return <ApiError />;
+        return <ApiError />;
     }
 
     if (slots[0]?.length <= 0) {
-        // return <EmptyList title="No users to add, maybe this app is so boring..." />
+        return <EmptyList title="No contacts, add some friends!" />
     }
+
     return (
         <div className="w-full">
             {slots}

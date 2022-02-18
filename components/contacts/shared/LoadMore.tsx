@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
-// import { ListLoading } from './ListLoading';
+import { ListLoading } from '@components/contacts/shared/ListLoading';
 
 
 interface LoadMoreProps {
@@ -11,9 +11,9 @@ interface LoadMoreProps {
 }
 
 export const LoadMore: React.FC<LoadMoreProps> = ({ isLoading, callback }) => {
-    // if (isLoading) {
-    //     return <ListLoading />
-    // }
+    if (isLoading) {
+        return <ListLoading />;
+    }
 
     return (
         <button
