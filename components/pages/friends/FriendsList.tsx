@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState, useEffect } from 'react';
 import { useFriends } from '@hooks/useFriends';
 import { useRouter } from 'next/router';
 
@@ -26,7 +27,14 @@ const getType = (type: string | string[] | undefined) => {
 
 export const FriendsList: React.FC = () => {
     const { query: { type } } = useRouter();
-    const { data, isInitialLoading, isLoading, isError, canFetch, loadMore } = useFriends(getType(type));
+    const { data, isInitialLoading, isLoading, isError, loadMore } = useFriends(getType(type));
+
+    const [isReachingEnd, setIsReachingEnd] = useState(false);
+
+    useEffect(() => {
+        const isEmpty = data?.[0]?.length === 0;
+        setIsReachingEnd(isEmpty || (data && data[data.length - 1]?.length < 10));
+    }, [data]);
 
     const slots = data.map(users =>
         users.map(user =>
@@ -44,7 +52,7 @@ export const FriendsList: React.FC = () => {
                 isInitialLoading={isInitialLoading}
                 isLoading={isLoading}
                 isError={isError}
-                canFetch={canFetch}
+                canFetch={!isReachingEnd}
                 slots={slots}
                 loadMore={loadMore}
             />

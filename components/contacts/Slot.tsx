@@ -2,12 +2,12 @@ import * as React from 'react';
 
 import Image from 'next/image';
 
-import type { FriendType } from '@ctypes/features/FriendType';
+import type { UserType } from '@ctypes/features/UserType';
 
 
-interface ContactItemProps extends FriendType { }
+interface SlotProps extends UserType { }
 
-export const ContactItem: React.FC<ContactItemProps> = ({ first_name, last_name, profile_image }) => {
+export const Slot: React.FC<SlotProps> = ({ first_name, last_name, profile_image }) => {
     return (
         <div className="w-full flex items-center gap-3 hover:bg-dark-100 rounded-lg transition-colors cursor-pointer p-2">
             <Image

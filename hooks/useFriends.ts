@@ -11,7 +11,6 @@ export const useFriends = (type: FriendsLists) => {
     const [isInitialLoading, setIsInitialLoading] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState(false);
-    const [canFetch, setCanFetch] = useState(true);
 
     const getKey = (pageIndex: number, previousPageData: []) => {
         if (previousPageData && !previousPageData.length) return null;
@@ -30,16 +29,14 @@ export const useFriends = (type: FriendsLists) => {
     }
 
     const fetcher = (url: string) => axios.get(url)
-        .then(response => {
-            setCanFetch(response.data.paginator.current_page !== response.data.paginator.last_page);
-
-            return response.data.paginator.data;
-        })
+        .then(response => response.data.paginator.data)
         .catch(() => setIsError(true))
         .finally(() => setIsInitialLoading(false));
 
+
     // Fetching data
     const { data, size, setSize } = useSWRInfinite<UserType[]>(getKey, fetcher);
+
 
     useEffect(() => {
         if (!data) return;
@@ -52,8 +49,6 @@ export const useFriends = (type: FriendsLists) => {
     }, [data]);
 
     const loadMore = () => {
-        if (!canFetch) return;
-
         setIsLoading(true);
         setSize(size + 1);
     }
@@ -63,7 +58,8 @@ export const useFriends = (type: FriendsLists) => {
         isInitialLoading,
         isLoading,
         isError,
-        canFetch,
+        size,
+        setSize,
         loadMore
     }
 }
