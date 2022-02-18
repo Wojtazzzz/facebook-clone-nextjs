@@ -3,11 +3,7 @@ import * as React from 'react';
 import { Button } from '@components/Button';
 
 
-interface SuggestActionsProps {
-
-}
-
-export const SuggestActions: React.FC<SuggestActionsProps> = () => {
+export const SuggestActions: React.FC = () => {
     return (
         <Button
             title="Invite"

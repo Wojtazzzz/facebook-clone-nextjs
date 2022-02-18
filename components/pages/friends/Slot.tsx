@@ -6,9 +6,9 @@ import Link from 'next/link';
 import type { UserType } from '@ctypes/features/UserType';
 
 
-interface UserProps extends UserType { }
+interface SlotProps extends UserType { }
 
-export const User: React.FC<UserProps> = ({ id, first_name, last_name, profile_image, children }) => {
+export const Slot: React.FC<SlotProps> = ({ id, first_name, last_name, profile_image, children }) => {
     return (
         <Link href={`/profile/${id}`}>
             <a className="flex items-center gap-5 hover:bg-dark-100 rounded-lg transition-colors py-3 px-5">

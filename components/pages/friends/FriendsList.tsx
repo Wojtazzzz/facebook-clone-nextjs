@@ -3,8 +3,8 @@ import { useFriends } from '@hooks/useFriends';
 import { useRouter } from 'next/router';
 
 import { Header } from '@components/pages/friends/Header';
-import { User } from '@components/pages/friends/User';
-import { SuggestActions } from '@components/pages/friends/SuggestActions';
+import { Slot } from '@components/pages/friends/Slot';
+import { SuggestActions } from '@components/pages/friends/actions/SuggestActions';
 import { List } from '@components/pages/friends/List';
 
 import { FriendsLists } from '@enums/FriendsType';
@@ -30,9 +30,9 @@ export const FriendsList: React.FC = () => {
 
     const slots = data.map(users =>
         users.map(user =>
-            <User key={user.id} {...user}>
+            <Slot key={user.id} {...user}>
                 <SuggestActions />
-            </User>
+            </Slot>
         )
     );
 

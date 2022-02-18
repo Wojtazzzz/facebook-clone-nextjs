@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { SingleLoading } from '@components/pages/friends/SingleLoading';
+import { SingleLoading } from '@components/pages/friends/shared/SingleLoading';
 
 
 export const ListLoading: React.FC = () => {
