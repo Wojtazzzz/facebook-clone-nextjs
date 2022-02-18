@@ -38,7 +38,7 @@ export const FriendsList: React.FC = () => {
 
     return (
         <div className="py-5 px-2">
-            <Header name="Suggests" />
+            <Header name={type ?? 'Friends'} />
 
             <List
                 isInitialLoading={isInitialLoading}

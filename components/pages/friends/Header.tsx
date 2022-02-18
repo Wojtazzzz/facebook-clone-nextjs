@@ -4,13 +4,13 @@ import Link from 'next/link';
 
 
 interface HeaderProps {
-    name: string
+    name: string | string[]
 }
 
 export const Header: React.FC<HeaderProps> = ({ name }) => {
     return (
         <div className="flex justify-between">
-            <h5 className="text-3xl text-light-100 font-bold mb-4">{name}</h5>
+            <h5 className="text-3xl text-light-100 font-bold capitalize mb-4">{name}</h5>
 
             <div className="flex items-center gap-3">
                 <Link href="/friends">
