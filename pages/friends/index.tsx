@@ -1,48 +1,54 @@
 import * as React from 'react';
-import { useAuth } from '@hooks/useAuth';
+import { useState } from 'react';
+import { useFriends } from '@hooks/useFriends';
 
 import { UserLayout } from '@components/layouts/UserLayout';
-import { Loader } from '@components/pages/friends/Loader';
-import { EmptyList } from '@components/pages/friends/EmptyList';
 import { Header } from '@components/pages/friends/Header';
 import { User } from '@components/pages/friends/User';
+import { LoadMore } from '@components/pages/friends/LoadMore';
 import { FriendActions } from '@components/pages/friends/FriendActions';
+import { List } from '@components/pages/friends/List';
 
 import type { NextPage } from 'next';
 
 
 const Friends: NextPage = () => {
-    const { user } = useAuth();
+    const { friends, isInitialLoading, isLoading, isError, lastPage, loadMoreFriends } = useFriends();
+    const [pageToFetch, setPageToFetch] = useState(2);
 
-    const FriendsComponents: React.ReactFragment[] = [];
-
-    if (user) {
-        user.friends.map(({ id, first_name, last_name, profile_image }) => {
-            FriendsComponents.push(
-                <User
-                    key={id}
-                    path={`/profile/${id}`}
-                    name={`${first_name} ${last_name}`}
-                    profile_image={profile_image}
-                >
-                    <FriendActions />
-                </User>
-            );
-        });
+    const handleLoadMore = () => {
+        loadMoreFriends(pageToFetch);
+        setPageToFetch(prevState => prevState + 1);
     }
+
+    const FriendsComponents = friends.map(({ id, first_name, last_name, profile_image }) => (
+        <User
+            key={id}
+            path={`/profile/${id}`}
+            name={`${first_name} ${last_name}`}
+            profile_image={profile_image}
+        >
+            <FriendActions />
+        </User>
+    ));
 
     return (
         <UserLayout>
             <div className="py-5 px-2">
                 <Header name="Friends" />
 
-                <div className="flex flex-col gap-2">
-                    {user
-                        ? FriendsComponents.length > 0
-                            ? FriendsComponents
-                            : <EmptyList title="Your list of friends is empty" />
-                        : <Loader />}
-                </div>
+                <List
+                    isLoading={isInitialLoading}
+                    isError={isError}
+                    slots={FriendsComponents}
+                />
+
+                {pageToFetch > lastPage || (
+                    <LoadMore
+                        isLoading={isLoading}
+                        callback={handleLoadMore}
+                    />
+                )}
             </div>
         </UserLayout>
     )

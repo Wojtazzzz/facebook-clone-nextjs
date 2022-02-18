@@ -3,7 +3,7 @@ import * as React from 'react';
 import { SingleLoading } from '@components/pages/friends/SingleLoading';
 
 
-export const Loader: React.FC = () => {
+export const ListLoading: React.FC = () => {
     return (
         <>
             <SingleLoading />
