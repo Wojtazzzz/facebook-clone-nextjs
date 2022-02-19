@@ -39,7 +39,7 @@ export const FriendsList: React.FC = () => {
                     ? <SuggestActions id={user.id} />
                     : listType === FriendsLists.INVITES
                         ? <InviteActions id={user.id} />
-                        : <FriendActions />}
+                        : <FriendActions id={user.id} />}
             </Slot>
         )
     );
