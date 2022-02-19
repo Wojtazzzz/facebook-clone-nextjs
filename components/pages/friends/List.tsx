@@ -24,7 +24,7 @@ export const List: React.FC<ListProps> = ({ slots, isInitialLoading, isLoading, 
         return <ApiError />;
     }
 
-    if (slots[0]?.length <= 0) {
+    if ((slots[0]?.length <= 0) || slots.length <= 0) {
         return <EmptyList title="No users to add, maybe this app is so boring..." />
     }
 
