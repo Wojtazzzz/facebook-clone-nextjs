@@ -6,21 +6,21 @@ import { Header } from '@components/pages/friends/Header';
 import { Slot } from '@components/pages/friends/Slot';
 import { List } from '@components/pages/friends/List';
 
-import { FriendsLists } from '@enums/FriendsType';
+import { ListType } from '@enums/ListType';
 import { Actions } from './actions/Actions';
 
 
 const getType = (type: string | string[] | undefined) => {
     switch (type) {
         case 'suggests':
-            return FriendsLists.SUGGEST;
+            return ListType.SUGGEST;
 
         case 'invites':
-            return FriendsLists.INVITES;
+            return ListType.INVITES;
 
         default:
         case 'friends':
-            return FriendsLists.FRIENDS;
+            return ListType.FRIENDS;
     }
 }
 

@@ -5,11 +5,11 @@ import { Header } from '@components/contacts/Header';
 import { List } from '@components/contacts/List';
 import { Slot } from '@components/contacts/Slot';
 
-import { FriendsLists } from '@enums/FriendsType';
+import { ListType } from '@enums/ListType';
 
 
 export const Contacts: React.FC = () => {
-    const { data, isInitialLoading, isLoading, isError, isReachingEnd, loadMore } = useFriends(FriendsLists.FRIENDS);
+    const { data, isInitialLoading, isLoading, isError, isReachingEnd, loadMore } = useFriends(ListType.FRIENDS);
 
     const slots = data.map(friends =>
         friends.map(friend => <Slot key={friend.id} {...friend} />)
