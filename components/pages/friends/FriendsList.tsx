@@ -8,6 +8,8 @@ import { SuggestActions } from '@components/pages/friends/actions/SuggestActions
 import { List } from '@components/pages/friends/List';
 
 import { FriendsLists } from '@enums/FriendsType';
+import { FriendActions } from './actions/FriendActions';
+import { InviteActions } from './actions/InviteActions';
 
 
 const getType = (type: string | string[] | undefined) => {
@@ -26,12 +28,19 @@ const getType = (type: string | string[] | undefined) => {
 
 export const FriendsList: React.FC = () => {
     const { query: { type } } = useRouter();
-    const { data, isInitialLoading, isLoading, isError, isReachingEnd, loadMore } = useFriends(getType(type));
+    const listType = getType(type);
+
+    const { data, isInitialLoading, isLoading, isError, isReachingEnd, loadMore } = useFriends(getType(listType));
 
     const slots = data.map(users =>
         users.map(user =>
             <Slot key={user.id} {...user}>
-                <SuggestActions />
+                {listType === FriendsLists.SUGGEST
+                    ? <SuggestActions id={user.id.toString()} />
+                    : listType === FriendsLists.INVITES
+                        ? <InviteActions />
+                        : <FriendActions />
+                }
             </Slot>
         )
     );

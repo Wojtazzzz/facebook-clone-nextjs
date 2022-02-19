@@ -22,7 +22,9 @@ export const Slot: React.FC<SlotProps> = ({ id, first_name, last_name, profile_i
 
                 <span className="md:text-xl text-light-200 font-medium">{first_name} {last_name}</span>
 
-                {children}
+                <div className="ml-auto">
+                    {children}
+                </div>
             </a>
         </Link>
     );
