@@ -36,11 +36,10 @@ export const FriendsList: React.FC = () => {
         users.map(user =>
             <Slot key={user.id} {...user}>
                 {listType === FriendsLists.SUGGEST
-                    ? <SuggestActions id={user.id.toString()} />
+                    ? <SuggestActions id={user.id} />
                     : listType === FriendsLists.INVITES
-                        ? <InviteActions />
-                        : <FriendActions />
-                }
+                        ? <InviteActions id={user.id} />
+                        : <FriendActions />}
             </Slot>
         )
     );

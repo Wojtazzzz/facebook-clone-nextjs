@@ -7,7 +7,7 @@ import axios from '@lib/axios';
 
 
 interface SuggestActionsProps {
-    id: string
+    id: number
 }
 
 export const SuggestActions: React.FC<SuggestActionsProps> = ({ id }) => {
