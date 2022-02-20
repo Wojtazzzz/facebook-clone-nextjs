@@ -3,9 +3,9 @@ import { useState } from 'react';
 import { useAuth } from '@hooks/useAuth';
 
 import { Formik } from 'formik';
-import { Input } from '@components/auth/Input';
+import { Input } from '@components/auth/shared/Input';
 import { Button } from '@components/Button';
-import { RequestErrors } from '@components/auth/RequestErrors';
+import { RequestErrors } from '@components/auth/shared/RequestErrors';
 
 import { LoginSchema } from '@validation/LoginSchema';
 

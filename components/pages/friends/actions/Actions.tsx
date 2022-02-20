@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-import { FriendActions } from './FriendActions';
-import { InviteActions } from './InviteActions';
-import { SuggestActions } from './SuggestActions';
+import { FriendActions } from '@components/pages/friends/actions/FriendActions';
+import { InviteActions } from '@components/pages/friends/actions/InviteActions';
+import { SuggestActions } from '@components/pages/friends/actions/SuggestActions';
 
 import { ListType } from '@enums/ListType';
 

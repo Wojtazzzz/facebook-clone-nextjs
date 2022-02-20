@@ -2,9 +2,9 @@ import * as React from 'react';
 import { useState } from 'react';
 import { useAuth } from '@hooks/useAuth';
 
-import { Input } from '@components/auth/Input';
+import { Input } from '@components/auth/shared/Input';
 import { Button } from '@components/Button';
-import { RequestErrors } from '@components/auth/RequestErrors';
+import { RequestErrors } from '@components/auth/shared/RequestErrors';
 
 
 export const RegisterForm: React.FC = () => {
