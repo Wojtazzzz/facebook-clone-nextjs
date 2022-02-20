@@ -15,11 +15,11 @@ export const LoginForm: React.FC = () => {
     const [requestErrors, setRequestErrors] = useState([]);
 
     const handleSubmit = (email: string, password: string) => {
-        login({
+        login(
             email,
             password,
-            setErrors: setRequestErrors
-        });
+            setRequestErrors
+        );
     }
 
     return (

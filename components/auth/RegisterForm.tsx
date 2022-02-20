@@ -11,7 +11,7 @@ export const RegisterForm: React.FC = () => {
     const { register, isRequestLoading } = useAuth();
     const [requestErrors, setRequestErrors] = useState([]);
 
-    const handleCreateAccount = () => register({ setErrors: setRequestErrors });
+    const handleCreateAccount = () => register(setRequestErrors);
 
     return (
         <form

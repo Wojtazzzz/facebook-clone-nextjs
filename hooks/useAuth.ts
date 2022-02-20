@@ -5,10 +5,11 @@ import useSWR from 'swr';
 import axios from '@lib/axios';
 import { AuthMiddleware } from '@enums/AuthMiddleware';
 
+import type { Dispatch, SetStateAction } from 'react';
 import type { UserType } from '@ctypes/features/UserType';
 
 
-export const useAuth = (middleware: AuthMiddleware | void) => {
+export const useAuth = (middleware?: AuthMiddleware) => {
     const [isRequestLoading, setIsRequestLoading] = useState(false);
     const router = useRouter();
 
@@ -24,11 +25,9 @@ export const useAuth = (middleware: AuthMiddleware | void) => {
 
     const csrf = () => axios.get('/sanctum/csrf-cookie');
 
-    const register = async ({ setErrors }) => {
+    const register = async (setErrors: Dispatch<SetStateAction<never[]>>) => {
         setIsRequestLoading(true);
         await csrf();
-
-        setErrors([]);
 
         axios
             .post('/register')
@@ -36,24 +35,22 @@ export const useAuth = (middleware: AuthMiddleware | void) => {
             .catch(error => {
                 if (error.response.status !== 422) throw error;
 
-                setErrors(Object.values(error.response.data.errors).flat());
+                setErrors(error.response.data.errors);
             })
             .finally(() => setIsRequestLoading(false));
     }
 
-    const login = async ({ setErrors, ...props }) => {
+    const login = async (email: string, password: string, setErrors: Dispatch<SetStateAction<never[]>>) => {
         setIsRequestLoading(true);
         await csrf();
 
-        setErrors([]);
-
         axios
-            .post('/login', props)
+            .post('/login', { email, password })
             .then(() => mutate())
             .catch(error => {
                 if (error.response.status !== 422) throw error
 
-                setErrors(Object.values(error.response.data.errors).flat())
+                setErrors(error.response.data.errors)
             })
             .finally(() => setIsRequestLoading(false));
     }
@@ -74,7 +71,7 @@ export const useAuth = (middleware: AuthMiddleware | void) => {
     useEffect(() => {
         if (middleware === AuthMiddleware.GUEST && user) router.push('/');
         if (middleware === AuthMiddleware.AUTH && error) logout();
-    }, [user, error])
+    }, [user, error, middleware])
 
     return {
         user,
