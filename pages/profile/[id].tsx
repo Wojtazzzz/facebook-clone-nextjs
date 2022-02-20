@@ -12,11 +12,11 @@ interface ProfileProps {
     user: UserType
 };
 
-const Profile: NextPage<ProfileProps> = ({ user }) => {
+const Profile: NextPage<ProfileProps> = (props) => {
     return (
         <UserLayout>
             <div className="w-full">
-                <Header user={user} />
+                <Header user={props.user} />
             </div>
         </UserLayout>
     )
@@ -29,7 +29,7 @@ interface IParams extends ParsedUrlQuery {
     id: string
 }
 
-export const getStaticProps: GetStaticProps = async context => {
+export const getStaticProps: GetStaticProps = async (context) => {
     const { id } = context.params as IParams;
 
     const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/users/${id}`);
@@ -52,6 +52,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
     return {
         paths,
-        fallback: true
+        fallback: false
     };
 }

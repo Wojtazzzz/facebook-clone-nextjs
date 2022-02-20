@@ -1,14 +1,15 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { useAuth } from '@hooks/useAuth';
+import { useFriends } from '@hooks/useFriends';
 
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@components/Button';
 
-import type { UserType } from '@ctypes/features/UserType';
-import { useFriends } from '@hooks/useFriends';
 import { ListType } from '@enums/ListType';
+
+import type { UserType } from '@ctypes/features/UserType';
 
 
 interface HeaderProps {
@@ -25,8 +26,7 @@ export const Header: React.FC<HeaderProps> = ({ user }) => {
         if (loggedUser) setIsUserLogged(loggedUser.id == id);
     }, [loggedUser, id]);
 
-
-    const FriendsHeadsComponents = friends[0].map(({ id, first_name, last_name, profile_image }, i) => {
+    const FriendsHeadsComponents = friends[0]?.map(({ id, first_name, last_name, profile_image }, i) => {
         if (i >= 5) return;
 
         return (
