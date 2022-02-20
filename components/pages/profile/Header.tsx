@@ -7,6 +7,8 @@ import Link from 'next/link';
 import { Button } from '@components/Button';
 
 import type { UserType } from '@ctypes/features/UserType';
+import { useFriends } from '@hooks/useFriends';
+import { ListType } from '@enums/ListType';
 
 
 interface HeaderProps {
@@ -14,8 +16,9 @@ interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({ user }) => {
-    const { id, first_name, last_name, profile_image, background_image, friends } = user;
+    const { id, first_name, last_name, profile_image, background_image } = user;
     const { user: loggedUser } = useAuth();
+    const { data: friends } = useFriends(ListType.FRIENDS);
     const [isUserLogged, setIsUserLogged] = useState(false);
 
     useEffect(() => {
@@ -23,7 +26,7 @@ export const Header: React.FC<HeaderProps> = ({ user }) => {
     }, [loggedUser, id]);
 
 
-    const FriendsHeadsComponents = friends.map(({ id, first_name, last_name, profile_image }, i) => {
+    const FriendsHeadsComponents = friends[0].map(({ id, first_name, last_name, profile_image }, i) => {
         if (i >= 5) return;
 
         return (

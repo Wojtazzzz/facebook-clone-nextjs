@@ -58,7 +58,7 @@ describe('Navigation links', () => {
             cy.get('a[aria-label="User profile redirect"]').should('be.visible').click();
         });
 
-        cy.wait(5000); // waiting for fetch user data
+        cy.wait(10000); // waiting for fetch user data
 
         cy.url().should('eq', `${BASE_URL}/profile/1`);
     });
