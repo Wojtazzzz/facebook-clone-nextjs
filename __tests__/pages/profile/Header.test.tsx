@@ -1,52 +1,62 @@
-import { render, waitFor, waitForElementToBeRemoved } from '@testing-library/react';
+import React from 'react';
+import * as useFriends from '@hooks/useFriends';
+import * as useAuth from '@hooks/useAuth';
 import '@testing-library/jest-dom/extend-expect';
-import axios from 'axios';
+
+import { render, waitFor } from '@testing-library/react';
+import { act } from 'react-dom/test-utils';
 
 import { Header } from '@components/pages/profile/Header';
 
-import newUser from '../../../__mocks__/user/new.json';
-import userWithThreeFriends from '../../../__mocks__/user/withThreeFriends.json';
-import React from 'react';
-
+import newUser from '@mocks/user/new.json';
+import tenFriends from '@mocks/friends/ten.json';
+import zeroFriends from '@mocks/friends/zero.json';
 
 describe('Header', () => {
-    beforeEach(() => {
-        jest.resetAllMocks();
+	beforeEach(() => {
+		jest.restoreAllMocks();
+		jest.spyOn(useAuth, 'useAuth').mockImplementation(() => newUser);
+	});
 
-        jest.spyOn(axios, 'get').mockImplementation(() => Promise.resolve({
-            data: () => Promise.resolve(newUser)
-        }));
-    });
+	it('Check is background image visible', async () => {
+		const { getByAltText } = render(<Header user={newUser} />);
 
-    it('Check is background image visible', () => {
-        const { getByAltText } = render(<Header user={newUser} />);
+		await waitFor(async () => {
+			const backgroundImage = getByAltText(`${newUser.first_name} background`);
+			expect(backgroundImage).toBeInTheDocument();
+		});
+	});
 
-        const backgroundImage = getByAltText(`${newUser.first_name} background`);
+	it('Check is profile image visible', async () => {
+		const { getByAltText } = render(<Header user={newUser} />);
 
-        expect(backgroundImage).toBeInTheDocument();
-    });
+		await waitFor(async () => {
+			const profileImage = getByAltText(`${newUser.first_name} profile image`);
+			expect(profileImage).toBeInTheDocument();
+		});
+	});
 
-    it('Check is profile image visible', () => {
-        const { getByAltText } = render(<Header user={newUser} />);
+	it('Check test account have 0 friends', () => {
+		act(() => {
+			jest.spyOn(useFriends, 'useFriends').mockImplementation(() => zeroFriends);
+		});
 
-        const profileImage = getByAltText(`${newUser.first_name} profile image`);
+		const { getByText } = render(<Header user={newUser} />);
+		const text = getByText('0 Friends');
 
-        expect(profileImage).toBeInTheDocument();
-    });
+		expect(text).toBeInTheDocument();
+	});
 
-    it('Check test account have 0 friends', () => {
-        const { getByText } = render(<Header user={newUser} />);
+	it('Check user account with 10 friends have 10 friends on panel', async () => {
+		act(() => {
+			jest.spyOn(useFriends, 'useFriends').mockImplementation(() => tenFriends);
+		});
 
-        const text = getByText('0 Friends');
+		const { findByText } = render(<Header user={newUser} />);
 
-        expect(text).toBeInTheDocument();
-    });
-
-    it('Check user account with three friends have 3 friends on panel', () => {
-        const { getByText } = render(<Header user={userWithThreeFriends} />);
-
-        const text = getByText('3 Friends');
-
-        expect(text).toBeInTheDocument();
-    });
+		await waitFor(async () => {
+			const text = await findByText('10 Friends');
+			expect(text).toBeInTheDocument();
+		});
+	});
 });

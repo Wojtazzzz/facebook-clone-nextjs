@@ -1,33 +1,34 @@
 {
-  "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "incremental": true,
-    "types": ["cypress", "node", "jest", "@testing-library/jest-dom"],
-    "baseUrl": ".",
-    "paths": {
-      "@styles/*": ["styles/*"],
-      "@pages/*": ["pages/*"],
-      "@components/*": ["components/*"],
-      "@redux/*": ["redux/*"],
-      "@hooks/*": ["hooks/*"],
-      "@lib/*": ["lib/*"],
-      "@enums/*": ["enums/*"],
-      "@validation/*": ["validation/*"],
-      "@ctypes/*": ["types/*"]
-    }
-  },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", "tests/e2e"]
+	"compilerOptions": {
+		"target": "es5",
+		"lib": ["dom", "dom.iterable", "esnext"],
+		"allowJs": true,
+		"skipLibCheck": true,
+		"strict": true,
+		"forceConsistentCasingInFileNames": true,
+		"noEmit": true,
+		"esModuleInterop": true,
+		"module": "esnext",
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"jsx": "preserve",
+		"incremental": true,
+		"types": ["cypress", "node", "jest", "@testing-library/jest-dom"],
+		"baseUrl": ".",
+		"paths": {
+			"@styles/*": ["styles/*"],
+			"@pages/*": ["pages/*"],
+			"@components/*": ["components/*"],
+			"@redux/*": ["redux/*"],
+			"@hooks/*": ["hooks/*"],
+			"@lib/*": ["lib/*"],
+			"@enums/*": ["enums/*"],
+			"@validation/*": ["validation/*"],
+			"@ctypes/*": ["types/*"],
+			"@mocks/*": ["__mocks__/*"]
+		}
+	},
+	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+	"exclude": ["node_modules", "tests/e2e"]
 }
