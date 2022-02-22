@@ -9,58 +9,29 @@ import { RequestErrors } from '@components/auth/shared/RequestErrors';
 
 import { LoginSchema } from '@validation/LoginSchema';
 
-
 export const LoginForm: React.FC = () => {
-    const { login, isRequestLoading } = useAuth();
-    const [requestErrors, setRequestErrors] = useState([]);
+	const { login, isRequestLoading } = useAuth();
+	const [requestErrors, setRequestErrors] = useState([]);
 
-    const handleSubmit = (email: string, password: string) => {
-        login(
-            email,
-            password,
-            setRequestErrors
-        );
-    }
+	const handleSubmit = (email: string, password: string) => {
+		login(email, password, setRequestErrors);
+	};
 
-    return (
-        <Formik
-            initialValues={{ email: '', password: '' }}
-            validationSchema={LoginSchema}
-            onSubmit={({ email, password }) => handleSubmit(email, password)}
-        >
-            {({ values, handleChange, handleBlur, handleSubmit }) => (
-                <form onSubmit={handleSubmit} className="w-full flex flex-col gap-6">
-                    <p className="text-xl text-light-100 font-bold">LOGIN</p>
+	return (
+		<Formik initialValues={{ email: '', password: '' }} validationSchema={LoginSchema} onSubmit={({ email, password }) => handleSubmit(email, password)}>
+			{({ values, handleChange, handleBlur, handleSubmit }) => (
+				<form onSubmit={handleSubmit} className="w-full flex flex-col gap-6">
+					<p className="text-xl text-light-100 font-bold">LOGIN</p>
 
-                    <Input
-                        type="email"
-                        name="email"
-                        value={values.email}
-                        placeholder="Address e-mail"
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                    />
+					<Input type="email" name="email" value={values.email} placeholder="Address e-mail" onChange={handleChange} onBlur={handleBlur} />
 
-                    <Input
-                        type="password"
-                        name="password"
-                        value={values.password}
-                        placeholder="Password"
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                    />
+					<Input type="password" name="password" value={values.password} placeholder="Password" onChange={handleChange} onBlur={handleBlur} />
 
-                    <RequestErrors errors={requestErrors} />
+					<RequestErrors errors={requestErrors} />
 
-                    <Button
-                        type="submit"
-                        title="Login"
-                        isDisabled={isRequestLoading}
-                        callback={handleSubmit}
-                        styles="w-full mt-4"
-                    />
-                </form>
-            )}
-        </Formik>
-    );
-}
+					<Button type="submit" title="Login" isDisabled={isRequestLoading} callback={handleSubmit} styles="w-full mt-4" />
+				</form>
+			)}
+		</Formik>
+	);
+};
