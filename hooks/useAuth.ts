@@ -25,7 +25,7 @@ export const useAuth = (middleware?: AuthMiddleware) => {
 
     const csrf = () => axios.get('/sanctum/csrf-cookie');
 
-    const register = async (setErrors: Dispatch<SetStateAction<never[]>>) => {
+    const register = async (setErrors: Dispatch<SetStateAction<unknown[]>>) => {
         setIsRequestLoading(true);
         await csrf();
 
@@ -35,12 +35,12 @@ export const useAuth = (middleware?: AuthMiddleware) => {
             .catch(error => {
                 if (error.response.status !== 422) throw error;
 
-                setErrors(error.response.data.errors);
+                setErrors(Object.values(error.response.data.errors).flat());
             })
             .finally(() => setIsRequestLoading(false));
     }
 
-    const login = async (email: string, password: string, setErrors: Dispatch<SetStateAction<never[]>>) => {
+    const login = async (email: string, password: string, setErrors: Dispatch<SetStateAction<unknown[]>>) => {
         setIsRequestLoading(true);
         await csrf();
 
@@ -50,7 +50,7 @@ export const useAuth = (middleware?: AuthMiddleware) => {
             .catch(error => {
                 if (error.response.status !== 422) throw error
 
-                setErrors(error.response.data.errors)
+                setErrors(Object.values(error.response.data.errors).flat());
             })
             .finally(() => setIsRequestLoading(false));
     }

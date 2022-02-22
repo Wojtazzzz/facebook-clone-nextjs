@@ -6,12 +6,16 @@ const TEST_PASSWORD = Cypress.env('test_password');
 
 
 describe('Are middleware\'s redirects correctly', () => {
-    it('Redirecting from GuestLayout to UserLayout as not logged user', () => {
+    it('Redirect from UserLayout to GuestLayout as not logged user', () => {
         cy.visit('/');
-        cy.url().should('eq', `${BASE_URL}/login`);
+        cy.intercept('GET', `${BACKEND_URL}/api/user`).as('userRequest');
+
+        cy.wait('@userRequest').then(() => {
+            cy.url().should('eq', `${BASE_URL}/login`);
+        });
     });
 
-    it('Redirecting from GuestLayout to UserLayout as logged user', () => {
+    it('Redirect from GuestLayout to UserLayout as logged user', () => {
         cy.intercept('GET', `${BACKEND_URL}/sanctum/csrf-cookie`).as('csrfRequest');
         cy.intercept('POST', `${BACKEND_URL}/login`).as('loginRequest');
 

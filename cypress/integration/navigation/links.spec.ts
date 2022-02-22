@@ -19,8 +19,12 @@ describe('Navigation links', () => {
 
         cy.wait('@csrf').then(() => {
             cy.wait('@login').then(() => {
-                cy.url().should('eq', `${BASE_URL}/`);
+                cy.intercept('GET', `${BACKEND_URL}/api/user`).as('user');
             });
+        });
+
+        cy.wait('@user').then(interception => {
+            expect(interception.response?.statusCode).to.eq(200);
         });
     });
 
@@ -30,8 +34,6 @@ describe('Navigation links', () => {
 
 
     it('Check / redirect exists', () => {
-        cy.visit('/marketplace');
-
         cy.get('nav > div[class="w-1/3 hidden md:block"]').within(() => {
             cy.get('a[aria-label="Home redirect"]').should('be.visible').click();
         });
@@ -40,8 +42,6 @@ describe('Navigation links', () => {
     });
 
     it('Check /marketplace redirect exists', () => {
-        cy.visit('/');
-
         cy.get('nav > div[class="w-1/3 hidden md:block"]').within(() => {
             cy.get('a[aria-label="Marketplace redirect"]').should('be.visible').click();
         });
@@ -50,15 +50,11 @@ describe('Navigation links', () => {
     });
 
     it('Check /profile redirect exists', () => {
-        cy.visit('/');
-
-        cy.wait(1000); // waiting for fetch user data
-
         cy.get('nav > div[class="w-1/3 hidden md:block"]').within(() => {
             cy.get('a[aria-label="User profile redirect"]').should('be.visible').click();
         });
 
-        cy.wait(10000); // waiting for fetch user data
+        cy.wait(5000);
 
         cy.url().should('eq', `${BASE_URL}/profile/1`);
     });

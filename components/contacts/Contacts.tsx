@@ -12,7 +12,7 @@ export const Contacts: React.FC = () => {
     const { data, isInitialLoading, isLoading, isError, isReachingEnd, loadMore } = useFriends(ListType.FRIENDS);
 
     const slots = data.map(friends =>
-        friends.map(friend => <Slot key={friend.id} {...friend} />)
+        friends?.map(friend => <Slot key={friend.id} {...friend} />)
     );
 
     return (
