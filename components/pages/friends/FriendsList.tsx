@@ -9,47 +9,41 @@ import { List } from '@components/pages/friends/List';
 import { ListType } from '@enums/ListType';
 import { Actions } from './actions/Actions';
 
-
 const getType = (type: string | string[] | undefined) => {
-    switch (type) {
-        case 'suggests':
-            return ListType.SUGGEST;
+	switch (type) {
+		case 'suggests':
+			return ListType.SUGGEST;
 
-        case 'invites':
-            return ListType.INVITES;
+		case 'invites':
+			return ListType.INVITES;
 
-        default:
-        case 'friends':
-            return ListType.FRIENDS;
-    }
-}
+		default:
+		case 'friends':
+			return ListType.FRIENDS;
+	}
+};
 
 export const FriendsList: React.FC = () => {
-    const { query: { type } } = useRouter();
-    const listType = getType(type);
+	const {
+		query: { type },
+	} = useRouter();
+	const listType = getType(type);
 
-    const { data, isInitialLoading, isLoading, isError, isReachingEnd, loadMore } = useFriends(listType);
+	const { data, isInitialLoading, isLoading, isError, isReachingEnd, loadMore } = useFriends(listType);
 
-    const slots = data.map(users =>
-        users.map(user =>
-            <Slot key={user.id} {...user}>
-                <Actions id={user.id} type={listType} />
-            </Slot>
-        )
-    );
+	const slots = data.map(users =>
+		users.map(user => (
+			<Slot key={user.id} {...user}>
+				<Actions id={user.id} type={listType} />
+			</Slot>
+		))
+	);
 
-    return (
-        <div className="relative py-5 px-2">
-            <Header name={type ?? 'Friends'} />
+	return (
+		<div className="relative py-5 px-2">
+			<Header name={type ?? 'Friends'} />
 
-            <List
-                isInitialLoading={isInitialLoading}
-                isLoading={isLoading}
-                isError={isError}
-                canFetch={!isReachingEnd}
-                slots={slots}
-                loadMore={loadMore}
-            />
-        </div>
-    );
-}
+			<List isInitialLoading={isInitialLoading} isLoading={isLoading} isError={isError} canFetch={!isReachingEnd} slots={slots} loadMore={loadMore} />
+		</div>
+	);
+};
