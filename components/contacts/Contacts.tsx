@@ -7,26 +7,16 @@ import { Slot } from '@components/contacts/Slot';
 
 import { ListType } from '@enums/ListType';
 
-
 export const Contacts: React.FC = () => {
-    const { data, isInitialLoading, isLoading, isError, isReachingEnd, loadMore } = useFriends(ListType.FRIENDS);
+	const { data, isInitialLoading, isLoading, isError, isReachingEnd, loadMore } = useFriends(ListType.FRIENDS);
 
-    const slots = data.map(friends =>
-        friends?.map(friend => <Slot key={friend.id} {...friend} />)
-    );
+	const slots = data.map(friends => friends?.map(friend => <Slot key={friend.id} {...friend} />));
 
-    return (
-        <aside className="w-full max-w-[250px] xl:max-w-[300px] h-screen flex flex-col px-2 pr-4 py-5 overflow-y-scroll pb-16">
-            <Header />
+	return (
+		<aside className="w-full max-w-[250px] xl:max-w-[300px] h-screen flex flex-col px-2 pr-4 py-5 overflow-y-scroll pb-16">
+			<Header />
 
-            <List
-                isInitialLoading={isInitialLoading}
-                isLoading={isLoading}
-                isError={isError}
-                canFetch={!isReachingEnd}
-                slots={slots}
-                loadMore={loadMore}
-            />
-        </aside>
-    );
-}
+			<List isInitialLoading={isInitialLoading} isLoading={isLoading} isError={isError} canFetch={!isReachingEnd} slots={slots} loadMore={loadMore} />
+		</aside>
+	);
+};
