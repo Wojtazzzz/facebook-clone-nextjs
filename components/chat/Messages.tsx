@@ -11,9 +11,7 @@ interface MessagesProps {
 }
 
 export const Messages: React.FC<MessagesProps> = ({ friendId }) => {
-	const { data, isInitialLoading, isError, isReachedEnd, loadMore } = useChat(friendId);
-
-	// if (isInitialLoading) return <Loader />;
+	const { data, isError, isReachedEnd, loadMore } = useChat(friendId);
 	if (isError) return <ApiError isSmall />;
 
 	const MessagesComponents = data.map(({ id, sender_id, text }) => (

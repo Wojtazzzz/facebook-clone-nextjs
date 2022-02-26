@@ -6,7 +6,6 @@ import axios from '@lib/axios';
 import type { ChatMessageType } from '@ctypes/features/ChatMessageType';
 
 export const useChat = (friendId: number) => {
-	const [isInitialLoading, setIsInitialLoading] = useState(true);
 	const [isLoading, setIsLoading] = useState(false);
 	const [isError, setIsError] = useState(false);
 	const [isReachedEnd, setIsReachedEnd] = useState(false);
@@ -21,8 +20,7 @@ export const useChat = (friendId: number) => {
 		axios
 			.get(url)
 			.then(response => response.data.paginator.data)
-			.catch(() => setIsError(true))
-			.finally(() => setIsInitialLoading(false));
+			.catch(() => setIsError(true));
 
 	// Fetching data
 	const { data, size, setSize, mutate } = useSWRInfinite<ChatMessageType[]>(getKey, fetcher);
@@ -45,7 +43,6 @@ export const useChat = (friendId: number) => {
 
 	return {
 		data: data?.flat() ?? [],
-		isInitialLoading,
 		isLoading,
 		isError,
 		isReachedEnd,
