@@ -8,11 +8,13 @@ import { ApiError } from '@components/ApiError';
 import { EmptyChat } from '@components/chat/shared/EmptyChat';
 
 interface MessagesProps {
+	name: string;
+	profileImage: string;
 	friendId: number;
 }
 
 export const Messages: React.FC<MessagesProps> = ({ friendId }) => {
-	const { data, isError, isReachedEnd, isEmpty, loadMore } = useChat(friendId);
+	const { data, isError, isEmpty, isReachedEnd, loadMore } = useChat(friendId);
 
 	if (isEmpty) return <EmptyChat />;
 	if (isError) return <ApiError isSmall />;

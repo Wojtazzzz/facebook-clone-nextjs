@@ -13,7 +13,11 @@ export const Chat: React.FC = () => {
 	return (
 		<div className="w-[300px] h-[420px] flex flex-col justify-between bg-dark-200 absolute bottom-0 right-20 rounded-t-lg shadow-md">
 			<Header name={`${friend.first_name} ${friend.last_name}`} profileImage={friend.profile_image} />
-			<Messages friendId={friend.id} />
+			<Messages
+				name={`${friend.first_name} ${friend.last_name}`}
+				profileImage={friend.profile_image}
+				friendId={friend.id}
+			/>
 			<Panel />
 		</div>
 	);

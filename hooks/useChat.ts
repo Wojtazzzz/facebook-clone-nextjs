@@ -8,6 +8,8 @@ import type { ChatMessageType } from '@ctypes/features/ChatMessageType';
 export const useChat = (friendId: number) => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [isError, setIsError] = useState(false);
+	const [isReachedEnd, setIsReachedEnd] = useState(false);
+	const [isEmpty, setIsEmpty] = useState(false);
 
 	const getKey = (pageIndex: number, previousPageData: []) => {
 		if (previousPageData && !previousPageData.length) return null;
@@ -35,15 +37,16 @@ export const useChat = (friendId: number) => {
 		if (!data) return;
 
 		setIsLoading(false);
-	}, [data]);
 
-	const isEmpty = data?.length === 0;
-	const isReachedEnd = isEmpty || (data && data[data.length - 1]?.length < 10);
+		setIsEmpty(data[0].length === 0);
+		setIsReachedEnd(isEmpty || (data && data[data.length - 1].length < 10));
+	}, [data, isEmpty]);
 
 	return {
 		data: data?.flat() ?? [],
 		isLoading,
 		isError,
+		isEmpty,
 		isReachedEnd,
 		loadMore,
 		mutate,
