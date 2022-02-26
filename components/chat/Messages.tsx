@@ -13,7 +13,7 @@ interface MessagesProps {
 export const Messages: React.FC<MessagesProps> = ({ friendId }) => {
 	const { data, isInitialLoading, isError, isReachedEnd, loadMore } = useChat(friendId);
 
-	if (isInitialLoading) return <Loader />;
+	// if (isInitialLoading) return <Loader />;
 	if (isError) return <ApiError isSmall />;
 
 	const MessagesComponents = data.map(({ id, sender_id, text }) => (
@@ -28,7 +28,7 @@ export const Messages: React.FC<MessagesProps> = ({ friendId }) => {
 				className="flex flex-col-reverse gap-1"
 				inverse={true}
 				hasMore={!isReachedEnd}
-				loader={<h4>Loading...</h4>}
+				loader={<Loader />}
 				scrollableTarget="list-of-messages"
 			>
 				{MessagesComponents}
