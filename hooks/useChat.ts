@@ -35,14 +35,10 @@ export const useChat = (friendId: number) => {
 
 	const sendMessage = (text: string) => {
 		window.Echo.private(`messages.${text}.${friendId}`).listen('ChatMessageSended', () => {
-			console.log('received'); // for debug
 			mutate();
 		});
 
-		axios
-			.post('/api/messages', { text, receiver_id: friendId })
-			.then(response => response.data.paginator.data)
-			.catch(() => setIsError(true));
+		axios.post('/api/messages', { text, receiver_id: friendId }).catch(() => setIsError(true));
 	};
 
 	useEffect(() => {
