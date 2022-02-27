@@ -1,18 +1,26 @@
 import * as React from 'react';
 import { useState, useEffect, useRef } from 'react';
+import { useChat } from '@hooks/useChat';
 
-import { Formik } from 'formik';
+import { Formik, FormikHelpers } from 'formik';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { ButtonOverlay } from '@components/chat/shared/ButtonOverlay';
 
 import { SendMessageSchema } from '@validation/SendMessageSchema';
 
-interface SendMessageProps {}
+interface SendMessageProps {
+	friendId: number;
+}
 
-export const SendMessage: React.FC<SendMessageProps> = () => {
+interface FormValues {
+	text: string;
+}
+
+export const SendMessage: React.FC<SendMessageProps> = ({ friendId }) => {
 	const [isMessagePrepared, setIsMessagePrepared] = useState(false);
 	const inputRef = useRef<HTMLInputElement>(null);
+	const { sendMessage } = useChat(friendId);
 
 	useEffect(() => {
 		inputRef.current?.focus();
@@ -26,30 +34,29 @@ export const SendMessage: React.FC<SendMessageProps> = () => {
 		setIsMessagePrepared(event.currentTarget.value.length > 0);
 	};
 
-	const handleSendMessage = (message: string) => {
-		console.log('Send message: ', message);
+	const handleSendMessage = ({ text }: FormValues, { resetForm }: FormikHelpers<FormValues>) => {
+		sendMessage(text);
+
+		resetForm();
+		setIsMessagePrepared(false);
 	};
 
 	return (
-		<Formik
-			initialValues={{ message: '' }}
-			validationSchema={SendMessageSchema}
-			onSubmit={(values, { resetForm }) => {
-				resetForm();
-				handleSendMessage(values.message);
-			}}>
+		<Formik initialValues={{ text: '' }} validationSchema={SendMessageSchema} onSubmit={handleSendMessage}>
 			{({ values, handleChange, handleBlur, handleSubmit }) => (
 				<form onSubmit={handleSubmit} className="flex items-center gap-2">
 					<input
 						ref={inputRef}
 						type="text"
-						name="message"
+						name="text"
 						placeholder="Aa"
-						value={values.message}
+						value={values.text}
+						autoComplete="off"
+						className={`${
+							isMessagePrepared ? 'w-52' : 'w-36'
+						} h-9 bg-dark-100 text-light-100 transition-width focus:outline-none rounded-[20px] px-3`}
 						onChange={event => handleChangeMessage(event, () => handleChange(event))}
 						onBlur={handleBlur}
-						autoComplete="off"
-						className={`${isMessagePrepared ? 'w-52' : 'w-36'} h-9 bg-dark-100 text-light-100 transition-width focus:outline-none rounded-[20px] px-3`}
 					/>
 
 					{isMessagePrepared ? (

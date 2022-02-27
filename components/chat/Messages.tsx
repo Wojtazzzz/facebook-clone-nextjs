@@ -24,12 +24,15 @@ export const Messages: React.FC<MessagesProps> = ({ friendId }) => {
 	));
 
 	return (
-		<div id="list-of-messages" className="w-full h-[300px] flex flex-col-reverse text-sm overflow-auto py-2">
+		<div
+			id="list-of-messages"
+			className="w-full h-full flex flex-col-reverse text-sm overflow-auto scrollbar-thin scrollbar-thumb-dark-200 scrollbar-track-dark-100 pb-2"
+		>
 			<InfiniteScroll
 				dataLength={MessagesComponents.length}
 				next={() => loadMore()}
 				className="flex flex-col-reverse gap-1"
-				inverse={true}
+				inverse
 				hasMore={!isReachedEnd}
 				loader={<Loader />}
 				scrollableTarget="list-of-messages"

@@ -18,7 +18,7 @@ export const Chat: React.FC = () => {
 				profileImage={friend.profile_image}
 				friendId={friend.id}
 			/>
-			<Panel />
+			<Panel friendId={friend.id} />
 		</div>
 	);
 };

@@ -33,6 +33,18 @@ export const useChat = (friendId: number) => {
 		setSize(size + 1);
 	};
 
+	const sendMessage = (text: string) => {
+		window.Echo.private(`messages.${text}.${friendId}`).listen('ChatMessageSended', () => {
+			console.log('received'); // for debug
+			mutate();
+		});
+
+		axios
+			.post('/api/messages', { text, receiver_id: friendId })
+			.then(response => response.data.paginator.data)
+			.catch(() => setIsError(true));
+	};
+
 	useEffect(() => {
 		if (!data) return;
 
@@ -49,6 +61,7 @@ export const useChat = (friendId: number) => {
 		isEmpty,
 		isReachedEnd,
 		loadMore,
+		sendMessage,
 		mutate,
 	};
 };

@@ -5,7 +5,11 @@ import { faImage } from '@fortawesome/free-solid-svg-icons';
 import { ButtonOverlay } from '@components/chat/shared/ButtonOverlay';
 import { SendMessage } from '@components/chat/SendMessage';
 
-export const Panel: React.FC = () => {
+interface PanelProps {
+	friendId: number;
+}
+
+export const Panel: React.FC<PanelProps> = ({ friendId }) => {
 	const handleSendImage = () => alert('Maybe in the future...');
 
 	return (
@@ -14,7 +18,7 @@ export const Panel: React.FC = () => {
 				<FontAwesomeIcon icon={faImage} />
 			</ButtonOverlay>
 
-			<SendMessage />
+			<SendMessage friendId={friendId} />
 		</div>
 	);
 };
