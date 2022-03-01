@@ -6,7 +6,7 @@ import { ListType } from '@enums/ListType';
 
 import type { UserType } from '@ctypes/features/UserType';
 
-export const useFriends = (type: ListType) => {
+export const useFriends = (type: ListType, userId?: number) => {
 	const [isInitialLoading, setIsInitialLoading] = useState(true);
 	const [isLoading, setIsLoading] = useState(false);
 	const [isError, setIsError] = useState(false);
@@ -24,7 +24,7 @@ export const useFriends = (type: ListType) => {
 
 			default:
 			case ListType.FRIENDS:
-				return `/api/friends?page=${++pageIndex}`;
+				return `/api/friends/${userId}?page=${++pageIndex}`;
 		}
 	};
 
@@ -57,7 +57,7 @@ export const useFriends = (type: ListType) => {
 	};
 
 	return {
-		data: data ?? [],
+		friends: data?.flat() ?? [],
 		isInitialLoading,
 		isLoading,
 		isError,

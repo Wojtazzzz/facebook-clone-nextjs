@@ -1,29 +1,18 @@
 import * as React from 'react';
-import { useFriends } from '@hooks/useFriends';
+import { useAuth } from '@hooks/useAuth';
 
 import { Header } from '@components/contacts/Header';
 import { List } from '@components/contacts/List';
-import { Slot } from '@components/contacts/Slot';
-
-import { ListType } from '@enums/ListType';
+import { ListLoader } from '@components/contacts/shared/ListLoader';
 
 export const Contacts: React.FC = () => {
-	const { data, isInitialLoading, isLoading, isError, isReachingEnd, loadMore } = useFriends(ListType.FRIENDS);
-
-	const slots = data.map(friends => friends?.map(friend => <Slot key={friend.id} {...friend} />));
+	const { user } = useAuth();
 
 	return (
 		<aside className="w-full max-w-[250px] xl:max-w-[300px] h-screen hidden md:flex flex-col px-2 pr-4 py-5 overflow-y-scroll pb-16">
 			<Header />
 
-			<List
-				isInitialLoading={isInitialLoading}
-				isLoading={isLoading}
-				isError={isError}
-				canFetch={!isReachingEnd}
-				slots={slots}
-				loadMore={loadMore}
-			/>
+			{user ? <List userId={user.id} /> : <ListLoader />}
 		</aside>
 	);
 };

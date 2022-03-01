@@ -1,29 +1,35 @@
 import * as React from 'react';
+import { useFriends } from '@hooks/useFriends';
 
 import { ApiError } from '@components/ApiError';
 import { EmptyList } from '@components/EmptyList';
 import { LoadMore } from '@components/contacts/shared/LoadMore';
-import { ListLoading } from '@components/contacts/shared/ListLoading';
+import { ListLoader } from '@components/contacts/shared/ListLoader';
+import { Slot } from '@components/contacts/Slot';
+
+import { ListType } from '@enums/ListType';
 
 interface ListProps {
-	isInitialLoading: boolean;
-	isLoading: boolean;
-	isError: boolean;
-	canFetch: boolean;
-	slots: JSX.Element[][];
-	loadMore: () => void;
+	userId: number;
 }
 
-export const List: React.FC<ListProps> = ({ isInitialLoading, isLoading, isError, canFetch, slots, loadMore }) => {
+export const List: React.FC<ListProps> = ({ userId }) => {
+	const { friends, isInitialLoading, isLoading, isError, isReachingEnd, loadMore } = useFriends(
+		ListType.FRIENDS,
+		userId
+	);
+
 	if (isInitialLoading) {
-		return <ListLoading />;
+		return <ListLoader />;
 	}
 
 	if (isError) {
 		return <ApiError isSmall />;
 	}
 
-	if (slots[0]?.length <= 0) {
+	const slots = friends.map(friend => <Slot key={friend.id} {...friend} />);
+
+	if (slots.length <= 0) {
 		return <EmptyList title="No contacts, add some friends!" />;
 	}
 
@@ -31,7 +37,7 @@ export const List: React.FC<ListProps> = ({ isInitialLoading, isLoading, isError
 		<div className="w-full">
 			{slots}
 
-			{canFetch && <LoadMore isLoading={isLoading} callback={loadMore} />}
+			{isReachingEnd || <LoadMore isLoading={isLoading} callback={loadMore} />}
 		</div>
 	);
 };
