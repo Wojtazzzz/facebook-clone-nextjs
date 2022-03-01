@@ -33,8 +33,8 @@ export const useChat = (friendId: number) => {
 		setSize(size + 1);
 	};
 
-	const sendMessage = (text: string) => {
-		window.Echo.private(`messages.${text}.${friendId}`).listen('ChatMessageSended', () => {
+	const sendMessage = (text: string, userId: number) => {
+		window.Echo.private(`messages.${userId}.${friendId}`).listen('ChatMessageSended', () => {
 			mutate();
 		});
 

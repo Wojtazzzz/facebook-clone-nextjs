@@ -8,6 +8,7 @@ import { faCircleCheck, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { ButtonOverlay } from '@components/chat/shared/ButtonOverlay';
 
 import { SendMessageSchema } from '@validation/SendMessageSchema';
+import { useAuth } from '@hooks/useAuth';
 
 interface SendMessageProps {
 	friendId: number;
@@ -21,6 +22,7 @@ export const SendMessage: React.FC<SendMessageProps> = ({ friendId }) => {
 	const [isMessagePrepared, setIsMessagePrepared] = useState(false);
 	const inputRef = useRef<HTMLInputElement>(null);
 	const { sendMessage } = useChat(friendId);
+	const { user } = useAuth();
 
 	useEffect(() => {
 		inputRef.current?.focus();
@@ -35,7 +37,8 @@ export const SendMessage: React.FC<SendMessageProps> = ({ friendId }) => {
 	};
 
 	const handleSendMessage = ({ text }: FormValues, { resetForm }: FormikHelpers<FormValues>) => {
-		sendMessage(text);
+		if (!user) return;
+		sendMessage(text, user.id);
 
 		resetForm();
 		setIsMessagePrepared(false);
