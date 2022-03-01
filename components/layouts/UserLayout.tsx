@@ -1,15 +1,15 @@
 import * as React from 'react';
 import { useRouter } from 'next/router';
+import { useAppSelector } from '@hooks/redux';
 import { useAuth } from '@hooks/useAuth';
 
 import { Nav } from '@components/nav/Nav';
 import { Toggler } from '@components/nav/mobile/Toggler';
 import { Sidebar } from '@components/sidebar/Sidebar';
 import { Contacts } from '@components/contacts/Contacts';
+import { Chat } from '@components/chat/Chat';
 
 import { AuthMiddleware } from '@enums/AuthMiddleware';
-import { Chat } from '@components/chat/Chat';
-import { useAppSelector } from '@hooks/redux';
 
 export const UserLayout: React.FC = ({ children }) => {
 	useAuth(AuthMiddleware.AUTH);

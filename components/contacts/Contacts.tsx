@@ -13,10 +13,17 @@ export const Contacts: React.FC = () => {
 	const slots = data.map(friends => friends?.map(friend => <Slot key={friend.id} {...friend} />));
 
 	return (
-		<aside className="w-full max-w-[250px] xl:max-w-[300px] h-screen flex flex-col px-2 pr-4 py-5 overflow-y-scroll pb-16">
+		<aside className="w-full max-w-[250px] xl:max-w-[300px] h-screen hidden md:flex flex-col px-2 pr-4 py-5 overflow-y-scroll pb-16">
 			<Header />
 
-			<List isInitialLoading={isInitialLoading} isLoading={isLoading} isError={isError} canFetch={!isReachingEnd} slots={slots} loadMore={loadMore} />
+			<List
+				isInitialLoading={isInitialLoading}
+				isLoading={isLoading}
+				isError={isError}
+				canFetch={!isReachingEnd}
+				slots={slots}
+				loadMore={loadMore}
+			/>
 		</aside>
 	);
 };
