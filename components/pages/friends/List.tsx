@@ -1,43 +1,53 @@
 import * as React from 'react';
+import { useFriends } from '@hooks/useFriends';
 
-import { ListLoading } from '@components/pages/friends/shared/ListLoading';
-import { ApiError } from '@components/ApiError';
+import { ListLoader } from '@components/pages/friends/shared/ListLoader';
 import { LoadMore } from '@components/pages/friends/shared/LoadMore';
+import { ApiError } from '@components/ApiError';
 import { EmptyList } from '@components/EmptyList';
+import { Slot } from '@components/pages/friends/Slot';
+import { Actions } from '@components/pages/friends/actions/Actions';
 
+import { ListType } from '@enums/ListType';
 
 interface ListProps {
-    slots: JSX.Element[][],
-    isInitialLoading: boolean,
-    isLoading: boolean,
-    isError: boolean,
-    canFetch: boolean,
-    loadMore: () => void
+	userId: number;
+	type: string | string[] | undefined;
 }
 
-export const List: React.FC<ListProps> = ({ slots, isInitialLoading, isLoading, isError, canFetch, loadMore }) => {
-    if (isInitialLoading) {
-        return <ListLoading />;
-    }
+const getType = (type: string | string[] | undefined) => {
+	switch (type) {
+		case 'suggests':
+			return ListType.SUGGEST;
 
-    if (isError) {
-        return <ApiError />;
-    }
+		case 'invites':
+			return ListType.INVITES;
 
-    if ((slots[0]?.length <= 0) || slots.length <= 0) {
-        return <EmptyList title="No users to add, maybe this app is so boring..." />
-    }
+		default:
+		case 'friends':
+			return ListType.FRIENDS;
+	}
+};
 
-    return (
-        <div className="flex flex-col gap-2">
-            {slots}
+export const List: React.FC<ListProps> = ({ userId, type }) => {
+	const listType = getType(type);
+	const { friends, isInitialLoading, isLoading, isError, isReachingEnd, loadMore } = useFriends(listType, userId);
 
-            {canFetch && (
-                <LoadMore
-                    isLoading={isLoading}
-                    callback={loadMore}
-                />
-            )}
-        </div>
-    );
-}
+	const slots = friends.map(user => (
+		<Slot key={user.id} {...user}>
+			<Actions id={user.id} type={listType} />
+		</Slot>
+	));
+
+	if (isInitialLoading) return <ListLoader />;
+	if (isError) return <ApiError />;
+	if (slots.length <= 0) return <EmptyList title="No users to add, maybe this app is so boring..." />;
+
+	return (
+		<div className="flex flex-col gap-2">
+			{slots}
+
+			{isReachingEnd || <LoadMore isLoading={isLoading} callback={loadMore} />}
+		</div>
+	);
+};

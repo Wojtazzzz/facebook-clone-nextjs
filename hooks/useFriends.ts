@@ -6,7 +6,7 @@ import { ListType } from '@enums/ListType';
 
 import type { UserType } from '@ctypes/features/UserType';
 
-export const useFriends = (type: ListType, userId?: number) => {
+export const useFriends = (type: ListType, userId: number) => {
 	const [isInitialLoading, setIsInitialLoading] = useState(true);
 	const [isLoading, setIsLoading] = useState(false);
 	const [isError, setIsError] = useState(false);
