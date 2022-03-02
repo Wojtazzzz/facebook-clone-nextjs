@@ -35,7 +35,7 @@ export const List: React.FC<ListProps> = ({ userId, type }) => {
 
 	const slots = friends.map(user => (
 		<Slot key={user.id} {...user}>
-			<Actions id={user.id} type={listType} />
+			<Actions friend={user} type={listType} />
 		</Slot>
 	));
 

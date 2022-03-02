@@ -5,11 +5,13 @@ import { Button } from '@components/Button';
 
 import axios from '@lib/axios';
 
+import type { UserType } from '@ctypes/features/UserType';
+
 interface SuggestActionsProps {
-	id: number;
+	friend: UserType;
 }
 
-export const SuggestActions: React.FC<SuggestActionsProps> = ({ id }) => {
+export const SuggestActions: React.FC<SuggestActionsProps> = ({ friend }) => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [isSuccess, setIsSuccess] = useState(false);
 	const [isError, setIsError] = useState(false);
@@ -19,7 +21,7 @@ export const SuggestActions: React.FC<SuggestActionsProps> = ({ id }) => {
 		setIsLoading(true);
 
 		axios
-			.post('/api/invite', { user_id: id })
+			.post('/api/invite', { user_id: friend.id })
 			.then(() => setIsSuccess(true))
 			.catch(() => setIsError(true))
 			.finally(() => setIsLoading(false));
@@ -27,6 +29,5 @@ export const SuggestActions: React.FC<SuggestActionsProps> = ({ id }) => {
 
 	if (isSuccess) return <span className="text-sm text-green-600 font-medium">Invitation sended</span>;
 	if (isError) return <span className="text-sm text-red-400 font-medium">Something went wrong</span>;
-
 	return <Button title="Invite" styles="w-[150px]" isDisabled={isLoading} callback={event => handleInvite(event)} />;
 };

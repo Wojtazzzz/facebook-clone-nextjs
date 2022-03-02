@@ -6,14 +6,15 @@ import { SuggestActions } from '@components/pages/friends/actions/SuggestActions
 
 import { ListType } from '@enums/ListType';
 
+import type { UserType } from '@ctypes/features/UserType';
 
 interface ActionsProps {
-    id: number,
-    type: ListType
+	friend: UserType;
+	type: ListType;
 }
 
-export const Actions: React.FC<ActionsProps> = ({ id, type }) => {
-    if (type === ListType.SUGGEST) return <SuggestActions id={id} />;
-    if (type === ListType.INVITES) return <InviteActions id={id} />;
-    return <FriendActions id={id} />;
-}
+export const Actions: React.FC<ActionsProps> = ({ friend, type }) => {
+	if (type === ListType.SUGGEST) return <SuggestActions friend={friend} />;
+	if (type === ListType.INVITES) return <InviteActions friend={friend} />;
+	return <FriendActions friend={friend} />;
+};
