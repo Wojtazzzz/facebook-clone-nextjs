@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import useSWRInfinite from 'swr/infinite';
 
+import Echo from 'laravel-echo';
 import axios from '@lib/axios';
+require('pusher-js');
 
 import type { ChatMessageType } from '@ctypes/features/ChatMessageType';
 
@@ -10,6 +12,14 @@ export const useChat = (friendId: number) => {
 	const [isError, setIsError] = useState(false);
 	const [isReachedEnd, setIsReachedEnd] = useState(false);
 	const [isEmpty, setIsEmpty] = useState(false);
+
+	const LaravelEcho = new Echo({
+		broadcaster: 'pusher',
+		key: process.env.NEXT_PUBLIC_PUSHER_APP_KEY,
+		cluster: process.env.NEXT_PUBLIC_PUSHER_APP_CLUSTER,
+		forceTLS: true,
+		authEndpoint: `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/broadcast`,
+	});
 
 	const getKey = (pageIndex: number, previousPageData: []) => {
 		if (previousPageData && !previousPageData.length) return null;
@@ -34,7 +44,7 @@ export const useChat = (friendId: number) => {
 	};
 
 	const sendMessage = (text: string, userId: number) => {
-		window.Echo.private(`messages.${userId}.${friendId}`).listen('ChatMessageSended', () => {
+		LaravelEcho.private(`messages.${userId}.${friendId}`).listen('ChatMessageSended', () => {
 			mutate();
 		});
 
