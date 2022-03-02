@@ -25,6 +25,7 @@ export const Messages: React.FC<MessagesProps> = ({ friendId }) => {
 
 	return (
 		<div
+			data-testid="chat-messages"
 			id="list-of-messages"
 			className="w-full h-full flex flex-col-reverse text-sm overflow-auto scrollbar-thin scrollbar-thumb-dark-200 scrollbar-track-dark-100 pb-2"
 		>

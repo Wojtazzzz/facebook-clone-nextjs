@@ -13,7 +13,7 @@ export const Panel: React.FC<PanelProps> = ({ friendId }) => {
 	const handleSendImage = () => alert('Maybe in the future...');
 
 	return (
-		<div className="w-full flex justify-between items-center text-light-100 p-2">
+		<div data-testid="chat-panel" className="w-full flex justify-between items-center text-light-100 p-2">
 			<ButtonOverlay callback={handleSendImage}>
 				<FontAwesomeIcon icon={faImage} />
 			</ButtonOverlay>

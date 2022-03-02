@@ -27,12 +27,6 @@ describe('Invites friends', () => {
 		cy.loginAndWaitForRequests(TEST_EMAIL, TEST_PASSWORD);
 	});
 
-	after(() => {
-		cy.request(`${BACKEND_URL}/api/tests`).then(interception => {
-			expect(interception.isOkStatusCode);
-		});
-	});
-
 	it('accept test user to friends and he shows on friends list', () => {
 		cy.clickButtonAndExpectMessage('Accept', 'Invitation accepted', 'accept', 200);
 

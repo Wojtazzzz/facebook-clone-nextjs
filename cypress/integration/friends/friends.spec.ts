@@ -12,13 +12,7 @@ describe('List of friends', () => {
 
 		cy.loginAndWaitForRequests(TEST_EMAIL, TEST_PASSWORD);
 	});
-
-	after(() => {
-		cy.request(`${BACKEND_URL}/api/tests`).then(interception => {
-			expect(interception.isOkStatusCode);
-		});
-	});
-
+    
 	it('remove test friend from friends and he disappear from friends', () => {
 		cy.get('aside > a[title="Friends"]').click();
 		cy.get('a[href*="/profile/2"]')

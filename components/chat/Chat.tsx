@@ -11,7 +11,10 @@ export const Chat: React.FC = () => {
 	if (!friend) return null;
 
 	return (
-		<div className="w-[300px] h-[420px] flex flex-col justify-between bg-dark-200 absolute bottom-0 right-20 rounded-t-lg shadow-md">
+		<div
+			data-testid="chat"
+			className="w-[300px] h-[420px] flex flex-col justify-between bg-dark-200 absolute bottom-0 right-20 rounded-t-lg shadow-md"
+		>
 			<Header name={`${friend.first_name} ${friend.last_name}`} profileImage={friend.profile_image} />
 			<Messages
 				name={`${friend.first_name} ${friend.last_name}`}

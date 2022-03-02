@@ -13,12 +13,6 @@ describe('Suggests friends', () => {
 		cy.loginAndWaitForRequests(TEST_EMAIL, TEST_PASSWORD);
 	});
 
-	after(() => {
-		cy.request(`${BACKEND_URL}/api/tests`).then(interception => {
-			expect(interception.isOkStatusCode);
-		});
-	});
-
 	it('invite test user and he disappear from suggests list', () => {
 		cy.get('aside > a[title="Friends"]').click();
 		cy.get('nav > a[href*="/friends/suggests"]').contains('Suggests').click();

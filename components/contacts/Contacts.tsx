@@ -9,7 +9,10 @@ export const Contacts: React.FC = () => {
 	const { user } = useAuth();
 
 	return (
-		<aside className="w-full max-w-[250px] xl:max-w-[300px] h-screen hidden md:flex flex-col px-2 pr-4 py-5 overflow-y-scroll pb-16">
+		<aside
+			data-testid="contacts"
+			className="w-full max-w-[250px] xl:max-w-[300px] h-screen hidden md:flex flex-col px-2 pr-4 py-5 overflow-y-scroll pb-16"
+		>
 			<Header />
 
 			{user ? <List userId={user.id} /> : <ListLoader />}
