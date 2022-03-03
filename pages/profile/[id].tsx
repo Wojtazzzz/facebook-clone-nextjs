@@ -1,9 +1,9 @@
 import * as React from 'react';
 
 import { UserLayout } from '@components/layouts/UserLayout';
-import { Header } from '@components/pages/profile/Header';
+import { Profile as ProfileComponent } from '@components/pages/profile/Profile';
 
-import type { GetStaticPaths, GetStaticProps, NextPage } from 'next';
+import type { GetStaticPaths, GetStaticProps } from 'next';
 import type { ParsedUrlQuery } from 'querystring';
 import type { UserType } from '@ctypes/features/UserType';
 
@@ -11,17 +11,13 @@ interface ProfileProps {
 	user: UserType;
 }
 
-const Profile: NextPage<ProfileProps> = ({ user }) => {
+export default function Profile({ user }: ProfileProps) {
 	return (
 		<UserLayout>
-			<div className="w-full">
-				<Header user={user} />
-			</div>
+			<ProfileComponent user={user} />
 		</UserLayout>
 	);
-};
-
-export default Profile;
+}
 
 interface IParams extends ParsedUrlQuery {
 	id: string;

@@ -4,9 +4,7 @@ import { GuestLayout } from '@components/layouts/GuestLayout';
 import { Informations } from '@components/auth/Informations';
 import { Auth } from '@components/auth/Auth';
 
-import type { NextPage } from 'next';
-
-const Login: NextPage = () => {
+export default function Login() {
 	return (
 		<GuestLayout>
 			<div className="flex flex-col md:flex-row justify-center gap-16">
@@ -15,6 +13,4 @@ const Login: NextPage = () => {
 			</div>
 		</GuestLayout>
 	);
-};
-
-export default Login;
+}

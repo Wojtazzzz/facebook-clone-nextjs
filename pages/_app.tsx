@@ -13,7 +13,7 @@ import '@styles/global.css';
 import '@styles/tailwind.css';
 import '@styles/input-autocomplete.css';
 
-function MyApp({ Component, pageProps }: AppProps) {
+export default function MyApp({ Component, pageProps }: AppProps) {
 	return (
 		<>
 			<Head>
@@ -26,5 +26,3 @@ function MyApp({ Component, pageProps }: AppProps) {
 		</>
 	);
 }
-
-export default MyApp;
