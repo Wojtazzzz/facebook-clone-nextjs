@@ -13,8 +13,8 @@ export const ChatSlice = createSlice({
 	name: 'chat',
 	initialState,
 	reducers: {
-		toggleActive: (state, action: PayloadAction<ChatState>) => {
-			state.friend = action.payload.friend;
+		toggleActive: (state, action: PayloadAction<UserType>) => {
+			state.friend = action.payload;
 		},
 	},
 });

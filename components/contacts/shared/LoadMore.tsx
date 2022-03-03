@@ -9,10 +9,8 @@ interface LoadMoreProps {
 	callback: () => void;
 }
 
-export const LoadMore: React.FC<LoadMoreProps> = ({ isLoading, callback }) => {
-	if (isLoading) {
-		return <ListLoader />;
-	}
+export const LoadMore = ({ isLoading, callback }: LoadMoreProps) => {
+	if (isLoading) return <ListLoader />;
 
 	return (
 		<button

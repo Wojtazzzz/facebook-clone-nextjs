@@ -5,7 +5,7 @@ import { Header } from '@components/contacts/Header';
 import { List } from '@components/contacts/List';
 import { ListLoader } from '@components/contacts/shared/ListLoader';
 
-export const Contacts: React.FC = () => {
+export const Contacts = () => {
 	const { user } = useAuth();
 
 	return (
