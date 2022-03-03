@@ -1,15 +1,16 @@
 import * as React from 'react';
-import { useAppSelector } from '@hooks/redux';
 
 import { Header } from '@components/chat/Header';
 import { Messages } from '@components/chat/Messages';
 import { Panel } from '@components/chat/Panel';
 
-export const Chat = () => {
-	const { friend } = useAppSelector(state => state.chat);
+import type { UserType } from '@ctypes/features/UserType';
 
-	if (!friend) return;
+interface ChatProps {
+	friend: UserType;
+}
 
+export const Chat = ({ friend }: ChatProps) => {
 	const { id, first_name, last_name, profile_image } = friend;
 
 	return (

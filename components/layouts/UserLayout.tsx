@@ -11,10 +11,13 @@ import { Chat } from '@components/chat/Chat';
 
 import { AuthMiddleware } from '@enums/AuthMiddleware';
 
-export const UserLayout: React.FC = ({ children }) => {
+interface UserLayoutProps {
+	children: React.ReactNode;
+}
+
+export const UserLayout = ({ children }: UserLayoutProps) => {
 	useAuth(AuthMiddleware.AUTH);
 	const { route } = useRouter();
-
 	const { friend } = useAppSelector(state => state.chat);
 
 	return (
@@ -31,7 +34,7 @@ export const UserLayout: React.FC = ({ children }) => {
 
 			<Toggler />
 
-			{friend && <Chat />}
+			{!!friend && <Chat friend={friend} />}
 		</>
 	);
 };
