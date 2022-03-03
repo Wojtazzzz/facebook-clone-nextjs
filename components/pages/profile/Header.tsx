@@ -30,7 +30,7 @@ export const Header = memo<HeaderProps>(({ user }) => {
 
 	const handleOpenChat = () => dispatch(toggleActive(user));
 
-	const FriendsHeadsComponents = friends.map(({ id, first_name, last_name, profile_image }, i) => {
+	const FriendsHeadsComponents = (friends ?? []).map(({ id, first_name, last_name, profile_image }, i) => {
 		if (i >= 5) return;
 
 		return (
@@ -78,7 +78,9 @@ export const Header = memo<HeaderProps>(({ user }) => {
 							{first_name} {last_name}
 						</span>
 
-						<span className="xl:text-lg text-light-100 font-medium -my-1.5">{friends.length} Friends</span>
+						<span className="xl:text-lg text-light-100 font-medium -my-1.5">
+							{friends?.length ?? 0} Friends
+						</span>
 
 						<div className="flex">{FriendsHeadsComponents}</div>
 					</div>
