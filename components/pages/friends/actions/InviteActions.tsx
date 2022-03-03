@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { useState } from 'react';
 
+import { Failure } from 'components/pages/friends/actions/messages/Failure';
+import { Success } from '@components/pages/friends/actions/messages/Success';
 import { Button } from '@components/Button';
 
 import axios from '@lib/axios';
@@ -39,9 +41,9 @@ export const InviteActions = ({ friend }: InviteActionsProps) => {
 			.finally(() => setIsLoading(false));
 	};
 
-	if (isSuccessAccept) return <span className="text-sm text-green-600 font-medium">Invitation accepted</span>;
-	if (isSuccessReject) return <span className="text-sm text-green-600 font-medium">Invitation rejected</span>;
-	if (isError) return <span className="text-sm text-red-400 font-medium">Something went wrong</span>;
+	if (isSuccessAccept) return <Success message="Invitation accepted" />;
+	if (isSuccessReject) return <Success message="Invitation rejected" />;
+	if (isError) return <Failure message="Something went wrong" />;
 
 	return (
 		<div className="flex gap-3">

@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { useState } from 'react';
 
+import { Failure } from 'components/pages/friends/actions/messages/Failure';
+import { Success } from '@components/pages/friends/actions/messages/Success';
 import { Button } from '@components/Button';
 
 import axios from '@lib/axios';
@@ -27,7 +29,8 @@ export const SuggestActions = ({ friend }: SuggestActionsProps) => {
 			.finally(() => setIsLoading(false));
 	};
 
-	if (isSuccess) return <span className="text-sm text-green-600 font-medium">Invitation sended</span>;
-	if (isError) return <span className="text-sm text-red-400 font-medium">Something went wrong</span>;
+	if (isSuccess) return <Success message="Invitation sended" />;
+	if (isError) return <Failure message="Something went wrong" />;
+
 	return <Button title="Invite" styles="w-[150px]" isDisabled={isLoading} callback={event => handleInvite(event)} />;
 };
