@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { memo } from 'react';
 
-import Image from 'next/image';
 import Link from 'next/link';
 
 import type { UserType } from '@ctypes/features/UserType';
+import { Avatar } from '@components/Avatar';
 
 interface SlotProps extends UserType {
 	children: React.ReactNode;
@@ -14,13 +14,7 @@ export const Slot = memo<SlotProps>(({ id, first_name, last_name, profile_image,
 	return (
 		<Link href={`/profile/${id}`}>
 			<a className="flex items-center gap-5 hover:bg-dark-100 rounded-lg transition-colors py-3 px-5">
-				<Image
-					width="85"
-					height="85"
-					src={profile_image}
-					alt={`${first_name} ${last_name} profile image`}
-					className="rounded-full"
-				/>
+				<Avatar size={85} src={profile_image} alt={`${first_name} ${last_name}`} />
 
 				<span className="md:text-xl text-light-200 font-medium">
 					{first_name} {last_name}

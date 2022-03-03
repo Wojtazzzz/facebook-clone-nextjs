@@ -2,12 +2,12 @@ import * as React from 'react';
 import { useAuth } from '@hooks/useAuth';
 import { useAppSelector } from '@hooks/redux';
 
-import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHandLizard, faUsers } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { SideItem } from '@components/sidebar/SideItem';
 import { SideItemLoading } from '@components/sidebar/SideItemLoading';
+import { Avatar } from '@components/Avatar';
 
 export const Sidebar = () => {
 	const { user } = useAuth();
@@ -23,11 +23,7 @@ export const Sidebar = () => {
 				<SideItem
 					title={`${user.first_name} ${user.last_name}`}
 					link={`/profile/${user.id}`}
-					icon={
-						<div className="w-[36px] h-[36px] relative">
-							<Image className="rounded-full" layout="fill" src={user.profile_image} alt="" />
-						</div>
-					}
+					icon={<Avatar size={36} src={user.profile_image} alt={`${user.first_name} ${user.last_name}`} />}
 				/>
 			) : (
 				<SideItemLoading />

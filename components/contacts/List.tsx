@@ -22,10 +22,9 @@ export const List = memo(({ userId }: ListProps) => {
 
 	if (isInitialLoading) return <ListLoader />;
 	if (isError) return <ApiError isSmall />;
+	if (!friends || !!!friends.length) return <EmptyList title="No contacts, add some friends!" />;
 
 	const slots = friends.map(friend => <Slot key={friend.id} {...friend} />);
-
-	if (!!!slots.length) return <EmptyList title="No contacts, add some friends!" />;
 
 	return (
 		<div data-testid="contacts-list" className="w-full">

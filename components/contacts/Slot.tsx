@@ -2,7 +2,7 @@ import * as React from 'react';
 import { memo } from 'react';
 import { useAppDispatch } from '@hooks/redux';
 
-import Image from 'next/image';
+import { Avatar } from '@components/Avatar';
 
 import { toggleActive } from '@redux/slices/ChatSlice';
 
@@ -20,13 +20,7 @@ export const Slot = memo<SlotProps>(({ id, first_name, last_name, profile_image,
 			className="w-full flex items-center gap-3 hover:bg-dark-100 rounded-lg transition-colors cursor-pointer p-2"
 			onClick={handleOpenChat}
 		>
-			<Image
-				width="36"
-				height="36"
-				src={profile_image}
-				alt={`${first_name} ${last_name}`}
-				className="rounded-full"
-			/>
+			<Avatar size={36} src={profile_image} alt={`${first_name} ${last_name}`} />
 
 			<span className="text-light-200 font-medium leading-5 m-0">
 				{first_name} {last_name}
