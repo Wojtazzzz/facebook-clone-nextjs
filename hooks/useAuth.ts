@@ -5,11 +5,11 @@ import useSWR from 'swr';
 import axios from '@lib/axios';
 import { AuthMiddleware } from '@enums/AuthMiddleware';
 
-import type { Dispatch, SetStateAction } from 'react';
 import type { UserType } from '@ctypes/features/UserType';
 
 export const useAuth = (middleware?: AuthMiddleware) => {
-	const [isRequestLoading, setIsRequestLoading] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
+	const [errors, setErrors] = useState<never[]>([]);
 	const router = useRouter();
 
 	const {
@@ -29,8 +29,8 @@ export const useAuth = (middleware?: AuthMiddleware) => {
 
 	const csrf = () => axios.get('/sanctum/csrf-cookie');
 
-	const register = async (setErrors: Dispatch<SetStateAction<never[]>>) => {
-		setIsRequestLoading(true);
+	const register = async () => {
+		setIsLoading(true);
 		await csrf();
 
 		axios
@@ -41,11 +41,11 @@ export const useAuth = (middleware?: AuthMiddleware) => {
 
 				setErrors(Object.values(error.response.data.errors ?? []).flat() as never);
 			})
-			.finally(() => setIsRequestLoading(false));
+			.finally(() => setIsLoading(false));
 	};
 
-	const login = async (email: string, password: string, setErrors: Dispatch<SetStateAction<never[]>>) => {
-		setIsRequestLoading(true);
+	const login = async (email: string, password: string) => {
+		setIsLoading(true);
 		await csrf();
 
 		axios
@@ -56,17 +56,17 @@ export const useAuth = (middleware?: AuthMiddleware) => {
 
 				setErrors(Object.values(error.response.data.errors ?? []).flat() as never);
 			})
-			.finally(() => setIsRequestLoading(false));
+			.finally(() => setIsLoading(false));
 	};
 
 	const logout = async () => {
 		if (!error) {
-			setIsRequestLoading(true);
+			setIsLoading(true);
 
 			await axios.post('/logout');
 			mutate();
 
-			setIsRequestLoading(false);
+			setIsLoading(false);
 		}
 
 		window.location.href = '/login';
@@ -79,7 +79,8 @@ export const useAuth = (middleware?: AuthMiddleware) => {
 
 	return {
 		user,
-		isRequestLoading,
+		isLoading,
+		errors,
 		register,
 		login,
 		logout,
