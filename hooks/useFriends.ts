@@ -48,7 +48,7 @@ export const useFriends = (type: ListType, userId: number) => {
 		setIsLoading(false);
 
 		const isEmpty = data[0].length === 0;
-		setIsReachingEnd(isEmpty || (data && data[data.length - 1]?.length < 10));
+		setIsReachingEnd(isEmpty || (data && data[data.length - 1].length < 10));
 	}, [data]);
 
 	const loadMore = () => {
@@ -57,7 +57,7 @@ export const useFriends = (type: ListType, userId: number) => {
 	};
 
 	return {
-		friends: data?.flat() ?? [],
+		friends: data?.flat(),
 		isInitialLoading,
 		isLoading,
 		isError,

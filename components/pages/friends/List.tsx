@@ -34,14 +34,15 @@ export const List = memo<ListProps>(({ userId, type }) => {
 	const listType = getType(type);
 	const { friends, isInitialLoading, isLoading, isError, isReachingEnd, loadMore } = useFriends(listType, userId);
 
+	if (isInitialLoading || friends === undefined) return <ListLoader />;
+	if (isError) return <ApiError />;
+
 	const slots = friends.map(user => (
 		<Slot key={user.id} {...user}>
 			<Actions friend={user} type={listType} />
 		</Slot>
 	));
 
-	if (isInitialLoading) return <ListLoader />;
-	if (isError) return <ApiError />;
 	if (!!!slots.length) return <EmptyList title="No users to add, maybe this app is so boring..." />;
 
 	return (
