@@ -34,7 +34,7 @@ export const List: React.FC<ListProps> = ({ userId }) => {
 	}
 
 	return (
-		<div className="w-full">
+		<div data-testid="contacts-list" className="w-full">
 			{slots}
 
 			{isReachingEnd || <LoadMore isLoading={isLoading} callback={loadMore} />}

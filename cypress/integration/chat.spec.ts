@@ -14,14 +14,19 @@ describe('Chat', () => {
 	});
 
 	it('open chat and send message', () => {
-		cy.get('aside[data-testid="contacts"]').first().click();
+		cy.get('div[data-testid="contacts-list"]').within(() => {
+			cy.get('div').should('contain.text', 'Friend User').click();
+		});
+
 		cy.get('div[data-testid="chat"]').should('contain.text', 'Say hello to your friend!');
 
 		cy.get('div[data-testid="chat-panel"]').within(() => {
 			cy.get('input[name="text"]').type('Hello World!{enter}');
 		});
 
-		cy.get('div[data-testid="chat-messages"]').should('contain.text', 'Hello World!');
+		cy.wait(10000).then(() => {
+			cy.get('div[data-testid="chat-messages"]').should('contain.text', 'Hello World!');
+		});
 	});
 });
 
