@@ -12,8 +12,12 @@ export const NavBar = () => {
 			<NavItem name="Home" path="/" icon={faHome} />
 			<NavItem name="Marketplace" path="/marketplace" icon={faShop} />
 
-			<div className={user ? 'opacity-70 pointer-events-none' : ''}>
-				<NavItem name="User profile" path={user ? `/profile/${user.id}` : '/'} icon={faUser} />
+			<div className={user ? '' : 'opacity-70 pointer-events-none'}>
+				<NavItem
+					name="User profile"
+					path={user ? `/profile/${user.id}` : '/profile/not-loaded'}
+					icon={faUser}
+				/>
 			</div>
 		</div>
 	);
