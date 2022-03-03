@@ -16,7 +16,7 @@ interface HeaderProps {
 export const Header = ({ name, profileImage }: HeaderProps) => {
 	const dispatch = useAppDispatch();
 
-	const handleClose = () => dispatch(toggleActive({ friend: undefined }));
+	const handleClose = () => dispatch(toggleActive(undefined));
 
 	return (
 		<div className="w-full flex justify-between text-light-200 shadow-md p-3">

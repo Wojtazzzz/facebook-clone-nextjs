@@ -13,7 +13,7 @@ export const ChatSlice = createSlice({
 	name: 'chat',
 	initialState,
 	reducers: {
-		toggleActive: (state, action: PayloadAction<UserType>) => {
+		toggleActive: (state, action: PayloadAction<UserType | undefined>) => {
 			state.friend = action.payload;
 		},
 	},
