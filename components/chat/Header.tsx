@@ -13,10 +13,10 @@ interface HeaderProps {
 	profileImage: string;
 }
 
-export const Header: React.FC<HeaderProps> = ({ name, profileImage }) => {
+export const Header = ({ name, profileImage }: HeaderProps) => {
 	const dispatch = useAppDispatch();
 
-	const handleClose = () => dispatch(toggleActive({ isActive: false }));
+	const handleClose = () => dispatch(toggleActive({ friend: undefined }));
 
 	return (
 		<div className="w-full flex justify-between text-light-200 shadow-md p-3">

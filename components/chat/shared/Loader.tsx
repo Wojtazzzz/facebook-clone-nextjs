@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export const Loader: React.FC = () => {
+export const Loader = () => {
 	return (
 		<div className="w-full h-8 flex justify-center items-center mb-3">
 			<svg

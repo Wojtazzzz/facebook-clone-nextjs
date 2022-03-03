@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, memo } from 'react';
+import { useAuth } from '@hooks/useAuth';
 import { useChat } from '@hooks/useChat';
 
 import { Formik, FormikHelpers } from 'formik';
@@ -8,7 +9,8 @@ import { faCircleCheck, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { ButtonOverlay } from '@components/chat/shared/ButtonOverlay';
 
 import { SendMessageSchema } from '@validation/SendMessageSchema';
-import { useAuth } from '@hooks/useAuth';
+
+import { Function } from '@ctypes/Function';
 
 interface SendMessageProps {
 	friendId: number;
@@ -18,7 +20,7 @@ interface FormValues {
 	text: string;
 }
 
-export const SendMessage: React.FC<SendMessageProps> = ({ friendId }) => {
+export const SendMessage = memo<SendMessageProps>(({ friendId }) => {
 	const [isMessagePrepared, setIsMessagePrepared] = useState(false);
 	const inputRef = useRef<HTMLInputElement>(null);
 	const { sendMessage } = useChat(friendId);
@@ -30,10 +32,10 @@ export const SendMessage: React.FC<SendMessageProps> = ({ friendId }) => {
 
 	const handleSendEmoji = () => alert('Maybe in the future...');
 
-	const handleChangeMessage = (event: React.FormEvent<HTMLInputElement>, formikHandleChange: () => void) => {
+	const handleChangeMessage = (event: React.FormEvent<HTMLInputElement>, formikHandleChange: Function<void>) => {
 		formikHandleChange();
 
-		setIsMessagePrepared(event.currentTarget.value.length > 0);
+		setIsMessagePrepared(!!event.currentTarget.value.length);
 	};
 
 	const handleSendMessage = ({ text }: FormValues, { resetForm }: FormikHelpers<FormValues>) => {
@@ -75,4 +77,6 @@ export const SendMessage: React.FC<SendMessageProps> = ({ friendId }) => {
 			)}
 		</Formik>
 	);
-};
+});
+
+SendMessage.displayName = 'SendMessages';

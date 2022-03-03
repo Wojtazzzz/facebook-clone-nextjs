@@ -9,7 +9,7 @@ interface PanelProps {
 	friendId: number;
 }
 
-export const Panel: React.FC<PanelProps> = ({ friendId }) => {
+export const Panel = ({ friendId }: PanelProps) => {
 	const handleSendImage = () => alert('Maybe in the future...');
 
 	return (

@@ -15,8 +15,8 @@ interface InputProps {
 	onBlur?: (event: FocusEvent) => void;
 }
 
-export const Input = memo(
-	({ type, name, value = '', placeholder, isDisabled = false, onChange, onBlur }: InputProps) => {
+export const Input = memo<InputProps>(
+	({ type, name, value = '', placeholder, isDisabled = false, onChange, onBlur }) => {
 		return (
 			<div className="flex flex-col gap-2">
 				<input

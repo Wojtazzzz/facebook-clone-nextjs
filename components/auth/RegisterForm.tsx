@@ -5,7 +5,7 @@ import { Input } from '@components/auth/shared/Input';
 import { RequestErrors } from '@components/auth/shared/RequestErrors';
 import { Button } from '@components/Button';
 
-export const RegisterForm: React.FC = () => {
+export const RegisterForm = () => {
 	const { register, isLoading, errors } = useAuth();
 
 	const handleCreateAccount = () => register();

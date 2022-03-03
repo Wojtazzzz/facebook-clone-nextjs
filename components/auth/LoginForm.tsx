@@ -8,7 +8,7 @@ import { RequestErrors } from '@components/auth/shared/RequestErrors';
 
 import { LoginSchema } from '@validation/LoginSchema';
 
-export const LoginForm: React.FC = () => {
+export const LoginForm = () => {
 	const { login, isLoading, errors } = useAuth();
 
 	const handleSubmit = (email: string, password: string) => login(email, password);

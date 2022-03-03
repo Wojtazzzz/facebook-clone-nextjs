@@ -5,7 +5,7 @@ interface MessageProps {
 	isSended: boolean;
 }
 
-export const Message: React.FC<MessageProps> = ({ text, isSended }) => {
+export const Message = ({ text, isSended }: MessageProps) => {
 	return (
 		<div className="w-full">
 			<div

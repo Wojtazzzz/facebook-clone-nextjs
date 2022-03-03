@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { SmallLogo } from '@components/SmallLogo';
 
-export const Informations: React.FC = () => {
+export const Informations = () => {
 	return (
 		<div className="w-full md:w-1/2 md:pt-8">
 			<div className="flex items-center gap-4 mb-5">

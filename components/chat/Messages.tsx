@@ -1,11 +1,12 @@
 import * as React from 'react';
+import { memo } from 'react';
 import { useChat } from '@hooks/useChat';
 
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Loader } from '@components/chat/shared/Loader';
 import { Message } from '@components/chat/shared/Message';
-import { ApiError } from '@components/ApiError';
 import { EmptyChat } from '@components/chat/shared/EmptyChat';
+import { ApiError } from '@components/ApiError';
 
 interface MessagesProps {
 	name: string;
@@ -13,7 +14,7 @@ interface MessagesProps {
 	friendId: number;
 }
 
-export const Messages: React.FC<MessagesProps> = ({ friendId }) => {
+export const Messages = memo<MessagesProps>(({ friendId }) => {
 	const { data, isError, isEmpty, isReachedEnd, loadMore } = useChat(friendId);
 
 	if (isEmpty) return <EmptyChat />;
@@ -42,4 +43,6 @@ export const Messages: React.FC<MessagesProps> = ({ friendId }) => {
 			</InfiniteScroll>
 		</div>
 	);
-};
+});
+
+Messages.displayName = 'Messages';

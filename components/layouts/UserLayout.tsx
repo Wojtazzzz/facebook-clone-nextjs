@@ -15,7 +15,7 @@ export const UserLayout: React.FC = ({ children }) => {
 	useAuth(AuthMiddleware.AUTH);
 	const { route } = useRouter();
 
-	const { isActive } = useAppSelector(state => state.chat);
+	const { friend } = useAppSelector(state => state.chat);
 
 	return (
 		<>
@@ -31,7 +31,7 @@ export const UserLayout: React.FC = ({ children }) => {
 
 			<Toggler />
 
-			{isActive && <Chat />}
+			{friend && <Chat />}
 		</>
 	);
 };
