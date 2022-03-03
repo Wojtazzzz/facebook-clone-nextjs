@@ -47,7 +47,7 @@ export const useFriends = (type: ListType, userId: number) => {
 
 		setIsLoading(false);
 
-		const isEmpty = data?.[0]?.length === 0;
+		const isEmpty = data[0].length === 0;
 		setIsReachingEnd(isEmpty || (data && data[data.length - 1]?.length < 10));
 	}, [data]);
 
