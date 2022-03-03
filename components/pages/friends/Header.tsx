@@ -6,7 +6,7 @@ interface HeaderProps {
 	name: string | string[];
 }
 
-export const Header: React.FC<HeaderProps> = ({ name }) => {
+export const Header = ({ name }: HeaderProps) => {
 	return (
 		<div className="w-full flex justify-between items-center sticky top-0 left-0 z-20 bg-dark-300 p-3">
 			<h5 className="text-3xl text-light-100 font-bold capitalize">{name}</h5>

@@ -4,51 +4,30 @@ import { useAppDispatch } from '@hooks/redux';
 
 import { faBell, faEllipsisVertical, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { faFacebookMessenger } from '@fortawesome/free-brands-svg-icons';
-import { Item } from '@components/nav/additions/Item';
+import { Button } from '@components/nav/additions/Button';
 
 import { toggleActive } from '@redux/slices/SidebarSlice';
 
+export const Additions = () => {
+	const { logout, isLoading } = useAuth();
+	const dispatch = useAppDispatch();
 
-export const Additions: React.FC = () => {
-    const { logout, isRequestLoading } = useAuth();
-    const dispatch = useAppDispatch();
+	const handleLogout = () => logout();
+	const handleToggleSidebar = () => dispatch(toggleActive());
 
-    const handleLogout = () => logout();
-    const handleToggleSidebar = () => dispatch(toggleActive());
+	return (
+		<div className="h-full flex justify-end items-center gap-2">
+			<div className="lg:hidden">
+				<Button name="Sidebar" icon={faEllipsisVertical} callback={handleToggleSidebar} />
+			</div>
 
-    return (
-        <div className="h-full flex justify-end items-center gap-2">
-            <div className="lg:hidden">
-                <Item
-                    name="Sidebar"
-                    icon={faEllipsisVertical}
-                    dataId="navigation-addition-sidebar"
-                    action={handleToggleSidebar}
-                />
-            </div>
+			<Button name="Messenger" icon={faFacebookMessenger} callback={() => console.log('Action..')} />
 
-            <Item
-                name="Messenger"
-                icon={faFacebookMessenger}
-                dataId="navigation-addition-messenger"
-                action={() => console.log('Action..')}
-            />
+			<Button name="Notifications" icon={faBell} callback={() => console.log('Action..')} />
 
-            <Item
-                name="Notifications"
-                icon={faBell}
-                dataId="navigation-addition-notifications"
-                action={() => console.log('Action..')}
-            />
-
-            <div className={`${isRequestLoading ? 'opacity-60 hover:opacity-60' : ''}`}>
-                <Item
-                    name="Log out"
-                    icon={faRightFromBracket}
-                    dataId="navigation-addition-logout"
-                    action={handleLogout}
-                />
-            </div>
-        </div>
-    );
-}
+			<div className={isLoading ? 'opacity-60 hover:opacity-60' : ''}>
+				<Button name="Log out" icon={faRightFromBracket} callback={handleLogout} />
+			</div>
+		</div>
+	);
+};

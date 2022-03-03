@@ -6,7 +6,7 @@ import { Header } from '@components/pages/friends/Header';
 import { List } from '@components/pages/friends/List';
 import { ListLoader } from '@components/pages/friends/shared/ListLoader';
 
-export const FriendsList: React.FC = () => {
+export const FriendsList = () => {
 	const {
 		query: { type },
 	} = useRouter();

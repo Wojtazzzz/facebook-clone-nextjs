@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 import { useAppDispatch } from '@hooks/redux';
 import { useAuth } from '@hooks/useAuth';
 import { useFriends } from '@hooks/useFriends';
@@ -17,7 +17,7 @@ interface HeaderProps {
 	user: UserType;
 }
 
-export const Header: React.FC<HeaderProps> = ({ user }) => {
+export const Header = memo<HeaderProps>(({ user }) => {
 	const { id, first_name, last_name, profile_image, background_image } = user;
 	const { user: loggedUser } = useAuth();
 	const { friends } = useFriends(ListType.FRIENDS, id);
@@ -28,9 +28,9 @@ export const Header: React.FC<HeaderProps> = ({ user }) => {
 		if (loggedUser) setIsUserLogged(loggedUser.id == id);
 	}, [loggedUser, id]);
 
-	const handleOpenChat = () => dispatch(toggleActive({ isActive: true, friend: user }));
+	const handleOpenChat = () => dispatch(toggleActive(user));
 
-	const FriendsHeadsComponents = friends?.map(({ id, first_name, last_name, profile_image }, i) => {
+	const FriendsHeadsComponents = friends.map(({ id, first_name, last_name, profile_image }, i) => {
 		if (i >= 5) return;
 
 		return (
@@ -90,7 +90,6 @@ export const Header: React.FC<HeaderProps> = ({ user }) => {
 					) : (
 						<>
 							<Button title="Send message" styles="w-[130px] xl:w-[155px]" callback={handleOpenChat} />
-
 							<Button title="Poke" styles="w-[130px] xl:w-[155px]" />
 						</>
 					)}
@@ -98,4 +97,6 @@ export const Header: React.FC<HeaderProps> = ({ user }) => {
 			</div>
 		</div>
 	);
-};
+});
+
+Header.displayName = 'Header';

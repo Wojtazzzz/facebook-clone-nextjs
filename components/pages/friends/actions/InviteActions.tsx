@@ -11,7 +11,7 @@ interface InviteActionsProps {
 	friend: UserType;
 }
 
-export const InviteActions: React.FC<InviteActionsProps> = ({ friend }) => {
+export const InviteActions = ({ friend }: InviteActionsProps) => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [isSuccessAccept, setIsSuccessAccept] = useState(false);
 	const [isSuccessReject, setIsSuccessReject] = useState(false);

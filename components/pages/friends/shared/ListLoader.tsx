@@ -1,14 +1,16 @@
 import * as React from 'react';
+import { memo } from 'react';
 
 import { SingleLoading } from '@components/pages/friends/shared/SingleLoading';
 
+export const ListLoader = memo(() => {
+	const SingleLoadingsComponents: JSX.Element[] = [];
 
-export const ListLoader: React.FC = () => {
-    const SingleLoadingsComponents: JSX.Element[] = [];
+	for (let i = 0; i < 10; i++) {
+		SingleLoadingsComponents.push(<SingleLoading key={i} />);
+	}
 
-    for (let i = 0; i < 10; i++) {
-        SingleLoadingsComponents.push(<SingleLoading key={i} />);
-    }
+	return <>{SingleLoadingsComponents}</>;
+});
 
-    return <>{SingleLoadingsComponents}</>
-}
+ListLoader.displayName = 'ListLoader';

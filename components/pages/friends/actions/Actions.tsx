@@ -13,7 +13,7 @@ interface ActionsProps {
 	type: ListType;
 }
 
-export const Actions: React.FC<ActionsProps> = ({ friend, type }) => {
+export const Actions = ({ friend, type }: ActionsProps) => {
 	if (type === ListType.SUGGEST) return <SuggestActions friend={friend} />;
 	if (type === ListType.INVITES) return <InviteActions friend={friend} />;
 	return <FriendActions friend={friend} />;

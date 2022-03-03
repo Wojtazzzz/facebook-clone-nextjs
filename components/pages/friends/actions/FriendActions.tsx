@@ -13,13 +13,13 @@ interface FriendActionsProps {
 	friend: UserType;
 }
 
-export const FriendActions: React.FC<FriendActionsProps> = ({ friend }) => {
+export const FriendActions = ({ friend }: FriendActionsProps) => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [isSuccess, setIsSuccess] = useState(false);
 	const [isError, setIsError] = useState(false);
 	const dispatch = useAppDispatch();
 
-	const handleOpenChat = () => dispatch(toggleActive({ isActive: true, friend }));
+	const handleOpenChat = () => dispatch(toggleActive(friend));
 
 	const handleRemove = (event: FocusEvent) => {
 		event.preventDefault();

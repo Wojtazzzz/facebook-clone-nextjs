@@ -4,7 +4,7 @@ import { useAuth } from '@hooks/useAuth';
 import Image from 'next/image';
 import { CreatePostLoader } from '@components/pages/index/CreatePostLoader';
 
-export const CreatePost: React.FC = () => {
+export const CreatePost = () => {
 	const { user } = useAuth();
 
 	if (!user) return <CreatePostLoader />;

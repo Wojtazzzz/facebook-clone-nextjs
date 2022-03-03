@@ -9,46 +9,38 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { SideItem } from '@components/sidebar/SideItem';
 import { SideItemLoading } from '@components/sidebar/SideItemLoading';
 
+export const Sidebar = () => {
+	const { user } = useAuth();
+	const { isActive } = useAppSelector(store => store.sidebar);
 
-export const Sidebar: React.FC = () => {
-    const { user } = useAuth();
-    const { isActive } = useAppSelector(store => store.sidebar);
+	return (
+		<aside
+			className={`w-full max-w-[250px] xl:max-w-[300px] h-screen flex flex-col fixed lg:relative top-0 left-0 bg-dark-300 ${
+				isActive ? '' : '-translate-x-[300px] lg:translate-x-[0px]'
+			} transition-transform z-30 px-2 py-5`}
+		>
+			{user ? (
+				<SideItem
+					title={`${user.first_name} ${user.last_name}`}
+					link={`/profile/${user.id}`}
+					icon={
+						<div className="w-[36px] h-[36px] relative">
+							<Image className="rounded-full" layout="fill" src={user.profile_image} alt="" />
+						</div>
+					}
+				/>
+			) : (
+				<SideItemLoading />
+			)}
 
-    return (
-        <aside className={`w-full max-w-[250px] xl:max-w-[300px] h-screen flex flex-col fixed lg:relative top-0 left-0 bg-dark-300 ${isActive ? '' : '-translate-x-[300px] lg:translate-x-[0px]'} transition-transform z-30 px-2 py-5`}>
-            {user
-                ? <SideItem
-                    title={`${user.first_name} ${user.last_name}`}
-                    link={`/profile/${user.id}`}
-                    icon={<div className="w-[36px] h-[36px] relative">
-                        <Image
-                            className="rounded-full"
-                            layout="fill"
-                            src={user.profile_image}
-                            alt=""
-                        />
-                    </div>}
-                />
-                : <SideItemLoading />}
-
-            <SideItem
-                title="Friends"
-                link="/friends"
-                icon={<FontAwesomeIcon icon={faUsers} />}
-            />
-
-            <SideItem
-                title="Pokes"
-                link="/pokes"
-                icon={<FontAwesomeIcon icon={faHandLizard} />}
-            />
-
-            <SideItem
-                title="GitHub"
-                link="https://github.com/CubeStorm/"
-                icon={<FontAwesomeIcon icon={faGithub} />}
-                target="_blank"
-            />
-        </aside>
-    );
-}
+			<SideItem title="Friends" link="/friends" icon={<FontAwesomeIcon icon={faUsers} />} />
+			<SideItem title="Pokes" link="/pokes" icon={<FontAwesomeIcon icon={faHandLizard} />} />
+			<SideItem
+				title="GitHub"
+				link="https://github.com/CubeStorm/"
+				icon={<FontAwesomeIcon icon={faGithub} />}
+				target="_blank"
+			/>
+		</aside>
+	);
+};

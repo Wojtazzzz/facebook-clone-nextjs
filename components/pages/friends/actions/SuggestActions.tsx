@@ -11,7 +11,7 @@ interface SuggestActionsProps {
 	friend: UserType;
 }
 
-export const SuggestActions: React.FC<SuggestActionsProps> = ({ friend }) => {
+export const SuggestActions = ({ friend }: SuggestActionsProps) => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [isSuccess, setIsSuccess] = useState(false);
 	const [isError, setIsError] = useState(false);

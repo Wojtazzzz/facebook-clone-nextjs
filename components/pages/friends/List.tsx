@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { memo } from 'react';
 import { useFriends } from '@hooks/useFriends';
 
 import { ListLoader } from '@components/pages/friends/shared/ListLoader';
@@ -29,7 +30,7 @@ const getType = (type: string | string[] | undefined) => {
 	}
 };
 
-export const List: React.FC<ListProps> = ({ userId, type }) => {
+export const List = memo<ListProps>(({ userId, type }) => {
 	const listType = getType(type);
 	const { friends, isInitialLoading, isLoading, isError, isReachingEnd, loadMore } = useFriends(listType, userId);
 
@@ -41,7 +42,7 @@ export const List: React.FC<ListProps> = ({ userId, type }) => {
 
 	if (isInitialLoading) return <ListLoader />;
 	if (isError) return <ApiError />;
-	if (slots.length <= 0) return <EmptyList title="No users to add, maybe this app is so boring..." />;
+	if (!!!slots.length) return <EmptyList title="No users to add, maybe this app is so boring..." />;
 
 	return (
 		<div className="flex flex-col gap-2">
@@ -50,4 +51,6 @@ export const List: React.FC<ListProps> = ({ userId, type }) => {
 			{isReachingEnd || <LoadMore isLoading={isLoading} callback={loadMore} />}
 		</div>
 	);
-};
+});
+
+List.displayName = 'List';
