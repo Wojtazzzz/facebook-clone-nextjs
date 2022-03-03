@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { UserLayout } from '@components/layouts/UserLayout';
 
-export default function Marketplace() {
+export default function Pokes() {
 	return (
 		<UserLayout>
 			<div className="w-full text-center py-8">
