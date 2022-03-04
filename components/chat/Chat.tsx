@@ -16,7 +16,7 @@ export const Chat = ({ friend }: ChatProps) => {
 	return (
 		<div
 			data-testid="chat"
-			className="w-[300px] h-[420px] flex flex-col justify-between bg-dark-200 absolute bottom-0 right-20 rounded-t-lg shadow-md"
+			className="w-[300px] h-[420px] flex flex-col justify-between bg-dark-200 absolute bottom-0 right-2 md:right-20 z-40 rounded-t-lg shadow-md"
 		>
 			<Header name={`${first_name} ${last_name}`} profileImage={profile_image} />
 			<Messages friendId={id} name={`${first_name} ${last_name}`} profileImage={profile_image} />
