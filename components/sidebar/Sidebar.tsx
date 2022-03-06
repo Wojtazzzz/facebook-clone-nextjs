@@ -30,7 +30,7 @@ export const Sidebar = () => {
 			)}
 
 			<SideItem title="Friends" link="/friends" icon={<FontAwesomeIcon icon={faUsers} />} />
-			<SideItem title="Pokes" link="/pokes" icon={<FontAwesomeIcon icon={faHandLizard} />} />
+			<SideItem title="Pokes" link="/friends/pokes" icon={<FontAwesomeIcon icon={faHandLizard} />} />
 			<SideItem
 				title="GitHub"
 				link="https://github.com/CubeStorm/"

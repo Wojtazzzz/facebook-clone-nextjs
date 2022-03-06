@@ -24,6 +24,9 @@ const getType = (type: string | string[] | undefined) => {
 		case 'invites':
 			return ListType.INVITES;
 
+		case 'pokes':
+			return ListType.POKES;
+
 		default:
 		case 'friends':
 			return ListType.FRIENDS;

@@ -22,6 +22,9 @@ export const useFriends = (type: ListType, userId: number) => {
 			case ListType.INVITES:
 				return `/api/invites?page=${++pageIndex}`;
 
+			case ListType.POKES:
+				return `/api/pokes?page=${++pageIndex}`;
+
 			default:
 			case ListType.FRIENDS:
 				return `/api/friends/${userId}?page=${++pageIndex}`;
@@ -31,7 +34,15 @@ export const useFriends = (type: ListType, userId: number) => {
 	const fetcher = (url: string) =>
 		axios
 			.get(url)
-			.then(response => response.data.paginator.data)
+			.then(response => {
+				let data = response.data.paginator.data;
+
+				if (!Array.isArray(data)) {
+					data = [...Object.values(data)];
+				}
+
+				return data;
+			})
 			.catch(() => setIsError(true))
 			.finally(() => setIsInitialLoading(false));
 
