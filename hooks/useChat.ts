@@ -18,7 +18,24 @@ export const useChat = (friendId: number) => {
 		key: process.env.NEXT_PUBLIC_PUSHER_APP_KEY,
 		cluster: process.env.NEXT_PUBLIC_PUSHER_APP_CLUSTER,
 		forceTLS: true,
-		authEndpoint: `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/broadcast`,
+		authEndpoint: `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/broadcasting/auth`,
+		authorizer: (channel: { name: string }) => {
+			return {
+				authorize: (socketId: any, callback: (arg0: boolean, arg1: any) => void) => {
+					axios
+						.post('/api/broadcasting/auth', {
+							socket_id: socketId,
+							channel_name: channel.name,
+						})
+						.then(response => {
+							callback(false, response.data);
+						})
+						.catch(error => {
+							callback(true, error);
+						});
+				},
+			};
+		},
 	});
 
 	const getKey = (pageIndex: number, previousPageData: []) => {
@@ -43,12 +60,16 @@ export const useChat = (friendId: number) => {
 		setSize(size + 1);
 	};
 
-	const sendMessage = (text: string, userId: number) => {
-		LaravelEcho.private(`messages.${userId}.${friendId}`).listen('ChatMessageSended', () => {
-			mutate();
-		});
-
+	const sendMessage = (text: string) => {
 		axios.post('/api/messages', { text, receiver_id: friendId }).catch(() => setIsError(true));
+	};
+
+	const listenChannel = (userId: string | number) => {
+		LaravelEcho.private(`messages.${userId}.${friendId}`).listen('ChatMessageSended', () => mutate());
+	};
+
+	const unlistenChannel = (userId: string | number) => {
+		LaravelEcho.private(`messages.${userId}.${friendId}`).stopListening('ChatMessageSended');
 	};
 
 	useEffect(() => {
@@ -69,5 +90,7 @@ export const useChat = (friendId: number) => {
 		loadMore,
 		sendMessage,
 		mutate,
+		listenChannel,
+		unlistenChannel,
 	};
 };

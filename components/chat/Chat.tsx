@@ -1,4 +1,7 @@
 import * as React from 'react';
+import { useEffect } from 'react';
+import { useAuth } from '@hooks/useAuth';
+import { useChat } from '@hooks/useChat';
 
 import { Header } from '@components/chat/Header';
 import { Messages } from '@components/chat/Messages';
@@ -12,6 +15,16 @@ interface ChatProps {
 
 export const Chat = ({ friend }: ChatProps) => {
 	const { id, first_name, last_name, profile_image } = friend;
+	const { user } = useAuth();
+	const { listenChannel, unlistenChannel } = useChat(friend.id);
+
+	useEffect(() => {
+		if (!user) return;
+
+		listenChannel(user.id);
+
+		return () => unlistenChannel(user.id);
+	}, [user, listenChannel, unlistenChannel]);
 
 	return (
 		<div

@@ -23,8 +23,8 @@ interface FormValues {
 export const SendMessage = memo<SendMessageProps>(({ friendId }) => {
 	const [isMessagePrepared, setIsMessagePrepared] = useState(false);
 	const inputRef = useRef<HTMLInputElement>(null);
-	const { sendMessage } = useChat(friendId);
 	const { user } = useAuth();
+	const { sendMessage } = useChat(friendId);
 
 	useEffect(() => {
 		inputRef.current?.focus();
@@ -39,8 +39,7 @@ export const SendMessage = memo<SendMessageProps>(({ friendId }) => {
 	};
 
 	const handleSendMessage = ({ text }: FormValues, { resetForm }: FormikHelpers<FormValues>) => {
-		if (!user) return;
-		sendMessage(text, user.id);
+		sendMessage(text);
 
 		resetForm();
 		setIsMessagePrepared(false);
