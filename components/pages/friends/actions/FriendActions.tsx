@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useAppDispatch } from '@hooks/redux';
 
 import { Failure } from 'components/pages/friends/actions/messages/Failure';
@@ -15,32 +15,55 @@ interface FriendActionsProps {
 	friend: UserType;
 }
 
-export const FriendActions = ({ friend }: FriendActionsProps) => {
-	const [isLoading, setIsLoading] = useState(false);
-	const [isSuccess, setIsSuccess] = useState(false);
-	const [isError, setIsError] = useState(false);
-	const dispatch = useAppDispatch();
+type State =
+	| { status: 'empty' }
+	| { status: 'loading' }
+	| { status: 'error'; error: Error }
+	| { status: 'success'; data: [] };
 
+export const FriendActions = ({ friend }: FriendActionsProps) => {
+	const [state, setState] = useState<State>({ status: 'empty' });
+	const dispatch = useAppDispatch();
 	const handleOpenChat = () => dispatch(toggleActive(friend));
+
+	const controller = useMemo(() => new AbortController(), []);
+
+	useEffect(() => {
+		return () => controller.abort();
+	}, [controller]);
 
 	const handleRemove = (event: FocusEvent) => {
 		event.preventDefault();
-		setIsLoading(true);
+		setState({ status: 'loading' });
 
 		axios
-			.post('/api/destroy', { user_id: friend.id })
-			.then(() => setIsSuccess(true))
-			.catch(() => setIsError(true))
-			.finally(() => setIsLoading(false));
+			.post(
+				'/api/destroy',
+				{ user_id: friend.id },
+				{
+					signal: controller.signal,
+				}
+			)
+			.then(() => setState({ status: 'success', data: [] }))
+			.catch(error => {
+				if (error.message !== 'canceled') {
+					setState({ status: 'error', error });
+				}
+			});
 	};
 
-	if (isSuccess) return <Success message="Friend removed" />;
-	if (isError) return <Failure message="Something went wrong" />;
+	if (state.status === 'success') return <Success message="Friend removed" />;
+	if (state.status === 'error') return <Failure message="Something went wrong" />;
 
 	return (
 		<div className="flex gap-3">
-			<Button title="Send message" styles="w-[140px]" isDisabled={isLoading} callback={handleOpenChat} />
-			<Button title="Remove" styles="w-[100px]" isDisabled={isLoading} callback={handleRemove} />
+			<Button
+				title="Send message"
+				styles="w-[140px]"
+				isDisabled={state.status === 'loading'}
+				callback={handleOpenChat}
+			/>
+			<Button title="Remove" styles="w-[100px]" isDisabled={state.status === 'loading'} callback={handleRemove} />
 		</div>
 	);
 };
