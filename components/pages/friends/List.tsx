@@ -2,7 +2,7 @@ import * as React from 'react';
 import { memo } from 'react';
 import { useFriends } from '@hooks/useFriends';
 
-import { ListLoader } from '@components/pages/friends/shared/ListLoader';
+import { Loader } from '@components/pages/friends/shared/Loader';
 import { LoadMore } from '@components/pages/friends/shared/LoadMore';
 import { ApiError } from '@components/ApiError';
 import { EmptyList } from '@components/EmptyList';
@@ -37,7 +37,7 @@ export const List = memo<ListProps>(({ userId, type }) => {
 	const listType = getType(type);
 	const { friends, isInitialLoading, isLoading, isError, isReachingEnd, loadMore } = useFriends(listType, userId);
 
-	if (isInitialLoading || friends === undefined) return <ListLoader />;
+	if (isInitialLoading || friends === undefined) return <Loader />;
 	if (isError) return <ApiError />;
 
 	const slots = friends.map(user => (

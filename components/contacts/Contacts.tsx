@@ -3,7 +3,7 @@ import { useAuth } from '@hooks/useAuth';
 
 import { Header } from '@components/contacts/Header';
 import { List } from '@components/contacts/List';
-import { ListLoader } from '@components/contacts/shared/ListLoader';
+import { Loader } from '@components/contacts/shared/Loader';
 
 export const Contacts = () => {
 	const { user } = useAuth();
@@ -15,7 +15,7 @@ export const Contacts = () => {
 		>
 			<Header />
 
-			{user ? <List userId={user.id} /> : <ListLoader />}
+			{user ? <List userId={user.id} /> : <Loader />}
 		</aside>
 	);
 };

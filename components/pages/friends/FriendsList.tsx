@@ -4,7 +4,7 @@ import { useAuth } from '@hooks/useAuth';
 
 import { Header } from '@components/pages/friends/Header';
 import { List } from '@components/pages/friends/List';
-import { ListLoader } from '@components/pages/friends/shared/ListLoader';
+import { Loader } from '@components/pages/friends/shared/Loader';
 
 export const FriendsList = () => {
 	const {
@@ -17,7 +17,7 @@ export const FriendsList = () => {
 		<div className="relative py-5 px-2">
 			<Header name={type ?? 'Friends'} />
 
-			{user ? <List userId={user.id} type={type} /> : <ListLoader />}
+			{user ? <List userId={user.id} type={type} /> : <Loader />}
 		</div>
 	);
 };

@@ -5,8 +5,8 @@ import { useFriends } from '@hooks/useFriends';
 import { ApiError } from '@components/ApiError';
 import { EmptyList } from '@components/EmptyList';
 import { LoadMore } from '@components/contacts/shared/LoadMore';
-import { ListLoader } from '@components/contacts/shared/ListLoader';
 import { Slot } from '@components/contacts/Slot';
+import { Loader } from '@components/contacts/shared/Loader';
 
 import { ListType } from '@enums/ListType';
 
@@ -20,7 +20,7 @@ export const List = memo(({ userId }: ListProps) => {
 		userId
 	);
 
-	if (isInitialLoading) return <ListLoader />;
+	if (isInitialLoading) return <Loader />;
 	if (isError) return <ApiError isSmall />;
 	if (!friends || !!!friends.length) return <EmptyList title="No contacts, add some friends!" />;
 

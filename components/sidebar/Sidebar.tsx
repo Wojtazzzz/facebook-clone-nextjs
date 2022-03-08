@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHandLizard, faUsers } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { SideItem } from '@components/sidebar/SideItem';
-import { SideItemLoading } from '@components/sidebar/SideItemLoading';
+import { SideItemLoader } from '@components/sidebar/SideItemLoader';
 import { Avatar } from '@components/Avatar';
 
 export const Sidebar = () => {
@@ -26,7 +26,7 @@ export const Sidebar = () => {
 					icon={<Avatar size={36} src={user.profile_image} alt={`${user.first_name} ${user.last_name}`} />}
 				/>
 			) : (
-				<SideItemLoading />
+				<SideItemLoader />
 			)}
 
 			<SideItem title="Friends" link="/friends" icon={<FontAwesomeIcon icon={faUsers} />} />

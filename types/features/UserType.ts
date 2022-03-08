@@ -6,5 +6,5 @@ export type UserType = {
 	last_name: string;
 	profile_image: string;
 	background_image: string;
-	poke_info: Partial<PokeInfoType>;
+	poke_info?: Partial<PokeInfoType>;
 };
