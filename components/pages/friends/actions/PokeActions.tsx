@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useAxios } from '@hooks/useAxios';
 
-import { Failure } from 'components/pages/friends/actions/messages/Failure';
+import { Failure } from '@components/pages/friends/actions/messages/Failure';
 import { Success } from '@components/pages/friends/actions/messages/Success';
 import { Button } from '@components/Button';
 
@@ -22,15 +22,25 @@ export const PokeActions = ({ friend }: PokeActionsProps) => {
 		sendRequest({ method: 'POST', url: '/api/pokes/update', data: { user_id: friend.id } });
 	};
 
-	if (state.status === AxiosStateStatus.SUCCESS) return <Success message="Friend repoked" />;
+	if (state.status === AxiosStateStatus.SUCCESS) return <Success message="Friend poked back" />;
 	if (state.status === AxiosStateStatus.ERROR) return <Failure message="Something went wrong" />;
 
 	return (
-		<Button
-			title="Repoke"
-			styles="w-[150px]"
-			isDisabled={state.status === AxiosStateStatus.LOADING}
-			callback={event => handlePoke(event)}
-		/>
+		<div className="w-[220px] flex flex-col items-center gap-1">
+			<Button
+				title="Poke back"
+				styles="w-[150px]"
+				isDisabled={state.status === AxiosStateStatus.LOADING}
+				callback={event => handlePoke(event)}
+			/>
+
+			<div className="flex flex-col items-center text-light-100">
+				<small>
+					{friend.first_name} poked you {friend.poke_info.count} times in a row
+				</small>
+
+				<small>{friend.poke_info.updated_at}</small>
+			</div>
+		</div>
 	);
 };

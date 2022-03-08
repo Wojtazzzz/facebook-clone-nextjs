@@ -37,8 +37,6 @@ export const List = memo<ListProps>(({ userId, type }) => {
 	const listType = getType(type);
 	const { friends, isInitialLoading, isLoading, isError, isReachingEnd, loadMore } = useFriends(listType, userId);
 
-	// console.log('Friends: ', friends);
-
 	if (isInitialLoading || friends === undefined) return <ListLoader />;
 	if (isError) return <ApiError />;
 
