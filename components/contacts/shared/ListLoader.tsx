@@ -10,7 +10,7 @@ export const ListLoader = memo(() => {
 		SingleLoadingsComponents.push(<SingleLoading key={i} />);
 	}
 
-	return <>{SingleLoadingsComponents}</>;
+	return <div className="w-full">{SingleLoadingsComponents}</div>;
 });
 
 ListLoader.displayName = 'ListLoader';
