@@ -3,10 +3,10 @@ import { memo } from 'react';
 
 import { ErrorMessage } from 'formik';
 
-import type { ChangeEvent, FocusEvent } from 'react';
+import type { ChangeEvent, FocusEvent, HTMLInputTypeAttribute } from 'react';
 
 interface InputProps {
-	type: 'text' | 'password' | 'email';
+	type: HTMLInputTypeAttribute;
 	name: string;
 	value?: string;
 	placeholder: string;

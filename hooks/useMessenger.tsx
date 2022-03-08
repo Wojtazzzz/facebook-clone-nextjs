@@ -6,7 +6,7 @@ import axios from '@lib/axios';
 import type { MessengerContactType } from '@ctypes/features/MessengerContactType';
 
 export const useMessenger = () => {
-	const [isLoading, setIsLoading] = useState(false);
+	const [isLoading, setIsLoading] = useState(true);
 	const [isError, setIsError] = useState(false);
 	const [isReachedEnd, setIsReachedEnd] = useState(false);
 
@@ -16,10 +16,8 @@ export const useMessenger = () => {
 		return `/api/messenger?page=${++pageIndex}`;
 	};
 
-	const fetcher = async (url: string) => {
-		setIsLoading(true);
-
-		return await axios
+	const fetcher = (url: string) =>
+		axios
 			.get(url)
 			.then(response => {
 				let data = response.data.paginator.data;
@@ -32,7 +30,6 @@ export const useMessenger = () => {
 			})
 			.catch(() => setIsError(true))
 			.finally(() => setIsLoading(false));
-	};
 
 	// Fetching data
 	const { data, size, setSize } = useSWRInfinite<MessengerContactType[]>(getKey, fetcher);
@@ -52,7 +49,7 @@ export const useMessenger = () => {
 	};
 
 	return {
-		contacts: [...(data?.flat() ?? [])],
+		contacts: data?.flat(),
 		isLoading,
 		isError,
 		isReachedEnd,

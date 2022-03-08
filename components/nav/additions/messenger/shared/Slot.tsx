@@ -30,7 +30,7 @@ export const Slot = ({
 			className="w-full h-[72px] flex gap-3 hover:bg-dark-100 transition-colors rounded-lg cursor-pointer p-2"
 			onClick={handleOpenChat}
 		>
-			<Avatar src={profile_image} size={56} alt="Jan Kowalski" />
+			<Avatar src={profile_image} size={56} alt={`${first_name} ${last_name}`} />
 
 			<div className="flex flex-col">
 				<span className="text-light-200">
