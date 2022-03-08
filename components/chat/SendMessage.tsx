@@ -23,7 +23,6 @@ interface FormValues {
 export const SendMessage = memo<SendMessageProps>(({ friendId }) => {
 	const [isMessagePrepared, setIsMessagePrepared] = useState(false);
 	const inputRef = useRef<HTMLInputElement>(null);
-	const { user } = useAuth();
 	const { sendMessage } = useChat(friendId);
 
 	useEffect(() => {

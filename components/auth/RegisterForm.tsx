@@ -15,13 +15,9 @@ export const RegisterForm = () => {
 			<p className="text-xl text-light-100 font-bold">REGISTER</p>
 
 			<Input type="text" name="first_name" placeholder="First name" isDisabled />
-
 			<Input type="text" name="last_name" placeholder="Last name" isDisabled />
-
 			<Input type="email" name="email" placeholder="Address e-mail" isDisabled />
-
 			<Input type="password" name="password" placeholder="Password" isDisabled />
-
 			<Input type="password" name="password_confirmation" placeholder="Password confirmation" isDisabled />
 
 			{!!errors.length && <RequestErrors errors={errors} />}
