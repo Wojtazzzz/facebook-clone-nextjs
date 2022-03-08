@@ -70,7 +70,7 @@ export const useFriends = (type: ListType, userId: number) => {
 	};
 
 	return {
-		friends: data?.flat() ?? [],
+		friends: data?.flat(),
 		isInitialLoading,
 		isLoading,
 		isError,
