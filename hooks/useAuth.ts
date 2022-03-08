@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
 
-import axios from '@lib/axios';
 import { AuthMiddleware } from '@enums/AuthMiddleware';
 
 import type { UserType } from '@ctypes/features/UserType';
+import axios from '@lib/axios';
 
 export const useAuth = (middleware?: AuthMiddleware) => {
 	const [isLoading, setIsLoading] = useState(false);

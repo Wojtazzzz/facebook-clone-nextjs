@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import useSWRInfinite from 'swr/infinite';
 
-import axios from '@lib/axios';
 import { ListType } from '@enums/ListType';
 
 import type { UserType } from '@ctypes/features/UserType';
+import axios from '@lib/axios';
 
 export const useFriends = (type: ListType, userId: number) => {
 	const [isInitialLoading, setIsInitialLoading] = useState(true);
@@ -43,7 +43,9 @@ export const useFriends = (type: ListType, userId: number) => {
 
 				return data;
 			})
-			.catch(() => setIsError(true))
+			.catch(error => {
+				if (error.message !== 'canceled') setIsError(true);
+			})
 			.finally(() => setIsInitialLoading(false));
 
 	// Fetching data
@@ -68,7 +70,7 @@ export const useFriends = (type: ListType, userId: number) => {
 	};
 
 	return {
-		friends: data?.flat(),
+		friends: data?.flat() ?? [],
 		isInitialLoading,
 		isLoading,
 		isError,

@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useAxios } from '@hooks/useAxios';
 
 import { Failure } from 'components/pages/friends/actions/messages/Failure';
 import { Success } from '@components/pages/friends/actions/messages/Success';
 import { Button } from '@components/Button';
 
-import axios from '@lib/axios';
+import { AxiosStateStatus } from '@enums/AxiosStateStatus';
 
 import type { UserType } from '@ctypes/features/UserType';
 
@@ -14,23 +14,23 @@ interface SuggestActionsProps {
 }
 
 export const SuggestActions = ({ friend }: SuggestActionsProps) => {
-	const [isLoading, setIsLoading] = useState(false);
-	const [isSuccess, setIsSuccess] = useState(false);
-	const [isError, setIsError] = useState(false);
+	const { state, sendRequest } = useAxios();
 
 	const handleInvite = (event: FocusEvent) => {
 		event.preventDefault();
-		setIsLoading(true);
 
-		axios
-			.post('/api/invite', { user_id: friend.id })
-			.then(() => setIsSuccess(true))
-			.catch(() => setIsError(true))
-			.finally(() => setIsLoading(false));
+		sendRequest({ method: 'POST', url: '/api/invite', data: { user_id: friend.id } });
 	};
 
-	if (isSuccess) return <Success message="Invitation sended" />;
-	if (isError) return <Failure message="Something went wrong" />;
+	if (state.status === AxiosStateStatus.SUCCESS) return <Success message="Invitation sended" />;
+	if (state.status === AxiosStateStatus.ERROR) return <Failure message="Something went wrong" />;
 
-	return <Button title="Invite" styles="w-[150px]" isDisabled={isLoading} callback={event => handleInvite(event)} />;
+	return (
+		<Button
+			title="Invite"
+			styles="w-[150px]"
+			isDisabled={state.status === AxiosStateStatus.LOADING}
+			callback={event => handleInvite(event)}
+		/>
+	);
 };

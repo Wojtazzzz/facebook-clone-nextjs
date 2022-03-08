@@ -2,9 +2,9 @@ import * as React from 'react';
 import { memo } from 'react';
 
 import Link from 'next/link';
+import { Avatar } from '@components/Avatar';
 
 import type { UserType } from '@ctypes/features/UserType';
-import { Avatar } from '@components/Avatar';
 
 interface SlotProps extends UserType {
 	children: React.ReactNode;

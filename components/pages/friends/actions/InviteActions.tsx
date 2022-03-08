@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useAxios } from '@hooks/useAxios';
 
 import { Failure } from 'components/pages/friends/actions/messages/Failure';
 import { Success } from '@components/pages/friends/actions/messages/Success';
 import { Button } from '@components/Button';
 
-import axios from '@lib/axios';
+import { AxiosStateStatus } from '@enums/AxiosStateStatus';
 
 import type { UserType } from '@ctypes/features/UserType';
 
@@ -14,41 +14,38 @@ interface InviteActionsProps {
 }
 
 export const InviteActions = ({ friend }: InviteActionsProps) => {
-	const [isLoading, setIsLoading] = useState(false);
-	const [isSuccessAccept, setIsSuccessAccept] = useState(false);
-	const [isSuccessReject, setIsSuccessReject] = useState(false);
-	const [isError, setIsError] = useState(false);
+	const { state, sendRequest } = useAxios();
 
 	const handleAccept = (event: FocusEvent) => {
 		event.preventDefault();
-		setIsLoading(true);
 
-		axios
-			.post('/api/accept', { user_id: friend.id })
-			.then(() => setIsSuccessAccept(true))
-			.catch(() => setIsError(true))
-			.finally(() => setIsLoading(false));
+		sendRequest({ method: 'POST', url: '/api/accept', data: { user_id: friend.id } });
 	};
 
 	const handleReject = (event: FocusEvent) => {
 		event.preventDefault();
-		setIsLoading(true);
 
-		axios
-			.post('/api/reject', { user_id: friend.id })
-			.then(() => setIsSuccessReject(true))
-			.catch(() => setIsError(true))
-			.finally(() => setIsLoading(false));
+		sendRequest({ method: 'POST', url: '/api/reject', data: { user_id: friend.id } });
 	};
 
-	if (isSuccessAccept) return <Success message="Invitation accepted" />;
-	if (isSuccessReject) return <Success message="Invitation rejected" />;
-	if (isError) return <Failure message="Something went wrong" />;
+	if (state.status === AxiosStateStatus.SUCCESS) return <Success message="Success" />;
+	if (state.status === AxiosStateStatus.ERROR) return <Failure message="Something went wrong" />;
 
 	return (
 		<div className="flex gap-3">
-			<Button title="Reject" styles="w-[100px]" isDisabled={isLoading} callback={handleReject} />
-			<Button title="Accept" styles="w-[100px]" isDisabled={isLoading} callback={handleAccept} />
+			<Button
+				title="Reject"
+				styles="w-[100px]"
+				isDisabled={state.status === AxiosStateStatus.LOADING}
+				callback={handleReject}
+			/>
+
+			<Button
+				title="Accept"
+				styles="w-[100px]"
+				isDisabled={state.status === AxiosStateStatus.LOADING}
+				callback={handleAccept}
+			/>
 		</div>
 	);
 };

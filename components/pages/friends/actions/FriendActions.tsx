@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { useState, useEffect, useMemo } from 'react';
 import { useAppDispatch } from '@hooks/redux';
+import { useAxios } from '@hooks/useAxios';
 
 import { Failure } from 'components/pages/friends/actions/messages/Failure';
 import { Success } from '@components/pages/friends/actions/messages/Success';
 import { Button } from '@components/Button';
 
-import axios from '@lib/axios';
 import { toggleActive } from '@redux/slices/ChatSlice';
+import { AxiosStateStatus } from '@enums/AxiosStateStatus';
 
 import type { UserType } from '@ctypes/features/UserType';
 
@@ -15,55 +15,36 @@ interface FriendActionsProps {
 	friend: UserType;
 }
 
-type State =
-	| { status: 'empty' }
-	| { status: 'loading' }
-	| { status: 'error'; error: Error }
-	| { status: 'success'; data: [] };
-
 export const FriendActions = ({ friend }: FriendActionsProps) => {
-	const [state, setState] = useState<State>({ status: 'empty' });
 	const dispatch = useAppDispatch();
+	const { state, sendRequest } = useAxios();
+
 	const handleOpenChat = () => dispatch(toggleActive(friend));
-
-	const controller = useMemo(() => new AbortController(), []);
-
-	useEffect(() => {
-		return () => controller.abort();
-	}, [controller]);
 
 	const handleRemove = (event: FocusEvent) => {
 		event.preventDefault();
-		setState({ status: 'loading' });
 
-		axios
-			.post(
-				'/api/destroy',
-				{ user_id: friend.id },
-				{
-					signal: controller.signal,
-				}
-			)
-			.then(() => setState({ status: 'success', data: [] }))
-			.catch(error => {
-				if (error.message !== 'canceled') {
-					setState({ status: 'error', error });
-				}
-			});
+		sendRequest({ method: 'POST', url: '/api/destroy', data: { user_id: friend.id } });
 	};
 
-	if (state.status === 'success') return <Success message="Friend removed" />;
-	if (state.status === 'error') return <Failure message="Something went wrong" />;
+	if (state.status === AxiosStateStatus.SUCCESS) return <Success message="Friend removed" />;
+	if (state.status === AxiosStateStatus.ERROR) return <Failure message="Something went wrong" />;
 
 	return (
 		<div className="flex gap-3">
 			<Button
 				title="Send message"
 				styles="w-[140px]"
-				isDisabled={state.status === 'loading'}
+				isDisabled={state.status === AxiosStateStatus.LOADING}
 				callback={handleOpenChat}
 			/>
-			<Button title="Remove" styles="w-[100px]" isDisabled={state.status === 'loading'} callback={handleRemove} />
+
+			<Button
+				title="Remove"
+				styles="w-[100px]"
+				isDisabled={state.status === AxiosStateStatus.LOADING}
+				callback={handleRemove}
+			/>
 		</div>
 	);
 };
