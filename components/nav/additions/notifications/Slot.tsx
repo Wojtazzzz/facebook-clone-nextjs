@@ -11,16 +11,7 @@ import type { NotificationType } from '@ctypes/features/NotificationType';
 
 interface SlotProps extends NotificationType {}
 
-export const Slot = ({
-	id,
-	type,
-	notifiable_type,
-	notifiable_id,
-	data,
-	read_at,
-	created_at,
-	updated_at,
-}: SlotProps) => {
+export const Slot = ({ data, read_at }: SlotProps) => {
 	const router = useRouter();
 	const dispatch = useAppDispatch();
 
@@ -33,7 +24,7 @@ export const Slot = ({
 
 	return (
 		<div
-			title={created_at}
+			title="Invitation for friendship"
 			className="w-full h-[72px] flex gap-3 hover:bg-dark-100 transition-colors rounded-lg cursor-pointer p-2"
 			onClick={handleRedirectToInvites}
 		>
