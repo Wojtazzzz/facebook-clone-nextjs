@@ -35,13 +35,13 @@ export const useMessenger = () => {
 	const { data, size, setSize } = useSWRInfinite<MessengerContactType[]>(getKey, fetcher);
 
 	useEffect(() => {
-		if (!data) return;
+		if (!data || isError) return;
 
 		setIsLoading(false);
 
 		const isEmpty = data[0].length === 0;
 		setIsReachedEnd(isEmpty || (data && data[data.length - 1].length < 10));
-	}, [data]);
+	}, [data, isError]);
 
 	const loadMore = () => {
 		setIsLoading(true);

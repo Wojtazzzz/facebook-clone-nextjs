@@ -25,6 +25,7 @@ export const Slot = ({
 		dispatch(toggleActiveMessenger());
 		dispatch(toggleActiveChat({ id, first_name, last_name, profile_image, background_image }));
 	};
+
 	return (
 		<div
 			className="w-full h-[72px] flex gap-3 hover:bg-dark-100 transition-colors rounded-lg cursor-pointer p-2"

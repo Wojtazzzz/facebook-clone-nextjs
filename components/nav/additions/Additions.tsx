@@ -6,18 +6,24 @@ import { faBell, faEllipsisVertical, faRightFromBracket } from '@fortawesome/fre
 import { faFacebookMessenger } from '@fortawesome/free-brands-svg-icons';
 import { Button } from '@components/nav/additions/shared/Button';
 import { Messenger } from '@components/nav/additions/messenger/Messenger';
+import { Notifications } from '@components/nav/additions/notifications/Notifications';
 
 import { toggleActive as toggleActiveSidebar } from '@redux/slices/SidebarSlice';
 import { toggleActive as toggleActiveMessenger } from '@redux/slices/MessengerSlice';
+import { toggleActive as toggleActiveNotificationsList } from '@redux/slices/NotificationsListSlice';
 
 export const Additions = () => {
 	const { logout, isLoading } = useAuth();
 	const dispatch = useAppDispatch();
-	const { isActive } = useAppSelector(state => state.messenger);
+	const {
+		messenger: { isActive: isMessengerActive },
+		notificationsList: { isActive: isNotificationsListActive },
+	} = useAppSelector(state => state);
 
 	const handleLogout = () => logout();
 	const handleToggleSidebar = () => dispatch(toggleActiveSidebar());
 	const handleToggleMessenger = () => dispatch(toggleActiveMessenger());
+	const handleToggleNotificationsList = () => dispatch(toggleActiveNotificationsList());
 
 	return (
 		<div className="h-full flex justify-end items-center gap-2">
@@ -28,7 +34,7 @@ export const Additions = () => {
 			<div className="relative">
 				<Button name="Messenger" icon={faFacebookMessenger} callback={handleToggleMessenger} />
 
-				{isActive && (
+				{isMessengerActive && (
 					<>
 						<div className="w-full h-full fixed top-0 left-0" onClick={handleToggleMessenger}></div>
 						<Messenger />
@@ -36,9 +42,18 @@ export const Additions = () => {
 				)}
 			</div>
 
-			<Button name="Notifications" icon={faBell} callback={() => console.log('Action..')} />
+			<div className="relative">
+				<Button name="Notifications" icon={faBell} callback={handleToggleNotificationsList} />
 
-			<div className={isLoading ? 'opacity-60 hover:opacity-60' : ''}>
+				{isNotificationsListActive && (
+					<>
+						<div className="w-full h-full fixed top-0 left-0" onClick={handleToggleNotificationsList}></div>
+						<Notifications />
+					</>
+				)}
+			</div>
+
+			<div className={isLoading ? 'opacity-60' : 'hover:opacity-80'}>
 				<Button name="Log out" icon={faRightFromBracket} callback={handleLogout} />
 			</div>
 		</div>
