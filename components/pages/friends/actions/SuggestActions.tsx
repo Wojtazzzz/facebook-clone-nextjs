@@ -5,7 +5,7 @@ import { Failure } from 'components/pages/friends/actions/messages/Failure';
 import { Success } from '@components/pages/friends/actions/messages/Success';
 import { Button } from '@components/Button';
 
-import { AxiosStateStatus } from '@enums/AxiosStateStatus';
+import { StateStatus } from '@enums/StateStatus';
 
 import type { UserType } from '@ctypes/features/UserType';
 
@@ -22,14 +22,14 @@ export const SuggestActions = ({ friend }: SuggestActionsProps) => {
 		sendRequest({ method: 'POST', url: '/api/invite', data: { user_id: friend.id } });
 	};
 
-	if (state.status === AxiosStateStatus.SUCCESS) return <Success message="Invitation sended" />;
-	if (state.status === AxiosStateStatus.ERROR) return <Failure message="Something went wrong" />;
+	if (state.status === StateStatus.SUCCESS) return <Success message="Invitation sended" />;
+	if (state.status === StateStatus.ERROR) return <Failure message="Something went wrong" />;
 
 	return (
 		<Button
 			title="Invite"
 			styles="w-[150px]"
-			isDisabled={state.status === AxiosStateStatus.LOADING}
+			isDisabled={state.status === StateStatus.LOADING}
 			callback={event => handleInvite(event)}
 		/>
 	);

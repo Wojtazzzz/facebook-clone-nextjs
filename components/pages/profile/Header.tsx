@@ -2,13 +2,12 @@ import * as React from 'react';
 import { useState, useEffect, memo } from 'react';
 import { useAppDispatch } from '@hooks/redux';
 import { useAuth } from '@hooks/useAuth';
-import { useFriends } from '@hooks/useFriends';
+import { usePaginationData } from '@hooks/usePaginationData';
 
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@components/Button';
 
-import { ListType } from '@enums/ListType';
 import { toggleActive } from '@redux/slices/ChatSlice';
 
 import type { UserType } from '@ctypes/features/UserType';
@@ -20,7 +19,7 @@ interface HeaderProps {
 export const Header = memo<HeaderProps>(({ user }) => {
 	const { id, first_name, last_name, profile_image, background_image } = user;
 	const { user: loggedUser } = useAuth();
-	const { friends } = useFriends(ListType.FRIENDS, id);
+	const { data } = usePaginationData(`/api/friends/${id}`);
 	const [isUserLogged, setIsUserLogged] = useState(false);
 	const dispatch = useAppDispatch();
 
@@ -30,7 +29,7 @@ export const Header = memo<HeaderProps>(({ user }) => {
 
 	const handleOpenChat = () => dispatch(toggleActive(user));
 
-	const FriendsHeadsComponents = (friends ?? []).map(({ id, first_name, last_name, profile_image }, i) => {
+	const FriendsHeadsComponents = (data as UserType[]).map(({ id, first_name, last_name, profile_image }, i) => {
 		if (i >= 5) return;
 
 		return (
@@ -79,7 +78,7 @@ export const Header = memo<HeaderProps>(({ user }) => {
 						</span>
 
 						<span className="xl:text-lg text-light-100 font-medium -my-1.5">
-							{friends?.length ?? 0} Friends
+							{data?.length ?? 0} Friends
 						</span>
 
 						<div className="flex">{FriendsHeadsComponents}</div>

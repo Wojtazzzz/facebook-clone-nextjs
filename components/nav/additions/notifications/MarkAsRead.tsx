@@ -1,29 +1,37 @@
 import * as React from 'react';
 import { useState, useEffect, useRef } from 'react';
 import { useAxios } from '@hooks/useAxios';
-import { useNotifications } from '@hooks/useNotifications';
+import { usePaginationData } from '@hooks/usePaginationData';
 
-import { AxiosStateStatus } from '@enums/AxiosStateStatus';
+import { StateStatus } from '@enums/StateStatus';
+import { StatePaginationStatus } from '@enums/StatePaginationStatus';
+
+import type { NotificationType } from '@ctypes/features/NotificationType';
 
 export const MarkAsRead = () => {
-	const { notifications, isLoading, isError, mutate } = useNotifications();
-	const { state, sendRequest } = useAxios();
+	const { data, state, isEmpty, reloadData } = usePaginationData('/api/notifications');
+
+	const { state: axiosState, sendRequest } = useAxios();
 	const [isHidden, setIsHidden] = useState(false);
 	const colorRef = useRef('text-light-100');
 
-	const notificationsToMark = notifications?.map(({ id }) => id);
-	let isAllowedToUse = !(!!!notifications?.length || isLoading || isError || state.status !== AxiosStateStatus.EMPTY);
+	const notificationsToMark = (data as NotificationType[])?.map(({ id }) => id);
+	let isAllowedToUse = !(
+		isEmpty ||
+		state !== StatePaginationStatus.SUCCESS ||
+		axiosState.status !== StateStatus.EMPTY
+	);
 
 	useEffect(() => {
-		if (state.status === AxiosStateStatus.SUCCESS) {
+		if (axiosState.status === StateStatus.SUCCESS) {
 			colorRef.current = 'text-green-400';
-			mutate();
+			reloadData();
 
 			setIsHidden(true);
-		} else if (state.status === AxiosStateStatus.ERROR) {
+		} else if (axiosState.status === StateStatus.ERROR) {
 			colorRef.current = 'text-red-400';
 		}
-	}, [state.status, mutate]);
+	}, [axiosState.status, reloadData]);
 
 	const handleMarkAsRead = () => {
 		if (!isAllowedToUse) return;

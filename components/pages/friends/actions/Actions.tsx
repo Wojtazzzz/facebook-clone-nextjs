@@ -11,12 +11,12 @@ import type { UserType } from '@ctypes/features/UserType';
 
 interface ActionsProps {
 	friend: UserType;
-	type: ListType;
+	type: string | string[] | undefined;
 }
 
 export const Actions = ({ friend, type }: ActionsProps) => {
-	if (type === ListType.SUGGEST) return <SuggestActions friend={friend} />;
-	if (type === ListType.INVITES) return <InviteActions friend={friend} />;
-	if (type === ListType.POKES) return <PokeActions friend={friend} />;
+	if (type === 'suggests') return <SuggestActions friend={friend} />;
+	if (type === 'invites') return <InviteActions friend={friend} />;
+	if (type === 'pokes') return <PokeActions friend={friend} />;
 	return <FriendActions friend={friend} />;
 };

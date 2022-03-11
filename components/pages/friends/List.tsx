@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { memo } from 'react';
-import { useFriends } from '@hooks/useFriends';
+import { usePaginationData } from '@hooks/usePaginationData';
 
 import { Loader } from '@components/pages/friends/shared/Loader';
 import { LoadMore } from '@components/pages/friends/shared/LoadMore';
@@ -9,50 +9,35 @@ import { EmptyList } from '@components/EmptyList';
 import { Slot } from '@components/pages/friends/Slot';
 import { Actions } from '@components/pages/friends/actions/Actions';
 
-import { ListType } from '@enums/ListType';
+import { StatePaginationStatus } from '@enums/StatePaginationStatus';
+import { getPathForPagination } from '@lib/getPathForPagination';
+
+import type { UserType } from '@ctypes/features/UserType';
 
 interface ListProps {
 	userId: number;
 	type: string | string[] | undefined;
 }
 
-const getType = (type: string | string[] | undefined) => {
-	switch (type) {
-		case 'suggests':
-			return ListType.SUGGEST;
-
-		case 'invites':
-			return ListType.INVITES;
-
-		case 'pokes':
-			return ListType.POKES;
-
-		default:
-		case 'friends':
-			return ListType.FRIENDS;
-	}
-};
-
 export const List = memo<ListProps>(({ userId, type }) => {
-	const listType = getType(type);
-	const { friends, isInitialLoading, isLoading, isError, isReachingEnd, loadMore } = useFriends(listType, userId);
+	const key = getPathForPagination(type ?? '', userId);
+	const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginationData(key);
 
-	if (isInitialLoading || friends === undefined) return <Loader />;
-	if (isError) return <ApiError />;
+	if (state === StatePaginationStatus.LOADING || !data) return <Loader />;
+	if (state === StatePaginationStatus.ERROR) return <ApiError />;
+	if (isEmpty) return <EmptyList title="No users, maybe this app is so boring..." />;
 
-	const slots = friends.map(user => (
+	const slots = (data as UserType[]).map(user => (
 		<Slot key={user.id} {...user}>
-			<Actions friend={user} type={listType} />
+			<Actions friend={user} type={type ?? ''} />
 		</Slot>
 	));
-
-	if (!!!slots.length) return <EmptyList title="No users to add, maybe this app is so boring..." />;
 
 	return (
 		<div className="flex flex-col gap-2">
 			{slots}
 
-			{isReachingEnd || <LoadMore isLoading={isLoading} callback={loadMore} />}
+			{isReachedEnd || <LoadMore isLoading={state === StatePaginationStatus.FETCHING} callback={loadMore} />}
 		</div>
 	);
 });

@@ -1,6 +1,6 @@
-export enum AxiosStateStatus {
-	EMPTY = 'empty',
+export enum StatePaginationStatus {
 	LOADING = 'loading',
+	FETCHING = 'fetching',
 	ERROR = 'error',
 	SUCCESS = 'success',
 }

@@ -5,7 +5,7 @@ import { Failure } from 'components/pages/friends/actions/messages/Failure';
 import { Success } from '@components/pages/friends/actions/messages/Success';
 import { Button } from '@components/Button';
 
-import { AxiosStateStatus } from '@enums/AxiosStateStatus';
+import { StateStatus } from '@enums/StateStatus';
 
 import type { UserType } from '@ctypes/features/UserType';
 
@@ -28,22 +28,22 @@ export const InviteActions = ({ friend }: InviteActionsProps) => {
 		sendRequest({ method: 'POST', url: '/api/reject', data: { user_id: friend.id } });
 	};
 
-	if (state.status === AxiosStateStatus.SUCCESS) return <Success message="Success" />;
-	if (state.status === AxiosStateStatus.ERROR) return <Failure message="Something went wrong" />;
+	if (state.status === StateStatus.SUCCESS) return <Success message="Success" />;
+	if (state.status === StateStatus.ERROR) return <Failure message="Something went wrong" />;
 
 	return (
 		<div className="flex gap-3">
 			<Button
 				title="Reject"
 				styles="w-[100px]"
-				isDisabled={state.status === AxiosStateStatus.LOADING}
+				isDisabled={state.status === StateStatus.LOADING}
 				callback={handleReject}
 			/>
 
 			<Button
 				title="Accept"
 				styles="w-[100px]"
-				isDisabled={state.status === AxiosStateStatus.LOADING}
+				isDisabled={state.status === StateStatus.LOADING}
 				callback={handleAccept}
 			/>
 		</div>
