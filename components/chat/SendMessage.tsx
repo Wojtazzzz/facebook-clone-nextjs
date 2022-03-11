@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useState, useEffect, useRef, memo } from 'react';
-import { useAuth } from '@hooks/useAuth';
 import { useChat } from '@hooks/useChat';
+import { useAxios } from '@hooks/useAxios';
 
 import { Formik, FormikHelpers } from 'formik';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,7 +10,8 @@ import { ButtonOverlay } from '@components/chat/shared/ButtonOverlay';
 
 import { SendMessageSchema } from '@validation/SendMessageSchema';
 
-import { Function } from '@ctypes/Function';
+import type { Function } from '@ctypes/Function';
+import { StateStatus } from '@enums/StateStatus';
 
 interface SendMessageProps {
 	friendId: number;
@@ -23,11 +24,17 @@ interface FormValues {
 export const SendMessage = memo<SendMessageProps>(({ friendId }) => {
 	const [isMessagePrepared, setIsMessagePrepared] = useState(false);
 	const inputRef = useRef<HTMLInputElement>(null);
-	const { sendMessage } = useChat(friendId);
+	const { state, sendRequest } = useAxios();
 
 	useEffect(() => {
 		inputRef.current?.focus();
 	}, []);
+
+	useEffect(() => {
+		if (state.status === StateStatus.ERROR) {
+			alert('Something went wrong during sending message process');
+		}
+	}, [state]);
 
 	const handleSendEmoji = () => alert('Maybe in the future...');
 
@@ -38,7 +45,11 @@ export const SendMessage = memo<SendMessageProps>(({ friendId }) => {
 	};
 
 	const handleSendMessage = ({ text }: FormValues, { resetForm }: FormikHelpers<FormValues>) => {
-		sendMessage(text);
+		sendRequest({
+			method: 'POST',
+			url: '/api/messages',
+			data: { text, receiver_id: friendId },
+		});
 
 		resetForm();
 		setIsMessagePrepared(false);

@@ -3,7 +3,6 @@ import useSWRInfinite from 'swr/infinite';
 
 import Echo from 'laravel-echo';
 import axios from '@lib/axios';
-require('pusher-js');
 
 import type { ChatMessageType } from '@ctypes/features/ChatMessageType';
 
@@ -60,18 +59,6 @@ export const useChat = (friendId: number) => {
 		setSize(size + 1);
 	};
 
-	const sendMessage = (text: string) => {
-		axios.post('/api/messages', { text, receiver_id: friendId }).catch(() => setIsError(true));
-	};
-
-	const listenChannel = (userId: string | number) => {
-		LaravelEcho.private(`messages.${userId}.${friendId}`).listen('ChatMessageSended', () => mutate());
-	};
-
-	const unlistenChannel = (userId: string | number) => {
-		LaravelEcho.private(`messages.${userId}.${friendId}`).stopListening('ChatMessageSended');
-	};
-
 	useEffect(() => {
 		if (!data) return;
 
@@ -88,7 +75,6 @@ export const useChat = (friendId: number) => {
 		isEmpty,
 		isReachedEnd,
 		loadMore,
-		sendMessage,
 		mutate,
 		listenChannel,
 		unlistenChannel,

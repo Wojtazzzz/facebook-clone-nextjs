@@ -1,12 +1,18 @@
 import * as React from 'react';
 import { memo } from 'react';
-import { useChat } from '@hooks/useChat';
+import { usePaginationData } from '@hooks/usePaginationData';
 
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Loader } from '@components/chat/shared/Loader';
 import { Message } from '@components/chat/shared/Message';
 import { EmptyChat } from '@components/chat/shared/EmptyChat';
 import { ApiError } from '@components/ApiError';
+
+import { StatePaginationStatus } from '@enums/StatePaginationStatus';
+
+import type { ChatMessageType } from '@ctypes/features/ChatMessageType';
+
+require('pusher-js');
 
 interface MessagesProps {
 	name: string;
@@ -15,12 +21,12 @@ interface MessagesProps {
 }
 
 export const Messages = memo<MessagesProps>(({ friendId }) => {
-	const { data, isError, isEmpty, isReachedEnd, loadMore } = useChat(friendId);
+	const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginationData(`/api/messages/${friendId}`);
 
 	if (isEmpty) return <EmptyChat />;
-	if (isError) return <ApiError isSmall />;
+	if (state === StatePaginationStatus.ERROR) return <ApiError isSmall />;
 
-	const MessagesComponents = data.map(({ id, text, sender_id, created_at }) => (
+	const MessagesComponents = (data as ChatMessageType[]).map(({ id, text, sender_id, created_at }) => (
 		<Message key={id} text={text} isSended={sender_id !== friendId} created_at={created_at} />
 	));
 
@@ -32,7 +38,7 @@ export const Messages = memo<MessagesProps>(({ friendId }) => {
 		>
 			<InfiniteScroll
 				dataLength={MessagesComponents.length}
-				next={() => loadMore()}
+				next={loadMore}
 				className="flex flex-col-reverse gap-1"
 				inverse
 				hasMore={!isReachedEnd}
