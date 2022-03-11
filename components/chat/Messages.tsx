@@ -23,8 +23,9 @@ interface MessagesProps {
 export const Messages = memo<MessagesProps>(({ friendId }) => {
 	const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginationData(`/api/messages/${friendId}`);
 
-	if (isEmpty) return <EmptyChat />;
+	if (state === StatePaginationStatus.LOADING || !data) return <Loader />;
 	if (state === StatePaginationStatus.ERROR) return <ApiError isSmall />;
+	if (isEmpty) return <EmptyChat />;
 
 	const MessagesComponents = (data as ChatMessageType[]).map(({ id, text, sender_id, created_at }) => (
 		<Message key={id} text={text} isSended={sender_id !== friendId} created_at={created_at} />

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useState, useEffect, useRef, memo } from 'react';
-import { useChat } from '@hooks/useChat';
 import { useAxios } from '@hooks/useAxios';
 
 import { Formik, FormikHelpers } from 'formik';
