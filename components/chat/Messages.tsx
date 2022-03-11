@@ -12,8 +12,6 @@ import { StatePaginationStatus } from '@enums/StatePaginationStatus';
 
 import type { ChatMessageType } from '@ctypes/features/ChatMessageType';
 
-require('pusher-js');
-
 interface MessagesProps {
 	name: string;
 	profileImage: string;

@@ -12,6 +12,8 @@ import axios from '@lib/axios';
 
 import type { UserType } from '@ctypes/features/UserType';
 
+require('pusher-js');
+
 interface ChatProps {
 	friend: UserType;
 }
