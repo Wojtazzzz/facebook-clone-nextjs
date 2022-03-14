@@ -3,7 +3,6 @@ import useSWRInfinite from 'swr/infinite';
 
 import axios from '@lib/axios';
 import { StatePaginationStatus } from '@enums/StatePaginationStatus';
-import { mutate } from 'swr';
 
 const axiosConfig = {
 	transformResponse: [
