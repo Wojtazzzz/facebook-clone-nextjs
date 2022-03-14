@@ -28,12 +28,10 @@ export const Slot = ({ data, read_at }: SlotProps) => {
 			className="w-full h-[72px] flex gap-3 hover:bg-dark-100 transition-colors rounded-lg cursor-pointer p-2"
 			onClick={handleRedirectToInvites}
 		>
-			<Avatar src={initiator.profile_image} size={56} alt={`${initiator.first_name} ${initiator.last_name}`} />
+			<Avatar src={initiator.profile_image} size={56} alt={initiator.name} />
 
 			<div className={`flex flex-col ${read_at ? 'opacity-50' : ''}`}>
-				<span className="text-light-200 font-medium">
-					{initiator.first_name} {initiator.last_name}
-				</span>
+				<span className="text-light-200 font-medium">{initiator.name}</span>
 
 				<span className="text-sm text-light-100">
 					{data.type === NotificationTypeEnum.FRIENDSHIP_INVITATION_SENDED ? (

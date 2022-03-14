@@ -3,6 +3,7 @@ import useSWRInfinite from 'swr/infinite';
 
 import axios from '@lib/axios';
 import { StatePaginationStatus } from '@enums/StatePaginationStatus';
+import { mutate } from 'swr';
 
 const axiosConfig = {
 	transformResponse: [
@@ -40,7 +41,7 @@ export const usePaginationData = (key: string) => {
 				}
 			});
 
-	const { data, size, setSize } = useSWRInfinite<unknown[]>(getKey, fetcher);
+	const { data, size, setSize, mutate } = useSWRInfinite<unknown[]>(getKey, fetcher);
 
 	useEffect(() => {
 		setState(StatePaginationStatus.LOADING);
@@ -65,11 +66,16 @@ export const usePaginationData = (key: string) => {
 		setSize(size + 1);
 	};
 
+	const reloadData = () => {
+		mutate();
+	};
+
 	return {
 		data: flatData,
 		state,
 		isEmpty: flatData?.length === 0,
 		isReachedEnd: flatData?.length === 0 || (data && data[data.length - 1]?.length < 10),
 		loadMore,
+		reloadData,
 	};
 };
