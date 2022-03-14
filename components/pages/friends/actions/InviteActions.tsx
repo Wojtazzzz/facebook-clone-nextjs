@@ -19,13 +19,13 @@ export const InviteActions = ({ friend }: InviteActionsProps) => {
 	const handleAccept = (event: FocusEvent) => {
 		event.preventDefault();
 
-		sendRequest({ method: 'POST', url: '/api/accept', data: { user_id: friend.id } });
+		sendRequest({ method: 'POST', url: '/api/friendship/accept', data: { user_id: friend.id } });
 	};
 
 	const handleReject = (event: FocusEvent) => {
 		event.preventDefault();
 
-		sendRequest({ method: 'POST', url: '/api/reject', data: { user_id: friend.id } });
+		sendRequest({ method: 'POST', url: '/api/friendship/reject', data: { user_id: friend.id } });
 	};
 
 	if (state.status === StateStatus.SUCCESS) return <Success message="Success" />;

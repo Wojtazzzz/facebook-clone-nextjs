@@ -24,7 +24,7 @@ export const FriendActions = ({ friend }: FriendActionsProps) => {
 	const handleRemove = (event: FocusEvent) => {
 		event.preventDefault();
 
-		sendRequest({ method: 'POST', url: '/api/destroy', data: { user_id: friend.id } });
+		sendRequest({ method: 'POST', url: '/api/friendship/destroy', data: { user_id: friend.id } });
 	};
 
 	if (state.status === StateStatus.SUCCESS) return <Success message="Friend removed" />;
