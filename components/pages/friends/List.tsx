@@ -27,6 +27,7 @@ export const List = memo<ListProps>(({ userId, type }) => {
 	if (state === StatePaginationStatus.ERROR) return <ApiError />;
 	if (isEmpty) return <EmptyList title="No users, maybe this app is so boring..." />;
 
+	console.log('Data: ', data);
 	const slots = (data as UserType[]).map(user => (
 		<Slot key={user.id} {...user}>
 			<Actions friend={user} type={type ?? ''} />

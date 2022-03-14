@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
 
+import axios from '@lib/axios';
 import { AuthMiddleware } from '@enums/AuthMiddleware';
 
 import type { UserType } from '@ctypes/features/UserType';
-import axios from '@lib/axios';
 
 export const useAuth = (middleware?: AuthMiddleware) => {
 	const [isLoading, setIsLoading] = useState(false);
@@ -19,11 +19,9 @@ export const useAuth = (middleware?: AuthMiddleware) => {
 	} = useSWR<UserType>('/api/user', () =>
 		axios
 			.get('/api/user')
-			.then(res => res.data)
+			.then(response => response.data)
 			.catch(error => {
-				if (error.response.status !== 409) throw error;
-
-				router.push('/verify-email');
+				throw error;
 			})
 	);
 
@@ -69,13 +67,13 @@ export const useAuth = (middleware?: AuthMiddleware) => {
 			setIsLoading(false);
 		}
 
-		window.location.href = '/login';
+		router.push('/login');
 	};
 
 	useEffect(() => {
 		if (middleware === AuthMiddleware.GUEST && user) router.push('/');
 		if (middleware === AuthMiddleware.AUTH && error) logout();
-	}, [user, error, middleware]);
+	}, [user, error, middleware, router]);
 
 	return {
 		user,

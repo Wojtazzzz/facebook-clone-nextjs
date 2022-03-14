@@ -2,11 +2,11 @@ import * as React from 'react';
 import { memo } from 'react';
 import { usePaginationData } from '@hooks/usePaginationData';
 
+import { LoadMore } from '@components/contacts/shared/LoadMore';
+import { Loader } from '@components/contacts/shared/Loader';
+import { Slot } from '@components/contacts/Slot';
 import { ApiError } from '@components/ApiError';
 import { EmptyList } from '@components/EmptyList';
-import { LoadMore } from '@components/contacts/shared/LoadMore';
-import { Slot } from '@components/contacts/Slot';
-import { Loader } from '@components/contacts/shared/Loader';
 
 import { StatePaginationStatus } from '@enums/StatePaginationStatus';
 

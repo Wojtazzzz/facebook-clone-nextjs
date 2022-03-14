@@ -7,10 +7,10 @@ import { Button } from '@components/Button';
 
 import { StateStatus } from '@enums/StateStatus';
 
-import type { UserType } from '@ctypes/features/UserType';
+import type { PokingUserType } from '@ctypes/features/PokingUserType';
 
 interface PokeActionsProps {
-	friend: UserType;
+	friend: PokingUserType;
 }
 
 export const PokeActions = ({ friend }: PokeActionsProps) => {

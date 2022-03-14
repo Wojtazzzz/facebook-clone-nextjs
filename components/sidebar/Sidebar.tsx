@@ -21,9 +21,9 @@ export const Sidebar = () => {
 		>
 			{user ? (
 				<SideItem
-					title={`${user.first_name} ${user.last_name}`}
+					title={user.name}
 					link={`/profile/${user.id}`}
-					icon={<Avatar size={36} src={user.profile_image} alt={`${user.first_name} ${user.last_name}`} />}
+					icon={<Avatar size={36} src={user.profile_image} alt={user.name} />}
 				/>
 			) : (
 				<SideItemLoader />
