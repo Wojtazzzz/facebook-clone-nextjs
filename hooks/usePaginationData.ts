@@ -50,15 +50,10 @@ export const usePaginationData = (key: string) => {
 		if (!data) return;
 
 		setFlatData(data.flat() as []);
+		setState(StatePaginationStatus.SUCCESS);
 
 		return () => AxiosAbortController.abort();
 	}, [data, AxiosAbortController]);
-
-	useEffect(() => {
-		if (flatData[0] !== undefined) {
-			setState(StatePaginationStatus.SUCCESS);
-		}
-	}, [flatData]);
 
 	const loadMore = () => {
 		setState(StatePaginationStatus.FETCHING);
