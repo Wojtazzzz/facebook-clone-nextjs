@@ -17,7 +17,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 	return (
 		<>
 			<Head>
-				<title>Facebook Clone</title>
+				<title>Facebook clone</title>
 			</Head>
 
 			<Provider store={store}>
