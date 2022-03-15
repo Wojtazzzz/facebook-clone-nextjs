@@ -9,7 +9,7 @@ export const getPathForPagination = (type: ListType | string | string[], userId 
 			return '/api/friendship/invites';
 
 		case 'pokes':
-			return '/api/friendship/pokes';
+			return '/api/pokes';
 
 		default:
 		case 'friends':

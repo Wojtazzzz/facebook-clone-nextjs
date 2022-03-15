@@ -36,10 +36,10 @@ export const PokeActions = ({ friend }: PokeActionsProps) => {
 
 			<div className="flex flex-col items-center text-light-100">
 				<small>
-					{friend.first_name} poked you {friend.poke_info.count} times in a row
+					{friend.first_name} poked you {friend.poke_info?.count} times in a row
 				</small>
 
-				<small>{friend.poke_info.updated_at}</small>
+				<small>{friend.poke_info?.updated_at}</small>
 			</div>
 		</div>
 	);

@@ -23,11 +23,10 @@ export const List = memo<ListProps>(({ userId, type }) => {
 	const key = getPathForPagination(type ?? '', userId);
 	const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginationData(key);
 
-	if (state === StatePaginationStatus.LOADING || !data) return <Loader />;
+	if (state === StatePaginationStatus.LOADING) return <Loader />;
 	if (state === StatePaginationStatus.ERROR) return <ApiError />;
-	if (isEmpty) return <EmptyList title="No users, maybe this app is so boring..." />;
+	if (isEmpty || !data) return <EmptyList title="No users, maybe this app is so boring..." />;
 
-	console.log('Data: ', data);
 	const slots = (data as UserType[]).map(user => (
 		<Slot key={user.id} {...user}>
 			<Actions friend={user} type={type ?? ''} />
