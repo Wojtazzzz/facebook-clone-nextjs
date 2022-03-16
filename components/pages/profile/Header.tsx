@@ -17,7 +17,7 @@ interface HeaderProps {
 }
 
 export const Header = memo<HeaderProps>(({ user }) => {
-	const { id, first_name, last_name, profile_image, background_image } = user;
+	const { id, first_name, name, profile_image, background_image } = user;
 	const { user: loggedUser } = useAuth();
 	const { data } = usePaginationData(`/api/friends/${id}`);
 	const [isUserLogged, setIsUserLogged] = useState(false);
@@ -29,7 +29,7 @@ export const Header = memo<HeaderProps>(({ user }) => {
 
 	const handleOpenChat = () => dispatch(toggleActive(user));
 
-	const FriendsHeadsComponents = (data as UserType[]).map(({ id, first_name, last_name, profile_image }, i) => {
+	const FriendsHeadsComponents = (data as UserType[]).map(({ id, name, profile_image }, i) => {
 		if (i >= 5) return;
 
 		return (
@@ -40,8 +40,8 @@ export const Header = memo<HeaderProps>(({ user }) => {
 						width="32"
 						height="32"
 						src={profile_image}
-						alt={`${first_name} ${last_name}`}
-						title={`${first_name} ${last_name}`}
+						alt={name}
+						title={name}
 						className="rounded-full"
 					/>
 				</a>
@@ -73,9 +73,7 @@ export const Header = memo<HeaderProps>(({ user }) => {
 					</div>
 
 					<div className="flex flex-col gap-1.5 mt-12">
-						<span className="text-2xl xl:text-3xl text-light-200 font-bold">
-							{first_name} {last_name}
-						</span>
+						<span className="text-2xl xl:text-3xl text-light-200 font-bold">{name}</span>
 
 						<span className="xl:text-lg text-light-100 font-medium -my-1.5">
 							{data?.length ?? 0} Friends

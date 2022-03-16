@@ -2,12 +2,6 @@
 
 const BACKEND_URL = Cypress.env('backend_url');
 
-Cypress.Commands.add('prepareDatabase', () => {
-	cy.request(`${BACKEND_URL}/api/tests`).then(response => {
-		expect(response.status).to.eq(200);
-	});
-});
-
 Cypress.Commands.add('checkUserRequest', (alias, statusCode = 200) => {
 	cy.intercept('GET', `${BACKEND_URL}/api/user`).as(alias);
 

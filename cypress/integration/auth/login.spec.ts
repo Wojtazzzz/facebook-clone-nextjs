@@ -4,10 +4,6 @@ const TEST_EMAIL = Cypress.env('test_email');
 const TEST_PASSWORD = Cypress.env('test_password');
 
 describe('Login', () => {
-	before(() => {
-		cy.prepareDatabase();
-	});
-
 	it('Login to existing account', () => {
 		cy.loginAndWaitForRequests(TEST_EMAIL, TEST_PASSWORD);
 
