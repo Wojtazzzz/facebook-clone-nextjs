@@ -13,11 +13,11 @@ import { StatePaginationStatus } from '@enums/StatePaginationStatus';
 import type { MessengerContactType } from '@ctypes/features/MessengerContactType';
 
 export const Messages = memo(() => {
-	const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginationData('/api/messenger');
+	const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginationData('/api/messages/messenger');
 
-	if (state === StatePaginationStatus.LOADING || !data) return <Loader />;
+	if (state === StatePaginationStatus.LOADING) return <Loader />;
 	if (state === StatePaginationStatus.ERROR) return <ApiError isSmall />;
-	if (isEmpty) return <EmptyList title="Your Messenger is empty" />;
+	if (isEmpty || !data) return <EmptyList title="Your Messenger is empty" />;
 
 	const ContactsComponents = (data as MessengerContactType[]).map(contact => <Slot key={contact.id} {...contact} />);
 
