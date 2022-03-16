@@ -34,7 +34,7 @@ export const List = memo<ListProps>(({ userId, type }) => {
 	));
 
 	return (
-		<div className="flex flex-col gap-2">
+		<div data-testid="friends-list" className="flex flex-col gap-2">
 			{slots}
 
 			{isReachedEnd || <LoadMore isLoading={state === StatePaginationStatus.FETCHING} callback={loadMore} />}

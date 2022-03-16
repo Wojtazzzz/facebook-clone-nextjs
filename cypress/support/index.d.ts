@@ -27,6 +27,14 @@ declare namespace Cypress {
 		 */
 		checkUserRequest(alias: string, statusCode?: 200 | 401): Chainable<Element>;
 
-		clickButtonAndExpectMessage(buttonTitle: string, message: string, route: 'accept' | 'reject', statusCode: 200 | 422): Chainable<Element>;
+		/**
+		 * Click action button on friends list and expect message
+		 */
+		clickButtonAndExpectMessage(
+			buttonTitle: string,
+			message: string,
+			route: string,
+			statusCode: 200 | 422
+		): Chainable<Element>;
 	}
 }

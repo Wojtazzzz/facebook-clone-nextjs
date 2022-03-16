@@ -30,4 +30,18 @@ Cypress.Commands.add('loginAndWaitForRequests', (email, password, statusCode = 2
 	});
 });
 
+Cypress.Commands.add('clickButtonAndExpectMessage', (buttonTitle, message, route, statusCode) => {
+	if (statusCode === 422) {
+		cy.intercept('POST', `${BACKEND_URL}/api/friendship/${route}`, { statusCode });
+	}
+
+	cy.get('div[data-testid="friends-list"]')
+		.children()
+		.first()
+		.within(() => {
+			cy.get('button').contains(buttonTitle).click();
+		})
+		.contains(message);
+});
+
 export {};

@@ -11,6 +11,8 @@ import { SendMessageSchema } from '@validation/SendMessageSchema';
 
 import type { Function } from '@ctypes/Function';
 import { StateStatus } from '@enums/StateStatus';
+import { usePaginationData } from '@hooks/usePaginationData';
+import { StatePaginationStatus } from '@enums/StatePaginationStatus';
 
 interface SendMessageProps {
 	friendId: number;
@@ -24,6 +26,7 @@ export const SendMessage = memo<SendMessageProps>(({ friendId }) => {
 	const [isMessagePrepared, setIsMessagePrepared] = useState(false);
 	const inputRef = useRef<HTMLInputElement>(null);
 	const { state, sendRequest } = useAxios();
+	const { state: messagesState } = usePaginationData(`/api/messages/${friendId}`);
 
 	useEffect(() => {
 		inputRef.current?.focus();
@@ -64,6 +67,7 @@ export const SendMessage = memo<SendMessageProps>(({ friendId }) => {
 						name="text"
 						placeholder="Aa"
 						value={values.text}
+						disabled={messagesState === StatePaginationStatus.LOADING}
 						autoComplete="off"
 						className={`${
 							isMessagePrepared ? 'w-52' : 'w-36'

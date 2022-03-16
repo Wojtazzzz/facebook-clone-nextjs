@@ -63,6 +63,10 @@ export const usePaginationData = (key: string) => {
 		mutate();
 	};
 
+	const addData = (data: []) => {
+		setFlatData(prevValue => [...prevValue, ...data]);
+	};
+
 	return {
 		data: flatData,
 		state,
@@ -70,5 +74,6 @@ export const usePaginationData = (key: string) => {
 		isReachedEnd: flatData?.length === 0 || (data && data[data.length - 1]?.length < 10),
 		loadMore,
 		reloadData,
+		addData,
 	};
 };
