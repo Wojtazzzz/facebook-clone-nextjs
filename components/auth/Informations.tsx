@@ -14,12 +14,12 @@ export const Informations = () => {
 			</div>
 
 			<span className="md:text-lg text-light-100 font-medium">
-				Welcome to Facebook-clone app! This is non-commercial and nonofficial version of{' '}
+				Welcome to Facebook-clone app! This is noncommercial and nonofficial version of{' '}
 				<a href="https://facebook.com/" className="text-primary hover:underline">
 					Facebook
 				</a>{' '}
 				similar social app. For safety you cannot create account with own credentials. Instead of you can create
-				free account with random data. All this accounts will be deleted after 10 days. Enjoy!
+				free account with random data. Enjoy!
 			</span>
 
 			<div className="mt-10">
