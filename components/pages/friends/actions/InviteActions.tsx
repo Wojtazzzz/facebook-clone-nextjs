@@ -18,18 +18,16 @@ export const InviteActions = ({ friend }: InviteActionsProps) => {
 
 	const handleAccept = (event: FocusEvent) => {
 		event.preventDefault();
-
 		sendRequest({ method: 'POST', url: '/api/friendship/accept', data: { user_id: friend.id } });
 	};
 
 	const handleReject = (event: FocusEvent) => {
 		event.preventDefault();
-
 		sendRequest({ method: 'POST', url: '/api/friendship/reject', data: { user_id: friend.id } });
 	};
 
-	if (state.status === StateStatus.SUCCESS) return <Success message="Success" />;
-	if (state.status === StateStatus.ERROR) return <Failure message="Something went wrong" />;
+	if (state.status === StateStatus.SUCCESS) return <Success message={state.data.message} />;
+	if (state.status === StateStatus.ERROR) return <Failure message="Something went wrong, try again later" />;
 
 	return (
 		<div className="flex gap-3">

@@ -23,7 +23,7 @@ export const Messages = memo<MessagesProps>(({ friendId }) => {
 
 	if (state === StatePaginationStatus.LOADING) return <Loader />;
 	if (state === StatePaginationStatus.ERROR) return <ApiError isSmall />;
-	if (isEmpty || !!!data.length) return <EmptyChat />;
+	if (isEmpty || !data) return <EmptyChat />;
 
 	const MessagesComponents = (data as ChatMessageType[]).map(message => (
 		<Message key={message.id} {...message} isFromLoggedUser={message.sender_id !== friendId} />

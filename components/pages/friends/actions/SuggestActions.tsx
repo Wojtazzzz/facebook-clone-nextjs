@@ -18,12 +18,11 @@ export const SuggestActions = ({ friend }: SuggestActionsProps) => {
 
 	const handleInvite = (event: FocusEvent) => {
 		event.preventDefault();
-
 		sendRequest({ method: 'POST', url: '/api/friendship/invite', data: { user_id: friend.id } });
 	};
 
-	if (state.status === StateStatus.SUCCESS) return <Success message="Invitation sended" />;
-	if (state.status === StateStatus.ERROR) return <Failure message="Something went wrong" />;
+	if (state.status === StateStatus.SUCCESS) return <Success message={state.data.message} />;
+	if (state.status === StateStatus.ERROR) return <Failure message="Something went wrong, try again later" />;
 
 	return (
 		<Button

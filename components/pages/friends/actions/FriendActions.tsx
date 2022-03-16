@@ -19,16 +19,18 @@ export const FriendActions = ({ friend }: FriendActionsProps) => {
 	const dispatch = useAppDispatch();
 	const { state, sendRequest } = useAxios();
 
-	const handleOpenChat = () => dispatch(toggleActive(friend));
+	const handleOpenChat = (event: FocusEvent) => {
+		event.preventDefault();
+		dispatch(toggleActive(friend));
+	};
 
 	const handleRemove = (event: FocusEvent) => {
 		event.preventDefault();
-
 		sendRequest({ method: 'POST', url: '/api/friendship/destroy', data: { user_id: friend.id } });
 	};
 
-	if (state.status === StateStatus.SUCCESS) return <Success message="Friend removed" />;
-	if (state.status === StateStatus.ERROR) return <Failure message="Something went wrong" />;
+	if (state.status === StateStatus.SUCCESS) return <Success message={state.data.message} />;
+	if (state.status === StateStatus.ERROR) return <Failure message="Something went wrong, try again later" />;
 
 	return (
 		<div className="flex gap-3">

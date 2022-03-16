@@ -6,9 +6,8 @@ import { StatePaginationStatus } from '@enums/StatePaginationStatus';
 
 const axiosConfig = {
 	transformResponse: [
-		function (axiosData: any) {
-			const jsonData = JSON.parse(axiosData);
-			let data = jsonData.data;
+		function (responseData: any) {
+			let data = JSON.parse(responseData);
 
 			if (!Array.isArray(data)) {
 				data = [...Object.values(data)] as [];

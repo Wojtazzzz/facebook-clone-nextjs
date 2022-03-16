@@ -5,11 +5,16 @@ import { StateStatus } from '@enums/StateStatus';
 
 import type { AxiosRequestConfig } from 'axios';
 
+type data = {
+	data: [];
+	message: string;
+};
+
 type State =
 	| { status: StateStatus.EMPTY }
 	| { status: StateStatus.LOADING }
 	| { status: StateStatus.ERROR; error: Error }
-	| { status: StateStatus.SUCCESS; data: [] };
+	| { status: StateStatus.SUCCESS; data: data };
 
 export const useAxios = () => {
 	const [state, setState] = useState<State>({ status: StateStatus.EMPTY });
