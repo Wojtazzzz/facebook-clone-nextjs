@@ -67,7 +67,7 @@ export const useAuth = (middleware?: AuthMiddleware) => {
 			setIsLoading(false);
 		}
 
-		router.push('/login');
+		window.location.pathname = '/login';
 	};
 
 	useEffect(() => {

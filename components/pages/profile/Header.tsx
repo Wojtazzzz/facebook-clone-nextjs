@@ -19,7 +19,7 @@ interface HeaderProps {
 export const Header = memo<HeaderProps>(({ user }) => {
 	const { id, first_name, name, profile_image, background_image } = user;
 	const { user: loggedUser } = useAuth();
-	const { data } = usePaginationData(`/api/friends/${id}`);
+	const { data } = usePaginationData(`/api/friendship/friends/${id}`);
 	const [isUserLogged, setIsUserLogged] = useState(false);
 	const dispatch = useAppDispatch();
 
@@ -28,7 +28,6 @@ export const Header = memo<HeaderProps>(({ user }) => {
 	}, [loggedUser, id]);
 
 	const handleOpenChat = () => dispatch(toggleActive(user));
-
 	const FriendsHeadsComponents = (data as UserType[]).map(({ id, name, profile_image }, i) => {
 		if (i >= 5) return;
 
