@@ -1,0 +1,154 @@
+{
+	"data": [
+		{
+			"id": "4408e61c-eb88-4200-ac79-5351a0d4fd86",
+			"data": {
+				"type": "FRIENDSHIP_INVITATION_SENDED",
+				"initiator": {
+					"id": 123,
+					"name": "Donavon Heller",
+					"first_name": "Donavon",
+					"profile_image": "https://via.placeholder.com/168x168.png/00ffee?text=illo",
+					"background_image": "https://via.placeholder.com/850x350.png/008800?text=non"
+				}
+			},
+			"read_at": null,
+			"created_at": "2022-03-17T19:59:39.000000Z"
+		},
+		{
+			"id": "7985d8ed-ca4c-4a84-aa37-e33099d7de35",
+			"data": {
+				"type": "FRIENDSHIP_INVITATION_SENDED",
+				"initiator": {
+					"id": 124,
+					"name": "Adela Fay",
+					"first_name": "Adela",
+					"profile_image": "https://via.placeholder.com/168x168.png/00ddff?text=earum",
+					"background_image": "https://via.placeholder.com/850x350.png/005533?text=non"
+				}
+			},
+			"read_at": null,
+			"created_at": "2022-03-17T19:59:39.000000Z"
+		},
+		{
+			"id": "1be863e3-a5c7-444c-9209-eacaaf30ecf4",
+			"data": {
+				"type": "FRIENDSHIP_INVITATION_SENDED",
+				"initiator": {
+					"id": 121,
+					"name": "Damian Schowalter",
+					"first_name": "Damian",
+					"profile_image": "https://via.placeholder.com/168x168.png/005577?text=alias",
+					"background_image": "https://via.placeholder.com/850x350.png/00cccc?text=quisquam"
+				}
+			},
+			"read_at": null,
+			"created_at": "2022-03-17T19:59:38.000000Z"
+		},
+		{
+			"id": "6f84b48a-0d6d-41c1-a79d-dffdfa2e8bf9",
+			"data": {
+				"type": "FRIENDSHIP_INVITATION_SENDED",
+				"initiator": {
+					"id": 122,
+					"name": "Ben Abernathy",
+					"first_name": "Ben",
+					"profile_image": "https://via.placeholder.com/168x168.png/00ffee?text=ducimus",
+					"background_image": "https://via.placeholder.com/850x350.png/00bb88?text=amet"
+				}
+			},
+			"read_at": null,
+			"created_at": "2022-03-17T19:59:38.000000Z"
+		},
+		{
+			"id": "fe65eb58-8916-422e-8619-8c453656feda",
+			"data": {
+				"type": "FRIENDSHIP_INVITATION_SENDED",
+				"initiator": {
+					"id": 120,
+					"name": "Adella Rutherford",
+					"first_name": "Adella",
+					"profile_image": "https://via.placeholder.com/168x168.png/00eeaa?text=nesciunt",
+					"background_image": "https://via.placeholder.com/850x350.png/00aadd?text=sit"
+				}
+			},
+			"read_at": null,
+			"created_at": "2022-03-17T19:59:38.000000Z"
+		},
+		{
+			"id": "138e7338-74f9-4a2a-a571-4bd3284d507c",
+			"data": {
+				"type": "FRIENDSHIP_INVITATION_SENDED",
+				"initiator": {
+					"id": 118,
+					"name": "Hannah Marks",
+					"first_name": "Hannah",
+					"profile_image": "https://via.placeholder.com/168x168.png/003344?text=enim",
+					"background_image": "https://via.placeholder.com/850x350.png/008822?text=maiores"
+				}
+			},
+			"read_at": null,
+			"created_at": "2022-03-17T19:59:37.000000Z"
+		},
+		{
+			"id": "b61909cd-fb2a-4d99-946d-9c253e25e6e7",
+			"data": {
+				"type": "FRIENDSHIP_INVITATION_SENDED",
+				"initiator": {
+					"id": 119,
+					"name": "Blake Kling",
+					"first_name": "Blake",
+					"profile_image": "https://via.placeholder.com/168x168.png/0099ee?text=soluta",
+					"background_image": "https://via.placeholder.com/850x350.png/00dd22?text=aut"
+				}
+			},
+			"read_at": null,
+			"created_at": "2022-03-17T19:59:37.000000Z"
+		},
+		{
+			"id": "31f3f9e4-383d-4d85-9357-bd90c2c64d61",
+			"data": {
+				"type": "FRIENDSHIP_INVITATION_SENDED",
+				"initiator": {
+					"id": 116,
+					"name": "Elouise Crist",
+					"first_name": "Elouise",
+					"profile_image": "https://via.placeholder.com/168x168.png/0088ff?text=in",
+					"background_image": "https://via.placeholder.com/850x350.png/0099ee?text=incidunt"
+				}
+			},
+			"read_at": null,
+			"created_at": "2022-03-17T19:59:36.000000Z"
+		},
+		{
+			"id": "787276e8-93a9-4dae-aa84-110a6cd00b63",
+			"data": {
+				"type": "FRIENDSHIP_INVITATION_SENDED",
+				"initiator": {
+					"id": 117,
+					"name": "Audra Murazik",
+					"first_name": "Audra",
+					"profile_image": "https://via.placeholder.com/168x168.png/00bbff?text=ut",
+					"background_image": "https://via.placeholder.com/850x350.png/006677?text=consequatur"
+				}
+			},
+			"read_at": null,
+			"created_at": "2022-03-17T19:59:36.000000Z"
+		},
+		{
+			"id": "52043f01-156e-436c-a232-657401af361b",
+			"data": {
+				"type": "FRIENDSHIP_INVITATION_SENDED",
+				"initiator": {
+					"id": 113,
+					"name": "Alisha King",
+					"first_name": "Alisha",
+					"profile_image": "https://via.placeholder.com/168x168.png/004411?text=enim",
+					"background_image": "https://via.placeholder.com/850x350.png/00ee00?text=ex"
+				}
+			},
+			"read_at": null,
+			"created_at": "2022-03-17T19:59:35.000000Z"
+		}
+	]
+}

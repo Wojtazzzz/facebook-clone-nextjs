@@ -1,10 +1,9 @@
 import { render } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
 
 import { RegisterForm } from '@components/auth/RegisterForm';
 
 describe('Register Form', () => {
-	it('Cannot write on inputs', () => {
+	it('Check inputs are disabled', () => {
 		const { getByLabelText } = render(<RegisterForm />);
 
 		const inputFirstName = getByLabelText('First name');
@@ -20,7 +19,7 @@ describe('Register Form', () => {
 		expect(inputPasswordConfirmaiton).toBeDisabled();
 	});
 
-	it('Check for form button is disabled', () => {
+	it('Check form button is disabled', () => {
 		const { getByText } = render(<RegisterForm />);
 
 		const button = getByText('Register');
