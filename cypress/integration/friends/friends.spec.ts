@@ -8,11 +8,11 @@ describe('List of friends', () => {
 	});
 
 	it('remove friend from friends', () => {
-		cy.clickButtonAndExpectMessage('Remove', 'Friendship destroyed', 'destroy', 200);
+		cy.clickButtonAndExpectMessage('Remove', 'Friendship destroyed', 'friendship/destroy', 200);
 	});
 
 	it('cannot remove friend from friends', () => {
-		cy.clickButtonAndExpectMessage('Remove', 'Something went wrong', 'destroy', 422);
+		cy.clickButtonAndExpectMessage('Remove', 'Something went wrong', 'friendship/destroy', 422);
 	});
 });
 

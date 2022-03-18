@@ -10,11 +10,11 @@ describe('Suggests friends', () => {
 	});
 
 	it('send invite to user', () => {
-		cy.clickButtonAndExpectMessage('Invite', 'Request sent successfully', 'invite', 200);
+		cy.clickButtonAndExpectMessage('Invite', 'Request sent successfully', 'friendship/invite', 200);
 	});
 
 	it('cannot send invite to user', () => {
-		cy.clickButtonAndExpectMessage('Invite', 'Something went wrong', 'invite', 422);
+		cy.clickButtonAndExpectMessage('Invite', 'Something went wrong', 'friendship/invite', 422);
 	});
 });
 

@@ -31,8 +31,8 @@ Cypress.Commands.add('loginAndWaitForRequests', (email, password, statusCode = 2
 });
 
 Cypress.Commands.add('clickButtonAndExpectMessage', (buttonTitle, message, route, statusCode) => {
-	if (statusCode === 422) {
-		cy.intercept('POST', `${BACKEND_URL}/api/friendship/${route}`, { statusCode });
+	if (statusCode.toString().startsWith('4')) {
+		cy.intercept('POST', `${BACKEND_URL}/api/${route}`, { statusCode });
 	}
 
 	cy.get('div[data-testid="friends-list"]')

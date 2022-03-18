@@ -34,7 +34,7 @@ declare namespace Cypress {
 			buttonTitle: string,
 			message: string,
 			route: string,
-			statusCode: 200 | 422
+			statusCode: 200 | 201 | 422
 		): Chainable<Element>;
 	}
 }

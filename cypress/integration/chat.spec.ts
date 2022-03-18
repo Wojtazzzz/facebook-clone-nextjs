@@ -16,6 +16,7 @@ describe('Chat', () => {
 			cy.get('input[name="text"]').type(`${randomMessage}{enter}`);
 		});
 
+		cy.wait(10000);
 		cy.get('div[data-testid="chat-messages"]').should('contain.text', randomMessage);
 	});
 });
