@@ -18,7 +18,7 @@ const axiosConfig = {
 	],
 };
 
-export const usePaginationData = (key: string) => {
+export const usePaginationData = (key: string, perList = 10) => {
 	const [state, setState] = useState<StatePaginationStatus>(StatePaginationStatus.LOADING);
 	const [flatData, setFlatData] = useState([]);
 	const AxiosAbortController = useMemo(() => new AbortController(), []);
@@ -71,7 +71,7 @@ export const usePaginationData = (key: string) => {
 		data: flatData,
 		state,
 		isEmpty: flatData?.length === 0,
-		isReachedEnd: flatData?.length === 0 || (data && data[data.length - 1]?.length < 10),
+		isReachedEnd: flatData?.length === 0 || (data && data[data.length - 1]?.length < perList),
 		loadMore,
 		reloadData,
 		addData,
