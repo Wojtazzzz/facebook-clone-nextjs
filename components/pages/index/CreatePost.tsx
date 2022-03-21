@@ -4,10 +4,14 @@ import { useAuth } from '@hooks/useAuth';
 import { CreatePostLoader } from '@components/pages/index/CreatePostLoader';
 import { Avatar } from '@components/Avatar';
 
-export const CreatePost = () => {
-	const { user } = useAuth();
+import type { Function } from '@ctypes/Function';
 
-	const handleCreatePost = () => alert('Coming soon');
+interface CreatePostProps {
+	handleOpenModal: Function<void>;
+}
+
+export const CreatePost = ({ handleOpenModal }: CreatePostProps) => {
+	const { user } = useAuth();
 
 	if (!user) return <CreatePostLoader />;
 
@@ -18,7 +22,7 @@ export const CreatePost = () => {
 
 				<button
 					className="w-full bg-dark-100 text-light-100 text-left hover:opacity-70 rounded-3xl cursor-pointer px-3"
-					onClick={handleCreatePost}
+					onClick={handleOpenModal}
 				>
 					<span>What&apos;s on your mind, {user.first_name}?</span>
 				</button>
