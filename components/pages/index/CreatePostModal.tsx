@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Avatar } from '@components/Avatar';
 import { Button } from '@components/Button';
 
+import type { MouseEvent } from 'react';
 import type { Function } from '@ctypes/Function';
 
 const modalStyles = {
@@ -33,7 +34,7 @@ const modalStyles = {
 
 interface CreatePostModalProps {
 	isModalActive: boolean;
-	handleCloseModal: Function<void>;
+	handleCloseModal: (event: MouseEvent) => void;
 }
 
 export const CreatePostModal = ({ isModalActive, handleCloseModal }: CreatePostModalProps) => {
