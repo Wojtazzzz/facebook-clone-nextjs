@@ -8,7 +8,6 @@ import { Avatar } from '@components/Avatar';
 import { Button } from '@components/Button';
 
 import type { MouseEvent } from 'react';
-import type { Function } from '@ctypes/Function';
 
 const modalStyles = {
 	content: {
@@ -53,7 +52,7 @@ export const CreatePostModal = ({ isModalActive, handleCloseModal }: CreatePostM
 				<div className="px-1">
 					<div className="h-full flex flex-col bg-dark-200 rounded-lg mx-auto">
 						<div className="w-full flex justify-between text-light-200 border-b-[1.5px] border-zinc-600 p-3">
-							<FontAwesomeIcon className="w-8 invisible pointer-events-none text-lg" icon={faTimes} />
+							<FontAwesomeIcon className="w-8 text-lg invisible pointer-events-none" icon={faTimes} />
 							<h2 className="text-2xl text-center font-bold">Create Post</h2>
 
 							<div

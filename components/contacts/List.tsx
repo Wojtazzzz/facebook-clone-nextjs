@@ -19,7 +19,6 @@ interface ListProps {
 export const List = memo(({ userId }: ListProps) => {
 	const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginationData(`/api/friendship/friends/${userId}`);
 
-	console.log('ContactsData: ', data);
 	if (state === StatePaginationStatus.LOADING) return <Loader />;
 	if (state === StatePaginationStatus.ERROR) return <ApiError isSmall />;
 	if (isEmpty || !data) return <EmptyList title="No contacts, add some friends!" />;
