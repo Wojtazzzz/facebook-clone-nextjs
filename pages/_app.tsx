@@ -13,6 +13,11 @@ import '@styles/global.css';
 import '@styles/tailwind.css';
 import '@styles/input-autocomplete.css';
 
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
 export default function MyApp({ Component, pageProps }: AppProps) {
 	return (
 		<>

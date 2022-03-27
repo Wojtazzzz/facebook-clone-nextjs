@@ -22,19 +22,17 @@ export const List = memo(() => {
 	const PostsComponents = (data as PostType[]).map(post => <SinglePost key={post.id} {...post} />);
 
 	return (
-		// <InfiniteScroll
-		// 	dataLength={PostsComponents.length}
-		// 	next={loadMore}
-		// 	hasMore={!isReachedEnd}
-		// 	loader={<Loader />}
-		// 	scrollableTarget="scrollableDiv"
-		// 	className="flex flex-col gap-4 pb-[200px] mb-12"
-		// 	pullDownToRefreshThreshold={100}
-		// >
-		// 	{PostsComponents}
-		// </InfiniteScroll>
-
-		<Loader />
+		<InfiniteScroll
+			dataLength={PostsComponents.length}
+			next={loadMore}
+			hasMore={!isReachedEnd}
+			loader={<Loader />}
+			scrollableTarget="scrollableDiv"
+			className="flex flex-col gap-4 pb-[200px] mb-12"
+			pullDownToRefreshThreshold={100}
+		>
+			{PostsComponents}
+		</InfiniteScroll>
 	);
 });
 

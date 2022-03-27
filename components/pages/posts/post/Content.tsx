@@ -6,10 +6,8 @@ interface ContentProps {
 
 export const Content = ({ content }: ContentProps) => {
 	return (
-		<div className="w-full py-3">
-			<div className="px-4">
-				<span className="text-light-100">{content}</span>
-			</div>
+		<div className="px-4">
+			<span className="text-light-100">{content}</span>
 		</div>
 	);
 };
