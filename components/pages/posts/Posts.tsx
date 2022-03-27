@@ -1,23 +1,28 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { useAuth } from '@hooks/useAuth';
 
-import { CreatePost } from '@components/pages/index/CreatePost';
-import { CreatePostModal } from '@components/pages/index/CreatePostModal';
+import { CreatePost } from '@components/pages/posts/create/CreatePost';
+import { CreatePostModal } from '@components/pages/posts/create/CreatePostModal';
+import { List } from '@components/pages/posts/List';
+
+import type { MouseEvent } from 'react';
 
 export const Posts = () => {
 	const [isCreatePostModalActive, setIsCreatePostModalActive] = useState(false);
-	const { user } = useAuth();
 
 	const handleOpenModal = () => setIsCreatePostModalActive(true);
-	const handleCloseModal = (event: React.MouseEvent) => {
+	const handleCloseModal = (event: MouseEvent) => {
 		event.stopPropagation();
 		setIsCreatePostModalActive(false);
 	};
 
 	return (
 		<div className="max-w-[700px] flex flex-col gap-6 text-black mx-auto p-5">
-			<CreatePost handleOpenModal={handleOpenModal} />
+			<div id="scrollableDiv" className="h-screen flex flex-col gap-4 overflow-auto scrollbar-none">
+				<CreatePost handleOpenModal={handleOpenModal} />
+
+				<List />
+			</div>
 
 			<CreatePostModal isModalActive={isCreatePostModalActive} handleCloseModal={handleCloseModal} />
 		</div>

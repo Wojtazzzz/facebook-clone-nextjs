@@ -2,8 +2,8 @@ import * as React from 'react';
 import { useAuth } from '@hooks/useAuth';
 
 import Modal from 'react-modal';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Avatar } from '@components/Avatar';
 import { Button } from '@components/Button';
 
@@ -39,7 +39,7 @@ interface CreatePostModalProps {
 export const CreatePostModal = ({ isModalActive, handleCloseModal }: CreatePostModalProps) => {
 	const { user } = useAuth();
 
-	if (!user) return <span>Loading...</span>;
+	if (!user) return <></>;
 
 	return (
 		<div>

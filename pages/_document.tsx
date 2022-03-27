@@ -5,7 +5,7 @@ export default function Document() {
 		<Html lang="pl">
 			<Head />
 
-			<body className="max-h-screen overflow-hidden bg-dark-300">
+			<body className="overflow-hidden bg-dark-300">
 				<Main />
 				<NextScript />
 			</body>

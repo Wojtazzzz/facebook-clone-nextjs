@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useAuth } from '@hooks/useAuth';
 
-import { CreatePostLoader } from '@components/pages/index/CreatePostLoader';
+import { CreatePostLoader } from '@components/pages/posts/create/CreatePostLoader';
 import { Avatar } from '@components/Avatar';
 
 import type { Function } from '@ctypes/Function';

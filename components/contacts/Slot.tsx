@@ -21,7 +21,6 @@ export const Slot = memo<SlotProps>(({ id, first_name, name, profile_image, back
 			onClick={handleOpenChat}
 		>
 			<Avatar size={36} src={profile_image} alt={name} />
-
 			<span className="text-light-200 font-medium leading-5 m-0">{name}</span>
 		</div>
 	);
