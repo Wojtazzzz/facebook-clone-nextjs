@@ -1,7 +1,7 @@
 import * as React from 'react';import { useState } from 'react';
 
 import { Mock } from '@components/pages/posts/create/Mock';
-import { CreatePostModal } from '@components/pages/posts/create/modal/CreatePostModal';
+import { CreateModal } from '@components/pages/posts/create/modal/CreateModal';
 import { List } from '@components/pages/posts/List';
 
 import type { MouseEvent } from 'react';
@@ -23,9 +23,7 @@ export const Posts = () => {
 				<List />
 			</div>
 
-			{isCreatePostModalActive && (
-				<CreatePostModal isModalActive={isCreatePostModalActive} handleCloseModal={handleCloseModal} />
-			)}
+			{isCreatePostModalActive && <CreateModal handleCloseModal={handleCloseModal} />}
 		</div>
 	);
 };
