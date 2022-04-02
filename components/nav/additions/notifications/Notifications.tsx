@@ -7,7 +7,7 @@ import { MarkAsRead } from '@components/nav/additions/notifications/MarkAsRead';
 
 export const Notifications = memo(() => {
 	return (
-		<div className="min-w-[300px] md:min-w-[360px] flex flex-col gap-4 bg-dark-200 absolute top-full -right-12 shadow-md rounded-md p-3">
+		<div className="min-w-[300px] md:min-w-[360px] flex flex-col bg-dark-200 absolute top-full -right-12 shadow-md rounded-md p-3">
 			<ListHeader title="Notifications" />
 			<MarkAsRead />
 
