@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { useState } from 'react';
+import * as React from 'react';import { useState } from 'react';
+import { useAuth } from '@hooks/useAuth';
 
 import { Formik } from 'formik';
 import Dropzone from 'react-dropzone';
@@ -8,16 +8,17 @@ import { faImages } from '@fortawesome/free-solid-svg-icons';
 import { Avatar } from '@components/Avatar';
 import { Button } from '@components/Button';
 
-import type { UserType } from '@ctypes/features/UserType';
 import type { CreatePostPayload } from '@ctypes/forms/CreatePostPayload';
 
 interface FormProps {
-	user: UserType;
 	createPost: (data: CreatePostPayload) => void;
 }
 
-export const Form = ({ user, createPost }: FormProps) => {
+export const Form = ({ createPost }: FormProps) => {
 	const [isUploadActive, setIsUploadActive] = useState(false);
+	const { user } = useAuth();
+
+	if (!user) return <></>;
 
 	return (
 		<Formik initialValues={{ content: '', images: [] }} onSubmit={values => createPost(values)}>

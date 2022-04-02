@@ -1,6 +1,4 @@
-import * as React from 'react';
-import { useEffect } from 'react';
-import { useAuth } from '@hooks/useAuth';
+import * as React from 'react';import { useEffect } from 'react';
 import { useAxios } from '@hooks/useAxios';
 
 import Modal from 'react-modal';
@@ -33,13 +31,11 @@ const modalStyles = {
 	},
 };
 
-interface CreatePostModalProps {
-	isModalActive: boolean;
+interface CreateModalProps {
 	handleCloseModal: (event: MouseEvent) => void;
 }
 
-export const CreatePostModal = ({ isModalActive, handleCloseModal }: CreatePostModalProps) => {
-	const { user } = useAuth();
+export const CreateModal = ({ handleCloseModal }: CreateModalProps) => {
 	const { state, sendRequest } = useAxios();
 
 	useEffect(() => {
@@ -56,8 +52,6 @@ export const CreatePostModal = ({ isModalActive, handleCloseModal }: CreatePostM
 
 		sendRequest({ method: 'POST', url: '/api/posts', data: formData });
 	};
-
-	if (!user) return <></>;
 
 	return (
 		<Modal contentLabel="Create Post" isOpen={true} style={modalStyles} onRequestClose={handleCloseModal}>
@@ -76,7 +70,7 @@ export const CreatePostModal = ({ isModalActive, handleCloseModal }: CreatePostM
 						</div>
 					</div>
 
-					<Content state={state} user={user} createPost={createPost} />
+					<Content state={state} createPost={createPost} />
 				</div>
 			</div>
 		</Modal>
