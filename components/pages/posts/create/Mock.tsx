@@ -1,19 +1,18 @@
-import * as React from 'react';
-import { useAuth } from '@hooks/useAuth';
+import * as React from 'react';import { useAuth } from '@hooks/useAuth';
 
-import { CreatePostLoader } from '@components/pages/posts/create/CreatePostLoader';
+import { MockLoader } from '@components/pages/posts/create/MockLoader';
 import { Avatar } from '@components/Avatar';
 
 import type { Function } from '@ctypes/Function';
 
-interface CreatePostProps {
+interface MockProps {
 	handleOpenModal: Function<void>;
 }
 
-export const CreatePost = ({ handleOpenModal }: CreatePostProps) => {
+export const Mock = ({ handleOpenModal }: MockProps) => {
 	const { user } = useAuth();
 
-	if (!user) return <CreatePostLoader />;
+	if (!user) return <MockLoader />;
 
 	return (
 		<div className="w-full bg-dark-200 rounded-lg p-3">

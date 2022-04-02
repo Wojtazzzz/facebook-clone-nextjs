@@ -3,7 +3,9 @@ import { useEffect, useCallback } from 'react';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Keyboard, Pagination, Navigation } from 'swiper';
-import { Slide } from './Slide';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { Slide } from '@components/pages/posts/post/gallery/Slide';
 
 import type { Function } from '@ctypes/Function';
 
@@ -25,19 +27,28 @@ export const Gallery = ({ images, handleCloseGallery }: GalleryProps) => {
 	useEffect(() => {
 		document.addEventListener('keydown', handleCloseGalleryOnEscPress, false);
 
-		return () => {
-			document.removeEventListener('keydown', handleCloseGalleryOnEscPress, false);
-		};
+		return () => document.removeEventListener('keydown', handleCloseGalleryOnEscPress, false);
 	}, [handleCloseGalleryOnEscPress]);
 
 	const SlidesComponents = images.map((image, i) => (
 		<SwiperSlide key={i}>
-			<Slide image={image} handleCloseGallery={handleCloseGallery} />
+			<Slide image={image} />
 		</SwiperSlide>
 	));
 
 	return (
 		<div className="w-full h-full fixed top-0 left-0 bg-black z-30">
+			<div className="w-full flex justify-end absolute top-0 left-0 z-20 p-3">
+				<button
+					aria-label="Close gallery"
+					title="Close gallery"
+					className="w-10 h-10 flex justify-center items-center bg-dark-100 hover:opacity-80 rounded-full p-3"
+					onClick={handleCloseGallery}
+				>
+					<FontAwesomeIcon icon={faTimes} className="text-lg text-light-50" />
+				</button>
+			</div>
+
 			<Swiper
 				slidesPerView={1}
 				spaceBetween={30}

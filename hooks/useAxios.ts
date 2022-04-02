@@ -1,23 +1,11 @@
-import { useState, useEffect, useRef } from 'react';
-
-import axios from '@lib/axios';
+import { useState, useEffect, useRef } from 'react';import axios from '@lib/axios';
 import { StateStatus } from '@enums/StateStatus';
 
 import type { AxiosRequestConfig } from 'axios';
-
-type data = {
-	data: [];
-	message: string;
-};
-
-type State =
-	| { status: StateStatus.EMPTY }
-	| { status: StateStatus.LOADING }
-	| { status: StateStatus.ERROR; error: Error }
-	| { status: StateStatus.SUCCESS; data: data };
+import type { UseAxiosState } from '@ctypes/UseAxiosState';
 
 export const useAxios = () => {
-	const [state, setState] = useState<State>({ status: StateStatus.EMPTY });
+	const [state, setState] = useState<UseAxiosState>({ status: StateStatus.EMPTY });
 	const AxiosAbortControllerRef = useRef(new AbortController());
 
 	const axiosOptions = { signal: AxiosAbortControllerRef.current.signal };

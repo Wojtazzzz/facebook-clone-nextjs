@@ -40,7 +40,8 @@ export const SinglePost = ({
 
 			<div className="w-full py-3">
 				<Content content={content} />
-				{images && <Images images={images} />}
+
+				{!!images?.length && <Images images={images} />}
 			</div>
 
 			<Stats likesCount={likesCount} />
