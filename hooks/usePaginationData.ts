@@ -1,5 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
-import useSWRInfinite from 'swr/infinite';
+import { useState, useEffect, useMemo } from 'react';import useSWRInfinite from 'swr/infinite';
 
 import axios from '@lib/axios';
 import { StatePaginationStatus } from '@enums/StatePaginationStatus';
@@ -19,7 +18,7 @@ const axiosConfig = {
 };
 
 export const usePaginationData = (key: string, perList = 10) => {
-	const [state, setState] = useState<StatePaginationStatus>(StatePaginationStatus.LOADING);
+	const [state, setState] = useState(StatePaginationStatus.LOADING);
 	const [flatData, setFlatData] = useState([]);
 	const AxiosAbortController = useMemo(() => new AbortController(), []);
 
