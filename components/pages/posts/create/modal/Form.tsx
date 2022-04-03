@@ -1,10 +1,11 @@
-import * as React from 'react';import { useState } from 'react';
+import * as React from 'react';
+import { useState } from 'react';
 import { useAuth } from '@hooks/useAuth';
 
 import { Formik } from 'formik';
 import Dropzone from 'react-dropzone';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faImages } from '@fortawesome/free-solid-svg-icons';
+import { faImages, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Avatar } from '@components/Avatar';
 import { Button } from '@components/Button';
 
@@ -60,10 +61,25 @@ export const Form = ({ createPost }: FormProps) => {
 								}
 
 								return (
-									<section>
+									<section className="group relative hover:bg-dark-100 border-[1px] border-dark-100 transition-colors active:bg-dark-200 rounded-lg mx-4 py-6">
+										<button
+											className="w-8 h-8 flex justify-center items-center absolute top-2 right-2 bg-dark-100 hover:opacity-80 group-hover:bg-dark-200 rounded-full p-3"
+											onClick={() => setIsUploadActive(prevState => !prevState)}
+										>
+											<FontAwesomeIcon icon={faTimes} className="text-light-100" />
+										</button>
+
 										<div {...getRootProps()}>
 											<input {...getInputProps()} />
-											<p>Drag n drop some files here, or click to select files</p>
+
+											<div className="flex flex-col items-center gap-2">
+												<FontAwesomeIcon icon={faImages} className="text-3xl text-light-200" />
+
+												<div className="flex flex-col text-light-100 text-center">
+													<span className="text-xl font-medium">Add photos</span>
+													<span className="text-xs">or drag and drop</span>
+												</div>
+											</div>
 										</div>
 									</section>
 								);
