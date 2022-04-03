@@ -1,16 +1,15 @@
-import * as React from 'react';
-import { useAuth } from '@hooks/useAuth';
+import * as React from 'react';import { useAuth } from '@hooks/useAuth';
 import { useAppDispatch, useAppSelector } from '@hooks/redux';
 
 import { faBell, faEllipsisVertical, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { faFacebookMessenger } from '@fortawesome/free-brands-svg-icons';
-import { Button } from '@components/nav/additions/shared/Button';
 import { Messenger } from '@components/nav/additions/messenger/Messenger';
 import { Notifications } from '@components/nav/additions/notifications/Notifications';
 
 import { toggleActive as toggleActiveSidebar } from '@redux/slices/SidebarSlice';
 import { toggleActive as toggleActiveMessenger } from '@redux/slices/MessengerSlice';
 import { toggleActive as toggleActiveNotificationsList } from '@redux/slices/NotificationsListSlice';
+import { RoundedButton } from '@components/RoundedButton';
 
 export const Additions = () => {
 	const { logout, isLoading } = useAuth();
@@ -28,11 +27,11 @@ export const Additions = () => {
 	return (
 		<div className="h-full flex justify-end items-center gap-2">
 			<div className="lg:hidden">
-				<Button name="Sidebar" icon={faEllipsisVertical} callback={handleToggleSidebar} />
+				<RoundedButton name="Sidebar" icon={faEllipsisVertical} callback={handleToggleSidebar} />
 			</div>
 
 			<div className="relative">
-				<Button name="Messenger" icon={faFacebookMessenger} callback={handleToggleMessenger} />
+				<RoundedButton name="Messenger" icon={faFacebookMessenger} callback={handleToggleMessenger} />
 
 				{isMessengerActive && (
 					<>
@@ -43,7 +42,7 @@ export const Additions = () => {
 			</div>
 
 			<div className="relative">
-				<Button name="Notifications" icon={faBell} callback={handleToggleNotificationsList} />
+				<RoundedButton name="Notifications" icon={faBell} callback={handleToggleNotificationsList} />
 
 				{isNotificationsListActive && (
 					<>
@@ -54,7 +53,7 @@ export const Additions = () => {
 			</div>
 
 			<div className={isLoading ? 'opacity-60' : 'hover:opacity-80'}>
-				<Button name="Log out" icon={faRightFromBracket} callback={handleLogout} />
+				<RoundedButton name="Log out" icon={faRightFromBracket} callback={handleLogout} />
 			</div>
 		</div>
 	);

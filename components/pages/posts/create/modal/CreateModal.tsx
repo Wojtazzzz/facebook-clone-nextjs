@@ -7,6 +7,7 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Form } from '@components/pages/posts/create/modal/Form';
 
 import type { MouseEvent } from 'react';
+import { RoundedButton } from '@components/RoundedButton';
 
 const modalStyles = {
 	content: {
@@ -48,12 +49,14 @@ export const CreateModal = ({ handleCloseModal }: CreateModalProps) => {
 
 						<h2 className="text-2xl text-center font-bold">Create Post</h2>
 
-						<div
-							className="w-8 h-8 flex justify-center items-center hover:bg-dark-200 rounded-full transition-colors cursor-pointer"
-							onClick={handleCloseModal}
-						>
-							<FontAwesomeIcon icon={faTimes} className="text-lg" />
-						</div>
+						<RoundedButton
+							name="Close modal"
+							icon={faTimes}
+							size={8}
+							bgColor="dark-200"
+							onHover="bg-dark-100"
+							callback={handleCloseModal}
+						/>
 					</div>
 
 					<Form />

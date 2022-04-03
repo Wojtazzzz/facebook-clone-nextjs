@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { useState } from 'react';
+import * as React from 'react';import { useState } from 'react';
 import { useAuth } from '@hooks/useAuth';
 import { useAxios } from '@hooks/useAxios';
 
@@ -28,7 +27,7 @@ export const Form = () => {
 
 		data.images.forEach(img => formData.append('images[]', img));
 
-		sendRequest({ method: 'POST', url: '/api/postsss', data: formData });
+		sendRequest({ method: 'POST', url: '/api/posts', data: formData });
 	};
 
 	const handleToggleDropComponent = () => setIsUploadActive(prevState => !prevState);

@@ -1,11 +1,10 @@
-import * as React from 'react';
-
-import Link from 'next/link';
+import * as React from 'react';import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
 import { Avatar } from '@components/Avatar';
 
 import type { UserType } from '@ctypes/features/UserType';
+import { RoundedButton } from '@components/RoundedButton';
 
 interface HeaderProps {
 	author: UserType;
@@ -34,12 +33,14 @@ export const Header = ({ author, created_at, updated_at }: HeaderProps) => {
 				</div>
 			</div>
 
-			<button
-				className="w-8 h-8 flex justify-center items-center hover:bg-dark-100 rounded-full transition-colors cursor-pointer"
-				onClick={() => alert('Coming soon!')}
-			>
-				<FontAwesomeIcon className="text-lg text-light-100" icon={faEllipsis} />
-			</button>
+			<RoundedButton
+				name="Show post settings"
+				icon={faEllipsis}
+				size={8}
+				bgColor="dark-200"
+				onHover="bg-dark-100"
+				callback={() => alert('Coming soon!')}
+			/>
 		</div>
 	);
 };
