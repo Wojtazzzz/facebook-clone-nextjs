@@ -1,4 +1,5 @@
-import * as React from 'react';import { useState } from 'react';
+import * as React from 'react';
+import { useState } from 'react';
 import { useAuth } from '@hooks/useAuth';
 import { useAxios } from '@hooks/useAxios';
 
@@ -30,6 +31,7 @@ export const Form = () => {
 		sendRequest({ method: 'POST', url: '/api/postsss', data: formData });
 	};
 
+	const handleToggleDropComponent = () => setIsUploadActive(prevState => !prevState);
 	const handleCloseDropComponent = () => setIsUploadActive(false);
 
 	if (state.status === StateStatus.SUCCESS) return <Success />;
@@ -84,7 +86,7 @@ export const Form = () => {
 								<button
 									type="button"
 									className="focus:outline-none"
-									onClick={() => setIsUploadActive(prevState => !prevState)}
+									onClick={handleToggleDropComponent}
 								>
 									<FontAwesomeIcon icon={faImages} className="text-2xl text-green-400" />
 								</button>
