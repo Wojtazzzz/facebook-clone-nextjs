@@ -1,13 +1,12 @@
-import * as React from 'react';import { useEffect } from 'react';
-import { useAxios } from '@hooks/useAxios';
+import * as React from 'react';
+import { useEffect } from 'react';
 
 import Modal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import { Content } from '@components/pages/posts/create/modal/Content';
+import { Form } from '@components/pages/posts/create/modal/Form';
 
 import type { MouseEvent } from 'react';
-import type { CreatePostPayload } from '@ctypes/forms/CreatePostPayload';
 
 const modalStyles = {
 	content: {
@@ -36,22 +35,9 @@ interface CreateModalProps {
 }
 
 export const CreateModal = ({ handleCloseModal }: CreateModalProps) => {
-	const { state, sendRequest } = useAxios();
-
 	useEffect(() => {
 		Modal.setAppElement('body');
 	}, []);
-
-	const createPost = (data: CreatePostPayload) => {
-		const formData = new FormData();
-		formData.append('content', data.content);
-
-		data.images.forEach(img => {
-			formData.append('images[]', img);
-		});
-
-		sendRequest({ method: 'POST', url: '/api/posts', data: formData });
-	};
 
 	return (
 		<Modal contentLabel="Create Post" isOpen={true} style={modalStyles} onRequestClose={handleCloseModal}>
@@ -70,7 +56,7 @@ export const CreateModal = ({ handleCloseModal }: CreateModalProps) => {
 						</div>
 					</div>
 
-					<Content state={state} createPost={createPost} />
+					<Form />
 				</div>
 			</div>
 		</Modal>

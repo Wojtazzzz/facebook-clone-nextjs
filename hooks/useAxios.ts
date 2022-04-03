@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef } from 'react';import axios from '@lib/axios';
+import { useState, useEffect, useRef } from 'react';
+import axios from '@lib/axios';
 import { StateStatus } from '@enums/StateStatus';
 
 import type { AxiosRequestConfig } from 'axios';
