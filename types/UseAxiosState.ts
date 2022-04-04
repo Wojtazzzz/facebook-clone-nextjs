@@ -1,4 +1,6 @@
-import { StateStatus } from '@enums/StateStatus';type data = {
+import { StateStatus } from '@enums/StateStatus';
+
+type data = {
 	data: [];
 	message: string;
 };

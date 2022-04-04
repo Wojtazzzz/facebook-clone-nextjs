@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useMemo } from 'react';
+
 import axios from '@libs/axios';
 import { StateStatus } from '@enums/StateStatus';
 
@@ -7,13 +8,13 @@ import type { UseAxiosState } from '@ctypes/UseAxiosState';
 
 export const useAxios = () => {
     const [state, setState] = useState<UseAxiosState>({ status: StateStatus.EMPTY });
-    const AxiosAbortControllerRef = useRef(new AbortController());
+    const AxiosAbortController = useMemo(() => new AbortController(), []);
 
-    const axiosOptions = { signal: AxiosAbortControllerRef.current.signal };
+    const axiosOptions = { signal: AxiosAbortController.signal };
 
     useEffect(() => {
-        return () => AxiosAbortControllerRef.current.abort();
-    }, []);
+        return () => AxiosAbortController.abort();
+    }, [AxiosAbortController]);
 
     const sendRequest = (params: AxiosRequestConfig) => {
         setState({ status: StateStatus.LOADING });
