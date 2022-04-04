@@ -1,9 +1,7 @@
 import * as React from 'react';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImage } from '@fortawesome/free-solid-svg-icons';
-import { ButtonOverlay } from '@components/chat/shared/ButtonOverlay';
 import { SendMessage } from '@components/chat/SendMessage';
+import { RoundedButton } from '@components/RoundedButton';
 
 interface PanelProps {
 	friendId: number;
@@ -14,9 +12,14 @@ export const Panel = ({ friendId }: PanelProps) => {
 
 	return (
 		<div data-testid="chat-panel" className="w-full flex justify-between items-center text-light-100 p-2">
-			<ButtonOverlay callback={handleSendImage}>
-				<FontAwesomeIcon icon={faImage} />
-			</ButtonOverlay>
+			<RoundedButton
+				name="Close chat"
+				icon={faImage}
+				size={8}
+				bgColor="dark-200"
+				onHover="bg-dark-100"
+				callback={handleSendImage}
+			/>
 
 			<SendMessage friendId={friendId} />
 		</div>

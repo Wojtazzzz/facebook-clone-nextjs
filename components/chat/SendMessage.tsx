@@ -1,18 +1,18 @@
 import * as React from 'react';
 import { useState, useEffect, useRef, memo } from 'react';
 import { useAxios } from '@hooks/useAxios';
+import { usePaginationData } from '@hooks/usePaginationData';
 
 import { Formik, FormikHelpers } from 'formik';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleCheck, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
-import { ButtonOverlay } from '@components/chat/shared/ButtonOverlay';
 
 import { SendMessageSchema } from '@validation/SendMessageSchema';
+import { StateStatus } from '@enums/StateStatus';
+import { StatePaginationStatus } from '@enums/StatePaginationStatus';
 
 import type { Function } from '@ctypes/Function';
-import { StateStatus } from '@enums/StateStatus';
-import { usePaginationData } from '@hooks/usePaginationData';
-import { StatePaginationStatus } from '@enums/StatePaginationStatus';
+import { RoundedButton } from '@components/RoundedButton';
 
 interface SendMessageProps {
 	friendId: number;
@@ -77,13 +77,23 @@ export const SendMessage = memo<SendMessageProps>(({ friendId }) => {
 					/>
 
 					{isMessagePrepared ? (
-						<ButtonOverlay type="submit" callback={handleSubmit}>
-							<FontAwesomeIcon icon={faCircleCheck} />
-						</ButtonOverlay>
+						<RoundedButton
+							name="Send text message"
+							icon={faCircleCheck}
+							size={8}
+							bgColor="dark-200"
+							onHover="bg-dark-100"
+							callback={handleSubmit}
+						/>
 					) : (
-						<ButtonOverlay callback={handleSendEmoji}>
-							<FontAwesomeIcon icon={faThumbsUp} />
-						</ButtonOverlay>
+						<RoundedButton
+							name="Send emoji"
+							icon={faThumbsUp}
+							size={8}
+							bgColor="dark-200"
+							onHover="bg-dark-100"
+							callback={handleSendEmoji}
+						/>
 					)}
 				</form>
 			)}

@@ -1,15 +1,16 @@
-import * as React from 'react';import { useAuth } from '@hooks/useAuth';
+import * as React from 'react';
+import { useAuth } from '@hooks/useAuth';
 import { useAppDispatch, useAppSelector } from '@hooks/redux';
 
 import { faBell, faEllipsisVertical, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { faFacebookMessenger } from '@fortawesome/free-brands-svg-icons';
 import { Messenger } from '@components/nav/additions/messenger/Messenger';
 import { Notifications } from '@components/nav/additions/notifications/Notifications';
+import { RoundedButton } from '@components/RoundedButton';
 
 import { toggleActive as toggleActiveSidebar } from '@redux/slices/SidebarSlice';
 import { toggleActive as toggleActiveMessenger } from '@redux/slices/MessengerSlice';
 import { toggleActive as toggleActiveNotificationsList } from '@redux/slices/NotificationsListSlice';
-import { RoundedButton } from '@components/RoundedButton';
 
 export const Additions = () => {
 	const { logout, isLoading } = useAuth();

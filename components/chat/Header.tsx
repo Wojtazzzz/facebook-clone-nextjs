@@ -1,10 +1,8 @@
-import * as React from 'react';
-import { useAppDispatch } from '@hooks/redux';
+import * as React from 'react';import { useAppDispatch } from '@hooks/redux';
 
 import Image from 'next/image';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import { ButtonOverlay } from '@components/chat/shared/ButtonOverlay';
+import { RoundedButton } from '@components/RoundedButton';
 
 import { toggleActive } from '@redux/slices/ChatSlice';
 
@@ -16,7 +14,7 @@ interface HeaderProps {
 export const Header = ({ name, profileImage }: HeaderProps) => {
 	const dispatch = useAppDispatch();
 
-	const handleClose = () => dispatch(toggleActive(undefined));
+	const handleCloseChat = () => dispatch(toggleActive(undefined));
 
 	return (
 		<div className="w-full flex justify-between text-light-200 shadow-md p-3">
@@ -26,9 +24,14 @@ export const Header = ({ name, profileImage }: HeaderProps) => {
 				<span className="font-medium">{name}</span>
 			</div>
 
-			<ButtonOverlay callback={handleClose}>
-				<FontAwesomeIcon icon={faTimes} />
-			</ButtonOverlay>
+			<RoundedButton
+				name="Close chat"
+				icon={faTimes}
+				size={8}
+				bgColor="dark-200"
+				onHover="bg-dark-100"
+				callback={handleCloseChat}
+			/>
 		</div>
 	);
 };
