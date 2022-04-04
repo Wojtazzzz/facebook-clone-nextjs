@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useRouter } from 'next/router';
 import { useAppSelector } from '@hooks/redux';
 import { useAuth } from '@hooks/useAuth';
@@ -12,29 +11,29 @@ import { Chat } from '@components/chat/Chat';
 import { AuthMiddleware } from '@enums/AuthMiddleware';
 
 interface UserLayoutProps {
-	children: React.ReactNode;
+    children: React.ReactNode;
 }
 
 export const UserLayout = ({ children }: UserLayoutProps) => {
-	useAuth(AuthMiddleware.AUTH);
-	const { route } = useRouter();
-	const { friend } = useAppSelector(state => state.chat);
+    useAuth(AuthMiddleware.AUTH);
+    const { route } = useRouter();
+    const { friend } = useAppSelector((state) => state.chat);
 
-	return (
-		<>
-			<Nav />
+    return (
+        <>
+            <Nav />
 
-			<div className="flex justify-between relative translate-y-14">
-				<Sidebar />
+            <div className="flex justify-between relative translate-y-14">
+                <Sidebar />
 
-				<main className="w-full max-w-[1024px] h-screen overflow-y-scroll mx-auto pb-14">{children}</main>
+                <main className="w-full max-w-[1024px] h-screen overflow-y-scroll mx-auto pb-14">{children}</main>
 
-				{route === '/' && <Contacts />}
-			</div>
+                {route === '/' && <Contacts />}
+            </div>
 
-			<Toggler />
+            <Toggler />
 
-			{!!friend && <Chat friend={friend} />}
-		</>
-	);
+            {!!friend && <Chat friend={friend} />}
+        </>
+    );
 };

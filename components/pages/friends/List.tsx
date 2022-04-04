@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { memo } from 'react';
 import { usePaginationData } from '@hooks/usePaginationData';
 
@@ -15,31 +14,31 @@ import { getPathForPagination } from '@lib/getPathForPagination';
 import type { UserType } from '@ctypes/features/UserType';
 
 interface ListProps {
-	userId: number;
-	type: string | string[] | undefined;
+    userId: number;
+    type: string | string[] | undefined;
 }
 
 export const List = memo<ListProps>(({ userId, type }) => {
-	const key = getPathForPagination(type ?? '', userId);
-	const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginationData(key);
+    const key = getPathForPagination(type ?? '', userId);
+    const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginationData(key);
 
-	if (state === StatePaginationStatus.LOADING) return <Loader />;
-	if (state === StatePaginationStatus.ERROR) return <ApiError />;
-	if (isEmpty || !data) return <EmptyList title="No users, maybe this app is so boring..." />;
+    if (state === StatePaginationStatus.LOADING) return <Loader />;
+    if (state === StatePaginationStatus.ERROR) return <ApiError />;
+    if (isEmpty || !data) return <EmptyList title="No users, maybe this app is so boring..." />;
 
-	const slots = (data as UserType[]).map(user => (
-		<Slot key={user.id} {...user}>
-			<Actions friend={user} type={type ?? ''} />
-		</Slot>
-	));
+    const slots = (data as UserType[]).map((user) => (
+        <Slot key={user.id} {...user}>
+            <Actions friend={user} type={type ?? ''} />
+        </Slot>
+    ));
 
-	return (
-		<div data-testid="friends-list" className="flex flex-col gap-2">
-			{slots}
+    return (
+        <div data-testid="friends-list" className="flex flex-col gap-2">
+            {slots}
 
-			{isReachedEnd || <LoadMore isLoading={state === StatePaginationStatus.FETCHING} callback={loadMore} />}
-		</div>
-	);
+            {isReachedEnd || <LoadMore isLoading={state === StatePaginationStatus.FETCHING} callback={loadMore} />}
+        </div>
+    );
 });
 
 List.displayName = 'List';

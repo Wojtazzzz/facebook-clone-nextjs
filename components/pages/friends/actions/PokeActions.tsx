@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useAxios } from '@hooks/useAxios';
 
 import { Failure } from '@components/pages/friends/actions/messages/Failure';
@@ -10,37 +9,37 @@ import { StateStatus } from '@enums/StateStatus';
 import type { PokingUserType } from '@ctypes/features/PokingUserType';
 
 interface PokeActionsProps {
-	friend: PokingUserType;
+    friend: PokingUserType;
 }
 
 export const PokeActions = ({ friend }: PokeActionsProps) => {
-	const { state, sendRequest } = useAxios();
+    const { state, sendRequest } = useAxios();
 
-	const handlePoke = (event: FocusEvent) => {
-		event.preventDefault();
+    const handlePoke = (event: FocusEvent) => {
+        event.preventDefault();
 
-		sendRequest({ method: 'POST', url: '/api/pokes/update', data: { user_id: friend.id } });
-	};
+        sendRequest({ method: 'POST', url: '/api/pokes/update', data: { user_id: friend.id } });
+    };
 
-	if (state.status === StateStatus.SUCCESS) return <Success message="Friend poked back" />;
-	if (state.status === StateStatus.ERROR) return <Failure message="Something went wrong" />;
+    if (state.status === StateStatus.SUCCESS) return <Success message="Friend poked back" />;
+    if (state.status === StateStatus.ERROR) return <Failure message="Something went wrong" />;
 
-	return (
-		<div className="w-[220px] flex flex-col items-center gap-1">
-			<Button
-				title="Poke back"
-				styles="w-[150px]"
-				isDisabled={state.status === StateStatus.LOADING}
-				callback={event => handlePoke(event)}
-			/>
+    return (
+        <div className="w-[220px] flex flex-col items-center gap-1">
+            <Button
+                title="Poke back"
+                styles="w-[150px]"
+                isDisabled={state.status === StateStatus.LOADING}
+                callback={(event) => handlePoke(event)}
+            />
 
-			<div className="flex flex-col items-center text-light-100">
-				<small>
-					{friend.first_name} poked you {friend.poke_info?.count} times in a row
-				</small>
+            <div className="flex flex-col items-center text-light-100">
+                <small>
+                    {friend.first_name} poked you {friend.poke_info?.count} times in a row
+                </small>
 
-				<small>{friend.poke_info?.updated_at}</small>
-			</div>
-		</div>
-	);
+                <small>{friend.poke_info?.updated_at}</small>
+            </div>
+        </div>
+    );
 };

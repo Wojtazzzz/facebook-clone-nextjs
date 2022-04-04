@@ -1,4 +1,4 @@
-import * as React from 'react';import { useState } from 'react';
+import { useState } from 'react';
 import { useAuth } from '@hooks/useAuth';
 import { useAxios } from '@hooks/useAxios';
 
@@ -17,92 +17,94 @@ import { StateStatus } from '@enums/StateStatus';
 import type { CreatePostPayload } from '@ctypes/forms/CreatePostPayload';
 
 export const Form = () => {
-	const [isUploadActive, setIsUploadActive] = useState(false);
-	const { user } = useAuth();
-	const { state, sendRequest } = useAxios();
+    const [isUploadActive, setIsUploadActive] = useState(false);
+    const { user } = useAuth();
+    const { state, sendRequest } = useAxios();
 
-	const createPost = (data: CreatePostPayload) => {
-		const formData = new FormData();
-		formData.append('content', data.content);
+    const createPost = (data: CreatePostPayload) => {
+        const formData = new FormData();
+        formData.append('content', data.content);
 
-		data.images.forEach(img => formData.append('images[]', img));
+        data.images.forEach((img) => formData.append('images[]', img));
 
-		sendRequest({ method: 'POST', url: '/api/posts', data: formData });
-	};
+        sendRequest({ method: 'POST', url: '/api/posts', data: formData });
+    };
 
-	const handleToggleDropComponent = () => setIsUploadActive(prevState => !prevState);
-	const handleCloseDropComponent = () => setIsUploadActive(false);
+    const handleToggleDropComponent = () => setIsUploadActive((prevState) => !prevState);
+    const handleCloseDropComponent = () => setIsUploadActive(false);
 
-	if (state.status === StateStatus.SUCCESS) return <Success />;
+    if (state.status === StateStatus.SUCCESS) return <Success />;
 
-	return (
-		<Formik
-			initialValues={{ content: '', images: [] }}
-			validationSchema={PostSchema}
-			onSubmit={values => createPost(values)}
-		>
-			{({ values, handleChange, handleBlur, handleSubmit, setFieldValue }) => (
-				<form onSubmit={handleSubmit}>
-					<div className="w-full p-4">
-						<div className="flex gap-3 mb-1">
-							<Avatar
-								src={`${user?.profile_image}`}
-								size="40"
-								alt={`${user?.first_name} profile image`}
-							/>
+    return (
+        <Formik
+            initialValues={{ content: '', images: [] }}
+            validationSchema={PostSchema}
+            onSubmit={(values) => createPost(values)}
+        >
+            {({ values, handleChange, handleBlur, handleSubmit, setFieldValue }) => (
+                <form onSubmit={handleSubmit}>
+                    <div className="w-full p-4">
+                        <div className="flex gap-3 mb-1">
+                            <Avatar
+                                src={`${user?.profile_image}`}
+                                size="40"
+                                alt={`${user?.first_name} profile image`}
+                            />
 
-							<span className="text-sm text-light-100 font-bold mt-1">{user?.name}</span>
-						</div>
+                            <span className="text-sm text-light-100 font-bold mt-1">{user?.name}</span>
+                        </div>
 
-						<div className="w-full">
-							<textarea
-								name="content"
-								onChange={handleChange}
-								onBlur={handleBlur}
-								value={values.content}
-								placeholder={`What's on your mind, ${user?.first_name}?`}
-								className="w-full text-lg text-light-100 bg-transparent outline-none resize-none scrollbar-thin scrollbar-thumb-dark-200 p-3"
-							></textarea>
-						</div>
-					</div>
+                        <div className="w-full">
+                            <textarea
+                                name="content"
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                value={values.content}
+                                placeholder={`What's on your mind, ${user?.first_name}?`}
+                                className="w-full text-lg text-light-100 bg-transparent outline-none resize-none scrollbar-thin scrollbar-thumb-dark-200 p-3"
+                            ></textarea>
+                        </div>
+                    </div>
 
-					{isUploadActive && (
-						<ImageUploader
-							handleDrop={acceptedFiles => setFieldValue('images', [...values.images, ...acceptedFiles])}
-							handleClose={handleCloseDropComponent}
-						/>
-					)}
+                    {isUploadActive && (
+                        <ImageUploader
+                            handleDrop={(acceptedFiles) =>
+                                setFieldValue('images', [...values.images, ...acceptedFiles])
+                            }
+                            handleClose={handleCloseDropComponent}
+                        />
+                    )}
 
-					<div className="w-full mb-3 p-3">
-						<Errors state={state} />
-					</div>
+                    <div className="w-full mb-3 p-3">
+                        <Errors state={state} />
+                    </div>
 
-					<div className="w-full p-3">
-						<div className="w-full flex justify-between items-center border-[1.5px] border-dark-100 rounded-lg p-3">
-							<span className="text-light-200 font-medium">Add to your post</span>
+                    <div className="w-full p-3">
+                        <div className="w-full flex justify-between items-center border-[1.5px] border-dark-100 rounded-lg p-3">
+                            <span className="text-light-200 font-medium">Add to your post</span>
 
-							<div className="flex gap-2">
-								<button
-									type="button"
-									className="focus:outline-none"
-									onClick={handleToggleDropComponent}
-								>
-									<FontAwesomeIcon icon={faImages} className="text-2xl text-green-400" />
-								</button>
-							</div>
-						</div>
-					</div>
+                            <div className="flex gap-2">
+                                <button
+                                    type="button"
+                                    className="focus:outline-none"
+                                    onClick={handleToggleDropComponent}
+                                >
+                                    <FontAwesomeIcon icon={faImages} className="text-2xl text-green-400" />
+                                </button>
+                            </div>
+                        </div>
+                    </div>
 
-					<div className="pb-4 px-4">
-						<Button
-							type="submit"
-							title="Post"
-							isDisabled={state.status === StateStatus.LOADING}
-							styles="w-full"
-						/>
-					</div>
-				</form>
-			)}
-		</Formik>
-	);
+                    <div className="pb-4 px-4">
+                        <Button
+                            type="submit"
+                            title="Post"
+                            isDisabled={state.status === StateStatus.LOADING}
+                            styles="w-full"
+                        />
+                    </div>
+                </form>
+            )}
+        </Formik>
+    );
 };

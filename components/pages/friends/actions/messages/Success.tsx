@@ -1,9 +1,7 @@
-import * as React from 'react';
-
 interface SuccessProps {
-	message: string;
+    message: string;
 }
 
 export const Success = ({ message }: SuccessProps) => {
-	return <span className="text-sm text-green-600 font-medium">{message}</span>;
+    return <span className="text-sm text-green-600 font-medium">{message}</span>;
 };

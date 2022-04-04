@@ -1,13 +1,11 @@
-import * as React from 'react';
-
 interface ListHeaderProps {
-	title: string;
+    title: string;
 }
 
 export const ListHeader = ({ title }: ListHeaderProps) => {
-	return (
-		<div className="w-full">
-			<span className="text-2xl text-gray-300 font-bold">{title}</span>
-		</div>
-	);
+    return (
+        <div className="w-full">
+            <span className="text-2xl text-gray-300 font-bold">{title}</span>
+        </div>
+    );
 };
