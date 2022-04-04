@@ -1,6 +1,6 @@
 import { SkeletonLoading } from '@components/SkeletonLoading';
 
-import { getRandomInt } from '@lib/getRandomInt';
+import { getRandomInt } from '@utils/getRandomInt';
 
 export const SinglePostLoader = () => {
     const randomWidth = {

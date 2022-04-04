@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import { SkeletonLoading } from '@components/SkeletonLoading';
 
-import { getRandomInt } from '@lib/getRandomInt';
+import { getRandomInt } from '@utils/getRandomInt';
 
 export const ListSingleLoader = () => {
     const [width, setWidth] = useState(100);

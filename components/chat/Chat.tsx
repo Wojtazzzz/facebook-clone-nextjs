@@ -7,7 +7,7 @@ import { Messages } from '@components/chat/Messages';
 import { Panel } from '@components/chat/Panel';
 
 import Echo from 'laravel-echo';
-import axios from '@lib/axios';
+import axios from '@libs/axios';
 
 import type { UserType } from '@ctypes/features/UserType';
 

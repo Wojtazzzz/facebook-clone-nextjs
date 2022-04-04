@@ -1,78 +1,79 @@
-import { useState, useEffect, useMemo } from 'react';import useSWRInfinite from 'swr/infinite';
+import { useState, useEffect, useMemo } from 'react';
+import useSWRInfinite from 'swr/infinite';
 
-import axios from '@lib/axios';
+import axios from '@libs/axios';
 import { StatePaginationStatus } from '@enums/StatePaginationStatus';
 
 const axiosConfig = {
-	transformResponse: [
-		function (responseData: any) {
-			let data = JSON.parse(responseData);
+    transformResponse: [
+        function (responseData: any) {
+            let data = JSON.parse(responseData);
 
-			if (!Array.isArray(data)) {
-				data = [...Object.values(data)] as [];
-			}
+            if (!Array.isArray(data)) {
+                data = [...Object.values(data)] as [];
+            }
 
-			return data;
-		},
-	],
+            return data;
+        },
+    ],
 };
 
 export const usePaginationData = (key: string, perList = 10) => {
-	const [state, setState] = useState(StatePaginationStatus.LOADING);
-	const [flatData, setFlatData] = useState([]);
-	const AxiosAbortController = useMemo(() => new AbortController(), []);
+    const [state, setState] = useState(StatePaginationStatus.LOADING);
+    const [flatData, setFlatData] = useState([]);
+    const AxiosAbortController = useMemo(() => new AbortController(), []);
 
-	const getKey = (pageIndex: number, previousPageData: []) => {
-		if (previousPageData && !previousPageData.length) return null;
+    const getKey = (pageIndex: number, previousPageData: []) => {
+        if (previousPageData && !previousPageData.length) return null;
 
-		return `${key}?page=${++pageIndex}`;
-	};
+        return `${key}?page=${++pageIndex}`;
+    };
 
-	const fetcher = (url: string) =>
-		axios
-			.get(url, axiosConfig)
-			.then(response => response.data)
-			.catch(error => {
-				if (error.message !== 'canceled') {
-					setState(StatePaginationStatus.ERROR);
-				}
-			});
+    const fetcher = (url: string) =>
+        axios
+            .get(url, axiosConfig)
+            .then((response) => response.data)
+            .catch((error) => {
+                if (error.message !== 'canceled') {
+                    setState(StatePaginationStatus.ERROR);
+                }
+            });
 
-	const { data, size, setSize, mutate } = useSWRInfinite<unknown[]>(getKey, fetcher);
+    const { data, size, setSize, mutate } = useSWRInfinite<unknown[]>(getKey, fetcher);
 
-	useEffect(() => {
-		setState(StatePaginationStatus.LOADING);
-	}, [key]);
+    useEffect(() => {
+        setState(StatePaginationStatus.LOADING);
+    }, [key]);
 
-	useEffect(() => {
-		if (!data) return;
+    useEffect(() => {
+        if (!data) return;
 
-		setFlatData(data.flat() as []);
-		setState(StatePaginationStatus.SUCCESS);
+        setFlatData(data.flat() as []);
+        setState(StatePaginationStatus.SUCCESS);
 
-		return () => AxiosAbortController.abort();
-	}, [data, AxiosAbortController]);
+        return () => AxiosAbortController.abort();
+    }, [data, AxiosAbortController]);
 
-	const loadMore = () => {
-		setState(StatePaginationStatus.FETCHING);
-		setSize(size + 1);
-	};
+    const loadMore = () => {
+        setState(StatePaginationStatus.FETCHING);
+        setSize(size + 1);
+    };
 
-	const reloadData = () => {
-		mutate();
-	};
+    const reloadData = () => {
+        mutate();
+    };
 
-	const addData = (data: []) => {
-		setFlatData(prevValue => [...prevValue, ...data]);
-	};
+    const addData = (data: []) => {
+        setFlatData((prevValue) => [...prevValue, ...data]);
+    };
 
-	return {
-		data: flatData,
-		state,
-		isEmpty: flatData?.length === 0,
-		isReachedEnd: flatData?.length === 0 || (data && data[data.length - 1]?.length < perList),
-		loadMore,
-		reloadData,
-		addData,
-	};
+    return {
+        data: flatData,
+        state,
+        isEmpty: flatData?.length === 0,
+        isReachedEnd: flatData?.length === 0 || (data && data[data.length - 1]?.length < perList),
+        loadMore,
+        reloadData,
+        addData,
+    };
 };

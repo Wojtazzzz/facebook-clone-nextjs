@@ -9,7 +9,7 @@ import { Slot } from '@components/pages/friends/Slot';
 import { Actions } from '@components/pages/friends/actions/Actions';
 
 import { StatePaginationStatus } from '@enums/StatePaginationStatus';
-import { getPathForPagination } from '@lib/getPathForPagination';
+import { getPathForPagination } from '@utils/getPathForPagination';
 
 import type { UserType } from '@ctypes/features/UserType';
 

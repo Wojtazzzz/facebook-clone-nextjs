@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import { getStoredImagePath } from '@lib/getStoredImagePath';
+import { getStoredImagePath } from '@utils/getStoredImagePath';
 
 interface SlideProps {
     image: string;

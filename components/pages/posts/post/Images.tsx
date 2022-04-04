@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { Gallery } from '@components/pages/posts/post/gallery/Gallery';
 
-import { getStoredImagePath } from '@lib/getStoredImagePath';
+import { getStoredImagePath } from '@utils/getStoredImagePath';
 
 interface ImagesProps {
     images: string[];
