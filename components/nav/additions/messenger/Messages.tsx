@@ -9,7 +9,7 @@ import { EmptyList } from '@components/nav/additions/shared/EmptyList';
 
 import { StatePaginationStatus } from '@enums/StatePaginationStatus';
 
-import type { MessengerNotificationType } from '@ctypes/features/MessengerNotificationType';
+import type { UserType } from '@ctypes/features/UserType';
 
 export const Messages = memo(() => {
     const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginationData('/api/messages/messenger');
@@ -18,9 +18,7 @@ export const Messages = memo(() => {
     if (state === StatePaginationStatus.ERROR) return <ApiError isSmall />;
     if (isEmpty || !data) return <EmptyList title="Your Messenger is empty" />;
 
-    const ContactsComponents = (data as MessengerNotificationType[]).map((contact) => (
-        <Slot key={contact.id} {...contact} />
-    ));
+    const ContactsComponents = (data as UserType[]).map((friend) => <Slot key={friend.id} {...friend} />);
 
     return (
         <InfiniteScroll

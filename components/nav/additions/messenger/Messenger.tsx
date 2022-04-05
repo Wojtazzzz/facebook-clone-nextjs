@@ -2,7 +2,6 @@ import { memo } from 'react';
 
 import { ListHeader } from '@components/nav/additions/shared/ListHeader';
 import { Search } from '@components/nav/additions/messenger/Search';
-import { Warning } from '@components/nav/additions/messenger/Warning';
 import { Messages } from '@components/nav/additions/messenger/Messages';
 
 export const Messenger = memo(() => {
@@ -10,7 +9,6 @@ export const Messenger = memo(() => {
         <div className="min-w-[300px] md:min-w-[360px] flex flex-col gap-4 bg-dark-200 absolute top-full -right-24 shadow-md rounded-md p-3">
             <ListHeader title="Messenger" />
             <Search />
-            <Warning />
 
             <div
                 id="list-of-messenger-contacts"
