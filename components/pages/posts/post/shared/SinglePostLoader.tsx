@@ -1,13 +1,23 @@
+import { useEffect, useState } from 'react';
+
 import { SkeletonLoading } from '@components/SkeletonLoading';
 
 import { getRandomInt } from '@utils/getRandomInt';
 
 export const SinglePostLoader = () => {
-    const randomWidth = {
-        name: getRandomInt(50, 140),
-        date: getRandomInt(60, 160),
-        content: getRandomInt(70, 100),
-    };
+    const [randomWidth, setRandomWidth] = useState({
+        name: 0,
+        date: 0,
+        content: 0,
+    });
+
+    useEffect(() => {
+        setRandomWidth({
+            name: getRandomInt(50, 140),
+            date: getRandomInt(60, 160),
+            content: getRandomInt(70, 100),
+        });
+    }, []);
 
     return (
         <div className="w-full bg-dark-200 rounded-lg">
