@@ -7,15 +7,13 @@ import { Loader } from '@components/nav/additions/shared/Loader';
 import { ApiError } from '@components/ApiError';
 import { EmptyList } from '@components/nav/additions/shared/EmptyList';
 
-import { StatePaginationStatus } from '@enums/StatePaginationStatus';
-
 import type { UserType } from '@ctypes/features/UserType';
 
 export const Messages = memo(() => {
     const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginationData('/api/messages/messenger');
 
-    if (state === StatePaginationStatus.LOADING) return <Loader />;
-    if (state === StatePaginationStatus.ERROR) return <ApiError isSmall />;
+    if (state === 'LOADING') return <Loader />;
+    if (state === 'ERROR') return <ApiError isSmall />;
     if (isEmpty || !data) return <EmptyList title="Your Messenger is empty" />;
 
     const ContactsComponents = (data as UserType[]).map((friend) => <Slot key={friend.id} {...friend} />);

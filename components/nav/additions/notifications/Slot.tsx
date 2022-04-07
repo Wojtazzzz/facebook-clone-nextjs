@@ -4,7 +4,6 @@ import { useAppDispatch } from '@hooks/redux';
 import { Avatar } from '@components/Avatar';
 
 import { toggleActive } from '@redux/slices/NotificationsListSlice';
-import { NotificationType as NotificationTypeEnum } from '@enums/NotificationType';
 
 import type { NotificationType } from '@ctypes/features/NotificationType';
 
@@ -33,7 +32,7 @@ export const Slot = ({ data, read_at }: SlotProps) => {
                 <span className="text-light-200 font-medium">{initiator.name}</span>
 
                 <span className="text-sm text-light-100">
-                    {data.type === NotificationTypeEnum.FRIENDSHIP_INVITATION_SENDED ? (
+                    {data.type === 'FRIENDSHIP_INVITATION_SENDED' ? (
                         <>Send you a friendship invitation</>
                     ) : (
                         <>Accepted your friendship invitation</>

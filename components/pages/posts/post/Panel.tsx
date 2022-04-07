@@ -3,22 +3,18 @@ import { useAxios } from '@hooks/useAxios';
 import { faMessage, faShare, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { PanelButton } from '@components/pages/posts/post/shared/PanelButton';
 
-import { StateStatus } from '@enums/StateStatus';
-
-import type { Function } from '@ctypes/Function';
-
 interface PanelProps {
     post_id: number;
     isLiked: boolean;
-    handleAddLike: Function<void>;
-    handleRemoveLike: Function<void>;
+    handleAddLike: () => void;
+    handleRemoveLike: () => void;
 }
 
 export const Panel = ({ post_id, isLiked, handleAddLike, handleRemoveLike }: PanelProps) => {
     const { state, sendRequest } = useAxios();
 
     const handleLike = () => {
-        if (state.status === StateStatus.LOADING) return;
+        if (state.status === 'LOADING') return;
 
         if (isLiked) {
             handleRemoveLike();

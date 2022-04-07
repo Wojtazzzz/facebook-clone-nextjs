@@ -2,7 +2,7 @@ import { useState, useEffect, useMemo } from 'react';
 import useSWRInfinite from 'swr/infinite';
 
 import axios from '@libs/axios';
-import { StatePaginationStatus } from '@enums/StatePaginationStatus';
+import { UsePaginationDataState } from '@ctypes/UsePaginationDataState';
 
 const axiosConfig = {
     transformResponse: [
@@ -19,7 +19,7 @@ const axiosConfig = {
 };
 
 export const usePaginationData = (key: string, perList = 10) => {
-    const [state, setState] = useState(StatePaginationStatus.LOADING);
+    const [state, setState] = useState<UsePaginationDataState>('LOADING');
     const [flatData, setFlatData] = useState([]);
     const AxiosAbortController = useMemo(() => new AbortController(), []);
 
@@ -35,27 +35,27 @@ export const usePaginationData = (key: string, perList = 10) => {
             .then((response) => response.data)
             .catch((error) => {
                 if (error.message !== 'canceled') {
-                    setState(StatePaginationStatus.ERROR);
+                    setState('ERROR');
                 }
             });
 
     const { data, size, setSize, mutate } = useSWRInfinite<unknown[]>(getKey, fetcher);
 
     useEffect(() => {
-        setState(StatePaginationStatus.LOADING);
+        setState('LOADING');
     }, [key]);
 
     useEffect(() => {
         if (!data) return;
 
         setFlatData(data.flat() as []);
-        setState(StatePaginationStatus.SUCCESS);
+        setState('SUCCESS');
 
         return () => AxiosAbortController.abort();
     }, [data, AxiosAbortController]);
 
     const loadMore = () => {
-        setState(StatePaginationStatus.FETCHING);
+        setState('FETCHING');
         setSize(size + 1);
     };
 

@@ -3,11 +3,11 @@ import { useRouter } from 'next/router';
 import useSWR from 'swr';
 
 import axios from '@libs/axios';
-import { AuthMiddleware } from '@enums/AuthMiddleware';
 
 import type { UserType } from '@ctypes/features/UserType';
+import type { AuthMiddlewareType } from '@ctypes/AuthMiddlewareType';
 
-export const useAuth = (middleware?: AuthMiddleware) => {
+export const useAuth = (middleware?: AuthMiddlewareType) => {
     const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState<never[]>([]);
     const router = useRouter();
@@ -71,8 +71,8 @@ export const useAuth = (middleware?: AuthMiddleware) => {
     };
 
     useEffect(() => {
-        if (middleware === AuthMiddleware.GUEST && user) router.push('/');
-        if (middleware === AuthMiddleware.AUTH && error) logout();
+        if (middleware === 'GUEST' && user) router.push('/');
+        if (middleware === 'USER' && error) logout();
     }, [user, error, middleware, router]);
 
     return {

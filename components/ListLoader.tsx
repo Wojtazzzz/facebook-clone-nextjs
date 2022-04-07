@@ -1,4 +1,6 @@
-import { memo, ReactNode } from 'react';
+import { memo } from 'react';
+
+import type { ReactNode } from 'react';
 
 interface ListLoaderProps {
     count?: number;

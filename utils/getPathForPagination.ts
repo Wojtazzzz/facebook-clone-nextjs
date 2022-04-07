@@ -1,18 +1,24 @@
-import type { ListType } from '@enums/ListType';
+import type { FriendsListType } from '@ctypes/features/FriendsListType';
 
-export const getPathForPagination = (type: ListType | string | string[], userId = 0) => {
-	switch (type) {
-		case 'suggests':
-			return '/api/friendship/suggests';
+export const getPathForPagination = (type: FriendsListType | string[], userId = 0) => {
+    if (!type) {
+        return `/api/friendship/friends/${userId}`;
+    }
 
-		case 'invites':
-			return '/api/friendship/invites';
+    const checkValue = type.toString().toUpperCase();
 
-		case 'pokes':
-			return '/api/pokes';
+    switch (type) {
+        case 'SUGGESTS':
+            return '/api/friendship/suggests';
 
-		default:
-		case 'friends':
-			return `/api/friendship/friends/${userId}`;
-	}
+        case 'INVITES':
+            return '/api/friendship/invites';
+
+        case 'POKES':
+            return '/api/pokes';
+
+        default:
+        case 'FRIENDS':
+            return `/api/friendship/friends/${userId}`;
+    }
 };

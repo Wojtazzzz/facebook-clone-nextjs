@@ -12,7 +12,6 @@ import { Avatar } from '@components/Avatar';
 import { Button } from '@components/Button';
 
 import { PostSchema } from '@validation/PostSchema';
-import { StateStatus } from '@enums/StateStatus';
 
 import type { CreatePostPayload } from '@ctypes/forms/CreatePostPayload';
 
@@ -33,7 +32,7 @@ export const Form = () => {
     const handleToggleDropComponent = () => setIsUploadActive((prevState) => !prevState);
     const handleCloseDropComponent = () => setIsUploadActive(false);
 
-    if (state.status === StateStatus.SUCCESS) return <Success />;
+    if (state.status === 'SUCCESS') return <Success />;
 
     return (
         <Formik
@@ -96,12 +95,7 @@ export const Form = () => {
                     </div>
 
                     <div className="pb-4 px-4">
-                        <Button
-                            type="submit"
-                            title="Post"
-                            isDisabled={state.status === StateStatus.LOADING}
-                            styles="w-full"
-                        />
+                        <Button type="submit" title="Post" isDisabled={state.status === 'LOADING'} styles="w-full" />
                     </div>
                 </form>
             )}

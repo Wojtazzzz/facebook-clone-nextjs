@@ -7,8 +7,6 @@ import { Message } from '@components/chat/shared/Message';
 import { EmptyChat } from '@components/chat/shared/EmptyChat';
 import { ApiError } from '@components/ApiError';
 
-import { StatePaginationStatus } from '@enums/StatePaginationStatus';
-
 import type { ChatMessageType } from '@ctypes/features/ChatMessageType';
 
 interface MessagesProps {
@@ -20,8 +18,8 @@ interface MessagesProps {
 export const Messages = memo<MessagesProps>(({ friendId }) => {
     const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginationData(`/api/messages/${friendId}`);
 
-    if (state === StatePaginationStatus.LOADING) return <Loader />;
-    if (state === StatePaginationStatus.ERROR) return <ApiError isSmall />;
+    if (state === 'LOADING') return <Loader />;
+    if (state === 'ERROR') return <ApiError isSmall />;
     if (isEmpty || !data) return <EmptyChat />;
 
     const MessagesComponents = (data as ChatMessageType[]).map((message) => (

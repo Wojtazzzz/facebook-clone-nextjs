@@ -1,13 +1,12 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import type { Function } from '@ctypes/Function';
 
 interface PanelButtonProps {
     title: string;
     icon: IconDefinition;
     isActive?: boolean;
-    callback: Function<void>;
+    callback: () => void;
 }
 
 export const PanelButton = ({ title, icon, isActive = false, callback }: PanelButtonProps) => {

@@ -1,6 +1,8 @@
-import Dropzone, { DropEvent, FileRejection } from 'react-dropzone';
+import Dropzone from 'react-dropzone';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImages, faTimes } from '@fortawesome/free-solid-svg-icons';
+
+import type { DropEvent, FileRejection } from 'react-dropzone';
 
 interface ImageUploaderProps {
     handleDrop: (acceptedFiles: File[], fileRejections: FileRejection[], event: DropEvent) => void;

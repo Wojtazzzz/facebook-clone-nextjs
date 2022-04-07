@@ -1,13 +1,12 @@
 import { useState, useEffect, useMemo } from 'react';
 
 import axios from '@libs/axios';
-import { StateStatus } from '@enums/StateStatus';
 
 import type { AxiosRequestConfig } from 'axios';
 import type { UseAxiosState } from '@ctypes/UseAxiosState';
 
 export const useAxios = () => {
-    const [state, setState] = useState<UseAxiosState>({ status: StateStatus.EMPTY });
+    const [state, setState] = useState<UseAxiosState>({ status: 'EMPTY' });
     const AxiosAbortController = useMemo(() => new AbortController(), []);
 
     const axiosOptions = { signal: AxiosAbortController.signal };
@@ -17,14 +16,14 @@ export const useAxios = () => {
     }, [AxiosAbortController]);
 
     const sendRequest = (params: AxiosRequestConfig) => {
-        setState({ status: StateStatus.LOADING });
+        setState({ status: 'LOADING' });
 
         axios
             .request(Object.assign(params, axiosOptions))
-            .then((response) => setState({ status: StateStatus.SUCCESS, data: response.data ?? [] }))
+            .then((response) => setState({ status: 'SUCCESS', data: response.data ?? [] }))
             .catch((error) => {
                 if (error.message !== 'canceled') {
-                    setState({ status: StateStatus.ERROR, error });
+                    setState({ status: 'ERROR', error });
                 }
             });
     };

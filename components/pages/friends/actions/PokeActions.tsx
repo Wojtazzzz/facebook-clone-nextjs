@@ -4,8 +4,6 @@ import { Failure } from '@components/pages/friends/actions/messages/Failure';
 import { Success } from '@components/pages/friends/actions/messages/Success';
 import { Button } from '@components/Button';
 
-import { StateStatus } from '@enums/StateStatus';
-
 import type { PokingUserType } from '@ctypes/features/PokingUserType';
 
 interface PokeActionsProps {
@@ -21,15 +19,15 @@ export const PokeActions = ({ friend }: PokeActionsProps) => {
         sendRequest({ method: 'POST', url: '/api/pokes/update', data: { user_id: friend.id } });
     };
 
-    if (state.status === StateStatus.SUCCESS) return <Success message="Friend poked back" />;
-    if (state.status === StateStatus.ERROR) return <Failure message="Something went wrong" />;
+    if (state.status === 'SUCCESS') return <Success message="Friend poked back" />;
+    if (state.status === 'ERROR') return <Failure message="Something went wrong" />;
 
     return (
         <div className="w-[220px] flex flex-col items-center gap-1">
             <Button
                 title="Poke back"
                 styles="w-[150px]"
-                isDisabled={state.status === StateStatus.LOADING}
+                isDisabled={state.status === 'LOADING'}
                 callback={(event) => handlePoke(event)}
             />
 

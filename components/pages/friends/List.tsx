@@ -8,7 +8,6 @@ import { EmptyList } from '@components/EmptyList';
 import { Slot } from '@components/pages/friends/Slot';
 import { Actions } from '@components/pages/friends/actions/Actions';
 
-import { StatePaginationStatus } from '@enums/StatePaginationStatus';
 import { getPathForPagination } from '@utils/getPathForPagination';
 
 import type { UserType } from '@ctypes/features/UserType';
@@ -22,8 +21,8 @@ export const List = memo<ListProps>(({ userId, type }) => {
     const key = getPathForPagination(type ?? '', userId);
     const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginationData(key);
 
-    if (state === StatePaginationStatus.LOADING) return <Loader />;
-    if (state === StatePaginationStatus.ERROR) return <ApiError />;
+    if (state === 'LOADING') return <Loader />;
+    if (state === 'ERROR') return <ApiError />;
     if (isEmpty || !data) return <EmptyList title="No users, maybe this app is so boring..." />;
 
     const slots = (data as UserType[]).map((user) => (
@@ -36,7 +35,7 @@ export const List = memo<ListProps>(({ userId, type }) => {
         <div data-testid="friends-list" className="flex flex-col gap-2">
             {slots}
 
-            {isReachedEnd || <LoadMore isLoading={state === StatePaginationStatus.FETCHING} callback={loadMore} />}
+            {isReachedEnd || <LoadMore isLoading={state === 'FETCHING'} callback={loadMore} />}
         </div>
     );
 });

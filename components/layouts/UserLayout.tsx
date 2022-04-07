@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import { useRouter } from 'next/router';
 import { useAppSelector } from '@hooks/redux';
 import { useAuth } from '@hooks/useAuth';
@@ -8,14 +9,12 @@ import { Sidebar } from '@components/sidebar/Sidebar';
 import { Contacts } from '@components/contacts/Contacts';
 import { Chat } from '@components/chat/Chat';
 
-import { AuthMiddleware } from '@enums/AuthMiddleware';
-
 interface UserLayoutProps {
-    children: React.ReactNode;
+    children: ReactNode;
 }
 
 export const UserLayout = ({ children }: UserLayoutProps) => {
-    useAuth(AuthMiddleware.AUTH);
+    useAuth('USER');
     const { route } = useRouter();
     const { friend } = useAppSelector((state) => state.chat);
 

@@ -7,15 +7,13 @@ import { Loader } from '@components/nav/additions/shared/Loader';
 import { EmptyList } from '@components/nav/additions/shared/EmptyList';
 import { ApiError } from '@components/ApiError';
 
-import { StatePaginationStatus } from '@enums/StatePaginationStatus';
-
 import type { NotificationType } from '@ctypes/features/NotificationType';
 
 export const NotificationsList = memo(() => {
     const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginationData('/api/notifications');
 
-    if (state === StatePaginationStatus.LOADING) return <Loader />;
-    if (state === StatePaginationStatus.ERROR) return <ApiError isSmall />;
+    if (state === 'LOADING') return <Loader />;
+    if (state === 'ERROR') return <ApiError isSmall />;
     if (isEmpty || !data) return <EmptyList title="Your Notifications list is empty" />;
 
     const NotificationsComponents = (data as NotificationType[]).map((notification) => (

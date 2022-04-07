@@ -6,11 +6,9 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Slide } from '@components/pages/posts/post/gallery/Slide';
 import { RoundedButton } from '@components/RoundedButton';
 
-import type { Function } from '@ctypes/Function';
-
 interface GalleryProps {
     images: string[];
-    handleCloseGallery: Function<void>;
+    handleCloseGallery: () => void;
 }
 
 export const Gallery = ({ images, handleCloseGallery }: GalleryProps) => {

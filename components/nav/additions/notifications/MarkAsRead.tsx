@@ -2,9 +2,6 @@ import { useState, useEffect, useRef } from 'react';
 import { useAxios } from '@hooks/useAxios';
 import { usePaginationData } from '@hooks/usePaginationData';
 
-import { StateStatus } from '@enums/StateStatus';
-import { StatePaginationStatus } from '@enums/StatePaginationStatus';
-
 import type { NotificationType } from '@ctypes/features/NotificationType';
 
 export const MarkAsRead = () => {
@@ -15,19 +12,15 @@ export const MarkAsRead = () => {
     const colorRef = useRef('text-light-100');
 
     const notificationsToMark = (data as NotificationType[])?.map(({ id }) => id);
-    let isAllowedToUse = !(
-        isEmpty ||
-        state !== StatePaginationStatus.SUCCESS ||
-        axiosState.status !== StateStatus.EMPTY
-    );
+    let isAllowedToUse = !(isEmpty || state !== 'SUCCESS' || axiosState.status !== 'EMPTY');
 
     useEffect(() => {
-        if (axiosState.status === StateStatus.SUCCESS) {
+        if (axiosState.status === 'SUCCESS') {
             colorRef.current = 'text-green-400';
             reloadData();
 
             setIsHidden(true);
-        } else if (axiosState.status === StateStatus.ERROR) {
+        } else if (axiosState.status === 'ERROR') {
             colorRef.current = 'text-red-400';
         }
     }, [axiosState.status, reloadData]);

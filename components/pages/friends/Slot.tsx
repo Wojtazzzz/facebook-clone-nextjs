@@ -3,10 +3,11 @@ import { memo } from 'react';
 import Link from 'next/link';
 import { Avatar } from '@components/Avatar';
 
+import type { ReactNode } from 'react';
 import type { UserType } from '@ctypes/features/UserType';
 
 interface SlotProps extends UserType {
-    children: React.ReactNode;
+    children: ReactNode;
 }
 
 export const Slot = memo<SlotProps>(({ id, name, profile_image, children }) => {

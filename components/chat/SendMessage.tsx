@@ -7,10 +7,6 @@ import { faCircleCheck, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { RoundedButton } from '@components/RoundedButton';
 
 import { SendMessageSchema } from '@validation/SendMessageSchema';
-import { StateStatus } from '@enums/StateStatus';
-import { StatePaginationStatus } from '@enums/StatePaginationStatus';
-
-import type { Function } from '@ctypes/Function';
 
 interface SendMessageProps {
     friendId: number;
@@ -31,14 +27,14 @@ export const SendMessage = memo<SendMessageProps>(({ friendId }) => {
     }, []);
 
     useEffect(() => {
-        if (state.status === StateStatus.ERROR) {
+        if (state.status === 'ERROR') {
             alert('Something went wrong during sending message process');
         }
     }, [state]);
 
     const handleSendEmoji = () => alert('Maybe in the future...');
 
-    const handleChangeMessage = (event: React.FormEvent<HTMLInputElement>, formikHandleChange: Function<void>) => {
+    const handleChangeMessage = (event: React.FormEvent<HTMLInputElement>, formikHandleChange: () => void) => {
         formikHandleChange();
 
         setIsMessagePrepared(!!event.currentTarget.value.length);
@@ -65,7 +61,7 @@ export const SendMessage = memo<SendMessageProps>(({ friendId }) => {
                         name="text"
                         placeholder="Aa"
                         value={values.text}
-                        disabled={messagesState === StatePaginationStatus.LOADING}
+                        disabled={messagesState === 'LOADING'}
                         autoComplete="off"
                         className={`${
                             isMessagePrepared ? 'w-52' : 'w-36'

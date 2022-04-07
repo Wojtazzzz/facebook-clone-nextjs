@@ -7,15 +7,13 @@ import { Loader } from '@components/pages/posts/Loader';
 import { ApiError } from '@components/ApiError';
 import { EmptyList } from '@components/EmptyList';
 
-import { StatePaginationStatus } from '@enums/StatePaginationStatus';
-
 import type { PostType } from '@ctypes/features/PostType';
 
 export const List = memo(() => {
     const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginationData('/api/posts', 15);
 
-    if (state === StatePaginationStatus.LOADING) return <Loader />;
-    if (state === StatePaginationStatus.ERROR) return <ApiError />;
+    if (state === 'LOADING') return <Loader />;
+    if (state === 'ERROR') return <ApiError />;
     if (isEmpty || !data) return <EmptyList title="No posts, add some friends!" />;
 
     const PostsComponents = (data as PostType[]).map((post) => <SinglePost key={post.id} {...post} />);

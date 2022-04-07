@@ -3,10 +3,8 @@ import { useAuth } from '@hooks/useAuth';
 import { MockLoader } from '@components/pages/posts/create/MockLoader';
 import { Avatar } from '@components/Avatar';
 
-import type { Function } from '@ctypes/Function';
-
 interface MockProps {
-    handleOpenModal: Function<void>;
+    handleOpenModal: () => void;
 }
 
 export const Mock = ({ handleOpenModal }: MockProps) => {

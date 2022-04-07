@@ -4,8 +4,6 @@ import { Failure } from 'components/pages/friends/actions/messages/Failure';
 import { Success } from '@components/pages/friends/actions/messages/Success';
 import { Button } from '@components/Button';
 
-import { StateStatus } from '@enums/StateStatus';
-
 import type { UserType } from '@ctypes/features/UserType';
 
 interface InviteActionsProps {
@@ -25,24 +23,13 @@ export const InviteActions = ({ friend }: InviteActionsProps) => {
         sendRequest({ method: 'POST', url: '/api/friendship/reject', data: { user_id: friend.id } });
     };
 
-    if (state.status === StateStatus.SUCCESS) return <Success message={state.data.message} />;
-    if (state.status === StateStatus.ERROR) return <Failure message="Something went wrong, try again later" />;
+    if (state.status === 'SUCCESS') return <Success message={state.data.message} />;
+    if (state.status === 'ERROR') return <Failure message="Something went wrong, try again later" />;
 
     return (
         <div className="flex gap-3">
-            <Button
-                title="Reject"
-                styles="w-[100px]"
-                isDisabled={state.status === StateStatus.LOADING}
-                callback={handleReject}
-            />
-
-            <Button
-                title="Accept"
-                styles="w-[100px]"
-                isDisabled={state.status === StateStatus.LOADING}
-                callback={handleAccept}
-            />
+            <Button title="Reject" styles="w-[100px]" isDisabled={state.status === 'LOADING'} callback={handleReject} />
+            <Button title="Accept" styles="w-[100px]" isDisabled={state.status === 'LOADING'} callback={handleAccept} />
         </div>
     );
 };
