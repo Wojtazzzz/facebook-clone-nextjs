@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useLikes } from '@hooks/useLikes';
+import { useEffect, useState } from 'react';
 
 import { Header } from '@components/pages/posts/post/Header';
 import { Content } from '@components/pages/posts/post/Content';
@@ -20,18 +21,16 @@ export const SinglePost = ({
     created_at,
     updated_at,
 }: SinglePostProps) => {
-    const [likesCount, setLikesCount] = useState(likes_count);
+    const [totalLikesCount, setTotalLikesCount] = useState(likes_count);
     const [_isLiked, _setIsLiked] = useState(isLiked);
+    const { state: likesState, handleLike } = useLikes(id);
 
-    const handleAddLike = () => {
-        setLikesCount((prevState) => prevState + 1);
-        _setIsLiked(true);
-    };
+    useEffect(() => {
+        if (likesState.status !== 'SUCCESS') return;
 
-    const handleRemoveLike = () => {
-        setLikesCount((prevState) => prevState - 1);
-        _setIsLiked(false);
-    };
+        setTotalLikesCount(likesState.data.data.likesCount);
+        _setIsLiked((prevState) => !prevState);
+    }, [likesState]);
 
     return (
         <div className="w-full bg-dark-200 rounded-lg">
@@ -43,8 +42,8 @@ export const SinglePost = ({
                 {!!images?.length && <Images images={images} />}
             </div>
 
-            <Stats likesCount={likesCount} />
-            <Panel post_id={id} isLiked={_isLiked} handleAddLike={handleAddLike} handleRemoveLike={handleRemoveLike} />
+            <Stats likesCount={totalLikesCount} />
+            <Panel isLiked={_isLiked} handleLike={handleLike} />
         </div>
     );
 };
