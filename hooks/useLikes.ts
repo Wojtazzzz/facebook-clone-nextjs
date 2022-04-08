@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useAxios } from '@hooks/useAxios';
 
+import type { LikeResponse } from '@ctypes/responses/LikeResponse';
+
 export const useLikes = (post_id: number) => {
-    const { state, sendRequest } = useAxios();
+    const { state, sendRequest } = useAxios<LikeResponse>();
     const [likes, setLikes] = useState(0);
 
     const handleLike = (isLiked: boolean) => {

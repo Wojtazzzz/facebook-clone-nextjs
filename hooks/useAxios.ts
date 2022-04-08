@@ -5,8 +5,9 @@ import axios from '@libs/axios';
 import type { AxiosRequestConfig } from 'axios';
 import type { UseAxiosState } from '@ctypes/UseAxiosState';
 
-export const useAxios = () => {
-    const [state, setState] = useState<UseAxiosState>({ status: 'EMPTY' });
+export const useAxios = <T>() => {
+    const [state, setState] = useState<UseAxiosState<T>>({ status: 'EMPTY' });
+
     const AxiosAbortController = useMemo(() => new AbortController(), []);
 
     const axiosOptions = { signal: AxiosAbortController.signal };

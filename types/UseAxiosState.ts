@@ -1,10 +1,10 @@
-type data = {
-    data: [];
+type data<T> = {
+    data: T;
     message: string;
 };
 
-export type UseAxiosState =
+export type UseAxiosState<T> =
     | { status: 'EMPTY' }
     | { status: 'LOADING' }
     | { status: 'ERROR'; error: Error }
-    | { status: 'SUCCESS'; data: data };
+    | { status: 'SUCCESS'; data: data<T> };
