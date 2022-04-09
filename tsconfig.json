@@ -23,7 +23,6 @@
             "@redux/*": ["redux/*"],
             "@hooks/*": ["hooks/*"],
             "@libs/*": ["libs/*"],
-            "@enums/*": ["enums/*"],
             "@validation/*": ["validation/*"],
             "@ctypes/*": ["types/*"],
             "@utils/*": ["utils/*"],

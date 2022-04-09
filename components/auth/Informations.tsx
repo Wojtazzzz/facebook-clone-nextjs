@@ -13,7 +13,11 @@ export const Informations = () => {
 
             <span className="md:text-lg text-light-100 font-medium">
                 Welcome to Facebook-clone app! This is noncommercial and nonofficial version of{' '}
-                <a href="https://facebook.com/" className="text-primary hover:underline">
+                <a
+                    data-testid="informations-facebook_link"
+                    href="https://facebook.com/"
+                    className="text-primary hover:underline"
+                >
                     Facebook
                 </a>{' '}
                 similar social app. For safety you cannot create account with own credentials. Instead of you can create
