@@ -40,7 +40,7 @@ export const Input = memo<InputProps>(
                 )}
             </div>
         );
-    }
+    },
 );
 
 Input.displayName = 'Input';

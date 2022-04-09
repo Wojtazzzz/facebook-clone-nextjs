@@ -5,11 +5,11 @@ describe('RegisterForm component', () => {
     it('checks for all inputs are disabled', () => {
         render(<RegisterForm />);
 
-        const firstNameInput = screen.getByPlaceholderText('First name');
-        const lastNameInput = screen.getByPlaceholderText('Last name');
-        const emailInput = screen.getByPlaceholderText('Address e-mail');
-        const passwordInput = screen.getByPlaceholderText('Password');
-        const passwordConfirmationInput = screen.getByPlaceholderText('Password confirmation');
+        const firstNameInput = screen.getByLabelText('First name');
+        const lastNameInput = screen.getByLabelText('Last name');
+        const emailInput = screen.getByLabelText('Address e-mail');
+        const passwordInput = screen.getByLabelText('Password');
+        const passwordConfirmationInput = screen.getByLabelText('Password confirmation');
         const submitButton = screen.getByRole('button', { name: 'Register' });
 
         [firstNameInput, lastNameInput, emailInput, passwordInput, passwordConfirmationInput, submitButton].forEach(

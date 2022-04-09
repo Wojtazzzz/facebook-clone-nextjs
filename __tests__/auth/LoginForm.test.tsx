@@ -5,16 +5,16 @@ describe('LoginForm component', () => {
     it('renders email, password and button input', () => {
         render(<LoginForm />);
 
-        screen.getByPlaceholderText('Address e-mail');
-        screen.getByPlaceholderText('Password');
+        screen.getByLabelText('Address e-mail');
+        screen.getByLabelText('Password');
         expect(screen.getByRole('button')).toHaveTextContent('Login');
     });
 
     it('displays "required" validation message when input values are empty', async () => {
         render(<LoginForm />);
 
-        const emailInput = screen.getByPlaceholderText('Address e-mail');
-        const passwordInput = screen.getByPlaceholderText('Password');
+        const emailInput = screen.getByLabelText('Address e-mail');
+        const passwordInput = screen.getByLabelText('Password');
         const submitButton = screen.getByRole('button');
 
         expect(emailInput).toHaveValue('');
@@ -31,7 +31,7 @@ describe('LoginForm component', () => {
     it('displays "incorrect email" validation message when email is invalid', async () => {
         render(<LoginForm />);
 
-        const emailInput = screen.getByPlaceholderText('Address e-mail');
+        const emailInput = screen.getByLabelText('Address e-mail');
         const submitButton = screen.getByRole('button');
 
         fireEvent.change(emailInput, { target: { value: 'incorrect_email' } });
