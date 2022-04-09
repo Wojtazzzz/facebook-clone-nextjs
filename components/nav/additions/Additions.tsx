@@ -27,11 +27,21 @@ export const Additions = () => {
     return (
         <div className="h-full flex justify-end items-center gap-2">
             <div className="lg:hidden">
-                <RoundedButton name="Sidebar" icon={faEllipsisVertical} callback={handleToggleSidebar} />
+                <RoundedButton
+                    name="Sidebar"
+                    icon={faEllipsisVertical}
+                    onHover="opacity-70"
+                    callback={handleToggleSidebar}
+                />
             </div>
 
             <div className="relative">
-                <RoundedButton name="Messenger" icon={faFacebookMessenger} callback={handleToggleMessenger} />
+                <RoundedButton
+                    name="Messenger"
+                    icon={faFacebookMessenger}
+                    onHover="opacity-70"
+                    callback={handleToggleMessenger}
+                />
 
                 {isMessengerActive && (
                     <>
@@ -42,7 +52,12 @@ export const Additions = () => {
             </div>
 
             <div className="relative">
-                <RoundedButton name="Notifications" icon={faBell} callback={handleToggleNotificationsList} />
+                <RoundedButton
+                    name="Notifications"
+                    icon={faBell}
+                    onHover="opacity-70"
+                    callback={handleToggleNotificationsList}
+                />
 
                 {isNotificationsListActive && (
                     <>
@@ -52,9 +67,7 @@ export const Additions = () => {
                 )}
             </div>
 
-            <div className={isLoading ? 'opacity-60' : 'hover:opacity-80'}>
-                <RoundedButton name="Log out" icon={faRightFromBracket} callback={handleLogout} />
-            </div>
+            <RoundedButton name="Log out" icon={faRightFromBracket} onHover="opacity-70" callback={handleLogout} />
         </div>
     );
 };
