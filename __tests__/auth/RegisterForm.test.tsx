@@ -12,12 +12,9 @@ describe('RegisterForm component', () => {
         const passwordConfirmationInput = screen.getByPlaceholderText('Password confirmation');
         const submitButton = screen.getByRole('button', { name: 'Register' });
 
-        expect(firstNameInput).toBeDisabled();
-        expect(lastNameInput).toBeDisabled();
-        expect(emailInput).toBeDisabled();
-        expect(passwordInput).toBeDisabled();
-        expect(passwordConfirmationInput).toBeDisabled();
-        expect(submitButton).toBeDisabled();
+        [firstNameInput, lastNameInput, emailInput, passwordInput, passwordConfirmationInput, submitButton].forEach(
+            (element) => expect(element).toBeDisabled(),
+        );
     });
 
     it('check for Create Random User button is not disabled', () => {
