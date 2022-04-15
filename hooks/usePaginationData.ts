@@ -37,6 +37,8 @@ export const usePaginationData = (key: string, perList = 10) => {
                 if (error.message !== 'canceled') {
                     setState('ERROR');
                 }
+
+                throw error;
             });
 
     const { data, size, setSize, mutate } = useSWRInfinite<unknown[]>(getKey, fetcher);

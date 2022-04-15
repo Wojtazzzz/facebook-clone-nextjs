@@ -39,17 +39,16 @@ describe('Sidebar component', () => {
             </Provider>,
         );
 
-        const friendsElement = screen.getByText('Friends');
-        const pokesElement = screen.getByText('Pokes');
-        const githubElement = screen.getByText('GitHub');
+        const friendsElement = screen.getByTitle('Friends');
+        const pokesElement = screen.getByTitle('Pokes');
+        const githubElement = screen.getByTitle('GitHub');
 
         expect(friendsElement).toBeInTheDocument();
         expect(pokesElement).toBeInTheDocument();
         expect(githubElement).toBeInTheDocument();
 
-        // CHECK IT
-        expect(friendsElement.closest('a')).toHaveAttribute('href', '/friends');
-        expect(pokesElement.closest('a')).toHaveAttribute('href', '/friends/pokes');
-        expect(githubElement.closest('a')).toHaveAttribute('href', 'https://github.com/CubeStorm/');
+        expect(friendsElement).toHaveAttribute('href', '/friends');
+        expect(pokesElement).toHaveAttribute('href', '/friends/pokes');
+        expect(githubElement).toHaveAttribute('href', 'https://github.com/CubeStorm/');
     });
 });
