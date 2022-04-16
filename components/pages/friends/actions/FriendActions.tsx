@@ -1,7 +1,7 @@
 import { useAppDispatch } from '@hooks/redux';
 import { useAxios } from '@hooks/useAxios';
 
-import { Failure } from 'components/pages/friends/actions/messages/Failure';
+import { Failure } from '@components/pages/friends/actions/messages/Failure';
 import { Success } from '@components/pages/friends/actions/messages/Success';
 import { Button } from '@components/Button';
 

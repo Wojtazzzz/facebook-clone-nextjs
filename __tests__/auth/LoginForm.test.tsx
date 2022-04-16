@@ -5,9 +5,14 @@ describe('LoginForm component', () => {
     it('renders email, password and button input', () => {
         render(<LoginForm />);
 
-        screen.getByLabelText('Address e-mail');
-        screen.getByLabelText('Password');
-        expect(screen.getByRole('button')).toHaveTextContent('Login');
+        const emailInput = screen.getByLabelText('Address e-mail');
+        const passwordInput = screen.getByLabelText('Password');
+        const submitButton = screen.getByRole('button');
+
+        expect(emailInput).toBeInTheDocument();
+        expect(passwordInput).toBeInTheDocument();
+        expect(submitButton).toBeInTheDocument();
+        expect(submitButton).toHaveTextContent('Login');
     });
 
     it('displays "required" validation message when input values are empty', async () => {
@@ -24,8 +29,11 @@ describe('LoginForm component', () => {
             fireEvent.click(submitButton);
         });
 
-        screen.getByText('Email field is required');
-        screen.getByText('Password field is required');
+        const emailErrorMessage = screen.getByText('Email field is required');
+        const passwordErrorMessage = screen.getByText('Password field is required');
+
+        expect(emailErrorMessage).toBeInTheDocument();
+        expect(passwordErrorMessage).toBeInTheDocument();
     });
 
     it('displays "incorrect email" validation message when email is invalid', async () => {
@@ -40,6 +48,8 @@ describe('LoginForm component', () => {
             fireEvent.click(submitButton);
         });
 
-        screen.getByText('Email is invalid');
+        const emailErrorMessage = screen.getByText('Email is invalid');
+
+        expect(emailErrorMessage).toBeInTheDocument();
     });
 });

@@ -8,10 +8,12 @@ interface LoadMoreProps {
 }
 
 export const LoadMore = ({ isLoading, callback }: LoadMoreProps) => {
-    if (isLoading) return <Loader />;
+    if (isLoading) return <Loader testid="friendsList-fetching_more_loader" />;
 
     return (
         <button
+            title="Fetch more users"
+            aria-label="Fetch more users"
             className="w-full flex justify-center items-center gap-5 hover:bg-dark-100 active:opacity-20 rounded-lg transition-colors cursor-pointer mt-3 py-3 px-5"
             onClick={callback}
         >

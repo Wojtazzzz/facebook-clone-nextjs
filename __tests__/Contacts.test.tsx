@@ -30,7 +30,9 @@ describe('Contacts component', () => {
             </Provider>,
         );
 
-        expect(screen.getByText('Contacts')).toBeInTheDocument();
+        const title = screen.getByText('Contacts');
+
+        expect(title).toBeInTheDocument();
     });
 
     it('loads first contacts list', async () => {

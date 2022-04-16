@@ -21,7 +21,7 @@ export const List = memo<ListProps>(({ userId, type }) => {
     const key = getPathForPagination(type ?? '', userId);
     const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginationData(key);
 
-    if (state === 'LOADING') return <Loader />;
+    if (state === 'LOADING') return <Loader testid="friendsList-loading_more_loader" />;
     if (state === 'ERROR') return <ApiError />;
     if (isEmpty || !data) return <EmptyList title="No users, maybe this app is so boring..." />;
 

@@ -15,12 +15,14 @@ export const Button = ({
 }: ButtonProps) => {
     return (
         <button
+            title={title}
+            aria-label={title}
             type={type}
+            disabled={isDisabled}
             className={`bg-primary hover:opacity-90 text-sm md:text-base text-light-50 font-medium rounded-lg transition-opacity p-2 px-4 
                 ${isDisabled ? 'opacity-60 hover:opacity-60 cursor-not-allowed' : ''} 
                 ${styles}
             `}
-            disabled={isDisabled}
             onClick={callback}
         >
             {title}

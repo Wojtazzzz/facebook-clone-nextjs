@@ -26,8 +26,8 @@ export const PokeActions = ({ friend }: PokeActionsProps) => {
         <div className="w-[220px] flex flex-col items-center gap-1">
             <Button
                 title="Poke back"
-                styles="w-[150px]"
                 isDisabled={state.status === 'LOADING'}
+                styles="w-[150px]"
                 callback={(event) => handlePoke(event)}
             />
 

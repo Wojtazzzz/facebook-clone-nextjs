@@ -1,10 +1,16 @@
 import { SingleLoading } from '@components/pages/friends/shared/SingleLoading';
 import { ListLoader } from '@components/ListLoader';
 
-export const Loader = () => {
+interface LoaderProps {
+    testid?: string;
+}
+
+export const Loader = ({ testid = '' }: LoaderProps) => {
     return (
-        <ListLoader>
-            <SingleLoading />
-        </ListLoader>
+        <div data-testid={testid}>
+            <ListLoader>
+                <SingleLoading />
+            </ListLoader>
+        </div>
     );
 };
