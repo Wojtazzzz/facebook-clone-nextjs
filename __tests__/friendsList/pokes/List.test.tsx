@@ -20,7 +20,11 @@ describe('Pokes list', () => {
 
     it('shows loaders on initial fetching users', async () => {
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/pokes?page=1').reply(200);
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/pokes?page=1').reply(200, PokesFirstPageJson);
+        nock(BACKEND_URL)
+            .defaultReplyHeaders(nockReplyHeaders)
+            .get('/api/pokes?page=1')
+            .delay(99999)
+            .reply(200, PokesFirstPageJson);
 
         render(
             <Provider store={store}>

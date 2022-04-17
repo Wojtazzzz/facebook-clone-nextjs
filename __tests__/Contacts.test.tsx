@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { store } from '@redux/store';
 import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
@@ -10,8 +9,6 @@ import nock from 'nock';
 import { nockReplyHeaders } from '@libs/nockReplyHeaders';
 import { Contacts } from '@components/contacts/Contacts';
 import { SWRConfig } from 'swr';
-
-axios.defaults.adapter = require('axios/lib/adapters/http');
 
 describe('Contacts component', () => {
     const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'http://localhost:8000';

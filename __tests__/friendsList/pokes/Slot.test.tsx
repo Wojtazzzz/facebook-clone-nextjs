@@ -13,12 +13,12 @@ describe('Single poke component', () => {
 
     beforeEach(() => {
         nock.disableNetConnect();
+
+        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/pokes?page=1').reply(200);
+        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/pokes?page=1').reply(200, PokesFirstPageJson);
     });
 
     it('renders user image, name, poked data', async () => {
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/pokes?page=1').reply(200);
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/pokes?page=1').reply(200, PokesFirstPageJson);
-
         const user = PokesFirstPageJson[0];
 
         render(
@@ -45,9 +45,6 @@ describe('Single poke component', () => {
     });
 
     it('shows success message on successfully poke', async () => {
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/pokes?page=1').reply(200);
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/pokes?page=1').reply(200, PokesFirstPageJson);
-
         const user = PokesFirstPageJson[0];
 
         render(
@@ -73,9 +70,6 @@ describe('Single poke component', () => {
     });
 
     it('shows error message on failed poke', async () => {
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/pokes?page=1').reply(200);
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/pokes?page=1').reply(200, PokesFirstPageJson);
-
         const user = PokesFirstPageJson[0];
 
         render(
@@ -96,7 +90,7 @@ describe('Single poke component', () => {
 
         pokeButton.click();
 
-        const successMessage = await screen.findByText('Something went wrong');
-        expect(successMessage).toBeInTheDocument();
+        const errorMessage = await screen.findByText('Something went wrong');
+        expect(errorMessage).toBeInTheDocument();
     });
 });

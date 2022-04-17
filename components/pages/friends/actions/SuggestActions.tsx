@@ -18,7 +18,7 @@ export const SuggestActions = ({ friend }: SuggestActionsProps) => {
         sendRequest({ method: 'POST', url: '/api/friendship/invite', data: { user_id: friend.id } });
     };
 
-    if (state.status === 'SUCCESS') return <Success message={state.data.message} />;
+    if (state.status === 'SUCCESS') return <Success message="Request sent successfully" />;
     if (state.status === 'ERROR') return <Failure message="Something went wrong, try again later" />;
 
     return (

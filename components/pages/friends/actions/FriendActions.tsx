@@ -27,7 +27,7 @@ export const FriendActions = ({ friend }: FriendActionsProps) => {
         sendRequest({ method: 'POST', url: '/api/friendship/destroy', data: { user_id: friend.id } });
     };
 
-    if (state.status === 'SUCCESS') return <Success message={state.data.message} />;
+    if (state.status === 'SUCCESS') return <Success message="Friendship destroyed" />;
     if (state.status === 'ERROR') return <Failure message="Something went wrong, try again later" />;
 
     return (

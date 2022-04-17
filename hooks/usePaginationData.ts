@@ -32,7 +32,9 @@ export const usePaginationData = (key: string, perList = 10) => {
     const fetcher = (url: string) =>
         axios
             .get(url, axiosConfig)
-            .then((response) => response.data)
+            .then((response) => {
+                return response.data;
+            })
             .catch((error) => {
                 if (error.message !== 'canceled') {
                     setState('ERROR');
@@ -45,7 +47,9 @@ export const usePaginationData = (key: string, perList = 10) => {
 
     useEffect(() => {
         setState('LOADING');
-    }, [key]);
+
+        return () => AxiosAbortController.abort();
+    }, [key, AxiosAbortController]);
 
     useEffect(() => {
         if (!data) return;

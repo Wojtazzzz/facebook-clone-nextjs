@@ -7,8 +7,6 @@ import RootUserJson from '@mocks/user/root.json';
 import nock from 'nock';
 import { nockReplyHeaders } from '@libs/nockReplyHeaders';
 
-axios.defaults.adapter = require('axios/lib/adapters/http');
-
 describe('Sidebar component', () => {
     const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'http://localhost:8000';
 
