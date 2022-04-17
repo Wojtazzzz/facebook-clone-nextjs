@@ -32,9 +32,7 @@ export const usePaginationData = (key: string, perList = 10) => {
     const fetcher = (url: string) =>
         axios
             .get(url, axiosConfig)
-            .then((response) => {
-                return response.data;
-            })
+            .then(response => response.data)
             .catch((error) => {
                 if (error.message !== 'canceled') {
                     setState('ERROR');

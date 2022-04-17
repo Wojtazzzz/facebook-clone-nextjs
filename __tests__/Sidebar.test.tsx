@@ -1,5 +1,4 @@
 import { Sidebar } from '@components/sidebar/Sidebar';
-import axios from 'axios';
 import { store } from '@redux/store';
 import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
