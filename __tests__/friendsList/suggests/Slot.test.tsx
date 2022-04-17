@@ -2,7 +2,6 @@ import { render, screen } from '@testing-library/react';
 import nock from 'nock';
 import { nockReplyHeaders } from '@libs/nockReplyHeaders';
 import { SWRConfig } from 'swr';
-import RootUserJson from '@mocks/user/root.json';
 import SuggestsFirstPageJson from '@mocks/friendsList/suggests/firstPage.json';
 import { store } from '@redux/store';
 import { Provider } from 'react-redux';

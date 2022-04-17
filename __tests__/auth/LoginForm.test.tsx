@@ -26,7 +26,7 @@ describe('LoginForm component', () => {
         expect(passwordInput).toHaveValue('');
 
         await act(async () => {
-            fireEvent.click(submitButton);
+            submitButton.click();
         });
 
         const emailErrorMessage = screen.getByText('Email field is required');
@@ -45,7 +45,7 @@ describe('LoginForm component', () => {
         fireEvent.change(emailInput, { target: { value: 'incorrect_email' } });
 
         await act(async () => {
-            fireEvent.click(submitButton);
+            submitButton.click();
         });
 
         const emailErrorMessage = screen.getByText('Email is invalid');

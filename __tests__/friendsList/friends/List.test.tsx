@@ -17,7 +17,49 @@ describe('Friends list', () => {
         nock.disableNetConnect();
     });
 
-    it('shows loaders on initial fetching users', async () => {
+    it('fetch button dissapears when page fetched all friends', async () => {
+        nock(BACKEND_URL)
+            .defaultReplyHeaders(nockReplyHeaders)
+            .options(`/api/friendship/friends/${RootUserJson.id}?page=1`)
+            .reply(200);
+        nock(BACKEND_URL)
+            .defaultReplyHeaders(nockReplyHeaders)
+            .get(`/api/friendship/friends/${RootUserJson.id}?page=1`)
+            .reply(200, FriendsFirstPageJson);
+
+        render(
+            <Provider store={store}>
+                <SWRConfig value={{ provider: () => new Map() }}>
+                    <List userId={RootUserJson.id} type="friends" />
+                </SWRConfig>
+            </Provider>,
+        );
+
+        nock(BACKEND_URL)
+            .defaultReplyHeaders(nockReplyHeaders)
+            .options(`/api/friendship/friends/${RootUserJson.id}?page=1`)
+            .reply(200);
+        nock(BACKEND_URL)
+            .defaultReplyHeaders(nockReplyHeaders)
+            .get(`/api/friendship/friends/${RootUserJson.id}?page=1`)
+            .reply(200, FriendsFirstPageJson);
+
+        nock(BACKEND_URL)
+            .defaultReplyHeaders(nockReplyHeaders)
+            .options(`/api/friendship/friends/${RootUserJson.id}?page=2`)
+            .reply(200);
+        nock(BACKEND_URL)
+            .defaultReplyHeaders(nockReplyHeaders)
+            .get(`/api/friendship/friends/${RootUserJson.id}?page=2`)
+            .reply(200, FriendsEmptyPageJson);
+
+        const fetchMoreButton = await screen.findByTitle('Fetch more users');
+        fetchMoreButton.click();
+
+        expect(fetchMoreButton).not.toBeInTheDocument();
+    });
+
+    it('shows loaders on initial fetching friends', async () => {
         nock(BACKEND_URL)
             .defaultReplyHeaders(nockReplyHeaders)
             .options(`/api/friendship/friends/${RootUserJson.id}?page=1`)
@@ -39,7 +81,7 @@ describe('Friends list', () => {
         expect(loader).toBeInTheDocument();
     });
 
-    it('loads ten users', async () => {
+    it('loads 10 friends', async () => {
         nock(BACKEND_URL)
             .defaultReplyHeaders(nockReplyHeaders)
             .options(`/api/friendship/friends/${RootUserJson.id}?page=1`)
@@ -64,7 +106,7 @@ describe('Friends list', () => {
         expect(tenthElement).toBeInTheDocument();
     });
 
-    it('shows loaders on fetching more users', async () => {
+    it('shows loaders on fetching more friends', async () => {
         nock(BACKEND_URL)
             .defaultReplyHeaders(nockReplyHeaders)
             .options(`/api/friendship/friends/${RootUserJson.id}?page=1`)
@@ -107,7 +149,7 @@ describe('Friends list', () => {
         expect(loader).toBeInTheDocument();
     });
 
-    it('can fetch more users', async () => {
+    it('can fetch more friends', async () => {
         nock(BACKEND_URL)
             .defaultReplyHeaders(nockReplyHeaders)
             .options(`/api/friendship/friends/${RootUserJson.id}?page=1`)
@@ -158,7 +200,7 @@ describe('Friends list', () => {
         expect(twentythElement).toBeInTheDocument();
     });
 
-    it('shows empty component when fetch no users', async () => {
+    it('shows empty component when fetch no friends', async () => {
         nock(BACKEND_URL)
             .defaultReplyHeaders(nockReplyHeaders)
             .options(`/api/friendship/friends/${RootUserJson.id}?page=1`)

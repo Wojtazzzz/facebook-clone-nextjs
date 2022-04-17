@@ -17,6 +17,39 @@ describe('Pokes list', () => {
         nock.disableNetConnect();
     });
 
+    it('fetch button dissapears when page fetched all suggests', async () => {
+        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/suggests?page=1').reply(200);
+        nock(BACKEND_URL)
+            .defaultReplyHeaders(nockReplyHeaders)
+            .get('/api/friendship/suggests?page=1')
+            .reply(200, SuggestsFirstPageJson);
+
+        render(
+            <Provider store={store}>
+                <SWRConfig value={{ provider: () => new Map() }}>
+                    <List userId={RootUserJson.id} type="suggests" />
+                </SWRConfig>
+            </Provider>,
+        );
+
+        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/suggests?page=1').reply(200);
+        nock(BACKEND_URL)
+            .defaultReplyHeaders(nockReplyHeaders)
+            .get('/api/friendship/suggests?page=1')
+            .reply(200, SuggestsFirstPageJson);
+
+        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/suggests?page=2').reply(200);
+        nock(BACKEND_URL)
+            .defaultReplyHeaders(nockReplyHeaders)
+            .get('/api/friendship/suggests?page=2')
+            .reply(200, SuggestsEmptyPageJson);
+
+        const fetchMoreButton = await screen.findByTitle('Fetch more users');
+        fetchMoreButton.click();
+
+        expect(fetchMoreButton).not.toBeInTheDocument();
+    });
+
     it('shows loaders on initial fetching users', async () => {
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/suggests?page=1').reply(200);
         nock(BACKEND_URL)
@@ -37,7 +70,7 @@ describe('Pokes list', () => {
         expect(loader).toBeInTheDocument();
     });
 
-    it('loads ten users', async () => {
+    it('loads 10 users', async () => {
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/suggests?page=1').reply(200);
         nock(BACKEND_URL)
             .defaultReplyHeaders(nockReplyHeaders)

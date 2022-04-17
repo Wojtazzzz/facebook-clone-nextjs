@@ -17,6 +17,39 @@ describe('Invites list', () => {
         nock.disableNetConnect();
     });
 
+    it('fetch button dissapears when page fetched all invites', async () => {
+        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/invites?page=1').reply(200);
+        nock(BACKEND_URL)
+            .defaultReplyHeaders(nockReplyHeaders)
+            .get('/api/friendship/invites?page=1')
+            .reply(200, InvitesFirstPageJson);
+
+        render(
+            <Provider store={store}>
+                <SWRConfig value={{ provider: () => new Map() }}>
+                    <List userId={RootUserJson.id} type="invites" />
+                </SWRConfig>
+            </Provider>,
+        );
+
+        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/invites?page=1').reply(200);
+        nock(BACKEND_URL)
+            .defaultReplyHeaders(nockReplyHeaders)
+            .get('/api/friendship/invites?page=1')
+            .reply(200, InvitesFirstPageJson);
+
+        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/invites?page=2').reply(200);
+        nock(BACKEND_URL)
+            .defaultReplyHeaders(nockReplyHeaders)
+            .get('/api/friendship/invites?page=2')
+            .reply(200, InvitesEmptyPageJson);
+
+        const fetchMoreButton = await screen.findByTitle('Fetch more users');
+        fetchMoreButton.click();
+
+        expect(fetchMoreButton).not.toBeInTheDocument();
+    });
+
     it('shows loaders on initial fetching invites', async () => {
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/invites?page=1').reply(200);
         nock(BACKEND_URL)

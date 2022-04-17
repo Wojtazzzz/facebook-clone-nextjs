@@ -18,7 +18,31 @@ describe('Pokes list', () => {
         nock.disableNetConnect();
     });
 
-    it('shows loaders on initial fetching users', async () => {
+    it('fetch button dissapears when page fetched all pokes', async () => {
+        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/pokes?page=1').reply(200);
+        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/pokes?page=1').reply(200, PokesFirstPageJson);
+
+        render(
+            <Provider store={store}>
+                <SWRConfig value={{ provider: () => new Map() }}>
+                    <List userId={RootUserJson.id} type="pokes" />
+                </SWRConfig>
+            </Provider>,
+        );
+
+        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/pokes?page=1').reply(200);
+        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/pokes?page=1').reply(200, PokesFirstPageJson);
+
+        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/pokes?page=2').reply(200);
+        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/pokes?page=2').reply(200, PokesEmptyPageJson);
+
+        const fetchMoreButton = await screen.findByTitle('Fetch more users');
+        fetchMoreButton.click();
+
+        expect(fetchMoreButton).not.toBeInTheDocument();
+    });
+
+    it('shows loaders on initial fetching pokes', async () => {
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/pokes?page=1').reply(200);
         nock(BACKEND_URL)
             .defaultReplyHeaders(nockReplyHeaders)
@@ -38,7 +62,7 @@ describe('Pokes list', () => {
         expect(loader).toBeInTheDocument();
     });
 
-    it('loads ten users', async () => {
+    it('loads 10 pokes', async () => {
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/pokes?page=1').reply(200);
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/pokes?page=1').reply(200, PokesFirstPageJson);
 
@@ -57,7 +81,7 @@ describe('Pokes list', () => {
         expect(tenthElement).toBeInTheDocument();
     });
 
-    it('shows loaders on fetching more users', async () => {
+    it('shows loaders on fetching more pokes', async () => {
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/pokes?page=1').reply(200);
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/pokes?page=1').reply(200, PokesFirstPageJson);
 
@@ -85,7 +109,7 @@ describe('Pokes list', () => {
         expect(loader).toBeInTheDocument();
     });
 
-    it('can fetch more users', async () => {
+    it('can fetch more pokes', async () => {
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/pokes?page=1').reply(200);
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/pokes?page=1').reply(200, PokesFirstPageJson);
 
@@ -121,7 +145,7 @@ describe('Pokes list', () => {
         expect(twentythElement).toBeInTheDocument();
     });
 
-    it('shows empty component when fetch no users', async () => {
+    it('shows empty component when fetch no pokes', async () => {
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/pokes?page=1').reply(200);
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/pokes?page=1').reply(200, PokesEmptyPageJson);
 
