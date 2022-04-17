@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useAxios } from '@hooks/useAxios';
 
 import { Failure } from '@components/pages/friends/actions/messages/Failure';
@@ -12,18 +13,27 @@ interface InviteActionsProps {
 
 export const InviteActions = ({ friend }: InviteActionsProps) => {
     const { state, sendRequest } = useAxios();
+    const [action, setAction] = useState<'REJECT' | 'ACCEPT'>();
 
     const handleAccept = (event: FocusEvent) => {
         event.preventDefault();
+
         sendRequest({ method: 'POST', url: '/api/friendship/accept', data: { user_id: friend.id } });
+        setAction('ACCEPT');
     };
 
     const handleReject = (event: FocusEvent) => {
         event.preventDefault();
+
         sendRequest({ method: 'POST', url: '/api/friendship/reject', data: { user_id: friend.id } });
+        setAction('REJECT');
     };
 
-    if (state.status === 'SUCCESS') return <Success message={state.data.message} />;
+    if (state.status === 'SUCCESS') {
+        const message = action === 'REJECT' ? 'Request rejected successfully' : 'Request accepted successfully';
+        return <Success message={message} />;
+    }
+
     if (state.status === 'ERROR') return <Failure message="Something went wrong, try again later" />;
 
     return (
