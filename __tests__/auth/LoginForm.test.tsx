@@ -20,17 +20,16 @@ describe('LoginForm component', () => {
 
         const emailInput = screen.getByLabelText('Address e-mail');
         const passwordInput = screen.getByLabelText('Password');
-        const submitButton = screen.getByRole('button');
 
         expect(emailInput).toHaveValue('');
         expect(passwordInput).toHaveValue('');
 
-        await act(async () => {
-            submitButton.click();
-        });
+        const submitButton = screen.getByRole('button');
 
-        const emailErrorMessage = screen.getByText('Email field is required');
-        const passwordErrorMessage = screen.getByText('Password field is required');
+        submitButton.click();
+
+        const emailErrorMessage = await screen.findByText('Email field is required');
+        const passwordErrorMessage = await screen.findByText('Password field is required');
 
         expect(emailErrorMessage).toBeInTheDocument();
         expect(passwordErrorMessage).toBeInTheDocument();
@@ -44,11 +43,9 @@ describe('LoginForm component', () => {
 
         fireEvent.change(emailInput, { target: { value: 'incorrect_email' } });
 
-        await act(async () => {
-            submitButton.click();
-        });
+        submitButton.click();
 
-        const emailErrorMessage = screen.getByText('Email is invalid');
+        const emailErrorMessage = await screen.findByText('Email is invalid');
 
         expect(emailErrorMessage).toBeInTheDocument();
     });

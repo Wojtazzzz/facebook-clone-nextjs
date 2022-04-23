@@ -5,7 +5,9 @@ describe('Auth component', () => {
     it('renders login as default form', () => {
         render(<Auth />);
 
-        screen.getByText('Login');
+        const loginHeader = screen.getByText('Login');
+
+        expect(loginHeader).toBeInTheDocument();
     });
 
     it('redirects between forms', () => {
@@ -16,17 +18,23 @@ describe('Auth component', () => {
         );
         redirectToRegisterFormElement.click();
 
-        screen.getByText('Register');
+        const registerModalHeader = screen.getByText('Register');
+
+        expect(registerModalHeader).toBeInTheDocument();
 
         const redirectToLoginFormElement = screen.getByText((content) => content.startsWith('Have an account?'));
         redirectToLoginFormElement.click();
 
-        screen.getByText('Login');
+        const loginModalHeader = screen.getByText('Login');
+
+        expect(loginModalHeader).toBeInTheDocument();
     });
 
     it('has link to original facebook app', () => {
         render(<Auth />);
 
-        expect(screen.getByTestId('informations-facebook_link')).toHaveAttribute('href', 'https://facebook.com/');
+        const link = screen.getByTestId('informations-facebook_link');
+
+        expect(link).toHaveAttribute('href', 'https://facebook.com/');
     });
 });
