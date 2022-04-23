@@ -17,16 +17,18 @@
         "types": ["cypress", "node", "jest"],
         "baseUrl": ".",
         "paths": {
-            "@styles/*": ["styles/*"],
-            "@pages/*": ["pages/*"],
+            "@mocks/*": ["__mocks__/*"],
+            "@tests/*": ["__tests__/*"],
             "@components/*": ["components/*"],
-            "@redux/*": ["redux/*"],
+            "@cypress/*": ["cypress/*"],
             "@hooks/*": ["hooks/*"],
             "@libs/*": ["libs/*"],
-            "@validation/*": ["validation/*"],
+            "@pages/*": ["pages/*"],
+            "@redux/*": ["redux/*"],
+            "@styles/*": ["styles/*"],
             "@ctypes/*": ["types/*"],
             "@utils/*": ["utils/*"],
-            "@mocks/*": ["__mocks__/*"]
+            "@validation/*": ["validation/*"]
         }
     },
     "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "node_modules/jest-dom"],
