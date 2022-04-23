@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 import { SingleLoading } from '@components/pages/friends/shared/SingleLoading';
 import { ListLoader } from '@components/ListLoader';
 
@@ -5,7 +7,7 @@ interface LoaderProps {
     testid?: string;
 }
 
-export const Loader = ({ testid = '' }: LoaderProps) => {
+export const Loader = memo<LoaderProps>(({ testid = '' }) => {
     return (
         <div data-testid={testid}>
             <ListLoader>
@@ -13,4 +15,6 @@ export const Loader = ({ testid = '' }: LoaderProps) => {
             </ListLoader>
         </div>
     );
-};
+});
+
+Loader.displayName = 'Loader';

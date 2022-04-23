@@ -3,11 +3,17 @@ import { memo } from 'react';
 import { ListSingleLoader } from '@components/nav/additions/shared/ListSingleLoader';
 import { ListLoader } from '@components/ListLoader';
 
-export const Loader = memo(() => {
+interface LoaderProps {
+    testid?: string;
+}
+
+export const Loader = memo<LoaderProps>(({ testid = '' }) => {
     return (
-        <ListLoader count={8}>
-            <ListSingleLoader />
-        </ListLoader>
+        <div data-testid={testid}>
+            <ListLoader count={8}>
+                <ListSingleLoader />
+            </ListLoader>
+        </div>
     );
 });
 

@@ -12,7 +12,7 @@ import { toggleActive as toggleActiveMessenger } from '@redux/slices/MessengerSl
 import { toggleActive as toggleActiveNotificationsList } from '@redux/slices/NotificationsListSlice';
 
 export const Additions = () => {
-    const { logout, isLoading } = useAuth();
+    const { logout } = useAuth();
     const dispatch = useAppDispatch();
     const {
         messenger: { isActive: isMessengerActive },
@@ -45,7 +45,11 @@ export const Additions = () => {
 
                 {isMessengerActive && (
                     <>
-                        <div className="w-full h-full fixed top-0 left-0" onClick={handleToggleMessenger}></div>
+                        <div
+                            data-testid="messenger-close_overlay"
+                            className="w-full h-full fixed top-0 left-0"
+                            onClick={handleToggleMessenger}
+                        ></div>
                         <Messenger />
                     </>
                 )}
