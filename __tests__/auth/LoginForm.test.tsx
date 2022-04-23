@@ -1,7 +1,16 @@
 import { LoginForm } from '@components/auth/LoginForm';
-import { render, screen, fireEvent, act } from '@testing-library/react';
+import { nockReplyHeaders } from '@libs/nockReplyHeaders';
+import { render, screen, fireEvent } from '@testing-library/react';
+import nock from 'nock';
 
 describe('LoginForm component', () => {
+    const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'http://localhost:8000';
+
+    beforeEach(() => {
+        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/user').reply(200);
+        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/user').reply(401);
+    });
+
     it('renders email, password and button input', () => {
         render(<LoginForm />);
 

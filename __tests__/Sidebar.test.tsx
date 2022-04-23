@@ -4,6 +4,7 @@ import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import RootUserJson from '@mocks/user/root.json';
 import nock from 'nock';
+import { SWRConfig } from 'swr';
 import { nockReplyHeaders } from '@libs/nockReplyHeaders';
 
 describe('Sidebar component', () => {
@@ -21,7 +22,9 @@ describe('Sidebar component', () => {
 
         render(
             <Provider store={store}>
-                <Sidebar />
+                <SWRConfig value={{ provider: () => new Map() }}>
+                    <Sidebar />
+                </SWRConfig>
             </Provider>,
         );
 
@@ -32,7 +35,9 @@ describe('Sidebar component', () => {
     it('renders friends, pokes, github link properly', () => {
         render(
             <Provider store={store}>
-                <Sidebar />
+                <SWRConfig value={{ provider: () => new Map() }}>
+                    <Sidebar />
+                </SWRConfig>
             </Provider>,
         );
 

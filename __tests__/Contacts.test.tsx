@@ -23,7 +23,9 @@ describe('Contacts component', () => {
     it('renders section title', () => {
         render(
             <Provider store={store}>
-                <Contacts />
+                <SWRConfig value={{ provider: () => new Map() }}>
+                    <Contacts />
+                </SWRConfig>
             </Provider>,
         );
 

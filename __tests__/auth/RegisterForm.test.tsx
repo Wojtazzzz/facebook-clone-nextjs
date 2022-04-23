@@ -1,7 +1,16 @@
 import { RegisterForm } from '@components/auth/RegisterForm';
+import { nockReplyHeaders } from '@libs/nockReplyHeaders';
 import { render, screen } from '@testing-library/react';
+import nock from 'nock';
 
 describe('RegisterForm component', () => {
+    const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'http://localhost:8000';
+
+    beforeEach(() => {
+        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/user').reply(200);
+        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/user').reply(401);
+    });
+
     it('checks for all inputs are disabled', () => {
         render(<RegisterForm />);
 
