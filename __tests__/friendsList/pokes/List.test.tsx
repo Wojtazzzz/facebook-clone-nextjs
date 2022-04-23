@@ -6,7 +6,6 @@ import RootUserJson from '@mocks/user/root.json';
 import PokesFirstPageJson from '@mocks/friendsList/pokes/firstPage.json';
 import PokesSecondPageJson from '@mocks/friendsList/pokes/secondPage.json';
 import PokesEmptyPageJson from '@mocks/friendsList/pokes/empty.json';
-import PokesWithHighestCountsJson from '@mocks/friendsList/pokes/highestCounts.json';
 import { store } from '@redux/store';
 import { Provider } from 'react-redux';
 import { List } from '@components/pages/friends/List';
@@ -182,10 +181,7 @@ describe('Pokes list', () => {
 
     it('shows truthy pokes count', async () => {
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/pokes?page=1').reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get('/api/pokes?page=1')
-            .reply(200, PokesWithHighestCountsJson);
+        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/pokes?page=1').reply(200, PokesFirstPageJson);
 
         render(
             <Provider store={store}>
@@ -195,7 +191,7 @@ describe('Pokes list', () => {
             </Provider>,
         );
 
-        PokesWithHighestCountsJson.forEach(async (item) => {
+        PokesFirstPageJson.forEach(async (item) => {
             const element = await screen.findByText(
                 `${item.first_name} poked you ${item.poke_info.count} times in a row`,
             );
