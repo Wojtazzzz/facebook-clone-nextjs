@@ -1,40 +1,25 @@
 import { screen } from '@testing-library/react';
 import nock from 'nock';
-import { nockReplyHeaders } from '@libs/nockReplyHeaders';
 import RootUserJson from '@mocks/user/root.json';
 import SuggestsFirstPageJson from '@mocks/friendsList/suggests/firstPage.json';
 import SuggestsSecondPageJson from '@mocks/friendsList/suggests/secondPage.json';
 import SuggestsEmptyPageJson from '@mocks/friendsList/suggests/empty.json';
 import { List } from '@components/pages/friends/List';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { mock } from '@libs/nock';
 
-describe('Pokes list', () => {
-    const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'http://localhost:8000';
-
+describe('Suggests list', () => {
     beforeEach(() => {
         nock.disableNetConnect();
     });
 
     it('fetch button dissapears when page fetched all suggests', async () => {
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/suggests?page=1').reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get('/api/friendship/suggests?page=1')
-            .reply(200, SuggestsFirstPageJson);
+        mock('/api/friendship/suggests?page=1', 200, SuggestsFirstPageJson);
 
         renderWithDefaultData(<List userId={RootUserJson.id} type="suggests" />);
 
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/suggests?page=1').reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get('/api/friendship/suggests?page=1')
-            .reply(200, SuggestsFirstPageJson);
-
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/suggests?page=2').reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get('/api/friendship/suggests?page=2')
-            .reply(200, SuggestsEmptyPageJson);
+        mock('/api/friendship/suggests?page=1', 200, SuggestsFirstPageJson);
+        mock('/api/friendship/suggests?page=2', 200, SuggestsEmptyPageJson);
 
         const fetchMoreButton = await screen.findByTitle('Fetch more users');
         fetchMoreButton.click();
@@ -43,12 +28,7 @@ describe('Pokes list', () => {
     });
 
     it('shows loaders on initial fetching users', async () => {
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/suggests?page=1').reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get('/api/friendship/suggests?page=1')
-            .delay(99999)
-            .reply(200, SuggestsFirstPageJson);
+        mock('/api/friendship/suggests?page=1', 200, SuggestsFirstPageJson);
 
         renderWithDefaultData(<List userId={RootUserJson.id} type="suggests" />);
 
@@ -57,11 +37,7 @@ describe('Pokes list', () => {
     });
 
     it('loads 10 users', async () => {
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/suggests?page=1').reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get('/api/friendship/suggests?page=1')
-            .reply(200, SuggestsFirstPageJson);
+        mock('/api/friendship/suggests?page=1', 200, SuggestsFirstPageJson);
 
         renderWithDefaultData(<List userId={RootUserJson.id} type="suggests" />);
 
@@ -73,25 +49,12 @@ describe('Pokes list', () => {
     });
 
     it('shows loaders on fetching more users', async () => {
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/suggests?page=1').reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get('/api/friendship/suggests?page=1')
-            .reply(200, SuggestsFirstPageJson);
+        mock('/api/friendship/suggests?page=1', 200, SuggestsFirstPageJson);
 
         renderWithDefaultData(<List userId={RootUserJson.id} type="suggests" />);
 
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/suggests?page=1').reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get('/api/friendship/suggests?page=1')
-            .reply(200, SuggestsFirstPageJson);
-
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/suggests?page=2').reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get('/api/friendship/suggests?page=2')
-            .reply(200, SuggestsFirstPageJson);
+        mock('/api/friendship/suggests?page=1', 200, SuggestsFirstPageJson);
+        mock('/api/friendship/suggests?page=2', 200, SuggestsSecondPageJson);
 
         const fetchMoreButton = await screen.findByTitle('Fetch more users');
         fetchMoreButton.click();
@@ -101,24 +64,12 @@ describe('Pokes list', () => {
     });
 
     it('can fetch more users', async () => {
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/suggests?page=1').reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get('/api/friendship/suggests?page=1')
-            .reply(200, SuggestsFirstPageJson);
+        mock('/api/friendship/suggests?page=1', 200, SuggestsFirstPageJson);
 
         renderWithDefaultData(<List userId={RootUserJson.id} type="suggests" />);
 
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/suggests?page=1').reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get('/api/friendship/suggests?page=1')
-            .reply(200, SuggestsFirstPageJson);
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/suggests?page=2').reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get('/api/friendship/suggests?page=2')
-            .reply(200, SuggestsSecondPageJson);
+        mock('/api/friendship/suggests?page=1', 200, SuggestsFirstPageJson);
+        mock('/api/friendship/suggests?page=2', 200, SuggestsSecondPageJson);
 
         const fetchMoreButton = await screen.findByTitle('Fetch more users');
         fetchMoreButton.click();
@@ -137,8 +88,7 @@ describe('Pokes list', () => {
     });
 
     it('shows empty component when fetch no users', async () => {
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/suggests?page=1').reply(200);
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/friendship/suggests?page=1').reply(200, []);
+        mock('/api/friendship/suggests?page=1', 200, SuggestsEmptyPageJson);
 
         renderWithDefaultData(<List userId={RootUserJson.id} type="suggests" />);
 
@@ -147,8 +97,7 @@ describe('Pokes list', () => {
     });
 
     it('shows error component when api returns error', async () => {
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/suggests?page=1').reply(200);
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/friendship/suggests?page=1').reply(500);
+        mock('/api/friendship/suggests?page=1', 500);
 
         renderWithDefaultData(<List userId={RootUserJson.id} type="suggests" />);
 

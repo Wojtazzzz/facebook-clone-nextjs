@@ -1,40 +1,25 @@
 import { screen } from '@testing-library/react';
 import nock from 'nock';
-import { nockReplyHeaders } from '@libs/nockReplyHeaders';
 import RootUserJson from '@mocks/user/root.json';
 import InvitesFirstPageJson from '@mocks/friendsList/invites/firstPage.json';
 import InvitesSecondPageJson from '@mocks/friendsList/invites/secondPage.json';
 import InvitesEmptyPageJson from '@mocks/friendsList/invites/empty.json';
 import { List } from '@components/pages/friends/List';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { mock } from '@libs/nock';
 
 describe('Invites list', () => {
-    const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'http://localhost:8000';
-
     beforeEach(() => {
         nock.disableNetConnect();
     });
 
     it('fetch button dissapears when page fetched all invites', async () => {
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/invites?page=1').reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get('/api/friendship/invites?page=1')
-            .reply(200, InvitesFirstPageJson);
+        mock('/api/friendship/invites?page=1', 200, InvitesFirstPageJson);
 
         renderWithDefaultData(<List userId={RootUserJson.id} type="invites" />);
 
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/invites?page=1').reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get('/api/friendship/invites?page=1')
-            .reply(200, InvitesFirstPageJson);
-
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/invites?page=2').reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get('/api/friendship/invites?page=2')
-            .reply(200, InvitesEmptyPageJson);
+        mock('/api/friendship/invites?page=1', 200, InvitesFirstPageJson);
+        mock('/api/friendship/invites?page=2', 200, InvitesEmptyPageJson);
 
         const fetchMoreButton = await screen.findByTitle('Fetch more users');
         fetchMoreButton.click();
@@ -43,12 +28,7 @@ describe('Invites list', () => {
     });
 
     it('shows loaders on initial fetching invites', async () => {
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/invites?page=1').reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get('/api/friendship/invites?page=1')
-            .delay(99999)
-            .reply(200, InvitesFirstPageJson);
+        mock('/api/friendship/invites?page=1', 200, InvitesFirstPageJson);
 
         renderWithDefaultData(<List userId={RootUserJson.id} type="invites" />);
 
@@ -57,11 +37,7 @@ describe('Invites list', () => {
     });
 
     it('loads 10 invites', async () => {
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/invites?page=1').reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get('/api/friendship/invites?page=1')
-            .reply(200, InvitesFirstPageJson);
+        mock('/api/friendship/invites?page=1', 200, InvitesFirstPageJson);
 
         renderWithDefaultData(<List userId={RootUserJson.id} type="invites" />);
 
@@ -73,25 +49,12 @@ describe('Invites list', () => {
     });
 
     it('shows loaders on fetching more invites', async () => {
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/invites?page=1').reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get('/api/friendship/invites?page=1')
-            .reply(200, InvitesFirstPageJson);
+        mock('/api/friendship/invites?page=1', 200, InvitesFirstPageJson);
 
         renderWithDefaultData(<List userId={RootUserJson.id} type="invites" />);
 
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/invites?page=1').reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get('/api/friendship/invites?page=1')
-            .reply(200, InvitesFirstPageJson);
-
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/invites?page=2').reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get('/api/friendship/invites?page=2')
-            .reply(200, InvitesSecondPageJson);
+        mock('/api/friendship/invites?page=1', 200, InvitesFirstPageJson);
+        mock('/api/friendship/invites?page=2', 200, InvitesSecondPageJson);
 
         const fetchMoreButton = await screen.findByTitle('Fetch more users');
         fetchMoreButton.click();
@@ -101,24 +64,12 @@ describe('Invites list', () => {
     });
 
     it('can fetch more invites', async () => {
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/invites?page=1').reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get('/api/friendship/invites?page=1')
-            .reply(200, InvitesFirstPageJson);
+        mock('/api/friendship/invites?page=1', 200, InvitesFirstPageJson);
 
         renderWithDefaultData(<List userId={RootUserJson.id} type="invites" />);
 
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/invites?page=1').reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get('/api/friendship/invites?page=1')
-            .reply(200, InvitesFirstPageJson);
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/invites?page=2').reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get('/api/friendship/invites?page=2')
-            .reply(200, InvitesSecondPageJson);
+        mock('/api/friendship/invites?page=1', 200, InvitesFirstPageJson);
+        mock('/api/friendship/invites?page=2', 200, InvitesSecondPageJson);
 
         const fetchMoreButton = await screen.findByTitle('Fetch more users');
         fetchMoreButton.click();
@@ -137,11 +88,7 @@ describe('Invites list', () => {
     });
 
     it('shows empty component when fetch no invites', async () => {
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/invites?page=1').reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get('/api/friendship/invites?page=1')
-            .reply(200, InvitesEmptyPageJson);
+        mock('/api/friendship/invites?page=1', 200, InvitesEmptyPageJson);
 
         renderWithDefaultData(<List userId={RootUserJson.id} type="invites" />);
 
@@ -150,15 +97,14 @@ describe('Invites list', () => {
     });
 
     it('shows error component when api returns error', async () => {
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/invites?page=1').reply(200);
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/friendship/invites?page=1').reply(500);
+        mock('/api/friendship/invites?page=1', 500);
 
         renderWithDefaultData(<List userId={RootUserJson.id} type="invites" />);
 
         const errorImage = await screen.findByAltText('Server error');
         expect(errorImage).toBeInTheDocument();
 
-        const emptyComponent = await screen.findByText('Something went wrong');
-        expect(emptyComponent).toBeInTheDocument();
+        const errorComponent = await screen.findByText('Something went wrong');
+        expect(errorComponent).toBeInTheDocument();
     });
 });

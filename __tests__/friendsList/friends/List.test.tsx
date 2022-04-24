@@ -1,49 +1,25 @@
 import { screen } from '@testing-library/react';
 import nock from 'nock';
-import { nockReplyHeaders } from '@libs/nockReplyHeaders';
 import RootUserJson from '@mocks/user/root.json';
 import FriendsFirstPageJson from '@mocks/friendsList/friends/firstPage.json';
 import FriendsSecondPageJson from '@mocks/friendsList/friends/secondPage.json';
 import FriendsEmptyPageJson from '@mocks/friendsList/friends/empty.json';
 import { List } from '@components/pages/friends/List';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { mock } from '@libs/nock';
 
 describe('Friends list', () => {
-    const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'http://localhost:8000';
-
     beforeEach(() => {
         nock.disableNetConnect();
     });
 
     it('fetch button dissapears when page fetched all friends', async () => {
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .options(`/api/friendship/friends/${RootUserJson.id}?page=1`)
-            .reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get(`/api/friendship/friends/${RootUserJson.id}?page=1`)
-            .reply(200, FriendsFirstPageJson);
+        mock(`/api/friendship/friends/${RootUserJson.id}?page=1`, 200, FriendsFirstPageJson);
 
         renderWithDefaultData(<List userId={RootUserJson.id} type="friends" />);
 
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .options(`/api/friendship/friends/${RootUserJson.id}?page=1`)
-            .reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get(`/api/friendship/friends/${RootUserJson.id}?page=1`)
-            .reply(200, FriendsFirstPageJson);
-
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .options(`/api/friendship/friends/${RootUserJson.id}?page=2`)
-            .reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get(`/api/friendship/friends/${RootUserJson.id}?page=2`)
-            .reply(200, FriendsEmptyPageJson);
+        mock(`/api/friendship/friends/${RootUserJson.id}?page=1`, 200, FriendsFirstPageJson);
+        mock(`/api/friendship/friends/${RootUserJson.id}?page=2`, 200, FriendsEmptyPageJson);
 
         const fetchMoreButton = await screen.findByTitle('Fetch more users');
         fetchMoreButton.click();
@@ -52,14 +28,7 @@ describe('Friends list', () => {
     });
 
     it('shows loaders on initial fetching friends', async () => {
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .options(`/api/friendship/friends/${RootUserJson.id}?page=1`)
-            .reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get(`/api/friendship/friends/${RootUserJson.id}?page=1`)
-            .reply(200, FriendsFirstPageJson);
+        mock(`/api/friendship/friends/${RootUserJson.id}?page=1`, 200, FriendsFirstPageJson);
 
         renderWithDefaultData(<List userId={RootUserJson.id} type="friends" />);
 
@@ -68,14 +37,7 @@ describe('Friends list', () => {
     });
 
     it('loads 10 friends', async () => {
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .options(`/api/friendship/friends/${RootUserJson.id}?page=1`)
-            .reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get(`/api/friendship/friends/${RootUserJson.id}?page=1`)
-            .reply(200, FriendsFirstPageJson);
+        mock(`/api/friendship/friends/${RootUserJson.id}?page=1`, 200, FriendsFirstPageJson);
 
         renderWithDefaultData(<List userId={RootUserJson.id} type="friends" />);
 
@@ -87,34 +49,12 @@ describe('Friends list', () => {
     });
 
     it('shows loaders on fetching more friends', async () => {
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .options(`/api/friendship/friends/${RootUserJson.id}?page=1`)
-            .reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get(`/api/friendship/friends/${RootUserJson.id}?page=1`)
-            .reply(200, FriendsFirstPageJson);
+        mock(`/api/friendship/friends/${RootUserJson.id}?page=1`, 200, FriendsFirstPageJson);
 
         renderWithDefaultData(<List userId={RootUserJson.id} type="friends" />);
 
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .options(`/api/friendship/friends/${RootUserJson.id}?page=1`)
-            .reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get(`/api/friendship/friends/${RootUserJson.id}?page=1`)
-            .reply(200, FriendsFirstPageJson);
-
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .options(`/api/friendship/friends/${RootUserJson.id}?page=2`)
-            .reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get(`/api/friendship/friends/${RootUserJson.id}?page=2`)
-            .reply(200, FriendsSecondPageJson);
+        mock(`/api/friendship/friends/${RootUserJson.id}?page=1`, 200, FriendsFirstPageJson);
+        mock(`/api/friendship/friends/${RootUserJson.id}?page=2`, 200, FriendsSecondPageJson);
 
         const fetchMoreButton = await screen.findByTitle('Fetch more users');
         fetchMoreButton.click();
@@ -124,33 +64,12 @@ describe('Friends list', () => {
     });
 
     it('can fetch more friends', async () => {
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .options(`/api/friendship/friends/${RootUserJson.id}?page=1`)
-            .reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get(`/api/friendship/friends/${RootUserJson.id}?page=1`)
-            .reply(200, FriendsFirstPageJson);
+        mock(`/api/friendship/friends/${RootUserJson.id}?page=1`, 200, FriendsFirstPageJson);
 
         renderWithDefaultData(<List userId={RootUserJson.id} type="friends" />);
 
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .options(`/api/friendship/friends/${RootUserJson.id}?page=1`)
-            .reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get(`/api/friendship/friends/${RootUserJson.id}?page=1`)
-            .reply(200, FriendsFirstPageJson);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .options(`/api/friendship/friends/${RootUserJson.id}?page=2`)
-            .reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get(`/api/friendship/friends/${RootUserJson.id}?page=2`)
-            .reply(200, FriendsSecondPageJson);
+        mock(`/api/friendship/friends/${RootUserJson.id}?page=1`, 200, FriendsFirstPageJson);
+        mock(`/api/friendship/friends/${RootUserJson.id}?page=2`, 200, FriendsSecondPageJson);
 
         const fetchMoreButton = await screen.findByTitle('Fetch more users');
         fetchMoreButton.click();
@@ -169,14 +88,7 @@ describe('Friends list', () => {
     });
 
     it('shows empty component when fetch no friends', async () => {
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .options(`/api/friendship/friends/${RootUserJson.id}?page=1`)
-            .reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get(`/api/friendship/friends/${RootUserJson.id}?page=1`)
-            .reply(200, FriendsEmptyPageJson);
+        mock(`/api/friendship/friends/${RootUserJson.id}?page=1`, 200, FriendsEmptyPageJson);
 
         renderWithDefaultData(<List userId={RootUserJson.id} type="friends" />);
 
@@ -185,14 +97,7 @@ describe('Friends list', () => {
     });
 
     it('shows error component when api returns error', async () => {
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .options(`/api/friendship/friends/${RootUserJson.id}?page=1`)
-            .reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get(`/api/friendship/friends/${RootUserJson.id}?page=1`)
-            .reply(500);
+        mock(`/api/friendship/friends/${RootUserJson.id}?page=1`, 500);
 
         renderWithDefaultData(<List userId={RootUserJson.id} type="friends" />);
 

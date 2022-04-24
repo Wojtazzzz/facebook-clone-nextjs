@@ -1,22 +1,14 @@
 import { screen } from '@testing-library/react';
 import nock from 'nock';
-import { nockReplyHeaders } from '@libs/nockReplyHeaders';
 import SuggestsFirstPageJson from '@mocks/friendsList/suggests/firstPage.json';
 import { Slot } from '@components/pages/friends/Slot';
 import { Actions } from '@components/pages/friends/actions/Actions';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { mock } from '@libs/nock';
 
 describe('Single friend component', () => {
-    const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'http://localhost:8000';
-
     beforeEach(() => {
         nock.disableNetConnect();
-
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/suggests?page=1').reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get('/api/friendship/suggests?page=1')
-            .reply(200, SuggestsFirstPageJson);
     });
 
     it('renders user image, name, poked data, invite button', async () => {
@@ -46,8 +38,7 @@ describe('Single friend component', () => {
             </Slot>
         );
 
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/invite').reply(200);
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).post('/api/friendship/invite').reply(201);
+        mock('/api/friendship/invite', 201, {}, 'POST');
 
         const inviteButton = await screen.findByTitle('Invite');
         inviteButton.click();
@@ -65,8 +56,7 @@ describe('Single friend component', () => {
             </Slot>
         );
 
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/invite').reply(200);
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).post('/api/friendship/invite').reply(500);
+        mock('/api/friendship/invite', 500, {}, 'POST');
 
         const inviteButton = await screen.findByTitle('Invite');
         inviteButton.click();

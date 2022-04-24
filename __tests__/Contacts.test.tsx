@@ -2,20 +2,17 @@ import { screen } from '@testing-library/react';
 import RootUserJson from '@mocks/user/root.json';
 import ContactsFirstPageJson from '@mocks/contacts/firstPage.json';
 import ContactsSecondPageJson from '@mocks/contacts/secondPage.json';
-import EmptyJson from '@mocks/contacts/empty.json';
+import ContactsEmptyPageJson from '@mocks/contacts/empty.json';
 import nock from 'nock';
-import { nockReplyHeaders } from '@libs/nockReplyHeaders';
 import { Contacts } from '@components/contacts/Contacts';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { mock } from '@libs/nock';
 
 describe('Contacts component', () => {
-    const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'http://localhost:8000';
-
     beforeEach(() => {
         nock.disableNetConnect();
 
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/user').reply(200);
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/user').reply(200, RootUserJson);
+        mock('/api/user', 200, RootUserJson);
     });
 
     it('renders section title', () => {
@@ -27,14 +24,7 @@ describe('Contacts component', () => {
     });
 
     it('loads first contacts list', async () => {
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .options(`/api/friendship/friends/${RootUserJson.id}?page=1`)
-            .reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get(`/api/friendship/friends/${RootUserJson.id}?page=1`)
-            .reply(200, ContactsFirstPageJson);
+        mock(`/api/friendship/friends/${RootUserJson.id}?page=1`, 200, ContactsFirstPageJson);
 
         renderWithDefaultData(<Contacts />);
 
@@ -46,14 +36,7 @@ describe('Contacts component', () => {
     });
 
     it('loads empty list and show empty component', async () => {
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .options(`/api/friendship/friends/${RootUserJson.id}?page=1`)
-            .reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get(`/api/friendship/friends/${RootUserJson.id}?page=1`)
-            .reply(200, EmptyJson);
+        mock(`/api/friendship/friends/${RootUserJson.id}?page=1`, 200, ContactsEmptyPageJson);
 
         renderWithDefaultData(<Contacts />);
 
@@ -62,15 +45,7 @@ describe('Contacts component', () => {
     });
 
     it('show error component on api error', async () => {
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .options(`/api/friendship/friends/${RootUserJson.id}?page=1`)
-            .reply(200);
-
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get(`/api/friendship/friends/${RootUserJson.id}?page=1`)
-            .reply(500);
+        mock(`/api/friendship/friends/${RootUserJson.id}?page=1`, 500);
 
         renderWithDefaultData(<Contacts />);
 
@@ -82,14 +57,7 @@ describe('Contacts component', () => {
     });
 
     it('loads more contacts on click on load more button', async () => {
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .options(`/api/friendship/friends/${RootUserJson.id}?page=1`)
-            .reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get(`/api/friendship/friends/${RootUserJson.id}?page=1`)
-            .reply(200, ContactsFirstPageJson);
+        mock(`/api/friendship/friends/${RootUserJson.id}?page=1`, 200, ContactsFirstPageJson);
 
         renderWithDefaultData(<Contacts />);
 
@@ -99,23 +67,8 @@ describe('Contacts component', () => {
         const tenthContact = await screen.findByText(ContactsFirstPageJson[9].name);
         expect(tenthContact).toBeInTheDocument();
 
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .options(`/api/friendship/friends/${RootUserJson.id}?page=1`)
-            .reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get(`/api/friendship/friends/${RootUserJson.id}?page=1`)
-            .reply(200, ContactsFirstPageJson);
-
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .options(`/api/friendship/friends/${RootUserJson.id}?page=2`)
-            .reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get(`/api/friendship/friends/${RootUserJson.id}?page=2`)
-            .reply(200, ContactsSecondPageJson);
+        mock(`/api/friendship/friends/${RootUserJson.id}?page=1`, 200, ContactsFirstPageJson);
+        mock(`/api/friendship/friends/${RootUserJson.id}?page=2`, 200, ContactsSecondPageJson);
 
         const loadMoreButton = await screen.findByTitle('Load more contacts');
         loadMoreButton.click();
@@ -128,34 +81,12 @@ describe('Contacts component', () => {
     });
 
     it('fetch button dissapears when page fetch all contacts', async () => {
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .options(`/api/friendship/friends/${RootUserJson.id}?page=1`)
-            .reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get(`/api/friendship/friends/${RootUserJson.id}?page=1`)
-            .reply(200, ContactsFirstPageJson);
+        mock(`/api/friendship/friends/${RootUserJson.id}?page=1`, 200, ContactsFirstPageJson);
 
         renderWithDefaultData(<Contacts />);
 
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .options(`/api/friendship/friends/${RootUserJson.id}?page=1`)
-            .reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get(`/api/friendship/friends/${RootUserJson.id}?page=1`)
-            .reply(200, ContactsFirstPageJson);
-
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .options(`/api/friendship/friends/${RootUserJson.id}?page=2`)
-            .reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get(`/api/friendship/friends/${RootUserJson.id}?page=2`)
-            .reply(200, EmptyJson);
+        mock(`/api/friendship/friends/${RootUserJson.id}?page=1`, 200, ContactsFirstPageJson);
+        mock(`/api/friendship/friends/${RootUserJson.id}?page=2`, 200, ContactsEmptyPageJson);
 
         const loadMoreButton = await screen.findByTitle('Load more contacts');
         loadMoreButton.click();

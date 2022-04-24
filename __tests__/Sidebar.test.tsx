@@ -2,22 +2,17 @@ import { Sidebar } from '@components/sidebar/Sidebar';
 import { screen } from '@testing-library/react';
 import RootUserJson from '@mocks/user/root.json';
 import nock from 'nock';
-import { nockReplyHeaders } from '@libs/nockReplyHeaders';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { mock } from '@libs/nock';
 
 describe('Sidebar component', () => {
-    const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'http://localhost:8000';
+    beforeEach(() => {
+        nock.disableNetConnect();
 
-    afterEach(() => {
-        nock.restore();
+        mock('/api/user', 200, RootUserJson);
     });
 
     it('loads logged user', async () => {
-        nock.disableNetConnect();
-
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/user').reply(200);
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/user').reply(200, RootUserJson);
-
         renderWithDefaultData(<Sidebar />);
 
         const loggedUser = await screen.findByText(RootUserJson.name);

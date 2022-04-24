@@ -1,17 +1,16 @@
 import { LoginForm } from '@components/auth/LoginForm';
-import { nockReplyHeaders } from '@libs/nockReplyHeaders';
 import CannotLoginResponse from '@mocks/user/cannotLogin.json';
 import { screen } from '@testing-library/react';
 import nock from 'nock';
 import userEvent from '@testing-library/user-event';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { mock } from '@libs/nock';
 
 describe('LoginForm component', () => {
-    const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'http://localhost:8000';
-
     beforeEach(() => {
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/user').reply(200);
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/user').reply(401);
+        nock.disableNetConnect();
+
+        mock('/api/user', 401);
     });
 
     it('renders email, password and button input', () => {
@@ -66,10 +65,8 @@ describe('LoginForm component', () => {
     });
 
     it('displays "incorrect credentials" message when login response returns 401 error', async () => {
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/sanctum/csrf-cookie').reply(200);
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/sanctum/csrf-cookie').reply(204);
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/login').reply(200);
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).post('/login').reply(422, CannotLoginResponse);
+        mock('/sanctum/csrf-cookie', 204);
+        mock('/login', 422, CannotLoginResponse, 'POST');
 
         const user = userEvent.setup();
 

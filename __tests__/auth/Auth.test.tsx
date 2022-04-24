@@ -1,15 +1,13 @@
 import { Auth } from '@components/auth/Auth';
-import { nockReplyHeaders } from '@libs/nockReplyHeaders';
+import { mock } from '@libs/nock';
 import { screen } from '@testing-library/react';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import nock from 'nock';
 
 describe('Auth component', () => {
-    const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'http://localhost:8000';
-
     beforeEach(() => {
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/user').reply(200);
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/user').reply(401);
+        nock.disableNetConnect();
+        mock('/api/user', 401);
     });
 
     it('renders login as default form', () => {

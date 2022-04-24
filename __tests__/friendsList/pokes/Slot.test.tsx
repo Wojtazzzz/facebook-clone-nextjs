@@ -1,19 +1,14 @@
 import { screen } from '@testing-library/react';
 import nock from 'nock';
-import { nockReplyHeaders } from '@libs/nockReplyHeaders';
 import PokesFirstPageJson from '@mocks/friendsList/pokes/firstPage.json';
 import { Slot } from '@components/pages/friends/Slot';
 import { Actions } from '@components/pages/friends/actions/Actions';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { mock } from '@libs/nock';
 
 describe('Single poke component', () => {
-    const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'http://localhost:8000';
-
     beforeEach(() => {
         nock.disableNetConnect();
-
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/pokes?page=1').reply(200);
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/pokes?page=1').reply(200, PokesFirstPageJson);
     });
 
     it('renders user image, name, poked data', async () => {
@@ -50,8 +45,7 @@ describe('Single poke component', () => {
         const pokeButton = await screen.findByTitle('Poke back');
         expect(pokeButton).toBeInTheDocument();
 
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/pokes/update').reply(200);
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).post('/api/pokes/update').reply(201);
+        mock('/api/pokes/update', 201, {}, 'POST');
 
         pokeButton.click();
 
@@ -71,8 +65,7 @@ describe('Single poke component', () => {
         const pokeButton = await screen.findByTitle('Poke back');
         expect(pokeButton).toBeInTheDocument();
 
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/pokes/update').reply(200);
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).post('/api/pokes/update').reply(500);
+        mock('/api/pokes/update', 500, {}, 'POST');
 
         pokeButton.click();
 

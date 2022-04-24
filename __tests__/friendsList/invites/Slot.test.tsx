@@ -1,22 +1,14 @@
 import { screen } from '@testing-library/react';
 import nock from 'nock';
-import { nockReplyHeaders } from '@libs/nockReplyHeaders';
 import InvitesFirstPageJson from '@mocks/friendsList/suggests/firstPage.json';
 import { Slot } from '@components/pages/friends/Slot';
 import { Actions } from '@components/pages/friends/actions/Actions';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { mock } from '@libs/nock';
 
 describe('Single invite component', () => {
-    const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'http://localhost:8000';
-
     beforeEach(() => {
         nock.disableNetConnect();
-
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/suggests?page=1').reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get('/api/friendship/suggests?page=1')
-            .reply(200, InvitesFirstPageJson);
     });
 
     it('renders user image, name, poked data, invite button', async () => {
@@ -48,8 +40,7 @@ describe('Single invite component', () => {
             </Slot>
         );
 
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/reject').reply(200);
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).post('/api/friendship/reject').reply(201);
+        mock('/api/friendship/reject', 201, {}, 'POST');
 
         const rejectButton = await screen.findByTitle('Reject');
         rejectButton.click();
@@ -67,8 +58,7 @@ describe('Single invite component', () => {
             </Slot>
         );
 
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/reject').reply(200);
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).post('/api/friendship/reject').reply(500);
+        mock('/api/friendship/reject', 500, {}, 'POST');
 
         const rejectButton = await screen.findByTitle('Reject');
         rejectButton.click();
@@ -86,8 +76,7 @@ describe('Single invite component', () => {
             </Slot>
         );
 
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/accept').reply(200);
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).post('/api/friendship/accept').reply(201);
+        mock('/api/friendship/accept', 201, {}, 'POST');
 
         const acceptButton = await screen.findByTitle('Accept');
         acceptButton.click();
@@ -105,8 +94,7 @@ describe('Single invite component', () => {
             </Slot>
         );
 
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/accept').reply(200);
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).post('/api/friendship/accept').reply(500);
+        mock('/api/friendship/accept', 500, {}, 'POST');
 
         const acceptButton = await screen.findByTitle('Accept');
         acceptButton.click();

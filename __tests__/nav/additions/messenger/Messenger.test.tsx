@@ -3,28 +3,21 @@ import RootUserJson from '@mocks/user/root.json';
 import MessengerFirstPageJson from '@mocks/messenger/firstPage.json';
 import MessengerEmptyPageJson from '@mocks/messenger/empty.json';
 import nock from 'nock';
-import { nockReplyHeaders } from '@libs/nockReplyHeaders';
 import { Additions } from '@components/nav/additions/Additions';
 import userEvent from '@testing-library/user-event';
 import { Messenger } from '@components/nav/additions/messenger/Messenger';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { mock } from '@libs/nock';
 
 describe('Messenger component', () => {
-    const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'http://localhost:8000';
-
     beforeEach(() => {
         nock.disableNetConnect();
 
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/user').reply(200);
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/user').reply(200, RootUserJson);
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/messages/messenger?page=1').reply(200);
+        mock('/api/user', 200, RootUserJson);
     });
 
     it('show messenger when click on messenger button', async () => {
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get('/api/messages/messenger?page=1')
-            .reply(200, MessengerFirstPageJson);
+        mock('/api/messages/messenger?page=1', 200, MessengerFirstPageJson);
 
         const user = userEvent.setup();
 
@@ -39,10 +32,7 @@ describe('Messenger component', () => {
     });
 
     it('close messenger when click on overlay', async () => {
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get('/api/messages/messenger?page=1')
-            .reply(200, MessengerFirstPageJson);
+        mock('/api/messages/messenger?page=1', 200, MessengerFirstPageJson);
 
         const user = userEvent.setup();
 
@@ -61,10 +51,7 @@ describe('Messenger component', () => {
     });
 
     it('render header and searchbar', () => {
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get('/api/messages/messenger?page=1')
-            .reply(200, MessengerFirstPageJson);
+        mock('/api/messages/messenger?page=1', 200, MessengerFirstPageJson);
 
         renderWithDefaultData(<Messenger />);
 
@@ -76,10 +63,7 @@ describe('Messenger component', () => {
     });
 
     it('render loaders on initial fetching users', () => {
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get('/api/messages/messenger?page=1')
-            .reply(200, MessengerFirstPageJson);
+        mock('/api/messages/messenger?page=1', 200, MessengerFirstPageJson);
 
         renderWithDefaultData(<Messenger />);
 
@@ -89,10 +73,7 @@ describe('Messenger component', () => {
     });
 
     it('render properly first list of users', async () => {
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get('/api/messages/messenger?page=1')
-            .reply(200, MessengerFirstPageJson);
+        mock('/api/messages/messenger?page=1', 200, MessengerFirstPageJson);
 
         renderWithDefaultData(<Messenger />);
 
@@ -104,10 +85,7 @@ describe('Messenger component', () => {
     });
 
     it('render properly empty component when response return empty array', async () => {
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get('/api/messages/messenger?page=1')
-            .reply(200, MessengerEmptyPageJson);
+        mock('/api/messages/messenger?page=1', 200, MessengerEmptyPageJson);
 
         renderWithDefaultData(<Messenger />);
 
@@ -116,7 +94,7 @@ describe('Messenger component', () => {
     });
 
     it('render properly error component when api return error', async () => {
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/messages/messenger?page=1').reply(500);
+        mock('/api/messages/messenger?page=1', 500, MessengerEmptyPageJson);
 
         renderWithDefaultData(<Messenger />);
 

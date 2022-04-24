@@ -1,31 +1,25 @@
 import { screen } from '@testing-library/react';
 import nock from 'nock';
-import { nockReplyHeaders } from '@libs/nockReplyHeaders';
 import RootUserJson from '@mocks/user/root.json';
 import PokesFirstPageJson from '@mocks/friendsList/pokes/firstPage.json';
 import PokesSecondPageJson from '@mocks/friendsList/pokes/secondPage.json';
 import PokesEmptyPageJson from '@mocks/friendsList/pokes/empty.json';
 import { List } from '@components/pages/friends/List';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { mock } from '@libs/nock';
 
 describe('Pokes list', () => {
-    const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'http://localhost:8000';
-
     beforeEach(() => {
         nock.disableNetConnect();
     });
 
     it('fetch button dissapears when page fetched all pokes', async () => {
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/pokes?page=1').reply(200);
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/pokes?page=1').reply(200, PokesFirstPageJson);
+        mock('/api/pokes?page=1', 200, PokesFirstPageJson);
 
         renderWithDefaultData(<List userId={RootUserJson.id} type="pokes" />);
 
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/pokes?page=1').reply(200);
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/pokes?page=1').reply(200, PokesFirstPageJson);
-
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/pokes?page=2').reply(200);
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/pokes?page=2').reply(200, PokesEmptyPageJson);
+        mock('/api/pokes?page=1', 200, PokesFirstPageJson);
+        mock('/api/pokes?page=2', 200, PokesEmptyPageJson);
 
         const fetchMoreButton = await screen.findByTitle('Fetch more users');
         fetchMoreButton.click();
@@ -34,12 +28,7 @@ describe('Pokes list', () => {
     });
 
     it('shows loaders on initial fetching pokes', async () => {
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/pokes?page=1').reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get('/api/pokes?page=1')
-            .delay(99999)
-            .reply(200, PokesFirstPageJson);
+        mock('/api/pokes?page=1', 200, PokesFirstPageJson);
 
         renderWithDefaultData(<List userId={RootUserJson.id} type="pokes" />);
 
@@ -48,8 +37,7 @@ describe('Pokes list', () => {
     });
 
     it('loads 10 pokes', async () => {
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/pokes?page=1').reply(200);
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/pokes?page=1').reply(200, PokesFirstPageJson);
+        mock('/api/pokes?page=1', 200, PokesFirstPageJson);
 
         renderWithDefaultData(<List userId={RootUserJson.id} type="pokes" />);
 
@@ -61,19 +49,12 @@ describe('Pokes list', () => {
     });
 
     it('shows loaders on fetching more pokes', async () => {
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/pokes?page=1').reply(200);
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/pokes?page=1').reply(200, PokesFirstPageJson);
+        mock('/api/pokes?page=1', 200, PokesFirstPageJson);
 
         renderWithDefaultData(<List userId={RootUserJson.id} type="pokes" />);
 
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/pokes?page=1').reply(200);
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/pokes?page=1').reply(200, PokesFirstPageJson);
-
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/pokes?page=2').reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get('/api/pokes?page=2')
-            .reply(200, PokesSecondPageJson);
+        mock('/api/pokes?page=1', 200, PokesFirstPageJson);
+        mock('/api/pokes?page=2', 200, PokesSecondPageJson);
 
         const fetchMoreButton = await screen.findByTitle('Fetch more users');
         fetchMoreButton.click();
@@ -83,18 +64,12 @@ describe('Pokes list', () => {
     });
 
     it('can fetch more pokes', async () => {
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/pokes?page=1').reply(200);
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/pokes?page=1').reply(200, PokesFirstPageJson);
+        mock('/api/pokes?page=1', 200, PokesFirstPageJson);
 
         renderWithDefaultData(<List userId={RootUserJson.id} type="pokes" />);
 
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/pokes?page=1').reply(200);
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/pokes?page=1').reply(200, PokesFirstPageJson);
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/pokes?page=2').reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get('/api/pokes?page=2')
-            .reply(200, PokesSecondPageJson);
+        mock('/api/pokes?page=1', 200, PokesFirstPageJson);
+        mock('/api/pokes?page=2', 200, PokesSecondPageJson);
 
         const fetchMoreButton = await screen.findByTitle('Fetch more users');
         fetchMoreButton.click();
@@ -113,8 +88,7 @@ describe('Pokes list', () => {
     });
 
     it('shows empty component when fetch no pokes', async () => {
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/pokes?page=1').reply(200);
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/pokes?page=1').reply(200, PokesEmptyPageJson);
+        mock('/api/pokes?page=1', 200, PokesEmptyPageJson);
 
         renderWithDefaultData(<List userId={RootUserJson.id} type="pokes" />);
 
@@ -123,8 +97,7 @@ describe('Pokes list', () => {
     });
 
     it('shows error component when api returns error', async () => {
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/pokes?page=1').reply(200);
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/pokes?page=1').reply(500);
+        mock('/api/pokes?page=1', 500, PokesFirstPageJson);
 
         renderWithDefaultData(<List userId={RootUserJson.id} type="pokes" />);
 
@@ -136,8 +109,7 @@ describe('Pokes list', () => {
     });
 
     it('shows truthy pokes count', async () => {
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/pokes?page=1').reply(200);
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/pokes?page=1').reply(200, PokesFirstPageJson);
+        mock('/api/pokes?page=1', 200, PokesFirstPageJson);
 
         renderWithDefaultData(<List userId={RootUserJson.id} type="pokes" />);
 

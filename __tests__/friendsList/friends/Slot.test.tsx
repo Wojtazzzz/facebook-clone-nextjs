@@ -1,26 +1,14 @@
 import { screen } from '@testing-library/react';
 import nock from 'nock';
-import { nockReplyHeaders } from '@libs/nockReplyHeaders';
-import RootUserJson from '@mocks/user/root.json';
 import FriendsFirstPageJson from '@mocks/friendsList/friends/firstPage.json';
 import { Slot } from '@components/pages/friends/Slot';
 import { Actions } from '@components/pages/friends/actions/Actions';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { mock } from '@libs/nock';
 
 describe('Single friend component', () => {
-    const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'http://localhost:8000';
-
     beforeEach(() => {
         nock.disableNetConnect();
-
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .options(`/api/friendship/friends/${RootUserJson.id}?page=1`)
-            .reply(200);
-        nock(BACKEND_URL)
-            .defaultReplyHeaders(nockReplyHeaders)
-            .get(`/api/friendship/friends/${RootUserJson.id}?page=1`)
-            .reply(200, FriendsFirstPageJson);
     });
 
     it('renders user image, name, poked data, buttons', async () => {
@@ -52,8 +40,7 @@ describe('Single friend component', () => {
             </Slot>
         );
 
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/destroy').reply(200);
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).post('/api/friendship/destroy').reply(201);
+        mock('/api/friendship/destroy', 201, {}, 'POST');
 
         const removeButton = await screen.findByTitle('Remove');
         removeButton.click();
@@ -71,8 +58,7 @@ describe('Single friend component', () => {
             </Slot>
         );
 
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/destroy').reply(200);
-        nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).post('/api/friendship/destroy').reply(500);
+        mock('/api/friendship/destroy', 500, {}, 'POST');
 
         const removeButton = await screen.findByTitle('Remove');
         removeButton.click();
