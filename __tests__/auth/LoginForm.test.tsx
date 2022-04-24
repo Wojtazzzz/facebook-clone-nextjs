@@ -1,9 +1,10 @@
 import { LoginForm } from '@components/auth/LoginForm';
 import { nockReplyHeaders } from '@libs/nockReplyHeaders';
 import CannotLoginResponse from '@mocks/user/cannotLogin.json';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import nock from 'nock';
 import userEvent from '@testing-library/user-event';
+import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 
 describe('LoginForm component', () => {
     const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'http://localhost:8000';
@@ -14,7 +15,7 @@ describe('LoginForm component', () => {
     });
 
     it('renders email, password and button input', () => {
-        render(<LoginForm />);
+        renderWithDefaultData(<LoginForm />);
 
         const emailInput = screen.getByLabelText('Address e-mail');
         const passwordInput = screen.getByLabelText('Password');
@@ -29,7 +30,7 @@ describe('LoginForm component', () => {
     it('displays "required" validation message when input values are empty', async () => {
         const user = userEvent.setup();
 
-        render(<LoginForm />);
+        renderWithDefaultData(<LoginForm />);
 
         const emailInput = screen.getByLabelText('Address e-mail');
         const passwordInput = screen.getByLabelText('Password');
@@ -51,7 +52,7 @@ describe('LoginForm component', () => {
     it('displays "incorrect email" validation message when email is invalid', async () => {
         const user = userEvent.setup();
 
-        render(<LoginForm />);
+        renderWithDefaultData(<LoginForm />);
 
         const emailInput = screen.getByLabelText('Address e-mail');
         const submitButton = screen.getByRole('button');
@@ -72,7 +73,7 @@ describe('LoginForm component', () => {
 
         const user = userEvent.setup();
 
-        render(<LoginForm />);
+        renderWithDefaultData(<LoginForm />);
 
         const emailInput = screen.getByLabelText('Address e-mail');
         const passwordInput = screen.getByLabelText('Password');

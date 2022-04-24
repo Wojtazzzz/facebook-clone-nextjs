@@ -1,14 +1,12 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import nock from 'nock';
 import { nockReplyHeaders } from '@libs/nockReplyHeaders';
-import { SWRConfig } from 'swr';
 import RootUserJson from '@mocks/user/root.json';
 import SuggestsFirstPageJson from '@mocks/friendsList/suggests/firstPage.json';
 import SuggestsSecondPageJson from '@mocks/friendsList/suggests/secondPage.json';
 import SuggestsEmptyPageJson from '@mocks/friendsList/suggests/empty.json';
-import { store } from '@redux/store';
-import { Provider } from 'react-redux';
 import { List } from '@components/pages/friends/List';
+import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 
 describe('Pokes list', () => {
     const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'http://localhost:8000';
@@ -24,13 +22,7 @@ describe('Pokes list', () => {
             .get('/api/friendship/suggests?page=1')
             .reply(200, SuggestsFirstPageJson);
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <List userId={RootUserJson.id} type="suggests" />
-                </SWRConfig>
-            </Provider>,
-        );
+        renderWithDefaultData(<List userId={RootUserJson.id} type="suggests" />);
 
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/suggests?page=1').reply(200);
         nock(BACKEND_URL)
@@ -58,13 +50,7 @@ describe('Pokes list', () => {
             .delay(99999)
             .reply(200, SuggestsFirstPageJson);
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <List userId={RootUserJson.id} type="suggests" />
-                </SWRConfig>
-            </Provider>,
-        );
+        renderWithDefaultData(<List userId={RootUserJson.id} type="suggests" />);
 
         const loader = await screen.findByTestId('friendsList-loading_more_loader');
         expect(loader).toBeInTheDocument();
@@ -77,13 +63,7 @@ describe('Pokes list', () => {
             .get('/api/friendship/suggests?page=1')
             .reply(200, SuggestsFirstPageJson);
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <List userId={RootUserJson.id} type="suggests" />
-                </SWRConfig>
-            </Provider>,
-        );
+        renderWithDefaultData(<List userId={RootUserJson.id} type="suggests" />);
 
         const firstElement = await screen.findByText(SuggestsFirstPageJson[0].name);
         expect(firstElement).toBeInTheDocument();
@@ -99,13 +79,7 @@ describe('Pokes list', () => {
             .get('/api/friendship/suggests?page=1')
             .reply(200, SuggestsFirstPageJson);
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <List userId={RootUserJson.id} type="suggests" />
-                </SWRConfig>
-            </Provider>,
-        );
+        renderWithDefaultData(<List userId={RootUserJson.id} type="suggests" />);
 
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/suggests?page=1').reply(200);
         nock(BACKEND_URL)
@@ -133,13 +107,7 @@ describe('Pokes list', () => {
             .get('/api/friendship/suggests?page=1')
             .reply(200, SuggestsFirstPageJson);
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <List userId={RootUserJson.id} type="suggests" />
-                </SWRConfig>
-            </Provider>,
-        );
+        renderWithDefaultData(<List userId={RootUserJson.id} type="suggests" />);
 
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/suggests?page=1').reply(200);
         nock(BACKEND_URL)
@@ -172,13 +140,7 @@ describe('Pokes list', () => {
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/suggests?page=1').reply(200);
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/friendship/suggests?page=1').reply(200, []);
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <List userId={RootUserJson.id} type="suggests" />
-                </SWRConfig>
-            </Provider>,
-        );
+        renderWithDefaultData(<List userId={RootUserJson.id} type="suggests" />);
 
         const emptyComponent = await screen.findByText('No users, maybe this app is so boring...');
         expect(emptyComponent).toBeInTheDocument();
@@ -188,13 +150,7 @@ describe('Pokes list', () => {
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/suggests?page=1').reply(200);
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/friendship/suggests?page=1').reply(500);
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <List userId={RootUserJson.id} type="suggests" />
-                </SWRConfig>
-            </Provider>,
-        );
+        renderWithDefaultData(<List userId={RootUserJson.id} type="suggests" />);
 
         const errorImage = await screen.findByAltText('Server error');
         expect(errorImage).toBeInTheDocument();

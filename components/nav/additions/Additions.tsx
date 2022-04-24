@@ -65,7 +65,11 @@ export const Additions = () => {
 
                 {isNotificationsListActive && (
                     <>
-                        <div className="w-full h-full fixed top-0 left-0" onClick={handleToggleNotificationsList}></div>
+                        <div
+                            data-testid="notifications-close_overlay"
+                            className="w-full h-full fixed top-0 left-0"
+                            onClick={handleToggleNotificationsList}
+                        ></div>
                         <Notifications />
                     </>
                 )}

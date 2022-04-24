@@ -6,6 +6,6 @@ export type NotificationType = {
         type: 'FRIENDSHIP_INVITATION_SENDED' | 'FRIENDSHIP_INVITATION_ACCEPTED';
         initiator: UserType;
     };
-    read_at?: string;
+    read_at: string | null;
     created_at: string;
 };

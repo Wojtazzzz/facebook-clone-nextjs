@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useEffect } from 'react';
 import { usePaginationData } from '@hooks/usePaginationData';
 
 import InfiniteScroll from 'react-infinite-scroll-component';

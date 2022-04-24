@@ -5,9 +5,15 @@ import { Avatar } from '@components/Avatar';
 
 import { toggleActive } from '@redux/slices/NotificationsListSlice';
 
-import type { NotificationType } from '@ctypes/features/NotificationType';
+import type { UserType } from '@ctypes/features/UserType';
 
-interface SlotProps extends NotificationType {}
+interface SlotProps {
+    data: {
+        type: string;
+        initiator: UserType;
+    };
+    read_at: string | null;
+}
 
 export const Slot = ({ data, read_at }: SlotProps) => {
     const router = useRouter();

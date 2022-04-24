@@ -1,6 +1,7 @@
 import { RegisterForm } from '@components/auth/RegisterForm';
 import { nockReplyHeaders } from '@libs/nockReplyHeaders';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import nock from 'nock';
 
 describe('RegisterForm component', () => {
@@ -12,7 +13,7 @@ describe('RegisterForm component', () => {
     });
 
     it('checks for all inputs are disabled', () => {
-        render(<RegisterForm />);
+        renderWithDefaultData(<RegisterForm />);
 
         const firstNameInput = screen.getByLabelText('First name');
         const lastNameInput = screen.getByLabelText('Last name');
@@ -22,12 +23,12 @@ describe('RegisterForm component', () => {
         const submitButton = screen.getByRole('button', { name: 'Register' });
 
         [firstNameInput, lastNameInput, emailInput, passwordInput, passwordConfirmationInput, submitButton].forEach(
-            (element) => expect(element).toBeDisabled(),
+            (element) => expect(element).toBeDisabled()
         );
     });
 
     it('check for Create Random User button is not disabled', () => {
-        render(<RegisterForm />);
+        renderWithDefaultData(<RegisterForm />);
 
         const createRandomUserButton = screen.getByRole('button', { name: 'Create Random User' });
 

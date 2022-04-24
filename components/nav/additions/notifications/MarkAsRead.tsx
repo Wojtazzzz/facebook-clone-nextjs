@@ -1,47 +1,35 @@
 import { useState, useEffect, useRef } from 'react';
 import { useAxios } from '@hooks/useAxios';
-import { usePaginationData } from '@hooks/usePaginationData';
 
-import type { NotificationType } from '@ctypes/features/NotificationType';
+const textColor = {
+    SUCCESS: 'text-green-400',
+    ERROR: 'text-red-400',
+} as const;
 
 export const MarkAsRead = () => {
-    const { data, state, isEmpty, reloadData } = usePaginationData('/api/notifications');
-
-    const { state: axiosState, sendRequest } = useAxios();
     const [isHidden, setIsHidden] = useState(false);
     const colorRef = useRef('text-light-100');
-
-    const notificationsToMark = (data as NotificationType[])?.map(({ id }) => id);
-    let isAllowedToUse = !(isEmpty || state !== 'SUCCESS' || axiosState.status !== 'EMPTY');
+    const { state: axiosState, sendRequest } = useAxios();
 
     useEffect(() => {
-        if (axiosState.status === 'SUCCESS') {
-            colorRef.current = 'text-green-400';
-            reloadData();
+        if (axiosState.status === 'SUCCESS' || axiosState.status === 'ERROR') {
+            colorRef.current = textColor[axiosState.status];
 
             setIsHidden(true);
-        } else if (axiosState.status === 'ERROR') {
-            colorRef.current = 'text-red-400';
         }
-    }, [axiosState.status, reloadData]);
+    }, [axiosState.status]);
 
     const handleMarkAsRead = () => {
-        if (!isAllowedToUse) return;
-
         sendRequest({
             method: 'POST',
             url: '/api/notifications/mark-as-read',
-            data: {
-                notifications: notificationsToMark,
-            },
         });
     };
 
     return (
         <div
             className={`w-full text-right transition-all delay-1000 duration-500 
-            ${isHidden ? 'opacity-0' : ''}
-                ${isAllowedToUse ? 'cursor-pointer' : 'cursor-not-allowed'}
+                ${isHidden ? 'opacity-0' : ''}
             `}
             onClick={handleMarkAsRead}
         >

@@ -1,14 +1,12 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import nock from 'nock';
 import { nockReplyHeaders } from '@libs/nockReplyHeaders';
-import { SWRConfig } from 'swr';
 import RootUserJson from '@mocks/user/root.json';
 import PokesFirstPageJson from '@mocks/friendsList/pokes/firstPage.json';
 import PokesSecondPageJson from '@mocks/friendsList/pokes/secondPage.json';
 import PokesEmptyPageJson from '@mocks/friendsList/pokes/empty.json';
-import { store } from '@redux/store';
-import { Provider } from 'react-redux';
 import { List } from '@components/pages/friends/List';
+import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 
 describe('Pokes list', () => {
     const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'http://localhost:8000';
@@ -21,13 +19,7 @@ describe('Pokes list', () => {
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/pokes?page=1').reply(200);
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/pokes?page=1').reply(200, PokesFirstPageJson);
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <List userId={RootUserJson.id} type="pokes" />
-                </SWRConfig>
-            </Provider>,
-        );
+        renderWithDefaultData(<List userId={RootUserJson.id} type="pokes" />);
 
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/pokes?page=1').reply(200);
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/pokes?page=1').reply(200, PokesFirstPageJson);
@@ -49,13 +41,7 @@ describe('Pokes list', () => {
             .delay(99999)
             .reply(200, PokesFirstPageJson);
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <List userId={RootUserJson.id} type="pokes" />
-                </SWRConfig>
-            </Provider>,
-        );
+        renderWithDefaultData(<List userId={RootUserJson.id} type="pokes" />);
 
         const loader = await screen.findByTestId('friendsList-loading_more_loader');
         expect(loader).toBeInTheDocument();
@@ -65,13 +51,7 @@ describe('Pokes list', () => {
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/pokes?page=1').reply(200);
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/pokes?page=1').reply(200, PokesFirstPageJson);
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <List userId={RootUserJson.id} type="pokes" />
-                </SWRConfig>
-            </Provider>,
-        );
+        renderWithDefaultData(<List userId={RootUserJson.id} type="pokes" />);
 
         const firstElement = await screen.findByText(PokesFirstPageJson[0].name);
         expect(firstElement).toBeInTheDocument();
@@ -84,13 +64,7 @@ describe('Pokes list', () => {
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/pokes?page=1').reply(200);
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/pokes?page=1').reply(200, PokesFirstPageJson);
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <List userId={RootUserJson.id} type="pokes" />
-                </SWRConfig>
-            </Provider>,
-        );
+        renderWithDefaultData(<List userId={RootUserJson.id} type="pokes" />);
 
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/pokes?page=1').reply(200);
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/pokes?page=1').reply(200, PokesFirstPageJson);
@@ -112,13 +86,7 @@ describe('Pokes list', () => {
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/pokes?page=1').reply(200);
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/pokes?page=1').reply(200, PokesFirstPageJson);
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <List userId={RootUserJson.id} type="pokes" />
-                </SWRConfig>
-            </Provider>,
-        );
+        renderWithDefaultData(<List userId={RootUserJson.id} type="pokes" />);
 
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/pokes?page=1').reply(200);
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/pokes?page=1').reply(200, PokesFirstPageJson);
@@ -148,13 +116,7 @@ describe('Pokes list', () => {
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/pokes?page=1').reply(200);
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/pokes?page=1').reply(200, PokesEmptyPageJson);
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <List userId={RootUserJson.id} type="pokes" />
-                </SWRConfig>
-            </Provider>,
-        );
+        renderWithDefaultData(<List userId={RootUserJson.id} type="pokes" />);
 
         const emptyComponent = await screen.findByText('No users, maybe this app is so boring...');
         expect(emptyComponent).toBeInTheDocument();
@@ -164,13 +126,7 @@ describe('Pokes list', () => {
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/pokes?page=1').reply(200);
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/pokes?page=1').reply(500);
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <List userId={RootUserJson.id} type="pokes" />
-                </SWRConfig>
-            </Provider>,
-        );
+        renderWithDefaultData(<List userId={RootUserJson.id} type="pokes" />);
 
         const errorImage = await screen.findByAltText('Server error');
         expect(errorImage).toBeInTheDocument();
@@ -183,17 +139,11 @@ describe('Pokes list', () => {
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/pokes?page=1').reply(200);
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/pokes?page=1').reply(200, PokesFirstPageJson);
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <List userId={RootUserJson.id} type="pokes" />
-                </SWRConfig>
-            </Provider>,
-        );
+        renderWithDefaultData(<List userId={RootUserJson.id} type="pokes" />);
 
         PokesFirstPageJson.forEach(async (item) => {
             const element = await screen.findByText(
-                `${item.first_name} poked you ${item.poke_info.count} times in a row`,
+                `${item.first_name} poked you ${item.poke_info.count} times in a row`
             );
 
             expect(element).toBeInTheDocument();

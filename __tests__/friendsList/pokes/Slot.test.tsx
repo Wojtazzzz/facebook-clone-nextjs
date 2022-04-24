@@ -1,12 +1,10 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import nock from 'nock';
 import { nockReplyHeaders } from '@libs/nockReplyHeaders';
-import { SWRConfig } from 'swr';
 import PokesFirstPageJson from '@mocks/friendsList/pokes/firstPage.json';
-import { store } from '@redux/store';
-import { Provider } from 'react-redux';
 import { Slot } from '@components/pages/friends/Slot';
 import { Actions } from '@components/pages/friends/actions/Actions';
+import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 
 describe('Single poke component', () => {
     const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'http://localhost:8000';
@@ -21,20 +19,16 @@ describe('Single poke component', () => {
     it('renders user image, name, poked data', async () => {
         const user = PokesFirstPageJson[0];
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <Slot key={user.id} {...user}>
-                        <Actions friend={user} type="pokes" />
-                    </Slot>
-                </SWRConfig>
-            </Provider>,
+        renderWithDefaultData(
+            <Slot key={user.id} {...user}>
+                <Actions friend={user} type="pokes" />
+            </Slot>
         );
 
         const userName = await screen.findByText(user.name);
         const userProfileImage = await screen.findByAltText(user.name);
         const pokesCount = await screen.findByText(
-            `${user.first_name} poked you ${user.poke_info.count} times in a row`,
+            `${user.first_name} poked you ${user.poke_info.count} times in a row`
         );
         const pokeDate = await screen.findByText(user.poke_info.updated_at);
 
@@ -47,14 +41,10 @@ describe('Single poke component', () => {
     it('shows success message on successfully poke', async () => {
         const user = PokesFirstPageJson[0];
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <Slot key={user.id} {...user}>
-                        <Actions friend={user} type="pokes" />
-                    </Slot>
-                </SWRConfig>
-            </Provider>,
+        renderWithDefaultData(
+            <Slot key={user.id} {...user}>
+                <Actions friend={user} type="pokes" />
+            </Slot>
         );
 
         const pokeButton = await screen.findByTitle('Poke back');
@@ -72,14 +62,10 @@ describe('Single poke component', () => {
     it('shows error message on failed poke', async () => {
         const user = PokesFirstPageJson[0];
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <Slot key={user.id} {...user}>
-                        <Actions friend={user} type="pokes" />
-                    </Slot>
-                </SWRConfig>
-            </Provider>,
+        renderWithDefaultData(
+            <Slot key={user.id} {...user}>
+                <Actions friend={user} type="pokes" />
+            </Slot>
         );
 
         const pokeButton = await screen.findByTitle('Poke back');

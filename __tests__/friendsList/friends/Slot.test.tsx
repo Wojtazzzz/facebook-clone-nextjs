@@ -1,13 +1,11 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import nock from 'nock';
 import { nockReplyHeaders } from '@libs/nockReplyHeaders';
-import { SWRConfig } from 'swr';
 import RootUserJson from '@mocks/user/root.json';
 import FriendsFirstPageJson from '@mocks/friendsList/friends/firstPage.json';
-import { store } from '@redux/store';
-import { Provider } from 'react-redux';
 import { Slot } from '@components/pages/friends/Slot';
 import { Actions } from '@components/pages/friends/actions/Actions';
+import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 
 describe('Single friend component', () => {
     const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'http://localhost:8000';
@@ -28,14 +26,10 @@ describe('Single friend component', () => {
     it('renders user image, name, poked data, buttons', async () => {
         const user = FriendsFirstPageJson[0];
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <Slot key={user.id} {...user}>
-                        <Actions friend={user} type="friends" />
-                    </Slot>
-                </SWRConfig>
-            </Provider>,
+        renderWithDefaultData(
+            <Slot key={user.id} {...user}>
+                <Actions friend={user} type="friends" />
+            </Slot>
         );
 
         const userName = await screen.findByText(user.name);
@@ -52,14 +46,10 @@ describe('Single friend component', () => {
     it('shows success message on successfully destroyed friendship', async () => {
         const user = FriendsFirstPageJson[0];
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <Slot key={user.id} {...user}>
-                        <Actions friend={user} type="friends" />
-                    </Slot>
-                </SWRConfig>
-            </Provider>,
+        renderWithDefaultData(
+            <Slot key={user.id} {...user}>
+                <Actions friend={user} type="friends" />
+            </Slot>
         );
 
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/destroy').reply(200);
@@ -75,14 +65,10 @@ describe('Single friend component', () => {
     it('shows error message on failed destroying friendship', async () => {
         const user = FriendsFirstPageJson[0];
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <Slot key={user.id} {...user}>
-                        <Actions friend={user} type="friends" />
-                    </Slot>
-                </SWRConfig>
-            </Provider>,
+        renderWithDefaultData(
+            <Slot key={user.id} {...user}>
+                <Actions friend={user} type="friends" />
+            </Slot>
         );
 
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/destroy').reply(200);

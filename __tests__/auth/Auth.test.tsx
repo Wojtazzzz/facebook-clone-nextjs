@@ -1,6 +1,7 @@
 import { Auth } from '@components/auth/Auth';
 import { nockReplyHeaders } from '@libs/nockReplyHeaders';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import nock from 'nock';
 
 describe('Auth component', () => {
@@ -12,7 +13,7 @@ describe('Auth component', () => {
     });
 
     it('renders login as default form', () => {
-        render(<Auth />);
+        renderWithDefaultData(<Auth />);
 
         const loginHeader = screen.getByText('Login');
 
@@ -20,10 +21,10 @@ describe('Auth component', () => {
     });
 
     it('redirects between forms', () => {
-        render(<Auth />);
+        renderWithDefaultData(<Auth />);
 
         const redirectToRegisterFormElement = screen.getByText((content) =>
-            content.startsWith("Don't have an account?"),
+            content.startsWith("Don't have an account?")
         );
         redirectToRegisterFormElement.click();
 
@@ -40,7 +41,7 @@ describe('Auth component', () => {
     });
 
     it('has link to original facebook app', () => {
-        render(<Auth />);
+        renderWithDefaultData(<Auth />);
 
         const link = screen.getByTestId('informations-facebook_link');
 

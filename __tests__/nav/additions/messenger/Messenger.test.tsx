@@ -1,15 +1,13 @@
-import { generateStore } from '@redux/store';
-import { render, screen } from '@testing-library/react';
-import { Provider } from 'react-redux';
+import { screen } from '@testing-library/react';
 import RootUserJson from '@mocks/user/root.json';
 import MessengerFirstPageJson from '@mocks/messenger/firstPage.json';
 import MessengerEmptyPageJson from '@mocks/messenger/empty.json';
 import nock from 'nock';
 import { nockReplyHeaders } from '@libs/nockReplyHeaders';
-import { SWRConfig } from 'swr';
 import { Additions } from '@components/nav/additions/Additions';
 import userEvent from '@testing-library/user-event';
 import { Messenger } from '@components/nav/additions/messenger/Messenger';
+import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 
 describe('Messenger component', () => {
     const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'http://localhost:8000';
@@ -29,15 +27,8 @@ describe('Messenger component', () => {
             .reply(200, MessengerFirstPageJson);
 
         const user = userEvent.setup();
-        const store = generateStore();
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <Additions />
-                </SWRConfig>
-            </Provider>,
-        );
+        renderWithDefaultData(<Additions />);
 
         const messengerButton = screen.getByTitle('Messenger');
         await user.click(messengerButton);
@@ -54,15 +45,8 @@ describe('Messenger component', () => {
             .reply(200, MessengerFirstPageJson);
 
         const user = userEvent.setup();
-        const store = generateStore();
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <Additions />
-                </SWRConfig>
-            </Provider>,
-        );
+        renderWithDefaultData(<Additions />);
 
         const messengerButton = screen.getByTitle('Messenger');
         await user.click(messengerButton);
@@ -82,15 +66,7 @@ describe('Messenger component', () => {
             .get('/api/messages/messenger?page=1')
             .reply(200, MessengerFirstPageJson);
 
-        const store = generateStore();
-
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <Messenger />
-                </SWRConfig>
-            </Provider>,
-        );
+        renderWithDefaultData(<Messenger />);
 
         const header = screen.getByTestId('messenger-header');
         const searchbar = screen.getByLabelText('Search user');
@@ -105,15 +81,7 @@ describe('Messenger component', () => {
             .get('/api/messages/messenger?page=1')
             .reply(200, MessengerFirstPageJson);
 
-        const store = generateStore();
-
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <Messenger />
-                </SWRConfig>
-            </Provider>,
-        );
+        renderWithDefaultData(<Messenger />);
 
         const loader = screen.getByTestId('messenger-fetching_loader');
 
@@ -126,15 +94,7 @@ describe('Messenger component', () => {
             .get('/api/messages/messenger?page=1')
             .reply(200, MessengerFirstPageJson);
 
-        const store = generateStore();
-
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <Messenger />
-                </SWRConfig>
-            </Provider>,
-        );
+        renderWithDefaultData(<Messenger />);
 
         const firstElement = await screen.findByText(MessengerFirstPageJson[0].name);
         expect(firstElement).toBeInTheDocument();
@@ -149,15 +109,7 @@ describe('Messenger component', () => {
             .get('/api/messages/messenger?page=1')
             .reply(200, MessengerEmptyPageJson);
 
-        const store = generateStore();
-
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <Messenger />
-                </SWRConfig>
-            </Provider>,
-        );
+        renderWithDefaultData(<Messenger />);
 
         const emptyComponent = await screen.findByText('Your Messenger is empty');
         expect(emptyComponent).toBeInTheDocument();
@@ -166,15 +118,7 @@ describe('Messenger component', () => {
     it('render properly error component when api return error', async () => {
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/messages/messenger?page=1').reply(500);
 
-        const store = generateStore();
-
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <Messenger />
-                </SWRConfig>
-            </Provider>,
-        );
+        renderWithDefaultData(<Messenger />);
 
         const errorComponent = await screen.findByText('Something went wrong');
         expect(errorComponent).toBeInTheDocument();

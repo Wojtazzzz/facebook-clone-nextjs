@@ -1,14 +1,12 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import nock from 'nock';
 import { nockReplyHeaders } from '@libs/nockReplyHeaders';
-import { SWRConfig } from 'swr';
 import RootUserJson from '@mocks/user/root.json';
 import InvitesFirstPageJson from '@mocks/friendsList/invites/firstPage.json';
 import InvitesSecondPageJson from '@mocks/friendsList/invites/secondPage.json';
 import InvitesEmptyPageJson from '@mocks/friendsList/invites/empty.json';
-import { store } from '@redux/store';
-import { Provider } from 'react-redux';
 import { List } from '@components/pages/friends/List';
+import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 
 describe('Invites list', () => {
     const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'http://localhost:8000';
@@ -24,13 +22,7 @@ describe('Invites list', () => {
             .get('/api/friendship/invites?page=1')
             .reply(200, InvitesFirstPageJson);
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <List userId={RootUserJson.id} type="invites" />
-                </SWRConfig>
-            </Provider>,
-        );
+        renderWithDefaultData(<List userId={RootUserJson.id} type="invites" />);
 
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/invites?page=1').reply(200);
         nock(BACKEND_URL)
@@ -58,13 +50,7 @@ describe('Invites list', () => {
             .delay(99999)
             .reply(200, InvitesFirstPageJson);
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <List userId={RootUserJson.id} type="invites" />
-                </SWRConfig>
-            </Provider>,
-        );
+        renderWithDefaultData(<List userId={RootUserJson.id} type="invites" />);
 
         const loader = await screen.findByTestId('friendsList-loading_more_loader');
         expect(loader).toBeInTheDocument();
@@ -77,13 +63,7 @@ describe('Invites list', () => {
             .get('/api/friendship/invites?page=1')
             .reply(200, InvitesFirstPageJson);
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <List userId={RootUserJson.id} type="invites" />
-                </SWRConfig>
-            </Provider>,
-        );
+        renderWithDefaultData(<List userId={RootUserJson.id} type="invites" />);
 
         const firstElement = await screen.findByText(InvitesFirstPageJson[0].name);
         expect(firstElement).toBeInTheDocument();
@@ -99,13 +79,7 @@ describe('Invites list', () => {
             .get('/api/friendship/invites?page=1')
             .reply(200, InvitesFirstPageJson);
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <List userId={RootUserJson.id} type="invites" />
-                </SWRConfig>
-            </Provider>,
-        );
+        renderWithDefaultData(<List userId={RootUserJson.id} type="invites" />);
 
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/invites?page=1').reply(200);
         nock(BACKEND_URL)
@@ -133,13 +107,7 @@ describe('Invites list', () => {
             .get('/api/friendship/invites?page=1')
             .reply(200, InvitesFirstPageJson);
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <List userId={RootUserJson.id} type="invites" />
-                </SWRConfig>
-            </Provider>,
-        );
+        renderWithDefaultData(<List userId={RootUserJson.id} type="invites" />);
 
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/invites?page=1').reply(200);
         nock(BACKEND_URL)
@@ -175,13 +143,7 @@ describe('Invites list', () => {
             .get('/api/friendship/invites?page=1')
             .reply(200, InvitesEmptyPageJson);
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <List userId={RootUserJson.id} type="invites" />
-                </SWRConfig>
-            </Provider>,
-        );
+        renderWithDefaultData(<List userId={RootUserJson.id} type="invites" />);
 
         const emptyComponent = await screen.findByText('No users, maybe this app is so boring...');
         expect(emptyComponent).toBeInTheDocument();
@@ -191,13 +153,7 @@ describe('Invites list', () => {
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/invites?page=1').reply(200);
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/friendship/invites?page=1').reply(500);
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <List userId={RootUserJson.id} type="invites" />
-                </SWRConfig>
-            </Provider>,
-        );
+        renderWithDefaultData(<List userId={RootUserJson.id} type="invites" />);
 
         const errorImage = await screen.findByAltText('Server error');
         expect(errorImage).toBeInTheDocument();

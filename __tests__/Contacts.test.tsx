@@ -1,6 +1,4 @@
-import { store } from '@redux/store';
-import { render, screen } from '@testing-library/react';
-import { Provider } from 'react-redux';
+import { screen } from '@testing-library/react';
 import RootUserJson from '@mocks/user/root.json';
 import ContactsFirstPageJson from '@mocks/contacts/firstPage.json';
 import ContactsSecondPageJson from '@mocks/contacts/secondPage.json';
@@ -8,7 +6,7 @@ import EmptyJson from '@mocks/contacts/empty.json';
 import nock from 'nock';
 import { nockReplyHeaders } from '@libs/nockReplyHeaders';
 import { Contacts } from '@components/contacts/Contacts';
-import { SWRConfig } from 'swr';
+import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 
 describe('Contacts component', () => {
     const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'http://localhost:8000';
@@ -21,13 +19,7 @@ describe('Contacts component', () => {
     });
 
     it('renders section title', () => {
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <Contacts />
-                </SWRConfig>
-            </Provider>,
-        );
+        renderWithDefaultData(<Contacts />);
 
         const title = screen.getByText('Contacts');
 
@@ -44,13 +36,7 @@ describe('Contacts component', () => {
             .get(`/api/friendship/friends/${RootUserJson.id}?page=1`)
             .reply(200, ContactsFirstPageJson);
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <Contacts />
-                </SWRConfig>
-            </Provider>,
-        );
+        renderWithDefaultData(<Contacts />);
 
         const firstContact = await screen.findByText(ContactsFirstPageJson[0].name);
         expect(firstContact).toBeInTheDocument();
@@ -69,13 +55,7 @@ describe('Contacts component', () => {
             .get(`/api/friendship/friends/${RootUserJson.id}?page=1`)
             .reply(200, EmptyJson);
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <Contacts />
-                </SWRConfig>
-            </Provider>,
-        );
+        renderWithDefaultData(<Contacts />);
 
         const emptyComponent = await screen.findByText('No contacts, add some friends!');
         expect(emptyComponent).toBeInTheDocument();
@@ -92,13 +72,7 @@ describe('Contacts component', () => {
             .get(`/api/friendship/friends/${RootUserJson.id}?page=1`)
             .reply(500);
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <Contacts />
-                </SWRConfig>
-            </Provider>,
-        );
+        renderWithDefaultData(<Contacts />);
 
         const errorComponent = await screen.findByText('Something went wrong');
         expect(errorComponent).toBeInTheDocument();
@@ -117,13 +91,7 @@ describe('Contacts component', () => {
             .get(`/api/friendship/friends/${RootUserJson.id}?page=1`)
             .reply(200, ContactsFirstPageJson);
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <Contacts />
-                </SWRConfig>
-            </Provider>,
-        );
+        renderWithDefaultData(<Contacts />);
 
         const firstContact = await screen.findByText(ContactsFirstPageJson[0].name);
         expect(firstContact).toBeInTheDocument();
@@ -169,13 +137,7 @@ describe('Contacts component', () => {
             .get(`/api/friendship/friends/${RootUserJson.id}?page=1`)
             .reply(200, ContactsFirstPageJson);
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <Contacts />
-                </SWRConfig>
-            </Provider>,
-        );
+        renderWithDefaultData(<Contacts />);
 
         nock(BACKEND_URL)
             .defaultReplyHeaders(nockReplyHeaders)

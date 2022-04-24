@@ -1,12 +1,10 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import nock from 'nock';
 import { nockReplyHeaders } from '@libs/nockReplyHeaders';
-import { SWRConfig } from 'swr';
 import InvitesFirstPageJson from '@mocks/friendsList/suggests/firstPage.json';
-import { store } from '@redux/store';
-import { Provider } from 'react-redux';
 import { Slot } from '@components/pages/friends/Slot';
 import { Actions } from '@components/pages/friends/actions/Actions';
+import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 
 describe('Single invite component', () => {
     const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'http://localhost:8000';
@@ -24,14 +22,10 @@ describe('Single invite component', () => {
     it('renders user image, name, poked data, invite button', async () => {
         const user = InvitesFirstPageJson[0];
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <Slot key={user.id} {...user}>
-                        <Actions friend={user} type="invites" />
-                    </Slot>
-                </SWRConfig>
-            </Provider>,
+        renderWithDefaultData(
+            <Slot key={user.id} {...user}>
+                <Actions friend={user} type="invites" />
+            </Slot>
         );
 
         const userName = await screen.findByText(user.name);
@@ -48,14 +42,10 @@ describe('Single invite component', () => {
     it('shows success message on successfully reject invite', async () => {
         const user = InvitesFirstPageJson[0];
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <Slot key={user.id} {...user}>
-                        <Actions friend={user} type="invites" />
-                    </Slot>
-                </SWRConfig>
-            </Provider>,
+        renderWithDefaultData(
+            <Slot key={user.id} {...user}>
+                <Actions friend={user} type="invites" />
+            </Slot>
         );
 
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/reject').reply(200);
@@ -71,14 +61,10 @@ describe('Single invite component', () => {
     it('shows error message on failed reject invite', async () => {
         const user = InvitesFirstPageJson[0];
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <Slot key={user.id} {...user}>
-                        <Actions friend={user} type="invites" />
-                    </Slot>
-                </SWRConfig>
-            </Provider>,
+        renderWithDefaultData(
+            <Slot key={user.id} {...user}>
+                <Actions friend={user} type="invites" />
+            </Slot>
         );
 
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/reject').reply(200);
@@ -94,14 +80,10 @@ describe('Single invite component', () => {
     it('shows success message on successfully accept invite', async () => {
         const user = InvitesFirstPageJson[0];
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <Slot key={user.id} {...user}>
-                        <Actions friend={user} type="invites" />
-                    </Slot>
-                </SWRConfig>
-            </Provider>,
+        renderWithDefaultData(
+            <Slot key={user.id} {...user}>
+                <Actions friend={user} type="invites" />
+            </Slot>
         );
 
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/accept').reply(200);
@@ -117,14 +99,10 @@ describe('Single invite component', () => {
     it('shows error message on failed reject invite', async () => {
         const user = InvitesFirstPageJson[0];
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <Slot key={user.id} {...user}>
-                        <Actions friend={user} type="invites" />
-                    </Slot>
-                </SWRConfig>
-            </Provider>,
+        renderWithDefaultData(
+            <Slot key={user.id} {...user}>
+                <Actions friend={user} type="invites" />
+            </Slot>
         );
 
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/friendship/accept').reply(200);

@@ -1,11 +1,9 @@
 import { Sidebar } from '@components/sidebar/Sidebar';
-import { store } from '@redux/store';
-import { render, screen } from '@testing-library/react';
-import { Provider } from 'react-redux';
+import { screen } from '@testing-library/react';
 import RootUserJson from '@mocks/user/root.json';
 import nock from 'nock';
-import { SWRConfig } from 'swr';
 import { nockReplyHeaders } from '@libs/nockReplyHeaders';
+import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 
 describe('Sidebar component', () => {
     const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'http://localhost:8000';
@@ -20,26 +18,14 @@ describe('Sidebar component', () => {
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options('/api/user').reply(200);
         nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).get('/api/user').reply(200, RootUserJson);
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <Sidebar />
-                </SWRConfig>
-            </Provider>,
-        );
+        renderWithDefaultData(<Sidebar />);
 
         const loggedUser = await screen.findByText(RootUserJson.name);
         expect(loggedUser).toBeInTheDocument();
     });
 
     it('renders friends, pokes, github link properly', () => {
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <Sidebar />
-                </SWRConfig>
-            </Provider>,
-        );
+        renderWithDefaultData(<Sidebar />);
 
         const friendsElement = screen.getByTitle('Friends');
         const pokesElement = screen.getByTitle('Pokes');

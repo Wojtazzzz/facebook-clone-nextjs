@@ -1,12 +1,13 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import { Header } from '@components/pages/friends/Header';
+import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 
 describe('Header component', () => {
     const headers = ['Friends', 'Suggests', 'Invites', 'Pokes'];
 
     it('renders truthy list name', async () => {
         headers.forEach((header) => {
-            render(<Header name={header} />);
+            renderWithDefaultData(<Header name={header} />);
 
             const title = screen.getByText(header, { selector: 'h5' });
 
@@ -15,7 +16,7 @@ describe('Header component', () => {
     });
 
     it('renders nav with links', () => {
-        render(<Header name="Friends" />);
+        renderWithDefaultData(<Header name="Friends" />);
 
         const friendsLink = screen.getByText('Friends', { selector: 'a' });
         const suggestsLink = screen.getByText('Suggests', { selector: 'a' });

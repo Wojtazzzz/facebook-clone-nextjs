@@ -1,14 +1,12 @@
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import nock from 'nock';
 import { nockReplyHeaders } from '@libs/nockReplyHeaders';
-import { SWRConfig } from 'swr';
 import RootUserJson from '@mocks/user/root.json';
 import FriendsFirstPageJson from '@mocks/friendsList/friends/firstPage.json';
 import FriendsSecondPageJson from '@mocks/friendsList/friends/secondPage.json';
 import FriendsEmptyPageJson from '@mocks/friendsList/friends/empty.json';
-import { store } from '@redux/store';
-import { Provider } from 'react-redux';
 import { List } from '@components/pages/friends/List';
+import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 
 describe('Friends list', () => {
     const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'http://localhost:8000';
@@ -27,13 +25,7 @@ describe('Friends list', () => {
             .get(`/api/friendship/friends/${RootUserJson.id}?page=1`)
             .reply(200, FriendsFirstPageJson);
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <List userId={RootUserJson.id} type="friends" />
-                </SWRConfig>
-            </Provider>,
-        );
+        renderWithDefaultData(<List userId={RootUserJson.id} type="friends" />);
 
         nock(BACKEND_URL)
             .defaultReplyHeaders(nockReplyHeaders)
@@ -69,13 +61,7 @@ describe('Friends list', () => {
             .get(`/api/friendship/friends/${RootUserJson.id}?page=1`)
             .reply(200, FriendsFirstPageJson);
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <List userId={RootUserJson.id} type="friends" />
-                </SWRConfig>
-            </Provider>,
-        );
+        renderWithDefaultData(<List userId={RootUserJson.id} type="friends" />);
 
         const loader = await screen.findByTestId('friendsList-loading_more_loader');
         expect(loader).toBeInTheDocument();
@@ -91,13 +77,7 @@ describe('Friends list', () => {
             .get(`/api/friendship/friends/${RootUserJson.id}?page=1`)
             .reply(200, FriendsFirstPageJson);
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <List userId={RootUserJson.id} type="friends" />
-                </SWRConfig>
-            </Provider>,
-        );
+        renderWithDefaultData(<List userId={RootUserJson.id} type="friends" />);
 
         const firstElement = await screen.findByText(FriendsFirstPageJson[0].name);
         expect(firstElement).toBeInTheDocument();
@@ -116,13 +96,7 @@ describe('Friends list', () => {
             .get(`/api/friendship/friends/${RootUserJson.id}?page=1`)
             .reply(200, FriendsFirstPageJson);
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <List userId={RootUserJson.id} type="friends" />
-                </SWRConfig>
-            </Provider>,
-        );
+        renderWithDefaultData(<List userId={RootUserJson.id} type="friends" />);
 
         nock(BACKEND_URL)
             .defaultReplyHeaders(nockReplyHeaders)
@@ -159,13 +133,7 @@ describe('Friends list', () => {
             .get(`/api/friendship/friends/${RootUserJson.id}?page=1`)
             .reply(200, FriendsFirstPageJson);
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <List userId={RootUserJson.id} type="friends" />
-                </SWRConfig>
-            </Provider>,
-        );
+        renderWithDefaultData(<List userId={RootUserJson.id} type="friends" />);
 
         nock(BACKEND_URL)
             .defaultReplyHeaders(nockReplyHeaders)
@@ -210,13 +178,7 @@ describe('Friends list', () => {
             .get(`/api/friendship/friends/${RootUserJson.id}?page=1`)
             .reply(200, FriendsEmptyPageJson);
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <List userId={RootUserJson.id} type="friends" />
-                </SWRConfig>
-            </Provider>,
-        );
+        renderWithDefaultData(<List userId={RootUserJson.id} type="friends" />);
 
         const emptyComponent = await screen.findByText('No users, maybe this app is so boring...');
         expect(emptyComponent).toBeInTheDocument();
@@ -232,13 +194,7 @@ describe('Friends list', () => {
             .get(`/api/friendship/friends/${RootUserJson.id}?page=1`)
             .reply(500);
 
-        render(
-            <Provider store={store}>
-                <SWRConfig value={{ provider: () => new Map() }}>
-                    <List userId={RootUserJson.id} type="friends" />
-                </SWRConfig>
-            </Provider>,
-        );
+        renderWithDefaultData(<List userId={RootUserJson.id} type="friends" />);
 
         const errorImage = await screen.findByAltText('Server error');
         expect(errorImage).toBeInTheDocument();

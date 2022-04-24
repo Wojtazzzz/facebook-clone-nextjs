@@ -1,0 +1,152 @@
+[
+    {
+        "id": "0e4ee7ed-9916-4967-8c8a-b1aac5c3eeb1",
+        "data": {
+            "type": "FRIENDSHIP_INVITATION_SENDED",
+            "initiator": {
+                "id": 153,
+                "name": "Effie Mann",
+                "first_name": "Effie",
+                "profile_image": "https://via.placeholder.com/168x168.png/003366?text=ea",
+                "background_image": "https://via.placeholder.com/850x350.png/00ee77?text=ea"
+            }
+        },
+        "read_at": null,
+        "created_at": "2022-04-23T18:54:52.000000Z"
+    },
+    {
+        "id": "3ca5d888-055f-4012-abf2-93cec1687060",
+        "data": {
+            "type": "FRIENDSHIP_INVITATION_ACCEPTED",
+            "initiator": {
+                "id": 155,
+                "name": "Darrick Hintz",
+                "first_name": "Darrick",
+                "profile_image": "https://via.placeholder.com/168x168.png/004499?text=quibusdam",
+                "background_image": "https://via.placeholder.com/850x350.png/0022ee?text=accusamus"
+            }
+        },
+        "read_at": null,
+        "created_at": "2022-04-23T18:54:41.000000Z"
+    },
+    {
+        "id": "d90dc973-6c80-4981-97d9-f4843f098391",
+        "data": {
+            "type": "FRIENDSHIP_INVITATION_SENDED",
+            "initiator": {
+                "id": 49,
+                "name": "Kariane McGlynn",
+                "first_name": "Kariane",
+                "profile_image": "https://via.placeholder.com/168x168.png/008811?text=et",
+                "background_image": "https://via.placeholder.com/850x350.png/002299?text=quia"
+            }
+        },
+        "read_at": null,
+        "created_at": "2022-04-23T18:54:52.000000Z"
+    },
+    {
+        "id": "f4801083-5531-4447-86c5-5967a2299173",
+        "data": {
+            "type": "FRIENDSHIP_INVITATION_SENDED",
+            "initiator": {
+                "id": 197,
+                "name": "Lonzo Rowe",
+                "first_name": "Lonzo",
+                "profile_image": "https://via.placeholder.com/168x168.png/0033ee?text=dolores",
+                "background_image": "https://via.placeholder.com/850x350.png/0088cc?text=recusandae"
+            }
+        },
+        "read_at": null,
+        "created_at": "2022-04-23T18:54:52.000000Z"
+    },
+    {
+        "id": "09e63a26-9550-4453-8f04-0176e85c4af4",
+        "data": {
+            "type": "FRIENDSHIP_INVITATION_SENDED",
+            "initiator": {
+                "id": 106,
+                "name": "Joshua Dicki",
+                "first_name": "Joshua",
+                "profile_image": "https://via.placeholder.com/168x168.png/00ccff?text=fugit",
+                "background_image": "https://via.placeholder.com/850x350.png/00dd00?text=rerum"
+            }
+        },
+        "read_at": null,
+        "created_at": "2022-04-23T18:54:51.000000Z"
+    },
+    {
+        "id": "1dfae83e-105b-4256-9bfd-65b6f53d2f53",
+        "data": {
+            "type": "FRIENDSHIP_INVITATION_SENDED",
+            "initiator": {
+                "id": 38,
+                "name": "Cali Grimes",
+                "first_name": "Cali",
+                "profile_image": "https://via.placeholder.com/168x168.png/0000bb?text=voluptas",
+                "background_image": "https://via.placeholder.com/850x350.png/009900?text=veniam"
+            }
+        },
+        "read_at": null,
+        "created_at": "2022-04-23T18:54:51.000000Z"
+    },
+    {
+        "id": "0fc0d0eb-2977-4e6c-881b-26badc12a4c4",
+        "data": {
+            "type": "FRIENDSHIP_INVITATION_ACCEPTED",
+            "initiator": {
+                "id": 238,
+                "name": "Nicolette Bernier",
+                "first_name": "Nicolette",
+                "profile_image": "https://via.placeholder.com/168x168.png/0033dd?text=omnis",
+                "background_image": "https://via.placeholder.com/850x350.png/00dd99?text=blanditiis"
+            }
+        },
+        "read_at": null,
+        "created_at": "2022-04-23T18:54:41.000000Z"
+    },
+    {
+        "id": "841b75f3-ac14-40ae-a051-d58169a7d569",
+        "data": {
+            "type": "FRIENDSHIP_INVITATION_SENDED",
+            "initiator": {
+                "id": 169,
+                "name": "Trisha Bechtelar",
+                "first_name": "Trisha",
+                "profile_image": "https://via.placeholder.com/168x168.png/00bb11?text=sunt",
+                "background_image": "https://via.placeholder.com/850x350.png/004433?text=dignissimos"
+            }
+        },
+        "read_at": null,
+        "created_at": "2022-04-23T18:54:51.000000Z"
+    },
+    {
+        "id": "9282029f-135f-430a-9928-ba88069315f2",
+        "data": {
+            "type": "FRIENDSHIP_INVITATION_SENDED",
+            "initiator": {
+                "id": 101,
+                "name": "Torey Kovacek",
+                "first_name": "Torey",
+                "profile_image": "https://via.placeholder.com/168x168.png/006644?text=sunt",
+                "background_image": "https://via.placeholder.com/850x350.png/007788?text=sed"
+            }
+        },
+        "read_at": null,
+        "created_at": "2022-04-23T18:54:51.000000Z"
+    },
+    {
+        "id": "fc9729b5-164b-4d6b-8d9d-f9cf4fdc1ebd",
+        "data": {
+            "type": "FRIENDSHIP_INVITATION_ACCEPTED",
+            "initiator": {
+                "id": 149,
+                "name": "Agnes Block",
+                "first_name": "Agnes",
+                "profile_image": "https://via.placeholder.com/168x168.png/009988?text=officia",
+                "background_image": "https://via.placeholder.com/850x350.png/009977?text=voluptate"
+            }
+        },
+        "read_at": null,
+        "created_at": "2022-04-23T18:54:42.000000Z"
+    }
+]
