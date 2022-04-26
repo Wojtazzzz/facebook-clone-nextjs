@@ -1,8 +1,8 @@
 import { screen } from '@testing-library/react';
 import nock from 'nock';
 import FriendsFirstPageJson from '@mocks/friendsList/friends/firstPage.json';
-import { Slot } from '@components/pages/friends/Slot';
-import { Actions } from '@components/pages/friends/actions/Actions';
+import { User } from '@components/pages/friends/inc/User';
+import { Actions } from '@components/pages/friends/inc/Actions';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import { mock } from '@libs/nock';
 
@@ -15,9 +15,9 @@ describe('Single friend component', () => {
         const user = FriendsFirstPageJson[0];
 
         renderWithDefaultData(
-            <Slot key={user.id} {...user}>
+            <User key={user.id} {...user}>
                 <Actions friend={user} type="friends" />
-            </Slot>
+            </User>
         );
 
         const userName = await screen.findByText(user.name);
@@ -35,9 +35,9 @@ describe('Single friend component', () => {
         const user = FriendsFirstPageJson[0];
 
         renderWithDefaultData(
-            <Slot key={user.id} {...user}>
+            <User key={user.id} {...user}>
                 <Actions friend={user} type="friends" />
-            </Slot>
+            </User>
         );
 
         mock('/api/friendship/destroy', 201, {}, 'POST');
@@ -53,9 +53,9 @@ describe('Single friend component', () => {
         const user = FriendsFirstPageJson[0];
 
         renderWithDefaultData(
-            <Slot key={user.id} {...user}>
+            <User key={user.id} {...user}>
                 <Actions friend={user} type="friends" />
-            </Slot>
+            </User>
         );
 
         mock('/api/friendship/destroy', 500, {}, 'POST');

@@ -1,4 +1,4 @@
-import { LoginForm } from '@components/auth/LoginForm';
+import { LoginForm } from '@components/pages/auth/LoginForm';
 import CannotLoginResponse from '@mocks/user/cannotLogin.json';
 import { screen } from '@testing-library/react';
 import nock from 'nock';

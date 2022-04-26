@@ -2,10 +2,10 @@ import { memo } from 'react';
 import { usePaginationData } from '@hooks/usePaginationData';
 
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { SinglePost } from '@components/pages/posts/post/SinglePost';
+import { Post } from '@components/pages/posts/post/Post';
 import { Loader } from '@components/pages/posts/Loader';
-import { ApiError } from '@components/ApiError';
-import { EmptyList } from '@components/EmptyList';
+import { ApiError } from '@components/inc/ApiError';
+import { EmptyList } from '@components/inc/EmptyList';
 
 import type { PostType } from '@ctypes/features/PostType';
 
@@ -16,7 +16,7 @@ export const List = memo(() => {
     if (state === 'ERROR') return <ApiError />;
     if (isEmpty || !data) return <EmptyList title="No posts, add some friends!" />;
 
-    const PostsComponents = (data as PostType[]).map((post) => <SinglePost key={post.id} {...post} />);
+    const PostsComponents = (data as PostType[]).map((post) => <Post key={post.id} {...post} />);
 
     return (
         <InfiniteScroll

@@ -3,9 +3,9 @@ import { useAppSelector } from '@hooks/redux';
 import { faHome, faShop, faUser } from '@fortawesome/free-solid-svg-icons';
 import { Logo } from '@components/nav/mobile/Logo';
 import { NavItem } from '@components/nav/mobile/NavItem';
-import { Search } from '@components/nav/Search';
+import { SearchUser } from '@components/nav/SearchUser';
 
-export const NavBar = () => {
+export const Navbar = () => {
     const { isActive } = useAppSelector((store) => store.nav);
 
     return (
@@ -23,7 +23,7 @@ export const NavBar = () => {
             </div>
 
             <div className="w-full flex justify-center absolute bottom-[70px]">
-                <Search />
+                <SearchUser />
             </div>
         </div>
     );

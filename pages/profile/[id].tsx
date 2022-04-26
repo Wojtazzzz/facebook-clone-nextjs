@@ -1,4 +1,4 @@
-import { UserLayout } from '@components/layouts/UserLayout';
+import { AuthLayout } from '@components/layouts/AuthLayout';
 import { Profile as ProfileComponent } from '@components/pages/profile/Profile';
 
 import type { GetStaticPaths, GetStaticProps } from 'next';
@@ -11,9 +11,9 @@ interface ProfileProps {
 
 export default function Profile({ user }: ProfileProps) {
     return (
-        <UserLayout>
+        <AuthLayout>
             <ProfileComponent user={user} />
-        </UserLayout>
+        </AuthLayout>
     );
 }
 

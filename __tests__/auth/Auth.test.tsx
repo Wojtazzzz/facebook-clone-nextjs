@@ -1,4 +1,4 @@
-import { Auth } from '@components/auth/Auth';
+import { Auth } from '@components/pages/auth/Auth';
 import { mock } from '@libs/nock';
 import { screen } from '@testing-library/react';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';

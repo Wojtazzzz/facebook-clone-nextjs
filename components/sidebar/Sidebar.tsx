@@ -4,9 +4,9 @@ import { useAppSelector } from '@hooks/redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHandLizard, faUsers } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import { SideItem } from '@components/sidebar/SideItem';
-import { SideItemLoader } from '@components/sidebar/SideItemLoader';
-import { Avatar } from '@components/Avatar';
+import { Link } from '@components/sidebar/inc/Link';
+import { LinkLoader } from '@components/sidebar/inc/LinkLoader';
+import { Avatar } from '@components/inc/Avatar';
 
 export const Sidebar = () => {
     const { user } = useAuth();
@@ -19,18 +19,18 @@ export const Sidebar = () => {
             } transition-transform z-30 px-2 py-5`}
         >
             {user ? (
-                <SideItem
+                <Link
                     title={user.name}
                     link={`/profile/${user.id}`}
                     icon={<Avatar size={36} src={user.profile_image} alt={user.name} />}
                 />
             ) : (
-                <SideItemLoader />
+                <LinkLoader />
             )}
 
-            <SideItem title="Friends" link="/friends" icon={<FontAwesomeIcon icon={faUsers} />} />
-            <SideItem title="Pokes" link="/friends/pokes" icon={<FontAwesomeIcon icon={faHandLizard} />} />
-            <SideItem
+            <Link title="Friends" link="/friends" icon={<FontAwesomeIcon icon={faUsers} />} />
+            <Link title="Pokes" link="/friends/pokes" icon={<FontAwesomeIcon icon={faHandLizard} />} />
+            <Link
                 title="GitHub"
                 link="https://github.com/CubeStorm/"
                 icon={<FontAwesomeIcon icon={faGithub} />}

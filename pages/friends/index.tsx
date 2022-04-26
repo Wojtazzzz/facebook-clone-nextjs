@@ -1,10 +1,10 @@
-import { UserLayout } from '@components/layouts/UserLayout';
-import { FriendsList } from '@components/pages/friends/FriendsList';
+import { AuthLayout } from '@components/layouts/AuthLayout';
+import { Friends } from '@components/pages/friends/Friends';
 
 export default function FriendsPage() {
     return (
-        <UserLayout>
-            <FriendsList />
-        </UserLayout>
+        <AuthLayout>
+            <Friends />
+        </AuthLayout>
     );
 }

@@ -3,9 +3,9 @@ import RootUserJson from '@mocks/user/root.json';
 import MessengerFirstPageJson from '@mocks/messenger/firstPage.json';
 import MessengerEmptyPageJson from '@mocks/messenger/empty.json';
 import nock from 'nock';
-import { Additions } from '@components/nav/additions/Additions';
+import { Panel } from '@components/nav/panel/Panel';
 import userEvent from '@testing-library/user-event';
-import { Messenger } from '@components/nav/additions/messenger/Messenger';
+import { Messenger } from '@components/nav/panel/messenger/Messenger';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import { mock } from '@libs/nock';
 
@@ -21,7 +21,7 @@ describe('Messenger component', () => {
 
         const user = userEvent.setup();
 
-        renderWithDefaultData(<Additions />);
+        renderWithDefaultData(<Panel />);
 
         const messengerButton = screen.getByTitle('Messenger');
         await user.click(messengerButton);
@@ -36,7 +36,7 @@ describe('Messenger component', () => {
 
         const user = userEvent.setup();
 
-        renderWithDefaultData(<Additions />);
+        renderWithDefaultData(<Panel />);
 
         const messengerButton = screen.getByTitle('Messenger');
         await user.click(messengerButton);
@@ -44,7 +44,7 @@ describe('Messenger component', () => {
         const mainMessengerComponent = await screen.findByTestId('messenger-container');
         expect(mainMessengerComponent).toBeVisible();
 
-        const messengerOverlay = screen.getByTestId('messenger-close_overlay');
+        const messengerOverlay = screen.getByTestId('messenger-overlay');
         await user.click(messengerOverlay);
 
         expect(mainMessengerComponent).not.toBeVisible();

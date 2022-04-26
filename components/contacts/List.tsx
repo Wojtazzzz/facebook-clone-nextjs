@@ -1,11 +1,11 @@
 import { memo } from 'react';
 import { usePaginationData } from '@hooks/usePaginationData';
 
-import { LoadMore } from '@components/contacts/shared/LoadMore';
-import { Loader } from '@components/contacts/shared/Loader';
-import { Slot } from '@components/contacts/Slot';
-import { ApiError } from '@components/ApiError';
-import { EmptyList } from '@components/EmptyList';
+import { LoadMore } from '@components/contacts/inc/LoadMore';
+import { Loader } from '@components/contacts/inc/Loader';
+import { Slot } from '@components/contacts/inc/Contact';
+import { ApiError } from '@components/inc/ApiError';
+import { EmptyList } from '@components/inc/EmptyList';
 
 import type { UserType } from '@ctypes/features/UserType';
 

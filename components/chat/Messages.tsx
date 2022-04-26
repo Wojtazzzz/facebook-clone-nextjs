@@ -2,16 +2,14 @@ import { memo } from 'react';
 import { usePaginationData } from '@hooks/usePaginationData';
 
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { Loader } from '@components/chat/shared/Loader';
-import { Message } from '@components/chat/shared/Message';
-import { EmptyChat } from '@components/chat/shared/EmptyChat';
-import { ApiError } from '@components/ApiError';
+import { Loader } from '@components/chat/inc/Loader';
+import { Message } from '@components/chat/inc/Message';
+import { EmptyChat } from '@components/chat/inc/EmptyChat';
+import { ApiError } from '@components/inc/ApiError';
 
 import type { ChatMessageType } from '@ctypes/features/ChatMessageType';
 
 interface MessagesProps {
-    name: string;
-    profileImage: string;
     friendId: number;
 }
 

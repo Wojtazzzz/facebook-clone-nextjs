@@ -1,4 +1,4 @@
-import { RegisterForm } from '@components/auth/RegisterForm';
+import { RegisterForm } from '@components/pages/auth/RegisterForm';
 import { mock } from '@libs/nock';
 import { screen } from '@testing-library/react';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';

@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Keyboard, Pagination, Navigation } from 'swiper';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Slide } from '@components/pages/posts/post/gallery/Slide';
-import { RoundedButton } from '@components/RoundedButton';
+import { RoundedButton } from '@components/inc/RoundedButton';
 
 interface GalleryProps {
     images: string[];

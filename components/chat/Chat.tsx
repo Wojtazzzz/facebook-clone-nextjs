@@ -37,12 +37,8 @@ export const Chat = ({ friend }: ChatProps) => {
                                     socket_id: socketId,
                                     channel_name: channel.name,
                                 })
-                                .then((response) => {
-                                    callback(false, response.data);
-                                })
-                                .catch((error) => {
-                                    callback(true, error);
-                                });
+                                .then((response) => callback(false, response.data))
+                                .catch((error) => callback(true, error));
                         },
                     };
                 },
@@ -66,8 +62,8 @@ export const Chat = ({ friend }: ChatProps) => {
             className="w-[300px] h-[420px] flex flex-col justify-between bg-dark-200 absolute bottom-0 right-2 md:right-20 z-40 rounded-t-lg shadow-md"
         >
             <Header name={friend.name} profileImage={friend.profile_image} />
-            <Messages friendId={friend.id} name={friend.name} profileImage={friend.profile_image} />
-            <Panel friendId={friend.id} />
+            <Messages friendId={friend.id} />
+            <Panel />
         </div>
     );
 };

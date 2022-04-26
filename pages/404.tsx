@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 
 import Image from 'next/image';
-import { Button } from '@components/Button';
+import { Button } from '@components/inc/Button';
 
 export default function Custom404() {
     const { push } = useRouter();

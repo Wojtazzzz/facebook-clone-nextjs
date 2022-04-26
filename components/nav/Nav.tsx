@@ -1,8 +1,8 @@
 import { Logo } from '@components/nav/Logo';
-import { Search } from '@components/nav/Search';
-import { NavBar } from '@components/nav/navbar/NavBar';
-import { NavBar as MobileNavBar } from '@components/nav/mobile/NavBar';
-import { Additions } from '@components/nav/additions/Additions';
+import { SearchUser } from '@components/nav/SearchUser';
+import { Navbar } from '@components/nav/navbar/Navbar';
+import { Panel } from '@components/nav/panel/Panel';
+import { Navbar as MobileNavbar } from '@components/nav/mobile/Navbar';
 
 export const Nav = () => {
     return (
@@ -11,19 +11,19 @@ export const Nav = () => {
                 <Logo />
 
                 <div className="hidden md:block">
-                    <Search />
+                    <SearchUser />
                 </div>
             </div>
 
             <div className="w-1/3 hidden md:block">
-                <NavBar />
+                <Navbar />
             </div>
 
             <div className="w-1/3 my-1">
-                <Additions />
+                <Panel />
             </div>
 
-            <MobileNavBar />
+            <MobileNavbar />
         </nav>
     );
 };

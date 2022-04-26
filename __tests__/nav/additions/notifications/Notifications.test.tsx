@@ -3,9 +3,9 @@ import RootUserJson from '@mocks/user/root.json';
 import NotificationsFirstPageJson from '@mocks/notifications/firstPage.json';
 import NotificationsEmptyPageJson from '@mocks/notifications/empty.json';
 import nock from 'nock';
-import { Additions } from '@components/nav/additions/Additions';
+import { Panel } from '@components/nav/panel/Panel';
 import userEvent from '@testing-library/user-event';
-import { Notifications } from '@components/nav/additions/notifications/Notifications';
+import { Notifications } from '@components/nav/panel/notifications/Notifications';
 import { NotificationType } from '@ctypes/features/NotificationType';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import { mock } from '@libs/nock';
@@ -27,7 +27,7 @@ describe('Notifications component', () => {
 
         const user = userEvent.setup();
 
-        renderWithDefaultData(<Additions />);
+        renderWithDefaultData(<Panel />);
 
         const notificationsButton = screen.getByTitle('Notifications');
         await user.click(notificationsButton);
@@ -42,7 +42,7 @@ describe('Notifications component', () => {
 
         const user = userEvent.setup();
 
-        renderWithDefaultData(<Additions />);
+        renderWithDefaultData(<Panel />);
 
         const notificationsButton = screen.getByTitle('Notifications');
         await user.click(notificationsButton);
@@ -50,7 +50,7 @@ describe('Notifications component', () => {
         const mainNotificationsComponent = await screen.findByTestId('notifications-container');
         expect(mainNotificationsComponent).toBeVisible();
 
-        const notificationsOverlay = screen.getByTestId('notifications-close_overlay');
+        const notificationsOverlay = screen.getByTestId('notifications-overlay');
         await user.click(notificationsOverlay);
 
         expect(mainNotificationsComponent).not.toBeVisible();

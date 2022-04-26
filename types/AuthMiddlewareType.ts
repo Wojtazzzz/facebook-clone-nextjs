@@ -1,1 +1,1 @@
-export type AuthMiddlewareType = 'GUEST' | 'USER';
+export type AuthMiddlewareType = 'GUEST' | 'AUTH';

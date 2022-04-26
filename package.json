@@ -46,6 +46,7 @@
         "eslint": "8.9.0",
         "eslint-config-next": "12.0.10",
         "eslint-plugin-testing-library": "5.0.1",
+        "eslint-plugin-unused-imports": "^2.0.0",
         "jest": "27.4.5",
         "laravel-echo": "^1.11.3",
         "nock": "^13.2.4",

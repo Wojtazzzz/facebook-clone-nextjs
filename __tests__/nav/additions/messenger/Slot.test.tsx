@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 import MessengerFirstPageJson from '@mocks/messenger/firstPage.json';
-import { Slot } from '@components/nav/additions/messenger/Slot';
+import { Friend } from '@components/nav/panel/messenger/Friend';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 
 describe('Messenger slot component', () => {
@@ -8,7 +8,7 @@ describe('Messenger slot component', () => {
         const user = MessengerFirstPageJson[0];
 
         renderWithDefaultData(
-            <Slot id={user.id} name={user.name} first_name={user.first_name} profile_image={user.profile_image} />
+            <Friend id={user.id} name={user.name} first_name={user.first_name} profile_image={user.profile_image} />
         );
 
         const avatar = screen.getByAltText(user.name);

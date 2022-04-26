@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useAxios } from '@hooks/useAxios';
 
-import { Failure } from '@components/pages/friends/actions/messages/Failure';
-import { Success } from '@components/pages/friends/actions/messages/Success';
-import { Button } from '@components/Button';
+import { Failure } from '@components/pages/friends/actions/responses/Failure';
+import { Success } from '@components/pages/friends/actions/responses/Success';
+import { Button } from '@components/inc/Button';
 
 import type { UserType } from '@ctypes/features/UserType';
 

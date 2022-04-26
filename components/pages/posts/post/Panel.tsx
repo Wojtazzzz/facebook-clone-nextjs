@@ -1,5 +1,5 @@
 import { faMessage, faShare, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
-import { PanelButton } from '@components/pages/posts/post/shared/PanelButton';
+import { PanelButton } from '@components/pages/posts/post/inc/PanelButton';
 
 interface PanelProps {
     isLiked: boolean;

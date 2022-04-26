@@ -5,20 +5,21 @@ import { useAxios } from '@hooks/useAxios';
 import { Formik } from 'formik';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImages } from '@fortawesome/free-solid-svg-icons';
-import { ImageUploader } from '@components/pages/posts/create/modal/ImageUploader';
-import { Success } from '@components/pages/posts/create/modal/response/Success';
-import { Errors } from '@components/pages/posts/create/modal/response/Errors';
-import { Avatar } from '@components/Avatar';
-import { Button } from '@components/Button';
+import { ImageUploader } from '@components/pages/posts/create/modal/inc/ImageUploader';
+import { Success } from '@components/pages/posts/create/modal/responses/Success';
+import { Errors } from '@components/pages/posts/create/modal/responses/Errors';
+import { Avatar } from '@components/inc/Avatar';
+import { Button } from '@components/inc/Button';
 
 import { PostSchema } from '@validation/PostSchema';
 
 import type { CreatePostPayload } from '@ctypes/forms/CreatePostPayload';
+import type { CreatePostResponse } from '@ctypes/responses/CreatePostResponse';
 
 export const Form = () => {
     const [isUploadActive, setIsUploadActive] = useState(false);
     const { user } = useAuth();
-    const { state, sendRequest } = useAxios();
+    const { state, sendRequest } = useAxios<CreatePostResponse>();
 
     const createPost = (data: CreatePostPayload) => {
         const formData = new FormData();

@@ -2,7 +2,7 @@ import { useAppDispatch } from '@hooks/redux';
 
 import Image from 'next/image';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import { RoundedButton } from '@components/RoundedButton';
+import { RoundedButton } from '@components/inc/RoundedButton';
 
 import { toggleActive } from '@redux/slices/ChatSlice';
 

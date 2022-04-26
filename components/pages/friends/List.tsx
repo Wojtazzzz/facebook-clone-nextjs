@@ -1,12 +1,12 @@
 import { memo } from 'react';
 import { usePaginationData } from '@hooks/usePaginationData';
 
-import { Loader } from '@components/pages/friends/shared/Loader';
-import { LoadMore } from '@components/pages/friends/shared/LoadMore';
-import { ApiError } from '@components/ApiError';
-import { EmptyList } from '@components/EmptyList';
-import { Slot } from '@components/pages/friends/Slot';
-import { Actions } from '@components/pages/friends/actions/Actions';
+import { Loader } from '@components/pages/friends/inc/Loader';
+import { LoadMore } from '@components/pages/friends/inc/LoadMore';
+import { ApiError } from '@components/inc/ApiError';
+import { EmptyList } from '@components/inc/EmptyList';
+import { User } from '@components/pages/friends/inc/User';
+import { Actions } from '@components/pages/friends/inc/Actions';
 
 import { getPathForPagination } from '@utils/getPathForPagination';
 
@@ -25,15 +25,15 @@ export const List = memo<ListProps>(({ userId, type }) => {
     if (state === 'ERROR') return <ApiError />;
     if (isEmpty || !data) return <EmptyList title="No users, maybe this app is so boring..." />;
 
-    const slots = (data as UserType[]).map((user) => (
-        <Slot key={user.id} {...user}>
+    const UsersComponents = (data as UserType[]).map((user) => (
+        <User key={user.id} {...user}>
             <Actions friend={user} type={type ?? ''} />
-        </Slot>
+        </User>
     ));
 
     return (
         <div data-testid="friends-list" className="flex flex-col gap-2">
-            {slots}
+            {UsersComponents}
 
             {isReachedEnd || <LoadMore isLoading={state === 'FETCHING'} callback={loadMore} />}
         </div>

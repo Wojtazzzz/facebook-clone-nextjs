@@ -27,7 +27,7 @@ export const useAuth = (middleware?: AuthMiddlewareType) => {
 
     const csrf = () => axios.get('/sanctum/csrf-cookie');
 
-    const register = async () => {
+    const createAccount = async () => {
         setIsLoading(true);
         await csrf();
 
@@ -72,14 +72,14 @@ export const useAuth = (middleware?: AuthMiddlewareType) => {
 
     useEffect(() => {
         if (middleware === 'GUEST' && user) router.push('/');
-        if (middleware === 'USER' && error) logout();
+        if (middleware === 'AUTH' && error) logout();
     }, [user, error, middleware, router]);
 
     return {
         user,
         isLoading,
         errors,
-        register,
+        createAccount,
         login,
         logout,
     };

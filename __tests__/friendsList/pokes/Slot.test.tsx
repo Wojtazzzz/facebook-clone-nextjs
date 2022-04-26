@@ -1,8 +1,8 @@
 import { screen } from '@testing-library/react';
 import nock from 'nock';
 import PokesFirstPageJson from '@mocks/friendsList/pokes/firstPage.json';
-import { Slot } from '@components/pages/friends/Slot';
-import { Actions } from '@components/pages/friends/actions/Actions';
+import { User } from '@components/pages/friends/inc/User';
+import { Actions } from '@components/pages/friends/inc/Actions';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import { mock } from '@libs/nock';
 
@@ -15,9 +15,9 @@ describe('Single poke component', () => {
         const user = PokesFirstPageJson[0];
 
         renderWithDefaultData(
-            <Slot key={user.id} {...user}>
+            <User key={user.id} {...user}>
                 <Actions friend={user} type="pokes" />
-            </Slot>
+            </User>
         );
 
         const userName = await screen.findByText(user.name);
@@ -37,9 +37,9 @@ describe('Single poke component', () => {
         const user = PokesFirstPageJson[0];
 
         renderWithDefaultData(
-            <Slot key={user.id} {...user}>
+            <User key={user.id} {...user}>
                 <Actions friend={user} type="pokes" />
-            </Slot>
+            </User>
         );
 
         const pokeButton = await screen.findByTitle('Poke back');
@@ -57,9 +57,9 @@ describe('Single poke component', () => {
         const user = PokesFirstPageJson[0];
 
         renderWithDefaultData(
-            <Slot key={user.id} {...user}>
+            <User key={user.id} {...user}>
                 <Actions friend={user} type="pokes" />
-            </Slot>
+            </User>
         );
 
         const pokeButton = await screen.findByTitle('Poke back');

@@ -5,7 +5,7 @@ import { usePaginationData } from '@hooks/usePaginationData';
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { Button } from '@components/Button';
+import { Button } from '@components/inc/Button';
 
 import { toggleActive } from '@redux/slices/ChatSlice';
 
