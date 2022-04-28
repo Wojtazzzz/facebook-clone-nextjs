@@ -7,9 +7,9 @@ import { toggleActive } from '@redux/slices/ChatSlice';
 
 import type { UserType } from '@ctypes/features/UserType';
 
-interface SlotProps extends UserType {}
+interface ContactProps extends UserType {}
 
-export const Slot = memo<SlotProps>(({ id, first_name, name, profile_image, background_image }) => {
+export const Contact = memo<ContactProps>(({ id, first_name, name, profile_image, background_image }) => {
     const dispatch = useAppDispatch();
 
     const handleOpenChat = () => dispatch(toggleActive({ id, first_name, name, profile_image, background_image }));
@@ -25,4 +25,4 @@ export const Slot = memo<SlotProps>(({ id, first_name, name, profile_image, back
     );
 });
 
-Slot.displayName = 'Slot';
+Contact.displayName = 'Contact';

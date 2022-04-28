@@ -3,7 +3,7 @@ import { usePaginationData } from '@hooks/usePaginationData';
 
 import { LoadMore } from '@components/contacts/inc/LoadMore';
 import { Loader } from '@components/contacts/inc/Loader';
-import { Slot } from '@components/contacts/inc/Contact';
+import { Contact } from '@components/contacts/inc/Contact';
 import { ApiError } from '@components/inc/ApiError';
 import { EmptyList } from '@components/inc/EmptyList';
 
@@ -20,11 +20,11 @@ export const List = memo(({ userId }: ListProps) => {
     if (state === 'ERROR') return <ApiError isSmall />;
     if (isEmpty || !data) return <EmptyList title="No contacts, add some friends!" />;
 
-    const slots = (data as UserType[]).map((friend) => <Slot key={friend.id} {...friend} />);
+    const ContactsComponents = (data as UserType[]).map((friend) => <Contact key={friend.id} {...friend} />);
 
     return (
         <div data-testid="contacts-list" className="w-full">
-            {slots}
+            {ContactsComponents}
 
             {isReachedEnd || <LoadMore isLoading={state === 'FETCHING'} callback={loadMore} />}
         </div>
