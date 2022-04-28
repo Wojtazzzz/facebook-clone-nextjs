@@ -27,13 +27,14 @@ export const MarkAsRead = () => {
     };
 
     return (
-        <div
-            className={`w-full text-right transition-all delay-1000 duration-500 
+        <button
+            className={`w-full text-xs text-right transition-all delay-1000 duration-500 
                 ${isHidden ? 'opacity-0' : ''}
-            `}
+                ${colorRef.current}
+            cursor-pointer`}
             onClick={handleMarkAsRead}
         >
-            <span className={`text-xs ${colorRef.current}`}>Mark all as read</span>
-        </div>
+            Mark all as read
+        </button>
     );
 };

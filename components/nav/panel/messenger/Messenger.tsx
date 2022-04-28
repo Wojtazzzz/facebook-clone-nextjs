@@ -17,7 +17,7 @@ export const Messenger = memo(() => {
         <>
             <div
                 data-testid="messenger-container"
-                className="min-w-[300px] md:min-w-[360px] flex flex-col gap-4 bg-dark-200 absolute top-full -right-24 shadow-md rounded-md p-3"
+                className="min-w-[300px] md:min-w-[360px] flex flex-col gap-4 bg-dark-200 absolute top-full -right-24 z-10 shadow-md rounded-md p-3"
             >
                 <Header testid="messenger-header" title="Messenger" />
                 <SearchUser />

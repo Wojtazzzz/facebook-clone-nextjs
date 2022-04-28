@@ -9,8 +9,8 @@ const labels = {
     FRIENDSHIP_INVITATION_ACCEPTED: 'Accepted your friendship invitation',
 } as const;
 
-describe('Notifications slot component', () => {
-    it('it renders user avatar, name, notification label', async () => {
+describe('Notifications Notification component', () => {
+    it('it renders user avatar, name, notification label', () => {
         const notification = NotificationsFirstPageJson[0] as NotificationType;
 
         renderWithDefaultData(<Notification data={notification.data} read_at={notification.read_at} />);

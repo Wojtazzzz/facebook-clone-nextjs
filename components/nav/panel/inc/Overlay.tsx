@@ -4,5 +4,5 @@ interface OverlayProps {
 }
 
 export const Overlay = ({ testid = '', callback }: OverlayProps) => {
-    return <div data-testid={testid} className="w-full h-full fixed top-0 left-0" onClick={callback}></div>;
+    return <div data-testid={testid} className="w-full h-full fixed top-0 left-0 z-0" onClick={callback}></div>;
 };

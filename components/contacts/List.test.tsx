@@ -4,29 +4,21 @@ import ContactsFirstPageJson from '@mocks/contacts/firstPage.json';
 import ContactsSecondPageJson from '@mocks/contacts/secondPage.json';
 import ContactsEmptyPageJson from '@mocks/contacts/empty.json';
 import nock from 'nock';
-import { Contacts } from '@components/contacts/Contacts';
+import { List } from '@components/contacts/List';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import { mock } from '@libs/nock';
 
-describe('Contacts component', () => {
+describe('Contacts List component', () => {
     beforeEach(() => {
         nock.disableNetConnect();
 
         mock('/api/user', 200, RootUserJson);
     });
 
-    it('renders section title', () => {
-        renderWithDefaultData(<Contacts />);
-
-        const title = screen.getByText('Contacts');
-
-        expect(title).toBeInTheDocument();
-    });
-
     it('loads first contacts list', async () => {
         mock(`/api/friendship/friends/${RootUserJson.id}?page=1`, 200, ContactsFirstPageJson);
 
-        renderWithDefaultData(<Contacts />);
+        renderWithDefaultData(<List userId={RootUserJson.id} />);
 
         const firstContact = await screen.findByText(ContactsFirstPageJson[0].name);
         expect(firstContact).toBeInTheDocument();
@@ -38,7 +30,7 @@ describe('Contacts component', () => {
     it('loads empty list and show empty component', async () => {
         mock(`/api/friendship/friends/${RootUserJson.id}?page=1`, 200, ContactsEmptyPageJson);
 
-        renderWithDefaultData(<Contacts />);
+        renderWithDefaultData(<List userId={RootUserJson.id} />);
 
         const emptyComponent = await screen.findByText('No contacts, add some friends!');
         expect(emptyComponent).toBeInTheDocument();
@@ -47,7 +39,7 @@ describe('Contacts component', () => {
     it('show error component on api error', async () => {
         mock(`/api/friendship/friends/${RootUserJson.id}?page=1`, 500);
 
-        renderWithDefaultData(<Contacts />);
+        renderWithDefaultData(<List userId={RootUserJson.id} />);
 
         const errorComponent = await screen.findByText('Something went wrong');
         expect(errorComponent).toBeInTheDocument();
@@ -59,7 +51,7 @@ describe('Contacts component', () => {
     it('loads more contacts on click on load more button', async () => {
         mock(`/api/friendship/friends/${RootUserJson.id}?page=1`, 200, ContactsFirstPageJson);
 
-        renderWithDefaultData(<Contacts />);
+        renderWithDefaultData(<List userId={RootUserJson.id} />);
 
         const firstContact = await screen.findByText(ContactsFirstPageJson[0].name);
         expect(firstContact).toBeInTheDocument();
@@ -83,7 +75,7 @@ describe('Contacts component', () => {
     it('fetch button dissapears when page fetch all contacts', async () => {
         mock(`/api/friendship/friends/${RootUserJson.id}?page=1`, 200, ContactsFirstPageJson);
 
-        renderWithDefaultData(<Contacts />);
+        renderWithDefaultData(<List userId={RootUserJson.id} />);
 
         mock(`/api/friendship/friends/${RootUserJson.id}?page=1`, 200, ContactsFirstPageJson);
         mock(`/api/friendship/friends/${RootUserJson.id}?page=2`, 200, ContactsEmptyPageJson);

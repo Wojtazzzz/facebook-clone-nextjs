@@ -2,7 +2,7 @@ import { screen } from '@testing-library/react';
 import { Header } from '@components/pages/friends/Header';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 
-describe('Header component', () => {
+describe('Friends Header component', () => {
     const headers = ['Friends', 'Suggests', 'Invites', 'Pokes'];
 
     it('renders truthy list name', async () => {

@@ -2,7 +2,6 @@ import { screen } from '@testing-library/react';
 import RootUserJson from '@mocks/user/root.json';
 import NotificationsFirstPageJson from '@mocks/notifications/firstPage.json';
 import NotificationsEmptyPageJson from '@mocks/notifications/empty.json';
-import nock from 'nock';
 import { Panel } from '@components/nav/panel/Panel';
 import userEvent from '@testing-library/user-event';
 import { Notifications } from '@components/nav/panel/notifications/Notifications';
@@ -17,24 +16,7 @@ const labels = {
 
 describe('Notifications component', () => {
     beforeEach(() => {
-        nock.disableNetConnect();
-
         mock('/api/user', 200, RootUserJson);
-    });
-
-    it('show notifications when click on notifications button', async () => {
-        mock('/api/notifications?page=1', 200, NotificationsFirstPageJson);
-
-        const user = userEvent.setup();
-
-        renderWithDefaultData(<Panel />);
-
-        const notificationsButton = screen.getByTitle('Notifications');
-        await user.click(notificationsButton);
-
-        const mainNotificationsComponent = await screen.findByTestId('notifications-container');
-
-        expect(mainNotificationsComponent).toBeVisible();
     });
 
     it('close notifications when click on overlay', async () => {

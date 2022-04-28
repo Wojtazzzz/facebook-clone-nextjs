@@ -1,17 +1,17 @@
-import { Auth } from '@components/pages/auth/Auth';
+import { Form } from '@components/pages/auth/Form';
 import { mock } from '@libs/nock';
 import { screen } from '@testing-library/react';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import nock from 'nock';
 
-describe('Auth component', () => {
+describe('Form component', () => {
     beforeEach(() => {
         nock.disableNetConnect();
         mock('/api/user', 401);
     });
 
     it('renders login as default form', () => {
-        renderWithDefaultData(<Auth />);
+        renderWithDefaultData(<Form />);
 
         const loginHeader = screen.getByText('Login');
 
@@ -19,7 +19,7 @@ describe('Auth component', () => {
     });
 
     it('redirects between forms', () => {
-        renderWithDefaultData(<Auth />);
+        renderWithDefaultData(<Form />);
 
         const redirectToRegisterFormElement = screen.getByText((content) =>
             content.startsWith("Don't have an account?")
@@ -36,13 +36,5 @@ describe('Auth component', () => {
         const loginModalHeader = screen.getByText('Login');
 
         expect(loginModalHeader).toBeInTheDocument();
-    });
-
-    it('has link to original facebook app', () => {
-        renderWithDefaultData(<Auth />);
-
-        const link = screen.getByTestId('informations-facebook_link');
-
-        expect(link).toHaveAttribute('href', 'https://facebook.com/');
     });
 });

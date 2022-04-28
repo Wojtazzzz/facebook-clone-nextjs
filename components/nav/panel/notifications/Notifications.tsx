@@ -19,7 +19,7 @@ export const Notifications = memo(() => {
         <>
             <div
                 data-testid="notifications-container"
-                className="min-w-[300px] md:min-w-[360px] flex flex-col bg-dark-200 absolute top-full -right-12 shadow-md rounded-md p-3"
+                className="min-w-[300px] md:min-w-[360px] flex flex-col bg-dark-200 absolute top-full -right-12 z-10 shadow-md rounded-md p-3"
             >
                 <Header testid="notifications-header" title="Notifications" />
                 {notifications.isEmpty || <MarkAsRead />}
