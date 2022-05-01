@@ -14,12 +14,10 @@ export const LoadMore = ({ isLoading, callback }: LoadMoreProps) => {
         <button
             title="Load more contacts"
             aria-label="Load more contacts"
-            className="w-full flex justify-center items-center gap-5 hover:bg-dark-100 active:opacity-20 rounded-lg transition-colors cursor-pointer mt-3 py-1 px-5"
+            className="w-full flex justify-center items-center gap-5 text-light-200 font-medium hover:bg-dark-100 active:opacity-20 rounded-lg transition-colors cursor-pointer mt-3 py-1 px-5"
             onClick={callback}
         >
-            <span className="text-light-200 font-medium">
-                <FontAwesomeIcon icon={faArrowDown} />
-            </span>
+            <FontAwesomeIcon icon={faArrowDown} />
         </button>
     );
 };

@@ -5,7 +5,7 @@ import { Panel } from '@components/nav/panel/Panel';
 import userEvent from '@testing-library/user-event';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import { mock } from '@libs/nock';
-import { Header } from '../inc/Header';
+import { Header } from '@components/nav/panel/inc/Header';
 
 describe('Messenger component', () => {
     beforeEach(() => {
