@@ -20,7 +20,7 @@ export const Errors = ({ state }: ErrorsProps) => {
     }
 
     return (
-        <div>
+        <div className="w-full mb-3 p-3">
             <ValidationError fieldName="content" />
             <ValidationError fieldName="images" />
         </div>

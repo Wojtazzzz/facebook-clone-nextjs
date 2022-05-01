@@ -8,8 +8,8 @@ import { faImages } from '@fortawesome/free-solid-svg-icons';
 import { ImageUploader } from '@components/pages/posts/create/modal/inc/ImageUploader';
 import { Success } from '@components/pages/posts/create/modal/responses/Success';
 import { Errors } from '@components/pages/posts/create/modal/responses/Errors';
-import { Avatar } from '@components/inc/Avatar';
 import { Button } from '@components/inc/Button';
+import { UserInfo } from '@components/pages/posts/create/modal/inc/UserInfo';
 
 import { PostSchema } from '@validation/PostSchema';
 
@@ -44,26 +44,21 @@ export const Form = () => {
             {({ values, handleChange, handleBlur, handleSubmit, setFieldValue }) => (
                 <form onSubmit={handleSubmit}>
                     <div className="w-full p-4">
-                        <div className="flex gap-3 mb-1">
-                            <Avatar
-                                src={`${user?.profile_image}`}
-                                size="40"
-                                alt={`${user?.first_name} profile image`}
-                            />
+                        {user && (
+                            <div className="w-full">
+                                <UserInfo user={user} />
 
-                            <span className="text-sm text-light-100 font-bold mt-1">{user?.name}</span>
-                        </div>
-
-                        <div className="w-full">
-                            <textarea
-                                name="content"
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                value={values.content}
-                                placeholder={`What's on your mind, ${user?.first_name}?`}
-                                className="w-full text-lg text-light-100 bg-transparent outline-none resize-none scrollbar-thin scrollbar-thumb-dark-200 p-3"
-                            ></textarea>
-                        </div>
+                                <textarea
+                                    aria-label="Post content"
+                                    name="content"
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={values.content}
+                                    placeholder={`What's on your mind, ${user.first_name}?`}
+                                    className="w-full text-lg text-light-100 bg-transparent outline-none resize-none scrollbar-thin scrollbar-thumb-dark-200 p-3"
+                                ></textarea>
+                            </div>
+                        )}
                     </div>
 
                     {isUploadActive && (
@@ -75,9 +70,7 @@ export const Form = () => {
                         />
                     )}
 
-                    <div className="w-full mb-3 p-3">
-                        <Errors state={state} />
-                    </div>
+                    <Errors state={state} />
 
                     <div className="w-full p-3">
                         <div className="w-full flex justify-between items-center border-[1.5px] border-dark-100 rounded-lg p-3">
@@ -96,7 +89,12 @@ export const Form = () => {
                     </div>
 
                     <div className="pb-4 px-4">
-                        <Button type="submit" title="Post" isDisabled={state.status === 'LOADING'} styles="w-full" />
+                        <Button
+                            type="submit"
+                            title="Create post"
+                            isDisabled={state.status === 'LOADING'}
+                            styles="w-full"
+                        />
                     </div>
                 </form>
             )}

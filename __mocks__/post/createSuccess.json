@@ -1,0 +1,19 @@
+{
+    "data": {
+        "id": 999,
+        "content": "Test post",
+        "images": [],
+        "author": {
+            "id": 999999,
+            "name": "Root User",
+            "first_name": "Root",
+            "profile_image": "https://via.placeholder.com/168x168.png/005555?text=Root",
+            "background_image": "https://via.placeholder.com/850x350.png/00cc99?text=User"
+        },
+        "likes_count": null,
+        "isLiked": false,
+        "created_at": "2022-05-01 18-13-18",
+        "updated_at": "2022-05-01 18-13-18"
+    },
+    "message": "Post was created"
+}

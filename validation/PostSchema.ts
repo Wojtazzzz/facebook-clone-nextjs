@@ -36,7 +36,7 @@ export const PostSchema = Yup.object().shape(
                 then: Yup.string().required('Post must contain text or image(s)'),
             })
             .min(2, 'Post must be at least 2 characters')
-            .max(63206),
+            .max(63206, 'Post must be at most 63206 characters'),
 
         images: Yup.mixed()
             .nullable()
