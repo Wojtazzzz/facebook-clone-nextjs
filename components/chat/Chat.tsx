@@ -19,7 +19,7 @@ interface ChatProps {
 
 export const Chat = ({ friend }: ChatProps) => {
     const { user } = useAuth();
-    const { reloadData } = usePaginationData(`/api/messages/${friend.id}`, 15);
+    const { reloadData } = usePaginationData(`/api/messages/${friend.id}`);
 
     const LaravelEcho = useMemo(
         () =>

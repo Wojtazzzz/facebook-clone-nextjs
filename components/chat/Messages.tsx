@@ -16,7 +16,7 @@ interface MessagesProps {
 export const Messages = memo<MessagesProps>(({ friendId }) => {
     const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginationData(`/api/messages/${friendId}`);
 
-    if (state === 'LOADING') return <Loader />;
+    if (state === 'LOADING') return <Loader testid="messages-loader_loading" />;
     if (state === 'ERROR') return <ApiError isSmall />;
     if (isEmpty || !data) return <EmptyChat />;
 
@@ -36,7 +36,7 @@ export const Messages = memo<MessagesProps>(({ friendId }) => {
                 className="flex flex-col-reverse gap-1"
                 inverse
                 hasMore={!isReachedEnd}
-                loader={<Loader />}
+                loader={<Loader testid="messages-loader_fetching" />}
                 scrollableTarget="list-of-messages"
             >
                 {MessagesComponents}

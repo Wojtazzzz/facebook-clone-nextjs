@@ -1,0 +1,24 @@
+import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { Header } from '@components/chat/Header';
+import JohnDoeJson from '@mocks/user/johnDoe.json';
+import { screen } from '@testing-library/react';
+
+describe('Header component', () => {
+    it('render user avatar and name', () => {
+        renderWithDefaultData(<Header name={JohnDoeJson.name} profileImage={JohnDoeJson.background_image} />);
+
+        const avatar = screen.getByAltText(JohnDoeJson.name);
+        const name = screen.getByText(JohnDoeJson.name);
+
+        expect(avatar).toBeVisible();
+        expect(name).toBeVisible();
+    });
+
+    it('have close chat button', () => {
+        renderWithDefaultData(<Header name={JohnDoeJson.name} profileImage={JohnDoeJson.background_image} />);
+
+        const closeChatButton = screen.getByLabelText('Close chat');
+
+        expect(closeChatButton).toBeInTheDocument();
+    });
+});

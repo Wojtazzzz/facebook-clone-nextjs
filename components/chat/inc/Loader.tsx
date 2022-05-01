@@ -1,6 +1,10 @@
-export const Loader = () => {
+interface LoaderProps {
+    testid?: string;
+}
+
+export const Loader = ({ testid = '' }: LoaderProps) => {
     return (
-        <div className="w-full h-8 flex justify-center items-center mb-3">
+        <div data-testid={testid} className="w-full h-8 flex justify-center items-center mb-3">
             <svg
                 role="status"
                 className="inline mr-2 w-5 h-5 text-gray-200 animate-spin dark:text-gray-600 fill-gray-600 dark:fill-gray-300"

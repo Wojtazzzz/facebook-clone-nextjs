@@ -28,7 +28,7 @@ export const SendMessage = memo(() => {
         }
     }, [state]);
 
-    const handleSendEmoji = () => alert('Maybe in the future...');
+    const handleSendLike = () => alert('Maybe in the future...');
 
     const handleChangeMessage = (event: FormEvent<HTMLInputElement>, formikHandleChange: () => void) => {
         formikHandleChange();
@@ -37,12 +37,10 @@ export const SendMessage = memo(() => {
     };
 
     const handleSendMessage = ({ text }: FormValues, { resetForm }: FormikHelpers<FormValues>) => {
-        if (!friend) return;
-
         sendRequest({
             method: 'POST',
             url: '/api/messages',
-            data: { text, receiver_id: friend.id },
+            data: { text, receiver_id: friend?.id },
         });
 
         resetForm();
@@ -52,14 +50,14 @@ export const SendMessage = memo(() => {
     return (
         <Formik initialValues={{ text: '' }} validationSchema={SendMessageSchema} onSubmit={handleSendMessage}>
             {({ values, handleChange, handleBlur, handleSubmit }) => (
-                <form onSubmit={handleSubmit} className="flex items-center gap-2">
+                <form data-testid="sendMessage-form" className="flex items-center gap-2" onSubmit={handleSubmit}>
                     <input
                         ref={inputRef}
+                        aria-label="Message input"
                         type="text"
                         name="text"
                         placeholder="Aa"
                         value={values.text}
-                        disabled={!!friend}
                         autoComplete="off"
                         className={`${
                             isMessagePrepared ? 'w-52' : 'w-36'
@@ -70,7 +68,7 @@ export const SendMessage = memo(() => {
 
                     {isMessagePrepared ? (
                         <RoundedButton
-                            name="Send text message"
+                            name="Send message"
                             icon={faCircleCheck}
                             size={8}
                             bgColor="dark-200"
@@ -79,12 +77,12 @@ export const SendMessage = memo(() => {
                         />
                     ) : (
                         <RoundedButton
-                            name="Send emoji"
+                            name="Send like"
                             icon={faThumbsUp}
                             size={8}
                             bgColor="dark-200"
                             onHover="bg-dark-100"
-                            callback={handleSendEmoji}
+                            callback={handleSendLike}
                         />
                     )}
                 </form>
