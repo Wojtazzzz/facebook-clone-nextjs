@@ -16,7 +16,7 @@ export const Informations = () => {
                 <a
                     data-testid="informations-facebook_link"
                     href="https://facebook.com/"
-                    className="text-primary hover:underline"
+                    className="text-primary hover:underline mx-1"
                 >
                     Facebook
                 </a>
