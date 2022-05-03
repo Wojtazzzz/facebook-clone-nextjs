@@ -1,4 +1,4 @@
-import { Settings } from 'components/pages/posts/post/inc/Settings';
+import { Settings } from '@components/pages/posts/post/inc/Settings';
 import { UserInfo } from '@components/pages/posts/post/inc/UserInfo';
 
 import type { UserType } from '@ctypes/features/UserType';
@@ -13,7 +13,6 @@ export const Header = ({ author, created_at, updated_at }: HeaderProps) => {
     return (
         <div className="w-full flex justify-between p-4 pb-0">
             <UserInfo author={author} created_at={created_at} updated_at={updated_at} />
-
             <Settings />
         </div>
     );

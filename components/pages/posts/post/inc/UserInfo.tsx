@@ -11,22 +11,18 @@ interface UserInfoProps {
 
 export const UserInfo = ({ author, created_at, updated_at }: UserInfoProps) => {
     return (
-        <div className="flex gap-3">
-            <Link href={`/profile/${author.id}`}>
-                <a className="text-sm text-light-50 font-medium">
-                    <Avatar size={40} src={author.profile_image} alt={`${author.name} profile image`} />
-                </a>
-            </Link>
+        <Link href={`/profile/${author.id}`}>
+            <a aria-label={`${author.first_name} profile`} className="flex gap-3">
+                <Avatar size={40} src={author.profile_image} alt={`${author.name} profile image`} />
 
-            <div className="flex flex-col gap-px">
-                <Link href={`/profile/${author.id}`}>
-                    <a className="text-sm text-light-50 font-medium">{author.name}</a>
-                </Link>
+                <div className="flex flex-col gap-px">
+                    <span className="text-sm text-light-50 font-medium">{author.name}</span>
 
-                <span className="text-xs text-light-100">
-                    {updated_at} {created_at !== updated_at && '(Edited)'}
-                </span>
-            </div>
-        </div>
+                    <span className="text-xs text-light-100">
+                        {updated_at} {created_at !== updated_at && '(Edited)'}
+                    </span>
+                </div>
+            </a>
+        </Link>
     );
 };

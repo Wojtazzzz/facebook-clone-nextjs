@@ -92,7 +92,7 @@ describe('Friends List component', () => {
             expect(twentythElement).toBeInTheDocument();
         });
 
-        it('shows empty component when fetch no suggested susers', async () => {
+        it('shows empty component when fetch no suggested users', async () => {
             mock('/api/friendship/suggests?page=1', 200, SuggestsEmptyPageJson);
 
             renderWithDefaultData(<List userId={RootUserJson.id} type="suggests" />);

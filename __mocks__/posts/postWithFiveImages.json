@@ -1,0 +1,22 @@
+{
+    "id": 134,
+    "content": "Dignissimos doloribus commodi veniam at delectus saepe dolores. Similique pariatur corporis suscipit ut reprehenderit quo fugit. Consequuntur recusandae ut maiores sint.",
+    "images": [
+        "https://via.placeholder.com/850x350.png/0044cc?text=suscipit",
+        "https://via.placeholder.com/850x350.png/0044cc?text=suscipit",
+        "https://via.placeholder.com/850x350.png/0044cc?text=suscipit",
+        "https://via.placeholder.com/850x350.png/0044cc?text=suscipit",
+        "https://via.placeholder.com/850x350.png/0044cc?text=suscipit"
+    ],
+    "author": {
+        "id": 2,
+        "name": "Sven Hansen",
+        "first_name": "Sven",
+        "profile_image": "https://via.placeholder.com/168x168.png/005544?text=ut",
+        "background_image": "https://via.placeholder.com/850x350.png/005555?text=et"
+    },
+    "likes_count": 1,
+    "isLiked": false,
+    "created_at": "2020-07-31 00-00-00",
+    "updated_at": "2020-07-31 00-00-00"
+}

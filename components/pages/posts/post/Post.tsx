@@ -1,5 +1,5 @@
-import { useLikes } from '@hooks/useLikes';
 import { useEffect, useState } from 'react';
+import { useLikes } from '@hooks/useLikes';
 
 import { Header } from '@components/pages/posts/post/Header';
 import { Content } from '@components/pages/posts/post/Content';
@@ -13,14 +13,14 @@ interface PostProps extends PostType {}
 export const Post = ({ id, content, images, author, likes_count, isLiked, created_at, updated_at }: PostProps) => {
     const [totalLikesCount, setTotalLikesCount] = useState(likes_count);
     const [_isLiked, _setIsLiked] = useState(isLiked);
-    const { state: likesState, handleLike } = useLikes(id);
+    const { state, handleLike } = useLikes(id);
 
     useEffect(() => {
-        if (likesState.status !== 'SUCCESS') return;
+        if (state.status !== 'SUCCESS') return;
 
-        setTotalLikesCount(likesState.data.data.likesCount);
+        setTotalLikesCount(state.data.data.likesCount);
         _setIsLiked((prevState) => !prevState);
-    }, [likesState]);
+    }, [state]);
 
     return (
         <div className="w-full bg-dark-200 rounded-lg">

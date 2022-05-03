@@ -8,6 +8,7 @@
         "lint": "next lint",
         "cypress": "cypress open",
         "test": "jest --watchAll",
+        "testesm": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
         "test:ci": "jest --ci"
     },
     "dependencies": {
@@ -27,7 +28,7 @@
         "react-modal": "^3.14.4",
         "react-redux": "^7.2.6",
         "redux": "^4.1.2",
-        "swiper": "^8.0.7",
+        "swiper": "^6.8.4",
         "swr": "^1.2.1",
         "tiny-skeleton-loader-react": "^1.1.8",
         "yup": "^0.32.11"
@@ -41,7 +42,7 @@
         "@types/react-modal": "^3.13.1",
         "@types/redux-mock-store": "^1.0.3",
         "autoprefixer": "^10.4.2",
-        "babel-jest": "27.4.5",
+        "babel-jest": "^28.0.3",
         "cypress": "^9.4.1",
         "eslint": "8.9.0",
         "eslint-config-next": "12.0.10",

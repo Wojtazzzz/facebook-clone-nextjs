@@ -12,7 +12,7 @@ import type { PostType } from '@ctypes/features/PostType';
 export const List = memo(() => {
     const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginationData('/api/posts', 15);
 
-    if (state === 'LOADING') return <Loader />;
+    if (state === 'LOADING') return <Loader testid="postsList-loading_loaders" />;
     if (state === 'ERROR') return <ApiError />;
     if (isEmpty || !data) return <EmptyList title="No posts, add some friends!" />;
 

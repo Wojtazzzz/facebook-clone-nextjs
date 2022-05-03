@@ -1,7 +1,7 @@
 import { mock } from '@libs/nock';
 import RootUserJson from '@mocks/user/root.json';
-import CreateSuccessResponseJson from '@mocks/post/createSuccess.json';
-import CreateErrorResponseJson from '@mocks/post/createError.json';
+import CreateSuccessResponseJson from '@mocks/posts/createSuccess.json';
+import CreateErrorResponseJson from '@mocks/posts/createError.json';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import { Form } from '@components/pages/posts/create/modal/Form';
 import { screen } from '@testing-library/react';
