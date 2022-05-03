@@ -20,9 +20,7 @@ export const Messages = memo<MessagesProps>(({ friendId }) => {
     if (state === 'ERROR') return <ApiError isSmall />;
     if (isEmpty || !data) return <EmptyChat />;
 
-    const MessagesComponents = (data as ChatMessageType[]).map((message) => (
-        <Message key={message.id} {...message} isFromLoggedUser={message.sender_id !== friendId} />
-    ));
+    const MessagesComponents = (data as ChatMessageType[]).map((message) => <Message key={message.id} {...message} />);
 
     return (
         <div

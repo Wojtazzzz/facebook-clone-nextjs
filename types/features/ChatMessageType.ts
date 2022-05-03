@@ -1,6 +1,6 @@
 export type ChatMessageType = {
-	id: number;
-	text: string;
-	sender_id: number;
-	created_at: string;
+    id: number;
+    text: string;
+    isReceived: boolean;
+    created_at: string;
 };
