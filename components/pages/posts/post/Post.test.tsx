@@ -1,12 +1,13 @@
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import { screen } from '@testing-library/react';
-import { Panel } from '@components/pages/posts/post/Panel';
+import { Post } from '@components/pages/posts/post/Post';
+import PostsFirstPageJson from '@mocks/posts/firstPage.json';
 
-describe('Panel component', () => {
+describe('Post component', () => {
     it('render like, comment and share buttons', () => {
-        const mockHandleLike = jest.fn();
+        const post = PostsFirstPageJson[0];
 
-        renderWithDefaultData(<Panel isLiked={false} handleLike={mockHandleLike} />);
+        renderWithDefaultData(<Post {...post} />);
 
         const likeButton = screen.getByLabelText('Like');
         const commentButton = screen.getByLabelText('Comment');

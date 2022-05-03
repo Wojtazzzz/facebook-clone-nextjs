@@ -3,9 +3,10 @@ import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 
 interface StatsProps {
     likesCount: number;
+    commentsCount: number;
 }
 
-export const Stats = ({ likesCount }: StatsProps) => {
+export const Stats = ({ likesCount, commentsCount }: StatsProps) => {
     return (
         <div className="w-full flex justify-between text-light-100 p-3 pt-0">
             <div className="flex items-center gap-2">
@@ -16,7 +17,7 @@ export const Stats = ({ likesCount }: StatsProps) => {
                 <span>{likesCount}</span>
             </div>
 
-            <span className="text-sm cursor-pointer hover:underline">7 comments</span>
+            <span className="text-sm cursor-pointer hover:underline">{commentsCount} comments</span>
         </div>
     );
 };
