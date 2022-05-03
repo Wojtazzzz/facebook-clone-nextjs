@@ -3,6 +3,7 @@ import { useLikes } from '@hooks/useLikes';
 
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { PanelButton } from '@components/pages/posts/post/inc/PanelButton';
+import { ApiError } from '@components/pages/posts/post/panel/ApiError';
 
 interface LikeButtonProps {
     postId: number;
@@ -20,6 +21,8 @@ export const LikeButton = ({ postId, isLiked, setTotalLikes }: LikeButtonProps) 
         setTotalLikes(state.data.data.likesCount);
         setIsLikedNow((prevState) => !prevState);
     }, [state, setTotalLikes]);
+
+    if (state.status === 'ERROR') return <ApiError />;
 
     return <PanelButton title="Like" icon={faThumbsUp} isActive={isLikedNow} callback={() => handleLike(isLikedNow)} />;
 };
