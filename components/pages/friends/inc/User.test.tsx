@@ -42,7 +42,7 @@ describe('User component', () => {
                 </User>
             );
 
-            mock('/api/friendship/invite', 201, {}, 'POST');
+            mock('/api/friendship/invite', 201, {}, 'post');
 
             const inviteButton = await screen.findByTitle('Invite');
             inviteButton.click();
@@ -60,7 +60,7 @@ describe('User component', () => {
                 </User>
             );
 
-            mock('/api/friendship/invite', 500, {}, 'POST');
+            mock('/api/friendship/invite', 500, {}, 'post');
 
             const inviteButton = await screen.findByTitle('Invite');
             inviteButton.click();
@@ -109,7 +109,7 @@ describe('User component', () => {
             const pokeButton = await screen.findByTitle('Poke back');
             expect(pokeButton).toBeInTheDocument();
 
-            mock('/api/pokes/update', 201, {}, 'POST');
+            mock('/api/pokes/update', 201, {}, 'post');
 
             pokeButton.click();
 
@@ -129,7 +129,7 @@ describe('User component', () => {
             const pokeButton = await screen.findByTitle('Poke back');
             expect(pokeButton).toBeInTheDocument();
 
-            mock('/api/pokes/update', 500, {}, 'POST');
+            mock('/api/pokes/update', 500, {}, 'post');
 
             pokeButton.click();
 
@@ -172,7 +172,7 @@ describe('User component', () => {
                 </User>
             );
 
-            mock('/api/friendship/reject', 201, {}, 'POST');
+            mock('/api/friendship/reject', 201, {}, 'post');
 
             const rejectButton = await screen.findByTitle('Reject');
             rejectButton.click();
@@ -190,7 +190,7 @@ describe('User component', () => {
                 </User>
             );
 
-            mock('/api/friendship/reject', 500, {}, 'POST');
+            mock('/api/friendship/reject', 500, {}, 'post');
 
             const rejectButton = await screen.findByTitle('Reject');
             rejectButton.click();
@@ -208,7 +208,7 @@ describe('User component', () => {
                 </User>
             );
 
-            mock('/api/friendship/accept', 201, {}, 'POST');
+            mock('/api/friendship/accept', 201, {}, 'post');
 
             const acceptButton = await screen.findByTitle('Accept');
             acceptButton.click();
@@ -226,7 +226,7 @@ describe('User component', () => {
                 </User>
             );
 
-            mock('/api/friendship/accept', 500, {}, 'POST');
+            mock('/api/friendship/accept', 500, {}, 'post');
 
             const acceptButton = await screen.findByTitle('Accept');
             acceptButton.click();
@@ -270,7 +270,7 @@ describe('User component', () => {
                 </User>
             );
 
-            mock('/api/friendship/destroy', 201, {}, 'POST');
+            mock('/api/friendship/destroy', 201, {}, 'post');
 
             const removeButton = await screen.findByTitle('Remove');
             removeButton.click();
@@ -288,7 +288,7 @@ describe('User component', () => {
                 </User>
             );
 
-            mock('/api/friendship/destroy', 500, {}, 'POST');
+            mock('/api/friendship/destroy', 500, {}, 'post');
 
             const removeButton = await screen.findByTitle('Remove');
             removeButton.click();

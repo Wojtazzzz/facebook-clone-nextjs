@@ -27,7 +27,7 @@ describe('LikeButton component', () => {
     });
 
     it('change color to blue when try to like post (success)', async () => {
-        mock('/api/likes', 200, LikeSuccessReponseJson, 'POST');
+        mock('/api/likes', 200, LikeSuccessReponseJson, 'post');
 
         renderWithDefaultData(<LikeButton postId={post.id} isLiked={false} setTotalLikes={mockSetTotalLikes} />);
 
@@ -40,7 +40,7 @@ describe('LikeButton component', () => {
     });
 
     it('stay with white color when try to like post (error)', async () => {
-        mock('/api/likes', 500, {}, 'POST');
+        mock('/api/likes', 500, {}, 'post');
 
         renderWithDefaultData(<LikeButton postId={post.id} isLiked={false} setTotalLikes={mockSetTotalLikes} />);
 
@@ -53,7 +53,7 @@ describe('LikeButton component', () => {
     });
 
     it('change color to white when try to unlike post (success)', async () => {
-        mock(`/api/likes/${post.id}`, 200, UnlikeSuccessReponseJson, 'DELETE');
+        mock(`/api/likes/${post.id}`, 200, UnlikeSuccessReponseJson, 'delete');
 
         renderWithDefaultData(<LikeButton postId={post.id} isLiked={true} setTotalLikes={mockSetTotalLikes} />);
 
@@ -66,7 +66,7 @@ describe('LikeButton component', () => {
     });
 
     it('stay with blue color when try to unlike post (error)', async () => {
-        mock(`/api/likes/${post.id}`, 500, {}, 'DELETE');
+        mock(`/api/likes/${post.id}`, 500, {}, 'delete');
 
         renderWithDefaultData(<LikeButton postId={post.id} isLiked={true} setTotalLikes={mockSetTotalLikes} />);
 

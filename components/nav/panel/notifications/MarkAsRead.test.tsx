@@ -14,8 +14,7 @@ describe('Notifications MarkAsRead component', () => {
     });
 
     it('button change color to green and dissapears when api return success', async () => {
-        mock('/api/notifications/mark-as-read', 200, MarkAsReadJson, 'POST');
-        jest.setTimeout(10000);
+        mock('/api/notifications/mark-as-read', 200, MarkAsReadJson, 'post');
 
         renderWithDefaultData(<MarkAsRead />);
 
@@ -32,8 +31,7 @@ describe('Notifications MarkAsRead component', () => {
     });
 
     it('button change color to red and dissapears when api return error', async () => {
-        mock('/api/notifications/mark-as-read', 500, MarkAsReadJson, 'POST');
-        jest.setTimeout(10000);
+        mock('/api/notifications/mark-as-read', 500, MarkAsReadJson, 'post');
 
         renderWithDefaultData(<MarkAsRead />);
 

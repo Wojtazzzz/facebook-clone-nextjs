@@ -66,7 +66,7 @@ describe('LoginForm component', () => {
 
     it('displays "incorrect credentials" message when login response returns 401 error', async () => {
         mock('/sanctum/csrf-cookie', 204);
-        mock('/login', 422, CannotLoginResponse, 'POST');
+        mock('/login', 422, CannotLoginResponse, 'post');
 
         const user = userEvent.setup();
 

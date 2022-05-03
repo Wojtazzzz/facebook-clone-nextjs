@@ -64,7 +64,7 @@ describe('Form component', () => {
     });
 
     it('show success component when post created', async () => {
-        mock('/api/posts', 201, CreateSuccessResponseJson, 'POST');
+        mock('/api/posts', 201, CreateSuccessResponseJson, 'post');
         const user = userEvent.setup();
 
         renderWithDefaultData(<Form />);
@@ -81,7 +81,7 @@ describe('Form component', () => {
     });
 
     it('show api error component when post does not created', async () => {
-        mock('/api/posts', 500, CreateErrorResponseJson, 'POST');
+        mock('/api/posts', 500, CreateErrorResponseJson, 'post');
         const user = userEvent.setup();
 
         renderWithDefaultData(<Form />);
@@ -98,7 +98,7 @@ describe('Form component', () => {
     });
 
     it('show error component when post does not created because content is too large', async () => {
-        mock('/api/posts', 413, CreateErrorResponseJson, 'POST');
+        mock('/api/posts', 413, CreateErrorResponseJson, 'post');
         const user = userEvent.setup();
 
         renderWithDefaultData(<Form />);
