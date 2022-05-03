@@ -2,7 +2,7 @@ import { Html, Head, Main, NextScript } from 'next/document';
 
 export default function Document() {
     return (
-        <Html lang="pl">
+        <Html>
             <Head />
 
             <body className="overflow-hidden bg-dark-300">
