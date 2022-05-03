@@ -1,9 +1,10 @@
-import { memo } from 'react';
+import { memo, useRef } from 'react';
 import { usePaginationData } from '@hooks/usePaginationData';
 
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Post } from '@components/pages/posts/post/Post';
 import { Loader } from '@components/pages/posts/Loader';
+import { ScrollToTop } from '@components/pages/posts/inc/ScrollToTop';
 import { ApiError } from '@components/inc/ApiError';
 import { EmptyList } from '@components/inc/EmptyList';
 
@@ -11,6 +12,7 @@ import type { PostType } from '@ctypes/features/PostType';
 
 export const List = memo(() => {
     const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginationData('/api/posts', 15);
+    const listRef = useRef<InfiniteScroll>(null);
 
     if (state === 'LOADING') return <Loader testid="postsList-loading_loaders" />;
     if (state === 'ERROR') return <ApiError />;
@@ -19,17 +21,22 @@ export const List = memo(() => {
     const PostsComponents = (data as PostType[]).map((post) => <Post key={post.id} {...post} />);
 
     return (
-        <InfiniteScroll
-            dataLength={PostsComponents.length}
-            next={loadMore}
-            hasMore={!isReachedEnd}
-            loader={<Loader />}
-            scrollableTarget="scrollableDiv"
-            className="flex flex-col gap-4 pb-[200px] mb-12"
-            pullDownToRefreshThreshold={100}
-        >
-            {PostsComponents}
-        </InfiniteScroll>
+        <>
+            <InfiniteScroll
+                ref={listRef}
+                dataLength={PostsComponents.length}
+                next={loadMore}
+                hasMore={!isReachedEnd}
+                loader={<Loader />}
+                scrollableTarget="scrollableDiv"
+                className="flex flex-col gap-4 pb-[200px] mb-12"
+                pullDownToRefreshThreshold={100}
+            >
+                {PostsComponents}
+            </InfiniteScroll>
+
+            <ScrollToTop postsListRef={listRef} />
+        </>
     );
 });
 
