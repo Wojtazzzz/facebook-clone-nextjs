@@ -9,11 +9,10 @@ import { mock } from '@libs/nock';
 describe('LoginForm component', () => {
     beforeEach(() => {
         nock.disableNetConnect();
-
         mock('/api/user', 401);
     });
 
-    it('renders email, password and button input', () => {
+    it('render email, password and button input', () => {
         renderWithDefaultData(<LoginForm />);
 
         const emailInput = screen.getByLabelText('Address e-mail');
@@ -26,7 +25,7 @@ describe('LoginForm component', () => {
         expect(submitButton).toHaveTextContent('Login');
     });
 
-    it('displays "required" validation message when input values are empty', async () => {
+    it('display "required" validation message when input values are empty', async () => {
         const user = userEvent.setup();
 
         renderWithDefaultData(<LoginForm />);
@@ -38,14 +37,13 @@ describe('LoginForm component', () => {
         expect(passwordInput).toHaveValue('');
 
         const submitButton = screen.getByRole('button');
-
         await user.click(submitButton);
 
-        const emailErrorMessage = await screen.findByText('Email field is required');
-        const passwordErrorMessage = await screen.findByText('Password field is required');
+        const emailError = await screen.findByText('Email field is required');
+        const passwordError = await screen.findByText('Password field is required');
 
-        expect(emailErrorMessage).toBeInTheDocument();
-        expect(passwordErrorMessage).toBeInTheDocument();
+        expect(emailError).toBeInTheDocument();
+        expect(passwordError).toBeInTheDocument();
     });
 
     it('displays "incorrect email" validation message when email is invalid', async () => {
@@ -80,10 +78,8 @@ describe('LoginForm component', () => {
         await user.type(passwordInput, 'incorrect_password');
         await user.click(submitButton);
 
-        const errorHeader = await screen.findByText('Whoops! Something went wrong.');
         const error = await screen.findByText('These credentials do not match our records.');
 
-        expect(errorHeader).toBeInTheDocument();
-        expect(error).toBeVisible();
+        expect(error).toBeInTheDocument();
     });
 });

@@ -1,15 +1,11 @@
 interface RequestErrorsProps {
-    errors: never[];
+    error: string;
 }
 
-export const RequestErrors = ({ errors }: RequestErrorsProps) => {
-    const ErrorsComponents = errors.map((error) => <li key={error}>{error}</li>);
-
+export const RequestErrors = ({ error }: RequestErrorsProps) => {
     return (
-        <div className="text-red-400">
-            <div className="font-medium">Whoops! Something went wrong.</div>
-
-            <ul className="text-sm list-disc list-inside mt-1">{ErrorsComponents}</ul>
+        <div className="flex flex-col text-red-400">
+            <span className="font-medium">{error}</span>
         </div>
     );
 };

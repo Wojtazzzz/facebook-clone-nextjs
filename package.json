@@ -8,7 +8,6 @@
         "lint": "next lint",
         "cypress": "cypress open",
         "test": "jest --watchAll",
-        "testesm": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
         "test:ci": "jest --ci"
     },
     "dependencies": {

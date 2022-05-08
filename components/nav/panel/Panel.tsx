@@ -12,7 +12,7 @@ import { toggleActive as toggleActiveMessenger } from '@redux/slices/MessengerSl
 import { toggleActive as toggleActiveNotifications } from '@redux/slices/NotificationsListSlice';
 
 export const Panel = () => {
-    const { logout } = useAuth();
+    const { isLoading: isAuthLoading, logout } = useAuth();
     const dispatch = useAppDispatch();
     const {
         messenger: { isActive: isMessengerActive },
@@ -57,7 +57,13 @@ export const Panel = () => {
                 {isNotificationsActive && <Notifications />}
             </div>
 
-            <RoundedButton name="Log out" icon={faRightFromBracket} onHover="opacity-70" callback={handleLogout} />
+            <RoundedButton
+                name="Log out"
+                icon={faRightFromBracket}
+                onHover="opacity-70"
+                isDisabled={isAuthLoading}
+                callback={handleLogout}
+            />
         </div>
     );
 };

@@ -7,19 +7,18 @@ import type { UseAxiosState } from '@ctypes/UseAxiosState';
 
 export const useAxios = <T>() => {
     const [state, setState] = useState<UseAxiosState<T>>({ status: 'EMPTY' });
+    const axiosAbortController = useMemo(() => new AbortController(), []);
 
-    const AxiosAbortController = useMemo(() => new AbortController(), []);
-
-    const axiosOptions = { signal: AxiosAbortController.signal };
+    const axiosOptions = { signal: axiosAbortController.signal };
 
     useEffect(() => {
-        return () => AxiosAbortController.abort();
-    }, [AxiosAbortController]);
+        return () => axiosAbortController.abort();
+    }, [axiosAbortController]);
 
-    const sendRequest = (params: AxiosRequestConfig) => {
+    const sendRequest = async (params: AxiosRequestConfig) => {
         setState({ status: 'LOADING' });
 
-        axios
+        return axios
             .request(Object.assign(params, axiosOptions))
             .then((response) => setState({ status: 'SUCCESS', data: response.data ?? [] }))
             .catch((error) => {

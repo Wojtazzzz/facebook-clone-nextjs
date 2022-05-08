@@ -6,5 +6,5 @@ type data<T> = {
 export type UseAxiosState<T> =
     | { status: 'EMPTY' }
     | { status: 'LOADING' }
-    | { status: 'ERROR'; error: Error }
+    | { status: 'ERROR'; error: unknown }
     | { status: 'SUCCESS'; data: data<T> };
