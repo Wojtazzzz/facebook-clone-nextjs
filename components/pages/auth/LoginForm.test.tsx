@@ -46,7 +46,7 @@ describe('LoginForm component', () => {
         expect(passwordError).toBeInTheDocument();
     });
 
-    it('displays "incorrect email" validation message when email is invalid', async () => {
+    it('display "incorrect email" validation message when email is invalid', async () => {
         const user = userEvent.setup();
 
         renderWithDefaultData(<LoginForm />);
@@ -62,7 +62,7 @@ describe('LoginForm component', () => {
         expect(emailErrorMessage).toBeInTheDocument();
     });
 
-    it('displays "incorrect credentials" message when login response returns 401 error', async () => {
+    it('display "incorrect credentials" message when login response returns 422 error', async () => {
         mock('/sanctum/csrf-cookie', 204);
         mock('/login', 422, CannotLoginResponse, 'post');
 

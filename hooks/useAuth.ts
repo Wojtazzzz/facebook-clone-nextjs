@@ -76,8 +76,6 @@ export const useAuth = (middleware?: AuthMiddlewareType) => {
                 ? setError(state.error.response?.data.message ?? state.error.message)
                 : setError('Something went wrong, try again later');
         }
-
-        mutate();
     }, [state, mutate]);
 
     useEffect(() => {
