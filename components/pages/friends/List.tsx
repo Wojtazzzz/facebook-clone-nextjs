@@ -23,7 +23,7 @@ export const List = memo<ListProps>(({ userId, type }) => {
 
     if (state === 'LOADING') return <Loader testid="friendsList-loading_more_loader" />;
     if (state === 'ERROR') return <ApiError />;
-    if (isEmpty || !data) return <EmptyList title="No users, maybe this app is so boring..." />;
+    if (isEmpty) return <EmptyList title="No users, maybe this app is so boring..." />;
 
     const UsersComponents = data.map((user) => (
         <User key={user.id} {...user}>

@@ -14,7 +14,7 @@ export const Messages = memo(() => {
 
     if (state === 'LOADING') return <Loader testid="messenger-fetching_loader" />;
     if (state === 'ERROR') return <ApiError isSmall />;
-    if (isEmpty || !data) return <EmptyList title="Your Messenger is empty" />;
+    if (isEmpty) return <EmptyList title="Your Messenger is empty" />;
 
     const MessagesComponents = data.map((friend) => <Friend key={friend.id} {...friend} />);
 

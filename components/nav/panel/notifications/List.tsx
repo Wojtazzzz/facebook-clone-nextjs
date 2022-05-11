@@ -20,7 +20,7 @@ interface ListProps {
 export const List = memo<ListProps>(({ data, state, isEmpty, isReachedEnd, loadMore }) => {
     if (state === 'LOADING') return <Loader testid="notifications-fetching_loader" />;
     if (state === 'ERROR') return <ApiError isSmall />;
-    if (isEmpty || !data) return <EmptyList title="Your Notifications list is empty" />;
+    if (isEmpty) return <EmptyList title="Your Notifications list is empty" />;
 
     const NotificationsComponents = data.map((notification) => (
         <Notification key={notification.id} {...notification} />

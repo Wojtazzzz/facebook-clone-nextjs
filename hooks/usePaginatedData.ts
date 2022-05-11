@@ -64,19 +64,12 @@ export const usePaginatedData = <T>(key: string, perList = 10) => {
         setSize(size + 1);
     };
 
-    const reloadData = () => mutate();
-
-    const addData = (data: T[]) => {
-        setFlatData((prevValue) => [...prevValue, ...data]);
-    };
-
     return {
         data: flatData,
         state,
-        isEmpty: flatData?.length === 0,
+        isEmpty: flatData?.length === 0 || !data,
         isReachedEnd: (flatData?.length === 0 || (data && data[data.length - 1]?.length < perList)) ?? true,
         loadMore,
-        reloadData,
-        addData,
+        reloadData: mutate,
     };
 };

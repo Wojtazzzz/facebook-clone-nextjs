@@ -20,7 +20,7 @@ export const Messages = memo<MessagesProps>(({ friendId }) => {
 
     if (state === 'LOADING') return <Loader testid="messages-loader_loading" />;
     if (state === 'ERROR') return <ApiError isSmall />;
-    if (isEmpty || !data) return <EmptyChat />;
+    if (isEmpty) return <EmptyChat />;
 
     const MessagesComponents = data.map((message) => <Message key={message.id} {...message} />);
 

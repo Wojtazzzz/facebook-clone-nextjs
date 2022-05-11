@@ -20,7 +20,7 @@ export const List = memo(({ userId }: ListProps) => {
 
     if (state === 'LOADING') return <Loader />;
     if (state === 'ERROR') return <ApiError isSmall />;
-    if (isEmpty || !data) return <EmptyList title="No contacts, add some friends!" />;
+    if (isEmpty) return <EmptyList title="No contacts, add some friends!" />;
 
     const ContactsComponents = data.map((friend) => <Contact key={friend.id} {...friend} />);
 

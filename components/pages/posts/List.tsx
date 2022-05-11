@@ -16,7 +16,7 @@ export const List = memo(() => {
 
     if (state === 'LOADING') return <Loader testid="postsList-loading_loaders" />;
     if (state === 'ERROR') return <ApiError />;
-    if (isEmpty || !data) return <EmptyList title="No posts, add some friends!" />;
+    if (isEmpty) return <EmptyList title="No posts, add some friends!" />;
 
     const PostsComponents = data.map((post) => <Post key={post.id} {...post} />);
 

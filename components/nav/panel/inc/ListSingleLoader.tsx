@@ -10,6 +10,7 @@ export const ListSingleLoader = () => {
     useEffect(() => {
         setWidth(getRandomInt(100, 200));
     }, []);
+
     return (
         <div className="w-full h-[72px] flex gap-3 selection:rounded-lg cursor-pointer p-2">
             <SkeletonLoading classNames="w-[56px] h-[56px]" isCircle />
