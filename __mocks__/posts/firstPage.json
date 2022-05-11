@@ -11,6 +11,7 @@
             "background_image": "https://via.placeholder.com/850x350.png/00cc22?text=voluptatum"
         },
         "likes_count": 0,
+        "comments_count": 2,
         "isLiked": false,
         "created_at": "2022-05-01 18-13-18",
         "updated_at": "2022-05-01 18-13-18"
@@ -27,6 +28,7 @@
             "background_image": "https://via.placeholder.com/850x350.png/00dd99?text=natus"
         },
         "likes_count": 2,
+        "comments_count": 3,
         "isLiked": false,
         "created_at": "2022-01-22 00-00-00",
         "updated_at": "2022-01-22 00-00-00"
@@ -43,6 +45,7 @@
             "background_image": "https://via.placeholder.com/850x350.png/00dd99?text=natus"
         },
         "likes_count": 3,
+        "comments_count": 0,
         "isLiked": false,
         "created_at": "2021-01-02 00-00-00",
         "updated_at": "2021-01-02 00-00-00"
@@ -59,6 +62,7 @@
             "background_image": "https://via.placeholder.com/850x350.png/0000aa?text=eaque"
         },
         "likes_count": 3,
+        "comments_count": 2,
         "isLiked": false,
         "created_at": "2020-12-24 00-00-00",
         "updated_at": "2020-12-24 00-00-00"
@@ -81,6 +85,7 @@
             "background_image": "https://via.placeholder.com/850x350.png/005555?text=et"
         },
         "likes_count": 1,
+        "comments_count": 1,
         "isLiked": false,
         "created_at": "2020-07-31 00-00-00",
         "updated_at": "2020-07-31 00-00-00"
@@ -97,6 +102,7 @@
             "background_image": "https://via.placeholder.com/850x350.png/00bb66?text=magnam"
         },
         "likes_count": 0,
+        "comments_count": 1212,
         "isLiked": false,
         "created_at": "2020-06-25 00-00-00",
         "updated_at": "2020-06-25 00-00-00"
@@ -113,6 +119,7 @@
             "background_image": "https://via.placeholder.com/850x350.png/002288?text=suscipit"
         },
         "likes_count": 0,
+        "comments_count": 9,
         "isLiked": false,
         "created_at": "2020-04-30 00-00-00",
         "updated_at": "2020-04-30 00-00-00"
@@ -129,6 +136,7 @@
             "background_image": "https://via.placeholder.com/850x350.png/007766?text=sit"
         },
         "likes_count": 1,
+        "comments_count": 3,
         "isLiked": false,
         "created_at": "2019-08-27 00-00-00",
         "updated_at": "2019-08-27 00-00-00"
@@ -151,6 +159,7 @@
             "background_image": "https://via.placeholder.com/850x350.png/00ff44?text=voluptatem"
         },
         "likes_count": 0,
+        "comments_count": 65,
         "isLiked": false,
         "created_at": "2019-03-03 00-00-00",
         "updated_at": "2019-03-03 00-00-00"
@@ -167,6 +176,7 @@
             "background_image": "https://via.placeholder.com/850x350.png/00dd99?text=natus"
         },
         "likes_count": 1,
+        "comments_count": 0,
         "isLiked": false,
         "created_at": "2019-02-17 00-00-00",
         "updated_at": "2019-02-17 00-00-00"
@@ -183,6 +193,7 @@
             "background_image": "https://via.placeholder.com/850x350.png/00ee88?text=consequatur"
         },
         "likes_count": 0,
+        "comments_count": 3,
         "isLiked": false,
         "created_at": "2018-11-27 00-00-00",
         "updated_at": "2018-11-27 00-00-00"
@@ -199,6 +210,7 @@
             "background_image": "https://via.placeholder.com/850x350.png/0066aa?text=ipsa"
         },
         "likes_count": 1,
+        "comments_count": 1,
         "isLiked": false,
         "created_at": "2018-11-24 00-00-00",
         "updated_at": "2018-11-24 00-00-00"
@@ -215,6 +227,7 @@
             "background_image": "https://via.placeholder.com/850x350.png/002288?text=cupiditate"
         },
         "likes_count": 1,
+        "comments_count": 2,
         "isLiked": false,
         "created_at": "2018-10-22 00-00-00",
         "updated_at": "2018-10-22 00-00-00"
@@ -237,6 +250,7 @@
             "background_image": "https://via.placeholder.com/850x350.png/0077bb?text=vitae"
         },
         "likes_count": 3,
+        "comments_count": 4,
         "isLiked": false,
         "created_at": "2018-09-29 00-00-00",
         "updated_at": "2018-09-29 00-00-00"
@@ -253,6 +267,7 @@
             "background_image": "https://via.placeholder.com/850x350.png/002255?text=consequuntur"
         },
         "likes_count": 3,
+        "comments_count": 8,
         "isLiked": false,
         "created_at": "2018-05-12 00-00-00",
         "updated_at": "2018-05-12 00-00-00"

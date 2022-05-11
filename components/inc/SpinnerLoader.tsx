@@ -1,11 +1,15 @@
 interface SpinnerLoaderProps {
+    testid?: string;
     containerStyles?: string;
     spinnerStyles?: string;
 }
 
-export const SpinnerLoader = ({ containerStyles = '', spinnerStyles = '' }: SpinnerLoaderProps) => {
+export const SpinnerLoader = ({ testid = '', containerStyles = '', spinnerStyles = '' }: SpinnerLoaderProps) => {
     return (
-        <div className={`w-full flex justify-center items-center my-4 ${containerStyles}`}>
+        <div
+            data-testid={testid}
+            className={`w-full flex justify-center items-center overflow-hidden ${containerStyles}`}
+        >
             <svg
                 role="status"
                 className={`inline text-gray-200 animate-spin dark:text-gray-600 fill-gray-600 dark:fill-gray-300 mr-2 ${spinnerStyles}`}

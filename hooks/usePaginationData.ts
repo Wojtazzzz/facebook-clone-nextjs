@@ -2,7 +2,8 @@ import { useState, useEffect, useMemo } from 'react';
 import useSWRInfinite from 'swr/infinite';
 
 import axios from '@libs/axios';
-import { UsePaginationDataState } from '@ctypes/UsePaginationDataState';
+
+import type { UsePaginationDataState } from '@ctypes/UsePaginationDataState';
 
 const axiosConfig = {
     transformResponse: [
@@ -18,9 +19,9 @@ const axiosConfig = {
     ],
 };
 
-export const usePaginationData = (key: string, perList = 10) => {
+export const usePaginationData = <T>(key: string, perList = 10) => {
     const [state, setState] = useState<UsePaginationDataState>('LOADING');
-    const [flatData, setFlatData] = useState([]);
+    const [flatData, setFlatData] = useState<T[]>([]);
     const AxiosAbortController = useMemo(() => new AbortController(), []);
 
     const getKey = (pageIndex: number, previousPageData: []) => {
@@ -41,7 +42,7 @@ export const usePaginationData = (key: string, perList = 10) => {
                 throw error;
             });
 
-    const { data, size, setSize, mutate } = useSWRInfinite<unknown[]>(getKey, fetcher);
+    const { data, size, setSize, mutate } = useSWRInfinite<T[]>(getKey, fetcher);
 
     useEffect(() => {
         setState('LOADING');
@@ -52,7 +53,7 @@ export const usePaginationData = (key: string, perList = 10) => {
     useEffect(() => {
         if (!data) return;
 
-        setFlatData(data.flat() as []);
+        setFlatData(data.flat());
         setState('SUCCESS');
 
         return () => AxiosAbortController.abort();
@@ -63,11 +64,9 @@ export const usePaginationData = (key: string, perList = 10) => {
         setSize(size + 1);
     };
 
-    const reloadData = () => {
-        mutate();
-    };
+    const reloadData = () => mutate();
 
-    const addData = (data: []) => {
+    const addData = (data: T[]) => {
         setFlatData((prevValue) => [...prevValue, ...data]);
     };
 

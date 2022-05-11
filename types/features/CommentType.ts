@@ -1,13 +1,11 @@
 import type { UserType } from '@ctypes/features/UserType';
 
-export type PostType = {
+export type CommentType = {
     id: number;
     content: string;
-    images?: string[];
     author: UserType;
-    likes_count: number;
-    comments_count: number;
-    isLiked: boolean;
+    resource_id: number;
+    resource: 'POST' | 'COMMENT' | 'SALE';
     created_at: string;
     updated_at: string;
 };

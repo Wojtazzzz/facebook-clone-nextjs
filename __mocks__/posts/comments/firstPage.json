@@ -1,0 +1,152 @@
+[
+    {
+        "id": 1,
+        "content": "Vel beatae officiis aspernatur voluptates. Omnis ratione tempora sed ipsa assumenda vel dicta. Sit modi enim molestiae aut aut et.",
+        "author": {
+            "id": 301,
+            "name": "Marcin Witas",
+            "first_name": "Marcin",
+            "profile_image": "https://via.placeholder.com/168x168.png/008855?text=consectetur",
+            "background_image": "https://via.placeholder.com/850x350.png/006677?text=dolor"
+        },
+        "resource_id": 1,
+        "resource": "POST",
+        "created_at": "2022-05-08 17:05",
+        "updated_at": "2022-05-08 17:05"
+    },
+    {
+        "id": 2,
+        "content": "Excepturi aut in et quaerat non. Ut sint voluptas explicabo dolorem. Eum minima qui id est natus expedita quidem.",
+        "author": {
+            "id": 301,
+            "name": "Marcin Witas",
+            "first_name": "Marcin",
+            "profile_image": "https://via.placeholder.com/168x168.png/008855?text=consectetur",
+            "background_image": "https://via.placeholder.com/850x350.png/006677?text=dolor"
+        },
+        "resource_id": 1,
+        "resource": "POST",
+        "created_at": "2022-05-08 17:05",
+        "updated_at": "2022-05-08 17:05"
+    },
+    {
+        "id": 3,
+        "content": "Consequatur et cumque sed ut dolorum accusantium impedit. Quasi quae laboriosam nihil quam quos nulla voluptas. Voluptate quasi numquam qui similique esse illum aut.",
+        "author": {
+            "id": 301,
+            "name": "Marcin Witas",
+            "first_name": "Marcin",
+            "profile_image": "https://via.placeholder.com/168x168.png/008855?text=consectetur",
+            "background_image": "https://via.placeholder.com/850x350.png/006677?text=dolor"
+        },
+        "resource_id": 1,
+        "resource": "POST",
+        "created_at": "2022-05-08 17:05",
+        "updated_at": "2022-05-08 17:05"
+    },
+    {
+        "id": 4,
+        "content": "Est delectus modi ad animi. Deleniti mollitia velit doloribus iure laboriosam eos accusantium. Itaque aliquid rem totam iure aut eum.",
+        "author": {
+            "id": 301,
+            "name": "Marcin Witas",
+            "first_name": "Marcin",
+            "profile_image": "https://via.placeholder.com/168x168.png/008855?text=consectetur",
+            "background_image": "https://via.placeholder.com/850x350.png/006677?text=dolor"
+        },
+        "resource_id": 1,
+        "resource": "POST",
+        "created_at": "2022-05-08 17:05",
+        "updated_at": "2022-05-08 17:05"
+    },
+    {
+        "id": 5,
+        "content": "Excepturi minus dolores et unde facilis et et. Repudiandae saepe voluptatibus qui ab maiores quia.",
+        "author": {
+            "id": 301,
+            "name": "Marcin Witas",
+            "first_name": "Marcin",
+            "profile_image": "https://via.placeholder.com/168x168.png/008855?text=consectetur",
+            "background_image": "https://via.placeholder.com/850x350.png/006677?text=dolor"
+        },
+        "resource_id": 1,
+        "resource": "POST",
+        "created_at": "2022-05-08 17:05",
+        "updated_at": "2022-05-08 17:05"
+    },
+    {
+        "id": 6,
+        "content": "Facere maiores quam nemo sint quia. Sapiente ea sed modi exercitationem fuga aliquam. Ut facilis quia iusto. Vitae voluptatem velit dolorem ipsum.",
+        "author": {
+            "id": 301,
+            "name": "Marcin Witas",
+            "first_name": "Marcin",
+            "profile_image": "https://via.placeholder.com/168x168.png/008855?text=consectetur",
+            "background_image": "https://via.placeholder.com/850x350.png/006677?text=dolor"
+        },
+        "resource_id": 1,
+        "resource": "POST",
+        "created_at": "2022-05-08 17:05",
+        "updated_at": "2022-05-08 17:05"
+    },
+    {
+        "id": 7,
+        "content": "Suscipit odit itaque non cum. Maxime suscipit nihil iste suscipit.",
+        "author": {
+            "id": 301,
+            "name": "Marcin Witas",
+            "first_name": "Marcin",
+            "profile_image": "https://via.placeholder.com/168x168.png/008855?text=consectetur",
+            "background_image": "https://via.placeholder.com/850x350.png/006677?text=dolor"
+        },
+        "resource_id": 1,
+        "resource": "POST",
+        "created_at": "2022-05-08 17:05",
+        "updated_at": "2022-05-08 17:05"
+    },
+    {
+        "id": 8,
+        "content": "Quisquam aut beatae recusandae. Sed vitae illo repudiandae quas.",
+        "author": {
+            "id": 301,
+            "name": "Marcin Witas",
+            "first_name": "Marcin",
+            "profile_image": "https://via.placeholder.com/168x168.png/008855?text=consectetur",
+            "background_image": "https://via.placeholder.com/850x350.png/006677?text=dolor"
+        },
+        "resource_id": 1,
+        "resource": "POST",
+        "created_at": "2022-05-08 17:05",
+        "updated_at": "2022-05-08 17:05"
+    },
+    {
+        "id": 9,
+        "content": "Error qui omnis quia accusantium officia et. Voluptates ipsum aut distinctio delectus ut omnis quos. Ut voluptatem quo ut recusandae cumque omnis.",
+        "author": {
+            "id": 301,
+            "name": "Marcin Witas",
+            "first_name": "Marcin",
+            "profile_image": "https://via.placeholder.com/168x168.png/008855?text=consectetur",
+            "background_image": "https://via.placeholder.com/850x350.png/006677?text=dolor"
+        },
+        "resource_id": 1,
+        "resource": "POST",
+        "created_at": "2022-05-08 17:05",
+        "updated_at": "2022-05-08 17:05"
+    },
+    {
+        "id": 10,
+        "content": "Sequi in culpa tenetur corporis. Fuga minus nemo qui quasi dignissimos recusandae recusandae. Veritatis et perferendis explicabo. Molestiae cupiditate repellat quia doloribus repellat fugit.",
+        "author": {
+            "id": 301,
+            "name": "Marcin Witas",
+            "first_name": "Marcin",
+            "profile_image": "https://via.placeholder.com/168x168.png/008855?text=consectetur",
+            "background_image": "https://via.placeholder.com/850x350.png/006677?text=dolor"
+        },
+        "resource_id": 1,
+        "resource": "POST",
+        "created_at": "2022-05-08 17:05",
+        "updated_at": "2022-05-08 17:05"
+    }
+]
