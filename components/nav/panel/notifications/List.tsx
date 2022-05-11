@@ -7,11 +7,11 @@ import { EmptyList } from '@components/nav/panel/inc/EmptyList';
 import { ApiError } from '@components/inc/ApiError';
 
 import type { NotificationType } from '@ctypes/features/NotificationType';
-import type { UsePaginationDataState } from '@ctypes/UsePaginationDataState';
+import type { UsePaginatedDataState } from '@ctypes/UsePaginatedDataState';
 
 interface ListProps {
     data: NotificationType[];
-    state: UsePaginationDataState;
+    state: UsePaginatedDataState;
     isEmpty: boolean;
     isReachedEnd: boolean;
     loadMore: () => void;
@@ -22,7 +22,7 @@ export const List = memo<ListProps>(({ data, state, isEmpty, isReachedEnd, loadM
     if (state === 'ERROR') return <ApiError isSmall />;
     if (isEmpty || !data) return <EmptyList title="Your Notifications list is empty" />;
 
-    const NotificationsComponents = (data as NotificationType[]).map((notification) => (
+    const NotificationsComponents = data.map((notification) => (
         <Notification key={notification.id} {...notification} />
     ));
 

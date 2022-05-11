@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useComments } from '@hooks/useComments';
-import { usePaginationData } from '@hooks/usePaginationData';
+import { usePaginatedData } from '@hooks/usePaginatedData';
 
 import { Formik } from 'formik';
 import { Errors } from '@components/pages/posts/post/comments/inc/Errors';
@@ -19,7 +19,7 @@ interface CreateFormProps {
 export const CreateForm = ({ postId }: CreateFormProps) => {
     const formRef = useRef<FormikProps<CommentPayload>>(null);
     const inputRef = useRef<HTMLInputElement>(null);
-    const { reloadData: reloadComments } = usePaginationData<CommentType>(`/api/posts/${postId}/comments`);
+    const { reloadData: reloadComments } = usePaginatedData<CommentType>(`/api/posts/${postId}/comments`);
     const { state, createComment } = useComments();
 
     useEffect(() => {

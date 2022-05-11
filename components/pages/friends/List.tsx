@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { usePaginationData } from '@hooks/usePaginationData';
+import { usePaginatedData } from '@hooks/usePaginatedData';
 
 import { Loader } from '@components/pages/friends/inc/Loader';
 import { LoadMore } from '@components/pages/friends/inc/LoadMore';
@@ -19,13 +19,13 @@ interface ListProps {
 
 export const List = memo<ListProps>(({ userId, type }) => {
     const key = getPathForPagination(type ?? '', userId);
-    const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginationData(key);
+    const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginatedData<UserType>(key);
 
     if (state === 'LOADING') return <Loader testid="friendsList-loading_more_loader" />;
     if (state === 'ERROR') return <ApiError />;
     if (isEmpty || !data) return <EmptyList title="No users, maybe this app is so boring..." />;
 
-    const UsersComponents = (data as UserType[]).map((user) => (
+    const UsersComponents = data.map((user) => (
         <User key={user.id} {...user}>
             <Actions friend={user} type={type ?? ''} />
         </User>

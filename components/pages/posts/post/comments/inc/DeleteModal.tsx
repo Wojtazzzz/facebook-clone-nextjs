@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { usePaginationData } from '@hooks/usePaginationData';
+import { usePaginatedData } from '@hooks/usePaginatedData';
 import { useComments } from '@hooks/useComments';
 
 import ReactModal from 'react-modal';
@@ -22,7 +22,7 @@ interface DeleteModalProps {
 }
 
 export const DeleteModal = ({ postId, commentId, closeModal }: DeleteModalProps) => {
-    const { reloadData: reloadComments } = usePaginationData<CommentType>(`/api/posts/${postId}/comments`);
+    const { reloadData: reloadComments } = usePaginatedData<CommentType>(`/api/posts/${postId}/comments`);
     const { state, removeComment } = useComments();
 
     useEffect(() => {

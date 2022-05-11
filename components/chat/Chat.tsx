@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from 'react';
 import { useAuth } from '@hooks/useAuth';
-import { usePaginationData } from '@hooks/usePaginationData';
+import { usePaginatedData } from '@hooks/usePaginatedData';
 
 import { Header } from '@components/chat/Header';
 import { Messages } from '@components/chat/Messages';
@@ -10,6 +10,7 @@ import Echo from 'laravel-echo';
 import axios from '@libs/axios';
 
 import type { UserType } from '@ctypes/features/UserType';
+import type { ChatMessageType } from '@ctypes/features/ChatMessageType';
 
 require('pusher-js');
 
@@ -19,7 +20,7 @@ interface ChatProps {
 
 export const Chat = ({ friend }: ChatProps) => {
     const { user } = useAuth();
-    const { reloadData } = usePaginationData(`/api/messages/${friend.id}`);
+    const { reloadData } = usePaginatedData<ChatMessageType>(`/api/messages/${friend.id}`);
 
     const LaravelEcho = useMemo(
         () =>

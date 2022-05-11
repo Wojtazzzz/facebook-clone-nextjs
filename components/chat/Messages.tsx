@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { usePaginationData } from '@hooks/usePaginationData';
+import { usePaginatedData } from '@hooks/usePaginatedData';
 
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Loader } from '@components/chat/inc/Loader';
@@ -14,13 +14,15 @@ interface MessagesProps {
 }
 
 export const Messages = memo<MessagesProps>(({ friendId }) => {
-    const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginationData(`/api/messages/${friendId}`);
+    const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginatedData<ChatMessageType>(
+        `/api/messages/${friendId}`
+    );
 
     if (state === 'LOADING') return <Loader testid="messages-loader_loading" />;
     if (state === 'ERROR') return <ApiError isSmall />;
     if (isEmpty || !data) return <EmptyChat />;
 
-    const MessagesComponents = (data as ChatMessageType[]).map((message) => <Message key={message.id} {...message} />);
+    const MessagesComponents = data.map((message) => <Message key={message.id} {...message} />);
 
     return (
         <div

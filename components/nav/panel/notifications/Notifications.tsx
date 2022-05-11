@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { usePaginationData } from '@hooks/usePaginationData';
+import { usePaginatedData } from '@hooks/usePaginatedData';
 import { useAppDispatch } from '@hooks/redux';
 
 import { Header } from '@components/nav/panel/inc/Header';
@@ -9,8 +9,10 @@ import { Overlay } from '@components/nav/panel/inc/Overlay';
 
 import { toggleActive } from '@redux/slices/NotificationsListSlice';
 
+import type { NotificationType } from '@ctypes/features/NotificationType';
+
 export const Notifications = memo(() => {
-    const notifications = usePaginationData('/api/notifications');
+    const notifications = usePaginatedData<NotificationType>('/api/notifications');
 
     const dispatch = useAppDispatch();
     const handleToggle = () => dispatch(toggleActive());

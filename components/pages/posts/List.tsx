@@ -1,5 +1,5 @@
 import { memo, useRef } from 'react';
-import { usePaginationData } from '@hooks/usePaginationData';
+import { usePaginatedData } from '@hooks/usePaginatedData';
 
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Post } from '@components/pages/posts/post/Post';
@@ -11,14 +11,14 @@ import { EmptyList } from '@components/inc/EmptyList';
 import type { PostType } from '@ctypes/features/PostType';
 
 export const List = memo(() => {
-    const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginationData('/api/posts', 15);
+    const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginatedData<PostType>('/api/posts', 15);
     const listRef = useRef<InfiniteScroll>(null);
 
     if (state === 'LOADING') return <Loader testid="postsList-loading_loaders" />;
     if (state === 'ERROR') return <ApiError />;
     if (isEmpty || !data) return <EmptyList title="No posts, add some friends!" />;
 
-    const PostsComponents = (data as PostType[]).map((post) => <Post key={post.id} {...post} />);
+    const PostsComponents = data.map((post) => <Post key={post.id} {...post} />);
 
     return (
         <>

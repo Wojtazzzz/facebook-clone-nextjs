@@ -1,4 +1,4 @@
-import { usePaginationData } from '@hooks/usePaginationData';
+import { usePaginatedData } from '@hooks/usePaginatedData';
 
 import { Comment } from '@components/pages/posts/post/comments/inc/Comment';
 import { Loader } from '@components/pages/posts/post/comments/inc/Loader';
@@ -12,7 +12,7 @@ interface ListProps {
 }
 
 export const List = ({ postId }: ListProps) => {
-    const { data, state, isReachedEnd, loadMore } = usePaginationData<CommentType>(`/api/posts/${postId}/comments`);
+    const { data, state, isReachedEnd, loadMore } = usePaginatedData<CommentType>(`/api/posts/${postId}/comments`);
 
     if (state === 'LOADING') return <Loader testid="postsCommentsList-loading_loaders" />;
     if (state === 'ERROR') return <ApiError />;

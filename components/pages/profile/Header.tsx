@@ -1,7 +1,7 @@
 import { useState, useEffect, memo } from 'react';
 import { useAppDispatch } from '@hooks/redux';
 import { useAuth } from '@hooks/useAuth';
-import { usePaginationData } from '@hooks/usePaginationData';
+import { usePaginatedData } from '@hooks/usePaginatedData';
 
 import Image from 'next/image';
 import Link from 'next/link';
@@ -18,7 +18,7 @@ interface HeaderProps {
 export const Header = memo<HeaderProps>(({ user }) => {
     const { id, first_name, name, profile_image, background_image } = user;
     const { user: loggedUser } = useAuth();
-    const { data } = usePaginationData(`/api/friendship/friends/${id}`);
+    const { data } = usePaginatedData<UserType>(`/api/friendship/friends/${id}`);
     const [isUserLogged, setIsUserLogged] = useState(false);
     const dispatch = useAppDispatch();
 
@@ -27,7 +27,7 @@ export const Header = memo<HeaderProps>(({ user }) => {
     }, [loggedUser, id]);
 
     const handleOpenChat = () => dispatch(toggleActive(user));
-    const FriendsHeadsComponents = (data as UserType[]).map(({ id, name, profile_image }, i) => {
+    const FriendsHeadsComponents = data.map(({ id, name, profile_image }, i) => {
         if (i >= 5) return;
 
         return (
