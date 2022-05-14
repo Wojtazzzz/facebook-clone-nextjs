@@ -34,7 +34,7 @@ export const Post = ({
 
     return (
         <div className="w-full bg-dark-200 rounded-lg">
-            <Header author={author} created_at={created_at} updated_at={updated_at} />
+            <Header postId={id} author={author} created_at={created_at} updated_at={updated_at} />
             <Content content={content} images={images} />
 
             {noStats && (
@@ -47,7 +47,6 @@ export const Post = ({
 
             <div className="w-full flex justify-evenly gap-2 p-2">
                 <LikeButton postId={id} isLiked={isLiked} setTotalLikes={setTotalLikesCount} />
-
                 <CommentButton handleToggleIsCommentsActive={handleToggleIsCommentsActive} />
                 <PanelButton title="Share" icon={faShare} callback={() => console.log('Share action..')} />
             </div>
