@@ -1,5 +1,5 @@
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
-import { DeleteModal } from '@components/pages/posts/post/comments/inc/DeleteModal';
+import { DeleteModal } from '@components/pages/posts/post/comments/inc/delete/DeleteModal';
 import { screen, waitFor } from '@testing-library/react';
 import { mock } from '@libs/nock';
 import CommentsFirstPageJson from '@mocks/posts/comments/firstPage.json';
@@ -37,22 +37,14 @@ describe('DeleteModal component', () => {
 
         renderWithDefaultData(<DeleteModal postId={1} commentId={1} closeModal={mockCloseModal} />);
 
-        const title = screen.getByText('Are you sure you want to delete the comment?');
+        const title = screen.getByText('Are you sure you want to delete that comment?');
 
         expect(title).toBeInTheDocument();
     });
 
-    it('show properly modal title', () => {
-        const mockCloseModal = jest.fn();
+    it('show ApiError component when api return error', async () => {
+        mock('/api/posts/1/comments/1', 500, {}, 'delete');
 
-        renderWithDefaultData(<DeleteModal postId={1} commentId={1} closeModal={mockCloseModal} />);
-
-        const title = screen.getByText('Are you sure you want to delete the comment?');
-
-        expect(title).toBeInTheDocument();
-    });
-
-    it('show loaders when called delete request', () => {
         const mockCloseModal = jest.fn();
 
         renderWithDefaultData(<DeleteModal postId={1} commentId={1} closeModal={mockCloseModal} />);
@@ -60,7 +52,22 @@ describe('DeleteModal component', () => {
         const yesButton = screen.getByLabelText('Delete comment');
         yesButton.click();
 
-        const loaders = screen.getByTestId('deleteModal-loading');
+        const apiError = await screen.findByText('Something went wrong');
+
+        expect(apiError).toBeInTheDocument();
+    });
+
+    it('show loaders when called delete request', async () => {
+        mock('/api/posts/1/comments/1', 204, {}, 'delete');
+
+        const mockCloseModal = jest.fn();
+
+        renderWithDefaultData(<DeleteModal postId={1} commentId={1} closeModal={mockCloseModal} />);
+
+        const yesButton = screen.getByLabelText('Delete comment');
+        yesButton.click();
+
+        const loaders = await screen.findByTestId('deleteModal-loading');
 
         expect(loaders).toBeInTheDocument();
     });
@@ -78,20 +85,5 @@ describe('DeleteModal component', () => {
         await waitFor(() => {
             expect(mockCloseModal).toBeCalledTimes(1);
         });
-    });
-
-    it('show ApiError component when api return error', async () => {
-        mock('/api/posts/1/comments/1', 500, {}, 'delete');
-
-        const mockCloseModal = jest.fn();
-
-        renderWithDefaultData(<DeleteModal postId={1} commentId={1} closeModal={mockCloseModal} />);
-
-        const yesButton = screen.getByLabelText('Delete comment');
-        yesButton.click();
-
-        const apiError = await screen.findByText('Something went wrong');
-
-        expect(apiError).toBeInTheDocument();
     });
 });

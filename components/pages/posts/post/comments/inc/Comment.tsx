@@ -3,7 +3,7 @@ import { useAuth } from '@hooks/useAuth';
 
 import Link from 'next/link';
 import { UpdateForm } from '@components/pages/posts/post/comments/inc/UpdateForm';
-import { DeleteModal } from '@components/pages/posts/post/comments/inc/DeleteModal';
+import { DeleteModal } from '@components/pages/posts/post/comments/inc/delete/DeleteModal';
 import { LikeAction } from '@components/pages/posts/post/comments/inc/actions/LikeAction';
 import { ReplyAction } from '@components/pages/posts/post/comments/inc/actions/ReplyAction';
 import { EditAction } from '@components/pages/posts/post/comments/inc/actions/EditAction';
