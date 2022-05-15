@@ -1,3 +1,4 @@
+import { useAuth } from '@hooks/useAuth';
 import { usePosts } from '@hooks/usePosts';
 
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
@@ -5,11 +6,13 @@ import { Option } from '@components/pages/posts/post/inc/settings/Option';
 
 interface MenuProps {
     postId: number;
+    authorId: number;
     closeMenu: () => void;
 }
 
-export const Menu = ({ postId, closeMenu }: MenuProps) => {
-    const { isLoading, removePost } = usePosts(postId);
+export const Menu = ({ postId, authorId, closeMenu }: MenuProps) => {
+    const { user } = useAuth();
+    const { isLoading, removePost } = usePosts();
 
     return (
         <>
@@ -19,7 +22,9 @@ export const Menu = ({ postId, closeMenu }: MenuProps) => {
                     isLoading ? 'cursor-wait' : ''
                 } py-3 px-4`}
             >
-                <Option title="Delete Post" icon={faTrashCan} callback={removePost} />
+                {authorId === user?.id && (
+                    <Option title="Delete Post" icon={faTrashCan} callback={() => removePost(postId)} />
+                )}
             </section>
 
             <div

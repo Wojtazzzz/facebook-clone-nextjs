@@ -6,9 +6,10 @@ import { Menu } from '@components/pages/posts/post/inc/settings/Menu';
 
 interface SettingsProps {
     postId: number;
+    authorId: number;
 }
 
-export const Settings = ({ postId }: SettingsProps) => {
+export const Settings = ({ postId, authorId }: SettingsProps) => {
     const [isSettingsActive, setIsSettingsActive] = useState(false);
 
     return (
@@ -22,7 +23,9 @@ export const Settings = ({ postId }: SettingsProps) => {
                 callback={() => setIsSettingsActive((prevState) => !prevState)}
             />
 
-            {isSettingsActive && <Menu postId={postId} closeMenu={() => setIsSettingsActive(false)} />}
+            {isSettingsActive && (
+                <Menu postId={postId} authorId={authorId} closeMenu={() => setIsSettingsActive(false)} />
+            )}
         </div>
     );
 };
