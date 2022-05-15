@@ -1,21 +1,28 @@
 import { mock } from '@libs/nock';
 import RootUserJson from '@mocks/user/root.json';
 import CreateSuccessResponseJson from '@mocks/posts/actions/createPostSuccess.json';
-import CreateErrorResponseJson from '@mocks/posts/actions/createPostError.json';
+import PostsFirstPageJson from '@mocks/posts/firstPage.json';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import { Form } from '@components/pages/posts/create/modal/Form';
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import nock from 'nock';
 
 describe('Form component', () => {
+    const mockCloseModal = jest.fn();
+
     beforeEach(() => {
+        nock.cleanAll();
+
         mock('/api/user', 200, RootUserJson);
+        mock('/api/posts?page=1', 200, PostsFirstPageJson);
+        mock('/api/posts?page=1', 200, PostsFirstPageJson);
     });
 
     it('show too short text validation message', async () => {
         const user = userEvent.setup();
 
-        renderWithDefaultData(<Form />);
+        renderWithDefaultData(<Form closeModal={mockCloseModal} />);
 
         const input = await screen.findByLabelText('Post content');
         const submitButton = screen.getByLabelText('Create post');
@@ -37,7 +44,7 @@ describe('Form component', () => {
     // it('show too long text validation message', async () => {
     //     const user = userEvent.setup();
 
-    //     renderWithDefaultData(<Form />);
+    //     renderWithDefaultData(<Form closeModal={mockCloseModal} />);
 
     //     const submitButton = screen.getByLabelText('Create post');
     //     const input = await screen.findByLabelText('Post content');
@@ -53,7 +60,7 @@ describe('Form component', () => {
     it('show empty post validation message', async () => {
         const user = userEvent.setup();
 
-        renderWithDefaultData(<Form />);
+        renderWithDefaultData(<Form closeModal={mockCloseModal} />);
 
         const submitButton = screen.getByLabelText('Create post');
         await user.click(submitButton);
@@ -63,11 +70,11 @@ describe('Form component', () => {
         expect(emptyPostValidationMessage).toBeInTheDocument();
     });
 
-    it('show success component when post created', async () => {
+    it('show loader when request called', async () => {
         mock('/api/posts', 201, CreateSuccessResponseJson, 'post');
         const user = userEvent.setup();
 
-        renderWithDefaultData(<Form />);
+        renderWithDefaultData(<Form closeModal={mockCloseModal} />);
 
         const submitButton = screen.getByLabelText('Create post');
         const input = await screen.findByLabelText('Post content');
@@ -75,33 +82,50 @@ describe('Form component', () => {
         await user.type(input, 'Test Post');
         await user.click(submitButton);
 
-        const successComponent = await screen.findByText('Post created successfully');
+        const loader = screen.getByTestId('createPost-loader');
 
-        expect(successComponent).toBeInTheDocument();
+        expect(loader).toBeInTheDocument();
     });
 
-    it('show api error component when post does not created', async () => {
-        mock('/api/posts', 500, CreateErrorResponseJson, 'post');
+    it('execute close modal function when post was created', async () => {
+        mock('/api/posts', 201, CreateSuccessResponseJson, 'post');
         const user = userEvent.setup();
 
-        renderWithDefaultData(<Form />);
+        renderWithDefaultData(<Form closeModal={mockCloseModal} />);
 
         const submitButton = screen.getByLabelText('Create post');
         const input = await screen.findByLabelText('Post content');
 
         await user.type(input, 'Test Post');
         await user.click(submitButton);
+
+        await waitFor(() => {
+            expect(mockCloseModal).toHaveBeenCalledTimes(1);
+        });
+    });
+
+    it('show api error component when post was not created', async () => {
+        mock('/api/posts', 500, {}, 'post');
+        const user = userEvent.setup();
+
+        renderWithDefaultData(<Form closeModal={mockCloseModal} />);
+
+        const submitButton = screen.getByLabelText('Create post');
+        const input = await screen.findByLabelText('Post content');
+
+        await user.type(input, 'Test Post');
+        submitButton.click();
 
         const errorComponent = await screen.findByText('Something went wrong');
 
         expect(errorComponent).toBeInTheDocument();
     });
 
-    it('show error component when post does not created because content is too large', async () => {
-        mock('/api/posts', 413, CreateErrorResponseJson, 'post');
+    it('show error component when post was not created because content is too large', async () => {
+        mock('/api/posts', 413, {}, 'post');
         const user = userEvent.setup();
 
-        renderWithDefaultData(<Form />);
+        renderWithDefaultData(<Form closeModal={mockCloseModal} />);
 
         const submitButton = screen.getByLabelText('Create post');
         const input = await screen.findByLabelText('Post content');

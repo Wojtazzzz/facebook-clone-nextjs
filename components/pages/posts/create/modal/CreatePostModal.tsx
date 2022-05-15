@@ -8,7 +8,7 @@ interface CreatePostModalProps {
 export const CreatePostModal = ({ handleCloseModal }: CreatePostModalProps) => {
     return (
         <Modal title="Create Post" closeModal={handleCloseModal}>
-            <Form />
+            <Form closeModal={handleCloseModal} />
         </Modal>
     );
 };

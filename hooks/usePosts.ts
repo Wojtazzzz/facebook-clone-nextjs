@@ -3,10 +3,14 @@ import { useAxios } from '@hooks/useAxios';
 import { usePaginatedData } from '@hooks/usePaginatedData';
 
 import type { PostType } from '@ctypes/features/PostType';
+import type { PostPayload } from '@ctypes/forms/PostPayload';
+import type { CreatePostResponse } from '@ctypes/responses/CreatePostResponse';
 
-export const usePosts = (postId: number) => {
+type Response = CreatePostResponse | {};
+
+export const usePosts = () => {
     const { reloadData: reloadPosts } = usePaginatedData<PostType>('/api/posts', 15);
-    const { state, sendRequest } = useAxios();
+    const { state, sendRequest } = useAxios<Response>();
 
     useEffect(() => {
         if (state.status === 'LOADING') return;
@@ -16,7 +20,16 @@ export const usePosts = (postId: number) => {
         }
     }, [state, reloadPosts]);
 
-    const removePost = () => {
+    const createPost = (data: PostPayload) => {
+        const formData = new FormData();
+        formData.append('content', data.content);
+
+        data.images.forEach((img) => formData.append('images[]', img));
+
+        sendRequest({ method: 'POST', url: '/api/posts', data: formData });
+    };
+
+    const removePost = (postId: number) => {
         if (state.status === 'LOADING') return;
 
         sendRequest({
@@ -25,5 +38,10 @@ export const usePosts = (postId: number) => {
         });
     };
 
-    return { isLoading: state.status === 'LOADING', removePost };
+    return {
+        state,
+        isLoading: state.status === 'LOADING',
+        createPost,
+        removePost,
+    };
 };

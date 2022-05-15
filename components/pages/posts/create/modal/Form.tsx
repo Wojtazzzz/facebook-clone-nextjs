@@ -1,46 +1,37 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAuth } from '@hooks/useAuth';
-import { useAxios } from '@hooks/useAxios';
+import { usePosts } from '@hooks/usePosts';
 
 import { Formik } from 'formik';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImages } from '@fortawesome/free-solid-svg-icons';
 import { ImageUploader } from '@components/pages/posts/create/modal/inc/ImageUploader';
-import { Success } from '@components/pages/posts/create/modal/responses/Success';
 import { Errors } from '@components/pages/posts/create/modal/responses/Errors';
-import { Button } from '@components/inc/Button';
 import { UserInfo } from '@components/pages/posts/create/modal/inc/UserInfo';
+import { Button } from '@components/inc/Button';
+import { SpinnerLoader } from '@components/inc/SpinnerLoader';
 
 import { PostSchema } from '@validation/PostSchema';
 
-import type { CreatePostPayload } from '@ctypes/forms/CreatePostPayload';
-import type { CreatePostResponse } from '@ctypes/responses/CreatePostResponse';
+interface FormProps {
+    closeModal: () => void;
+}
 
-export const Form = () => {
+export const Form = ({ closeModal }: FormProps) => {
     const [isUploadActive, setIsUploadActive] = useState(false);
     const { user } = useAuth();
-    const { state, sendRequest } = useAxios<CreatePostResponse>();
+    const { state, isLoading, createPost } = usePosts();
 
-    const createPost = (data: CreatePostPayload) => {
-        const formData = new FormData();
-        formData.append('content', data.content);
+    useEffect(() => {
+        if (state.status !== 'SUCCESS') return;
 
-        data.images.forEach((img) => formData.append('images[]', img));
+        closeModal();
+    }, [state, closeModal]);
 
-        sendRequest({ method: 'POST', url: '/api/posts', data: formData });
-    };
-
-    const handleToggleDropComponent = () => setIsUploadActive((prevState) => !prevState);
-    const handleCloseDropComponent = () => setIsUploadActive(false);
-
-    if (state.status === 'SUCCESS') return <Success />;
+    if (isLoading) return <SpinnerLoader testid="createPost-loader" containerStyles="w-[100px] my-10 mx-auto" />;
 
     return (
-        <Formik
-            initialValues={{ content: '', images: [] }}
-            validationSchema={PostSchema}
-            onSubmit={(values) => createPost(values)}
-        >
+        <Formik initialValues={{ content: '', images: [] }} validationSchema={PostSchema} onSubmit={createPost}>
             {({ values, handleChange, handleBlur, handleSubmit, setFieldValue }) => (
                 <form onSubmit={handleSubmit}>
                     <div className="w-full p-4">
@@ -66,11 +57,11 @@ export const Form = () => {
                             handleDrop={(acceptedFiles) =>
                                 setFieldValue('images', [...values.images, ...acceptedFiles])
                             }
-                            handleClose={handleCloseDropComponent}
+                            handleClose={() => setIsUploadActive(false)}
                         />
                     )}
 
-                    <Errors state={state} />
+                    <Errors error={state.status === 'ERROR' && state.error} />
 
                     <div className="w-full p-3">
                         <div className="w-full flex justify-between items-center border-[1.5px] border-dark-100 rounded-lg p-3">
@@ -80,7 +71,7 @@ export const Form = () => {
                                 <button
                                     type="button"
                                     className="focus:outline-none"
-                                    onClick={handleToggleDropComponent}
+                                    onClick={() => setIsUploadActive((prevState) => !prevState)}
                                 >
                                     <FontAwesomeIcon icon={faImages} className="text-2xl text-green-400" />
                                 </button>
@@ -89,12 +80,7 @@ export const Form = () => {
                     </div>
 
                     <div className="pb-4 px-4">
-                        <Button
-                            type="submit"
-                            title="Create post"
-                            isDisabled={state.status === 'LOADING'}
-                            styles="w-full"
-                        />
+                        <Button type="submit" title="Create post" isDisabled={isLoading} styles="w-full" />
                     </div>
                 </form>
             )}
