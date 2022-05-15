@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useAppDispatch } from '@hooks/redux';
 import { useAuth } from '@hooks/useAuth';
 import { usePosts } from '@hooks/usePosts';
 
@@ -11,22 +12,21 @@ import { UserInfo } from '@components/pages/posts/create/modal/inc/UserInfo';
 import { Button } from '@components/inc/Button';
 import { SpinnerLoader } from '@components/inc/SpinnerLoader';
 
+import { hideModal } from '@redux/slices/CreatePostModalSlice';
+
 import { PostSchema } from '@validation/PostSchema';
 
-interface FormProps {
-    closeModal: () => void;
-}
-
-export const Form = ({ closeModal }: FormProps) => {
+export const Form = () => {
     const [isUploadActive, setIsUploadActive] = useState(false);
+    const dispatch = useAppDispatch();
     const { user } = useAuth();
     const { state, isLoading, createPost } = usePosts();
 
     useEffect(() => {
         if (state.status !== 'SUCCESS') return;
 
-        closeModal();
-    }, [state, closeModal]);
+        dispatch(hideModal());
+    }, [state, dispatch]);
 
     if (isLoading) return <SpinnerLoader testid="createPost-loader" containerStyles="w-[100px] my-10 mx-auto" />;
 

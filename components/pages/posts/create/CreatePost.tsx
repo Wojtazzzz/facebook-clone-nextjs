@@ -1,13 +1,13 @@
 import { useAuth } from '@hooks/useAuth';
+import { useAppDispatch } from '@hooks/redux';
 
 import { CreatePostLoader } from '@components/pages/posts/create/CreatePostLoader';
 import { Avatar } from '@components/inc/Avatar';
 
-interface CreatePostProps {
-    handleOpenModal: () => void;
-}
+import { showModal } from '@redux/slices/CreatePostModalSlice';
 
-export const CreatePost = ({ handleOpenModal }: CreatePostProps) => {
+export const CreatePost = () => {
+    const dispatch = useAppDispatch();
     const { user } = useAuth();
 
     if (!user) return <CreatePostLoader testid="createPost-loaders" />;
@@ -19,7 +19,7 @@ export const CreatePost = ({ handleOpenModal }: CreatePostProps) => {
 
                 <button
                     className="w-full bg-dark-100 text-light-100 text-left hover:opacity-70 rounded-3xl cursor-pointer px-3"
-                    onClick={handleOpenModal}
+                    onClick={() => dispatch(showModal())}
                 >
                     What&apos;s on your mind, {user.first_name}?
                 </button>

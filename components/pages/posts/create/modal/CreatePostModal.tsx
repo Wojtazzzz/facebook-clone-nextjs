@@ -1,14 +1,16 @@
+import { useAppDispatch } from '@hooks/redux';
+
 import { Form } from '@components/pages/posts/create/modal/Form';
 import { Modal } from '@components/inc/Modal';
 
-interface CreatePostModalProps {
-    handleCloseModal: () => void;
-}
+import { hideModal } from '@redux/slices/CreatePostModalSlice';
 
-export const CreatePostModal = ({ handleCloseModal }: CreatePostModalProps) => {
+export const CreatePostModal = () => {
+    const dispatch = useAppDispatch();
+
     return (
-        <Modal title="Create Post" closeModal={handleCloseModal}>
-            <Form closeModal={handleCloseModal} />
+        <Modal title="Create Post" closeModal={() => dispatch(hideModal())}>
+            <Form />
         </Modal>
     );
 };

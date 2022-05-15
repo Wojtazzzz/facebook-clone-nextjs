@@ -5,6 +5,7 @@ import SidebarReducer from '@redux/slices/SidebarSlice';
 import ChatReducer from '@redux/slices/ChatSlice';
 import MessengerReducer from '@redux/slices/MessengerSlice';
 import NotificationsListReducer from '@redux/slices/NotificationsListSlice';
+import CreatePostModalReducer from '@redux/slices/CreatePostModalSlice';
 
 export const generateStore = () =>
     configureStore({
@@ -14,6 +15,7 @@ export const generateStore = () =>
             chat: ChatReducer,
             messenger: MessengerReducer,
             notificationsList: NotificationsListReducer,
+            createPostModal: CreatePostModalReducer,
         },
     });
 
