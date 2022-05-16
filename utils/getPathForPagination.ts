@@ -1,24 +1,16 @@
 import type { FriendsListType } from '@ctypes/features/FriendsListType';
 
-export const getPathForPagination = (type: FriendsListType | string | string[], userId = 0) => {
-    if (!type) {
-        return `/api/friendship/friends/${userId}`;
-    }
+export const getPathForPagination = (type: FriendsListType, userId = 0) => {
+    const listType = type?.toUpperCase() as FriendsListType;
 
-    const checkValue = type.toString().toUpperCase();
+    if (!listType) return `/api/friendship/friends/${userId}`;
 
-    switch (checkValue) {
-        case 'SUGGESTS':
-            return '/api/friendship/suggests';
+    const PATHS = {
+        SUGGESTS: '/api/friendship/suggests',
+        INVITES: '/api/friendship/invites',
+        POKES: '/api/pokes',
+        FRIENDS: `/api/friendship/friends/${userId}`,
+    } as const;
 
-        case 'INVITES':
-            return '/api/friendship/invites';
-
-        case 'POKES':
-            return '/api/pokes';
-
-        default:
-        case 'FRIENDS':
-            return `/api/friendship/friends/${userId}`;
-    }
+    return PATHS[listType];
 };

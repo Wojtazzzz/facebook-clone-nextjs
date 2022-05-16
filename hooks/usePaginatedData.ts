@@ -26,7 +26,6 @@ export const usePaginatedData = <T>(key: string, perList = 10) => {
 
     const getKey = (pageIndex: number, previousPageData: []) => {
         if (previousPageData && !previousPageData.length) return null;
-
         return `${key}?page=${++pageIndex}`;
     };
 

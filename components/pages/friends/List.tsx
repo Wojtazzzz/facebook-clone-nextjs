@@ -11,14 +11,15 @@ import { Actions } from '@components/pages/friends/inc/Actions';
 import { getPathForPagination } from '@utils/getPathForPagination';
 
 import type { UserType } from '@ctypes/features/UserType';
+import type { FriendsListType } from '@ctypes/features/FriendsListType';
 
 interface ListProps {
     userId: number;
-    type: string | string[] | undefined;
+    listType: FriendsListType;
 }
 
-export const List = memo<ListProps>(({ userId, type }) => {
-    const key = getPathForPagination(type ?? '', userId);
+export const List = memo<ListProps>(({ userId, listType }) => {
+    const key = getPathForPagination(listType, userId);
     const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginatedData<UserType>(key);
 
     if (state === 'LOADING') return <Loader testid="friendsList-loading_more_loader" />;
@@ -27,7 +28,7 @@ export const List = memo<ListProps>(({ userId, type }) => {
 
     const UsersComponents = data.map((user) => (
         <User key={user.id} {...user}>
-            <Actions friend={user} type={type ?? ''} />
+            <Actions friend={user} listType={listType} />
         </User>
     ));
 

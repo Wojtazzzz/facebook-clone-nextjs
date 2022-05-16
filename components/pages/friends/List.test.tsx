@@ -21,7 +21,7 @@ describe('Friends List component', () => {
         it('fetch button dissapears when page fetched all suggests', async () => {
             mock('/api/friendship/suggests?page=1', 200, SuggestsFirstPageJson);
 
-            renderWithDefaultData(<List userId={RootUserJson.id} type="suggests" />);
+            renderWithDefaultData(<List userId={RootUserJson.id} listType="SUGGESTS" />);
 
             mock('/api/friendship/suggests?page=1', 200, SuggestsFirstPageJson);
             mock('/api/friendship/suggests?page=2', 200, SuggestsEmptyPageJson);
@@ -35,7 +35,7 @@ describe('Friends List component', () => {
         it('shows loaders on initial fetching suggested users', async () => {
             mock('/api/friendship/suggests?page=1', 200, SuggestsFirstPageJson);
 
-            renderWithDefaultData(<List userId={RootUserJson.id} type="suggests" />);
+            renderWithDefaultData(<List userId={RootUserJson.id} listType="SUGGESTS" />);
 
             const loader = await screen.findByTestId('friendsList-loading_more_loader');
             expect(loader).toBeInTheDocument();
@@ -44,7 +44,7 @@ describe('Friends List component', () => {
         it('loads 10 suggested users', async () => {
             mock('/api/friendship/suggests?page=1', 200, SuggestsFirstPageJson);
 
-            renderWithDefaultData(<List userId={RootUserJson.id} type="suggests" />);
+            renderWithDefaultData(<List userId={RootUserJson.id} listType="SUGGESTS" />);
 
             const firstElement = await screen.findByText(SuggestsFirstPageJson[0].name);
             expect(firstElement).toBeInTheDocument();
@@ -56,7 +56,7 @@ describe('Friends List component', () => {
         it('shows loaders on fetching more suggested users', async () => {
             mock('/api/friendship/suggests?page=1', 200, SuggestsFirstPageJson);
 
-            renderWithDefaultData(<List userId={RootUserJson.id} type="suggests" />);
+            renderWithDefaultData(<List userId={RootUserJson.id} listType="SUGGESTS" />);
 
             mock('/api/friendship/suggests?page=1', 200, SuggestsFirstPageJson);
             mock('/api/friendship/suggests?page=2', 200, SuggestsSecondPageJson);
@@ -71,7 +71,7 @@ describe('Friends List component', () => {
         it('can fetch more suggested users', async () => {
             mock('/api/friendship/suggests?page=1', 200, SuggestsFirstPageJson);
 
-            renderWithDefaultData(<List userId={RootUserJson.id} type="suggests" />);
+            renderWithDefaultData(<List userId={RootUserJson.id} listType="SUGGESTS" />);
 
             mock('/api/friendship/suggests?page=1', 200, SuggestsFirstPageJson);
             mock('/api/friendship/suggests?page=2', 200, SuggestsSecondPageJson);
@@ -95,7 +95,7 @@ describe('Friends List component', () => {
         it('shows empty component when fetch no suggested users', async () => {
             mock('/api/friendship/suggests?page=1', 200, SuggestsEmptyPageJson);
 
-            renderWithDefaultData(<List userId={RootUserJson.id} type="suggests" />);
+            renderWithDefaultData(<List userId={RootUserJson.id} listType="SUGGESTS" />);
 
             const emptyComponent = await screen.findByText('No users, maybe this app is so boring...');
             expect(emptyComponent).toBeInTheDocument();
@@ -104,7 +104,7 @@ describe('Friends List component', () => {
         it('shows error component when api returns error', async () => {
             mock('/api/friendship/suggests?page=1', 500);
 
-            renderWithDefaultData(<List userId={RootUserJson.id} type="suggests" />);
+            renderWithDefaultData(<List userId={RootUserJson.id} listType="SUGGESTS" />);
 
             const errorImage = await screen.findByAltText('Server error');
             expect(errorImage).toBeInTheDocument();
@@ -118,7 +118,7 @@ describe('Friends List component', () => {
         it('fetch button dissapears when page fetched all pokes', async () => {
             mock('/api/pokes?page=1', 200, PokesFirstPageJson);
 
-            renderWithDefaultData(<List userId={RootUserJson.id} type="pokes" />);
+            renderWithDefaultData(<List userId={RootUserJson.id} listType="POKES" />);
 
             mock('/api/pokes?page=1', 200, PokesFirstPageJson);
             mock('/api/pokes?page=2', 200, PokesEmptyPageJson);
@@ -132,7 +132,7 @@ describe('Friends List component', () => {
         it('shows loaders on initial fetching pokes', async () => {
             mock('/api/pokes?page=1', 200, PokesFirstPageJson);
 
-            renderWithDefaultData(<List userId={RootUserJson.id} type="pokes" />);
+            renderWithDefaultData(<List userId={RootUserJson.id} listType="POKES" />);
 
             const loader = await screen.findByTestId('friendsList-loading_more_loader');
             expect(loader).toBeInTheDocument();
@@ -141,7 +141,7 @@ describe('Friends List component', () => {
         it('loads 10 pokes', async () => {
             mock('/api/pokes?page=1', 200, PokesFirstPageJson);
 
-            renderWithDefaultData(<List userId={RootUserJson.id} type="pokes" />);
+            renderWithDefaultData(<List userId={RootUserJson.id} listType="POKES" />);
 
             const firstElement = await screen.findByText(PokesFirstPageJson[0].name);
             expect(firstElement).toBeInTheDocument();
@@ -153,7 +153,7 @@ describe('Friends List component', () => {
         it('shows loaders on fetching more pokes', async () => {
             mock('/api/pokes?page=1', 200, PokesFirstPageJson);
 
-            renderWithDefaultData(<List userId={RootUserJson.id} type="pokes" />);
+            renderWithDefaultData(<List userId={RootUserJson.id} listType="POKES" />);
 
             mock('/api/pokes?page=1', 200, PokesFirstPageJson);
             mock('/api/pokes?page=2', 200, PokesSecondPageJson);
@@ -168,7 +168,7 @@ describe('Friends List component', () => {
         it('can fetch more pokes', async () => {
             mock('/api/pokes?page=1', 200, PokesFirstPageJson);
 
-            renderWithDefaultData(<List userId={RootUserJson.id} type="pokes" />);
+            renderWithDefaultData(<List userId={RootUserJson.id} listType="POKES" />);
 
             mock('/api/pokes?page=1', 200, PokesFirstPageJson);
             mock('/api/pokes?page=2', 200, PokesSecondPageJson);
@@ -192,7 +192,7 @@ describe('Friends List component', () => {
         it('shows empty component when fetch no pokes', async () => {
             mock('/api/pokes?page=1', 200, PokesEmptyPageJson);
 
-            renderWithDefaultData(<List userId={RootUserJson.id} type="pokes" />);
+            renderWithDefaultData(<List userId={RootUserJson.id} listType="POKES" />);
 
             const emptyComponent = await screen.findByText('No users, maybe this app is so boring...');
             expect(emptyComponent).toBeInTheDocument();
@@ -201,7 +201,7 @@ describe('Friends List component', () => {
         it('shows error component when api returns error', async () => {
             mock('/api/pokes?page=1', 500, PokesFirstPageJson);
 
-            renderWithDefaultData(<List userId={RootUserJson.id} type="pokes" />);
+            renderWithDefaultData(<List userId={RootUserJson.id} listType="POKES" />);
 
             const errorImage = await screen.findByAltText('Server error');
             expect(errorImage).toBeInTheDocument();
@@ -213,7 +213,7 @@ describe('Friends List component', () => {
         it('shows truthy pokes count', async () => {
             mock('/api/pokes?page=1', 200, PokesFirstPageJson);
 
-            renderWithDefaultData(<List userId={RootUserJson.id} type="pokes" />);
+            renderWithDefaultData(<List userId={RootUserJson.id} listType="POKES" />);
 
             for (let i = 0; i < PokesFirstPageJson.length; i++) {
                 const element = await screen.findByText(
@@ -229,7 +229,7 @@ describe('Friends List component', () => {
         it('fetch button dissapears when page fetched all invites', async () => {
             mock('/api/friendship/invites?page=1', 200, InvitesFirstPageJson);
 
-            renderWithDefaultData(<List userId={RootUserJson.id} type="invites" />);
+            renderWithDefaultData(<List userId={RootUserJson.id} listType="INVITES" />);
 
             mock('/api/friendship/invites?page=1', 200, InvitesFirstPageJson);
             mock('/api/friendship/invites?page=2', 200, InvitesEmptyPageJson);
@@ -243,7 +243,7 @@ describe('Friends List component', () => {
         it('shows loaders on initial fetching invites', async () => {
             mock('/api/friendship/invites?page=1', 200, InvitesFirstPageJson);
 
-            renderWithDefaultData(<List userId={RootUserJson.id} type="invites" />);
+            renderWithDefaultData(<List userId={RootUserJson.id} listType="INVITES" />);
 
             const loader = await screen.findByTestId('friendsList-loading_more_loader');
             expect(loader).toBeInTheDocument();
@@ -252,7 +252,7 @@ describe('Friends List component', () => {
         it('loads 10 invites', async () => {
             mock('/api/friendship/invites?page=1', 200, InvitesFirstPageJson);
 
-            renderWithDefaultData(<List userId={RootUserJson.id} type="invites" />);
+            renderWithDefaultData(<List userId={RootUserJson.id} listType="INVITES" />);
 
             const firstElement = await screen.findByText(InvitesFirstPageJson[0].name);
             expect(firstElement).toBeInTheDocument();
@@ -264,7 +264,7 @@ describe('Friends List component', () => {
         it('shows loaders on fetching more invites', async () => {
             mock('/api/friendship/invites?page=1', 200, InvitesFirstPageJson);
 
-            renderWithDefaultData(<List userId={RootUserJson.id} type="invites" />);
+            renderWithDefaultData(<List userId={RootUserJson.id} listType="INVITES" />);
 
             mock('/api/friendship/invites?page=1', 200, InvitesFirstPageJson);
             mock('/api/friendship/invites?page=2', 200, InvitesSecondPageJson);
@@ -279,7 +279,7 @@ describe('Friends List component', () => {
         it('can fetch more invites', async () => {
             mock('/api/friendship/invites?page=1', 200, InvitesFirstPageJson);
 
-            renderWithDefaultData(<List userId={RootUserJson.id} type="invites" />);
+            renderWithDefaultData(<List userId={RootUserJson.id} listType="INVITES" />);
 
             mock('/api/friendship/invites?page=1', 200, InvitesFirstPageJson);
             mock('/api/friendship/invites?page=2', 200, InvitesSecondPageJson);
@@ -303,7 +303,7 @@ describe('Friends List component', () => {
         it('shows empty component when fetch no invites', async () => {
             mock('/api/friendship/invites?page=1', 200, InvitesEmptyPageJson);
 
-            renderWithDefaultData(<List userId={RootUserJson.id} type="invites" />);
+            renderWithDefaultData(<List userId={RootUserJson.id} listType="INVITES" />);
 
             const emptyComponent = await screen.findByText('No users, maybe this app is so boring...');
             expect(emptyComponent).toBeInTheDocument();
@@ -312,7 +312,7 @@ describe('Friends List component', () => {
         it('shows error component when api returns error', async () => {
             mock('/api/friendship/invites?page=1', 500);
 
-            renderWithDefaultData(<List userId={RootUserJson.id} type="invites" />);
+            renderWithDefaultData(<List userId={RootUserJson.id} listType="INVITES" />);
 
             const errorImage = await screen.findByAltText('Server error');
             expect(errorImage).toBeInTheDocument();
@@ -326,7 +326,7 @@ describe('Friends List component', () => {
         it('fetch button dissapears when page fetched all friends', async () => {
             mock(`/api/friendship/friends/${RootUserJson.id}?page=1`, 200, FriendsFirstPageJson);
 
-            renderWithDefaultData(<List userId={RootUserJson.id} type="friends" />);
+            renderWithDefaultData(<List userId={RootUserJson.id} listType="FRIENDS" />);
 
             mock(`/api/friendship/friends/${RootUserJson.id}?page=1`, 200, FriendsFirstPageJson);
             mock(`/api/friendship/friends/${RootUserJson.id}?page=2`, 200, FriendsEmptyPageJson);
@@ -340,7 +340,7 @@ describe('Friends List component', () => {
         it('shows loaders on initial fetching friends', async () => {
             mock(`/api/friendship/friends/${RootUserJson.id}?page=1`, 200, FriendsFirstPageJson);
 
-            renderWithDefaultData(<List userId={RootUserJson.id} type="friends" />);
+            renderWithDefaultData(<List userId={RootUserJson.id} listType="FRIENDS" />);
 
             const loader = await screen.findByTestId('friendsList-loading_more_loader');
             expect(loader).toBeInTheDocument();
@@ -349,7 +349,7 @@ describe('Friends List component', () => {
         it('loads 10 friends', async () => {
             mock(`/api/friendship/friends/${RootUserJson.id}?page=1`, 200, FriendsFirstPageJson);
 
-            renderWithDefaultData(<List userId={RootUserJson.id} type="friends" />);
+            renderWithDefaultData(<List userId={RootUserJson.id} listType="FRIENDS" />);
 
             const firstElement = await screen.findByText(FriendsFirstPageJson[0].name);
             expect(firstElement).toBeInTheDocument();
@@ -361,7 +361,7 @@ describe('Friends List component', () => {
         it('shows loaders on fetching more friends', async () => {
             mock(`/api/friendship/friends/${RootUserJson.id}?page=1`, 200, FriendsFirstPageJson);
 
-            renderWithDefaultData(<List userId={RootUserJson.id} type="friends" />);
+            renderWithDefaultData(<List userId={RootUserJson.id} listType="FRIENDS" />);
 
             mock(`/api/friendship/friends/${RootUserJson.id}?page=1`, 200, FriendsFirstPageJson);
             mock(`/api/friendship/friends/${RootUserJson.id}?page=2`, 200, FriendsSecondPageJson);
@@ -376,7 +376,7 @@ describe('Friends List component', () => {
         it('can fetch more friends', async () => {
             mock(`/api/friendship/friends/${RootUserJson.id}?page=1`, 200, FriendsFirstPageJson);
 
-            renderWithDefaultData(<List userId={RootUserJson.id} type="friends" />);
+            renderWithDefaultData(<List userId={RootUserJson.id} listType="FRIENDS" />);
 
             mock(`/api/friendship/friends/${RootUserJson.id}?page=1`, 200, FriendsFirstPageJson);
             mock(`/api/friendship/friends/${RootUserJson.id}?page=2`, 200, FriendsSecondPageJson);
@@ -400,7 +400,7 @@ describe('Friends List component', () => {
         it('shows empty component when fetch no friends', async () => {
             mock(`/api/friendship/friends/${RootUserJson.id}?page=1`, 200, FriendsEmptyPageJson);
 
-            renderWithDefaultData(<List userId={RootUserJson.id} type="friends" />);
+            renderWithDefaultData(<List userId={RootUserJson.id} listType="FRIENDS" />);
 
             const emptyComponent = await screen.findByText('No users, maybe this app is so boring...');
             expect(emptyComponent).toBeInTheDocument();
@@ -409,7 +409,7 @@ describe('Friends List component', () => {
         it('shows error component when api returns error', async () => {
             mock(`/api/friendship/friends/${RootUserJson.id}?page=1`, 500);
 
-            renderWithDefaultData(<List userId={RootUserJson.id} type="friends" />);
+            renderWithDefaultData(<List userId={RootUserJson.id} listType="FRIENDS" />);
 
             const errorImage = await screen.findByAltText('Server error');
             expect(errorImage).toBeInTheDocument();

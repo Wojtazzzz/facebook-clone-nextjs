@@ -1,1 +1,1 @@
-export type FriendsListType = 'SUGGEST' | 'INVITES' | ' POKES' | 'FRIENDS';
+export type FriendsListType = 'SUGGESTS' | 'INVITES' | 'POKES' | 'FRIENDS' | undefined;

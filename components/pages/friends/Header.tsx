@@ -1,7 +1,9 @@
 import Link from 'next/link';
 
+import type { FriendsListType } from '@ctypes/features/FriendsListType';
+
 interface HeaderProps {
-    name: string | string[];
+    name: FriendsListType;
 }
 
 export const Header = ({ name }: HeaderProps) => {

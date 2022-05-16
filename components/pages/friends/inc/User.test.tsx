@@ -20,7 +20,7 @@ describe('User component', () => {
 
             renderWithDefaultData(
                 <User key={user.id} {...user}>
-                    <Actions friend={user} type="suggests" />
+                    <Actions friend={user} listType="SUGGESTS" />
                 </User>
             );
 
@@ -38,7 +38,7 @@ describe('User component', () => {
 
             renderWithDefaultData(
                 <User key={user.id} {...user}>
-                    <Actions friend={user} type="suggests" />
+                    <Actions friend={user} listType="SUGGESTS" />
                 </User>
             );
 
@@ -56,7 +56,7 @@ describe('User component', () => {
 
             renderWithDefaultData(
                 <User key={user.id} {...user}>
-                    <Actions friend={user} type="suggests" />
+                    <Actions friend={user} listType="SUGGESTS" />
                 </User>
             );
 
@@ -80,7 +80,7 @@ describe('User component', () => {
 
             renderWithDefaultData(
                 <User key={user.id} {...user}>
-                    <Actions friend={user} type="pokes" />
+                    <Actions friend={user} listType="POKES" />
                 </User>
             );
 
@@ -102,7 +102,7 @@ describe('User component', () => {
 
             renderWithDefaultData(
                 <User key={user.id} {...user}>
-                    <Actions friend={user} type="pokes" />
+                    <Actions friend={user} listType="POKES" />
                 </User>
             );
 
@@ -122,7 +122,7 @@ describe('User component', () => {
 
             renderWithDefaultData(
                 <User key={user.id} {...user}>
-                    <Actions friend={user} type="pokes" />
+                    <Actions friend={user} listType="POKES" />
                 </User>
             );
 
@@ -148,7 +148,7 @@ describe('User component', () => {
 
             renderWithDefaultData(
                 <User key={user.id} {...user}>
-                    <Actions friend={user} type="invites" />
+                    <Actions friend={user} listType="INVITES" />
                 </User>
             );
 
@@ -168,7 +168,7 @@ describe('User component', () => {
 
             renderWithDefaultData(
                 <User key={user.id} {...user}>
-                    <Actions friend={user} type="invites" />
+                    <Actions friend={user} listType="INVITES" />
                 </User>
             );
 
@@ -186,7 +186,7 @@ describe('User component', () => {
 
             renderWithDefaultData(
                 <User key={user.id} {...user}>
-                    <Actions friend={user} type="invites" />
+                    <Actions friend={user} listType="INVITES" />
                 </User>
             );
 
@@ -204,7 +204,7 @@ describe('User component', () => {
 
             renderWithDefaultData(
                 <User key={user.id} {...user}>
-                    <Actions friend={user} type="invites" />
+                    <Actions friend={user} listType="INVITES" />
                 </User>
             );
 
@@ -222,7 +222,7 @@ describe('User component', () => {
 
             renderWithDefaultData(
                 <User key={user.id} {...user}>
-                    <Actions friend={user} type="invites" />
+                    <Actions friend={user} listType="INVITES" />
                 </User>
             );
 
@@ -246,7 +246,7 @@ describe('User component', () => {
 
             renderWithDefaultData(
                 <User key={user.id} {...user}>
-                    <Actions friend={user} type="friends" />
+                    <Actions friend={user} listType="FRIENDS" />
                 </User>
             );
 
@@ -266,7 +266,7 @@ describe('User component', () => {
 
             renderWithDefaultData(
                 <User key={user.id} {...user}>
-                    <Actions friend={user} type="friends" />
+                    <Actions friend={user} listType="FRIENDS" />
                 </User>
             );
 
@@ -284,7 +284,7 @@ describe('User component', () => {
 
             renderWithDefaultData(
                 <User key={user.id} {...user}>
-                    <Actions friend={user} type="friends" />
+                    <Actions friend={user} listType="FRIENDS" />
                 </User>
             );
 
