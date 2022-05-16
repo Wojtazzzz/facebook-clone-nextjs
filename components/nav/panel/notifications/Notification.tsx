@@ -1,15 +1,16 @@
 import { useRouter } from 'next/router';
 import { useAppDispatch } from '@hooks/redux';
 
-import { Avatar } from '@components/inc/Avatar';
+import { SingleItem } from '@components/nav/panel/inc/SingleItem';
 
 import { toggleActive } from '@redux/slices/NotificationsListSlice';
+import { notificationsMessages } from '@constants/notificationsMessages';
 
 import type { UserType } from '@ctypes/features/UserType';
 
 interface NotificationProps {
     data: {
-        type: string;
+        type: 'FRIENDSHIP_INVITATION_SENDED' | 'FRIENDSHIP_INVITATION_ACCEPTED';
         initiator: UserType;
     };
     read_at: string | null;
@@ -27,24 +28,13 @@ export const Notification = ({ data, read_at }: NotificationProps) => {
     const { initiator } = data;
 
     return (
-        <div
-            title="Invitation for friendship"
-            className="w-full h-[72px] flex gap-3 hover:bg-dark-100 transition-colors rounded-lg cursor-pointer p-2"
-            onClick={handleRedirectToInvites}
-        >
-            <Avatar src={initiator.profile_image} size={56} alt={initiator.name} />
-
-            <div className={`flex flex-col ${read_at ? 'opacity-50' : ''}`}>
-                <span className="text-light-200 font-medium">{initiator.name}</span>
-
-                <span className="text-sm text-light-100">
-                    {data.type === 'FRIENDSHIP_INVITATION_SENDED' ? (
-                        <>Send you a friendship invitation</>
-                    ) : (
-                        <>Accepted your friendship invitation</>
-                    )}
-                </span>
-            </div>
-        </div>
+        <SingleItem
+            ariaLabel="Redirect to invites list"
+            title={initiator.name}
+            description={notificationsMessages[data.type]}
+            image={initiator.profile_image}
+            isActive={!!read_at}
+            callback={handleRedirectToInvites}
+        />
     );
 };

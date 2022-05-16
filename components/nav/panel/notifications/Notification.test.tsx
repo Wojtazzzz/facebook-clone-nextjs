@@ -1,13 +1,9 @@
 import { screen } from '@testing-library/react';
 import NotificationsFirstPageJson from '@mocks/notifications/firstPage.json';
 import { Notification } from '@components/nav/panel/notifications/Notification';
-import { NotificationType } from '@ctypes/features/NotificationType';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
-
-const labels = {
-    FRIENDSHIP_INVITATION_SENDED: 'Send you a friendship invitation',
-    FRIENDSHIP_INVITATION_ACCEPTED: 'Accepted your friendship invitation',
-} as const;
+import { notificationsMessages } from '@constants/notificationsMessages';
+import type { NotificationType } from '@ctypes/features/NotificationType';
 
 describe('Notifications Notification component', () => {
     it('it renders user avatar, name, notification label', () => {
@@ -17,9 +13,9 @@ describe('Notifications Notification component', () => {
 
         const initiator = notification.data.initiator;
 
-        const avatar = screen.getByAltText(initiator.name);
-        const name = screen.getByAltText(initiator.name);
-        const label = screen.getByText(labels[notification.data.type]);
+        const avatar = screen.getByRole('img');
+        const name = screen.getByText(initiator.name);
+        const label = screen.getByText(notificationsMessages[notification.data.type]);
 
         expect(avatar).toBeInTheDocument();
         expect(name).toBeInTheDocument();

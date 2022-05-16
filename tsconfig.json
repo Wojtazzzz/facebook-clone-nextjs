@@ -20,6 +20,7 @@
             "@mocks/*": ["__mocks__/*"],
             "@tests/*": ["__tests__/*"],
             "@components/*": ["components/*"],
+            "@constants/*": ["constants/*"],
             "@cypress/*": ["cypress/*"],
             "@hooks/*": ["hooks/*"],
             "@libs/*": ["libs/*"],
