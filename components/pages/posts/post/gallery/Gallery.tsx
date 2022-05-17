@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from 'react';
+import { useKey } from '@hooks/useKey';
 
 import { Swiper as SwiperReact, SwiperSlide } from 'swiper/react';
 import Swiper, { Keyboard, Pagination, Navigation } from 'swiper';
@@ -14,20 +14,7 @@ interface GalleryProps {
 Swiper.use([Keyboard, Pagination, Navigation]);
 
 export const Gallery = ({ images, handleCloseGallery }: GalleryProps) => {
-    const handleCloseGalleryOnEscPress = useCallback(
-        (event) => {
-            if (event.key === 'Escape') {
-                handleCloseGallery();
-            }
-        },
-        [handleCloseGallery]
-    );
-
-    useEffect(() => {
-        document.addEventListener('keydown', handleCloseGalleryOnEscPress, false);
-
-        return () => document.removeEventListener('keydown', handleCloseGalleryOnEscPress, false);
-    }, [handleCloseGalleryOnEscPress]);
+    useKey('Escape', handleCloseGallery);
 
     const SlidesComponents = images.map((image, i) => (
         <SwiperSlide key={i}>

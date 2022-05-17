@@ -19,10 +19,9 @@ export const Panel = () => {
         notificationsList: { isActive: isNotificationsActive },
     } = useAppSelector((state) => state);
 
-    const handleLogout = () => logout();
     const handleToggleSidebar = () => dispatch(toggleActiveSidebar());
-    const handleToggleMessenger = () => dispatch(toggleActiveMessenger());
-    const handleToggleNotifications = () => dispatch(toggleActiveNotifications());
+    const handleToggleMessenger = () => dispatch(toggleActiveMessenger(!isMessengerActive));
+    const handleToggleNotifications = () => dispatch(toggleActiveNotifications(!isNotificationsActive));
 
     return (
         <div className="h-full flex justify-end items-center gap-2">
@@ -62,7 +61,7 @@ export const Panel = () => {
                 icon={faRightFromBracket}
                 onHover="opacity-70"
                 isDisabled={isAuthLoading}
-                callback={handleLogout}
+                callback={logout}
             />
         </div>
     );

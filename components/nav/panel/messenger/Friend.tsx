@@ -13,7 +13,7 @@ export const Friend = ({ id, name, first_name, profile_image, background_image }
     const dispatch = useAppDispatch();
 
     const handleOpenChat = () => {
-        dispatch(toggleActiveMessenger());
+        dispatch(toggleActiveMessenger(false));
         dispatch(toggleActiveChat({ id, name, first_name, profile_image, background_image }));
     };
 

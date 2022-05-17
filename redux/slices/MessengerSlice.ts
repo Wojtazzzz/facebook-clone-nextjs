@@ -1,21 +1,21 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface MessengerState {
-	isActive: boolean;
+    isActive: boolean;
 }
 
 const initialState: MessengerState = {
-	isActive: false,
+    isActive: false,
 };
 
 export const MessengerSlice = createSlice({
-	name: 'messenger',
-	initialState,
-	reducers: {
-		toggleActive: state => {
-			state.isActive = !state.isActive;
-		},
-	},
+    name: 'messenger',
+    initialState,
+    reducers: {
+        toggleActive: (state, action: PayloadAction<boolean>) => {
+            state.isActive = action.payload;
+        },
+    },
 });
 
 export const { toggleActive } = MessengerSlice.actions;

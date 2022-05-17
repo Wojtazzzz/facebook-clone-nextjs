@@ -21,7 +21,7 @@ export const Notification = ({ data, read_at }: NotificationProps) => {
     const dispatch = useAppDispatch();
 
     const handleRedirectToInvites = () => {
-        dispatch(toggleActive());
+        dispatch(toggleActive(false));
         router.push('/friends/invites');
     };
 

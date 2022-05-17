@@ -1,5 +1,6 @@
 import { memo } from 'react';
 import { useAppDispatch } from '@hooks/redux';
+import { useKey } from '@hooks/useKey';
 
 import { Header } from '@components/nav/panel/inc/Header';
 import { SearchUser } from '@components/nav/panel/messenger/SearchUser';
@@ -10,8 +11,7 @@ import { toggleActive } from '@redux/slices/MessengerSlice';
 
 export const Messenger = memo(() => {
     const dispatch = useAppDispatch();
-
-    const handleToggle = () => dispatch(toggleActive());
+    useKey('Escape', () => dispatch(toggleActive(false)));
 
     return (
         <>
@@ -30,7 +30,7 @@ export const Messenger = memo(() => {
                 </div>
             </div>
 
-            <Overlay testid="messenger-overlay" callback={handleToggle} />
+            <Overlay testid="messenger-overlay" callback={() => dispatch(toggleActive(false))} />
         </>
     );
 });
