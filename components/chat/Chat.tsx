@@ -19,8 +19,8 @@ interface ChatProps {
 }
 
 export const Chat = ({ friend }: ChatProps) => {
-    const { user } = useAuth();
     const { reloadData } = usePaginatedData<ChatMessageType>(`/api/messages/${friend.id}`);
+    const { user } = useAuth();
 
     const LaravelEcho = useMemo(
         () =>

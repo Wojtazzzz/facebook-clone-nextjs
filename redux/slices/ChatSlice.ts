@@ -4,7 +4,7 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import type { UserType } from '@ctypes/features/UserType';
 
 interface ChatState {
-    friend?: UserType;
+    friend: UserType | undefined;
 }
 
 const initialState: ChatState = {
@@ -15,11 +15,14 @@ export const ChatSlice = createSlice({
     name: 'chat',
     initialState,
     reducers: {
-        toggleActive: (state, action: PayloadAction<UserType | undefined>) => {
+        showChat: (state, action: PayloadAction<UserType | undefined>) => {
             state.friend = action.payload;
+        },
+        closeChat: (state) => {
+            state.friend = undefined;
         },
     },
 });
 
-export const { toggleActive } = ChatSlice.actions;
+export const { showChat, closeChat } = ChatSlice.actions;
 export default ChatSlice.reducer;

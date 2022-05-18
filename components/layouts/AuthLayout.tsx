@@ -1,4 +1,3 @@
-import { ReactNode } from 'react';
 import { useRouter } from 'next/router';
 import { useAppSelector } from '@hooks/redux';
 import { useAuth } from '@hooks/useAuth';
@@ -8,6 +7,8 @@ import { Toggler } from '@components/nav/mobile/Toggler';
 import { Sidebar } from '@components/sidebar/Sidebar';
 import { Contacts } from '@components/contacts/Contacts';
 import { Chat } from '@components/chat/Chat';
+
+import type { ReactNode } from 'react';
 
 interface AuthLayoutProps {
     children: ReactNode;

@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { RoundedButton } from '@components/inc/RoundedButton';
 
-import { toggleActive } from '@redux/slices/ChatSlice';
+import { closeChat } from '@redux/slices/ChatSlice';
 
 interface HeaderProps {
     name: string;
@@ -14,7 +14,7 @@ interface HeaderProps {
 export const Header = ({ name, profileImage }: HeaderProps) => {
     const dispatch = useAppDispatch();
 
-    const handleCloseChat = () => dispatch(toggleActive(undefined));
+    const handleCloseChat = () => dispatch(closeChat());
 
     return (
         <div className="w-full flex justify-between text-light-200 shadow-md p-3">
