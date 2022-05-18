@@ -5,7 +5,7 @@ import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import { toggleActive } from '@redux/slices/NavSlice';
 
-export const Toggler = () => {
+export const NavToggler = () => {
     const { isActive } = useAppSelector((store) => store.nav);
     const dispatch = useAppDispatch();
 

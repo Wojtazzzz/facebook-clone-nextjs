@@ -3,7 +3,7 @@ import { useAppSelector } from '@hooks/redux';
 import { useAuth } from '@hooks/useAuth';
 
 import { Nav } from '@components/nav/Nav';
-import { Toggler } from '@components/nav/mobile/Toggler';
+import { NavToggler } from '@components/nav/mobile/NavToggler';
 import { Sidebar } from '@components/sidebar/Sidebar';
 import { Contacts } from '@components/contacts/Contacts';
 import { Chat } from '@components/chat/Chat';
@@ -31,7 +31,7 @@ export const AuthLayout = ({ children }: AuthLayoutProps) => {
                 {route === '/' && <Contacts />}
             </div>
 
-            <Toggler />
+            <NavToggler />
 
             {!!friend && <Chat friend={friend} />}
         </>
