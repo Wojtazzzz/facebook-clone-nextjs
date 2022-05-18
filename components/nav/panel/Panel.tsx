@@ -20,8 +20,16 @@ export const Panel = () => {
     } = useAppSelector((state) => state);
 
     const handleToggleSidebar = () => dispatch(toggleActiveSidebar());
-    const handleToggleMessenger = () => dispatch(toggleActiveMessenger(!isMessengerActive));
-    const handleToggleNotifications = () => dispatch(toggleActiveNotifications(!isNotificationsActive));
+
+    const handleToggleMessenger = () => {
+        dispatch(toggleActiveNotifications(false));
+        dispatch(toggleActiveMessenger(!isMessengerActive));
+    };
+
+    const handleToggleNotifications = () => {
+        dispatch(toggleActiveMessenger(false));
+        dispatch(toggleActiveNotifications(!isNotificationsActive));
+    };
 
     return (
         <div className="h-full flex justify-end items-center gap-2">
