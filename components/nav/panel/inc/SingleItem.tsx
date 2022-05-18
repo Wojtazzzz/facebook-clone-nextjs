@@ -18,7 +18,7 @@ export const SingleItem = ({ ariaLabel, title, description, image, isActive = tr
         >
             <Avatar src={image} size={56} alt="" />
 
-            <div className={`flex flex-col ${isActive ? '' : 'opacity-50'}`}>
+            <div className={`flex flex-col text-left ${isActive ? '' : 'opacity-50'}`}>
                 <span className="text-light-200">{title}</span>
                 <span className="text-sm text-light-100">{description}</span>
             </div>
