@@ -1,15 +1,12 @@
-import { useAuth } from '@hooks/useAuth';
 import { useAppSelector } from '@hooks/redux';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHandLizard, faUsers } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { UserLink } from '@components/sidebar/inc/UserLink';
 import { Link } from '@components/sidebar/inc/Link';
-import { LinkLoader } from '@components/sidebar/inc/LinkLoader';
-import { Avatar } from '@components/inc/Avatar';
 
 export const Sidebar = () => {
-    const { user } = useAuth();
     const { isActive } = useAppSelector((store) => store.sidebar);
 
     return (
@@ -18,15 +15,7 @@ export const Sidebar = () => {
                 isActive ? '' : '-translate-x-[300px] lg:translate-x-[0px]'
             } transition-transform z-30 px-2 py-5`}
         >
-            {user ? (
-                <Link
-                    title={user.name}
-                    link={`/profile/${user.id}`}
-                    icon={<Avatar size={36} src={user.profile_image} alt={user.name} />}
-                />
-            ) : (
-                <LinkLoader />
-            )}
+            <UserLink />
 
             <Link title="Friends" link="/friends" icon={<FontAwesomeIcon icon={faUsers} />} />
             <Link title="Pokes" link="/friends/pokes" icon={<FontAwesomeIcon icon={faHandLizard} />} />
