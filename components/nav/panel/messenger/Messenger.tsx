@@ -5,7 +5,7 @@ import { useKey } from '@hooks/useKey';
 import { Header } from '@components/nav/panel/inc/Header';
 import { SearchUser } from '@components/nav/panel/messenger/SearchUser';
 import { Messages } from '@components/nav/panel/messenger/Messages';
-import { Overlay } from '@components/nav/panel/inc/Overlay';
+import { CloseOverlay } from '@components/inc/CloseOverlay';
 
 import { toggleActive } from '@redux/slices/MessengerSlice';
 
@@ -17,7 +17,7 @@ export const Messenger = memo(() => {
         <>
             <div
                 data-testid="messenger-container"
-                className="min-w-[300px] md:min-w-[360px] flex flex-col gap-4 bg-dark-200 absolute top-full -right-24 z-10 shadow-md rounded-md p-3"
+                className="min-w-[300px] md:min-w-[360px] flex flex-col gap-4 bg-dark-200 absolute top-full -right-24 z-20 shadow-md rounded-md p-3"
             >
                 <Header testid="messenger-header" title="Messenger" />
                 <SearchUser />
@@ -30,7 +30,7 @@ export const Messenger = memo(() => {
                 </div>
             </div>
 
-            <Overlay testid="messenger-overlay" callback={() => dispatch(toggleActive(false))} />
+            <CloseOverlay testid="messenger-overlay" zIndex={10} callback={() => dispatch(toggleActive(false))} />
         </>
     );
 });

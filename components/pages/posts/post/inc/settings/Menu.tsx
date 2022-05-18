@@ -3,6 +3,7 @@ import { usePosts } from '@hooks/usePosts';
 
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { Option } from '@components/pages/posts/post/inc/settings/Option';
+import { CloseOverlay } from '@components/inc/CloseOverlay';
 
 interface MenuProps {
     postId: number;
@@ -27,11 +28,7 @@ export const Menu = ({ postId, authorId, closeMenu }: MenuProps) => {
                 )}
             </section>
 
-            <div
-                data-testid="settings-closeOverlay"
-                className="w-full h-screen fixed top-0 left-0 z-10"
-                onClick={closeMenu}
-            ></div>
+            <CloseOverlay testid="settings-closeOverlay" zIndex={10} callback={closeMenu} />
         </>
     );
 };

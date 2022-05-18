@@ -6,7 +6,7 @@ import { useKey } from '@hooks/useKey';
 import { Header } from '@components/nav/panel/inc/Header';
 import { List } from '@components/nav/panel/notifications/List';
 import { MarkAsRead } from '@components/nav/panel/notifications/MarkAsRead';
-import { Overlay } from '@components/nav/panel/inc/Overlay';
+import { CloseOverlay } from '@components/inc/CloseOverlay';
 
 import { toggleActive } from '@redux/slices/NotificationsListSlice';
 
@@ -21,7 +21,7 @@ export const Notifications = memo(() => {
         <>
             <div
                 data-testid="notifications-container"
-                className="min-w-[300px] md:min-w-[360px] flex flex-col bg-dark-200 absolute top-full -right-12 z-10 shadow-md rounded-md p-3"
+                className="min-w-[300px] md:min-w-[360px] flex flex-col bg-dark-200 absolute top-full -right-12 z-20 shadow-md rounded-md p-3"
             >
                 <Header testid="notifications-header" title="Notifications" />
                 {notifications.isEmpty || <MarkAsRead />}
@@ -34,7 +34,7 @@ export const Notifications = memo(() => {
                 </div>
             </div>
 
-            <Overlay testid="notifications-overlay" callback={() => dispatch(toggleActive(false))} />
+            <CloseOverlay testid="notifications-overlay" zIndex={10} callback={() => dispatch(toggleActive(false))} />
         </>
     );
 });
