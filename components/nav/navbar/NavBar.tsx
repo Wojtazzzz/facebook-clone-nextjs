@@ -10,10 +10,7 @@ export const Navbar = () => {
         <div className="h-full flex justify-center gap-2">
             <NavItem name="Home" path="/" icon={faHome} />
             <NavItem name="Marketplace" path="/marketplace" icon={faShop} />
-
-            <div className={user ? '' : 'opacity-70 pointer-events-none'}>
-                <NavItem name="Profile" path={user ? `/profile/${user.id}` : '/profile/not-loaded'} icon={faUser} />
-            </div>
+            <NavItem name="Profile" path={user ? `/profile/${user.id}` : '/profile/not-loaded'} icon={faUser} />
         </div>
     );
 };
