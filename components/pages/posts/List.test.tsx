@@ -11,7 +11,7 @@ describe('List component', () => {
 
         renderWithDefaultData(<List />);
 
-        const loaders = screen.getByTestId('postsList-loading_loaders');
+        const loaders = screen.getByTestId('postsList-loading_loader');
         expect(loaders).toBeInTheDocument();
     });
 

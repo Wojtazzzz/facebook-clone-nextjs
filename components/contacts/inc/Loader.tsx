@@ -1,9 +1,13 @@
 import { SingleLoading } from '@components/contacts/inc/SingleLoading';
 import { ListLoader } from '@components/inc/ListLoader';
 
-export const Loader = () => {
+interface LoaderProps {
+    testId?: string;
+}
+
+export const Loader = ({ testId }: LoaderProps) => {
     return (
-        <ListLoader>
+        <ListLoader testId={testId}>
             <SingleLoading />
         </ListLoader>
     );

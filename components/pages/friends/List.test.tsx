@@ -37,7 +37,7 @@ describe('Friends List component', () => {
 
             renderWithDefaultData(<List userId={RootUserJson.id} listType="SUGGESTS" />);
 
-            const loader = await screen.findByTestId('friendsList-loading_more_loader');
+            const loader = await screen.findByTestId('friendsList-loading_loader');
             expect(loader).toBeInTheDocument();
         });
 
@@ -64,7 +64,7 @@ describe('Friends List component', () => {
             const fetchMoreButton = await screen.findByTitle('Fetch more users');
             fetchMoreButton.click();
 
-            const loader = screen.getByTestId('friendsList-fetching_more_loader');
+            const loader = screen.getByTestId('friendsList-fetching_loader');
             expect(loader).toBeInTheDocument();
         });
 
@@ -134,7 +134,7 @@ describe('Friends List component', () => {
 
             renderWithDefaultData(<List userId={RootUserJson.id} listType="POKES" />);
 
-            const loader = await screen.findByTestId('friendsList-loading_more_loader');
+            const loader = await screen.findByTestId('friendsList-loading_loader');
             expect(loader).toBeInTheDocument();
         });
 
@@ -161,7 +161,7 @@ describe('Friends List component', () => {
             const fetchMoreButton = await screen.findByTitle('Fetch more users');
             fetchMoreButton.click();
 
-            const loader = screen.getByTestId('friendsList-fetching_more_loader');
+            const loader = screen.getByTestId('friendsList-fetching_loader');
             expect(loader).toBeInTheDocument();
         });
 
@@ -245,7 +245,7 @@ describe('Friends List component', () => {
 
             renderWithDefaultData(<List userId={RootUserJson.id} listType="INVITES" />);
 
-            const loader = await screen.findByTestId('friendsList-loading_more_loader');
+            const loader = await screen.findByTestId('friendsList-loading_loader');
             expect(loader).toBeInTheDocument();
         });
 
@@ -272,7 +272,7 @@ describe('Friends List component', () => {
             const fetchMoreButton = await screen.findByTitle('Fetch more users');
             fetchMoreButton.click();
 
-            const loader = screen.getByTestId('friendsList-fetching_more_loader');
+            const loader = screen.getByTestId('friendsList-fetching_loader');
             expect(loader).toBeInTheDocument();
         });
 
@@ -342,7 +342,7 @@ describe('Friends List component', () => {
 
             renderWithDefaultData(<List userId={RootUserJson.id} listType="FRIENDS" />);
 
-            const loader = await screen.findByTestId('friendsList-loading_more_loader');
+            const loader = await screen.findByTestId('friendsList-loading_loader');
             expect(loader).toBeInTheDocument();
         });
 
@@ -369,7 +369,7 @@ describe('Friends List component', () => {
             const fetchMoreButton = await screen.findByTitle('Fetch more users');
             fetchMoreButton.click();
 
-            const loader = screen.getByTestId('friendsList-fetching_more_loader');
+            const loader = screen.getByTestId('friendsList-fetching_loader');
             expect(loader).toBeInTheDocument();
         });
 

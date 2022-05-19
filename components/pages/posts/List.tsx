@@ -14,7 +14,7 @@ export const List = memo(() => {
     const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginatedData<PostType>('/api/posts', 15);
     const listRef = useRef<InfiniteScroll>(null);
 
-    if (state === 'LOADING') return <Loader testid="postsList-loading_loaders" />;
+    if (state === 'LOADING') return <Loader testId="postsList-loading_loader" />;
     if (state === 'ERROR') return <ApiError />;
     if (isEmpty) return <EmptyList title="No posts, add some friends!" />;
 
@@ -27,7 +27,7 @@ export const List = memo(() => {
                 dataLength={PostsComponents.length}
                 next={loadMore}
                 hasMore={!isReachedEnd}
-                loader={<Loader />}
+                loader={<Loader testId="postsList-fetching_loader" />}
                 scrollableTarget="scrollableDiv"
                 className="flex flex-col gap-4 pb-[200px] mb-12"
                 pullDownToRefreshThreshold={100}

@@ -8,7 +8,7 @@ interface LoadMoreProps {
 }
 
 export const LoadMore = ({ isLoading, callback }: LoadMoreProps) => {
-    if (isLoading) return <Loader testid="friendsList-fetching_more_loader" />;
+    if (isLoading) return <Loader testId="friendsList-fetching_loader" />;
 
     return (
         <button

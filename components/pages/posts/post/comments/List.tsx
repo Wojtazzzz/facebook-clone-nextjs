@@ -14,7 +14,7 @@ interface ListProps {
 export const List = ({ postId }: ListProps) => {
     const { data, state, isReachedEnd, loadMore } = usePaginatedData<CommentType>(`/api/posts/${postId}/comments`);
 
-    if (state === 'LOADING') return <Loader testid="postsCommentsList-loading_loaders" />;
+    if (state === 'LOADING') return <Loader testId="postsCommentsList-loading_loader" />;
     if (state === 'ERROR') return <ApiError />;
 
     const CommentsComponents = data.map((comment) => <Comment key={comment.id} {...comment} />);
@@ -23,10 +23,8 @@ export const List = ({ postId }: ListProps) => {
         <div className="flex flex-col items-start gap-1">
             {CommentsComponents}
 
-            {state === 'FETCHING' ? (
-                <Loader testid="postsCommentsList-fetching_loaders" />
-            ) : (
-                <LoadMore isReachedEnd={isReachedEnd} callback={loadMore} />
+            {isReachedEnd || (
+                <LoadMore isReachedEnd={isReachedEnd} isFetching={state === 'FETCHING'} callback={loadMore} />
             )}
         </div>
     );

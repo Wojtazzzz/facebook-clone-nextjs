@@ -1,12 +1,12 @@
 import { SpinnerLoader } from '@components/inc/SpinnerLoader';
 
 interface LoaderProps {
-    testid: string;
+    testId?: string;
 }
 
-export const Loader = ({ testid }: LoaderProps) => {
+export const Loader = ({ testId }: LoaderProps) => {
     return (
-        <div data-testid={testid} className="w-full flex justify-center py-2">
+        <div data-testid={testId} className="w-full flex justify-center py-2">
             <SpinnerLoader spinnerStyles="w-6" />;
         </div>
     );

@@ -18,7 +18,7 @@ export const List = memo(({ userId }: ListProps) => {
         `/api/friendship/friends/${userId}`
     );
 
-    if (state === 'LOADING') return <Loader />;
+    if (state === 'LOADING') return <Loader testId="contacts-loading_loader" />;
     if (state === 'ERROR') return <ApiError isSmall />;
     if (isEmpty) return <EmptyList title="No contacts, add some friends!" />;
 

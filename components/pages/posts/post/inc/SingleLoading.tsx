@@ -4,7 +4,7 @@ import { SkeletonLoading } from '@components/inc/SkeletonLoading';
 
 import { getRandomInt } from '@utils/getRandomInt';
 
-export const SinglePostLoader = () => {
+export const SingleLoading = () => {
     const [randomWidth, setRandomWidth] = useState({
         name: 0,
         date: 0,

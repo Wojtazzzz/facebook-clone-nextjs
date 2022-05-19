@@ -4,7 +4,7 @@ import { SkeletonLoading } from '@components/inc/SkeletonLoading';
 
 import { getRandomInt } from '@utils/getRandomInt';
 
-export const ListSingleLoader = () => {
+export const SingleLoading = () => {
     const [width, setWidth] = useState(100);
 
     useEffect(() => {

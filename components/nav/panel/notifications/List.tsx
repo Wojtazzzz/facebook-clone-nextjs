@@ -18,7 +18,7 @@ interface ListProps {
 }
 
 export const List = memo<ListProps>(({ data, state, isEmpty, isReachedEnd, loadMore }) => {
-    if (state === 'LOADING') return <Loader testid="notifications-fetching_loader" />;
+    if (state === 'LOADING') return <Loader testId="notifications-fetching_loader" />;
     if (state === 'ERROR') return <ApiError isSmall />;
     if (isEmpty) return <EmptyList title="Your Notifications list is empty" />;
 
@@ -31,7 +31,7 @@ export const List = memo<ListProps>(({ data, state, isEmpty, isReachedEnd, loadM
             dataLength={NotificationsComponents.length}
             next={loadMore}
             hasMore={!isReachedEnd}
-            loader={<Loader />}
+            loader={<Loader testId="notifications-loading_loader" />}
             scrollableTarget="list-of-notifications"
         >
             {NotificationsComponents}

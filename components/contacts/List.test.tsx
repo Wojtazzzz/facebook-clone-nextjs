@@ -27,6 +27,15 @@ describe('Contacts List component', () => {
         expect(tenthContact).toBeInTheDocument();
     });
 
+    it('show loaders when first list is loading', () => {
+        mock(`/api/friendship/friends/${RootUserJson.id}?page=1`, 200, ContactsFirstPageJson);
+
+        renderWithDefaultData(<List userId={RootUserJson.id} />);
+
+        const loader = screen.getByTestId('contacts-loading_loader');
+        expect(loader).toBeInTheDocument();
+    });
+
     it('loads empty list and show empty component', async () => {
         mock(`/api/friendship/friends/${RootUserJson.id}?page=1`, 200, ContactsEmptyPageJson);
 

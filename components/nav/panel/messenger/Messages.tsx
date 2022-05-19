@@ -12,7 +12,7 @@ import type { UserType } from '@ctypes/features/UserType';
 export const Messages = memo(() => {
     const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginatedData<UserType>('/api/messages/messenger');
 
-    if (state === 'LOADING') return <Loader testid="messenger-fetching_loader" />;
+    if (state === 'LOADING') return <Loader testId="messenger-fetching_loader" />;
     if (state === 'ERROR') return <ApiError isSmall />;
     if (isEmpty) return <EmptyList title="Your Messenger is empty" />;
 
@@ -24,7 +24,7 @@ export const Messages = memo(() => {
                 dataLength={MessagesComponents.length}
                 next={loadMore}
                 hasMore={!isReachedEnd}
-                loader={<Loader />}
+                loader={<Loader testId="messenger-loading_loader" />}
                 scrollableTarget="list-of-messenger-contacts"
             >
                 {MessagesComponents}

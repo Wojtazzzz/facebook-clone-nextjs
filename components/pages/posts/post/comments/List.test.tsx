@@ -15,7 +15,7 @@ describe('List component', () => {
 
         renderWithDefaultData(<List postId={post.id} />);
 
-        const loaders = screen.getByTestId('postsCommentsList-loading_loaders');
+        const loaders = screen.getByTestId('postsCommentsList-loading_loader');
 
         expect(loaders).toBeInTheDocument();
     });
@@ -65,7 +65,7 @@ describe('List component', () => {
         const fetchButton = await screen.findByLabelText('Load more comments');
         fetchButton.click();
 
-        const loaders = screen.getByTestId('postsCommentsList-fetching_loaders');
+        const loaders = screen.getByTestId('postsCommentsList-fetching_loader');
 
         expect(loaders).toBeInTheDocument();
     });

@@ -1,16 +1,14 @@
-import { SinglePostLoader } from '@components/pages/posts/post/inc/SinglePostLoader';
+import { SingleLoading } from '@components/pages/posts/post/inc/SingleLoading';
 import { ListLoader } from '@components/inc/ListLoader';
 
 interface LoaderProps {
-    testid?: string;
+    testId?: string;
 }
 
-export const Loader = ({ testid = '' }: LoaderProps) => {
+export const Loader = ({ testId = '' }: LoaderProps) => {
     return (
-        <div data-testid={testid}>
-            <ListLoader count={15} styles="flex flex-col gap-4">
-                <SinglePostLoader />
-            </ListLoader>
-        </div>
+        <ListLoader testId={testId} count={15} styles="flex flex-col gap-4">
+            <SingleLoading />
+        </ListLoader>
     );
 };
