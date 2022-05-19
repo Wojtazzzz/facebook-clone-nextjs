@@ -8,7 +8,7 @@ import { List } from '@components/nav/panel/notifications/List';
 import { MarkAsRead } from '@components/nav/panel/notifications/MarkAsRead';
 import { CloseOverlay } from '@components/inc/CloseOverlay';
 
-import { toggleActive } from '@redux/slices/NotificationsListSlice';
+import { toggleActive } from '@redux/slices/NotificationsSlice';
 
 import type { NotificationType } from '@ctypes/features/NotificationType';
 

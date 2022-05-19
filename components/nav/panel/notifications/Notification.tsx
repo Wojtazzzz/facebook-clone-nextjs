@@ -3,7 +3,7 @@ import { useAppDispatch } from '@hooks/redux';
 
 import { SingleItem } from '@components/nav/panel/inc/SingleItem';
 
-import { toggleActive } from '@redux/slices/NotificationsListSlice';
+import { toggleActive } from '@redux/slices/NotificationsSlice';
 import { notificationsMessages } from '@constants/notificationsMessages';
 
 import type { UserType } from '@ctypes/features/UserType';

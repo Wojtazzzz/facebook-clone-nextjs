@@ -9,14 +9,14 @@ import { RoundedButton } from '@components/inc/RoundedButton';
 
 import { toggleActive as toggleActiveSidebar } from '@redux/slices/SidebarSlice';
 import { toggleActive as toggleActiveMessenger } from '@redux/slices/MessengerSlice';
-import { toggleActive as toggleActiveNotifications } from '@redux/slices/NotificationsListSlice';
+import { toggleActive as toggleActiveNotifications } from '@redux/slices/NotificationsSlice';
 
 export const Panel = () => {
     const { isLoading: isAuthLoading, logout } = useAuth();
     const dispatch = useAppDispatch();
     const {
         messenger: { isActive: isMessengerActive },
-        notificationsList: { isActive: isNotificationsActive },
+        notifications: { isActive: isNotificationsActive },
     } = useAppSelector((state) => state);
 
     const handleToggleSidebar = () => dispatch(toggleActiveSidebar());
