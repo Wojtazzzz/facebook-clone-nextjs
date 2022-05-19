@@ -4,8 +4,8 @@ const nextConfig = {
     images: {
         domains: [
             'localhost',
-            'via.placeholder.com',
             'images.unsplash.com',
+            'picsum.photos',
             // 'scontent.fktw1-1.fna.fbcdn.net'
         ],
     },
