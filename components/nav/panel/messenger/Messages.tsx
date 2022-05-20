@@ -13,7 +13,7 @@ export const Messages = memo(() => {
     const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginatedData<UserType>('/api/messages/messenger');
 
     if (state === 'LOADING') return <Loader testId="messenger-fetching_loader" />;
-    if (state === 'ERROR') return <ApiError isSmall />;
+    if (state === 'ERROR') return <ApiError />;
     if (isEmpty) return <EmptyList title="Your Messenger is empty" />;
 
     const MessagesComponents = data.map((friend) => <Friend key={friend.id} {...friend} />);

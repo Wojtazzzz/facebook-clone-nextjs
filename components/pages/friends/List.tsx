@@ -23,7 +23,7 @@ export const List = memo<ListProps>(({ userId, listType }) => {
     const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginatedData<UserType>(key);
 
     if (state === 'LOADING') return <Loader testId="friendsList-loading_loader" />;
-    if (state === 'ERROR') return <ApiError />;
+    if (state === 'ERROR') return <ApiError size="xl" styles="mt-8" />;
     if (isEmpty) return <EmptyList title="No users, maybe this app is so boring..." />;
 
     const UsersComponents = data.map((user) => (

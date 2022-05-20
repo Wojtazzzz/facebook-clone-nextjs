@@ -4,7 +4,7 @@ import { screen } from '@testing-library/react';
 
 describe('Settings component', () => {
     it('open menu when click click on button', async () => {
-        renderWithDefaultData(<Settings postId={1} />);
+        renderWithDefaultData(<Settings authorId={1} postId={1} />);
 
         const button = screen.getByLabelText('Show post settings');
         button.click();
@@ -15,7 +15,7 @@ describe('Settings component', () => {
     });
 
     it('menu dissapear when click on close overlay', async () => {
-        renderWithDefaultData(<Settings postId={1} />);
+        renderWithDefaultData(<Settings authorId={1} postId={1} />);
 
         const button = screen.getByLabelText('Show post settings');
         button.click();

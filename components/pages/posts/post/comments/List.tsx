@@ -14,8 +14,9 @@ interface ListProps {
 export const List = ({ postId }: ListProps) => {
     const { data, state, isReachedEnd, loadMore } = usePaginatedData<CommentType>(`/api/posts/${postId}/comments`);
 
+    console.log('Comments state: ', state);
     if (state === 'LOADING') return <Loader testId="postsCommentsList-loading_loader" />;
-    if (state === 'ERROR') return <ApiError />;
+    if (state === 'ERROR') return <ApiError size="lg" />;
 
     const CommentsComponents = data.map((comment) => <Comment key={comment.id} {...comment} />);
 

@@ -13,7 +13,7 @@ export const Errors = ({ error }: ErrorsProps) => {
         return contentTooLarge ? (
             <span className="text-sm text-red-400 font-medium">Your content is too large</span>
         ) : (
-            <ApiError isSmall />
+            <ApiError />
         );
     }
 

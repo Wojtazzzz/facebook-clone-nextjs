@@ -19,7 +19,7 @@ export const List = memo(({ userId }: ListProps) => {
     );
 
     if (state === 'LOADING') return <Loader testId="contacts-loading_loader" />;
-    if (state === 'ERROR') return <ApiError isSmall />;
+    if (state === 'ERROR') return <ApiError size="lg" styles="h-full" />;
     if (isEmpty) return <EmptyList title="No contacts, add some friends!" />;
 
     const ContactsComponents = data.map((friend) => <Contact key={friend.id} friend={friend} />);

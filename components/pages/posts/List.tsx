@@ -15,7 +15,7 @@ export const List = memo(() => {
     const listRef = useRef<InfiniteScroll>(null);
 
     if (state === 'LOADING') return <Loader testId="postsList-loading_loader" />;
-    if (state === 'ERROR') return <ApiError />;
+    if (state === 'ERROR') return <ApiError size="xl" styles="mt-8" />;
     if (isEmpty) return <EmptyList title="No posts, add some friends!" />;
 
     const PostsComponents = data.map((post) => <Post key={post.id} {...post} />);
