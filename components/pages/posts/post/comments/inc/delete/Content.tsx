@@ -28,7 +28,7 @@ export const Content = ({ postId, commentId, closeModal }: ContentProps) => {
 
     if (state.status === 'LOADING')
         return <SpinnerLoader testid="deleteModal-loading" containerStyles="w-[80px] my-10 mx-auto" />;
-    if (state.status === 'ERROR') return <ApiError styles="mb-10" />;
+    if (state.status === 'ERROR') return <ApiError size="lg" />;
 
     return (
         <div className="w-full flex justify-center">
