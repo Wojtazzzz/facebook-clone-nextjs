@@ -5,7 +5,7 @@ import { Failure } from '@components/pages/friends/actions/responses/Failure';
 import { Success } from '@components/pages/friends/actions/responses/Success';
 import { Button } from '@components/inc/Button';
 
-import { toggleActive } from '@redux/slices/ChatSlice';
+import { showChat } from '@redux/slices/ChatSlice';
 
 import type { UserType } from '@ctypes/features/UserType';
 
@@ -19,7 +19,7 @@ export const FriendActions = ({ friend }: FriendActionsProps) => {
 
     const handleOpenChat = (event: FocusEvent) => {
         event.preventDefault();
-        dispatch(toggleActive(friend));
+        dispatch(showChat(friend));
     };
 
     const handleRemove = (event: FocusEvent) => {

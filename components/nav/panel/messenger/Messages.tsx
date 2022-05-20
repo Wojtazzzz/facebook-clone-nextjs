@@ -16,7 +16,7 @@ export const Messages = memo(() => {
     if (state === 'ERROR') return <ApiError />;
     if (isEmpty) return <EmptyList title="Your Messenger is empty" />;
 
-    const MessagesComponents = data.map((friend) => <Friend key={friend.id} {...friend} />);
+    const MessagesComponents = data.map((friend) => <Friend key={friend.id} friend={friend} />);
 
     return (
         <div data-testid="messenger-messages">

@@ -7,7 +7,7 @@ describe('Messenger Friend component', () => {
     it('it renders user avatar, name, label', () => {
         const user = MessengerFirstPageJson[0];
 
-        renderWithDefaultData(<Friend {...user} />);
+        renderWithDefaultData(<Friend friend={user} />);
 
         const avatar = screen.getByRole('img');
         const name = screen.getByText(user.name);
