@@ -6,9 +6,10 @@ import { Avatar } from '@components/inc/Avatar';
 
 interface CreateProps {
     postId: number;
+    reloadComments: () => void;
 }
 
-export const Create = ({ postId }: CreateProps) => {
+export const Create = ({ postId, reloadComments }: CreateProps) => {
     const { user } = useAuth();
 
     if (!user) return <CreateLoader testId="commentsCreate-loader" />;
@@ -16,7 +17,7 @@ export const Create = ({ postId }: CreateProps) => {
     return (
         <div className="flex gap-2 p-3">
             <Avatar src={user.profile_image} size={40} alt="" />
-            <CreateForm postId={postId} />
+            <CreateForm postId={postId} reloadComments={reloadComments} />
         </div>
     );
 };

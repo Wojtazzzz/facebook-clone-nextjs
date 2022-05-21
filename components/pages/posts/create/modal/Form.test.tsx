@@ -74,11 +74,13 @@ describe('Form component', () => {
 
         renderWithDefaultData(<Form />);
 
-        const submitButton = screen.getByLabelText('Create post');
-        const input = await screen.findByLabelText('Post content');
+        await waitFor(async () => {
+            const submitButton = screen.getByLabelText('Create post');
+            const input = await screen.findByLabelText('Post content');
 
-        await user.type(input, 'Test Post');
-        await user.click(submitButton);
+            await user.type(input, 'Test Post');
+            await user.click(submitButton);
+        });
 
         const loader = screen.getByTestId('createPost-loader');
 
