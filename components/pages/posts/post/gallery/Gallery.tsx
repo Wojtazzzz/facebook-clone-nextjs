@@ -37,7 +37,10 @@ export const Gallery = ({ images, handleCloseGallery }: GalleryProps) => {
                 pagination={{
                     clickable: true,
                 }}
-                navigation={true}
+                navigation={{
+                    prevEl: '.swiper-button-prev',
+                    nextEl: '.swiper-button-next',
+                }}
                 className="mySwiper w-full h-full"
             >
                 {SlidesComponents}
