@@ -16,13 +16,15 @@ export const Friends = () => {
     } = useRouter();
     const { user } = useAuth();
 
-    if (!isFriendsListType(type?.toString().toUpperCase())) return <Custom404 />;
+    const parsedType = type?.toString().toUpperCase() as FriendsListType;
+
+    if (!isFriendsListType(parsedType)) return <Custom404 />;
 
     return (
         <div className="relative py-5 px-2">
-            <Header name={type as FriendsListType} />
+            <Header name={parsedType as FriendsListType} />
 
-            {user ? <List userId={user.id} listType={type as FriendsListType} /> : <Loader />}
+            {user ? <List userId={user.id} listType={parsedType} /> : <Loader />}
         </div>
     );
 };
