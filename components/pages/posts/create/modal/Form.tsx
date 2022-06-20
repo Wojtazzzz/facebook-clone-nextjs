@@ -16,8 +16,11 @@ import { hideModal } from '@redux/slices/CreatePostModalSlice';
 
 import { PostSchema } from '@validation/PostSchema';
 
+import type { PostPayload } from '@ctypes/forms/PostPayload';
+
 export const Form = () => {
     const [isUploadActive, setIsUploadActive] = useState(false);
+    const [oldData, setOldData] = useState<PostPayload>({ content: '', images: [] });
     const dispatch = useAppDispatch();
     const { user } = useAuth();
     const { state, isLoading, createPost } = usePosts();
@@ -28,10 +31,19 @@ export const Form = () => {
         dispatch(hideModal());
     }, [state, dispatch]);
 
+    const handleSubmit = (values: PostPayload) => {
+        createPost(values);
+        setOldData(values);
+    };
+
     if (isLoading) return <SpinnerLoader testid="createPost-loader" containerStyles="w-[100px] my-10 mx-auto" />;
 
     return (
-        <Formik initialValues={{ content: '', images: [] }} validationSchema={PostSchema} onSubmit={createPost}>
+        <Formik
+            initialValues={{ content: oldData.content, images: oldData.images }}
+            validationSchema={PostSchema}
+            onSubmit={handleSubmit}
+        >
             {({ values, handleChange, handleBlur, handleSubmit, setFieldValue }) => (
                 <form onSubmit={handleSubmit}>
                     <div className="w-full p-4">
