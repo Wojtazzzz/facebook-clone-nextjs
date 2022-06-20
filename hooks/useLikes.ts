@@ -10,7 +10,7 @@ export const useLikes = (postId: number) => {
 
         isLiked
             ? sendRequest({ method: 'DELETE', url: `/api/likes/${postId}` })
-            : sendRequest({ method: 'POST', url: '/api/likes', data: { postId } });
+            : sendRequest({ method: 'POST', url: '/api/likes', data: { post_id: postId } });
     };
 
     return { state, handleLike };

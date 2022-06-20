@@ -10,7 +10,7 @@ export const Content = ({ content, images }: ContentProps) => {
         <div className="w-full pt-3">
             {!!content && (
                 <section aria-label="Content" className="px-4">
-                    <span className="text-light-100">{content}</span>
+                    <span className="text-light-100 tracking-tight">{content}</span>
                 </section>
             )}
 
