@@ -16,7 +16,7 @@ export const PokeActions = ({ friend }: PokeActionsProps) => {
     const handlePoke = (event: FocusEvent) => {
         event.preventDefault();
 
-        sendRequest({ method: 'POST', url: '/api/pokes/update', data: { user_id: friend.id } });
+        sendRequest({ method: 'POST', url: '/api/pokes', data: { friend_id: friend.id } });
     };
 
     if (state.status === 'SUCCESS') return <Success message="Friend poked back" />;
@@ -28,7 +28,7 @@ export const PokeActions = ({ friend }: PokeActionsProps) => {
                 title="Poke back"
                 isDisabled={state.status === 'LOADING'}
                 styles="w-[150px]"
-                callback={(event) => handlePoke(event)}
+                callback={handlePoke}
             />
 
             <div className="flex flex-col items-center text-light-100">
