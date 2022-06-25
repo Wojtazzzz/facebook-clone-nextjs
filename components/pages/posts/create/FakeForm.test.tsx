@@ -1,24 +1,24 @@
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
-import { CreatePost } from '@components/pages/posts/create/CreatePost';
+import { FakeForm } from '@components/pages/posts/create/FakeForm';
 import { mock } from '@libs/nock';
 import RootUserJson from '@mocks/user/root.json';
 import { screen } from '@testing-library/react';
 
-describe('CreatePost component', () => {
+describe('FakeForm component', () => {
     beforeEach(() => {
         mock('/api/user', 200, RootUserJson);
     });
 
     it('render loaders when user not loaded', () => {
-        renderWithDefaultData(<CreatePost />);
+        renderWithDefaultData(<FakeForm />);
 
-        const loaders = screen.getByTestId('createPost-loaders');
+        const loaders = screen.getByTestId('fakeForm-loaders');
 
         expect(loaders).toBeInTheDocument();
     });
 
     it('render avatar and text with user name properly', async () => {
-        renderWithDefaultData(<CreatePost />);
+        renderWithDefaultData(<FakeForm />);
 
         const avatar = await screen.findByAltText(RootUserJson.name);
         const text = await screen.findByText(`What's on your mind, ${RootUserJson.first_name}?`);

@@ -1,7 +1,7 @@
 import { useAppSelector } from '@hooks/redux';
 
-import { CreatePost } from '@components/pages/posts/create/CreatePost';
-import { CreatePostModal } from '@components/pages/posts/create/modal/CreatePostModal';
+import { FakeForm } from '@components/pages/posts/create/FakeForm';
+import { Modal } from '@components/pages/posts/create/modal/Modal';
 import { List } from '@components/pages/posts/List';
 
 export const Posts = () => {
@@ -10,11 +10,11 @@ export const Posts = () => {
     return (
         <div className="max-w-[700px] flex flex-col gap-6 text-black mx-auto p-5">
             <div id="scrollableDiv" className="h-screen flex flex-col gap-4 overflow-auto scroll-smooth scrollbar-none">
-                <CreatePost />
+                <FakeForm />
                 <List />
             </div>
 
-            {isCreatePostModalActive && <CreatePostModal />}
+            {isCreatePostModalActive && <Modal />}
         </div>
     );
 };

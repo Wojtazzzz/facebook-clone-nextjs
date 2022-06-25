@@ -11,7 +11,7 @@ describe('Posts component', () => {
         mock('/api/posts?page=1', 200, PostsFirstPageJson);
     });
 
-    it('can open and close modal for post creating', async () => {
+    it('can open modal', async () => {
         renderWithDefaultData(<Posts />);
 
         const openModalButton = await screen.findByText(`What's on your mind, ${RootUserJson.first_name}?`);
@@ -19,6 +19,15 @@ describe('Posts component', () => {
 
         const modal = await screen.findByLabelText('Create post modal');
         expect(modal).toBeVisible();
+    });
+
+    it('can close modal', async () => {
+        renderWithDefaultData(<Posts />);
+
+        const openModalButton = await screen.findByText(`What's on your mind, ${RootUserJson.first_name}?`);
+        openModalButton.click();
+
+        const modal = await screen.findByLabelText('Create post modal');
 
         const closeModalButton = screen.getByLabelText('Close modal');
         closeModalButton.click();

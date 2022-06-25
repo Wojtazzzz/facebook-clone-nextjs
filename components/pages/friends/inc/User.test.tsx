@@ -109,7 +109,7 @@ describe('User component', () => {
             const pokeButton = await screen.findByTitle('Poke back');
             expect(pokeButton).toBeInTheDocument();
 
-            mock('/api/pokes/update', 201, {}, 'post');
+            mock('/api/pokes', 201, {}, 'post');
 
             pokeButton.click();
 
@@ -129,7 +129,7 @@ describe('User component', () => {
             const pokeButton = await screen.findByTitle('Poke back');
             expect(pokeButton).toBeInTheDocument();
 
-            mock('/api/pokes/update', 500, {}, 'post');
+            mock('/api/pokes', 500, {}, 'post');
 
             pokeButton.click();
 

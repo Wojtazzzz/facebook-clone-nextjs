@@ -1,5 +1,6 @@
 import { ApiError } from '@components/inc/ApiError';
 import { ValidationError } from '@components/inc/ValidationError';
+
 import Axios from 'axios';
 
 interface ErrorsProps {
@@ -7,7 +8,7 @@ interface ErrorsProps {
 }
 
 export const Errors = ({ error }: ErrorsProps) => {
-    if (error && Axios.isAxiosError(error)) {
+    if (Axios.isAxiosError(error)) {
         const contentTooLarge = error.message.includes('413');
 
         return contentTooLarge ? (
@@ -17,10 +18,14 @@ export const Errors = ({ error }: ErrorsProps) => {
         );
     }
 
+    if (error) {
+        return <></>;
+    }
+
     return (
-        <div className="w-full mb-3 p-3">
+        <section data-testid="post-validation" className="w-full mb-3 p-3">
             <ValidationError fieldName="content" />
             <ValidationError fieldName="images" />
-        </div>
+        </section>
     );
 };

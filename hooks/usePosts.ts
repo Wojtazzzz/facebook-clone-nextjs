@@ -14,10 +14,7 @@ export const usePosts = () => {
 
     useEffect(() => {
         if (state.status === 'LOADING') return;
-
-        if (state.status === 'SUCCESS') {
-            reloadPosts();
-        }
+        if (state.status === 'SUCCESS') reloadPosts();
     }, [state, reloadPosts]);
 
     const createPost = (data: PostPayload) => {
@@ -38,9 +35,11 @@ export const usePosts = () => {
         });
     };
 
+    const isLoading = state.status === 'LOADING';
+
     return {
         state,
-        isLoading: state.status === 'LOADING',
+        isLoading,
         createPost,
         removePost,
     };

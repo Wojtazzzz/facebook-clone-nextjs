@@ -2,28 +2,33 @@ import * as Yup from 'yup';
 
 const SUPPORTED_FORMATS = ['image/jpg', 'image/jpeg', 'image/png', 'image/bmp', 'image/gif', 'image/svg', 'image/webp'];
 
-function checkIfFilesAreTooBig(files?: [File]): boolean {
+function checkIfFilesAreTooBig(files?: File[]) {
     let valid = true;
+
     if (files) {
-        files.map((file) => {
+        files.forEach((file) => {
             const size = file.size / 1024 / 1024;
+
             if (size > 10) {
                 valid = false;
             }
         });
     }
+
     return valid;
 }
 
-function checkIfFilesAreCorrectType(files?: [File]): boolean {
+function checkIfFilesAreCorrectType(files?: File[]) {
     let valid = true;
+
     if (files) {
-        files.map((file) => {
+        files.forEach((file) => {
             if (!SUPPORTED_FORMATS.includes(file.type)) {
                 valid = false;
             }
         });
     }
+
     return valid;
 }
 
@@ -44,8 +49,8 @@ export const PostSchema = Yup.object().shape(
                 is: (content: string | undefined) => content && content.length <= 0,
                 then: Yup.mixed().required(),
             })
-            .test('is-correct-file', 'VALIDATION_FIELD_FILE_BIG', checkIfFilesAreTooBig)
-            .test('is-big-file', 'VALIDATION_FIELD_FILE_WRONG_TYPE', checkIfFilesAreCorrectType),
+            .test('is-big-file', 'Uploaded image is too big', checkIfFilesAreTooBig)
+            .test('is-correct-type-file', 'Uploaded image has wrong type', checkIfFilesAreCorrectType),
     },
     [['content', 'images']]
 );
