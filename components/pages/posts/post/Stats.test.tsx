@@ -1,8 +1,10 @@
 import { screen } from '@testing-library/react';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import { Stats } from '@components/pages/posts/post/Stats';
+import userEvent from '@testing-library/user-event';
 
 describe('Stats component', () => {
+    const user = userEvent.setup();
     const mockHandleToggleIsCommentsActive = jest.fn();
 
     it('display properly like number', () => {
@@ -25,13 +27,13 @@ describe('Stats component', () => {
         expect(commentsText).toBeInTheDocument();
     });
 
-    it('execute show comments function on click on comments amount', () => {
+    it('execute show comments function on click on comments amount', async () => {
         renderWithDefaultData(
             <Stats likesCount={20} commentsCount={7} handleToggleIsCommentsActive={mockHandleToggleIsCommentsActive} />
         );
 
         const commentsText = screen.getByText('7 comments');
-        commentsText.click();
+        await user.click(commentsText);
 
         expect(mockHandleToggleIsCommentsActive).toBeCalledTimes(1);
     });

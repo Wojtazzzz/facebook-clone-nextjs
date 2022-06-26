@@ -68,6 +68,7 @@ export const SendMessage = memo(() => {
 
                     {isMessagePrepared ? (
                         <RoundedButton
+                            type="submit"
                             name="Send message"
                             icon={faCircleCheck}
                             size={8}

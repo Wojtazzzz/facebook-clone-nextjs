@@ -2,13 +2,16 @@ import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import { Images } from '@components/pages/posts/post/inc/Images';
 import PostWithFiveImages from '@mocks/posts/postWithFiveImages.json';
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 describe('Images component', () => {
+    const user = userEvent.setup();
+
     it('open gallery on click', async () => {
         renderWithDefaultData(<Images images={PostWithFiveImages.images} />);
 
         const container = screen.getByLabelText('Images', { selector: 'section' });
-        container.click();
+        await user.click(container);
 
         const gallery = await screen.findByLabelText('Post gallery', { selector: 'section' });
 

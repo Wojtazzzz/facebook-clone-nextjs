@@ -10,8 +10,8 @@ import { mock } from '@libs/nock';
 describe('CreateForm component', () => {
     jest.setTimeout(30000);
 
-    const post = PostsFirstPageJson[0];
     const user = userEvent.setup();
+    const post = PostsFirstPageJson[0];
     const mockReloadComments = jest.fn();
 
     beforeEach(() => {
@@ -37,7 +37,7 @@ describe('CreateForm component', () => {
         await user.type(input, 'John Doe is super facebook-clone user!');
 
         const submitButton = screen.getByLabelText('Submit comment');
-        submitButton.click();
+        await user.click(submitButton);
 
         await waitFor(() => {
             expect(input).toHaveValue('');
@@ -53,7 +53,7 @@ describe('CreateForm component', () => {
         await user.type(input, 'John Doe is super facebook-clone user!');
 
         const submitButton = screen.getByLabelText('Submit comment');
-        submitButton.click();
+        await user.click(submitButton);
 
         await waitFor(() => {
             expect(input).toHaveValue('John Doe is super facebook-clone user!');
@@ -67,7 +67,7 @@ describe('CreateForm component', () => {
         await user.type(input, 'a');
 
         const submitButton = screen.getByLabelText('Submit comment');
-        submitButton.click();
+        await user.click(submitButton);
 
         const validationError = await screen.findByText('Comment must be at least 2 characters');
 
@@ -78,7 +78,7 @@ describe('CreateForm component', () => {
         renderWithDefaultData(<CreateForm postId={post.id} reloadComments={mockReloadComments} />);
 
         const submitButton = screen.getByLabelText('Submit comment');
-        submitButton.click();
+        await user.click(submitButton);
 
         const validationError = await screen.findByText('Comment must contain text');
 
@@ -92,7 +92,7 @@ describe('CreateForm component', () => {
         await user.type(input, LONG_TEXT);
 
         const submitButton = screen.getByLabelText('Submit comment');
-        submitButton.click();
+        await user.click(submitButton);
 
         const validationError = await screen.findByText('Comment must be at most 1000 characters');
 

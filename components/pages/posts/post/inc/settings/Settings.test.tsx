@@ -4,18 +4,21 @@ import { screen } from '@testing-library/react';
 import RootUserJson from '@mocks/user/root.json';
 import PostsFirstPageJson from '@mocks/posts/firstPage.json';
 import { mock } from '@libs/nock';
+import userEvent from '@testing-library/user-event';
 
 describe('Settings component', () => {
+    const user = userEvent.setup();
+
     beforeEach(() => {
         mock('/api/user', 200, RootUserJson);
         mock('/api/posts?page=1', 200, PostsFirstPageJson);
     });
 
-    it('open menu when click click on button', async () => {
+    it('open menu when click on button', async () => {
         renderWithDefaultData(<Settings authorId={1} postId={1} />);
 
         const button = screen.getByLabelText('Show post settings');
-        button.click();
+        await user.click(button);
 
         const menu = await screen.findByLabelText('Settings');
 
@@ -26,10 +29,10 @@ describe('Settings component', () => {
         renderWithDefaultData(<Settings authorId={1} postId={1} />);
 
         const button = screen.getByLabelText('Show post settings');
-        button.click();
+        await user.click(button);
 
         const closeOverlay = await screen.findByTestId('settings-closeOverlay');
-        closeOverlay.click();
+        await user.click(closeOverlay);
 
         const menu = screen.queryByLabelText('Settings');
 

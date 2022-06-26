@@ -15,8 +15,11 @@ import InvitesEmptyPageJson from '@mocks/friendsList/invites/empty.json';
 import FriendsFirstPageJson from '@mocks/friendsList/friends/firstPage.json';
 import FriendsSecondPageJson from '@mocks/friendsList/friends/secondPage.json';
 import FriendsEmptyPageJson from '@mocks/friendsList/friends/empty.json';
+import userEvent from '@testing-library/user-event';
 
 describe('Friends List component', () => {
+    const user = userEvent.setup();
+
     describe('Suggests list', () => {
         it('fetch button dissapears when page fetched all suggests', async () => {
             mock('/api/friendship/suggests?page=1', 200, SuggestsFirstPageJson);
@@ -27,7 +30,7 @@ describe('Friends List component', () => {
             mock('/api/friendship/suggests?page=2', 200, SuggestsEmptyPageJson);
 
             const fetchMoreButton = await screen.findByTitle('Fetch more users');
-            fetchMoreButton.click();
+            await user.click(fetchMoreButton);
 
             expect(fetchMoreButton).not.toBeInTheDocument();
         });
@@ -62,7 +65,7 @@ describe('Friends List component', () => {
             mock('/api/friendship/suggests?page=2', 200, SuggestsSecondPageJson);
 
             const fetchMoreButton = await screen.findByTitle('Fetch more users');
-            fetchMoreButton.click();
+            await user.click(fetchMoreButton);
 
             const loader = screen.getByTestId('friendsList-fetching_loader');
             expect(loader).toBeInTheDocument();
@@ -77,7 +80,7 @@ describe('Friends List component', () => {
             mock('/api/friendship/suggests?page=2', 200, SuggestsSecondPageJson);
 
             const fetchMoreButton = await screen.findByTitle('Fetch more users');
-            fetchMoreButton.click();
+            await user.click(fetchMoreButton);
 
             const firstElement = await screen.findByText(SuggestsFirstPageJson[0].name);
             expect(firstElement).toBeInTheDocument();
@@ -124,7 +127,7 @@ describe('Friends List component', () => {
             mock('/api/pokes?page=2', 200, PokesEmptyPageJson);
 
             const fetchMoreButton = await screen.findByTitle('Fetch more users');
-            fetchMoreButton.click();
+            await user.click(fetchMoreButton);
 
             expect(fetchMoreButton).not.toBeInTheDocument();
         });
@@ -159,7 +162,7 @@ describe('Friends List component', () => {
             mock('/api/pokes?page=2', 200, PokesSecondPageJson);
 
             const fetchMoreButton = await screen.findByTitle('Fetch more users');
-            fetchMoreButton.click();
+            await user.click(fetchMoreButton);
 
             const loader = screen.getByTestId('friendsList-fetching_loader');
             expect(loader).toBeInTheDocument();
@@ -174,7 +177,7 @@ describe('Friends List component', () => {
             mock('/api/pokes?page=2', 200, PokesSecondPageJson);
 
             const fetchMoreButton = await screen.findByTitle('Fetch more users');
-            fetchMoreButton.click();
+            await user.click(fetchMoreButton);
 
             const firstElement = await screen.findByText(PokesFirstPageJson[0].name);
             expect(firstElement).toBeInTheDocument();
@@ -235,7 +238,7 @@ describe('Friends List component', () => {
             mock('/api/friendship/invites?page=2', 200, InvitesEmptyPageJson);
 
             const fetchMoreButton = await screen.findByTitle('Fetch more users');
-            fetchMoreButton.click();
+            await user.click(fetchMoreButton);
 
             expect(fetchMoreButton).not.toBeInTheDocument();
         });
@@ -270,7 +273,7 @@ describe('Friends List component', () => {
             mock('/api/friendship/invites?page=2', 200, InvitesSecondPageJson);
 
             const fetchMoreButton = await screen.findByTitle('Fetch more users');
-            fetchMoreButton.click();
+            await user.click(fetchMoreButton);
 
             const loader = screen.getByTestId('friendsList-fetching_loader');
             expect(loader).toBeInTheDocument();
@@ -285,7 +288,7 @@ describe('Friends List component', () => {
             mock('/api/friendship/invites?page=2', 200, InvitesSecondPageJson);
 
             const fetchMoreButton = await screen.findByTitle('Fetch more users');
-            fetchMoreButton.click();
+            await user.click(fetchMoreButton);
 
             const firstElement = await screen.findByText(InvitesFirstPageJson[0].name);
             expect(firstElement).toBeInTheDocument();
@@ -332,7 +335,7 @@ describe('Friends List component', () => {
             mock(`/api/friendship/friends/${RootUserJson.id}?page=2`, 200, FriendsEmptyPageJson);
 
             const fetchMoreButton = await screen.findByTitle('Fetch more users');
-            fetchMoreButton.click();
+            await user.click(fetchMoreButton);
 
             expect(fetchMoreButton).not.toBeInTheDocument();
         });
@@ -367,7 +370,7 @@ describe('Friends List component', () => {
             mock(`/api/friendship/friends/${RootUserJson.id}?page=2`, 200, FriendsSecondPageJson);
 
             const fetchMoreButton = await screen.findByTitle('Fetch more users');
-            fetchMoreButton.click();
+            await user.click(fetchMoreButton);
 
             const loader = screen.getByTestId('friendsList-fetching_loader');
             expect(loader).toBeInTheDocument();
@@ -382,7 +385,7 @@ describe('Friends List component', () => {
             mock(`/api/friendship/friends/${RootUserJson.id}?page=2`, 200, FriendsSecondPageJson);
 
             const fetchMoreButton = await screen.findByTitle('Fetch more users');
-            fetchMoreButton.click();
+            await user.click(fetchMoreButton);
 
             const firstElement = await screen.findByText(FriendsFirstPageJson[0].name);
             expect(firstElement).toBeInTheDocument();

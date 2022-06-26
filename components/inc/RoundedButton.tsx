@@ -6,6 +6,7 @@ interface RoundedButtonProps {
     name: string;
     icon: IconProp;
     size?: number;
+    type?: 'button' | 'submit';
     isDisabled?: boolean;
     bgColor?: string;
     onHover?: string;
@@ -16,6 +17,7 @@ export const RoundedButton = ({
     name,
     icon,
     size = 10,
+    type = 'button',
     isDisabled = false,
     bgColor = 'dark-100',
     onHover = 'bg-dark-200',
@@ -23,6 +25,7 @@ export const RoundedButton = ({
 }: RoundedButtonProps) => {
     return (
         <button
+            type={type}
             aria-label={name}
             title={name}
             disabled={isDisabled}

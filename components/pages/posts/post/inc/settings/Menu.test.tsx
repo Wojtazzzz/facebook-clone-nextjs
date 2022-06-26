@@ -5,21 +5,23 @@ import RootUserJson from '@mocks/user/root.json';
 import JaneDoeJson from '@mocks/user/johnDoe.json';
 import PostsFirstPageJson from '@mocks/posts/firstPage.json';
 import { mock } from '@libs/nock';
+import userEvent from '@testing-library/user-event';
 
 describe('Menu component', () => {
+    const user = userEvent.setup();
     const mockCloseMenu = jest.fn();
 
     beforeEach(() => {
         mock('/api/posts?page=1', 200, PostsFirstPageJson);
     });
 
-    it('execute close settings function on click on close overlay', () => {
+    it('execute close settings function on click on close overlay', async () => {
         mock('/api/user', 200, RootUserJson);
 
         renderWithDefaultData(<Menu authorId={1} postId={1} closeMenu={mockCloseMenu} />);
 
         const overlay = screen.getByTestId('settings-closeOverlay');
-        overlay.click();
+        await user.click(overlay);
 
         expect(mockCloseMenu).toHaveBeenCalledTimes(1);
     });

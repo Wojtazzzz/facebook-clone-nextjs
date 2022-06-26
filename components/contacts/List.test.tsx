@@ -7,11 +7,13 @@ import nock from 'nock';
 import { List } from '@components/contacts/List';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import { mock } from '@libs/nock';
+import userEvent from '@testing-library/user-event';
 
 describe('Contacts List component', () => {
+    const user = userEvent.setup();
+
     beforeEach(() => {
         nock.disableNetConnect();
-
         mock('/api/user', 200, RootUserJson);
     });
 
@@ -72,7 +74,7 @@ describe('Contacts List component', () => {
         mock(`/api/friendship/friends/${RootUserJson.id}?page=2`, 200, ContactsSecondPageJson);
 
         const loadMoreButton = await screen.findByTitle('Load more contacts');
-        loadMoreButton.click();
+        await user.click(loadMoreButton);
 
         const eleventhContact = await screen.findByText(ContactsSecondPageJson[0].name);
         expect(eleventhContact).toBeInTheDocument();
@@ -90,7 +92,7 @@ describe('Contacts List component', () => {
         mock(`/api/friendship/friends/${RootUserJson.id}?page=2`, 200, ContactsEmptyPageJson);
 
         const loadMoreButton = await screen.findByTitle('Load more contacts');
-        loadMoreButton.click();
+        await user.click(loadMoreButton);
 
         expect(loadMoreButton).not.toBeInTheDocument();
     });

@@ -10,6 +10,8 @@ import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import { mock } from '@libs/nock';
 
 describe('Notifications component', () => {
+    const user = userEvent.setup();
+
     beforeEach(() => {
         mock('/api/user', 200, RootUserJson);
         mock('/api/notifications/mark-as-read', 200, NotificationsMarkAsReadJson, 'put');
@@ -17,8 +19,6 @@ describe('Notifications component', () => {
 
     it('close notifications when click on overlay', async () => {
         mock('/api/notifications?page=1', 200, NotificationsFirstPageJson);
-
-        const user = userEvent.setup();
 
         renderWithDefaultData(<Panel />);
 

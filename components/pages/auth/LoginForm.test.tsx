@@ -7,6 +7,8 @@ import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import { mock } from '@libs/nock';
 
 describe('LoginForm component', () => {
+    const user = userEvent.setup();
+
     beforeEach(() => {
         nock.disableNetConnect();
         mock('/api/user', 401);
@@ -26,8 +28,6 @@ describe('LoginForm component', () => {
     });
 
     it('display "required" validation message when input values are empty', async () => {
-        const user = userEvent.setup();
-
         renderWithDefaultData(<LoginForm />);
 
         const emailInput = screen.getByLabelText('Address e-mail');
@@ -47,8 +47,6 @@ describe('LoginForm component', () => {
     });
 
     it('display "incorrect email" validation message when email is invalid', async () => {
-        const user = userEvent.setup();
-
         renderWithDefaultData(<LoginForm />);
 
         const emailInput = screen.getByLabelText('Address e-mail');
@@ -65,8 +63,6 @@ describe('LoginForm component', () => {
     it('display "incorrect credentials" message when login response returns 422 error', async () => {
         mock('/sanctum/csrf-cookie', 204);
         mock('/login', 422, CannotLoginResponse, 'post');
-
-        const user = userEvent.setup();
 
         renderWithDefaultData(<LoginForm />);
 

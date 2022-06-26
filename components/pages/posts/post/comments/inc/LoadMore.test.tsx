@@ -1,8 +1,11 @@
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import { LoadMore } from '@components/pages/posts/post/comments/inc/LoadMore';
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 describe('LoadMore component', () => {
+    const user = userEvent.setup();
+
     it('show "View more comments" when didn\'t fetch all comments', () => {
         const mockHandleLoadMoreComments = jest.fn();
 
@@ -31,7 +34,7 @@ describe('LoadMore component', () => {
         expect(writeCommentText).toBeInTheDocument();
     });
 
-    it("execute load more comments function when didn't fetch all comments", () => {
+    it("execute load more comments function when didn't fetch all comments", async () => {
         const mockHandleLoadMoreComments = jest.fn();
 
         renderWithDefaultData(
@@ -39,12 +42,12 @@ describe('LoadMore component', () => {
         );
 
         const button = screen.getByLabelText('Load more comments');
-        button.click();
+        await user.click(button);
 
         expect(mockHandleLoadMoreComments).toHaveBeenCalledTimes(1);
     });
 
-    it('not execute load more comments function when fetched all comments', () => {
+    it('not execute load more comments function when fetched all comments', async () => {
         const mockHandleLoadMoreComments = jest.fn();
 
         renderWithDefaultData(
@@ -52,7 +55,7 @@ describe('LoadMore component', () => {
         );
 
         const button = screen.getByText('Write a comment...');
-        button.click();
+        await user.click(button);
 
         expect(mockHandleLoadMoreComments).not.toHaveBeenCalled();
     });

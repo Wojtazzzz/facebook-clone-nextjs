@@ -1,8 +1,10 @@
 import { screen } from '@testing-library/react';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import { EditAction } from '@components/pages/posts/post/comments/inc/actions/EditAction';
+import userEvent from '@testing-library/user-event';
 
 describe('EditAction button', () => {
+    const user = userEvent.setup();
     const mockToggleEditMode = jest.fn();
 
     it('show "Edit" title when edit mode is inactive', () => {
@@ -25,11 +27,11 @@ describe('EditAction button', () => {
         expect(closeTitle).toBeInTheDocument();
     });
 
-    it('execute toggle edit mode function when click', () => {
+    it('execute toggle edit mode function when click', async () => {
         renderWithDefaultData(<EditAction isEditModeActive={false} toggleEditMode={mockToggleEditMode} />);
 
         const button = screen.getByLabelText('Edit');
-        button.click();
+        await user.click(button);
 
         expect(mockToggleEditMode).toBeCalledTimes(1);
     });

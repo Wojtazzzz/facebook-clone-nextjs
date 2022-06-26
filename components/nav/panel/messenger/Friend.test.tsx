@@ -3,7 +3,7 @@ import MessengerFirstPageJson from '@mocks/messenger/firstPage.json';
 import { Friend } from '@components/nav/panel/messenger/Friend';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 
-describe('Messenger Friend component', () => {
+describe('Friend component', () => {
     it('it renders user avatar, name, label', () => {
         const user = MessengerFirstPageJson[0];
 

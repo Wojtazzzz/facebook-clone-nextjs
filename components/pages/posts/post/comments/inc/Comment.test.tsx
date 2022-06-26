@@ -6,9 +6,11 @@ import CommentsFirstPageJson from '@mocks/posts/comments/firstPage.json';
 import RootUserCommentJson from '@mocks/posts/comments/rootUserComment.json';
 import EditedCommentJson from '@mocks/posts/comments/edited.json';
 import RootUserJson from '@mocks/user/root.json';
+import userEvent from '@testing-library/user-event';
 import type { CommentType } from '@ctypes/features/CommentType';
 
 describe('Comment component', () => {
+    const user = userEvent.setup();
     const comment = CommentsFirstPageJson[0] as CommentType;
     const editedComment = EditedCommentJson as CommentType;
     const rootUserComment = RootUserCommentJson as CommentType;
@@ -49,7 +51,7 @@ describe('Comment component', () => {
         renderWithDefaultData(<Comment {...rootUserComment} />);
 
         const editButton = await screen.findByLabelText('Edit');
-        editButton.click();
+        await user.click(editButton);
 
         const editInput = await screen.findByLabelText('Update comment', { selector: 'input' });
 

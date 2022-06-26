@@ -7,8 +7,10 @@ import CommentsEmptyPageJson from '@mocks/posts/comments/empty.json';
 import RootUserJson from '@mocks/user/root.json';
 import { mock } from '@libs/nock';
 import { Comments } from '@components/pages/posts/post/comments/Comments';
+import userEvent from '@testing-library/user-event';
 
 describe('Comments component', () => {
+    const user = userEvent.setup();
     const post = PostsFirstPageJson[4];
 
     beforeEach(() => {
@@ -46,7 +48,7 @@ describe('Comments component', () => {
         mock(`/api/posts/${post.id}/comments?page=2`, 200, CommentsSecondPageJson);
 
         const fetchButton = await screen.findByLabelText('Load more comments');
-        fetchButton.click();
+        await user.click(fetchButton);
 
         const firstComment = await screen.findByText(CommentsFirstPageJson[0].content);
         const tenthComment = await screen.findByText(CommentsFirstPageJson[9].content);
@@ -68,7 +70,7 @@ describe('Comments component', () => {
         mock(`/api/posts/${post.id}/comments?page=2`, 200, CommentsSecondPageJson);
 
         const fetchButton = await screen.findByLabelText('Load more comments');
-        fetchButton.click();
+        await user.click(fetchButton);
 
         const loaders = screen.getByTestId('postsCommentsList-fetching_loader');
 
@@ -106,13 +108,13 @@ describe('Comments component', () => {
         mock(`/api/posts/${post.id}/comments?page=2`, 200, CommentsSecondPageJson);
 
         const fetchButton = await screen.findByLabelText('Load more comments');
-        fetchButton.click();
+        await user.click(fetchButton);
 
         mock(`/api/posts/${post.id}/comments?page=1`, 200, CommentsFirstPageJson);
         mock(`/api/posts/${post.id}/comments?page=2`, 200, CommentsSecondPageJson);
         mock(`/api/posts/${post.id}/comments?page=3`, 200, CommentsEmptyPageJson);
 
-        fetchButton.click();
+        await user.click(fetchButton);
 
         await waitFor(() => {
             const fetchButton = screen.queryByLabelText('Load more comments');

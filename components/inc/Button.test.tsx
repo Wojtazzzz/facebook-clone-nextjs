@@ -1,8 +1,11 @@
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import { Button } from '@components/inc/Button';
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 describe('Button component', () => {
+    const user = userEvent.setup();
+
     it('renders with properly attributes', () => {
         renderWithDefaultData(<Button title="Go back" />);
 
@@ -17,24 +20,24 @@ describe('Button component', () => {
         expect(button).toHaveTextContent('Go back');
     });
 
-    it('execute callback function when click on button', () => {
+    it('execute callback function when click on button', async () => {
         const mockCallback = jest.fn();
 
         renderWithDefaultData(<Button title="Home button" callback={mockCallback} />);
 
         const button = screen.getByText('Home button');
-        button.click();
+        await user.click(button);
 
         expect(mockCallback).toHaveBeenCalledTimes(1);
     });
 
-    it('not execute callback function when button is disabled', () => {
+    it('not execute callback function when button is disabled', async () => {
         const mockCallback = jest.fn();
 
         renderWithDefaultData(<Button title="Don't click" isDisabled callback={mockCallback} />);
 
         const button = screen.getByText("Don't click");
-        button.click();
+        await user.click(button);
 
         expect(mockCallback).not.toHaveBeenCalled();
     });

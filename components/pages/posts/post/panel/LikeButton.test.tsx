@@ -5,8 +5,10 @@ import LikeSuccessReponseJson from '@mocks/posts/actions/likeSuccess.json';
 import UnlikeSuccessReponseJson from '@mocks/posts/actions/unlikeSuccess.json';
 import { screen, waitFor } from '@testing-library/react';
 import { mock } from '@libs/nock';
+import userEvent from '@testing-library/user-event';
 
 describe('LikeButton component', () => {
+    const user = userEvent.setup();
     const post = PostsFirstPageJson[0];
     const mockSetTotalLikes = jest.fn();
 
@@ -32,7 +34,7 @@ describe('LikeButton component', () => {
         renderWithDefaultData(<LikeButton postId={post.id} isLiked={false} setTotalLikes={mockSetTotalLikes} />);
 
         const button = screen.getByRole('button');
-        button.click();
+        await user.click(button);
 
         await waitFor(() => {
             expect(button).toHaveClass('text-primary');
@@ -45,7 +47,7 @@ describe('LikeButton component', () => {
         renderWithDefaultData(<LikeButton postId={post.id} isLiked={false} setTotalLikes={mockSetTotalLikes} />);
 
         const button = screen.getByRole('button');
-        button.click();
+        await user.click(button);
 
         await waitFor(() => {
             expect(button).toHaveClass('text-light-100');
@@ -58,7 +60,7 @@ describe('LikeButton component', () => {
         renderWithDefaultData(<LikeButton postId={post.id} isLiked={true} setTotalLikes={mockSetTotalLikes} />);
 
         const button = screen.getByRole('button');
-        button.click();
+        await user.click(button);
 
         await waitFor(() => {
             expect(button).toHaveClass('text-light-100');
@@ -71,7 +73,7 @@ describe('LikeButton component', () => {
         renderWithDefaultData(<LikeButton postId={post.id} isLiked={true} setTotalLikes={mockSetTotalLikes} />);
 
         const button = screen.getByRole('button');
-        button.click();
+        await user.click(button);
 
         await waitFor(() => {
             expect(button).toHaveClass('text-primary');

@@ -2,15 +2,18 @@ import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import { PanelButton } from '@components/pages/posts/post/inc/PanelButton';
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 describe('PanelButton component', () => {
-    it('execute callback on click', () => {
+    const user = userEvent.setup();
+
+    it('execute callback on click', async () => {
         const mockHandleLikePost = jest.fn();
 
         renderWithDefaultData(<PanelButton title="Like" icon={faThumbsUp} callback={mockHandleLikePost} />);
 
         const button = screen.getByRole('button');
-        button.click();
+        await user.click(button);
 
         expect(mockHandleLikePost).toBeCalledTimes(1);
     });
