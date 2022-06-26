@@ -2,6 +2,8 @@ import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import { SendMessage } from '@components/chat/options/SendMessage';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { mock } from '@libs/nock';
+import CreatePostSuccessResponseJson from '@mocks/posts/actions/createPostSuccess.json';
 
 describe('SendMessage component', () => {
     it('renders like component instead of submit on start', () => {
@@ -30,6 +32,8 @@ describe('SendMessage component', () => {
     });
 
     it('clear input on sent message', async () => {
+        mock('/api/messages', 200, CreatePostSuccessResponseJson, 'post');
+
         const user = userEvent.setup();
 
         renderWithDefaultData(<SendMessage />);

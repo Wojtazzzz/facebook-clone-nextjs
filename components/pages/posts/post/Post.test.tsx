@@ -5,6 +5,7 @@ import PostsFirstPageJson from '@mocks/posts/firstPage.json';
 
 describe('Post component', () => {
     const post = PostsFirstPageJson[0];
+
     it('render like, comment and share buttons', () => {
         renderWithDefaultData(<Post {...post} />);
 
