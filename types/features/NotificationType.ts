@@ -2,10 +2,9 @@ import type { UserType } from '@ctypes/features/UserType';
 
 export type NotificationType = {
     id: string;
-    data: {
-        type: 'FRIENDSHIP_INVITATION_SENDED' | 'FRIENDSHIP_INVITATION_ACCEPTED';
-        initiator: UserType;
-    };
+    message: string;
+    friend: UserType;
+    link: string;
     read_at: string | null;
     created_at: string;
 };

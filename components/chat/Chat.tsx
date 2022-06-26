@@ -50,10 +50,10 @@ export const Chat = ({ friend }: ChatProps) => {
     useEffect(() => {
         if (!user) return;
 
-        LaravelEcho.private(`messages.${user.id}.${friend.id}`).listen('ChatMessageSended', () => reloadData());
+        LaravelEcho.private(`messages.${user.id}.${friend.id}`).listen('ChatMessageSent', () => reloadData());
 
         return () => {
-            LaravelEcho.private(`messages.${user.id}.${friend.id}`).stopListening('ChatMessageSended');
+            LaravelEcho.private(`messages.${user.id}.${friend.id}`).stopListening('ChatMessageSent');
         };
     }, [LaravelEcho, friend.id, user, reloadData]);
 

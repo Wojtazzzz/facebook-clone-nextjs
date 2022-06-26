@@ -2,21 +2,17 @@ import { screen } from '@testing-library/react';
 import RootUserJson from '@mocks/user/root.json';
 import NotificationsFirstPageJson from '@mocks/notifications/firstPage.json';
 import NotificationsEmptyPageJson from '@mocks/notifications/empty.json';
+import NotificationsMarkAsReadJson from '@mocks/notifications/markAsRead.json';
 import { Panel } from '@components/nav/panel/Panel';
 import userEvent from '@testing-library/user-event';
 import { Notifications } from '@components/nav/panel/notifications/Notifications';
-import { NotificationType } from '@ctypes/features/NotificationType';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import { mock } from '@libs/nock';
-
-const labels = {
-    FRIENDSHIP_INVITATION_SENDED: 'Send you a friendship invitation',
-    FRIENDSHIP_INVITATION_ACCEPTED: 'Accepted your friendship invitation',
-} as const;
 
 describe('Notifications component', () => {
     beforeEach(() => {
         mock('/api/user', 200, RootUserJson);
+        mock('/api/notifications/mark-as-read', 200, NotificationsMarkAsReadJson, 'put');
     });
 
     it('close notifications when click on overlay', async () => {
@@ -38,16 +34,13 @@ describe('Notifications component', () => {
         expect(mainNotificationsComponent).not.toBeVisible();
     });
 
-    it('render header and mark as read', async () => {
+    it('render header', () => {
         mock('/api/notifications?page=1', 200, NotificationsFirstPageJson);
 
         renderWithDefaultData(<Notifications />);
 
         const header = screen.getByTestId('notifications-header');
-        const markAsRead = await screen.findByText('Mark all as read');
-
         expect(header).toBeInTheDocument();
-        expect(markAsRead).toBeInTheDocument();
     });
 
     it('render loaders on initial fetching notifications', () => {
@@ -65,10 +58,10 @@ describe('Notifications component', () => {
 
         renderWithDefaultData(<Notifications />);
 
-        const firstElement = await screen.findByText(NotificationsFirstPageJson[0].data.initiator.name);
+        const firstElement = await screen.findByText(NotificationsFirstPageJson[0].friend.name);
         expect(firstElement).toBeInTheDocument();
 
-        const tenthElement = await screen.findByText(NotificationsFirstPageJson[9].data.initiator.name);
+        const tenthElement = await screen.findByText(NotificationsFirstPageJson[9].friend.name);
         expect(tenthElement).toBeInTheDocument();
     });
 
@@ -90,14 +83,13 @@ describe('Notifications component', () => {
         expect(errorComponent).toBeInTheDocument();
     });
 
-    it('renders properly notifications labels', async () => {
+    it('renders properly notifications labels', () => {
         mock('/api/notifications?page=1', 200, NotificationsFirstPageJson);
 
         renderWithDefaultData(<Notifications />);
 
-        (NotificationsFirstPageJson as NotificationType[]).forEach(async (notification) => {
-            const label = await screen.findByText(labels[notification.data.type]);
-
+        NotificationsFirstPageJson.forEach(async (notification) => {
+            const label = await screen.findByText(notification.message);
             expect(label).toBeInTheDocument();
         });
     });

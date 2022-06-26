@@ -1,829 +1,654 @@
 {
     "data": [
         {
-            "id": "eeca7ba1-53b5-465d-be09-604f3aad4ed0",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_SENDED",
-                "initiator": {
-                    "id": 120,
-                    "name": "Lauriane O'Keefe",
-                    "first_name": "Lauriane",
-                    "profile_image": "https://via.placeholder.com/168x168.png/0044aa?text=commodi",
-                    "background_image": "https://via.placeholder.com/850x350.png/00cccc?text=quia"
-                }
+            "id": "e7b7d459-19c9-4df8-a866-af9701015263",
+            "message": "Accepted your friendship invitation",
+            "friend": {
+                "id": 497,
+                "name": "Libby Morar",
+                "first_name": "Libby",
+                "profile_image": "https://picsum.photos/seed/62b499f9f24f0/168/168",
+                "background_image": "https://picsum.photos/seed/62b499f9f24fb/850/350"
             },
-            "read_at": "2022-04-28T18:37:44.000000Z",
-            "created_at": "2022-04-27T17:35:07.000000Z"
+            "read_at": "2022-06-25T18:54:37.000000Z",
+            "created_at": "2022-06-25T18:52:41.000000Z"
         },
         {
-            "id": "2155402e-0956-4512-bcf7-b83c5154e3a4",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_SENDED",
-                "initiator": {
-                    "id": 173,
-                    "name": "Adolph Kunze",
-                    "first_name": "Adolph",
-                    "profile_image": "https://via.placeholder.com/168x168.png/004400?text=illo",
-                    "background_image": "https://via.placeholder.com/850x350.png/00ee22?text=totam"
-                }
+            "id": "eb6060db-05d3-4d5e-b914-2e57ef0171b0",
+            "message": "Send you a friendship invitation",
+            "friend": {
+                "id": 223,
+                "name": "Lilla Jacobi",
+                "first_name": "Lilla",
+                "profile_image": "https://picsum.photos/seed/62b499e3892b2/168/168",
+                "background_image": "https://picsum.photos/seed/62b499e3892bd/850/350"
             },
-            "read_at": "2022-04-28T18:37:44.000000Z",
-            "created_at": "2022-04-27T17:35:06.000000Z"
+            "read_at": "2022-06-25T18:54:37.000000Z",
+            "created_at": "2022-06-25T18:52:41.000000Z"
         },
         {
-            "id": "2642ae0c-e4e1-4b2e-8008-8cb788e786ab",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_SENDED",
-                "initiator": {
-                    "id": 142,
-                    "name": "Pauline Breitenberg",
-                    "first_name": "Pauline",
-                    "profile_image": "https://via.placeholder.com/168x168.png/00cc55?text=labore",
-                    "background_image": "https://via.placeholder.com/850x350.png/00ddbb?text=eum"
-                }
+            "id": "15903468-e7f8-4031-8813-25a03d8231ce",
+            "message": "Accepted your friendship invitation",
+            "friend": {
+                "id": 594,
+                "name": "Alverta Stehr",
+                "first_name": "Alverta",
+                "profile_image": "https://picsum.photos/seed/62b49a023e7e8/168/168",
+                "background_image": "https://picsum.photos/seed/62b49a023e7f5/850/350"
             },
-            "read_at": "2022-04-28T18:37:44.000000Z",
-            "created_at": "2022-04-27T17:35:06.000000Z"
+            "read_at": "2022-06-25T18:54:37.000000Z",
+            "created_at": "2022-06-25T18:52:40.000000Z"
         },
         {
-            "id": "2d1a77cc-53c0-45e3-b028-21afb03acbf0",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_SENDED",
-                "initiator": {
-                    "id": 19,
-                    "name": "Reese Hermann",
-                    "first_name": "Reese",
-                    "profile_image": "https://via.placeholder.com/168x168.png/0044ee?text=cum",
-                    "background_image": "https://via.placeholder.com/850x350.png/00dd88?text=molestiae"
-                }
+            "id": "67c890dc-97f1-47ea-9c73-4b1e30cde71c",
+            "message": "Accepted your friendship invitation",
+            "friend": {
+                "id": 1713,
+                "name": "Payton Collier",
+                "first_name": "Payton",
+                "profile_image": "https://picsum.photos/seed/62b49a5a25929/168/168",
+                "background_image": "https://picsum.photos/seed/62b49a5a25937/850/350"
             },
-            "read_at": "2022-04-28T18:37:44.000000Z",
-            "created_at": "2022-04-27T17:35:06.000000Z"
+            "read_at": "2022-06-25T18:54:37.000000Z",
+            "created_at": "2022-06-25T18:52:40.000000Z"
         },
         {
-            "id": "2db2374a-a281-4901-a3c3-26d9c7909f20",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_SENDED",
-                "initiator": {
-                    "id": 70,
-                    "name": "Jakayla Boehm",
-                    "first_name": "Jakayla",
-                    "profile_image": "https://via.placeholder.com/168x168.png/002266?text=necessitatibus",
-                    "background_image": "https://via.placeholder.com/850x350.png/00cc00?text=dolorum"
-                }
+            "id": "6f46d58e-131e-4bcf-9273-eac80ee29b2c",
+            "message": "Send you a friendship invitation",
+            "friend": {
+                "id": 970,
+                "name": "Autumn Metz",
+                "first_name": "Autumn",
+                "profile_image": "https://picsum.photos/seed/62b49a207bb02/168/168",
+                "background_image": "https://picsum.photos/seed/62b49a207bb11/850/350"
             },
-            "read_at": "2022-04-28T18:37:44.000000Z",
-            "created_at": "2022-04-27T17:35:06.000000Z"
+            "read_at": "2022-06-25T18:54:37.000000Z",
+            "created_at": "2022-06-25T18:52:40.000000Z"
         },
         {
-            "id": "37d3d505-018b-4fe9-839e-c88a37ac0514",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_SENDED",
-                "initiator": {
-                    "id": 47,
-                    "name": "Dorris Osinski",
-                    "first_name": "Dorris",
-                    "profile_image": "https://via.placeholder.com/168x168.png/003388?text=deleniti",
-                    "background_image": "https://via.placeholder.com/850x350.png/00aa22?text=omnis"
-                }
+            "id": "e7feda76-2890-44b4-ac6e-82c9cb44134f",
+            "message": "Send you a friendship invitation",
+            "friend": {
+                "id": 1399,
+                "name": "Liana Boyer",
+                "first_name": "Liana",
+                "profile_image": "https://picsum.photos/seed/62b49a41ae980/168/168",
+                "background_image": "https://picsum.photos/seed/62b49a41ae98f/850/350"
             },
-            "read_at": "2022-04-28T18:37:44.000000Z",
-            "created_at": "2022-04-27T17:35:06.000000Z"
+            "read_at": "2022-06-25T18:54:37.000000Z",
+            "created_at": "2022-06-25T18:52:40.000000Z"
         },
         {
-            "id": "79961bd0-3c01-4268-b56f-b569d77c4cd0",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_SENDED",
-                "initiator": {
-                    "id": 6,
-                    "name": "Dominique Feest",
-                    "first_name": "Dominique",
-                    "profile_image": "https://via.placeholder.com/168x168.png/0077bb?text=ab",
-                    "background_image": "https://via.placeholder.com/850x350.png/003377?text=recusandae"
-                }
+            "id": "7e16083e-cdac-41b8-b59b-f2409cef8f1e",
+            "message": "Accepted your friendship invitation",
+            "friend": {
+                "id": 1195,
+                "name": "Mustafa Hettinger",
+                "first_name": "Mustafa",
+                "profile_image": "https://picsum.photos/seed/62b49a32050f1/168/168",
+                "background_image": "https://picsum.photos/seed/62b49a32050fb/850/350"
             },
-            "read_at": "2022-04-28T18:37:44.000000Z",
-            "created_at": "2022-04-27T17:35:06.000000Z"
+            "read_at": "2022-06-25T18:54:38.000000Z",
+            "created_at": "2022-06-25T18:52:39.000000Z"
         },
         {
-            "id": "bf9274e2-8d5b-431b-84d8-0530351d74ea",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_SENDED",
-                "initiator": {
-                    "id": 202,
-                    "name": "Carmen Mosciski",
-                    "first_name": "Carmen",
-                    "profile_image": "https://via.placeholder.com/168x168.png/00ddaa?text=adipisci",
-                    "background_image": "https://via.placeholder.com/850x350.png/002222?text=eos"
-                }
+            "id": "85e36580-982e-4eb9-88af-1bb7418f5e7f",
+            "message": "Accepted your friendship invitation",
+            "friend": {
+                "id": 1416,
+                "name": "Larry Smith",
+                "first_name": "Larry",
+                "profile_image": "https://picsum.photos/seed/62b49a43025e0/168/168",
+                "background_image": "https://picsum.photos/seed/62b49a43025ea/850/350"
             },
-            "read_at": "2022-04-28T18:37:44.000000Z",
-            "created_at": "2022-04-27T17:35:06.000000Z"
+            "read_at": "2022-06-25T18:54:38.000000Z",
+            "created_at": "2022-06-25T18:52:39.000000Z"
         },
         {
-            "id": "df5f51a7-8b36-4507-9cec-d900a606415a",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_SENDED",
-                "initiator": {
-                    "id": 86,
-                    "name": "Marjorie Harris",
-                    "first_name": "Marjorie",
-                    "profile_image": "https://via.placeholder.com/168x168.png/0055ff?text=exercitationem",
-                    "background_image": "https://via.placeholder.com/850x350.png/0000cc?text=temporibus"
-                }
+            "id": "9b52ee35-dfa9-48b5-9c3a-928050657260",
+            "message": "Send you a friendship invitation",
+            "friend": {
+                "id": 851,
+                "name": "Marcelle Conroy",
+                "first_name": "Marcelle",
+                "profile_image": "https://picsum.photos/seed/62b49a1729fe8/168/168",
+                "background_image": "https://picsum.photos/seed/62b49a1729ff5/850/350"
             },
-            "read_at": "2022-04-28T18:37:45.000000Z",
-            "created_at": "2022-04-27T17:35:06.000000Z"
+            "read_at": "2022-06-25T18:54:38.000000Z",
+            "created_at": "2022-06-25T18:52:39.000000Z"
         },
         {
-            "id": "0f93a785-a706-406e-b37d-1ab087c0f959",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_SENDED",
-                "initiator": {
-                    "id": 135,
-                    "name": "Howard Kassulke",
-                    "first_name": "Howard",
-                    "profile_image": "https://via.placeholder.com/168x168.png/00cc88?text=aut",
-                    "background_image": "https://via.placeholder.com/850x350.png/008899?text=et"
-                }
+            "id": "b1593c6d-4d87-49f3-8b56-688948f69ba9",
+            "message": "Accepted your friendship invitation",
+            "friend": {
+                "id": 474,
+                "name": "Rosa Stiedemann",
+                "first_name": "Rosa",
+                "profile_image": "https://picsum.photos/seed/62b499f809f3b/168/168",
+                "background_image": "https://picsum.photos/seed/62b499f809f46/850/350"
             },
-            "read_at": "2022-04-28T18:37:45.000000Z",
-            "created_at": "2022-04-27T17:35:05.000000Z"
+            "read_at": "2022-06-25T18:54:38.000000Z",
+            "created_at": "2022-06-25T18:52:39.000000Z"
         },
         {
-            "id": "346e3c09-d87d-45ed-8602-01b9427028fe",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_SENDED",
-                "initiator": {
-                    "id": 186,
-                    "name": "Tia Kunze",
-                    "first_name": "Tia",
-                    "profile_image": "https://via.placeholder.com/168x168.png/008844?text=id",
-                    "background_image": "https://via.placeholder.com/850x350.png/00cc66?text=iure"
-                }
+            "id": "bae7bcda-f4f7-419e-89bd-994b9392c651",
+            "message": "Send you a friendship invitation",
+            "friend": {
+                "id": 799,
+                "name": "Robin Bergnaum",
+                "first_name": "Robin",
+                "profile_image": "https://picsum.photos/seed/62b49a131e5ef/168/168",
+                "background_image": "https://picsum.photos/seed/62b49a131e5fa/850/350"
             },
-            "read_at": "2022-04-28T18:37:45.000000Z",
-            "created_at": "2022-04-27T17:35:05.000000Z"
+            "read_at": "2022-06-25T18:54:38.000000Z",
+            "created_at": "2022-06-25T18:52:39.000000Z"
         },
         {
-            "id": "59d6dec6-8383-4388-93c3-fa9729e83d1c",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_SENDED",
-                "initiator": {
-                    "id": 188,
-                    "name": "Santiago Wiza",
-                    "first_name": "Santiago",
-                    "profile_image": "https://via.placeholder.com/168x168.png/00ff66?text=et",
-                    "background_image": "https://via.placeholder.com/850x350.png/0022aa?text=autem"
-                }
+            "id": "b566d8af-a3b4-4d14-9231-1231e51eb35e",
+            "message": "Accepted your friendship invitation",
+            "friend": {
+                "id": 1810,
+                "name": "Delpha Breitenberg",
+                "first_name": "Delpha",
+                "profile_image": "https://picsum.photos/seed/62b49a61e5ea8/168/168",
+                "background_image": "https://picsum.photos/seed/62b49a61e5eb0/850/350"
             },
-            "read_at": "2022-04-28T18:37:45.000000Z",
-            "created_at": "2022-04-27T17:35:05.000000Z"
+            "read_at": "2022-06-25T18:54:38.000000Z",
+            "created_at": "2022-06-25T18:52:38.000000Z"
         },
         {
-            "id": "a6e853e2-5a60-47ed-8237-a500daa4d07a",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_SENDED",
-                "initiator": {
-                    "id": 244,
-                    "name": "Mitchel Dooley",
-                    "first_name": "Mitchel",
-                    "profile_image": "https://via.placeholder.com/168x168.png/004433?text=nobis",
-                    "background_image": "https://via.placeholder.com/850x350.png/00aa55?text=accusamus"
-                }
+            "id": "df9e66a8-fd54-4710-a402-307ddebed075",
+            "message": "Send you a friendship invitation",
+            "friend": {
+                "id": 866,
+                "name": "Julien Wisoky",
+                "first_name": "Julien",
+                "profile_image": "https://picsum.photos/seed/62b49a18693cf/168/168",
+                "background_image": "https://picsum.photos/seed/62b49a18693db/850/350"
             },
-            "read_at": "2022-04-28T18:37:45.000000Z",
-            "created_at": "2022-04-27T17:35:05.000000Z"
+            "read_at": "2022-06-25T18:54:38.000000Z",
+            "created_at": "2022-06-25T18:52:38.000000Z"
         },
         {
-            "id": "c82a10bb-b6fa-40e6-84bd-1a664e0f5ad6",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_SENDED",
-                "initiator": {
-                    "id": 253,
-                    "name": "Vern Konopelski",
-                    "first_name": "Vern",
-                    "profile_image": "https://via.placeholder.com/168x168.png/009999?text=ratione",
-                    "background_image": "https://via.placeholder.com/850x350.png/008877?text=omnis"
-                }
+            "id": "e1051fcd-38b1-45ff-8480-ce89d35f42e8",
+            "message": "Send you a friendship invitation",
+            "friend": {
+                "id": 1092,
+                "name": "Pietro Ferry",
+                "first_name": "Pietro",
+                "profile_image": "https://picsum.photos/seed/62b49a2a0d381/168/168",
+                "background_image": "https://picsum.photos/seed/62b49a2a0d38c/850/350"
             },
-            "read_at": "2022-04-28T18:37:45.000000Z",
-            "created_at": "2022-04-27T17:35:05.000000Z"
+            "read_at": "2022-06-25T18:54:38.000000Z",
+            "created_at": "2022-06-25T18:52:38.000000Z"
         },
         {
-            "id": "d4f7a708-42b1-4e4a-9bea-260116f54f46",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_SENDED",
-                "initiator": {
-                    "id": 216,
-                    "name": "Mittie Baumbach",
-                    "first_name": "Mittie",
-                    "profile_image": "https://via.placeholder.com/168x168.png/0033ff?text=sed",
-                    "background_image": "https://via.placeholder.com/850x350.png/00ccbb?text=culpa"
-                }
+            "id": "21fbf5e1-54f8-4e19-8551-4fea89d6c3d4",
+            "message": "Accepted your friendship invitation",
+            "friend": {
+                "id": 1478,
+                "name": "Brown Keebler",
+                "first_name": "Brown",
+                "profile_image": "https://picsum.photos/seed/62b49a47bff0a/168/168",
+                "background_image": "https://picsum.photos/seed/62b49a47bff15/850/350"
             },
-            "read_at": "2022-04-28T18:37:45.000000Z",
-            "created_at": "2022-04-27T17:35:05.000000Z"
+            "read_at": "2022-06-25T18:54:38.000000Z",
+            "created_at": "2022-06-25T18:52:37.000000Z"
         },
         {
-            "id": "fbb8a8c5-57cc-4ee7-9fb2-c6bfacbd5a84",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_SENDED",
-                "initiator": {
-                    "id": 231,
-                    "name": "Marlene Jast",
-                    "first_name": "Marlene",
-                    "profile_image": "https://via.placeholder.com/168x168.png/00bb88?text=aut",
-                    "background_image": "https://via.placeholder.com/850x350.png/0066cc?text=consequatur"
-                }
+            "id": "3820348c-a637-40ef-ae1f-4a5cf6fd5ac8",
+            "message": "Send you a friendship invitation",
+            "friend": {
+                "id": 1883,
+                "name": "Ericka Purdy",
+                "first_name": "Ericka",
+                "profile_image": "https://picsum.photos/seed/62b49a679e608/168/168",
+                "background_image": "https://picsum.photos/seed/62b49a679e613/850/350"
             },
-            "read_at": "2022-04-28T18:37:45.000000Z",
-            "created_at": "2022-04-27T17:35:05.000000Z"
+            "read_at": "2022-06-25T18:54:38.000000Z",
+            "created_at": "2022-06-25T18:52:37.000000Z"
         },
         {
-            "id": "3c5a9d44-ce02-48ee-a2e7-79577cd9143b",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_SENDED",
-                "initiator": {
-                    "id": 67,
-                    "name": "Marjorie Weimann",
-                    "first_name": "Marjorie",
-                    "profile_image": "https://via.placeholder.com/168x168.png/00ff00?text=assumenda",
-                    "background_image": "https://via.placeholder.com/850x350.png/0066bb?text=culpa"
-                }
+            "id": "8185bfb8-658c-4ab1-93a2-5a4bff671e6f",
+            "message": "Accepted your friendship invitation",
+            "friend": {
+                "id": 1201,
+                "name": "Nicole Prohaska",
+                "first_name": "Nicole",
+                "profile_image": "https://picsum.photos/seed/62b49a3274e98/168/168",
+                "background_image": "https://picsum.photos/seed/62b49a3274ea2/850/350"
             },
-            "read_at": "2022-04-28T18:37:45.000000Z",
-            "created_at": "2022-04-27T17:35:04.000000Z"
+            "read_at": "2022-06-25T18:54:38.000000Z",
+            "created_at": "2022-06-25T18:52:36.000000Z"
         },
         {
-            "id": "3db62a57-dcb6-417e-9f00-fd41dd81fb5d",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_SENDED",
-                "initiator": {
-                    "id": 265,
-                    "name": "Herman Smith",
-                    "first_name": "Herman",
-                    "profile_image": "https://via.placeholder.com/168x168.png/00aabb?text=occaecati",
-                    "background_image": "https://via.placeholder.com/850x350.png/00ff22?text=quis"
-                }
+            "id": "8f660045-239f-4196-896a-01c4e476ecb4",
+            "message": "Send you a friendship invitation",
+            "friend": {
+                "id": 2000,
+                "name": "Verlie Mraz",
+                "first_name": "Verlie",
+                "profile_image": "https://picsum.photos/seed/62b49a70ada3c/168/168",
+                "background_image": "https://picsum.photos/seed/62b49a70ada47/850/350"
             },
-            "read_at": "2022-04-28T18:37:45.000000Z",
-            "created_at": "2022-04-27T17:35:04.000000Z"
+            "read_at": "2022-06-25T18:54:38.000000Z",
+            "created_at": "2022-06-25T18:52:36.000000Z"
         },
         {
-            "id": "6616cb57-3b5e-42df-8ec0-93d45b26c68b",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_SENDED",
-                "initiator": {
-                    "id": 233,
-                    "name": "Kelvin Corkery",
-                    "first_name": "Kelvin",
-                    "profile_image": "https://via.placeholder.com/168x168.png/003333?text=ipsam",
-                    "background_image": "https://via.placeholder.com/850x350.png/00ddee?text=quo"
-                }
+            "id": "4ec78a3e-f97f-44c3-9e78-8f419e0a9fd4",
+            "message": "Send you a friendship invitation",
+            "friend": {
+                "id": 1421,
+                "name": "Vicente Kautzer",
+                "first_name": "Vicente",
+                "profile_image": "https://picsum.photos/seed/62b49a43600b5/168/168",
+                "background_image": "https://picsum.photos/seed/62b49a43600bf/850/350"
             },
-            "read_at": "2022-04-28T18:37:45.000000Z",
-            "created_at": "2022-04-27T17:35:04.000000Z"
+            "read_at": "2022-06-25T18:54:39.000000Z",
+            "created_at": "2022-06-25T18:52:35.000000Z"
         },
         {
-            "id": "a25fe621-c8ae-4b6c-877a-126d45e66e10",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_SENDED",
-                "initiator": {
-                    "id": 241,
-                    "name": "Merl O'Conner",
-                    "first_name": "Merl",
-                    "profile_image": "https://via.placeholder.com/168x168.png/00ccee?text=repudiandae",
-                    "background_image": "https://via.placeholder.com/850x350.png/0077dd?text=ratione"
-                }
+            "id": "71df321a-9301-4f40-ae76-c90bef5156bf",
+            "message": "Send you a friendship invitation",
+            "friend": {
+                "id": 1324,
+                "name": "Lynn Herzog",
+                "first_name": "Lynn",
+                "profile_image": "https://picsum.photos/seed/62b49a3bdf427/168/168",
+                "background_image": "https://picsum.photos/seed/62b49a3bdf42c/850/350"
             },
-            "read_at": "2022-04-28T18:37:45.000000Z",
-            "created_at": "2022-04-27T17:35:04.000000Z"
+            "read_at": "2022-06-25T18:54:39.000000Z",
+            "created_at": "2022-06-25T18:52:35.000000Z"
         },
         {
-            "id": "bba99c4c-c63f-46f1-851f-670bb7aab52f",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_SENDED",
-                "initiator": {
-                    "id": 215,
-                    "name": "Cleora Fadel",
-                    "first_name": "Cleora",
-                    "profile_image": "https://via.placeholder.com/168x168.png/0055aa?text=et",
-                    "background_image": "https://via.placeholder.com/850x350.png/007700?text=recusandae"
-                }
+            "id": "e58d68ac-516a-4706-81e4-24f30a986f76",
+            "message": "Accepted your friendship invitation",
+            "friend": {
+                "id": 1708,
+                "name": "Aaron Stracke",
+                "first_name": "Aaron",
+                "profile_image": "https://picsum.photos/seed/62b49a59bafd4/168/168",
+                "background_image": "https://picsum.photos/seed/62b49a59bafdf/850/350"
             },
-            "read_at": "2022-04-28T18:37:46.000000Z",
-            "created_at": "2022-04-27T17:35:04.000000Z"
+            "read_at": "2022-06-25T18:54:39.000000Z",
+            "created_at": "2022-06-25T18:52:35.000000Z"
         },
         {
-            "id": "c7b019bf-4004-4fef-a4d0-3317a489f8f4",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_SENDED",
-                "initiator": {
-                    "id": 221,
-                    "name": "Douglas Krajcik",
-                    "first_name": "Douglas",
-                    "profile_image": "https://via.placeholder.com/168x168.png/00bb33?text=repellendus",
-                    "background_image": "https://via.placeholder.com/850x350.png/001144?text=qui"
-                }
+            "id": "fdc49366-afed-4502-8d53-2e4c49fb174a",
+            "message": "Accepted your friendship invitation",
+            "friend": {
+                "id": 286,
+                "name": "Mitchell Heaney",
+                "first_name": "Mitchell",
+                "profile_image": "https://picsum.photos/seed/62b499e874aae/168/168",
+                "background_image": "https://picsum.photos/seed/62b499e874ab9/850/350"
             },
-            "read_at": "2022-04-28T18:37:46.000000Z",
-            "created_at": "2022-04-27T17:35:04.000000Z"
+            "read_at": "2022-06-25T18:54:39.000000Z",
+            "created_at": "2022-06-25T18:52:35.000000Z"
         },
         {
-            "id": "e9f2b8cd-cdf9-48b9-be2f-7d61406418f2",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_SENDED",
-                "initiator": {
-                    "id": 76,
-                    "name": "Kaylah Hane",
-                    "first_name": "Kaylah",
-                    "profile_image": "https://via.placeholder.com/168x168.png/00bbbb?text=quod",
-                    "background_image": "https://via.placeholder.com/850x350.png/000099?text=autem"
-                }
+            "id": "1aba9f8c-accd-43cf-a844-dd0a1a3d910e",
+            "message": "Accepted your friendship invitation",
+            "friend": {
+                "id": 390,
+                "name": "Alexys O'Keefe",
+                "first_name": "Alexys",
+                "profile_image": "https://picsum.photos/seed/62b499f0a0a2b/168/168",
+                "background_image": "https://picsum.photos/seed/62b499f0a0a36/850/350"
             },
-            "read_at": "2022-04-28T18:37:46.000000Z",
-            "created_at": "2022-04-27T17:35:04.000000Z"
+            "read_at": "2022-06-25T18:54:39.000000Z",
+            "created_at": "2022-06-25T18:52:34.000000Z"
         },
         {
-            "id": "f241a7c7-b9c5-4d83-bebb-3313f92ba757",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_SENDED",
-                "initiator": {
-                    "id": 132,
-                    "name": "Timmy Smith",
-                    "first_name": "Timmy",
-                    "profile_image": "https://via.placeholder.com/168x168.png/000088?text=dolore",
-                    "background_image": "https://via.placeholder.com/850x350.png/003300?text=soluta"
-                }
+            "id": "83809e54-cdb6-4629-b22a-25bbe126b4f5",
+            "message": "Accepted your friendship invitation",
+            "friend": {
+                "id": 1578,
+                "name": "Rhiannon Douglas",
+                "first_name": "Rhiannon",
+                "profile_image": "https://picsum.photos/seed/62b49a4f9512f/168/168",
+                "background_image": "https://picsum.photos/seed/62b49a4f9513a/850/350"
             },
-            "read_at": "2022-04-28T18:37:46.000000Z",
-            "created_at": "2022-04-27T17:35:04.000000Z"
+            "read_at": "2022-06-25T18:54:39.000000Z",
+            "created_at": "2022-06-25T18:52:34.000000Z"
         },
         {
-            "id": "070c36f8-e960-453b-ad88-21cfe4fbacc1",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_SENDED",
-                "initiator": {
-                    "id": 65,
-                    "name": "Lenny Heller",
-                    "first_name": "Lenny",
-                    "profile_image": "https://via.placeholder.com/168x168.png/00dddd?text=est",
-                    "background_image": "https://via.placeholder.com/850x350.png/00bb11?text=aliquid"
-                }
+            "id": "96639585-71f2-4611-a80d-eef9309543cd",
+            "message": "Send you a friendship invitation",
+            "friend": {
+                "id": 1154,
+                "name": "Ella O'Connell",
+                "first_name": "Ella",
+                "profile_image": "https://picsum.photos/seed/62b49a2edb6d9/168/168",
+                "background_image": "https://picsum.photos/seed/62b49a2edb6e3/850/350"
             },
-            "read_at": "2022-04-28T18:37:46.000000Z",
-            "created_at": "2022-04-27T17:35:03.000000Z"
+            "read_at": "2022-06-25T18:54:39.000000Z",
+            "created_at": "2022-06-25T18:52:34.000000Z"
         },
         {
-            "id": "0aed80dd-eb7b-4884-9fe6-341f22a541e5",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_SENDED",
-                "initiator": {
-                    "id": 196,
-                    "name": "Jazlyn Rogahn",
-                    "first_name": "Jazlyn",
-                    "profile_image": "https://via.placeholder.com/168x168.png/001122?text=dolore",
-                    "background_image": "https://via.placeholder.com/850x350.png/00aadd?text=et"
-                }
+            "id": "ae07b040-e6f6-453b-ba2d-189bf1001132",
+            "message": "Send you a friendship invitation",
+            "friend": {
+                "id": 682,
+                "name": "Jarvis Braun",
+                "first_name": "Jarvis",
+                "profile_image": "https://picsum.photos/seed/62b49a09a665b/168/168",
+                "background_image": "https://picsum.photos/seed/62b49a09a6666/850/350"
             },
-            "read_at": "2022-04-28T18:37:46.000000Z",
-            "created_at": "2022-04-27T17:35:03.000000Z"
+            "read_at": "2022-06-25T18:54:39.000000Z",
+            "created_at": "2022-06-25T18:52:34.000000Z"
         },
         {
-            "id": "6e99ee07-32ac-4e21-b6d7-9169db1b4058",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_SENDED",
-                "initiator": {
-                    "id": 296,
-                    "name": "Valentin Bashirian",
-                    "first_name": "Valentin",
-                    "profile_image": "https://via.placeholder.com/168x168.png/0066bb?text=repellat",
-                    "background_image": "https://via.placeholder.com/850x350.png/00bb99?text=sit"
-                }
+            "id": "ea2229f7-879f-46bb-ba1b-8087dd04219e",
+            "message": "Accepted your friendship invitation",
+            "friend": {
+                "id": 510,
+                "name": "Aric Ernser",
+                "first_name": "Aric",
+                "profile_image": "https://picsum.photos/seed/62b499fb12276/168/168",
+                "background_image": "https://picsum.photos/seed/62b499fb12281/850/350"
             },
-            "read_at": "2022-04-28T18:37:46.000000Z",
-            "created_at": "2022-04-27T17:35:03.000000Z"
+            "read_at": "2022-06-25T18:54:39.000000Z",
+            "created_at": "2022-06-25T18:52:34.000000Z"
         },
         {
-            "id": "0471f31a-a7cf-4371-83f9-17b3adc4f8cb",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_ACCEPTED",
-                "initiator": {
-                    "id": 81,
-                    "name": "Bertrand Kuvalis",
-                    "first_name": "Bertrand",
-                    "profile_image": "https://via.placeholder.com/168x168.png/00cc00?text=illum",
-                    "background_image": "https://via.placeholder.com/850x350.png/0077cc?text=quod"
-                }
+            "id": "7bb0818c-9887-4dfe-9df4-8cf1d91a4983",
+            "message": "Send you a friendship invitation",
+            "friend": {
+                "id": 1570,
+                "name": "Genevieve Rohan",
+                "first_name": "Genevieve",
+                "profile_image": "https://picsum.photos/seed/62b49a4eeff24/168/168",
+                "background_image": "https://picsum.photos/seed/62b49a4eeff2f/850/350"
             },
-            "read_at": "2022-04-28T18:37:46.000000Z",
-            "created_at": "2022-04-27T17:35:00.000000Z"
+            "read_at": "2022-06-25T18:54:39.000000Z",
+            "created_at": "2022-06-25T18:52:33.000000Z"
         },
         {
-            "id": "055fae62-d05f-40a1-bf2f-bbbdc4b8b80c",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_ACCEPTED",
-                "initiator": {
-                    "id": 66,
-                    "name": "Theo Hirthe",
-                    "first_name": "Theo",
-                    "profile_image": "https://via.placeholder.com/168x168.png/00aa11?text=totam",
-                    "background_image": "https://via.placeholder.com/850x350.png/00aa99?text=dolorum"
-                }
+            "id": "9289262f-44ff-483a-ab18-717545a36518",
+            "message": "Accepted your friendship invitation",
+            "friend": {
+                "id": 1788,
+                "name": "Lou Fritsch",
+                "first_name": "Lou",
+                "profile_image": "https://picsum.photos/seed/62b49a603564c/168/168",
+                "background_image": "https://picsum.photos/seed/62b49a6035661/850/350"
             },
-            "read_at": "2022-04-28T18:37:46.000000Z",
-            "created_at": "2022-04-27T17:34:59.000000Z"
+            "read_at": "2022-06-25T18:54:39.000000Z",
+            "created_at": "2022-06-25T18:52:33.000000Z"
         },
         {
-            "id": "32a00cad-f8c6-452a-ba9b-eecfb7aebf4c",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_ACCEPTED",
-                "initiator": {
-                    "id": 183,
-                    "name": "Eldon Terry",
-                    "first_name": "Eldon",
-                    "profile_image": "https://via.placeholder.com/168x168.png/005588?text=minima",
-                    "background_image": "https://via.placeholder.com/850x350.png/0055bb?text=aut"
-                }
+            "id": "9b342e69-17be-4cdb-b652-8c38916e548d",
+            "message": "Send you a friendship invitation",
+            "friend": {
+                "id": 791,
+                "name": "Eulalia Pagac",
+                "first_name": "Eulalia",
+                "profile_image": "https://picsum.photos/seed/62b49a127da92/168/168",
+                "background_image": "https://picsum.photos/seed/62b49a127da9d/850/350"
             },
-            "read_at": "2022-04-28T18:37:46.000000Z",
-            "created_at": "2022-04-27T17:34:59.000000Z"
+            "read_at": "2022-06-25T18:54:39.000000Z",
+            "created_at": "2022-06-25T18:52:33.000000Z"
         },
         {
-            "id": "5ba0d98b-7be9-4052-b67c-b04d73accff2",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_ACCEPTED",
-                "initiator": {
-                    "id": 249,
-                    "name": "Hayden Runolfsson",
-                    "first_name": "Hayden",
-                    "profile_image": "https://via.placeholder.com/168x168.png/00ff11?text=quia",
-                    "background_image": "https://via.placeholder.com/850x350.png/0088aa?text=et"
-                }
+            "id": "ab6d2973-fc80-40d0-ba8a-c3b0673af724",
+            "message": "Send you a friendship invitation",
+            "friend": {
+                "id": 184,
+                "name": "Carlie Grimes",
+                "first_name": "Carlie",
+                "profile_image": "https://picsum.photos/seed/62b499e06ff59/168/168",
+                "background_image": "https://picsum.photos/seed/62b499e06ff64/850/350"
             },
-            "read_at": "2022-04-28T18:37:46.000000Z",
-            "created_at": "2022-04-27T17:34:59.000000Z"
+            "read_at": "2022-06-25T18:54:40.000000Z",
+            "created_at": "2022-06-25T18:52:33.000000Z"
         },
         {
-            "id": "672a1dc8-5dcd-4684-9e73-ec2f9f299706",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_ACCEPTED",
-                "initiator": {
-                    "id": 227,
-                    "name": "Johnson Hackett",
-                    "first_name": "Johnson",
-                    "profile_image": "https://via.placeholder.com/168x168.png/00ddee?text=nostrum",
-                    "background_image": "https://via.placeholder.com/850x350.png/0077dd?text=ducimus"
-                }
+            "id": "c34b26c1-8939-44ca-8a62-13f3e2187f45",
+            "message": "Accepted your friendship invitation",
+            "friend": {
+                "id": 1891,
+                "name": "Josiah Schmeler",
+                "first_name": "Josiah",
+                "profile_image": "https://picsum.photos/seed/62b49a68401fd/168/168",
+                "background_image": "https://picsum.photos/seed/62b49a6840207/850/350"
             },
-            "read_at": "2022-04-28T18:37:46.000000Z",
-            "created_at": "2022-04-27T17:34:59.000000Z"
+            "read_at": "2022-06-25T18:54:40.000000Z",
+            "created_at": "2022-06-25T18:52:33.000000Z"
         },
         {
-            "id": "8aaf6c49-b419-4c84-9e01-e657ae838114",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_ACCEPTED",
-                "initiator": {
-                    "id": 204,
-                    "name": "Esmeralda Shanahan",
-                    "first_name": "Esmeralda",
-                    "profile_image": "https://via.placeholder.com/168x168.png/00aa88?text=occaecati",
-                    "background_image": "https://via.placeholder.com/850x350.png/007755?text=harum"
-                }
+            "id": "15641bd9-7b38-44ac-8693-ac45c37d2a10",
+            "message": "Accepted your friendship invitation",
+            "friend": {
+                "id": 1598,
+                "name": "Marta Conn",
+                "first_name": "Marta",
+                "profile_image": "https://picsum.photos/seed/62b49a5126a1a/168/168",
+                "background_image": "https://picsum.photos/seed/62b49a5126a25/850/350"
             },
-            "read_at": "2022-04-28T18:37:47.000000Z",
-            "created_at": "2022-04-27T17:34:59.000000Z"
+            "read_at": "2022-06-25T18:54:40.000000Z",
+            "created_at": "2022-06-25T18:52:32.000000Z"
         },
         {
-            "id": "972df1f1-dba2-40e5-aaff-793b3d932017",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_ACCEPTED",
-                "initiator": {
-                    "id": 133,
-                    "name": "Bette Wilderman",
-                    "first_name": "Bette",
-                    "profile_image": "https://via.placeholder.com/168x168.png/00bbaa?text=quod",
-                    "background_image": "https://via.placeholder.com/850x350.png/0044aa?text=harum"
-                }
+            "id": "1c563b40-61c6-4038-9fc6-5dd7affcb44b",
+            "message": "Accepted your friendship invitation",
+            "friend": {
+                "id": 412,
+                "name": "Daren Bogisich",
+                "first_name": "Daren",
+                "profile_image": "https://picsum.photos/seed/62b499f2975d5/168/168",
+                "background_image": "https://picsum.photos/seed/62b499f2975e4/850/350"
             },
-            "read_at": "2022-04-28T18:37:47.000000Z",
-            "created_at": "2022-04-27T17:34:59.000000Z"
+            "read_at": "2022-06-25T18:54:40.000000Z",
+            "created_at": "2022-06-25T18:52:32.000000Z"
         },
         {
-            "id": "b7958867-4f72-4fa6-b9be-95955757627d",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_ACCEPTED",
-                "initiator": {
-                    "id": 269,
-                    "name": "Ernesto Considine",
-                    "first_name": "Ernesto",
-                    "profile_image": "https://via.placeholder.com/168x168.png/00bbdd?text=quia",
-                    "background_image": "https://via.placeholder.com/850x350.png/00aadd?text=quae"
-                }
+            "id": "1eaaa6df-85b1-43ee-a8a5-87ee2e4c72e5",
+            "message": "Send you a friendship invitation",
+            "friend": {
+                "id": 1193,
+                "name": "Celestino Deckow",
+                "first_name": "Celestino",
+                "profile_image": "https://picsum.photos/seed/62b49a31d4940/168/168",
+                "background_image": "https://picsum.photos/seed/62b49a31d494b/850/350"
             },
-            "read_at": "2022-04-28T18:37:47.000000Z",
-            "created_at": "2022-04-27T17:34:59.000000Z"
+            "read_at": "2022-06-25T18:54:40.000000Z",
+            "created_at": "2022-06-25T18:52:32.000000Z"
         },
         {
-            "id": "f59952e8-1a4c-4ba6-a583-7d218f0ea047",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_ACCEPTED",
-                "initiator": {
-                    "id": 16,
-                    "name": "Randi Reichel",
-                    "first_name": "Randi",
-                    "profile_image": "https://via.placeholder.com/168x168.png/00dd11?text=aut",
-                    "background_image": "https://via.placeholder.com/850x350.png/00dd33?text=officia"
-                }
+            "id": "20902e03-2332-41fe-ac06-b6bec8e4e0d4",
+            "message": "Accepted your friendship invitation",
+            "friend": {
+                "id": 229,
+                "name": "Camylle Harber",
+                "first_name": "Camylle",
+                "profile_image": "https://picsum.photos/seed/62b499e408504/168/168",
+                "background_image": "https://picsum.photos/seed/62b499e40850e/850/350"
             },
-            "read_at": "2022-04-28T18:37:47.000000Z",
-            "created_at": "2022-04-27T17:34:59.000000Z"
+            "read_at": "2022-06-25T18:54:40.000000Z",
+            "created_at": "2022-06-25T18:52:32.000000Z"
         },
         {
-            "id": "20a5068b-517c-4b68-a2d5-030dcf458dcf",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_ACCEPTED",
-                "initiator": {
-                    "id": 199,
-                    "name": "Berneice Kilback",
-                    "first_name": "Berneice",
-                    "profile_image": "https://via.placeholder.com/168x168.png/003322?text=accusantium",
-                    "background_image": "https://via.placeholder.com/850x350.png/001155?text=officia"
-                }
+            "id": "a959b780-d9fc-4c28-bbf0-20e244063484",
+            "message": "Send you a friendship invitation",
+            "friend": {
+                "id": 1835,
+                "name": "Maud Walker",
+                "first_name": "Maud",
+                "profile_image": "https://picsum.photos/seed/62b49a63da8e4/168/168",
+                "background_image": "https://picsum.photos/seed/62b49a63da8ef/850/350"
             },
-            "read_at": "2022-04-28T18:37:47.000000Z",
-            "created_at": "2022-04-27T17:34:58.000000Z"
+            "read_at": "2022-06-25T18:54:40.000000Z",
+            "created_at": "2022-06-25T18:52:32.000000Z"
         },
         {
-            "id": "7ff80855-503e-487b-b688-c28794503f0e",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_ACCEPTED",
-                "initiator": {
-                    "id": 227,
-                    "name": "Johnson Hackett",
-                    "first_name": "Johnson",
-                    "profile_image": "https://via.placeholder.com/168x168.png/00ddee?text=nostrum",
-                    "background_image": "https://via.placeholder.com/850x350.png/0077dd?text=ducimus"
-                }
+            "id": "b39c3eda-9cee-4565-9cfb-dd03c1bd6f75",
+            "message": "Send you a friendship invitation",
+            "friend": {
+                "id": 897,
+                "name": "Letitia Jaskolski",
+                "first_name": "Letitia",
+                "profile_image": "https://picsum.photos/seed/62b49a1ae0dcc/168/168",
+                "background_image": "https://picsum.photos/seed/62b49a1ae0dd7/850/350"
             },
-            "read_at": "2022-04-28T18:37:47.000000Z",
-            "created_at": "2022-04-27T17:34:58.000000Z"
+            "read_at": "2022-06-25T18:54:40.000000Z",
+            "created_at": "2022-06-25T18:52:32.000000Z"
         },
         {
-            "id": "94bc3282-8b9e-48e1-ad53-016e09109247",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_ACCEPTED",
-                "initiator": {
-                    "id": 240,
-                    "name": "Bradly Heaney",
-                    "first_name": "Bradly",
-                    "profile_image": "https://via.placeholder.com/168x168.png/00cc99?text=quibusdam",
-                    "background_image": "https://via.placeholder.com/850x350.png/0088cc?text=consequatur"
-                }
+            "id": "0205c2a3-8394-41f9-aa91-e5f133143fdd",
+            "message": "Send you a friendship invitation",
+            "friend": {
+                "id": 87,
+                "name": "Darian Runolfsdottir",
+                "first_name": "Darian",
+                "profile_image": "https://picsum.photos/seed/62b499d8917b3/168/168",
+                "background_image": "https://picsum.photos/seed/62b499d8917bf/850/350"
             },
-            "read_at": "2022-04-28T18:37:47.000000Z",
-            "created_at": "2022-04-27T17:34:58.000000Z"
+            "read_at": "2022-06-25T18:54:40.000000Z",
+            "created_at": "2022-06-25T18:52:31.000000Z"
         },
         {
-            "id": "a8cb0700-d207-4e09-87dc-c6bf51bbe4a6",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_ACCEPTED",
-                "initiator": {
-                    "id": 203,
-                    "name": "Regan Kris",
-                    "first_name": "Regan",
-                    "profile_image": "https://via.placeholder.com/168x168.png/007722?text=qui",
-                    "background_image": "https://via.placeholder.com/850x350.png/003333?text=sed"
-                }
+            "id": "9695494a-74cd-4d42-9da2-07331fb7c96f",
+            "message": "Accepted your friendship invitation",
+            "friend": {
+                "id": 818,
+                "name": "Flavio Powlowski",
+                "first_name": "Flavio",
+                "profile_image": "https://picsum.photos/seed/62b49a148d6b1/168/168",
+                "background_image": "https://picsum.photos/seed/62b49a148d6ba/850/350"
             },
-            "read_at": "2022-04-28T18:37:47.000000Z",
-            "created_at": "2022-04-27T17:34:58.000000Z"
+            "read_at": "2022-06-25T18:54:40.000000Z",
+            "created_at": "2022-06-25T18:52:31.000000Z"
         },
         {
-            "id": "c73f60fd-5b3d-46ce-89d7-97fe48bda1b6",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_ACCEPTED",
-                "initiator": {
-                    "id": 76,
-                    "name": "Kaylah Hane",
-                    "first_name": "Kaylah",
-                    "profile_image": "https://via.placeholder.com/168x168.png/00bbbb?text=quod",
-                    "background_image": "https://via.placeholder.com/850x350.png/000099?text=autem"
-                }
+            "id": "a6c94c3a-4e87-40b8-9d40-885638650d50",
+            "message": "Accepted your friendship invitation",
+            "friend": {
+                "id": 1081,
+                "name": "Leonel Bruen",
+                "first_name": "Leonel",
+                "profile_image": "https://picsum.photos/seed/62b49a2931c83/168/168",
+                "background_image": "https://picsum.photos/seed/62b49a2931c8e/850/350"
             },
-            "read_at": "2022-04-28T18:37:47.000000Z",
-            "created_at": "2022-04-27T17:34:58.000000Z"
+            "read_at": "2022-06-25T18:54:40.000000Z",
+            "created_at": "2022-06-25T18:52:31.000000Z"
         },
         {
-            "id": "e9a38966-3bb5-4ee7-8148-88dee30563bd",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_ACCEPTED",
-                "initiator": {
-                    "id": 112,
-                    "name": "Solon Kozey",
-                    "first_name": "Solon",
-                    "profile_image": "https://via.placeholder.com/168x168.png/006600?text=provident",
-                    "background_image": "https://via.placeholder.com/850x350.png/00bbaa?text=nemo"
-                }
+            "id": "1ce44250-de74-4a58-b81a-112c316ace3b",
+            "message": "Accepted your friendship invitation",
+            "friend": {
+                "id": 500,
+                "name": "Hassan Grant",
+                "first_name": "Hassan",
+                "profile_image": "https://picsum.photos/seed/62b499fa3d0f5/168/168",
+                "background_image": "https://picsum.photos/seed/62b499fa3d100/850/350"
             },
-            "read_at": "2022-04-28T18:37:48.000000Z",
-            "created_at": "2022-04-27T17:34:58.000000Z"
+            "read_at": "2022-06-25T18:54:40.000000Z",
+            "created_at": "2022-06-25T18:52:30.000000Z"
         },
         {
-            "id": "fea184dc-9e4e-468f-bcce-b5134351de7a",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_ACCEPTED",
-                "initiator": {
-                    "id": 156,
-                    "name": "Charlene Morar",
-                    "first_name": "Charlene",
-                    "profile_image": "https://via.placeholder.com/168x168.png/00bbee?text=sint",
-                    "background_image": "https://via.placeholder.com/850x350.png/0077bb?text=fugit"
-                }
+            "id": "c3200d84-5e6c-4226-bb51-f68eec11bc79",
+            "message": "Send you a friendship invitation",
+            "friend": {
+                "id": 275,
+                "name": "Brandon Cole",
+                "first_name": "Brandon",
+                "profile_image": "https://picsum.photos/seed/62b499e79b58b/168/168",
+                "background_image": "https://picsum.photos/seed/62b499e79b596/850/350"
             },
-            "read_at": "2022-04-28T18:37:48.000000Z",
-            "created_at": "2022-04-27T17:34:58.000000Z"
+            "read_at": "2022-06-25T18:54:40.000000Z",
+            "created_at": "2022-06-25T18:52:30.000000Z"
         },
         {
-            "id": "0dd97514-287f-447e-b622-fbf303fbb2d2",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_ACCEPTED",
-                "initiator": {
-                    "id": 187,
-                    "name": "Paolo Aufderhar",
-                    "first_name": "Paolo",
-                    "profile_image": "https://via.placeholder.com/168x168.png/0099dd?text=sit",
-                    "background_image": "https://via.placeholder.com/850x350.png/000011?text=nostrum"
-                }
+            "id": "f1ec6bc9-a2c2-4f4e-b737-099088323cd1",
+            "message": "Send you a friendship invitation",
+            "friend": {
+                "id": 377,
+                "name": "Agustin Rippin",
+                "first_name": "Agustin",
+                "profile_image": "https://picsum.photos/seed/62b499ef97821/168/168",
+                "background_image": "https://picsum.photos/seed/62b499ef9782c/850/350"
             },
-            "read_at": "2022-04-28T18:37:48.000000Z",
-            "created_at": "2022-04-27T17:34:57.000000Z"
+            "read_at": "2022-06-25T18:54:41.000000Z",
+            "created_at": "2022-06-25T18:52:30.000000Z"
         },
         {
-            "id": "2c70985f-e301-4fa9-9ec1-f43a0527d29c",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_ACCEPTED",
-                "initiator": {
-                    "id": 280,
-                    "name": "Lavonne Bartoletti",
-                    "first_name": "Lavonne",
-                    "profile_image": "https://via.placeholder.com/168x168.png/0099cc?text=qui",
-                    "background_image": "https://via.placeholder.com/850x350.png/00bbdd?text=culpa"
-                }
+            "id": "0f441ac1-f935-430a-9260-366daa00f5f9",
+            "message": "Send you a friendship invitation",
+            "friend": {
+                "id": 1569,
+                "name": "Denis Hamill",
+                "first_name": "Denis",
+                "profile_image": "https://picsum.photos/seed/62b49a4edc6ee/168/168",
+                "background_image": "https://picsum.photos/seed/62b49a4edc6f9/850/350"
             },
-            "read_at": "2022-04-28T18:37:48.000000Z",
-            "created_at": "2022-04-27T17:34:57.000000Z"
+            "read_at": "2022-06-25T18:54:41.000000Z",
+            "created_at": "2022-06-25T18:52:29.000000Z"
         },
         {
-            "id": "5d42c48a-3cb7-4009-a1ee-f72ce7041261",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_ACCEPTED",
-                "initiator": {
-                    "id": 37,
-                    "name": "Giovani Stehr",
-                    "first_name": "Giovani",
-                    "profile_image": "https://via.placeholder.com/168x168.png/000088?text=ad",
-                    "background_image": "https://via.placeholder.com/850x350.png/002266?text=magni"
-                }
+            "id": "8443bed6-74ee-4de7-924d-0bcfa06de322",
+            "message": "Accepted your friendship invitation",
+            "friend": {
+                "id": 1391,
+                "name": "Tiara Lang",
+                "first_name": "Tiara",
+                "profile_image": "https://picsum.photos/seed/62b49a41177df/168/168",
+                "background_image": "https://picsum.photos/seed/62b49a41177e9/850/350"
             },
-            "read_at": "2022-04-28T18:37:48.000000Z",
-            "created_at": "2022-04-27T17:34:57.000000Z"
+            "read_at": "2022-06-25T18:54:41.000000Z",
+            "created_at": "2022-06-25T18:52:29.000000Z"
         },
         {
-            "id": "8197eb74-d3a7-43ca-99cc-616c3d1b05f7",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_ACCEPTED",
-                "initiator": {
-                    "id": 37,
-                    "name": "Giovani Stehr",
-                    "first_name": "Giovani",
-                    "profile_image": "https://via.placeholder.com/168x168.png/000088?text=ad",
-                    "background_image": "https://via.placeholder.com/850x350.png/002266?text=magni"
-                }
+            "id": "ac6a132d-f597-4eac-acc0-42f0a4f303d0",
+            "message": "Send you a friendship invitation",
+            "friend": {
+                "id": 1331,
+                "name": "Aniyah Trantow",
+                "first_name": "Aniyah",
+                "profile_image": "https://picsum.photos/seed/62b49a3c6dd67/168/168",
+                "background_image": "https://picsum.photos/seed/62b49a3c6dd72/850/350"
             },
-            "read_at": "2022-04-28T18:37:48.000000Z",
-            "created_at": "2022-04-27T17:34:57.000000Z"
+            "read_at": "2022-06-25T18:54:41.000000Z",
+            "created_at": "2022-06-25T18:52:29.000000Z"
         },
         {
-            "id": "b0255d05-8429-4322-bd89-5184cf93dc05",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_ACCEPTED",
-                "initiator": {
-                    "id": 212,
-                    "name": "Arnaldo Lehner",
-                    "first_name": "Arnaldo",
-                    "profile_image": "https://via.placeholder.com/168x168.png/0066ee?text=aspernatur",
-                    "background_image": "https://via.placeholder.com/850x350.png/003388?text=rem"
-                }
+            "id": "c4ffa76b-d576-454f-97e9-f1fe20b89018",
+            "message": "Accepted your friendship invitation",
+            "friend": {
+                "id": 960,
+                "name": "Sadie Zulauf",
+                "first_name": "Sadie",
+                "profile_image": "https://picsum.photos/seed/62b49a1fb4c86/168/168",
+                "background_image": "https://picsum.photos/seed/62b49a1fb4c90/850/350"
             },
-            "read_at": "2022-04-28T18:37:48.000000Z",
-            "created_at": "2022-04-27T17:34:57.000000Z"
+            "read_at": "2022-06-25T18:54:41.000000Z",
+            "created_at": "2022-06-25T18:52:29.000000Z"
         },
         {
-            "id": "8514d5b3-845c-4ff2-b638-767979719439",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_ACCEPTED",
-                "initiator": {
-                    "id": 49,
-                    "name": "Vaughn Koepp",
-                    "first_name": "Vaughn",
-                    "profile_image": "https://via.placeholder.com/168x168.png/000022?text=autem",
-                    "background_image": "https://via.placeholder.com/850x350.png/00aa66?text=voluptatem"
-                }
+            "id": "ee8f51cd-9bf7-4cba-a5b0-168977b594c4",
+            "message": "Accepted your friendship invitation",
+            "friend": {
+                "id": 1785,
+                "name": "Joesph Kautzer",
+                "first_name": "Joesph",
+                "profile_image": "https://picsum.photos/seed/62b49a5ff12d9/168/168",
+                "background_image": "https://picsum.photos/seed/62b49a5ff12e4/850/350"
             },
-            "read_at": "2022-04-28T18:37:48.000000Z",
-            "created_at": "2022-04-27T17:34:56.000000Z"
+            "read_at": "2022-06-25T18:54:41.000000Z",
+            "created_at": "2022-06-25T18:52:28.000000Z"
         },
         {
-            "id": "a148f65d-b24f-4174-bc69-17892a8af6d4",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_ACCEPTED",
-                "initiator": {
-                    "id": 5,
-                    "name": "Caden Schiller",
-                    "first_name": "Caden",
-                    "profile_image": "https://via.placeholder.com/168x168.png/0077ee?text=molestiae",
-                    "background_image": "https://via.placeholder.com/850x350.png/0044ff?text=dolorem"
-                }
+            "id": "8cd2d23a-3e9a-4342-a9f7-59b1dc82f0c5",
+            "message": "Send you a friendship invitation",
+            "friend": {
+                "id": 1291,
+                "name": "Oral Rosenbaum",
+                "first_name": "Oral",
+                "profile_image": "https://picsum.photos/seed/62b49a3969a9d/168/168",
+                "background_image": "https://picsum.photos/seed/62b49a3969aa6/850/350"
             },
-            "read_at": "2022-04-28T18:37:48.000000Z",
-            "created_at": "2022-04-27T17:34:56.000000Z"
-        },
-        {
-            "id": "b237a87f-0df7-42a7-b822-eae16dd8d4b9",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_ACCEPTED",
-                "initiator": {
-                    "id": 104,
-                    "name": "Calista Dare",
-                    "first_name": "Calista",
-                    "profile_image": "https://via.placeholder.com/168x168.png/00bb00?text=sint",
-                    "background_image": "https://via.placeholder.com/850x350.png/004455?text=quidem"
-                }
-            },
-            "read_at": "2022-04-28T18:37:48.000000Z",
-            "created_at": "2022-04-27T17:34:56.000000Z"
-        },
-        {
-            "id": "d5aed55b-02f0-49f3-8eac-83232516f16b",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_ACCEPTED",
-                "initiator": {
-                    "id": 180,
-                    "name": "Jorge Sauer",
-                    "first_name": "Jorge",
-                    "profile_image": "https://via.placeholder.com/168x168.png/00aa33?text=totam",
-                    "background_image": "https://via.placeholder.com/850x350.png/008822?text=sequi"
-                }
-            },
-            "read_at": "2022-04-28T18:37:48.000000Z",
-            "created_at": "2022-04-27T17:34:56.000000Z"
-        },
-        {
-            "id": "d6e3cbd7-f2d2-46bd-bf0f-38600c3318f6",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_ACCEPTED",
-                "initiator": {
-                    "id": 215,
-                    "name": "Cleora Fadel",
-                    "first_name": "Cleora",
-                    "profile_image": "https://via.placeholder.com/168x168.png/0055aa?text=et",
-                    "background_image": "https://via.placeholder.com/850x350.png/007700?text=recusandae"
-                }
-            },
-            "read_at": "2022-04-28T18:37:49.000000Z",
-            "created_at": "2022-04-27T17:34:56.000000Z"
-        },
-        {
-            "id": "86c2e9c7-001d-44d0-b21b-88207e97e16c",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_ACCEPTED",
-                "initiator": {
-                    "id": 227,
-                    "name": "Johnson Hackett",
-                    "first_name": "Johnson",
-                    "profile_image": "https://via.placeholder.com/168x168.png/00ddee?text=nostrum",
-                    "background_image": "https://via.placeholder.com/850x350.png/0077dd?text=ducimus"
-                }
-            },
-            "read_at": "2022-04-28T18:37:49.000000Z",
-            "created_at": "2022-04-27T17:34:55.000000Z"
-        },
-        {
-            "id": "e9d934d5-c799-478e-b123-38e2852288a6",
-            "data": {
-                "type": "FRIENDSHIP_INVITATION_ACCEPTED",
-                "initiator": {
-                    "id": 248,
-                    "name": "August Harvey",
-                    "first_name": "August",
-                    "profile_image": "https://via.placeholder.com/168x168.png/004444?text=ad",
-                    "background_image": "https://via.placeholder.com/850x350.png/00dd00?text=non"
-                }
-            },
-            "read_at": "2022-04-28T18:37:49.000000Z",
-            "created_at": "2022-04-27T17:34:55.000000Z"
+            "read_at": "2022-06-25T18:54:41.000000Z",
+            "created_at": "2022-06-25T18:52:27.000000Z"
         }
     ],
     "message": "All notifications marked as read"

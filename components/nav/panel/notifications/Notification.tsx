@@ -4,37 +4,28 @@ import { useAppDispatch } from '@hooks/redux';
 import { SingleItem } from '@components/nav/panel/inc/SingleItem';
 
 import { toggleActive } from '@redux/slices/NotificationsSlice';
-import { notificationsMessages } from '@constants/notificationsMessages';
 
-import type { UserType } from '@ctypes/features/UserType';
+import type { NotificationType } from '@ctypes/features/NotificationType';
 
-interface NotificationProps {
-    data: {
-        type: 'FRIENDSHIP_INVITATION_SENDED' | 'FRIENDSHIP_INVITATION_ACCEPTED';
-        initiator: UserType;
-    };
-    read_at: string | null;
-}
+interface NotificationProps extends NotificationType {}
 
-export const Notification = ({ data, read_at }: NotificationProps) => {
+export const Notification = ({ message, friend, link, read_at }: NotificationProps) => {
     const router = useRouter();
     const dispatch = useAppDispatch();
 
-    const handleRedirectToInvites = () => {
+    const handleRedirect = () => {
         dispatch(toggleActive(false));
-        router.push('/friends/invites');
+        router.push(link);
     };
-
-    const { initiator } = data;
 
     return (
         <SingleItem
             ariaLabel="Redirect to invites list"
-            title={initiator.name}
-            description={notificationsMessages[data.type]}
-            image={initiator.profile_image}
-            isActive={!!read_at}
-            callback={handleRedirectToInvites}
+            title={friend.name}
+            description={message}
+            image={friend.profile_image}
+            isActive={!!!read_at}
+            callback={handleRedirect}
         />
     );
 };

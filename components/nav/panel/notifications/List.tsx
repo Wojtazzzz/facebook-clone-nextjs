@@ -1,4 +1,6 @@
-import { memo } from 'react';
+import { usePaginatedData } from '@hooks/usePaginatedData';
+import { useNotifications } from '@hooks/useNotifications';
+import { memo, useEffect } from 'react';
 
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Notification } from '@components/nav/panel/notifications/Notification';
@@ -7,17 +9,17 @@ import { EmptyList } from '@components/nav/panel/inc/EmptyList';
 import { ApiError } from '@components/inc/ApiError';
 
 import type { NotificationType } from '@ctypes/features/NotificationType';
-import type { UsePaginatedDataState } from '@ctypes/UsePaginatedDataState';
 
-interface ListProps {
-    data: NotificationType[];
-    state: UsePaginatedDataState;
-    isEmpty: boolean;
-    isReachedEnd: boolean;
-    loadMore: () => void;
-}
+export const List = memo(() => {
+    const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginatedData<NotificationType>('/api/notifications');
+    const { markAsRead } = useNotifications();
 
-export const List = memo<ListProps>(({ data, state, isEmpty, isReachedEnd, loadMore }) => {
+    useEffect(() => {
+        if (state !== 'SUCCESS') return;
+
+        markAsRead();
+    }, [state, markAsRead]);
+
     if (state === 'LOADING') return <Loader testId="notifications-fetching_loader" />;
     if (state === 'ERROR') return <ApiError />;
     if (isEmpty) return <EmptyList title="Your Notifications list is empty" />;

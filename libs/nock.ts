@@ -5,7 +5,7 @@ type success = 200 | 201 | 202 | 204;
 type userError = 400 | 401 | 403 | 404 | 405 | 408 | 413 | 422;
 type serverError = 500 | 501 | 502 | 503 | 504;
 type status = success | userError | serverError;
-type methods = 'get' | 'post' | 'delete';
+type methods = 'get' | 'post' | 'delete' | 'put';
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'http://localhost:8000';
 
