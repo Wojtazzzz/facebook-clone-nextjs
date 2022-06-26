@@ -10,7 +10,7 @@ import { EmptyList } from '@components/nav/panel/inc/EmptyList';
 import type { UserType } from '@ctypes/features/UserType';
 
 export const Messages = memo(() => {
-    const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginatedData<UserType>('/api/messages/messenger');
+    const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginatedData<UserType>('/api/messages');
 
     if (state === 'LOADING') return <Loader testId="messenger-fetching_loader" />;
     if (state === 'ERROR') return <ApiError />;

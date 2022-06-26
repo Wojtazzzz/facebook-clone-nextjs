@@ -12,7 +12,7 @@ describe('Messenger component', () => {
     });
 
     it('render loaders on initial fetching users to text', () => {
-        mock('/api/messages/messenger?page=1', 200, MessengerFirstPageJson);
+        mock('/api/messages?page=1', 200, MessengerFirstPageJson);
 
         renderWithDefaultData(<Messages />);
 
@@ -22,7 +22,7 @@ describe('Messenger component', () => {
     });
 
     it('render properly first list of users to text', async () => {
-        mock('/api/messages/messenger?page=1', 200, MessengerFirstPageJson);
+        mock('/api/messages?page=1', 200, MessengerFirstPageJson);
 
         renderWithDefaultData(<Messages />);
 
@@ -34,7 +34,7 @@ describe('Messenger component', () => {
     });
 
     it('render properly empty component when response return empty array', async () => {
-        mock('/api/messages/messenger?page=1', 200, MessengerEmptyPageJson);
+        mock('/api/messages?page=1', 200, MessengerEmptyPageJson);
 
         renderWithDefaultData(<Messages />);
 
@@ -43,7 +43,7 @@ describe('Messenger component', () => {
     });
 
     it('render properly error component when api return error', async () => {
-        mock('/api/messages/messenger?page=1', 500, MessengerEmptyPageJson);
+        mock('/api/messages?page=1', 500, MessengerEmptyPageJson);
 
         renderWithDefaultData(<Messages />);
 

@@ -10,6 +10,7 @@ import { Header } from '@components/nav/panel/inc/Header';
 describe('Messenger component', () => {
     beforeEach(() => {
         mock('/api/user', 200, RootUserJson);
+        mock('/api/messages?page=1', 200, MessengerFirstPageJson);
     });
 
     it('renders with properly title', () => {
@@ -21,8 +22,6 @@ describe('Messenger component', () => {
     });
 
     it('close messenger when click on overlay', async () => {
-        mock('/api/messages/messenger?page=1', 200, MessengerFirstPageJson);
-
         const user = userEvent.setup();
 
         renderWithDefaultData(<Panel />);

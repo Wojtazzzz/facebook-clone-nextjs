@@ -11,7 +11,8 @@ import { toggleActive } from '@redux/slices/MessengerSlice';
 
 export const Messenger = memo(() => {
     const dispatch = useAppDispatch();
-    useKey('Escape', () => dispatch(toggleActive(false)));
+    const handleClose = () => dispatch(toggleActive(false));
+    useKey('Escape', handleClose);
 
     return (
         <>
@@ -30,7 +31,7 @@ export const Messenger = memo(() => {
                 </div>
             </div>
 
-            <CloseOverlay testid="messenger-overlay" zIndex={10} callback={() => dispatch(toggleActive(false))} />
+            <CloseOverlay testid="messenger-overlay" zIndex={10} callback={handleClose} />
         </>
     );
 });
