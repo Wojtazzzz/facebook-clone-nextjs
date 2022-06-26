@@ -21,9 +21,8 @@ export const Friend = ({ friend }: FriendProps) => {
 
     return (
         <SingleItem
-            ariaLabel="Open chat"
             title={friend.name}
-            description="Click to open chat"
+            message="Click to open chat"
             image={friend.profile_image}
             callback={handleOpenChat}
         />

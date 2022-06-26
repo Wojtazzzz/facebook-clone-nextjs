@@ -20,9 +20,8 @@ export const Notification = ({ message, friend, link, read_at }: NotificationPro
 
     return (
         <SingleItem
-            ariaLabel="Redirect to invites list"
             title={friend.name}
-            description={message}
+            message={message}
             image={friend.profile_image}
             isActive={!!!read_at}
             callback={handleRedirect}

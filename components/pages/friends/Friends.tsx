@@ -8,7 +8,7 @@ import { Loader } from '@components/pages/friends/inc/Loader';
 
 import { isFriendsListType } from '@utils/isFriendsListType';
 
-import type { FriendsListType } from '@ctypes/features/FriendsListType';
+import type { FriendsListType } from '@ctypes/FriendsListType';
 
 export const Friends = () => {
     const {

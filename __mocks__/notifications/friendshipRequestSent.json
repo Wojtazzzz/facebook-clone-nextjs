@@ -1,0 +1,14 @@
+{
+    "id": "de1a1e02-8a0b-4ed0-ba68-230144b15dca",
+    "message": "Sent you a friendship invitation",
+    "friend": {
+        "id": 1243,
+        "name": "Jan Hirthe",
+        "first_name": "Jan",
+        "profile_image": "https://picsum.photos/seed/62b847fd09aa2/168/168",
+        "background_image": "https://picsum.photos/seed/62b847fd09aaa/850/350"
+    },
+    "link": "/friends/invites",
+    "read_at": "2022-06-26T16:30:22.000000Z",
+    "created_at": "2022-06-26T16:29:56.000000Z"
+}

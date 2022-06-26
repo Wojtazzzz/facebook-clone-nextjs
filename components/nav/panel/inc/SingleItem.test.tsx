@@ -12,9 +12,8 @@ describe('SingleItem component', () => {
     it('it renders user avatar, name, label', () => {
         renderWithDefaultData(
             <SingleItem
-                ariaLabel="Some label"
                 title={jsonUser.name}
-                description="Click to open chat"
+                message="Click to open chat"
                 image={jsonUser.profile_image}
                 callback={mockCallback}
             />
@@ -32,15 +31,14 @@ describe('SingleItem component', () => {
     it('it execute callback function on click', async () => {
         renderWithDefaultData(
             <SingleItem
-                ariaLabel="Some label"
                 title={jsonUser.name}
-                description="Click to open chat"
+                message="Click to open chat"
                 image={jsonUser.profile_image}
                 callback={mockCallback}
             />
         );
 
-        const button = screen.getByLabelText('Some label');
+        const button = screen.getByRole('button');
         await user.click(button);
 
         expect(mockCallback).toBeCalledTimes(1);

@@ -1,4 +1,4 @@
-import { FriendsListType } from '@ctypes/features/FriendsListType';
+import { FriendsListType } from '@ctypes/FriendsListType';
 
 const constValuesOfType: FriendsListType[] = ['SUGGESTS', 'INVITES', 'POKES', 'FRIENDS', undefined];
 type TYPE = typeof constValuesOfType[number];

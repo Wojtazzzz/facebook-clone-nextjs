@@ -11,7 +11,7 @@ import { Actions } from '@components/pages/friends/inc/Actions';
 import { getPathForPagination } from '@utils/getPathForPagination';
 
 import type { UserType } from '@ctypes/features/UserType';
-import type { FriendsListType } from '@ctypes/features/FriendsListType';
+import type { FriendsListType } from '@ctypes/FriendsListType';
 
 interface ListProps {
     userId: number;

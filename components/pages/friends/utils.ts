@@ -1,4 +1,4 @@
-import type { FriendsListType } from '@ctypes/features/FriendsListType';
+import type { FriendsListType } from '@ctypes/FriendsListType';
 
 export const toCapitalizeCase = (name: FriendsListType) => {
     if (!name) {

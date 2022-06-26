@@ -1,4 +1,4 @@
-import type { FriendsListType } from '@ctypes/features/FriendsListType';
+import type { FriendsListType } from '@ctypes/FriendsListType';
 
 export const getPathForPagination = (type: FriendsListType, userId = 0) => {
     const listType = type?.toUpperCase() as FriendsListType;

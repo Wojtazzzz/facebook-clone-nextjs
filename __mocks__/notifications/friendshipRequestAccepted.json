@@ -1,0 +1,14 @@
+{
+    "id": "1b2e5d00-1a16-42ab-b82f-55fb77b490c9",
+    "message": "Accepted your friendship invitation",
+    "friend": {
+        "id": 1184,
+        "name": "Amara Flatley",
+        "first_name": "Amara",
+        "profile_image": "https://picsum.photos/seed/62b847f896768/168/168",
+        "background_image": "https://picsum.photos/seed/62b847f896772/850/350"
+    },
+    "link": "/profile/1184",
+    "read_at": "2022-06-26T16:30:22.000000Z",
+    "created_at": "2022-06-26T16:29:55.000000Z"
+}

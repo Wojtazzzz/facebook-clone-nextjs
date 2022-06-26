@@ -1,132 +1,142 @@
 [
     {
-        "id": "1b5e47f5-fe63-4c3f-b054-90aba0dec307",
+        "id": "c4b1d20a-2491-4096-b248-c61bbe9802d7",
+        "message": "Sent you a friendship invitation",
+        "friend": {
+            "id": 1760,
+            "name": "Destiney Schamberger",
+            "first_name": "Destiney",
+            "profile_image": "https://picsum.photos/seed/62b848242a4a9/168/168",
+            "background_image": "https://picsum.photos/seed/62b848242a4b4/850/350"
+        },
+        "link": "/friends/invites",
+        "read_at": "2022-06-26T16:30:22.000000Z",
+        "created_at": "2022-06-26T16:29:56.000000Z"
+    },
+    {
+        "id": "de1a1e02-8a0b-4ed0-ba68-230144b15dca",
+        "message": "Sent you a friendship invitation",
+        "friend": {
+            "id": 1243,
+            "name": "Jan Hirthe",
+            "first_name": "Jan",
+            "profile_image": "https://picsum.photos/seed/62b847fd09aa2/168/168",
+            "background_image": "https://picsum.photos/seed/62b847fd09aaa/850/350"
+        },
+        "link": "/friends/invites",
+        "read_at": "2022-06-26T16:30:22.000000Z",
+        "created_at": "2022-06-26T16:29:56.000000Z"
+    },
+    {
+        "id": "ef04abe7-bf69-4b5e-97bf-f147b6b918a0",
         "message": "Accepted your friendship invitation",
         "friend": {
-            "id": 336,
-            "name": "Theresa Klein",
-            "first_name": "Theresa",
-            "profile_image": "https://picsum.photos/seed/62b499ec6ac8d/168/168",
-            "background_image": "https://picsum.photos/seed/62b499ec6ac98/850/350"
+            "id": 1173,
+            "name": "Elouise Ullrich",
+            "first_name": "Elouise",
+            "profile_image": "https://picsum.photos/seed/62b847f7a872c/168/168",
+            "background_image": "https://picsum.photos/seed/62b847f7a8735/850/350"
         },
-        "read_at": "2022-06-25T18:45:43.000000Z",
-        "created_at": "2022-06-25T18:31:28.000000Z"
+        "link": "/profile/1173",
+        "read_at": "2022-06-26T16:30:22.000000Z",
+        "created_at": "2022-06-26T16:29:56.000000Z"
     },
     {
-        "id": "3f652ec9-b1c7-4bf4-b738-533dff2a5e32",
+        "id": "fca8e07b-2d7b-4569-b4dc-a059642c5cac",
         "message": "Accepted your friendship invitation",
         "friend": {
-            "id": 1856,
-            "name": "Gail Johns",
-            "first_name": "Gail",
-            "profile_image": "https://picsum.photos/seed/62b49a65800ce/168/168",
-            "background_image": "https://picsum.photos/seed/62b49a65800d9/850/350"
+            "id": 1647,
+            "name": "Lulu Ratke",
+            "first_name": "Lulu",
+            "profile_image": "https://picsum.photos/seed/62b8481b9f310/168/168",
+            "background_image": "https://picsum.photos/seed/62b8481b9f318/850/350"
         },
-        "read_at": "2022-06-25T18:45:43.000000Z",
-        "created_at": "2022-06-25T18:31:28.000000Z"
+        "link": "/profile/1647",
+        "read_at": "2022-06-26T16:30:22.000000Z",
+        "created_at": "2022-06-26T16:29:56.000000Z"
     },
     {
-        "id": "56014b3a-7feb-41e5-9f88-4686cacb8357",
-        "message": "Send you a friendship invitation",
+        "id": "0a5b9a97-6e8b-4789-be43-1d1d57213987",
+        "message": "Sent you a friendship invitation",
         "friend": {
-            "id": 1821,
-            "name": "Aryanna Zboncak",
-            "first_name": "Aryanna",
-            "profile_image": "https://picsum.photos/seed/62b49a62c3510/168/168",
-            "background_image": "https://picsum.photos/seed/62b49a62c3517/850/350"
+            "id": 793,
+            "name": "Marcel Fisher",
+            "first_name": "Marcel",
+            "profile_image": "https://picsum.photos/seed/62b847db3537d/168/168",
+            "background_image": "https://picsum.photos/seed/62b847db35388/850/350"
         },
-        "read_at": "2022-06-25T18:45:43.000000Z",
-        "created_at": "2022-06-25T18:31:28.000000Z"
+        "link": "/friends/invites",
+        "read_at": "2022-06-26T16:30:22.000000Z",
+        "created_at": "2022-06-26T16:29:55.000000Z"
     },
     {
-        "id": "5b846f45-a692-4d9b-9aaa-13a8be5bebfa",
-        "message": "Send you a friendship invitation",
-        "friend": {
-            "id": 1527,
-            "name": "Van Effertz",
-            "first_name": "Van",
-            "profile_image": "https://picsum.photos/seed/62b49a4b8b86e/168/168",
-            "background_image": "https://picsum.photos/seed/62b49a4b8b878/850/350"
-        },
-        "read_at": "2022-06-25T18:45:43.000000Z",
-        "created_at": "2022-06-25T18:31:28.000000Z"
-    },
-    {
-        "id": "76e693ed-5880-47e4-aa9d-0a8e9489de90",
+        "id": "1b2e5d00-1a16-42ab-b82f-55fb77b490c9",
         "message": "Accepted your friendship invitation",
         "friend": {
-            "id": 1921,
-            "name": "Tyson Goodwin",
-            "first_name": "Tyson",
-            "profile_image": "https://picsum.photos/seed/62b49a6a8a477/168/168",
-            "background_image": "https://picsum.photos/seed/62b49a6a8a47f/850/350"
+            "id": 1184,
+            "name": "Amara Flatley",
+            "first_name": "Amara",
+            "profile_image": "https://picsum.photos/seed/62b847f896768/168/168",
+            "background_image": "https://picsum.photos/seed/62b847f896772/850/350"
         },
-        "read_at": "2022-06-25T18:45:43.000000Z",
-        "created_at": "2022-06-25T18:31:28.000000Z"
+        "link": "/profile/1184",
+        "read_at": "2022-06-26T16:30:22.000000Z",
+        "created_at": "2022-06-26T16:29:55.000000Z"
     },
     {
-        "id": "7ab9822e-c2a0-415f-9a0a-6803bc67a981",
-        "message": "Send you a friendship invitation",
+        "id": "3e465b3b-5ec9-4846-8046-ea04ee452889",
+        "message": "Poked you 560 times in a row",
         "friend": {
-            "id": 740,
-            "name": "Francisca Nicolas",
-            "first_name": "Francisca",
-            "profile_image": "https://picsum.photos/seed/62b49a0e5603e/168/168",
-            "background_image": "https://picsum.photos/seed/62b49a0e56049/850/350"
+            "id": 366,
+            "name": "Faye Hauck",
+            "first_name": "Faye",
+            "profile_image": "https://picsum.photos/seed/62b847bb5ee26/168/168",
+            "background_image": "https://picsum.photos/seed/62b847bb5ee31/850/350"
         },
-        "read_at": "2022-06-25T18:45:43.000000Z",
-        "created_at": "2022-06-25T18:31:28.000000Z"
+        "link": "/friends/pokes",
+        "read_at": "2022-06-26T16:30:22.000000Z",
+        "created_at": "2022-06-26T16:29:55.000000Z"
     },
     {
-        "id": "7fb98c74-29ef-4e5d-a048-7d287bf0f2d6",
-        "message": "Send you a friendship invitation",
+        "id": "4820a06f-8c31-4da4-8cf1-b40b7ae5f9fb",
+        "message": "Poked you 6864 times in a row",
         "friend": {
-            "id": 395,
-            "name": "Hollie Schiller",
-            "first_name": "Hollie",
-            "profile_image": "https://picsum.photos/seed/62b499f10abe0/168/168",
-            "background_image": "https://picsum.photos/seed/62b499f10abf0/850/350"
+            "id": 592,
+            "name": "Melisa Borer",
+            "first_name": "Melisa",
+            "profile_image": "https://picsum.photos/seed/62b847cc4289a/168/168",
+            "background_image": "https://picsum.photos/seed/62b847cc428a4/850/350"
         },
-        "read_at": "2022-06-25T18:45:43.000000Z",
-        "created_at": "2022-06-25T18:31:28.000000Z"
+        "link": "/friends/pokes",
+        "read_at": "2022-06-26T16:30:22.000000Z",
+        "created_at": "2022-06-26T16:29:55.000000Z"
     },
     {
-        "id": "97c25f4c-9765-4c58-bb13-2c7f3a5f741e",
-        "message": "Send you a friendship invitation",
-        "friend": {
-            "id": 1220,
-            "name": "Colleen Hackett",
-            "first_name": "Colleen",
-            "profile_image": "https://picsum.photos/seed/62b49a33e2163/168/168",
-            "background_image": "https://picsum.photos/seed/62b49a33e216c/850/350"
-        },
-        "read_at": "2022-06-25T18:45:43.000000Z",
-        "created_at": "2022-06-25T18:31:28.000000Z"
-    },
-    {
-        "id": "be1c44d2-24a6-4097-9a9c-01f914ba0617",
+        "id": "5f53e35a-e59f-44ae-bfbd-18b3acdfb777",
         "message": "Accepted your friendship invitation",
         "friend": {
-            "id": 135,
-            "name": "Mozell Rice",
-            "first_name": "Mozell",
-            "profile_image": "https://picsum.photos/seed/62b499dca1156/168/168",
-            "background_image": "https://picsum.photos/seed/62b499dca1160/850/350"
+            "id": 1516,
+            "name": "Aileen Ledner",
+            "first_name": "Aileen",
+            "profile_image": "https://picsum.photos/seed/62b848118be80/168/168",
+            "background_image": "https://picsum.photos/seed/62b848118be8a/850/350"
         },
-        "read_at": "2022-06-25T18:45:43.000000Z",
-        "created_at": "2022-06-25T18:31:28.000000Z"
+        "link": "/profile/1516",
+        "read_at": "2022-06-26T16:30:22.000000Z",
+        "created_at": "2022-06-26T16:29:55.000000Z"
     },
     {
-        "id": "e05a8634-fb5b-45e7-9f5e-46447df0400d",
-        "message": "Send you a friendship invitation",
+        "id": "6bf8dff5-9391-45ca-b2c8-5521e4c328f4",
+        "message": "Poked you 4013 times in a row",
         "friend": {
-            "id": 487,
-            "name": "Alfonso Emmerich",
-            "first_name": "Alfonso",
-            "profile_image": "https://picsum.photos/seed/62b499f928837/168/168",
-            "background_image": "https://picsum.photos/seed/62b499f928843/850/350"
+            "id": 563,
+            "name": "Christopher Sipes",
+            "first_name": "Christopher",
+            "profile_image": "https://picsum.photos/seed/62b847ca1c7ff/168/168",
+            "background_image": "https://picsum.photos/seed/62b847ca1c807/850/350"
         },
-        "read_at": "2022-06-25T18:45:43.000000Z",
-        "created_at": "2022-06-25T18:31:28.000000Z"
+        "link": "/friends/pokes",
+        "read_at": "2022-06-26T16:30:23.000000Z",
+        "created_at": "2022-06-26T16:29:55.000000Z"
     }
 ]

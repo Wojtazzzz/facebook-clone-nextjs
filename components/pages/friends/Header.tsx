@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import { toCapitalizeCase } from '@components/pages/friends/utils';
 
-import type { FriendsListType } from '@ctypes/features/FriendsListType';
+import type { FriendsListType } from '@ctypes/FriendsListType';
 
 interface HeaderProps {
     name: FriendsListType;
