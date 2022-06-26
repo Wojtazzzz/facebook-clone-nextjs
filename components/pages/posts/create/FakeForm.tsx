@@ -4,13 +4,13 @@ import { useAppDispatch } from '@hooks/redux';
 import { FakeFormLoader } from '@components/pages/posts/create/FakeFormLoader';
 import { Avatar } from '@components/inc/Avatar';
 
-import { showModal } from '@redux/slices/CreatePostModalSlice';
+import { openModal } from '@redux/slices/CreatePostModalSlice';
 
 export const FakeForm = () => {
     const dispatch = useAppDispatch();
     const { user } = useAuth();
 
-    const handleShowModal = () => dispatch(showModal());
+    const handleOpenModal = () => dispatch(openModal());
 
     if (!user) return <FakeFormLoader testid="fakeForm-loaders" />;
 
@@ -23,7 +23,7 @@ export const FakeForm = () => {
 
                 <button
                     className="w-full bg-dark-100 text-light-100 text-left hover:opacity-70 rounded-3xl cursor-pointer px-3"
-                    onClick={handleShowModal}
+                    onClick={handleOpenModal}
                 >
                     What&apos;s on your mind, {first_name}?
                 </button>

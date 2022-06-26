@@ -11,7 +11,7 @@ import { TextArea } from '@components/pages/posts/create/modal/form/TextArea';
 import { DropLabel } from '@components/pages/posts/create/modal/form/fileDrop/DropLabel';
 import { UploadedFiles } from '@components/pages/posts/create/modal/form/fileDrop/UploadedFiles';
 
-import { hideModal } from '@redux/slices/CreatePostModalSlice';
+import { closeModal } from '@redux/slices/CreatePostModalSlice';
 
 import { PostSchema } from '@validation/PostSchema';
 
@@ -26,7 +26,7 @@ export const Form = () => {
     useEffect(() => {
         if (state.status !== 'SUCCESS') return;
 
-        dispatch(hideModal());
+        dispatch(closeModal());
     }, [state, dispatch]);
 
     const handleClose = () => setIsUploadActive(false);

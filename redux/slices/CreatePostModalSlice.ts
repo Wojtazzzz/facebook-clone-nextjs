@@ -8,14 +8,14 @@ export const CreatePostModalSlice = createSlice({
     name: 'createPostModal',
     initialState,
     reducers: {
-        showModal: (state) => {
+        openModal: (state) => {
             state.isModalActive = true;
         },
-        hideModal: (state) => {
+        closeModal: (state) => {
             state.isModalActive = false;
         },
     },
 });
 
-export const { showModal, hideModal } = CreatePostModalSlice.actions;
+export const { openModal, closeModal } = CreatePostModalSlice.actions;
 export default CreatePostModalSlice.reducer;
