@@ -2,7 +2,6 @@ import { screen } from '@testing-library/react';
 import RootUserJson from '@mocks/user/root.json';
 import NotificationsFirstPageJson from '@mocks/notifications/firstPage.json';
 import NotificationsEmptyPageJson from '@mocks/notifications/empty.json';
-import NotificationsMarkAsReadJson from '@mocks/notifications/markAsRead.json';
 import { Panel } from '@components/nav/panel/Panel';
 import userEvent from '@testing-library/user-event';
 import { Notifications } from '@components/nav/panel/notifications/Notifications';
@@ -14,7 +13,7 @@ describe('Notifications component', () => {
 
     beforeEach(() => {
         mock('/api/user', 200, RootUserJson);
-        mock('/api/notifications/mark-as-read', 200, NotificationsMarkAsReadJson, 'put');
+        mock('/api/notifications/mark-as-read', 204, {}, 'put');
     });
 
     it('close notifications when click on overlay', async () => {
