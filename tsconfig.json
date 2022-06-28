@@ -18,7 +18,6 @@
         "baseUrl": ".",
         "paths": {
             "@mocks/*": ["__mocks__/*"],
-            "@tests/*": ["__tests__/*"],
             "@components/*": ["components/*"],
             "@constants/*": ["constants/*"],
             "@cypress/*": ["cypress/*"],
@@ -32,6 +31,6 @@
             "@validation/*": ["validation/*"]
         }
     },
-    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "node_modules/jest-dom"],
+    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "node_modules/jest-dom", "cypress.config.ts"],
     "exclude": ["node_modules", "tests/e2e"]
 }
