@@ -4,6 +4,9 @@ export default defineConfig({
     viewportWidth: 1500,
     viewportHeight: 660,
 
+    defaultCommandTimeout: 10000,
+    requestTimeout: 10000,
+
     env: {
         laravelUrl: 'http://localhost:8000',
     },
