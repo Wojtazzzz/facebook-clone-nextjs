@@ -1,10 +1,18 @@
+import { useDatabaseMigrations } from 'cypress-laravel';
+
 const APP_URL = Cypress.env('APP_URL');
 
 const ACCOUNT_EMAIL = Cypress.env('ACCOUNT_EMAIL');
 const ACCOUNT_PASSWORD = Cypress.env('ACCOUNT_PASSWORD');
 
 describe('Login tests', () => {
+    useDatabaseMigrations();
+
     beforeEach(() => {
+        cy.create('User', {
+            email: ACCOUNT_EMAIL,
+        });
+
         cy.intercept('/api/user').as('user');
     });
 

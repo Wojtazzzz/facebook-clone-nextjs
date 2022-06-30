@@ -5,7 +5,7 @@ import { RequestErrors } from '@components/pages/auth/inc/RequestErrors';
 import { Button } from '@components/inc/Button';
 
 export const RegisterForm = () => {
-    const { register, isLoading, error } = useAuth();
+    const { isLoading, register, error } = useAuth();
 
     const handleCreateAccount = () => register();
 

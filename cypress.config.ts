@@ -4,6 +4,9 @@ export default defineConfig({
     viewportWidth: 1500,
     viewportHeight: 660,
 
+    env: {
+        laravelUrl: 'http://localhost:8000',
+    },
     e2e: {
         baseUrl: 'http://localhost:3000',
         setupNodeEvents(on, config) {

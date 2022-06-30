@@ -71,6 +71,8 @@ export const useAuth = (middleware?: AuthMiddlewareType) => {
 
         setIsLoading(false);
 
+        mutate();
+
         if (state.status === 'ERROR') {
             Axios.isAxiosError(state.error)
                 ? setError(state.error.response?.data.message ?? state.error.message)
