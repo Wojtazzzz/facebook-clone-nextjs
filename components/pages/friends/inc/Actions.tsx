@@ -5,7 +5,7 @@ import { PokeActions } from '@components/pages/friends/actions/PokeActions';
 
 import type { UserType } from '@ctypes/features/UserType';
 import type { PokingUserType } from '@ctypes/features/PokingUserType';
-import type { FriendsListType } from '@ctypes/features/FriendsListType';
+import type { FriendsListType } from '@ctypes/FriendsListType';
 
 interface ActionsProps {
     friend: UserType;
