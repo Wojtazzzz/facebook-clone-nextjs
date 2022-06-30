@@ -7,7 +7,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@components/inc/Button';
 
-import { toggleActive } from '@redux/slices/ChatSlice';
+import { showChat } from '@redux/slices/ChatSlice';
 
 import type { UserType } from '@ctypes/features/UserType';
 
@@ -26,7 +26,7 @@ export const Header = memo<HeaderProps>(({ user }) => {
         if (loggedUser) setIsUserLogged(loggedUser.id == id);
     }, [loggedUser, id]);
 
-    const handleOpenChat = () => dispatch(toggleActive(user));
+    const handleOpenChat = () => dispatch(showChat(user));
     const FriendsHeadsComponents = data.map(({ id, name, profile_image }, i) => {
         if (i >= 5) return;
 
@@ -52,7 +52,7 @@ export const Header = memo<HeaderProps>(({ user }) => {
             <div className="w-full h-[200px] sm:h-[280px] md:h-[300px] lg:h-[350px] relative">
                 <Image
                     layout="fill"
-                    src={background_image}
+                    src={`${background_image}`}
                     alt={`${first_name} background`}
                     priority
                     className="rounded-b-lg"
