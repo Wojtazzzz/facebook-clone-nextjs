@@ -34,10 +34,12 @@ export const useAuth = (middleware?: AuthMiddlewareType) => {
 
         await csrf();
 
-        sendRequest({
+        await sendRequest({
             method: 'POST',
             url: '/register',
         });
+
+        mutate();
     };
 
     const login = async (data: LoginPayload) => {
@@ -46,11 +48,13 @@ export const useAuth = (middleware?: AuthMiddlewareType) => {
 
         await csrf();
 
-        sendRequest({
+        await sendRequest({
             method: 'POST',
             url: '/login',
             data,
         });
+
+        mutate();
     };
 
     const logout = useCallback(async () => {
@@ -61,17 +65,17 @@ export const useAuth = (middleware?: AuthMiddlewareType) => {
                 method: 'POST',
                 url: '/logout',
             });
+
+            mutate();
         }
 
         window.location.pathname = '/login';
-    }, [fetchError, sendRequest]);
+    }, [fetchError, sendRequest, mutate]);
 
     useEffect(() => {
         if (state.status === 'LOADING') return;
 
         setIsLoading(false);
-
-        mutate();
 
         if (state.status === 'ERROR') {
             Axios.isAxiosError(state.error)

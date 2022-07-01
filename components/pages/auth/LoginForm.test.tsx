@@ -62,6 +62,7 @@ describe('LoginForm component', () => {
 
     it('display "incorrect credentials" message when login response returns 422 error', async () => {
         mock('/sanctum/csrf-cookie', 204);
+        mock('/api/user', 401);
         mock('/login', 422, CannotLoginResponse, 'post');
 
         renderWithDefaultData(<LoginForm />);
