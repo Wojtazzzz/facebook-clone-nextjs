@@ -11,6 +11,7 @@ export const Sidebar = () => {
 
     return (
         <aside
+            data-testid="sidebar"
             className={`w-full max-w-[250px] xl:max-w-[300px] h-screen flex flex-col fixed lg:relative top-0 left-0 bg-dark-300 ${
                 isActive ? '' : '-translate-x-[300px] lg:translate-x-[0px]'
             } transition-transform z-30 px-2 py-5`}

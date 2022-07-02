@@ -2,13 +2,11 @@ import { useDatabaseMigrations } from 'cypress-laravel';
 
 import type { UserType } from '../support/types';
 
-const ACCOUNT_EMAIL = Cypress.env('ACCOUNT_EMAIL');
-
 describe('Contacts tests', () => {
     useDatabaseMigrations();
 
     beforeEach(() => {
-        cy.loginRequest(ACCOUNT_EMAIL);
+        cy.loginRequest();
 
         cy.intercept('/api/user').as('user');
         cy.intercept('/api/posts?page=1').as('posts_page_1');

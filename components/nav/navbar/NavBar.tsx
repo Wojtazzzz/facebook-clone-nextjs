@@ -7,7 +7,7 @@ export const Navbar = () => {
     const { user } = useAuth();
 
     return (
-        <div className="h-full flex justify-center gap-2">
+        <div data-testid="desktop-navbar" className="h-full flex justify-center gap-2">
             <NavItem name="Home" path="/" icon={faHome} />
             <NavItem name="Marketplace" path="/marketplace" icon={faShop} />
             <NavItem name="Profile" path={user ? `/profile/${user.id}` : '/profile/not-loaded'} icon={faUser} />

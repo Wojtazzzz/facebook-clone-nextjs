@@ -1,9 +1,10 @@
 import NextLink from 'next/link';
+import type { ReactFragment } from 'react';
 
 interface LinkProps {
     title: string;
     link: string;
-    icon: React.ReactFragment;
+    icon: ReactFragment;
     target?: '_self' | '_blank' | '_parent' | '_top';
 }
 

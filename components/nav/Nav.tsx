@@ -6,7 +6,10 @@ import { Navbar as MobileNavbar } from '@components/nav/mobile/Navbar';
 
 export const Nav = () => {
     return (
-        <nav className="w-full h-14 flex justify-between md:justify-center fixed top-0 left-0 z-40 bg-dark-200 shadow-sm px-4">
+        <nav
+            data-testid="nav"
+            className="w-full h-14 flex justify-between md:justify-center fixed top-0 left-0 z-40 bg-dark-200 shadow-sm px-4"
+        >
             <div className="w-1/3 flex items-center gap-2 my-1">
                 <Logo />
 
