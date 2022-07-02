@@ -60,5 +60,3 @@ describe('Login tests', () => {
         cy.contains('These credentials do not match our records.');
     });
 });
-
-export {};

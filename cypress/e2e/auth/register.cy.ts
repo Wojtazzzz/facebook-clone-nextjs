@@ -1,6 +1,10 @@
+import { useDatabaseMigrations } from 'cypress-laravel';
+
 const APP_URL = Cypress.env('APP_URL');
 
 describe('Register tests', () => {
+    useDatabaseMigrations();
+
     beforeEach(() => {
         cy.intercept('/api/user').as('user');
     });
@@ -46,5 +50,3 @@ describe('Register tests', () => {
         cy.contains('Request failed with status code 500');
     });
 });
-
-export {};

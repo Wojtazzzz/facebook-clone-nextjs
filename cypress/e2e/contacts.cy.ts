@@ -1,5 +1,4 @@
 import { useDatabaseMigrations } from 'cypress-laravel';
-
 import type { UserType } from '../support/types';
 
 describe('Contacts tests', () => {
@@ -58,5 +57,3 @@ describe('Contacts tests', () => {
         cy.get('button[aria-label="Load more contacts"]').should('not.exist');
     });
 });
-
-export {};

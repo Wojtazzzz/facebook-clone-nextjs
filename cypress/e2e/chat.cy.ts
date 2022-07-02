@@ -54,5 +54,3 @@ describe('Contacts tests', () => {
         // Chat to refactoring
     });
 });
-
-export {};
