@@ -44,6 +44,8 @@ describe('Notifications tests', () => {
 
         cy.wait('@notifications_page_1');
 
+        cy.get('[class="infinite-scroll-component "] > button').should('have.length', 10);
+
         cy.intercept('/api/notifications?page=1').as('notifications_page_1');
         cy.intercept('/api/notifications?page=2').as('notifications_page_2');
 

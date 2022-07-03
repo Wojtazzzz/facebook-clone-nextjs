@@ -17,13 +17,14 @@ export const Contact = memo<ContactProps>(({ friend }) => {
     const handleOpenChat = () => dispatch(showChat(friend));
 
     return (
-        <div
+        <button
+            aria-label="Show chat with user"
             className="w-full flex items-center gap-3 hover:bg-dark-100 rounded-lg transition-colors cursor-pointer p-2"
             onClick={handleOpenChat}
         >
             <Avatar size={36} src={friend.profile_image} alt="" />
             <span className="text-light-200 font-medium leading-5 m-0">{friend.name}</span>
-        </div>
+        </button>
     );
 });
 

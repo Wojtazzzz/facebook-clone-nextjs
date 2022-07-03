@@ -73,6 +73,8 @@ describe('Messenger tests', () => {
 
         cy.wait('@messages_page_1');
 
+        cy.get('[class="infinite-scroll-component "] > button').should('have.length', 10);
+
         cy.intercept('/api/messages?page=1').as('messages_page_1');
         cy.intercept('/api/messages?page=2').as('messages_page_2');
 

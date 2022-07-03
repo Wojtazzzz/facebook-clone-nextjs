@@ -49,9 +49,13 @@ describe('Contacts tests', () => {
         cy.wait('@contacts_page_1');
 
         cy.get('[data-testid="contacts-list"]').should('be.visible');
+        cy.get('[data-testid="contacts-list"] > button').should('have.length', 10 + 1);
+
         cy.get('button[aria-label="Load more contacts"]').click();
 
         cy.wait('@contacts_page_2');
+
+        cy.get('[data-testid="contacts-list"] > button').should('have.length', 15);
 
         cy.get('button[aria-label="Load more contacts"]').should('not.exist');
     });
