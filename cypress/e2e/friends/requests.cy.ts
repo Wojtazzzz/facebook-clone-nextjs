@@ -14,8 +14,6 @@ describe('Suggests and invites lists tests', () => {
 
     beforeEach(() => {
         cy.loginRequest();
-
-        cy.intercept('/api/user').as('user');
     });
 
     it('go to suggests page due to sidebar and list navigation, fetch more suggests users by click on button and button dissapear because all users fetched', () => {

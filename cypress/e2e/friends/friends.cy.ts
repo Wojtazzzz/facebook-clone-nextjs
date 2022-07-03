@@ -5,8 +5,6 @@ describe('Friends list tests', () => {
 
     beforeEach(() => {
         cy.loginRequest();
-
-        cy.intercept('/api/user').as('user');
     });
 
     it('go to page due to sidebar and fetch more friends by click on button and button dissapear because all users fetched', () => {
