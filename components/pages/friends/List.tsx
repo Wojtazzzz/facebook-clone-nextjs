@@ -8,7 +8,7 @@ import { EmptyList } from '@components/inc/EmptyList';
 import { User } from '@components/pages/friends/inc/User';
 import { Actions } from '@components/pages/friends/inc/Actions';
 
-import { getPathForPagination } from '@utils/getPathForPagination';
+import { getPathForPagination } from '@components/pages/friends/utils';
 
 import type { UserType } from '@ctypes/features/UserType';
 import type { FriendsListType } from '@ctypes/FriendsListType';
