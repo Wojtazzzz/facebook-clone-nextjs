@@ -18,14 +18,14 @@ export const InviteActions = ({ friend }: InviteActionsProps) => {
     const handleAccept = (event: FocusEvent) => {
         event.preventDefault();
 
-        sendRequest({ method: 'POST', url: '/api/friendship/accept', data: { user_id: friend.id } });
+        sendRequest({ method: 'POST', url: '/api/friendship/accept', data: { friend_id: friend.id } });
         setAction('ACCEPT');
     };
 
     const handleReject = (event: FocusEvent) => {
         event.preventDefault();
 
-        sendRequest({ method: 'POST', url: '/api/friendship/reject', data: { user_id: friend.id } });
+        sendRequest({ method: 'POST', url: '/api/friendship/reject', data: { friend_id: friend.id } });
         setAction('REJECT');
     };
 

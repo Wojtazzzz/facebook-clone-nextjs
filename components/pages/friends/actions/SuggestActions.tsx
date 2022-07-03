@@ -15,7 +15,7 @@ export const SuggestActions = ({ friend }: SuggestActionsProps) => {
 
     const handleInvite = (event: FocusEvent) => {
         event.preventDefault();
-        sendRequest({ method: 'POST', url: '/api/friendship/invite', data: { user_id: friend.id } });
+        sendRequest({ method: 'POST', url: '/api/friendship/invite', data: { friend_id: friend.id } });
     };
 
     if (state.status === 'SUCCESS') return <Success message="Request sent successfully" />;

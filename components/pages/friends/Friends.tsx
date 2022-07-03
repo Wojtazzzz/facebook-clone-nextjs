@@ -22,7 +22,7 @@ export const Friends = () => {
 
     return (
         <div className="relative py-5 px-2">
-            <Header name={parsedType as FriendsListType} />
+            <Header name={parsedType} />
 
             {user ? <List userId={user.id} listType={parsedType} /> : <Loader />}
         </div>
