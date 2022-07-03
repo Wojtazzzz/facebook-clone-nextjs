@@ -27,7 +27,7 @@ describe('Login tests', () => {
         cy.intercept('/login').as('login');
         cy.intercept('/sanctum/csrf-cookie').as('csrf');
 
-        cy.visit('');
+        cy.visit('/');
 
         cy.wait('@user');
 
@@ -47,7 +47,7 @@ describe('Login tests', () => {
     it('failed login to app shows error message', () => {
         cy.intercept('/login').as('login');
 
-        cy.visit('');
+        cy.visit('/');
 
         cy.wait('@user');
 

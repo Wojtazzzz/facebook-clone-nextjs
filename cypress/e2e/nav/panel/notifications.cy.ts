@@ -28,7 +28,6 @@ describe('Notifications tests', () => {
     });
 
     it('can load more notifications when scrolling to bottom', () => {
-        cy.create('User', 30);
         cy.create('Notification', 18, {
             notifiable_id: 1,
         });
@@ -57,7 +56,6 @@ describe('Notifications tests', () => {
     });
 
     it('When click on notification it redirects to another page and hide notifications dropdown', () => {
-        cy.create('User', 5);
         cy.create('Notification', 20, {
             notifiable_id: 1,
         });

@@ -13,7 +13,7 @@ describe('Register tests', () => {
         cy.intercept('/register').as('register');
         cy.intercept('/sanctum/csrf-cookie').as('csrf');
 
-        cy.visit('');
+        cy.visit('/');
 
         cy.wait('@user');
 
@@ -33,7 +33,7 @@ describe('Register tests', () => {
         cy.intercept('/register', { statusCode: 500 }).as('register');
         cy.intercept('/sanctum/csrf-cookie').as('csrf');
 
-        cy.visit('');
+        cy.visit('/');
 
         cy.wait('@user');
 

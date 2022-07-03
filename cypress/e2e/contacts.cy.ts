@@ -37,7 +37,6 @@ describe('Contacts tests', () => {
     });
 
     it('displays load more button when fetched 10 contacts, can fetch more when click on it and after that load more buttton dissapear', () => {
-        cy.create('User', 30);
         cy.create('Friendship', 15, {
             user_id: 1,
             status: 'CONFIRMED',

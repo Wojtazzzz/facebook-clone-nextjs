@@ -56,7 +56,6 @@ describe('Messenger tests', () => {
     });
 
     it('can load more users when scrolling to bottom', () => {
-        cy.create('User', 30);
         cy.create('Friendship', 15, {
             user_id: 1,
             status: 'CONFIRMED',
