@@ -1,5 +1,5 @@
 import { Logo } from '@components/nav/Logo';
-import { SearchUser } from '@components/nav/SearchUser';
+import { Search } from '@components/nav/search/Search';
 import { Navbar } from '@components/nav/navbar/Navbar';
 import { Panel } from '@components/nav/panel/Panel';
 import { Navbar as MobileNavbar } from '@components/nav/mobile/Navbar';
@@ -13,8 +13,8 @@ export const Nav = () => {
             <div className="w-1/3 flex items-center gap-2 my-1">
                 <Logo />
 
-                <div className="hidden md:block">
-                    <SearchUser />
+                <div data-testid="nav-search-desktop" className="hidden md:block">
+                    <Search />
                 </div>
             </div>
 

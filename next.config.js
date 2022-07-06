@@ -6,6 +6,7 @@ const nextConfig = {
             'localhost',
             'images.unsplash.com',
             'picsum.photos',
+            'via.placeholder.com',
             // 'scontent.fktw1-1.fna.fbcdn.net'
         ],
     },

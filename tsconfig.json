@@ -31,6 +31,6 @@
             "@validation/*": ["validation/*"]
         }
     },
-    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "node_modules/jest-dom", "cypress.config.ts"],
-    "exclude": ["node_modules", "tests/e2e"]
+    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "node_modules/jest-dom"],
+    "exclude": ["node_modules", "cypress", "cypress.config.ts"]
 }

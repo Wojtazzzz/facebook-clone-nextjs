@@ -16,36 +16,36 @@ describe('Pokes list tests', () => {
         cy.loginRequest();
     });
 
-    // it('go to pokes page due to sidebar, fetch more pokes by click on button and button dissapear because all pokes fetched', () => {
-    //     cy.create('Poke', 19, {
-    //         friend_id: 1,
-    //     });
+    it('go to pokes page due to sidebar, fetch more pokes by click on button and button dissapear because all pokes fetched', () => {
+        cy.create('Poke', 19, {
+            friend_id: 1,
+        });
 
-    //     cy.visit('/');
+        cy.visit('/');
 
-    //     cy.intercept('/api/pokes?page=1').as('pokes_page_1');
+        cy.intercept('/api/pokes?page=1').as('pokes_page_1');
 
-    //     cy.get('[data-testid="sidebar"]').within(() => {
-    //         cy.contains('Pokes').click();
-    //     });
+        cy.get('[data-testid="sidebar"]').within(() => {
+            cy.contains('Pokes').click();
+        });
 
-    //     cy.url().should('include', '/friends/pokes');
+        cy.url().should('include', '/friends/pokes');
 
-    //     cy.wait('@pokes_page_1');
+        cy.wait('@pokes_page_1');
 
-    //     cy.get('[data-testid="friends-list"] > a').should('have.length', 10);
+        cy.get('[data-testid="friends-list"] > a').should('have.length', 10);
 
-    //     cy.intercept('/api/pokes?page=1').as('pokes_page_1');
-    //     cy.intercept('/api/pokes?page=2').as('pokes_page_2');
+        cy.intercept('/api/pokes?page=1').as('pokes_page_1');
+        cy.intercept('/api/pokes?page=2').as('pokes_page_2');
 
-    //     cy.get('[aria-label="Fetch more users"]').click();
+        cy.get('[aria-label="Fetch more users"]').click();
 
-    //     cy.wait('@pokes_page_1');
-    //     cy.wait('@pokes_page_2');
+        cy.wait('@pokes_page_1');
+        cy.wait('@pokes_page_2');
 
-    //     cy.get('[data-testid="friends-list"] > a').should('have.length', 19);
-    //     cy.get('[aria-label="Fetch more users"]').should('not.exist');
-    // });
+        cy.get('[data-testid="friends-list"] > a').should('have.length', 19);
+        cy.get('[aria-label="Fetch more users"]').should('not.exist');
+    });
 
     it('poke back friend when click "Poke back" button, poke dissapears after page refresh, relogin as friend account, check for notification from user arrived, redirect to pokes page due to notification, poke back user, again relogin as user, check for notification from friend arrived, friend poke show at pokes page', () => {
         cy.create('User', friend);
