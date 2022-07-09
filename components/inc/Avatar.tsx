@@ -8,7 +8,7 @@ interface AvatarProps {
 
 export const Avatar = ({ src, size, alt }: AvatarProps) => {
     return (
-        <div className={`flex justify-center items-center w-[20px] h-[20px]`}>
+        <div className="flex justify-center items-center">
             <Image src={src} width={size} height={size} alt={alt} className="rounded-full" />
         </div>
     );
