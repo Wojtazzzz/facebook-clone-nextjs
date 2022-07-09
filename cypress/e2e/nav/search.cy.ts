@@ -31,17 +31,12 @@ describe('Searching users tests', () => {
         cy.create('User').then((user) => (friend = user));
 
         cy.intercept('/api/user').as('user');
-        cy.intercept(
-            'https://aqhmu0mnat-dsn.algolia.net/1/indexes/*/queries?x-algolia-agent=Algolia%20for%20JavaScript%20(4.13.1)%3B%20Browser%20(lite)%3B%20react%20(17.0.2)%3B%20react-instantsearch%20(6.29.0)%3B%20react-instantsearch-hooks%20(6.29.0)%3B%20instantsearch.js%20(4.43.0)%3B%20JS%20Helper%20(3.10.0)&x-algolia-api-key=01322bb95c6341b4a8b048c5b050ad99&x-algolia-application-id=AQHMU0MNAT'
-        ).as('algolia');
 
         cy.visit('/');
         cy.wait('@user');
 
         cy.get('[data-testid="nav-search-desktop"]').within(() => {
             cy.get('input[aria-label="User search input"]').type(`${friend.first_name}`);
-
-            cy.wait('@algolia');
 
             cy.contains(`${friend.first_name} ${friend.last_name}`);
         });
