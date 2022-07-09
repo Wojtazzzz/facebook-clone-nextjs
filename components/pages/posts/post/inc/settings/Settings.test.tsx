@@ -24,18 +24,4 @@ describe('Settings component', () => {
 
         expect(menu).toBeInTheDocument();
     });
-
-    it('menu dissapear when click on close overlay', async () => {
-        renderWithDefaultData(<Settings authorId={1} postId={1} />);
-
-        const button = screen.getByLabelText('Show post settings');
-        await user.click(button);
-
-        const closeOverlay = await screen.findByTestId('settings-closeOverlay');
-        await user.click(closeOverlay);
-
-        const menu = screen.queryByLabelText('Settings');
-
-        expect(menu).not.toBeInTheDocument();
-    });
 });

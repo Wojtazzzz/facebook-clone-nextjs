@@ -57,7 +57,7 @@ describe('Notifications tests', () => {
         cy.get('[class="infinite-scroll-component "] > button').should('have.length', 18);
     });
 
-    it('When click on notification it redirects to another page and hide notifications dropdown', () => {
+    it('when click on notification it redirects to another page and hide notifications dropdown', () => {
         cy.create('Notification', 20, {
             notifiable_id: 1,
         });
@@ -82,6 +82,19 @@ describe('Notifications tests', () => {
         });
 
         cy.url().should('not.eq', `${APP_URL}/`);
+        cy.get('[data-testid="notifications-container"]').should('not.exist');
+    });
+
+    it('notifications dissapears when click on outside page element', () => {
+        cy.visit('/');
+        cy.wait('@user');
+
+        cy.get('[data-testid="nav"]').within(() => {
+            cy.get('[aria-label="Notifications"]').click();
+        });
+
+        cy.get('main').click();
+
         cy.get('[data-testid="notifications-container"]').should('not.exist');
     });
 });

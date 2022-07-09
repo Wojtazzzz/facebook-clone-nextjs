@@ -85,4 +85,17 @@ describe('Messenger tests', () => {
 
         cy.get('[class="infinite-scroll-component "] > button').should('have.length', 15);
     });
+
+    it('messenger dissapears when click on outside page element', () => {
+        cy.visit('/');
+        cy.wait('@user');
+
+        cy.get('[data-testid="nav"]').within(() => {
+            cy.get('[aria-label="Messenger"]').click();
+        });
+
+        cy.get('main').click();
+
+        cy.get('[data-testid="messenger-container"]').should('not.exist');
+    });
 });
