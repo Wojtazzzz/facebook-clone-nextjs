@@ -1,5 +1,7 @@
 // <reference types="cypress" />;
 
+import 'cypress-file-upload';
+
 Cypress.Commands.add('loginRequest', () => {
     const id = 1;
     const email = Cypress.env('USER_EMAIL');

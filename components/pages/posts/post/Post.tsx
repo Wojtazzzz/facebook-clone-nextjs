@@ -33,7 +33,7 @@ export const Post = ({
     const noStats = !(totalLikesCount === 0 && totalCommentsCount === 0);
 
     return (
-        <div className="w-full bg-dark-200 rounded-lg">
+        <article aria-label="Post" className="w-full bg-dark-200 rounded-lg">
             <Header postId={id} author={author} created_at={created_at} updated_at={updated_at} />
             <Content content={content} images={images} />
 
@@ -52,6 +52,6 @@ export const Post = ({
             </div>
 
             {isCommentsActive && <Comments postId={id} />}
-        </div>
+        </article>
     );
 };

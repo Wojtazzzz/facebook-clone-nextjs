@@ -17,7 +17,7 @@ export const UploadedFiles = () => {
 
     return (
         <ul className="list-disc mb-4">
-            <h5 className="text-light-100 font-medium">Uploaded files {images.length}:</h5>
+            <h5 className="text-light-100 font-medium">Uploaded files: {images.length}</h5>
             {ImagesComponents}
         </ul>
     );

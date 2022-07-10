@@ -18,7 +18,7 @@ describe('Menu component', () => {
 
         renderWithDefaultData(<Menu authorId={RootUserJson.id} postId={1} closeMenu={mockCloseMenu} />);
 
-        const deletePostOption = await screen.findByLabelText('Delete Post');
+        const deletePostOption = await screen.findByLabelText('Delete post');
 
         expect(deletePostOption).toBeInTheDocument();
     });
@@ -29,7 +29,7 @@ describe('Menu component', () => {
         renderWithDefaultData(<Menu authorId={RootUserJson.id} postId={1} closeMenu={mockCloseMenu} />);
 
         await waitFor(() => {
-            const deletePostOption = screen.queryByLabelText('Delete Post');
+            const deletePostOption = screen.queryByLabelText('Delete post');
 
             expect(deletePostOption).not.toBeInTheDocument();
         });

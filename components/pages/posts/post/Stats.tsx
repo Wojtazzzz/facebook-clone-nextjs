@@ -17,7 +17,7 @@ export const Stats = ({ likesCount, commentsCount, handleToggleIsCommentsActive 
                             <FontAwesomeIcon icon={faThumbsUp} className="text-xs text-white" />
                         </div>
 
-                        <span>{likesCount}</span>
+                        <span data-testid="post-likes_count">{likesCount}</span>
                     </>
                 )}
             </div>

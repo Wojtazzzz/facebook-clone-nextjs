@@ -16,7 +16,10 @@ export const Menu = ({ postId, authorId, closeMenu }: MenuProps) => {
     const { isLoading, removePost } = usePosts();
     const ref = useOutsideClick(closeMenu);
 
-    const handleRemovePost = () => removePost(postId);
+    const handleRemovePost = async () => {
+        await removePost(postId);
+        closeMenu();
+    };
 
     return (
         <div
@@ -26,7 +29,7 @@ export const Menu = ({ postId, authorId, closeMenu }: MenuProps) => {
                 isLoading ? 'cursor-wait' : ''
             } py-3 px-4`}
         >
-            {authorId === user?.id && <Option title="Delete Post" icon={faTrashCan} callback={handleRemovePost} />}
+            {authorId === user?.id && <Option title="Delete post" icon={faTrashCan} callback={handleRemovePost} />}
         </div>
     );
 };

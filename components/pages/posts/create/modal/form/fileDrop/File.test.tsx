@@ -14,7 +14,7 @@ describe('File component', () => {
                 initialTouched: true,
                 touched: false,
             },
-        } as unknown as any);
+        } as any);
     });
 
     it('display file name', () => {
