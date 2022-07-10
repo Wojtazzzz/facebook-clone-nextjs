@@ -12,6 +12,9 @@ interface SettingsProps {
 export const Settings = ({ postId, authorId }: SettingsProps) => {
     const [isSettingsActive, setIsSettingsActive] = useState(false);
 
+    const handleToggleMenuActive = () => setIsSettingsActive((prevState) => !prevState);
+    const handleCloseMenu = () => setIsSettingsActive(false);
+
     return (
         <div className="relative">
             <RoundedButton
@@ -20,12 +23,10 @@ export const Settings = ({ postId, authorId }: SettingsProps) => {
                 size={8}
                 bgColor="dark-200"
                 onHover="bg-dark-100"
-                callback={() => setIsSettingsActive((prevState) => !prevState)}
+                callback={handleToggleMenuActive}
             />
 
-            {isSettingsActive && (
-                <Menu postId={postId} authorId={authorId} closeMenu={() => setIsSettingsActive(false)} />
-            )}
+            {isSettingsActive && <Menu postId={postId} authorId={authorId} closeMenu={handleCloseMenu} />}
         </div>
     );
 };

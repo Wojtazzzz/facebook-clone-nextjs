@@ -8,13 +8,13 @@ import { RoundedButton } from '@components/inc/RoundedButton';
 
 interface GalleryProps {
     images: string[];
-    handleCloseGallery: () => void;
+    closeGallery: () => void;
 }
 
 Swiper.use([Keyboard, Pagination, Navigation]);
 
-export const Gallery = ({ images, handleCloseGallery }: GalleryProps) => {
-    useKey('Escape', handleCloseGallery);
+export const Gallery = ({ images, closeGallery }: GalleryProps) => {
+    useKey('Escape', closeGallery);
 
     const SlidesComponents = images.map((image, i) => (
         <SwiperSlide key={i}>
@@ -25,7 +25,7 @@ export const Gallery = ({ images, handleCloseGallery }: GalleryProps) => {
     return (
         <section aria-label="Post gallery" className="w-full h-full fixed top-0 left-0 bg-black z-30">
             <div className="w-full flex justify-end absolute top-0 left-0 z-20 p-3">
-                <RoundedButton name="Close gallery" icon={faTimes} size={10} callback={handleCloseGallery} />
+                <RoundedButton name="Close gallery" icon={faTimes} size={10} callback={closeGallery} />
             </div>
 
             <SwiperReact

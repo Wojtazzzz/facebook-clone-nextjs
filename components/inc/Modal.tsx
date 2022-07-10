@@ -18,7 +18,7 @@ ReactModal.setAppElement('body');
 
 export const Modal = ({ title, closeModal, children }: ModalProps) => {
     return (
-        <ReactModal contentLabel="Create post modal" isOpen={true} style={modalStyles} onRequestClose={closeModal}>
+        <ReactModal contentLabel={title} isOpen={true} style={modalStyles} onRequestClose={closeModal}>
             <div className="px-1">
                 <div className="h-full flex flex-col bg-dark-200 rounded-lg mx-auto">
                     <div className="w-full flex justify-between text-light-200 border-zinc-600 border-b-[1.5px] p-3">

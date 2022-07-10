@@ -305,7 +305,7 @@ describe('Form component', () => {
 
         await user.upload(inputFile, files);
 
-        const count = screen.getByText(`Uploaded files ${files.length}:`);
+        const count = screen.getByText(`Uploaded files: ${files.length}`);
 
         expect(count).toBeInTheDocument();
     });

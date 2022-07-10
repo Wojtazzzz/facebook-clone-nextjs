@@ -26,10 +26,10 @@ export const usePosts = () => {
         sendRequest({ method: 'POST', url: '/api/posts', data: formData });
     };
 
-    const removePost = (postId: number) => {
+    const removePost = async (postId: number) => {
         if (state.status === 'LOADING') return;
 
-        sendRequest({
+        await sendRequest({
             method: 'DELETE',
             url: `/api/posts/${postId}`,
         });

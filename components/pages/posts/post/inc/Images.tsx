@@ -40,7 +40,7 @@ export const Images = ({ images }: ImagesProps) => {
                 )}
             </section>
 
-            {isGalleryActive && <Gallery images={images} handleCloseGallery={handleToggleGallery} />}
+            {isGalleryActive && <Gallery images={images} closeGallery={handleToggleGallery} />}
         </>
     );
 };
