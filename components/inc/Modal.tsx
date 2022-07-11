@@ -9,6 +9,7 @@ import type { ReactNode } from 'react';
 import { modalStyles } from '@styles/modalStyles';
 
 interface ModalProps {
+    label: string;
     title: string;
     closeModal: () => void;
     children: ReactNode;
@@ -16,28 +17,26 @@ interface ModalProps {
 
 ReactModal.setAppElement('body');
 
-export const Modal = ({ title, closeModal, children }: ModalProps) => {
+export const Modal = ({ label, title, closeModal, children }: ModalProps) => {
     return (
-        <ReactModal contentLabel={title} isOpen={true} style={modalStyles} onRequestClose={closeModal}>
-            <div className="px-1">
-                <div className="h-full flex flex-col bg-dark-200 rounded-lg mx-auto">
-                    <div className="w-full flex justify-between text-light-200 border-zinc-600 border-b-[1.5px] p-3">
-                        <FontAwesomeIcon className="w-8 text-lg invisible pointer-events-none" icon={faTimes} />
+        <ReactModal isOpen={true} style={modalStyles} onRequestClose={closeModal}>
+            <div aria-label={label} className="h-full flex flex-col bg-dark-200 rounded-lg mx-auto px-1">
+                <div className="w-full flex justify-between text-light-200 border-zinc-600 border-b-[1.5px] p-3">
+                    <FontAwesomeIcon className="w-8 text-lg invisible pointer-events-none" icon={faTimes} />
 
-                        <h3 className="text-2xl text-center font-bold">{title}</h3>
+                    <h3 className="text-2xl text-center font-bold">{title}</h3>
 
-                        <RoundedButton
-                            name="Close modal"
-                            icon={faTimes}
-                            size={8}
-                            bgColor="dark-200"
-                            onHover="bg-dark-100"
-                            callback={closeModal}
-                        />
-                    </div>
-
-                    {children}
+                    <RoundedButton
+                        name="Close modal"
+                        icon={faTimes}
+                        size={8}
+                        bgColor="dark-200"
+                        onHover="bg-dark-100"
+                        callback={closeModal}
+                    />
                 </div>
+
+                {children}
             </div>
         </ReactModal>
     );

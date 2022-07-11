@@ -12,7 +12,11 @@ interface DeleteModalProps {
 
 export const DeleteModal = ({ postId, commentId, closeModal }: DeleteModalProps) => {
     return (
-        <Modal title="Are you sure you want to delete that comment?" closeModal={closeModal}>
+        <Modal
+            label="Confirm delete comment"
+            title="Are you sure you want to delete that comment?"
+            closeModal={closeModal}
+        >
             <Content postId={postId} commentId={commentId} closeModal={closeModal} />
         </Modal>
     );

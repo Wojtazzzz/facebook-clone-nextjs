@@ -18,17 +18,21 @@ export const Content = ({ postId, commentId, closeModal }: ContentProps) => {
     const { state, removeComment } = useComments();
 
     useEffect(() => {
-        if (state.status === 'LOADING') return;
+        if (state.status !== 'SUCCESS') return;
 
-        if (state.status === 'SUCCESS') {
-            reloadComments();
-            closeModal();
-        }
+        reloadComments();
+        closeModal();
     }, [state, reloadComments, closeModal]);
 
-    if (state.status === 'LOADING')
+    const handleRemoveComment = () => removeComment(postId, commentId);
+
+    if (state.status === 'LOADING') {
         return <SpinnerLoader testid="deleteModal-loading" containerStyles="w-[80px] my-10 mx-auto" />;
-    if (state.status === 'ERROR') return <ApiError size="lg" />;
+    }
+
+    if (state.status === 'ERROR') {
+        return <ApiError size="lg" />;
+    }
 
     return (
         <div className="w-full flex justify-center">
@@ -45,7 +49,7 @@ export const Content = ({ postId, commentId, closeModal }: ContentProps) => {
                     <button
                         aria-label="Delete comment"
                         className="text-3xl text-light-100 font-bold"
-                        onClick={() => removeComment(postId, commentId)}
+                        onClick={handleRemoveComment}
                     >
                         YES
                     </button>

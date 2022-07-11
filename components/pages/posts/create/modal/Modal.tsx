@@ -14,7 +14,7 @@ export const Modal = () => {
     useKey('Escape', handleClose);
 
     return (
-        <ModalTemplate title="Create post modal" closeModal={handleClose}>
+        <ModalTemplate label="Create post modal" title="Create post" closeModal={handleClose}>
             <ModalContent />
         </ModalTemplate>
     );

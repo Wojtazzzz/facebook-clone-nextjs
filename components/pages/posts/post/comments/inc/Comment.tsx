@@ -21,7 +21,7 @@ export const Comment = ({ id, content, author, resource_id, created_at, updated_
 
     return (
         <>
-            <article className="w-full flex gap-2 px-3 py-1">
+            <article aria-label="Comment" className="w-full flex gap-2 px-3 py-1">
                 <Link href={`/profile/${author.id}`}>
                     <a>
                         <Avatar src={author.profile_image} size={36} alt="" />
