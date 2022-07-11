@@ -1,5 +1,6 @@
-import ReactModal from 'react-modal';
+import { useKey } from '@hooks/useKey';
 
+import ReactModal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { RoundedButton } from '@components/inc/RoundedButton';
@@ -18,6 +19,8 @@ interface ModalProps {
 ReactModal.setAppElement('body');
 
 export const Modal = ({ label, title, closeModal, children }: ModalProps) => {
+    useKey('Escape', closeModal);
+
     return (
         <ReactModal isOpen={true} style={modalStyles} onRequestClose={closeModal}>
             <div aria-label={label} className="h-full flex flex-col bg-dark-200 rounded-lg mx-auto px-1">
