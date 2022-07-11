@@ -1,5 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import { clsx } from 'clsx';
+
 import type { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 interface RoundedButtonProps {
@@ -29,9 +31,10 @@ export const RoundedButton = ({
             aria-label={name}
             title={name}
             disabled={isDisabled}
-            className={`w-${size} h-${size} flex justify-center items-center bg-${bgColor} hover:${onHover} ${
-                isDisabled ? `${onHover}` : ''
-            } transition-all rounded-full p-3`}
+            className={clsx(
+                `w-${size} h-${size} flex justify-center items-center bg-${bgColor} hover:${onHover} transition-all rounded-full p-3`,
+                isDisabled && `${onHover}`
+            )}
             onClick={callback}
         >
             <FontAwesomeIcon icon={icon} className="text-lg text-light-50" />

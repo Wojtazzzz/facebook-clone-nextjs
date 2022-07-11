@@ -8,10 +8,11 @@ import type { ReactNode } from 'react';
 
 export const renderWithDefaultData = (component: ReactNode) => {
     const store = generateStore();
+    const provider = () => new Map();
 
     return render(
         <Provider store={store}>
-            <SWRConfig value={{ provider: () => new Map() }}>{component}</SWRConfig>
+            <SWRConfig value={{ provider }}>{component}</SWRConfig>
         </Provider>
     );
 };

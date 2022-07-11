@@ -4,15 +4,18 @@ import { faHome, faShop, faUser } from '@fortawesome/free-solid-svg-icons';
 import { Logo } from '@components/nav/mobile/Logo';
 import { NavItem } from '@components/nav/mobile/NavItem';
 import { Search } from '@components/nav/search/Search';
+import { clsx } from 'clsx';
 
 export const Navbar = () => {
     const { isActive } = useAppSelector((store) => store.nav);
 
     return (
         <div
-            className={`w-[280px] h-screen lg:hidden fixed top-0 left-0 z-30 bg-dark-200 ${
-                isActive ? 'translate-x-0' : '-translate-x-[280px]'
-            } transition-transform shadow-md`}
+            className={clsx(
+                'w-[280px] h-screen lg:hidden fixed top-0 left-0 z-30 bg-dark-200 transition-transform shadow-md',
+                isActive && 'translate-x-0',
+                !isActive && '-translate-x-[280px]'
+            )}
         >
             <Logo />
 

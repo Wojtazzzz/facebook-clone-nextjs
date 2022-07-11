@@ -1,3 +1,5 @@
+import { clsx } from 'clsx';
+
 interface ButtonProps {
     title: string;
     type?: 'submit' | 'button';
@@ -19,10 +21,10 @@ export const Button = ({
             aria-label={title}
             type={type}
             disabled={isDisabled}
-            className={`bg-primary hover:opacity-90 text-sm md:text-base text-light-50 font-medium rounded-lg transition-opacity p-2 px-4 
-                ${isDisabled ? 'opacity-60 hover:opacity-60 cursor-not-allowed' : ''} 
-                ${styles}
-            `}
+            className={clsx(
+                `bg-primary hover:opacity-90 text-sm md:text-base text-light-50 font-medium rounded-lg transition-opacity p-2 px-4 ${styles}`,
+                isDisabled && 'opacity-60 hover:opacity-60 cursor-not-allowed'
+            )}
             onClick={callback}
         >
             {title}

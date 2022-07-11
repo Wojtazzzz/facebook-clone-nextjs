@@ -11,6 +11,7 @@ import { DeleteAction } from '@components/pages/posts/post/comments/inc/actions/
 import { Avatar } from '@components/inc/Avatar';
 
 import type { CommentType } from '@ctypes/features/CommentType';
+import clsx from 'clsx';
 
 interface CommentProps extends CommentType {}
 
@@ -30,9 +31,11 @@ export const Comment = ({ id, content, author, resource_id, created_at, updated_
 
                 <div className="w-full flex flex-col gap-1">
                     <div
-                        className={`${
-                            isEditModeActive ? 'w-full' : 'w-fit'
-                        } flex flex-col bg-dark-100 text-sm text-light-200 rounded-3xl py-2 px-3`}
+                        className={clsx(
+                            'flex flex-col bg-dark-100 text-sm text-light-200 rounded-3xl py-2 px-3',
+                            isEditModeActive && 'w-full',
+                            !isEditModeActive && 'w-fit'
+                        )}
                     >
                         <span className="font-medium">{author.name}</span>
 

@@ -18,7 +18,7 @@ export default function Custom404() {
                 to open is correct.
             </span>
 
-            <Button title="Go to Home Page" callback={handleRedirect} styles="w-[300px] mt-8" />
+            <Button title="Go to Home Page" styles="w-[300px] mt-8" callback={handleRedirect} />
         </div>
     );
 }

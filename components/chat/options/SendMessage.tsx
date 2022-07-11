@@ -7,6 +7,7 @@ import { RoundedButton } from '@components/inc/RoundedButton';
 
 import { SendMessageSchema } from '@validation/SendMessageSchema';
 import { useAppSelector } from '@hooks/redux';
+import { clsx } from 'clsx';
 
 interface FormValues {
     text: string;
@@ -59,9 +60,11 @@ export const SendMessage = memo(() => {
                         placeholder="Aa"
                         value={values.text}
                         autoComplete="off"
-                        className={`${
-                            isMessagePrepared ? 'w-52' : 'w-36'
-                        } h-9 bg-dark-100 text-light-100 transition-width focus:outline-none rounded-[20px] px-3`}
+                        className={clsx(
+                            'h-9 bg-dark-100 text-light-100 transition-width focus:outline-none rounded-[20px] px-3',
+                            isMessagePrepared && 'w-52',
+                            !isMessagePrepared && 'w-36'
+                        )}
                         onChange={(event) => handleChangeMessage(event, () => handleChange(event))}
                         onBlur={handleBlur}
                     />

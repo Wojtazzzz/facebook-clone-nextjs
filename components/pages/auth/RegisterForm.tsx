@@ -20,7 +20,6 @@ export const RegisterForm = () => {
             <Input type="password" name="password_confirmation" placeholder="Password confirmation" isDisabled />
 
             <Button type="button" title="Register" isDisabled={true} styles="w-full mt-2" />
-
             <Button title="Create Random User" isDisabled={isLoading} callback={handleCreateAccount} styles="w-full" />
 
             {error && <RequestErrors error={error} />}

@@ -16,12 +16,13 @@ export const SearchBox = () => {
     const [text, setText] = useState('');
     const inputRef = useRef<HTMLInputElement>(null);
     const { refine, clear } = useSearchBox({ queryHook });
-    useKey('Escape', () => handleClear());
 
     const handleClear = () => {
         clear();
         setText('');
     };
+
+    useKey('Escape', handleClear);
 
     const handleFocus = () => inputRef.current?.focus();
 

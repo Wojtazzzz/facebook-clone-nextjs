@@ -1,4 +1,5 @@
 import { Avatar } from '@components/inc/Avatar';
+import { clsx } from 'clsx';
 
 interface SingleItemProps {
     title: string;
@@ -16,7 +17,7 @@ export const SingleItem = ({ title, message, image, isActive = true, callback }:
         >
             <Avatar src={image} size={56} alt="" />
 
-            <div className={`flex flex-col text-left ${isActive ? '' : 'opacity-50'}`}>
+            <div className={clsx('flex flex-col text-left', isActive && 'opacity-50')}>
                 <span className="text-light-200">{title}</span>
                 <span className="text-sm text-light-100">{message}</span>
             </div>

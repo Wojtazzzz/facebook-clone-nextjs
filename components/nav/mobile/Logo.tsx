@@ -7,7 +7,6 @@ export const Logo = () => {
             <Link href="/">
                 <a className="flex justify-center items-center gap-3">
                     <FacebookLogo />
-
                     <h1 className="text-2xl text-light-50 font-bold">Facebook</h1>
                 </a>
             </Link>

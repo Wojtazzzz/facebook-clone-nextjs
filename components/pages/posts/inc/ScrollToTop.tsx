@@ -5,6 +5,7 @@ import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 
 import type { RefObject } from 'react';
 import type InfiniteScroll from 'react-infinite-scroll-component';
+import { clsx } from 'clsx';
 
 interface ScrollToTopProps {
     postsListRef: RefObject<InfiniteScroll>;
@@ -33,9 +34,11 @@ export const ScrollToTop = ({ postsListRef }: ScrollToTopProps) => {
         <button
             aria-label="Scroll posts list to top"
             title="Scroll posts list to top"
-            className={`w-12 h-12 flex justify-center items-center fixed bottom-16 right-6 z-30 bg-dark-100 transition-opacity ${
-                scrollDistance > 1000 ? 'opacity-80' : 'opacity-0 pointer-events-none'
-            } hover:opacity-60 rounded-2xl cursor-pointer`}
+            className={clsx(
+                'w-12 h-12 flex justify-center items-center fixed bottom-16 right-6 z-30 bg-dark-100 transition-opacity hover:opacity-60 rounded-2xl cursor-pointer',
+                scrollDistance > 1000 && 'opacity-80',
+                scrollDistance < 1000 && 'opacity-0 pointer-events-none'
+            )}
             onClick={handleScrollToTop}
         >
             <FontAwesomeIcon icon={faArrowUp} className="text-2xl text-light-100" />

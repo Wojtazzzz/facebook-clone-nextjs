@@ -1,5 +1,7 @@
 import { ErrorMessage } from 'formik';
 
+import { clsx } from 'clsx';
+
 import type { ChangeEvent, FocusEvent, HTMLInputTypeAttribute } from 'react';
 
 interface InputProps {
@@ -23,11 +25,11 @@ export const Input = ({ type, name, value = '', placeholder, isDisabled = false,
                 aria-label={placeholder}
                 required
                 disabled={isDisabled}
-                className={`tracking-wide bg-dark-200 focus:outline-none ring-2 ring-dark-100 focus:ring-primary rounded-md ${
-                    isDisabled
-                        ? 'cursor-not-allowed text-dark-100 placeholder-light-100'
-                        : 'text-light-50 placeholder-light-50'
-                } py-2 px-4`}
+                className={clsx(
+                    'tracking-wide bg-dark-200 focus:outline-none ring-2 ring-dark-100 focus:ring-primary rounded-md py-2 px-4',
+                    isDisabled && 'cursor-not-allowed text-dark-100 placeholder-light-100',
+                    !isDisabled && 'text-light-50 placeholder-light-50'
+                )}
                 onChange={onChange ? (event) => onChange(event) : undefined}
                 onBlur={onBlur ? (event) => onBlur(event) : undefined}
             />

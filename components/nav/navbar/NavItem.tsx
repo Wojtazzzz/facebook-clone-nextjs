@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import { clsx } from 'clsx';
 
 interface NavItemProps {
     name: string;
@@ -24,13 +25,14 @@ export const NavItem = ({ name, path, icon }: NavItemProps) => {
                 className="w-[112px] h-full flex flex-col justify-center items-center gap-2 relative"
             >
                 <div
-                    className={`w-full h-full flex justify-center items-center rounded-lg ${
-                        isActive ? '' : 'hover:bg-dark-100'
-                    } my-1`}
+                    className={clsx(
+                        'w-full h-full flex justify-center items-center rounded-lg my-1',
+                        !isActive && 'hover:bg-dark-100'
+                    )}
                 >
                     <FontAwesomeIcon
                         icon={icon}
-                        className={`text-xl ${isActive ? 'text-primary' : 'text-light-100'}`}
+                        className={clsx('text-xl', isActive && 'text-primary', !isActive && 'text-light-100')}
                     />
                 </div>
 
