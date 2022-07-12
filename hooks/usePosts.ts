@@ -9,16 +9,16 @@ import type { CreatePostResponse } from '@ctypes/responses/CreatePostResponse';
 type Response = CreatePostResponse | {};
 
 export const usePosts = () => {
-    const { reloadData: reloadPosts } = usePaginatedData<PostType>('/api/posts', 15);
+    const { reloadData: reload } = usePaginatedData<PostType>('/api/posts', 15);
     const { state, sendRequest } = useAxios<Response>();
 
     useEffect(() => {
         if (state.status !== 'SUCCESS') return;
 
-        reloadPosts();
-    }, [state, reloadPosts]);
+        reload();
+    }, [state, reload]);
 
-    const createPost = (data: PostPayload) => {
+    const create = (data: PostPayload) => {
         if (state.status === 'LOADING') return;
 
         const formData = new FormData();
@@ -29,23 +29,23 @@ export const usePosts = () => {
         sendRequest({ method: 'POST', url: '/api/posts', data: formData });
     };
 
-    const removePost = async (postId: number) => {
+    const remove = async (id: number) => {
         if (state.status === 'LOADING') return;
 
         await sendRequest({
             method: 'DELETE',
-            url: `/api/posts/${postId}`,
+            url: `/api/posts/${id}`,
         });
     };
 
-    const hidePost = async (postId: number) => {
+    const hide = async (id: number) => {
         if (state.status === 'LOADING') return;
 
         await sendRequest({
             method: 'POST',
             url: '/api/hidden/posts',
             data: {
-                post_id: postId,
+                post_id: id,
             },
         });
     };
@@ -55,8 +55,8 @@ export const usePosts = () => {
     return {
         state,
         isLoading,
-        createPost,
-        removePost,
-        hidePost,
+        create,
+        remove,
+        hide,
     };
 };

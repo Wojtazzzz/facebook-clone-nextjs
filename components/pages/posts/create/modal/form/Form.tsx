@@ -21,7 +21,7 @@ export const Form = () => {
     const [isUploadActive, setIsUploadActive] = useState(false);
     const [oldData, setOldData] = useState<PostPayload>({ content: '', images: [] });
     const dispatch = useAppDispatch();
-    const { state, isLoading, createPost } = usePosts();
+    const { state, isLoading, create } = usePosts();
 
     useEffect(() => {
         if (state.status !== 'SUCCESS') return;
@@ -33,7 +33,7 @@ export const Form = () => {
     const handleChangeUploadIsActive = () => setIsUploadActive((prevState) => !prevState);
 
     const handleSubmit = (values: PostPayload) => {
-        createPost(values);
+        create(values);
         setOldData(values);
     };
 
