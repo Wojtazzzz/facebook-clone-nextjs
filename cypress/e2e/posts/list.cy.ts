@@ -86,9 +86,24 @@ describe('Posts list tests', () => {
         cy.get('[id="posts-list"] article[aria-label="Post"]').should('have.length', 15);
     });
 
-    it('settings close when click on outside component', () => {
-        cy.create('Post', {
-            author_id: 1,
+    it('hidden posts are not displayed on list', () => {
+        cy.create('Friendship', {
+            user_id: 1,
+            status: 'CONFIRMED',
+        }).then((friendship) => {
+            cy.create('Post', 3, {
+                author_id: friendship.friend_id,
+            });
+
+            cy.create('HiddenPost', {
+                user_id: 1,
+                post_id: 1,
+            });
+
+            cy.create('HiddenPost', {
+                user_id: 1,
+                post_id: 2,
+            });
         });
 
         cy.intercept('/api/user').as('user');
@@ -96,64 +111,27 @@ describe('Posts list tests', () => {
 
         cy.visit('/');
         cy.wait('@user');
-        cy.wait('@posts_page_1');
-
-        cy.get('[id="posts-list"] article[aria-label="Post"]')
-            .first()
-            .within(() => {
-                cy.get('button[aria-label="Show post settings"]').click();
-                cy.get('[aria-label="Settings"]').should('be.visible');
-            });
-
-        cy.get('[data-testid="sidebar"]').click();
-
-        cy.get('[id="posts-list"] article[aria-label="Post"]')
-            .first()
-            .within(() => {
-                cy.get('[aria-label="Settings"]').should('not.exist');
-            });
-    });
-
-    it('open post settings and delete post', () => {
-        cy.create('Post', 2, {
-            author_id: 1,
-        });
-
-        cy.intercept('/api/user').as('user');
-        cy.intercept('/api/posts?page=1').as('posts_page_1');
-
-        cy.visit('/');
-        cy.wait('@user');
-        cy.wait('@posts_page_1');
-
-        cy.get('[id="posts-list"] article[aria-label="Post"]').should('have.length', 2);
-        cy.get('[id="posts-list"] article[aria-label="Post"]')
-            .first()
-            .within(() => {
-                cy.get('button[aria-label="Show post settings"]').click();
-
-                cy.intercept('/api/posts/1').as('delete');
-                cy.intercept('/api/posts?page=1').as('posts_page_1');
-
-                cy.get('[aria-label="Settings"]').should('be.visible');
-                cy.get('[aria-label="Settings"] > button[aria-label="Delete post"]').click();
-
-                cy.wait('@delete');
-
-                cy.get('[aria-label="Settings"]').should('not.exist');
-            });
-
         cy.wait('@posts_page_1');
 
         cy.get('[id="posts-list"] article[aria-label="Post"]').should('have.length', 1);
     });
 
-    it("cannot delete somebody's post", () => {
-        cy.create('Post').then((post) => {
-            cy.create('Friendship', {
-                user_id: post.author_id,
-                friend_id: 1,
-                status: 'CONFIRMED',
+    it("friend's hidden posts are visible for logged user", () => {
+        cy.create('Friendship', 2, {
+            user_id: 1,
+            status: 'CONFIRMED',
+        }).then((friendships) => {
+            const [firstFS, secondFS] = friendships;
+
+            cy.create('Post', 3, {
+                author_id: firstFS.friend_id,
+            }).then((posts) => {
+                const [firstPost] = posts;
+
+                cy.create('HiddenPost', {
+                    user_id: secondFS.friend_id,
+                    post_id: firstPost.id,
+                });
             });
         });
 
@@ -164,14 +142,7 @@ describe('Posts list tests', () => {
         cy.wait('@user');
         cy.wait('@posts_page_1');
 
-        cy.get('[id="posts-list"] article[aria-label="Post"]')
-            .first()
-            .within(() => {
-                cy.get('button[aria-label="Show post settings"]').click();
-
-                cy.get('[aria-label="Settings"]').should('be.visible');
-                cy.get('[aria-label="Settings"] > button[aria-label="Delete post"]').should('not.exist');
-            });
+        cy.get('[id="posts-list"] article[aria-label="Post"]').should('have.length', 3);
     });
 
     it('like post on click on "Like Button" and dislike when click second time', () => {

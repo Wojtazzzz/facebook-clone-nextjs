@@ -13,11 +13,14 @@ export const usePosts = () => {
     const { state, sendRequest } = useAxios<Response>();
 
     useEffect(() => {
-        if (state.status === 'LOADING') return;
-        if (state.status === 'SUCCESS') reloadPosts();
+        if (state.status !== 'SUCCESS') return;
+
+        reloadPosts();
     }, [state, reloadPosts]);
 
     const createPost = (data: PostPayload) => {
+        if (state.status === 'LOADING') return;
+
         const formData = new FormData();
         formData.append('content', data.content);
 
@@ -35,6 +38,18 @@ export const usePosts = () => {
         });
     };
 
+    const hidePost = async (postId: number) => {
+        if (state.status === 'LOADING') return;
+
+        await sendRequest({
+            method: 'POST',
+            url: '/api/hidden/posts',
+            data: {
+                post_id: postId,
+            },
+        });
+    };
+
     const isLoading = state.status === 'LOADING';
 
     return {
@@ -42,5 +57,6 @@ export const usePosts = () => {
         isLoading,
         createPost,
         removePost,
+        hidePost,
     };
 };

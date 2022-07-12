@@ -34,4 +34,26 @@ describe('Menu component', () => {
             expect(deletePostOption).not.toBeInTheDocument();
         });
     });
+
+    it('"Hide post" option show when logged user is not post author', async () => {
+        mock('/api/user', 200, RootUserJson);
+
+        renderWithDefaultData(<Menu authorId={JaneDoeJson.id} postId={1} closeMenu={mockCloseMenu} />);
+
+        const hidePostOption = await screen.findByLabelText('Hide post');
+
+        expect(hidePostOption).toBeInTheDocument();
+    });
+
+    it('"Hide post" option not show when logged user is post author', async () => {
+        mock('/api/user', 200, RootUserJson);
+
+        renderWithDefaultData(<Menu authorId={RootUserJson.id} postId={1} closeMenu={mockCloseMenu} />);
+
+        await waitFor(() => {
+            const hidePostOption = screen.queryByLabelText('Hide post');
+
+            expect(hidePostOption).not.toBeInTheDocument();
+        });
+    });
 });
