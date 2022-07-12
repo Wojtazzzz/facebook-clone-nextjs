@@ -25,9 +25,9 @@ describe('PanelButton component', () => {
             <PanelButton title="Like" isActive={true} icon={faThumbsUp} callback={mockHandleLikePost} />
         );
 
-        const buttonText = screen.getByText('Like');
+        const button = screen.getByRole('button');
 
-        expect(buttonText).toHaveClass('text-primary');
+        expect(button).toHaveClass('text-primary');
     });
 
     it('has white text color class when is deactive', () => {
@@ -37,9 +37,9 @@ describe('PanelButton component', () => {
             <PanelButton title="Like" isActive={false} icon={faThumbsUp} callback={mockHandleLikePost} />
         );
 
-        const buttonText = screen.getByText('Like');
+        const button = screen.getByRole('button');
 
-        expect(buttonText).toHaveClass('text-light-100');
+        expect(button).toHaveClass('text-light-100');
     });
 
     it('render title properly', () => {

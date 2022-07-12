@@ -16,14 +16,16 @@ export const PanelButton = ({ title, icon, isActive = false, callback }: PanelBu
         <button
             aria-label={title}
             title={title}
-            className="w-1/3 flex justify-center items-center gap-1.5 hover:bg-dark-100 rounded-lg py-2"
+            className={clsx(
+                'w-1/3 flex justify-center items-center gap-1.5 font-medium hover:bg-dark-100 rounded-lg py-2',
+                isActive && 'text-primary',
+                !isActive && 'text-light-100'
+            )}
             onClick={callback}
         >
             <FontAwesomeIcon icon={icon} />
 
-            <span className={clsx('font-medium', isActive && 'text-primary', !isActive && 'text-light-100')}>
-                {title}
-            </span>
+            <span>{title}</span>
         </button>
     );
 };

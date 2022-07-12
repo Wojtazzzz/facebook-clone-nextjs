@@ -15,17 +15,17 @@ describe('LikeButton component', () => {
     it('has active (blue) button when post is liked', () => {
         renderWithDefaultData(<LikeButton postId={post.id} isLiked={true} setTotalLikes={mockSetTotalLikes} />);
 
-        const buttonText = screen.getByText('Like');
+        const button = screen.getByRole('button');
 
-        expect(buttonText).toHaveClass('text-primary');
+        expect(button).toHaveClass('text-primary');
     });
 
     it('has deactive (white) button when post is not liked', () => {
         renderWithDefaultData(<LikeButton postId={post.id} isLiked={false} setTotalLikes={mockSetTotalLikes} />);
 
-        const buttonText = screen.getByText('Like');
+        const button = screen.getByRole('button');
 
-        expect(buttonText).toHaveClass('text-light-100');
+        expect(button).toHaveClass('text-light-100');
     });
 
     it('change color to blue when try to like post (success)', async () => {
@@ -36,10 +36,8 @@ describe('LikeButton component', () => {
         const button = screen.getByRole('button');
         await user.click(button);
 
-        const buttonText = screen.getByText('Like');
-
         await waitFor(() => {
-            expect(buttonText).toHaveClass('text-primary');
+            expect(button).toHaveClass('text-primary');
         });
     });
 
@@ -51,10 +49,8 @@ describe('LikeButton component', () => {
         const button = screen.getByRole('button');
         await user.click(button);
 
-        const buttonText = screen.getByText('Like');
-
         await waitFor(() => {
-            expect(buttonText).toHaveClass('text-light-100');
+            expect(button).toHaveClass('text-light-100');
         });
     });
 
@@ -66,10 +62,8 @@ describe('LikeButton component', () => {
         const button = screen.getByRole('button');
         await user.click(button);
 
-        const buttonText = screen.getByText('Like');
-
         await waitFor(() => {
-            expect(buttonText).toHaveClass('text-light-100');
+            expect(button).toHaveClass('text-light-100');
         });
     });
 
@@ -81,10 +75,8 @@ describe('LikeButton component', () => {
         const button = screen.getByRole('button');
         await user.click(button);
 
-        const buttonText = screen.getByText('Like');
-
         await waitFor(() => {
-            expect(buttonText).toHaveClass('text-primary');
+            expect(button).toHaveClass('text-primary');
         });
     });
 });
