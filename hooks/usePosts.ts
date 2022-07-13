@@ -50,6 +50,18 @@ export const usePosts = () => {
         });
     };
 
+    const save = async (id: number) => {
+        if (state.status === 'LOADING') return;
+
+        await sendRequest({
+            method: 'POST',
+            url: '/api/saved/posts',
+            data: {
+                post_id: id,
+            },
+        });
+    };
+
     const isLoading = state.status === 'LOADING';
 
     return {
@@ -58,5 +70,6 @@ export const usePosts = () => {
         create,
         remove,
         hide,
+        save,
     };
 };
