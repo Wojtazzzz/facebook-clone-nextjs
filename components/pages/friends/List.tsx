@@ -10,17 +10,17 @@ import { Actions } from '@components/pages/friends/inc/Actions';
 
 import { getPathForPagination } from '@components/pages/friends/utils';
 
-import type { UserType } from '@ctypes/features/UserType';
-import type { FriendsListType } from '@ctypes/FriendsListType';
+import type { IUser } from '@utils/types';
+import type { IFriendsList } from '@utils/types';
 
 interface ListProps {
     userId: number;
-    listType: FriendsListType;
+    listType: IFriendsList;
 }
 
 export const List = memo<ListProps>(({ userId, listType }) => {
     const key = getPathForPagination(listType, userId);
-    const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginatedData<UserType>(key);
+    const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginatedData<IUser>(key);
 
     if (state === 'LOADING') return <Loader testId="friendsList-loading_loader" />;
     if (state === 'ERROR') return <ApiError size="xl" styles="mt-8" />;

@@ -26,7 +26,6 @@
             "@pages/*": ["pages/*"],
             "@redux/*": ["redux/*"],
             "@styles/*": ["styles/*"],
-            "@ctypes/*": ["types/*"],
             "@utils/*": ["utils/*"],
             "@validation/*": ["validation/*"]
         }

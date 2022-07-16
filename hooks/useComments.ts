@@ -1,12 +1,12 @@
 import { useAxios } from '@hooks/useAxios';
 
-import type { CommentPayload } from '@ctypes/forms/CommentPayload';
-import type { CommentType } from '@ctypes/features/CommentType';
+import type { ICommentPayload } from '@utils/types';
+import type { IComment } from '@utils/types';
 
 export const useComments = () => {
-    const { state, sendRequest } = useAxios<CommentType>();
+    const { state, sendRequest } = useAxios<IComment>();
 
-    const createComment = (values: CommentPayload) => {
+    const createComment = (values: ICommentPayload) => {
         if (state.status === 'LOADING') return;
 
         sendRequest({
@@ -16,7 +16,7 @@ export const useComments = () => {
         });
     };
 
-    const updateComment = (commentId: number, values: CommentPayload) => {
+    const updateComment = (commentId: number, values: ICommentPayload) => {
         if (state.status === 'LOADING') return;
 
         sendRequest({

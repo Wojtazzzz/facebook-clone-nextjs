@@ -9,9 +9,9 @@ import { LikeButton } from '@components/pages/posts/post/panel/LikeButton';
 import { Comments } from '@components/pages/posts/post/comments/Comments';
 import { CommentButton } from '@components/pages/posts/post/panel/CommentButton';
 
-import type { PostType } from '@ctypes/features/PostType';
+import type { IPost } from '@utils/types';
 
-interface PostProps extends PostType {}
+interface PostProps extends IPost {}
 
 export const Post = ({
     id,

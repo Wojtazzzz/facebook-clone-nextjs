@@ -7,10 +7,10 @@ import { Button } from '@components/inc/Button';
 
 import { showChat } from '@redux/slices/ChatSlice';
 
-import type { UserType } from '@ctypes/features/UserType';
+import type { IUser } from '@utils/types';
 
 interface FriendActionsProps {
-    friend: UserType;
+    friend: IUser;
 }
 
 export const FriendActions = ({ friend }: FriendActionsProps) => {

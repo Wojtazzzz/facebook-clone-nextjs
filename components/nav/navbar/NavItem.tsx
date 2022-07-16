@@ -3,8 +3,9 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { clsx } from 'clsx';
+
+import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 
 interface NavItemProps {
     name: string;

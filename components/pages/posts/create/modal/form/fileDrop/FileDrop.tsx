@@ -5,14 +5,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImages } from '@fortawesome/free-solid-svg-icons';
 import { CloseButton } from '@components/pages/posts/create/modal/form/fileDrop/CloseButton';
 
-import type { PostPayload } from '@ctypes/forms/PostPayload';
+import type { IPostPayload } from '@utils/types';
 
 interface FileDropProps {
     handleClose: () => void;
 }
 
 export const FileDrop = ({ handleClose }: FileDropProps) => {
-    const { values, setFieldValue } = useFormikContext<PostPayload>();
+    const { values, setFieldValue } = useFormikContext<IPostPayload>();
 
     const handleCancelUpload = () => {
         handleClose();

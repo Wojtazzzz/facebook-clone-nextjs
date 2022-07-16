@@ -1,12 +1,12 @@
 import { Hero } from '@components/pages/profile/hero/Hero';
 
-import type { UserType } from '@ctypes/features/UserType';
+import type { IUser } from '@utils/types';
 
 interface ProfileProps {
-    user: UserType;
+    user: IUser;
     friends: {
         amount: number;
-        list: UserType[];
+        list: IUser[];
     };
 }
 

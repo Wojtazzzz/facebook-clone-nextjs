@@ -5,10 +5,10 @@ import { SingleItem } from '@components/nav/panel/inc/SingleItem';
 import { showChat } from '@redux/slices/ChatSlice';
 import { toggleActive as toggleActiveMessenger } from '@redux/slices/MessengerSlice';
 
-import type { UserType } from '@ctypes/features/UserType';
+import type { IUser } from '@utils/types';
 
 interface FriendProps {
-    friend: UserType;
+    friend: IUser;
 }
 
 export const Friend = ({ friend }: FriendProps) => {

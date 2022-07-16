@@ -9,7 +9,7 @@ import { clsx } from 'clsx';
 import { CommentSchema } from '@validation/CommentSchema';
 
 import type { FormikProps } from 'formik';
-import type { CommentPayload } from '@ctypes/forms/CommentPayload';
+import type { ICommentPayload } from '@utils/types';
 
 interface CreateFormProps {
     postId: number;
@@ -17,7 +17,7 @@ interface CreateFormProps {
 }
 
 export const CreateForm = ({ postId, reloadComments }: CreateFormProps) => {
-    const formRef = useRef<FormikProps<CommentPayload>>(null);
+    const formRef = useRef<FormikProps<ICommentPayload>>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     const { state, createComment } = useComments();
 

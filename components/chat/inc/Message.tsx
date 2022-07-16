@@ -1,7 +1,7 @@
 import { clsx } from 'clsx';
-import type { ChatMessageType } from '@ctypes/features/ChatMessageType';
+import type { IChatMessage } from '@utils/types';
 
-interface MessageProps extends ChatMessageType {}
+interface MessageProps extends IChatMessage {}
 
 export const Message = ({ text, isReceived, created_at }: MessageProps) => {
     return (

@@ -8,7 +8,7 @@ import { Loader } from '@components/pages/friends/inc/Loader';
 
 import { isFriendsListType } from '@utils/isFriendsListType';
 
-import type { FriendsListType } from '@ctypes/FriendsListType';
+import type { IFriendsList } from '@utils/types';
 
 export const Friends = () => {
     const {
@@ -16,7 +16,7 @@ export const Friends = () => {
     } = useRouter();
     const { user } = useAuth();
 
-    const parsedType = type?.toString().toUpperCase() as FriendsListType;
+    const parsedType = type?.toString().toUpperCase() as IFriendsList;
 
     if (!isFriendsListType(parsedType)) return <Custom404 />;
 

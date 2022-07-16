@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { Friend } from '@components/pages/profile/hero/user/Friend';
 
-import type { UserType } from '@ctypes/features/UserType';
+import type { IUser } from '@utils/types';
 
 interface UserProps {
     id: number;
@@ -10,7 +10,7 @@ interface UserProps {
     profile_image: string;
     friends: {
         amount: number;
-        list: UserType[];
+        list: IUser[];
     };
 }
 

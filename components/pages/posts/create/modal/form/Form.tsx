@@ -12,14 +12,13 @@ import { DropLabel } from '@components/pages/posts/create/modal/form/fileDrop/Dr
 import { UploadedFiles } from '@components/pages/posts/create/modal/form/fileDrop/UploadedFiles';
 
 import { closeModal } from '@redux/slices/CreatePostModalSlice';
-
 import { PostSchema } from '@validation/PostSchema';
 
-import type { PostPayload } from '@ctypes/forms/PostPayload';
+import type { IPostPayload } from '@utils/types';
 
 export const Form = () => {
     const [isUploadActive, setIsUploadActive] = useState(false);
-    const [oldData, setOldData] = useState<PostPayload>({ content: '', images: [] });
+    const [oldData, setOldData] = useState<IPostPayload>({ content: '', images: [] });
     const dispatch = useAppDispatch();
     const { state, isLoading, create } = usePosts();
 
@@ -32,7 +31,7 @@ export const Form = () => {
     const handleClose = () => setIsUploadActive(false);
     const handleChangeUploadIsActive = () => setIsUploadActive((prevState) => !prevState);
 
-    const handleSubmit = (values: PostPayload) => {
+    const handleSubmit = (values: IPostPayload) => {
         create(values);
         setOldData(values);
     };

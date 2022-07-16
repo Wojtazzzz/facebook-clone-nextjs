@@ -1,5 +1,5 @@
 import { useDatabaseMigrations } from 'cypress-laravel';
-import type { PostType } from '@cypress/support/types';
+import type { IPost } from '@cypress/support/types';
 
 describe('Posts list tests', () => {
     useDatabaseMigrations();
@@ -10,9 +10,9 @@ describe('Posts list tests', () => {
 
     it("user see own post and friend's post but can't see stranger's post", () => {
         const posts = {
-            user: {} as PostType,
-            friend: {} as PostType,
-            stranger: {} as PostType,
+            user: {} as IPost,
+            friend: {} as IPost,
+            stranger: {} as IPost,
         };
 
         // User's post

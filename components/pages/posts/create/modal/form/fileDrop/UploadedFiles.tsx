@@ -4,12 +4,12 @@ import { File } from '@components/pages/posts/create/modal/form/fileDrop/File';
 
 import { v4 as uuidv4 } from 'uuid';
 
-import type { PostPayload } from '@ctypes/forms/PostPayload';
+import type { IPostPayload } from '@utils/types';
 
 export const UploadedFiles = () => {
     const {
         values: { images },
-    } = useFormikContext<PostPayload>();
+    } = useFormikContext<IPostPayload>();
 
     if (!!!images.length) return <></>;
 

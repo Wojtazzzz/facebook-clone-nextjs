@@ -7,14 +7,14 @@ import { Message } from '@components/chat/inc/Message';
 import { EmptyChat } from '@components/chat/inc/EmptyChat';
 import { ApiError } from '@components/inc/ApiError';
 
-import type { ChatMessageType } from '@ctypes/features/ChatMessageType';
+import type { IChatMessage } from '@utils/types';
 
 interface MessagesProps {
     friendId: number;
 }
 
 export const Messages = memo<MessagesProps>(({ friendId }) => {
-    const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginatedData<ChatMessageType>(
+    const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginatedData<IChatMessage>(
         `/api/messages/${friendId}`
     );
 

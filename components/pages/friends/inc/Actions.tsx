@@ -3,18 +3,18 @@ import { InviteActions } from '@components/pages/friends/actions/InviteActions';
 import { SuggestActions } from '@components/pages/friends/actions/SuggestActions';
 import { PokeActions } from '@components/pages/friends/actions/PokeActions';
 
-import type { UserType } from '@ctypes/features/UserType';
-import type { PokingUserType } from '@ctypes/features/PokingUserType';
-import type { FriendsListType } from '@ctypes/FriendsListType';
+import type { IUser } from '@utils/types';
+import type { IPokingUser } from '@utils/types';
+import type { IFriendsList } from '@utils/types';
 
 interface ActionsProps {
-    friend: UserType;
-    listType: FriendsListType;
+    friend: IUser;
+    listType: IFriendsList;
 }
 
 export const Actions = ({ friend, listType }: ActionsProps) => {
     if (listType === 'SUGGESTS') return <SuggestActions friend={friend} />;
     if (listType === 'INVITES') return <InviteActions friend={friend} />;
-    if (listType === 'POKES') return <PokeActions friend={friend as PokingUserType} />;
+    if (listType === 'POKES') return <PokeActions friend={friend as IPokingUser} />;
     return <FriendActions friend={friend} />;
 };

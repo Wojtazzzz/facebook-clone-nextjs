@@ -3,10 +3,10 @@ import useSWRInfinite from 'swr/infinite';
 
 import axios, { objectsIntoArray } from '@libs/axios';
 
-import type { UsePaginatedDataState } from '@ctypes/UsePaginatedDataState';
+import type { IUsePaginatedDataState } from '@utils/types';
 
 export const usePaginatedData = <T>(key: string, perList = 10) => {
-    const [state, setState] = useState<UsePaginatedDataState>('LOADING');
+    const [state, setState] = useState<IUsePaginatedDataState>('LOADING');
     const [flatData, setFlatData] = useState<T[]>([]);
     const AxiosAbortController = useMemo(() => new AbortController(), []);
 

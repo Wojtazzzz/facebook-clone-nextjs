@@ -5,9 +5,9 @@ import { SingleItem } from '@components/nav/panel/inc/SingleItem';
 
 import { toggleActive } from '@redux/slices/NotificationsSlice';
 
-import type { NotificationType } from '@ctypes/features/NotificationType';
+import type { INotification } from '@utils/types';
 
-interface NotificationProps extends NotificationType {}
+interface NotificationProps extends INotification {}
 
 export const Notification = ({ message, friend, link, read_at }: NotificationProps) => {
     const router = useRouter();

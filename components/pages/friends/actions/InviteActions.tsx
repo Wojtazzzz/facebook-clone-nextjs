@@ -5,10 +5,10 @@ import { Failure } from '@components/pages/friends/actions/responses/Failure';
 import { Success } from '@components/pages/friends/actions/responses/Success';
 import { Button } from '@components/inc/Button';
 
-import type { UserType } from '@ctypes/features/UserType';
+import type { IUser } from '@utils/types';
 
 interface InviteActionsProps {
-    friend: UserType;
+    friend: IUser;
 }
 
 export const InviteActions = ({ friend }: InviteActionsProps) => {

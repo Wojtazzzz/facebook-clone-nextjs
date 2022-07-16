@@ -6,10 +6,10 @@ import { Button } from '@components/inc/Button';
 import { clsx } from 'clsx';
 import { showChat } from '@redux/slices/ChatSlice';
 
-import type { UserType } from '@ctypes/features/UserType';
+import type { IUser } from '@utils/types';
 
 interface GuestPanelProps {
-    user: UserType;
+    user: IUser;
 }
 
 export const GuestPanel = ({ user }: GuestPanelProps) => {

@@ -1,5 +1,5 @@
 import { useDatabaseMigrations } from 'cypress-laravel';
-import type { PostType } from '@cypress/support/types';
+import type { IPost } from '@cypress/support/types';
 
 describe('Posts settings tests', () => {
     useDatabaseMigrations();
@@ -98,7 +98,7 @@ describe('Posts settings tests', () => {
 
     it('open post settings, click on "Hide post" option, post settings dissapears, post dissapears from list', () => {
         cy.create('Post', 2).then((posts) => {
-            posts.forEach((post: PostType) => {
+            posts.forEach((post: IPost) => {
                 cy.create('Friendship', {
                     user_id: 1,
                     friend_id: post.author_id,

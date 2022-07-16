@@ -1,4 +1,4 @@
-export type UserType = {
+export type IUser = {
     id: number;
     first_name: string;
     last_name: string;
@@ -8,7 +8,7 @@ export type UserType = {
     updated_at: string;
 };
 
-export type PostType = {
+export type IPost = {
     id: number;
     content: string;
     images?: string[];

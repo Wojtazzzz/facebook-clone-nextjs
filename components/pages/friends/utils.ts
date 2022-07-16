@@ -1,6 +1,6 @@
-import type { FriendsListType } from '@ctypes/FriendsListType';
+import type { IFriendsList } from '@utils/types';
 
-export const toCapitalizeCase = (name: FriendsListType) => {
+export const toCapitalizeCase = (name: IFriendsList) => {
     if (!name) {
         return 'Friends';
     }
@@ -16,8 +16,8 @@ export const toCapitalizeCase = (name: FriendsListType) => {
     return parsedString;
 };
 
-export const getPathForPagination = (type: FriendsListType, userId = 0) => {
-    const listType = type?.toUpperCase() as FriendsListType;
+export const getPathForPagination = (type: IFriendsList, userId = 0) => {
+    const listType = type?.toUpperCase() as IFriendsList;
 
     if (!listType) return `/api/friendship/friends/${userId}`;
 

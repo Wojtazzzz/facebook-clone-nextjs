@@ -3,10 +3,10 @@ import { useAuth } from '@hooks/useAuth';
 import { AuthPanel } from '@components/pages/profile/hero/panel/AuthPanel';
 import { GuestPanel } from '@components/pages/profile/hero/panel/GuestPanel';
 
-import type { UserType } from '@ctypes/features/UserType';
+import type { IUser } from '@utils/types';
 
 interface PanelProps {
-    pageUser: UserType;
+    pageUser: IUser;
 }
 
 export const Panel = ({ pageUser }: PanelProps) => {

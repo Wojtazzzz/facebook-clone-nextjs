@@ -5,7 +5,7 @@ import { useComments } from '@hooks/useComments';
 import { SpinnerLoader } from '@components/inc/SpinnerLoader';
 import { ApiError } from '@components/inc/ApiError';
 
-import type { CommentType } from '@ctypes/features/CommentType';
+import type { IComment } from '@utils/types';
 
 interface ContentProps {
     postId: number;
@@ -14,7 +14,7 @@ interface ContentProps {
 }
 
 export const Content = ({ postId, commentId, closeModal }: ContentProps) => {
-    const { reloadData: reloadComments } = usePaginatedData<CommentType>(`/api/posts/${postId}/comments`);
+    const { reloadData: reloadComments } = usePaginatedData<IComment>(`/api/posts/${postId}/comments`);
     const { state, removeComment } = useComments();
 
     useEffect(() => {

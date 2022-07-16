@@ -1,8 +1,8 @@
 import { useDatabaseMigrations } from 'cypress-laravel';
-import type { UserType } from '../support/types';
+import type { IUser } from '@cypress/support/types';
 
 describe('Contacts tests', () => {
-    let friend: UserType;
+    let friend: IUser;
 
     useDatabaseMigrations();
 

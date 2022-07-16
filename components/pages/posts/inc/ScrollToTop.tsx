@@ -3,9 +3,10 @@ import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 
+import { clsx } from 'clsx';
+
 import type { RefObject } from 'react';
 import type InfiniteScroll from 'react-infinite-scroll-component';
-import { clsx } from 'clsx';
 
 interface ScrollToTopProps {
     postsListRef: RefObject<InfiniteScroll>;

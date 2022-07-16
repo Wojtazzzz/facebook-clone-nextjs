@@ -2,10 +2,10 @@ import Link from 'next/link';
 
 import { toCapitalizeCase } from '@components/pages/friends/utils';
 
-import type { FriendsListType } from '@ctypes/FriendsListType';
+import type { IFriendsList } from '@utils/types';
 
 interface HeaderProps {
-    name: FriendsListType;
+    name: IFriendsList;
 }
 
 export const Header = ({ name }: HeaderProps) => {

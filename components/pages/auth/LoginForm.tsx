@@ -7,12 +7,12 @@ import { Button } from '@components/inc/Button';
 
 import { LoginSchema } from '@validation/LoginSchema';
 
-import type { LoginPayload } from '@ctypes/forms/LoginPayload';
+import type { ILoginPayload } from '@utils/types';
 
 export const LoginForm = () => {
     const { login, isLoading, error } = useAuth();
 
-    const handleSubmit = (data: LoginPayload) => login(data);
+    const handleSubmit = (data: ILoginPayload) => login(data);
 
     return (
         <Formik

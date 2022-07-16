@@ -8,10 +8,10 @@ import { ScrollToTop } from '@components/pages/posts/inc/ScrollToTop';
 import { ApiError } from '@components/inc/ApiError';
 import { EmptyList } from '@components/inc/EmptyList';
 
-import type { PostType } from '@ctypes/features/PostType';
+import type { IPost } from '@utils/types';
 
 export const List = memo(() => {
-    const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginatedData<PostType>('/api/posts', 10);
+    const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginatedData<IPost>('/api/posts', 10);
     const listRef = useRef<InfiniteScroll>(null);
 
     if (state === 'LOADING') return <Loader testId="postsList-loading_loader" />;

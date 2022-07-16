@@ -9,17 +9,17 @@ import { Panel } from '@components/chat/Panel';
 import Echo from 'laravel-echo';
 import axios from '@libs/axios';
 
-import type { UserType } from '@ctypes/features/UserType';
-import type { ChatMessageType } from '@ctypes/features/ChatMessageType';
+import type { IUser } from '@utils/types';
+import type { IChatMessage } from '@utils/types';
 
 require('pusher-js');
 
 interface ChatProps {
-    friend: UserType;
+    friend: IUser;
 }
 
 export const Chat = ({ friend }: ChatProps) => {
-    const { reloadData } = usePaginatedData<ChatMessageType>(`/api/messages/${friend.id}`);
+    const { reloadData } = usePaginatedData<IChatMessage>(`/api/messages/${friend.id}`);
     const { user } = useAuth();
 
     const LaravelEcho = useMemo(

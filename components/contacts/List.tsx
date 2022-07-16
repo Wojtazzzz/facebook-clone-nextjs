@@ -7,14 +7,14 @@ import { Contact } from '@components/contacts/inc/Contact';
 import { ApiError } from '@components/inc/ApiError';
 import { EmptyList } from '@components/inc/EmptyList';
 
-import type { UserType } from '@ctypes/features/UserType';
+import type { IUser } from '@utils/types';
 
 interface ListProps {
     userId: number;
 }
 
 export const List = memo(({ userId }: ListProps) => {
-    const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginatedData<UserType>(
+    const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginatedData<IUser>(
         `/api/friendship/friends/${userId}`
     );
 

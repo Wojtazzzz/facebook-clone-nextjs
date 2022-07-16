@@ -1,11 +1,11 @@
 import { Settings } from '@components/pages/posts/post/inc/settings/Settings';
 import { UserInfo } from '@components/pages/posts/post/inc/UserInfo';
 
-import type { UserType } from '@ctypes/features/UserType';
+import type { IUser } from '@utils/types';
 
 interface HeaderProps {
     postId: number;
-    author: UserType;
+    author: IUser;
     created_at: string;
     updated_at: string;
 }

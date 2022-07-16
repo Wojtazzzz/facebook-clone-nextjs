@@ -5,10 +5,10 @@ import { Avatar } from '@components/inc/Avatar';
 
 import { showChat } from '@redux/slices/ChatSlice';
 
-import type { UserType } from '@ctypes/features/UserType';
+import type { IUser } from '@utils/types';
 
 interface ContactProps {
-    friend: UserType;
+    friend: IUser;
 }
 
 export const Contact = memo<ContactProps>(({ friend }) => {

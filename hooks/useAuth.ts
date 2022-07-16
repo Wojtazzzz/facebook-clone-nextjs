@@ -6,11 +6,11 @@ import { useAxios } from '@hooks/useAxios';
 import axios from '@libs/axios';
 import Axios from 'axios';
 
-import type { UserType } from '@ctypes/features/UserType';
-import type { AuthMiddlewareType } from '@ctypes/AuthMiddlewareType';
-import type { LoginPayload } from '@ctypes/forms/LoginPayload';
+import type { IUser } from '@utils/types';
+import type { IAuthMiddleware } from '@utils/types';
+import type { ILoginPayload } from '@utils/types';
 
-export const useAuth = (middleware?: AuthMiddlewareType) => {
+export const useAuth = (middleware?: IAuthMiddleware) => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
     const router = useRouter();
@@ -24,7 +24,7 @@ export const useAuth = (middleware?: AuthMiddlewareType) => {
                 throw error;
             });
 
-    const { data: user, error: fetchError, mutate } = useSWR<UserType>('/api/user', fetcher);
+    const { data: user, error: fetchError, mutate } = useSWR<IUser>('/api/user', fetcher);
 
     const csrf = () => axios.get('/sanctum/csrf-cookie');
 
@@ -42,7 +42,7 @@ export const useAuth = (middleware?: AuthMiddlewareType) => {
         mutate();
     };
 
-    const login = async (data: LoginPayload) => {
+    const login = async (data: ILoginPayload) => {
         setIsLoading(true);
         setError('');
 

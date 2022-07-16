@@ -1,9 +1,9 @@
 import { useAxios } from '@hooks/useAxios';
 
-import type { LikeResponse } from '@ctypes/responses/LikeResponse';
+import type { ILikeResponse } from '@utils/types';
 
 export const useLikes = (postId: number) => {
-    const { state, sendRequest } = useAxios<LikeResponse>();
+    const { state, sendRequest } = useAxios<ILikeResponse>();
 
     const handleLike = (isLiked: boolean) => {
         if (state.status === 'LOADING') return;

@@ -2,9 +2,9 @@ import Link from 'next/link';
 import { Avatar } from '@components/inc/Avatar';
 
 import type { ReactNode } from 'react';
-import type { UserType } from '@ctypes/features/UserType';
+import type { IUser } from '@utils/types';
 
-interface UserProps extends UserType {
+interface UserProps extends IUser {
     children: ReactNode;
 }
 

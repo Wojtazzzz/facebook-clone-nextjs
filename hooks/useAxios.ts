@@ -3,10 +3,10 @@ import { useState, useEffect, useMemo } from 'react';
 import axios from '@libs/axios';
 
 import type { AxiosRequestConfig } from 'axios';
-import type { UseAxiosState } from '@ctypes/UseAxiosState';
+import type { IUseAxiosState } from '@utils/types';
 
 export const useAxios = <T>() => {
-    const [state, setState] = useState<UseAxiosState<T>>({ status: 'EMPTY' });
+    const [state, setState] = useState<IUseAxiosState<T>>({ status: 'EMPTY' });
     const axiosAbortController = useMemo(() => new AbortController(), []);
 
     const axiosOptions = { signal: axiosAbortController.signal };

@@ -2,12 +2,12 @@ import { Comment } from '@components/pages/posts/post/comments/inc/Comment';
 import { Loader } from '@components/pages/posts/post/comments/inc/Loader';
 import { ApiError } from '@components/inc/ApiError';
 
-import type { CommentType } from '@ctypes/features/CommentType';
-import type { UsePaginatedDataState } from '@ctypes/UsePaginatedDataState';
+import type { IComment } from '@utils/types';
+import type { IUsePaginatedDataState } from '@utils/types';
 
 interface ListProps {
-    state: UsePaginatedDataState;
-    comments: CommentType[];
+    state: IUsePaginatedDataState;
+    comments: IComment[];
 }
 
 export const List = ({ state, comments }: ListProps) => {

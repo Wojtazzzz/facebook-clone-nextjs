@@ -8,7 +8,7 @@ import { SubmitButton } from '@components/pages/posts/post/comments/create/inc/S
 
 import { CommentSchema } from '@validation/CommentSchema';
 
-import type { CommentType } from '@ctypes/features/CommentType';
+import type { IComment } from '@utils/types';
 
 interface UpdateFormProps {
     postId: number;
@@ -19,7 +19,7 @@ interface UpdateFormProps {
 
 export const UpdateForm = ({ postId, commentId, content, closeEditMode }: UpdateFormProps) => {
     const inputRef = useRef<HTMLInputElement>(null);
-    const { reloadData: reloadComments } = usePaginatedData<CommentType>(`/api/posts/${postId}/comments`);
+    const { reloadData: reloadComments } = usePaginatedData<IComment>(`/api/posts/${postId}/comments`);
     const { state, updateComment } = useComments();
 
     useEffect(() => {

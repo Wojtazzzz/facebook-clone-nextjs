@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import { Avatar } from '@components/inc/Avatar';
 
-import type { UserType } from '@ctypes/features/UserType';
+import type { IUser } from '@utils/types';
 
 interface UserInfoProps {
-    user: UserType;
+    user: IUser;
 }
 
 export const UserInfo = ({ user }: UserInfoProps) => {

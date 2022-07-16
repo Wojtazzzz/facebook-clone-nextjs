@@ -5,11 +5,11 @@ import { Hit } from '@components/nav/search/hits/Hit';
 import { NoResults } from '@components/nav/search/hits/NoResults';
 import { LoadMore } from '@components/nav/search/hits/LoadMore';
 
-import type { UserHit } from '@ctypes/UserHitType';
+import type { IUserHit } from '@utils/types';
 
 export const Hits = () => {
     const { clear } = useSearchBox();
-    const { hits, results, showMore, isLastPage } = useInfiniteHits<UserHit>();
+    const { hits, results, showMore, isLastPage } = useInfiniteHits<IUserHit>();
     useConfigure({
         hitsPerPage: 8,
     });

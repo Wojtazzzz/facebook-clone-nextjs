@@ -1,6 +1,6 @@
-import { FriendsListType } from '@ctypes/FriendsListType';
+import { IFriendsList } from '@utils/types';
 
-const constValuesOfType: FriendsListType[] = ['SUGGESTS', 'INVITES', 'POKES', 'FRIENDS', undefined];
-type TYPE = typeof constValuesOfType[number];
+const constValuesOfType: IFriendsList[] = ['SUGGESTS', 'INVITES', 'POKES', 'FRIENDS', undefined];
+type IListType = typeof constValuesOfType[number];
 
-export const isFriendsListType = (x: any): x is TYPE => constValuesOfType.includes(x);
+export const isFriendsListType = (x: any): x is IListType => constValuesOfType.includes(x);

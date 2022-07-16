@@ -5,10 +5,10 @@ import { Success } from '@components/pages/friends/actions/responses/Success';
 import { Button } from '@components/inc/Button';
 
 import type { MouseEvent } from 'react';
-import type { PokingUserType } from '@ctypes/features/PokingUserType';
+import type { IPokingUser } from '@utils/types';
 
 interface PokeActionsProps {
-    friend: PokingUserType;
+    friend: IPokingUser;
 }
 
 export const PokeActions = ({ friend }: PokeActionsProps) => {

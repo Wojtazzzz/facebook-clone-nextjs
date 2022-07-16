@@ -1,5 +1,5 @@
 import { useDatabaseMigrations } from 'cypress-laravel';
-import type { UserType } from '../support/types';
+import type { IUser } from '@cypress/support/types';
 
 describe('Contacts tests', () => {
     useDatabaseMigrations();
@@ -14,7 +14,7 @@ describe('Contacts tests', () => {
     });
 
     it('opens chat when click on user from list', () => {
-        let friend: UserType;
+        let friend: IUser;
 
         cy.create('User').then((user) => (friend = user));
         cy.create('Friendship', {

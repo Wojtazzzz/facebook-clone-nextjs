@@ -1,5 +1,5 @@
 import { useDatabaseMigrations } from 'cypress-laravel';
-import type { UserType } from '../../../support/types';
+import type { IUser } from '@cypress/support/types';
 
 describe('Messenger tests', () => {
     useDatabaseMigrations();
@@ -11,7 +11,7 @@ describe('Messenger tests', () => {
     });
 
     it('open messenger when click on messenger icon and open chat with properly friend', () => {
-        let friend: UserType;
+        let friend: IUser;
 
         cy.create('User').then((user) => (friend = user));
         cy.create('Friendship', {

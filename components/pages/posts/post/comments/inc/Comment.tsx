@@ -10,10 +10,11 @@ import { EditAction } from '@components/pages/posts/post/comments/inc/actions/Ed
 import { DeleteAction } from '@components/pages/posts/post/comments/inc/actions/DeleteAction';
 import { Avatar } from '@components/inc/Avatar';
 
-import type { CommentType } from '@ctypes/features/CommentType';
 import clsx from 'clsx';
 
-interface CommentProps extends CommentType {}
+import type { IComment } from '@utils/types';
+
+interface CommentProps extends IComment {}
 
 export const Comment = ({ id, content, author, resource_id, created_at, updated_at }: CommentProps) => {
     const [isEditModeActive, setIsEditModeActive] = useState(false);

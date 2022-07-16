@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import { Avatar } from '@components/inc/Avatar';
 
-import type { UserHit } from '@ctypes/UserHitType';
+import type { IUserHit } from '@utils/types';
 
-interface HitProps extends UserHit {}
+interface HitProps extends IUserHit {}
 
 export const Hit = ({ id, first_name, last_name, profile_image }: HitProps) => {
     return (

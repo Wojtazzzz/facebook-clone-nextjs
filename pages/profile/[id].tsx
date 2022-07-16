@@ -3,13 +3,13 @@ import { Profile as ProfileComponent } from '@components/pages/profile/Profile';
 
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import type { ParsedUrlQuery } from 'querystring';
-import type { UserType } from '@ctypes/features/UserType';
+import type { IUser } from '@utils/types';
 
 interface ProfileProps {
-    user: UserType;
+    user: IUser;
     friends: {
         amount: number;
-        list: UserType[];
+        list: IUser[];
     };
 }
 

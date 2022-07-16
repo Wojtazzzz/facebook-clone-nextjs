@@ -3,14 +3,14 @@ import { useFormikContext } from 'formik';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import type { PostPayload } from '@ctypes/forms/PostPayload';
+import type { IPostPayload } from '@utils/types';
 
 interface FileProps {
     file: File;
 }
 
 export const File = ({ file }: FileProps) => {
-    const { values, setFieldValue } = useFormikContext<PostPayload>();
+    const { values, setFieldValue } = useFormikContext<IPostPayload>();
 
     const handleRemove = () => {
         const newImages = values.images.filter((img) => img !== file);

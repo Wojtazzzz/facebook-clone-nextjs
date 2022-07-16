@@ -8,10 +8,10 @@ import { Loader } from '@components/nav/panel/inc/Loader';
 import { EmptyList } from '@components/nav/panel/inc/EmptyList';
 import { ApiError } from '@components/inc/ApiError';
 
-import type { NotificationType } from '@ctypes/features/NotificationType';
+import type { INotification } from '@utils/types';
 
 export const List = memo(() => {
-    const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginatedData<NotificationType>('/api/notifications');
+    const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginatedData<INotification>('/api/notifications');
     const { markAsRead } = useNotifications();
 
     useEffect(() => {
