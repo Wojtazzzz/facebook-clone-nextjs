@@ -3,5 +3,5 @@ export type UserType = {
     name: string;
     first_name: string;
     profile_image: string;
-    background_image?: string;
+    background_image: string;
 };

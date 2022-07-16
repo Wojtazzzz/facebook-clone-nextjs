@@ -7,12 +7,16 @@ import type { UserType } from '@ctypes/features/UserType';
 
 interface ProfileProps {
     user: UserType;
+    friends: {
+        amount: number;
+        list: UserType[];
+    };
 }
 
-export default function Profile({ user }: ProfileProps) {
+export default function Profile({ user, friends }: ProfileProps) {
     return (
         <AuthLayout>
-            <ProfileComponent user={user} />
+            <ProfileComponent user={user} friends={friends} />
         </AuthLayout>
     );
 }
@@ -24,22 +28,27 @@ interface IParams extends ParsedUrlQuery {
 export const getStaticProps: GetStaticProps = async (context) => {
     const { id } = context.params as IParams;
 
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/users/${id}`);
-    const data = await response.json();
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/next/profiles/${id}`);
+    const { user, friends } = await response.json();
 
     return {
         props: {
-            user: data,
+            user,
+            friends,
         },
-        revalidate: 10,
+        revalidate: 1,
     };
 };
 
+type UserId = {
+    id: number;
+};
+
 export const getStaticPaths: GetStaticPaths = async () => {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/users`);
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/next/profiles`);
     const data = await response.json();
 
-    const paths = data.users.map(({ id }: UserType) => ({
+    const paths = data.map(({ id }: UserId) => ({
         params: { id: id.toString() },
     }));
 

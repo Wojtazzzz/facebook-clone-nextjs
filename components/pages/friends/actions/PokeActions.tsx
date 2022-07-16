@@ -1,9 +1,10 @@
-import { useAxios } from '@hooks/useAxios';
+import { usePokes } from '@hooks/usePokes';
 
 import { Failure } from '@components/pages/friends/actions/responses/Failure';
 import { Success } from '@components/pages/friends/actions/responses/Success';
 import { Button } from '@components/inc/Button';
 
+import type { MouseEvent } from 'react';
 import type { PokingUserType } from '@ctypes/features/PokingUserType';
 
 interface PokeActionsProps {
@@ -11,12 +12,12 @@ interface PokeActionsProps {
 }
 
 export const PokeActions = ({ friend }: PokeActionsProps) => {
-    const { state, sendRequest } = useAxios();
+    const { state, poke } = usePokes();
 
-    const handlePoke = (event: FocusEvent) => {
+    const handlePoke = (event: MouseEvent) => {
         event.preventDefault();
 
-        sendRequest({ method: 'POST', url: '/api/pokes', data: { friend_id: friend.id } });
+        poke(friend.id);
     };
 
     if (state.status === 'SUCCESS') return <Success message="Friend poked back" />;
