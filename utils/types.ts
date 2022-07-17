@@ -6,6 +6,32 @@ export type IUser = {
     background_image: string;
 };
 
+export type IMaritalStatus =
+    | 'Single'
+    | 'In a relationship'
+    | 'Engaged'
+    | 'Married'
+    | 'In a civil partnership'
+    | 'In a domestic partnership'
+    | 'In an open relationship'
+    | 'Its complicated'
+    | 'Separated'
+    | 'Widowed';
+
+export type IUserProfile = {
+    id: number;
+    name: string;
+    first_name: string;
+    profile_image: string;
+    background_image: string;
+    created_at: string;
+    works_at: string;
+    went_to: string;
+    lives_in: string;
+    from: string;
+    marital_status: IMaritalStatus;
+};
+
 export type IUserHit = {
     id: number;
     first_name: string;

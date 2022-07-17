@@ -3,10 +3,10 @@ import { Profile as ProfileComponent } from '@components/pages/profile/Profile';
 
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import type { ParsedUrlQuery } from 'querystring';
-import type { IUser } from '@utils/types';
+import type { IUser, IUserProfile } from '@utils/types';
 
 interface ProfileProps {
-    user: IUser;
+    user: IUserProfile;
     friends: {
         amount: number;
         list: IUser[];
