@@ -8,9 +8,8 @@ describe('Contacts tests', () => {
         cy.loginRequest();
 
         cy.intercept('/api/user').as('user');
-        cy.intercept('/api/posts?page=1').as('posts_page_1');
-        cy.intercept('/api/friendship/friends/1?page=1').as('contacts_page_1');
-        cy.intercept('/api/friendship/friends/1?page=2').as('contacts_page_2');
+        cy.intercept('/api/friends/contacts?page=1').as('contacts_page_1');
+        cy.intercept('/api/friends/contacts?page=2').as('contacts_page_2');
     });
 
     it('opens chat when click on user from list', () => {
@@ -26,7 +25,6 @@ describe('Contacts tests', () => {
         cy.visit('/');
 
         cy.wait('@user');
-        cy.wait('@posts_page_1');
         cy.wait('@contacts_page_1');
 
         cy.get('[data-testid="contacts-list"]').within(() => {
@@ -45,7 +43,6 @@ describe('Contacts tests', () => {
         cy.visit('/');
 
         cy.wait('@user');
-        cy.wait('@posts_page_1');
         cy.wait('@contacts_page_1');
 
         cy.get('[data-testid="contacts-list"]').should('be.visible');

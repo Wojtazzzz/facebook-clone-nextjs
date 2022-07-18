@@ -1,7 +1,6 @@
 import { screen } from '@testing-library/react';
 import RootUserJson from '@mocks/user/root.json';
 import NotificationsFirstPageJson from '@mocks/notifications/firstPage.json';
-import NotificationsEmptyPageJson from '@mocks/notifications/empty.json';
 import { Notifications } from '@components/nav/panel/notifications/Notifications';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import { mock } from '@libs/nock';
@@ -44,7 +43,7 @@ describe('Notifications component', () => {
     });
 
     it('render properly empty component when response return empty array', async () => {
-        mock('/api/notifications?page=1', 200, NotificationsEmptyPageJson);
+        mock('/api/notifications?page=1', 200, []);
 
         renderWithDefaultData(<Notifications />);
 

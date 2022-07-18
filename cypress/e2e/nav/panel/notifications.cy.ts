@@ -44,7 +44,7 @@ describe('Notifications tests', () => {
 
         cy.wait('@notifications_page_1');
 
-        cy.get('[class="infinite-scroll-component "] > button').should('have.length', 10);
+        cy.get('[class*="infinite-scroll-component"] > button').should('have.length', 10);
 
         cy.intercept('/api/notifications?page=1').as('notifications_page_1');
         cy.intercept('/api/notifications?page=2').as('notifications_page_2');
@@ -54,7 +54,7 @@ describe('Notifications tests', () => {
         cy.wait('@notifications_page_1');
         cy.wait('@notifications_page_2');
 
-        cy.get('[class="infinite-scroll-component "] > button').should('have.length', 18);
+        cy.get('[class*="infinite-scroll-component"] > button').should('have.length', 18);
     });
 
     it('when click on notification it redirects to another page and hide notifications dropdown', () => {

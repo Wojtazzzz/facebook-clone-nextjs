@@ -1,7 +1,6 @@
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import { List } from '@components/pages/posts/List';
 import PostsFirstPageJson from '@mocks/posts/firstPage.json';
-import PostsEmptyPageJson from '@mocks/posts/empty.json';
 import { screen } from '@testing-library/react';
 import { mock } from '@libs/nock';
 
@@ -28,7 +27,7 @@ describe('List component', () => {
     });
 
     it('show empty component when fetch no posts', async () => {
-        mock('/api/posts?page=1', 200, PostsEmptyPageJson);
+        mock('/api/posts?page=1', 200, []);
 
         renderWithDefaultData(<List />);
 

@@ -2,7 +2,6 @@ import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import { Messages } from '@components/chat/Messages';
 import JohnDoeJson from '@mocks/user/johnDoe.json';
 import ChatFirstPageJson from '@mocks/chat/firstPage.json';
-import ChatEmptyPageJson from '@mocks/chat/empty.json';
 import { mock } from '@libs/nock';
 import { screen } from '@testing-library/react';
 
@@ -29,7 +28,7 @@ describe('Messages component', () => {
     });
 
     it('load empty list and show empty component', async () => {
-        mock(`/api/messages/${JohnDoeJson.id}?page=1`, 200, ChatEmptyPageJson);
+        mock(`/api/messages/${JohnDoeJson.id}?page=1`, 200, []);
 
         renderWithDefaultData(<Messages friendId={JohnDoeJson.id} />);
 

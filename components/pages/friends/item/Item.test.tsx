@@ -1,7 +1,6 @@
 import { screen } from '@testing-library/react';
 import nock from 'nock';
-import { User } from '@components/pages/friends/inc/User';
-import { Actions } from '@components/pages/friends/inc/Actions';
+import { Item } from '@components/pages/friends/item/Item';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import { mock } from '@libs/nock';
 import SuggestsFirstPageJson from '@mocks/friendsList/suggests/firstPage.json';
@@ -10,22 +9,18 @@ import InvitesFirstPageJson from '@mocks/friendsList/suggests/firstPage.json';
 import FriendsFirstPageJson from '@mocks/friendsList/friends/firstPage.json';
 import userEvent from '@testing-library/user-event';
 
-describe('User component', () => {
+describe('Item component', () => {
     const user = userEvent.setup();
 
-    describe('User from Suggests List', () => {
-        const jsonUser = SuggestsFirstPageJson[0];
+    describe('Item from Suggests List', () => {
+        const jsonUser = SuggestsFirstPageJson[0].friend;
 
         beforeEach(() => {
             nock.disableNetConnect();
         });
 
         it('renders user image, name, poked data, invite button', async () => {
-            renderWithDefaultData(
-                <User key={jsonUser.id} {...jsonUser}>
-                    <Actions friend={jsonUser} listType="SUGGESTS" />
-                </User>
-            );
+            renderWithDefaultData(<Item type="Suggests" friend={jsonUser} />);
 
             const userName = await screen.findByText(jsonUser.name);
             const userProfileImage = await screen.findByAltText(jsonUser.name);
@@ -37,11 +32,7 @@ describe('User component', () => {
         });
 
         it('shows success message on successfully sent invite', async () => {
-            renderWithDefaultData(
-                <User key={jsonUser.id} {...jsonUser}>
-                    <Actions friend={jsonUser} listType="SUGGESTS" />
-                </User>
-            );
+            renderWithDefaultData(<Item type="Suggests" friend={jsonUser} />);
 
             mock('/api/friendship/invite', 201, {}, 'post');
 
@@ -53,11 +44,7 @@ describe('User component', () => {
         });
 
         it('shows error message on failed request sent', async () => {
-            renderWithDefaultData(
-                <User key={jsonUser.id} {...jsonUser}>
-                    <Actions friend={jsonUser} listType="SUGGESTS" />
-                </User>
-            );
+            renderWithDefaultData(<Item type="Suggests" friend={jsonUser} />);
 
             mock('/api/friendship/invite', 500, {}, 'post');
 
@@ -70,25 +57,22 @@ describe('User component', () => {
     });
 
     describe('User from Pokes List', () => {
-        const jsonUser = PokesFirstPageJson[0];
+        const jsonUser = PokesFirstPageJson[0].friend;
+        const jsonData = PokesFirstPageJson[0].data;
 
         beforeEach(() => {
             nock.disableNetConnect();
         });
 
         it('renders user image, name, poked data', async () => {
-            renderWithDefaultData(
-                <User key={jsonUser.id} {...jsonUser}>
-                    <Actions friend={jsonUser} listType="POKES" />
-                </User>
-            );
+            renderWithDefaultData(<Item type="Pokes" friend={jsonUser} data={jsonData} />);
 
             const userName = await screen.findByText(jsonUser.name);
             const userProfileImage = await screen.findByAltText(jsonUser.name);
             const pokesCount = await screen.findByText(
-                `${jsonUser.first_name} poked you ${jsonUser.poke_info.count} times in a row`
+                `${jsonUser.first_name} poked you ${jsonData.count} times in a row`
             );
-            const pokeDate = await screen.findByText(jsonUser.poke_info.updated_at);
+            const pokeDate = await screen.findByText(jsonData.updated_at);
 
             expect(userProfileImage).toBeInTheDocument();
             expect(userName).toBeInTheDocument();
@@ -97,11 +81,7 @@ describe('User component', () => {
         });
 
         it('shows success message on successfully poke', async () => {
-            renderWithDefaultData(
-                <User key={jsonUser.id} {...jsonUser}>
-                    <Actions friend={jsonUser} listType="POKES" />
-                </User>
-            );
+            renderWithDefaultData(<Item type="Pokes" friend={jsonUser} data={jsonData} />);
 
             const pokeButton = await screen.findByTitle('Poke back');
             expect(pokeButton).toBeInTheDocument();
@@ -115,11 +95,7 @@ describe('User component', () => {
         });
 
         it('shows error message on failed poke', async () => {
-            renderWithDefaultData(
-                <User key={jsonUser.id} {...jsonUser}>
-                    <Actions friend={jsonUser} listType="POKES" />
-                </User>
-            );
+            renderWithDefaultData(<Item type="Pokes" friend={jsonUser} data={jsonData} />);
 
             const pokeButton = await screen.findByTitle('Poke back');
             expect(pokeButton).toBeInTheDocument();
@@ -134,18 +110,14 @@ describe('User component', () => {
     });
 
     describe('User from Invites List', () => {
-        const jsonUser = InvitesFirstPageJson[0];
+        const jsonUser = InvitesFirstPageJson[0].friend;
 
         beforeEach(() => {
             nock.disableNetConnect();
         });
 
         it('renders user image, name, poked data, invite button', async () => {
-            renderWithDefaultData(
-                <User key={jsonUser.id} {...jsonUser}>
-                    <Actions friend={jsonUser} listType="INVITES" />
-                </User>
-            );
+            renderWithDefaultData(<Item type="Invites" friend={jsonUser} />);
 
             const userName = await screen.findByText(jsonUser.name);
             const userProfileImage = await screen.findByAltText(jsonUser.name);
@@ -159,11 +131,7 @@ describe('User component', () => {
         });
 
         it('shows success message on successfully reject invite', async () => {
-            renderWithDefaultData(
-                <User key={jsonUser.id} {...jsonUser}>
-                    <Actions friend={jsonUser} listType="INVITES" />
-                </User>
-            );
+            renderWithDefaultData(<Item type="Invites" friend={jsonUser} />);
 
             mock('/api/friendship/reject', 201, {}, 'post');
 
@@ -175,11 +143,7 @@ describe('User component', () => {
         });
 
         it('shows error message on failed reject invite', async () => {
-            renderWithDefaultData(
-                <User key={jsonUser.id} {...jsonUser}>
-                    <Actions friend={jsonUser} listType="INVITES" />
-                </User>
-            );
+            renderWithDefaultData(<Item type="Invites" friend={jsonUser} />);
 
             mock('/api/friendship/reject', 500, {}, 'post');
 
@@ -191,11 +155,7 @@ describe('User component', () => {
         });
 
         it('shows success message on successfully accept invite', async () => {
-            renderWithDefaultData(
-                <User key={jsonUser.id} {...jsonUser}>
-                    <Actions friend={jsonUser} listType="INVITES" />
-                </User>
-            );
+            renderWithDefaultData(<Item type="Invites" friend={jsonUser} />);
 
             mock('/api/friendship/accept', 201, {}, 'post');
 
@@ -207,11 +167,7 @@ describe('User component', () => {
         });
 
         it('shows error message on failed reject invite', async () => {
-            renderWithDefaultData(
-                <User key={jsonUser.id} {...jsonUser}>
-                    <Actions friend={jsonUser} listType="INVITES" />
-                </User>
-            );
+            renderWithDefaultData(<Item type="Invites" friend={jsonUser} />);
 
             mock('/api/friendship/accept', 500, {}, 'post');
 
@@ -224,18 +180,14 @@ describe('User component', () => {
     });
 
     describe('User from Friends List', () => {
-        const jsonUser = FriendsFirstPageJson[0];
+        const jsonUser = FriendsFirstPageJson[0].friend;
 
         beforeEach(() => {
             nock.disableNetConnect();
         });
 
         it('renders user image, name, poked data, buttons', async () => {
-            renderWithDefaultData(
-                <User key={jsonUser.id} {...jsonUser}>
-                    <Actions friend={jsonUser} listType="FRIENDS" />
-                </User>
-            );
+            renderWithDefaultData(<Item type="Friends" friend={jsonUser} />);
 
             const userName = await screen.findByText(jsonUser.name);
             const userProfileImage = await screen.findByAltText(jsonUser.name);
@@ -249,11 +201,7 @@ describe('User component', () => {
         });
 
         it('shows success message on successfully destroyed friendship', async () => {
-            renderWithDefaultData(
-                <User key={jsonUser.id} {...jsonUser}>
-                    <Actions friend={jsonUser} listType="FRIENDS" />
-                </User>
-            );
+            renderWithDefaultData(<Item type="Friends" friend={jsonUser} />);
 
             mock('/api/friendship/destroy', 201, {}, 'post');
 
@@ -265,11 +213,7 @@ describe('User component', () => {
         });
 
         it('shows error message on failed destroying friendship', async () => {
-            renderWithDefaultData(
-                <User key={jsonUser.id} {...jsonUser}>
-                    <Actions friend={jsonUser} listType="FRIENDS" />
-                </User>
-            );
+            renderWithDefaultData(<Item type="Friends" friend={jsonUser} />);
 
             mock('/api/friendship/destroy', 500, {}, 'post');
 

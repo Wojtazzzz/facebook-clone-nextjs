@@ -25,7 +25,7 @@ describe('Suggests and invites lists tests', () => {
             cy.contains('Friends').click();
         });
 
-        cy.intercept('/api/friendship/suggests?page=1').as('suggests_page_1');
+        cy.intercept('/api/friends/suggests?page=1').as('suggests_page_1');
 
         cy.get('[data-testid="friends-nav"] > a').contains('Suggests').click();
 
@@ -35,8 +35,8 @@ describe('Suggests and invites lists tests', () => {
 
         cy.get('[data-testid="friends-list"] > a').should('have.length', 10);
 
-        cy.intercept('/api/friendship/suggests?page=1').as('suggests_page_1');
-        cy.intercept('/api/friendship/suggests?page=2').as('suggests_page_2');
+        cy.intercept('/api/friends/suggests?page=1').as('suggests_page_1');
+        cy.intercept('/api/friends/suggests?page=2').as('suggests_page_2');
 
         cy.get('[aria-label="Fetch more users"]').click();
 
@@ -60,7 +60,7 @@ describe('Suggests and invites lists tests', () => {
             cy.contains('Friends').click();
         });
 
-        cy.intercept('/api/friendship/invites?page=1').as('invites_page_1');
+        cy.intercept('/api/friends/invites?page=1').as('invites_page_1');
 
         cy.get('[data-testid="friends-nav"] > a').contains('Invites').click();
 
@@ -70,8 +70,8 @@ describe('Suggests and invites lists tests', () => {
 
         cy.get('[data-testid="friends-list"] > a').should('have.length', 10);
 
-        cy.intercept('/api/friendship/invites?page=1').as('invites_page_1');
-        cy.intercept('/api/friendship/invites?page=2').as('invites_page_2');
+        cy.intercept('/api/friends/invites?page=1').as('invites_page_1');
+        cy.intercept('/api/friends/invites?page=2').as('invites_page_2');
 
         cy.get('[aria-label="Fetch more users"]').click();
 
@@ -86,7 +86,7 @@ describe('Suggests and invites lists tests', () => {
     it('invite friend when click "Invite" button, relogin as friend account, check for notification from user arrived, redirect to invites page due to notification, accept request from user, check that user displays in friends list, again relogin as user, check for notification from friend arrived, check that user displays in friends list', () => {
         cy.create('User', friend);
 
-        cy.intercept('/api/friendship/suggests?page=1').as('suggests_page_1');
+        cy.intercept('/api/friends/suggests?page=1').as('suggests_page_1');
 
         cy.visit('/friends/suggests');
         cy.wait('@suggests_page_1');
@@ -117,7 +117,7 @@ describe('Suggests and invites lists tests', () => {
                 cy.contains('Request accepted successfully').should('be.visible');
             });
 
-        cy.intercept('/api/friendship/friends/2?page=1').as('friends_page_1');
+        cy.intercept('/api/friends?page=1').as('friends_page_1');
 
         cy.visit('/friends');
         cy.wait('@friends_page_1');
@@ -130,7 +130,7 @@ describe('Suggests and invites lists tests', () => {
 
         cy.checkNotification(`${friend.first_name} ${friend.last_name}`, 'Accepted your friendship invitation', false);
 
-        cy.intercept('/api/friendship/friends/1?page=1').as('friends_page_1');
+        cy.intercept('/api/friends?page=1').as('friends_page_1');
 
         cy.visit('/friends');
         cy.wait('@friends_page_1');
@@ -143,7 +143,7 @@ describe('Suggests and invites lists tests', () => {
     it('invite friend when click "Invite" button, relogin as friend account, check for notification from user arrived, redirect to invites page due to arrived notification, reject request from user, check that user not displays in friends list, again relogin as user, check for notification from friend not arrived, check that user not displays in friends list', () => {
         cy.create('User', friend);
 
-        cy.intercept('/api/friendship/suggests?page=1').as('suggests_page_1');
+        cy.intercept('/api/friends/suggests?page=1').as('suggests_page_1');
 
         cy.visit('/friends/suggests');
         cy.wait('@suggests_page_1');
@@ -174,7 +174,7 @@ describe('Suggests and invites lists tests', () => {
                 cy.contains('Request rejected successfully').should('be.visible');
             });
 
-        cy.intercept('/api/friendship/friends/2?page=1').as('friends_page_1');
+        cy.intercept('/api/friends?page=1').as('friends_page_1');
 
         cy.visit('/friends');
         cy.wait('@friends_page_1');
@@ -183,7 +183,7 @@ describe('Suggests and invites lists tests', () => {
 
         cy.relogin(1);
 
-        cy.intercept('/api/friendship/friends/1?page=1').as('friends_page_1');
+        cy.intercept('/api/friends?page=1').as('friends_page_1');
 
         cy.visit('/friends');
         cy.wait('@friends_page_1');

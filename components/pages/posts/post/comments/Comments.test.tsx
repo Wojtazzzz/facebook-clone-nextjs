@@ -3,7 +3,6 @@ import { screen, waitFor } from '@testing-library/react';
 import PostsFirstPageJson from '@mocks/posts/firstPage.json';
 import CommentsFirstPageJson from '@mocks/posts/comments/firstPage.json';
 import CommentsSecondPageJson from '@mocks/posts/comments/secondPage.json';
-import CommentsEmptyPageJson from '@mocks/posts/comments/empty.json';
 import RootUserJson from '@mocks/user/root.json';
 import { mock } from '@libs/nock';
 import { Comments } from '@components/pages/posts/post/comments/Comments';
@@ -88,7 +87,7 @@ describe('Comments component', () => {
     });
 
     it('not show LoadMore button when post has no comments', async () => {
-        mock(`/api/posts/${post.id}/comments?page=1`, 200, CommentsEmptyPageJson);
+        mock(`/api/posts/${post.id}/comments?page=1`, 200, []);
 
         renderWithDefaultData(<Comments postId={post.id} />);
 
@@ -112,7 +111,7 @@ describe('Comments component', () => {
 
         mock(`/api/posts/${post.id}/comments?page=1`, 200, CommentsFirstPageJson);
         mock(`/api/posts/${post.id}/comments?page=2`, 200, CommentsSecondPageJson);
-        mock(`/api/posts/${post.id}/comments?page=3`, 200, CommentsEmptyPageJson);
+        mock(`/api/posts/${post.id}/comments?page=3`, 200, []);
 
         await user.click(fetchButton);
 

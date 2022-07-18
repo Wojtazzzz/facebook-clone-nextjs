@@ -77,7 +77,7 @@ describe('Pokes list tests', () => {
                 cy.contains('Friend poked back').should('be.visible');
             });
 
-        cy.intercept('/api/friendship/friends/1?page=1').as('friends_page_1');
+        cy.intercept('/api/friends?page=1').as('friends_page_1');
 
         cy.get('[data-testid="friends-nav"]').contains('Friends').click();
         cy.wait('@friends_page_1');

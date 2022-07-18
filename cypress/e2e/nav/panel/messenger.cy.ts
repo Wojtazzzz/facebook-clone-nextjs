@@ -83,7 +83,7 @@ describe('Messenger tests', () => {
         cy.wait('@messages_page_1');
         cy.wait('@messages_page_2');
 
-        cy.get('[class="infinite-scroll-component "] > button').should('have.length', 15);
+        cy.get('[class*="infinite-scroll-component"] > button').should('have.length', 15);
     });
 
     it('messenger dissapears when click on outside page element', () => {

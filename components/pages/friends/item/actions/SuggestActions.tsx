@@ -1,7 +1,7 @@
 import { useAxios } from '@hooks/useAxios';
 
-import { Failure } from '@components/pages/friends/actions/responses/Failure';
-import { Success } from '@components/pages/friends/actions/responses/Success';
+import { Failure } from '@components/pages/friends/item/actions/responses/Failure';
+import { Success } from '@components/pages/friends/item/actions/responses/Success';
 import { Button } from '@components/inc/Button';
 
 import type { IUser } from '@utils/types';

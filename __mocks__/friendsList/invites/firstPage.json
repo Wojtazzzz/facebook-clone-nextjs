@@ -1,72 +1,92 @@
 [
     {
-        "id": 139,
-        "name": "Kali Huel",
-        "first_name": "Kali",
-        "profile_image": "https://via.placeholder.com/168x168.png/0088bb?text=illo",
-        "background_image": "https://via.placeholder.com/850x350.png/005522?text=voluptatum"
+        "friend": {
+            "id": 211,
+            "name": "Berneice Cronin",
+            "first_name": "Berneice",
+            "profile_image": "https://picsum.photos/seed/62d4050fc0281/168/168",
+            "background_image": "https://picsum.photos/seed/62d4050fc0295/850/350"
+        }
     },
     {
-        "id": 29,
-        "name": "Janick Lang",
-        "first_name": "Janick",
-        "profile_image": "https://via.placeholder.com/168x168.png/00cc22?text=maiores",
-        "background_image": "https://via.placeholder.com/850x350.png/009944?text=distinctio"
+        "friend": {
+            "id": 212,
+            "name": "Kirstin Legros",
+            "first_name": "Kirstin",
+            "profile_image": "https://picsum.photos/seed/62d405108a8ec/168/168",
+            "background_image": "https://picsum.photos/seed/62d405108a8ff/850/350"
+        }
     },
     {
-        "id": 28,
-        "name": "Jedidiah Jakubowski",
-        "first_name": "Jedidiah",
-        "profile_image": "https://via.placeholder.com/168x168.png/00bbaa?text=reprehenderit",
-        "background_image": "https://via.placeholder.com/850x350.png/00ee66?text=provident"
+        "friend": {
+            "id": 213,
+            "name": "Liza Feil",
+            "first_name": "Liza",
+            "profile_image": "https://picsum.photos/seed/62d405116e8e9/168/168",
+            "background_image": "https://picsum.photos/seed/62d405116e8f4/850/350"
+        }
     },
     {
-        "id": 215,
-        "name": "Isac Gaylord",
-        "first_name": "Isac",
-        "profile_image": "https://via.placeholder.com/168x168.png/007755?text=sit",
-        "background_image": "https://via.placeholder.com/850x350.png/006699?text=hic"
+        "friend": {
+            "id": 214,
+            "name": "Jannie Koss",
+            "first_name": "Jannie",
+            "profile_image": "https://picsum.photos/seed/62d40512dc687/168/168",
+            "background_image": "https://picsum.photos/seed/62d40512dc69a/850/350"
+        }
     },
     {
-        "id": 298,
-        "name": "Stan Mueller",
-        "first_name": "Stan",
-        "profile_image": "https://via.placeholder.com/168x168.png/00bb22?text=sapiente",
-        "background_image": "https://via.placeholder.com/850x350.png/002211?text=ut"
+        "friend": {
+            "id": 215,
+            "name": "Mittie Greenholt",
+            "first_name": "Mittie",
+            "profile_image": "https://picsum.photos/seed/62d40514a6f4d/168/168",
+            "background_image": "https://picsum.photos/seed/62d40514a6f5e/850/350"
+        }
     },
     {
-        "id": 57,
-        "name": "Eloy Macejkovic",
-        "first_name": "Eloy",
-        "profile_image": "https://via.placeholder.com/168x168.png/001155?text=consequuntur",
-        "background_image": "https://via.placeholder.com/850x350.png/003300?text=earum"
+        "friend": {
+            "id": 216,
+            "name": "Deondre Harber",
+            "first_name": "Deondre",
+            "profile_image": "https://picsum.photos/seed/62d40515d6724/168/168",
+            "background_image": "https://picsum.photos/seed/62d40515d6733/850/350"
+        }
     },
     {
-        "id": 214,
-        "name": "Darrin Anderson",
-        "first_name": "Darrin",
-        "profile_image": "https://via.placeholder.com/168x168.png/006666?text=ullam",
-        "background_image": "https://via.placeholder.com/850x350.png/0077aa?text=hic"
+        "friend": {
+            "id": 217,
+            "name": "Caesar Herzog",
+            "first_name": "Caesar",
+            "profile_image": "https://picsum.photos/seed/62d40518f35b2/168/168",
+            "background_image": "https://picsum.photos/seed/62d40518f35bd/850/350"
+        }
     },
     {
-        "id": 81,
-        "name": "Dora Moen",
-        "first_name": "Dora",
-        "profile_image": "https://via.placeholder.com/168x168.png/000088?text=et",
-        "background_image": "https://via.placeholder.com/850x350.png/005533?text=voluptates"
+        "friend": {
+            "id": 218,
+            "name": "Susanna Berge",
+            "first_name": "Susanna",
+            "profile_image": "https://picsum.photos/seed/62d405199fdf6/168/168",
+            "background_image": "https://picsum.photos/seed/62d405199fe01/850/350"
+        }
     },
     {
-        "id": 299,
-        "name": "Reid Lowe",
-        "first_name": "Reid",
-        "profile_image": "https://via.placeholder.com/168x168.png/0011aa?text=et",
-        "background_image": "https://via.placeholder.com/850x350.png/009933?text=ut"
+        "friend": {
+            "id": 219,
+            "name": "Weldon Collier",
+            "first_name": "Weldon",
+            "profile_image": "https://picsum.photos/seed/62d4051c1a091/168/168",
+            "background_image": "https://picsum.photos/seed/62d4051c1a09b/850/350"
+        }
     },
     {
-        "id": 42,
-        "name": "Giovanny Schroeder",
-        "first_name": "Giovanny",
-        "profile_image": "https://via.placeholder.com/168x168.png/008833?text=qui",
-        "background_image": "https://via.placeholder.com/850x350.png/00aa55?text=architecto"
+        "friend": {
+            "id": 220,
+            "name": "Ozella Nienow",
+            "first_name": "Ozella",
+            "profile_image": "https://picsum.photos/seed/62d4051e36b0b/168/168",
+            "background_image": "https://picsum.photos/seed/62d4051e36b16/850/350"
+        }
     }
 ]

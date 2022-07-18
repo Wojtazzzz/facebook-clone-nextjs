@@ -1,72 +1,92 @@
 [
     {
-        "id": 205,
-        "name": "Angela Skiles",
-        "first_name": "Angela",
-        "profile_image": "https://via.placeholder.com/168x168.png/001177?text=vitae",
-        "background_image": "https://via.placeholder.com/850x350.png/007700?text=enim"
+        "friend": {
+            "id": 221,
+            "name": "Marvin Ledner",
+            "first_name": "Marvin",
+            "profile_image": "https://picsum.photos/seed/62d4051ee3306/168/168",
+            "background_image": "https://picsum.photos/seed/62d4051ee3311/850/350"
+        }
     },
     {
-        "id": 224,
-        "name": "Cassandre Miller",
-        "first_name": "Cassandre",
-        "profile_image": "https://via.placeholder.com/168x168.png/0066bb?text=asperiores",
-        "background_image": "https://via.placeholder.com/850x350.png/0077dd?text=exercitationem"
+        "friend": {
+            "id": 222,
+            "name": "Jaylin McLaughlin",
+            "first_name": "Jaylin",
+            "profile_image": "https://picsum.photos/seed/62d40521a4b4d/168/168",
+            "background_image": "https://picsum.photos/seed/62d40521a4b57/850/350"
+        }
     },
     {
-        "id": 70,
-        "name": "Effie Yundt",
-        "first_name": "Effie",
-        "profile_image": "https://via.placeholder.com/168x168.png/000044?text=cum",
-        "background_image": "https://via.placeholder.com/850x350.png/000044?text=asperiores"
+        "friend": {
+            "id": 223,
+            "name": "Madisyn Jacobi",
+            "first_name": "Madisyn",
+            "profile_image": "https://picsum.photos/seed/62d405239fe36/168/168",
+            "background_image": "https://picsum.photos/seed/62d405239fe41/850/350"
+        }
     },
     {
-        "id": 254,
-        "name": "Caterina Witting",
-        "first_name": "Caterina",
-        "profile_image": "https://via.placeholder.com/168x168.png/00aa44?text=rerum",
-        "background_image": "https://via.placeholder.com/850x350.png/00ffcc?text=voluptate"
+        "friend": {
+            "id": 224,
+            "name": "Abelardo Gislason",
+            "first_name": "Abelardo",
+            "profile_image": "https://picsum.photos/seed/62d4052550897/168/168",
+            "background_image": "https://picsum.photos/seed/62d40525508a2/850/350"
+        }
     },
     {
-        "id": 233,
-        "name": "Rusty Morissette",
-        "first_name": "Rusty",
-        "profile_image": "https://via.placeholder.com/168x168.png/0033ff?text=qui",
-        "background_image": "https://via.placeholder.com/850x350.png/00ff44?text=deserunt"
+        "friend": {
+            "id": 225,
+            "name": "Jena Douglas",
+            "first_name": "Jena",
+            "profile_image": "https://picsum.photos/seed/62d40527151fd/168/168",
+            "background_image": "https://picsum.photos/seed/62d4052715206/850/350"
+        }
     },
     {
-        "id": 64,
-        "name": "Janessa Trantow",
-        "first_name": "Janessa",
-        "profile_image": "https://via.placeholder.com/168x168.png/00aaff?text=sint",
-        "background_image": "https://via.placeholder.com/850x350.png/00ddff?text=ut"
+        "friend": {
+            "id": 226,
+            "name": "Emile Bartell",
+            "first_name": "Emile",
+            "profile_image": "https://picsum.photos/seed/62d4052a4233f/168/168",
+            "background_image": "https://picsum.photos/seed/62d4052a42349/850/350"
+        }
     },
     {
-        "id": 120,
-        "name": "Alfreda Hirthe",
-        "first_name": "Alfreda",
-        "profile_image": "https://via.placeholder.com/168x168.png/004433?text=aperiam",
-        "background_image": "https://via.placeholder.com/850x350.png/0088ee?text=aliquam"
+        "friend": {
+            "id": 227,
+            "name": "Barton Macejkovic",
+            "first_name": "Barton",
+            "profile_image": "https://picsum.photos/seed/62d4052ca5421/168/168",
+            "background_image": "https://picsum.photos/seed/62d4052ca542c/850/350"
+        }
     },
     {
-        "id": 79,
-        "name": "Adolf Schultz",
-        "first_name": "Adolf",
-        "profile_image": "https://via.placeholder.com/168x168.png/0044cc?text=quidem",
-        "background_image": "https://via.placeholder.com/850x350.png/009900?text=quo"
+        "friend": {
+            "id": 228,
+            "name": "Drew Denesik",
+            "first_name": "Drew",
+            "profile_image": "https://picsum.photos/seed/62d4052f4f653/168/168",
+            "background_image": "https://picsum.photos/seed/62d4052f4f65d/850/350"
+        }
     },
     {
-        "id": 210,
-        "name": "Mike Bogan",
-        "first_name": "Mike",
-        "profile_image": "https://via.placeholder.com/168x168.png/002211?text=quo",
-        "background_image": "https://via.placeholder.com/850x350.png/00ccff?text=doloribus"
+        "friend": {
+            "id": 229,
+            "name": "Kelley Pacocha",
+            "first_name": "Kelley",
+            "profile_image": "https://picsum.photos/seed/62d4053037218/168/168",
+            "background_image": "https://picsum.photos/seed/62d4053037223/850/350"
+        }
     },
     {
-        "id": 35,
-        "name": "Theo Mosciski",
-        "first_name": "Theo",
-        "profile_image": "https://via.placeholder.com/168x168.png/003355?text=magnam",
-        "background_image": "https://via.placeholder.com/850x350.png/007788?text=qui"
+        "friend": {
+            "id": 230,
+            "name": "Orval Rempel",
+            "first_name": "Orval",
+            "profile_image": "https://picsum.photos/seed/62d405312f5ac/168/168",
+            "background_image": "https://picsum.photos/seed/62d405312f5b6/850/350"
+        }
     }
 ]

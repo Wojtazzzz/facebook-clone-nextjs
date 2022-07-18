@@ -1,7 +1,6 @@
 import { screen } from '@testing-library/react';
 import RootUserJson from '@mocks/user/root.json';
 import MessengerFirstPageJson from '@mocks/messenger/firstPage.json';
-import MessengerEmptyPageJson from '@mocks/messenger/empty.json';
 import { Messages } from '@components/nav/panel/messenger/Messages';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import { mock } from '@libs/nock';
@@ -34,7 +33,7 @@ describe('Messenger component', () => {
     });
 
     it('render properly empty component when response return empty array', async () => {
-        mock('/api/messages?page=1', 200, MessengerEmptyPageJson);
+        mock('/api/messages?page=1', 200, []);
 
         renderWithDefaultData(<Messages />);
 
@@ -43,7 +42,7 @@ describe('Messenger component', () => {
     });
 
     it('render properly error component when api return error', async () => {
-        mock('/api/messages?page=1', 500, MessengerEmptyPageJson);
+        mock('/api/messages?page=1', 500, []);
 
         renderWithDefaultData(<Messages />);
 

@@ -1,72 +1,102 @@
 [
     {
-        "id": 141,
-        "name": "Roger Bergstrom",
-        "first_name": "Roger",
-        "profile_image": "https://via.placeholder.com/168x168.png/005577?text=iusto",
-        "poke_info": { "id": 111, "count": 970, "updated_at": "2022-04-18 16:59" }
+        "friend": {
+            "id": 77,
+            "name": "Bret Thompson",
+            "first_name": "Bret",
+            "profile_image": "https://picsum.photos/seed/62d403e2ab570/168/168",
+            "background_image": "https://picsum.photos/seed/62d403e2ab57b/850/350"
+        },
+        "data": { "id": 11, "count": 1912, "updated_at": "2022-07-17 12:43" }
     },
     {
-        "id": 116,
-        "name": "Thea Labadie",
-        "first_name": "Thea",
-        "profile_image": "https://via.placeholder.com/168x168.png/00ff99?text=aspernatur",
-        "poke_info": { "id": 112, "count": 352, "updated_at": "2022-04-18 16:59" }
+        "friend": {
+            "id": 79,
+            "name": "Estell Halvorson",
+            "first_name": "Estell",
+            "profile_image": "https://picsum.photos/seed/62d403e378c53/168/168",
+            "background_image": "https://picsum.photos/seed/62d403e378c5d/850/350"
+        },
+        "data": { "id": 12, "count": 5800, "updated_at": "2022-07-17 12:43" }
     },
     {
-        "id": 44,
-        "name": "Krystel Hand",
-        "first_name": "Krystel",
-        "profile_image": "https://via.placeholder.com/168x168.png/00ee44?text=est",
-        "poke_info": { "id": 113, "count": 725, "updated_at": "2022-04-18 16:59" }
+        "friend": {
+            "id": 101,
+            "name": "Brooke DuBuque",
+            "first_name": "Brooke",
+            "profile_image": "https://picsum.photos/seed/62d40401206af/168/168",
+            "background_image": "https://picsum.photos/seed/62d40401206bb/850/350"
+        },
+        "data": { "id": 13, "count": 5079, "updated_at": "2022-07-17 12:44" }
     },
     {
-        "id": 19,
-        "name": "Kasey Sipes",
-        "first_name": "Kasey",
-        "profile_image": "https://via.placeholder.com/168x168.png/0077cc?text=earum",
-        "poke_info": { "id": 114, "count": 103, "updated_at": "2022-04-18 16:59" }
+        "friend": {
+            "id": 102,
+            "name": "Dave Larkin",
+            "first_name": "Dave",
+            "profile_image": "https://picsum.photos/seed/62d4040385c6e/168/168",
+            "background_image": "https://picsum.photos/seed/62d4040385c7a/850/350"
+        },
+        "data": { "id": 14, "count": 9287, "updated_at": "2022-07-17 12:44" }
     },
     {
-        "id": 64,
-        "name": "Dorian Lehner",
-        "first_name": "Dorian",
-        "profile_image": "https://via.placeholder.com/168x168.png/003366?text=ut",
-        "poke_info": { "id": 115, "count": 378, "updated_at": "2022-04-18 16:59" }
+        "friend": {
+            "id": 103,
+            "name": "Claudie Bahringer",
+            "first_name": "Claudie",
+            "profile_image": "https://picsum.photos/seed/62d4040423cef/168/168",
+            "background_image": "https://picsum.photos/seed/62d4040423cfa/850/350"
+        },
+        "data": { "id": 15, "count": 6942, "updated_at": "2022-07-17 12:44" }
     },
     {
-        "id": 35,
-        "name": "Elinore Lueilwitz",
-        "first_name": "Elinore",
-        "profile_image": "https://via.placeholder.com/168x168.png/00aa00?text=nisi",
-        "poke_info": { "id": 116, "count": 832, "updated_at": "2022-04-18 16:59" }
+        "friend": {
+            "id": 104,
+            "name": "Nils Pagac",
+            "first_name": "Nils",
+            "profile_image": "https://picsum.photos/seed/62d40407399ce/168/168",
+            "background_image": "https://picsum.photos/seed/62d40407399d9/850/350"
+        },
+        "data": { "id": 16, "count": 2050, "updated_at": "2022-07-17 12:44" }
     },
     {
-        "id": 20,
-        "name": "Allie Wisozk",
-        "first_name": "Allie",
-        "profile_image": "https://via.placeholder.com/168x168.png/00dd77?text=quam",
-        "poke_info": { "id": 117, "count": 165, "updated_at": "2022-04-18 16:59" }
+        "friend": {
+            "id": 105,
+            "name": "Maxine Heaney",
+            "first_name": "Maxine",
+            "profile_image": "https://picsum.photos/seed/62d4040823571/168/168",
+            "background_image": "https://picsum.photos/seed/62d404082357d/850/350"
+        },
+        "data": { "id": 17, "count": 4722, "updated_at": "2022-07-17 12:44" }
     },
     {
-        "id": 48,
-        "name": "Lavada Pollich",
-        "first_name": "Lavada",
-        "profile_image": "https://via.placeholder.com/168x168.png/0044dd?text=tempore",
-        "poke_info": { "id": 118, "count": 244, "updated_at": "2022-04-18 16:59" }
+        "friend": {
+            "id": 106,
+            "name": "Deonte Nader",
+            "first_name": "Deonte",
+            "profile_image": "https://picsum.photos/seed/62d404089cd5e/168/168",
+            "background_image": "https://picsum.photos/seed/62d404089cd6a/850/350"
+        },
+        "data": { "id": 18, "count": 5307, "updated_at": "2022-07-17 12:44" }
     },
     {
-        "id": 114,
-        "name": "Josefa Jacobs",
-        "first_name": "Josefa",
-        "profile_image": "https://via.placeholder.com/168x168.png/00ffcc?text=molestiae",
-        "poke_info": { "id": 119, "count": 655, "updated_at": "2022-04-18 16:59" }
+        "friend": {
+            "id": 107,
+            "name": "Amos Upton",
+            "first_name": "Amos",
+            "profile_image": "https://picsum.photos/seed/62d40409341a7/168/168",
+            "background_image": "https://picsum.photos/seed/62d40409341b2/850/350"
+        },
+        "data": { "id": 19, "count": 6096, "updated_at": "2022-07-17 12:44" }
     },
     {
-        "id": 43,
-        "name": "Kip Murazik",
-        "first_name": "Kip",
-        "profile_image": "https://via.placeholder.com/168x168.png/00ffff?text=voluptatem",
-        "poke_info": { "id": 120, "count": 500, "updated_at": "2022-04-18 16:59" }
+        "friend": {
+            "id": 108,
+            "name": "Nola Moen",
+            "first_name": "Nola",
+            "profile_image": "https://picsum.photos/seed/62d4040c60568/168/168",
+            "background_image": "https://picsum.photos/seed/62d4040c60572/850/350"
+        },
+        "data": { "id": 20, "count": 9700, "updated_at": "2022-07-17 12:44" }
     }
 ]

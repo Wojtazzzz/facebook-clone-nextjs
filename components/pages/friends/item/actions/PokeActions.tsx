@@ -1,17 +1,15 @@
 import { usePokes } from '@hooks/usePokes';
 
-import { Failure } from '@components/pages/friends/actions/responses/Failure';
-import { Success } from '@components/pages/friends/actions/responses/Success';
+import { Failure } from '@components/pages/friends/item/actions/responses/Failure';
+import { Success } from '@components/pages/friends/item/actions/responses/Success';
 import { Button } from '@components/inc/Button';
 
 import type { MouseEvent } from 'react';
-import type { IPokingUser } from '@utils/types';
+import type { IFriendsListItem } from '@utils/types';
 
-interface PokeActionsProps {
-    friend: IPokingUser;
-}
+interface PokeActionsProps extends Required<IFriendsListItem> {}
 
-export const PokeActions = ({ friend }: PokeActionsProps) => {
+export const PokeActions = ({ friend, data }: PokeActionsProps) => {
     const { state, poke } = usePokes();
 
     const handlePoke = (event: MouseEvent) => {
@@ -34,10 +32,10 @@ export const PokeActions = ({ friend }: PokeActionsProps) => {
 
             <div className="flex flex-col items-center text-light-100">
                 <small>
-                    {friend.first_name} poked you {friend.poke_info?.count} times in a row
+                    {friend.first_name} poked you {data.count} times in a row
                 </small>
 
-                <small>{friend.poke_info?.updated_at}</small>
+                <small>{data.updated_at}</small>
             </div>
         </div>
     );

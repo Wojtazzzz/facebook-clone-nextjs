@@ -5,11 +5,11 @@ import { screen } from '@testing-library/react';
 
 describe('Contact component from Contacts List', () => {
     it('it renders name properly', () => {
-        const user = ContactsFirstPageJson[4];
+        const contact = ContactsFirstPageJson[4];
 
-        renderWithDefaultData(<Contact friend={user} />);
+        renderWithDefaultData(<Contact {...contact} />);
 
-        const name = screen.getByText(user.name);
+        const name = screen.getByText(contact.name);
 
         expect(name).toBeInTheDocument();
     });

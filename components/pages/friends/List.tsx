@@ -1,40 +1,33 @@
-import { memo } from 'react';
 import { usePaginatedData } from '@hooks/usePaginatedData';
 
 import { Loader } from '@components/pages/friends/inc/Loader';
 import { LoadMore } from '@components/pages/friends/inc/LoadMore';
 import { ApiError } from '@components/inc/ApiError';
 import { EmptyList } from '@components/inc/EmptyList';
-import { User } from '@components/pages/friends/inc/User';
-import { Actions } from '@components/pages/friends/inc/Actions';
+import { Item } from '@components/pages/friends/item/Item';
 
-import { getPathForPagination } from '@components/pages/friends/utils';
+import { memo } from 'react';
 
-import type { IUser } from '@utils/types';
-import type { IFriendsList } from '@utils/types';
+import type { IFriendsListItem, IFriendsList } from '@utils/types';
 
 interface ListProps {
-    userId: number;
-    listType: IFriendsList;
+    type: IFriendsList;
 }
 
-export const List = memo<ListProps>(({ userId, listType }) => {
-    const key = getPathForPagination(listType, userId);
-    const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginatedData<IUser>(key);
+export const List = memo<ListProps>(({ type }) => {
+    const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginatedData<IFriendsListItem>(getApiPath(type));
 
     if (state === 'LOADING') return <Loader testId="friendsList-loading_loader" />;
     if (state === 'ERROR') return <ApiError size="xl" styles="mt-8" />;
     if (isEmpty) return <EmptyList title="No users, maybe this app is so boring..." />;
 
-    const UsersComponents = data.map((user) => (
-        <User key={user.id} {...user}>
-            <Actions friend={user} listType={listType} />
-        </User>
+    const ItemsComponents = data.map(({ friend, data }) => (
+        <Item key={friend.id} friend={friend} data={data} type={type} />
     ));
 
     return (
         <div data-testid="friends-list" className="flex flex-col gap-2">
-            {UsersComponents}
+            {ItemsComponents}
 
             {isReachedEnd || <LoadMore isLoading={state === 'FETCHING'} callback={loadMore} />}
         </div>
@@ -42,3 +35,14 @@ export const List = memo<ListProps>(({ userId, listType }) => {
 });
 
 List.displayName = 'List';
+
+export const getApiPath = (type: IFriendsList) => {
+    const paths = {
+        Friends: '/api/friends',
+        Invites: '/api/friends/invites',
+        Suggests: '/api/friends/suggests',
+        Pokes: '/api/pokes',
+    } as const;
+
+    return paths[type];
+};

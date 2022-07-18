@@ -1,72 +1,92 @@
 [
     {
-        "id": 15,
-        "name": "Oral Raynor",
-        "first_name": "Oral",
-        "profile_image": "https://via.placeholder.com/168x168.png/00aa99?text=unde",
-        "background_image": "https://via.placeholder.com/850x350.png/0033ff?text=aut"
+        "friend": {
+            "id": 29,
+            "name": "Camylle Roberts",
+            "first_name": "Camylle",
+            "profile_image": "https://picsum.photos/seed/62d402a6d3149/168/168",
+            "background_image": "https://picsum.photos/seed/62d402a6d3153/850/350"
+        }
     },
     {
-        "id": 16,
-        "name": "Haven Ernser",
-        "first_name": "Haven",
-        "profile_image": "https://via.placeholder.com/168x168.png/00aabb?text=corrupti",
-        "background_image": "https://via.placeholder.com/850x350.png/00ccff?text=aut"
+        "friend": {
+            "id": 30,
+            "name": "Pat Reichel",
+            "first_name": "Pat",
+            "profile_image": "https://picsum.photos/seed/62d402a6e622e/168/168",
+            "background_image": "https://picsum.photos/seed/62d402a6e6239/850/350"
+        }
     },
     {
-        "id": 18,
-        "name": "Jalyn Renner",
-        "first_name": "Jalyn",
-        "profile_image": "https://via.placeholder.com/168x168.png/00bbcc?text=et",
-        "background_image": "https://via.placeholder.com/850x350.png/0055cc?text=inventore"
+        "friend": {
+            "id": 31,
+            "name": "Deshaun Yundt",
+            "first_name": "Deshaun",
+            "profile_image": "https://picsum.photos/seed/62d402a705a95/168/168",
+            "background_image": "https://picsum.photos/seed/62d402a705aa0/850/350"
+        }
     },
     {
-        "id": 19,
-        "name": "Ottilie Ward",
-        "first_name": "Ottilie",
-        "profile_image": "https://via.placeholder.com/168x168.png/0011ee?text=ut",
-        "background_image": "https://via.placeholder.com/850x350.png/00bbcc?text=repudiandae"
+        "friend": {
+            "id": 32,
+            "name": "Jaylan Denesik",
+            "first_name": "Jaylan",
+            "profile_image": "https://picsum.photos/seed/62d402a7182c2/168/168",
+            "background_image": "https://picsum.photos/seed/62d402a7182cc/850/350"
+        }
     },
     {
-        "id": 21,
-        "name": "Gavin Schroeder",
-        "first_name": "Gavin",
-        "profile_image": "https://via.placeholder.com/168x168.png/00bbbb?text=quo",
-        "background_image": "https://via.placeholder.com/850x350.png/0088bb?text=et"
+        "friend": {
+            "id": 33,
+            "name": "Kenya Carroll",
+            "first_name": "Kenya",
+            "profile_image": "https://picsum.photos/seed/62d402a72a41b/168/168",
+            "background_image": "https://picsum.photos/seed/62d402a72a427/850/350"
+        }
     },
     {
-        "id": 23,
-        "name": "Justus Armstrong",
-        "first_name": "Justus",
-        "profile_image": "https://via.placeholder.com/168x168.png/002299?text=voluptatem",
-        "background_image": "https://via.placeholder.com/850x350.png/009911?text=magni"
+        "friend": {
+            "id": 34,
+            "name": "Rhoda Ebert",
+            "first_name": "Rhoda",
+            "profile_image": "https://picsum.photos/seed/62d402a73d0e3/168/168",
+            "background_image": "https://picsum.photos/seed/62d402a73d0f1/850/350"
+        }
     },
     {
-        "id": 24,
-        "name": "Emmanuelle Terry",
-        "first_name": "Emmanuelle",
-        "profile_image": "https://via.placeholder.com/168x168.png/0022dd?text=voluptatem",
-        "background_image": "https://via.placeholder.com/850x350.png/0055bb?text=pariatur"
+        "friend": {
+            "id": 35,
+            "name": "Haylee Schumm",
+            "first_name": "Haylee",
+            "profile_image": "https://picsum.photos/seed/62d40367747c5/168/168",
+            "background_image": "https://picsum.photos/seed/62d40367747d2/850/350"
+        }
     },
     {
-        "id": 25,
-        "name": "Geo Effertz",
-        "first_name": "Geo",
-        "profile_image": "https://via.placeholder.com/168x168.png/00cc22?text=ut",
-        "background_image": "https://via.placeholder.com/850x350.png/00aacc?text=quisquam"
+        "friend": {
+            "id": 36,
+            "name": "Nasir Nader",
+            "first_name": "Nasir",
+            "profile_image": "https://picsum.photos/seed/62d4036786e90/168/168",
+            "background_image": "https://picsum.photos/seed/62d4036786e9b/850/350"
+        }
     },
     {
-        "id": 30,
-        "name": "Isaiah Armstrong",
-        "first_name": "Isaiah",
-        "profile_image": "https://via.placeholder.com/168x168.png/006655?text=aut",
-        "background_image": "https://via.placeholder.com/850x350.png/0066bb?text=esse"
+        "friend": {
+            "id": 37,
+            "name": "Shaylee Murazik",
+            "first_name": "Shaylee",
+            "profile_image": "https://picsum.photos/seed/62d4036798d5d/168/168",
+            "background_image": "https://picsum.photos/seed/62d4036798d68/850/350"
+        }
     },
     {
-        "id": 33,
-        "name": "Johnnie Kerluke",
-        "first_name": "Johnnie",
-        "profile_image": "https://via.placeholder.com/168x168.png/00aa77?text=nemo",
-        "background_image": "https://via.placeholder.com/850x350.png/00cc11?text=nobis"
+        "friend": {
+            "id": 38,
+            "name": "Shanel Toy",
+            "first_name": "Shanel",
+            "profile_image": "https://picsum.photos/seed/62d40367ab0c4/168/168",
+            "background_image": "https://picsum.photos/seed/62d40367ab0ce/850/350"
+        }
     }
 ]

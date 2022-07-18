@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import { usePaginatedData } from '@hooks/usePaginatedData';
 
 import { LoadMore } from '@components/contacts/inc/LoadMore';
@@ -7,22 +6,18 @@ import { Contact } from '@components/contacts/inc/Contact';
 import { ApiError } from '@components/inc/ApiError';
 import { EmptyList } from '@components/inc/EmptyList';
 
-import type { IUser } from '@utils/types';
+import { memo } from 'react';
 
-interface ListProps {
-    userId: number;
-}
+import type { IContact } from '@utils/types';
 
-export const List = memo(({ userId }: ListProps) => {
-    const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginatedData<IUser>(
-        `/api/friendship/friends/${userId}`
-    );
+export const List = memo(() => {
+    const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginatedData<IContact>('/api/friends/contacts');
 
     if (state === 'LOADING') return <Loader testId="contacts-loading_loader" />;
     if (state === 'ERROR') return <ApiError size="lg" styles="h-full" />;
     if (isEmpty) return <EmptyList title="No contacts, add some friends!" />;
 
-    const ContactsComponents = data.map((friend) => <Contact key={friend.id} friend={friend} />);
+    const ContactsComponents = data.map((contact) => <Contact key={contact.id} {...contact} />);
 
     return (
         <div data-testid="contacts-list" className="w-full">

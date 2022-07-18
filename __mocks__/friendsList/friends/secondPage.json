@@ -1,72 +1,92 @@
 [
     {
-        "id": 98,
-        "name": "Blanche Connelly",
-        "first_name": "Blanche",
-        "profile_image": "https://via.placeholder.com/168x168.png/000011?text=eius",
-        "background_image": "https://via.placeholder.com/850x350.png/001188?text=harum"
+        "friend": {
+            "id": 169,
+            "name": "Israel Steuber",
+            "first_name": "Israel",
+            "profile_image": "https://picsum.photos/seed/62d40497d94fa/168/168",
+            "background_image": "https://picsum.photos/seed/62d40497d9504/850/350"
+        }
     },
     {
-        "id": 26,
-        "name": "Tyson Hyatt",
-        "first_name": "Tyson",
-        "profile_image": "https://via.placeholder.com/168x168.png/008822?text=mollitia",
-        "background_image": "https://via.placeholder.com/850x350.png/004444?text=error"
+        "friend": {
+            "id": 170,
+            "name": "Maxine Tromp",
+            "first_name": "Maxine",
+            "profile_image": "https://picsum.photos/seed/62d40499142e5/168/168",
+            "background_image": "https://picsum.photos/seed/62d40499142f0/850/350"
+        }
     },
     {
-        "id": 17,
-        "name": "Elijah Greenholt",
-        "first_name": "Elijah",
-        "profile_image": "https://via.placeholder.com/168x168.png/0033bb?text=modi",
-        "background_image": "https://via.placeholder.com/850x350.png/00ffbb?text=dolor"
+        "friend": {
+            "id": 171,
+            "name": "Vivian Schaefer",
+            "first_name": "Vivian",
+            "profile_image": "https://picsum.photos/seed/62d40499b8549/168/168",
+            "background_image": "https://picsum.photos/seed/62d40499b8555/850/350"
+        }
     },
     {
-        "id": 142,
-        "name": "Schuyler Goldner",
-        "first_name": "Schuyler",
-        "profile_image": "https://via.placeholder.com/168x168.png/00bb66?text=quae",
-        "background_image": "https://via.placeholder.com/850x350.png/0088ee?text=laudantium"
+        "friend": {
+            "id": 172,
+            "name": "Cora Rosenbaum",
+            "first_name": "Cora",
+            "profile_image": "https://picsum.photos/seed/62d4049a56fa2/168/168",
+            "background_image": "https://picsum.photos/seed/62d4049a56fad/850/350"
+        }
     },
     {
-        "id": 160,
-        "name": "Luna Harber",
-        "first_name": "Luna",
-        "profile_image": "https://via.placeholder.com/168x168.png/00eedd?text=vero",
-        "background_image": "https://via.placeholder.com/850x350.png/00ff22?text=consequatur"
+        "friend": {
+            "id": 173,
+            "name": "Ramon Hodkiewicz",
+            "first_name": "Ramon",
+            "profile_image": "https://picsum.photos/seed/62d4049bc3c7c/168/168",
+            "background_image": "https://picsum.photos/seed/62d4049bc3c88/850/350"
+        }
     },
     {
-        "id": 93,
-        "name": "Taurean Olson",
-        "first_name": "Taurean",
-        "profile_image": "https://via.placeholder.com/168x168.png/00aa66?text=quia",
-        "background_image": "https://via.placeholder.com/850x350.png/002255?text=consectetur"
+        "friend": {
+            "id": 174,
+            "name": "Daryl Pfannerstill",
+            "first_name": "Daryl",
+            "profile_image": "https://picsum.photos/seed/62d4049cac96b/168/168",
+            "background_image": "https://picsum.photos/seed/62d4049cac975/850/350"
+        }
     },
     {
-        "id": 81,
-        "name": "Dora Moen",
-        "first_name": "Dora",
-        "profile_image": "https://via.placeholder.com/168x168.png/000088?text=et",
-        "background_image": "https://via.placeholder.com/850x350.png/005533?text=voluptates"
+        "friend": {
+            "id": 175,
+            "name": "Araceli Harvey",
+            "first_name": "Araceli",
+            "profile_image": "https://picsum.photos/seed/62d4049da4bda/168/168",
+            "background_image": "https://picsum.photos/seed/62d4049da4be4/850/350"
+        }
     },
     {
-        "id": 235,
-        "name": "Marion Osinski",
-        "first_name": "Marion",
-        "profile_image": "https://via.placeholder.com/168x168.png/00aacc?text=minus",
-        "background_image": "https://via.placeholder.com/850x350.png/0055ff?text=nihil"
+        "friend": {
+            "id": 176,
+            "name": "Bria Maggio",
+            "first_name": "Bria",
+            "profile_image": "https://picsum.photos/seed/62d4049e81d69/168/168",
+            "background_image": "https://picsum.photos/seed/62d4049e81d7e/850/350"
+        }
     },
     {
-        "id": 8,
-        "name": "Kiel Schneider",
-        "first_name": "Kiel",
-        "profile_image": "https://via.placeholder.com/168x168.png/00ccdd?text=ipsum",
-        "background_image": "https://via.placeholder.com/850x350.png/00ee00?text=quibusdam"
+        "friend": {
+            "id": 177,
+            "name": "Fritz Flatley",
+            "first_name": "Fritz",
+            "profile_image": "https://picsum.photos/seed/62d404a082b60/168/168",
+            "background_image": "https://picsum.photos/seed/62d404a082b69/850/350"
+        }
     },
     {
-        "id": 20,
-        "name": "Lia Howe",
-        "first_name": "Lia",
-        "profile_image": "https://via.placeholder.com/168x168.png/001199?text=quam",
-        "background_image": "https://via.placeholder.com/850x350.png/00aa11?text=consequatur"
+        "friend": {
+            "id": 178,
+            "name": "Kaleb Hudson",
+            "first_name": "Kaleb",
+            "profile_image": "https://picsum.photos/seed/62d404a102dda/168/168",
+            "background_image": "https://picsum.photos/seed/62d404a102de5/850/350"
+        }
     }
 ]

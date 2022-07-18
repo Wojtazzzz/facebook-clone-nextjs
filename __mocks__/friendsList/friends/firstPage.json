@@ -1,72 +1,92 @@
 [
     {
-        "id": 281,
-        "name": "Ken Kerluke",
-        "first_name": "Ken",
-        "profile_image": "https://via.placeholder.com/168x168.png/00bb88?text=omnis",
-        "background_image": "https://via.placeholder.com/850x350.png/002244?text=aut"
+        "friend": {
+            "id": 4,
+            "name": "Loy Dibbert",
+            "first_name": "Loy",
+            "profile_image": "https://picsum.photos/seed/62d3ebad08c33/168/168",
+            "background_image": "https://picsum.photos/seed/62d3ebad08c3d/850/350"
+        }
     },
     {
-        "id": 27,
-        "name": "Efrain Langosh",
-        "first_name": "Efrain",
-        "profile_image": "https://via.placeholder.com/168x168.png/008855?text=animi",
-        "background_image": "https://via.placeholder.com/850x350.png/008811?text=odio"
+        "friend": {
+            "id": 5,
+            "name": "Shanna Kuhic",
+            "first_name": "Shanna",
+            "profile_image": "https://picsum.photos/seed/62d3ebae453d3/168/168",
+            "background_image": "https://picsum.photos/seed/62d3ebae453df/850/350"
+        }
     },
     {
-        "id": 1,
-        "name": "Sherman Botsford",
-        "first_name": "Sherman",
-        "profile_image": "https://via.placeholder.com/168x168.png/00aaaa?text=illo",
-        "background_image": "https://via.placeholder.com/850x350.png/009977?text=veritatis"
+        "friend": {
+            "id": 8,
+            "name": "Braulio Powlowski",
+            "first_name": "Braulio",
+            "profile_image": "https://picsum.photos/seed/62d3f28b0a533/168/168",
+            "background_image": "https://picsum.photos/seed/62d3f28b0a53e/850/350"
+        }
     },
     {
-        "id": 41,
-        "name": "Hayden Weber",
-        "first_name": "Hayden",
-        "profile_image": "https://via.placeholder.com/168x168.png/004499?text=in",
-        "background_image": "https://via.placeholder.com/850x350.png/000066?text=in"
+        "friend": {
+            "id": 12,
+            "name": "Annamae Hand",
+            "first_name": "Annamae",
+            "profile_image": "https://picsum.photos/seed/62d3f29d78429/168/168",
+            "background_image": "https://picsum.photos/seed/62d3f29d78434/850/350"
+        }
     },
     {
-        "id": 113,
-        "name": "Princess Nolan",
-        "first_name": "Princess",
-        "profile_image": "https://via.placeholder.com/168x168.png/0000dd?text=neque",
-        "background_image": "https://via.placeholder.com/850x350.png/00dd11?text=est"
+        "friend": {
+            "id": 13,
+            "name": "Elsa Pouros",
+            "first_name": "Elsa",
+            "profile_image": "https://picsum.photos/seed/62d3f2a044497/168/168",
+            "background_image": "https://picsum.photos/seed/62d3f2a0444a2/850/350"
+        }
     },
     {
-        "id": 35,
-        "name": "Theo Mosciski",
-        "first_name": "Theo",
-        "profile_image": "https://via.placeholder.com/168x168.png/003355?text=magnam",
-        "background_image": "https://via.placeholder.com/850x350.png/007788?text=qui"
+        "friend": {
+            "id": 14,
+            "name": "Stephania Daniel",
+            "first_name": "Stephania",
+            "profile_image": "https://picsum.photos/seed/62d3f2a0bf764/168/168",
+            "background_image": "https://picsum.photos/seed/62d3f2a0bf770/850/350"
+        }
     },
     {
-        "id": 39,
-        "name": "Anjali Lueilwitz",
-        "first_name": "Anjali",
-        "profile_image": "https://via.placeholder.com/168x168.png/0000cc?text=quia",
-        "background_image": "https://via.placeholder.com/850x350.png/00aa88?text=porro"
+        "friend": {
+            "id": 15,
+            "name": "Garry Welch",
+            "first_name": "Garry",
+            "profile_image": "https://picsum.photos/seed/62d3f2a1d390e/168/168",
+            "background_image": "https://picsum.photos/seed/62d3f2a1d3918/850/350"
+        }
     },
     {
-        "id": 88,
-        "name": "Kasey Cronin",
-        "first_name": "Kasey",
-        "profile_image": "https://via.placeholder.com/168x168.png/004400?text=nemo",
-        "background_image": "https://via.placeholder.com/850x350.png/00ee77?text=ut"
+        "friend": {
+            "id": 16,
+            "name": "Alexa Donnelly",
+            "first_name": "Alexa",
+            "profile_image": "https://picsum.photos/seed/62d3f2a2c8f1a/168/168",
+            "background_image": "https://picsum.photos/seed/62d3f2a2c8f28/850/350"
+        }
     },
     {
-        "id": 200,
-        "name": "Elmira Corwin",
-        "first_name": "Elmira",
-        "profile_image": "https://via.placeholder.com/168x168.png/004422?text=in",
-        "background_image": "https://via.placeholder.com/850x350.png/00ccff?text=optio"
+        "friend": {
+            "id": 167,
+            "name": "Elias Rogahn",
+            "first_name": "Elias",
+            "profile_image": "https://picsum.photos/seed/62d4049509d16/168/168",
+            "background_image": "https://picsum.photos/seed/62d4049509d22/850/350"
+        }
     },
     {
-        "id": 266,
-        "name": "Mandy Johns",
-        "first_name": "Mandy",
-        "profile_image": "https://via.placeholder.com/168x168.png/0088cc?text=corrupti",
-        "background_image": "https://via.placeholder.com/850x350.png/00ccee?text=reprehenderit"
+        "friend": {
+            "id": 168,
+            "name": "Uriel Powlowski",
+            "first_name": "Uriel",
+            "profile_image": "https://picsum.photos/seed/62d4049737a2b/168/168",
+            "background_image": "https://picsum.photos/seed/62d4049737a35/850/350"
+        }
     }
 ]

@@ -15,7 +15,7 @@ describe('Friends list tests', () => {
 
         cy.visit('/');
 
-        cy.intercept('/api/friendship/friends/1?page=1').as('friends_page_1');
+        cy.intercept('/api/friends?page=1').as('friends_page_1');
 
         cy.get('[data-testid="sidebar"]').within(() => {
             cy.contains('Friends').click();
@@ -27,8 +27,8 @@ describe('Friends list tests', () => {
 
         cy.get('[data-testid="friends-list"] > a').should('have.length', 10);
 
-        cy.intercept('/api/friendship/friends/1?page=1').as('friends_page_1');
-        cy.intercept('/api/friendship/friends/1?page=2').as('friends_page_2');
+        cy.intercept('/api/friends?page=1').as('friends_page_1');
+        cy.intercept('/api/friends?page=2').as('friends_page_2');
 
         cy.get('[aria-label="Fetch more users"]').click();
 
@@ -46,7 +46,7 @@ describe('Friends list tests', () => {
             status: 'CONFIRMED',
         });
 
-        cy.intercept('/api/friendship/friends/1?page=1').as('friends_page_1');
+        cy.intercept('/api/friends?page=1').as('friends_page_1');
 
         cy.visit('/friends');
 
@@ -65,7 +65,7 @@ describe('Friends list tests', () => {
             status: 'CONFIRMED',
         });
 
-        cy.intercept('/api/friendship/friends/1?page=1').as('friends_page_1');
+        cy.intercept('/api/friends?page=1').as('friends_page_1');
         cy.intercept('/api/friendship/destroy').as('destroy');
 
         cy.visit('/friends');
@@ -80,7 +80,7 @@ describe('Friends list tests', () => {
             cy.contains('Friendship destroyed').should('be.visible');
         });
 
-        cy.intercept('/api/friendship/suggests?page=1').as('suggests_page_1');
+        cy.intercept('/api/friends/suggests?page=1').as('suggests_page_1');
 
         cy.get('[data-testid="friends-nav"] > a').contains('Suggests').click();
 
@@ -88,7 +88,7 @@ describe('Friends list tests', () => {
 
         cy.get('[data-testid="friends-list"] > a').should('have.length', 1);
 
-        cy.intercept('/api/friendship/friends/1?page=1').as('friends_page_1');
+        cy.intercept('/api/friends?page=1').as('friends_page_1');
 
         cy.get('[data-testid="friends-nav"] > a').contains('Friends').click();
 

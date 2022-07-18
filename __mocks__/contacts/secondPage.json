@@ -1,72 +1,12 @@
 [
-    {
-        "id": 98,
-        "name": "Blanche Connelly",
-        "first_name": "Blanche",
-        "profile_image": "https://via.placeholder.com/168x168.png/000011?text=eius",
-        "background_image": "https://via.placeholder.com/850x350.png/001188?text=harum"
-    },
-    {
-        "id": 26,
-        "name": "Tyson Hyatt",
-        "first_name": "Tyson",
-        "profile_image": "https://via.placeholder.com/168x168.png/008822?text=mollitia",
-        "background_image": "https://via.placeholder.com/850x350.png/004444?text=error"
-    },
-    {
-        "id": 17,
-        "name": "Elijah Greenholt",
-        "first_name": "Elijah",
-        "profile_image": "https://via.placeholder.com/168x168.png/0033bb?text=modi",
-        "background_image": "https://via.placeholder.com/850x350.png/00ffbb?text=dolor"
-    },
-    {
-        "id": 142,
-        "name": "Schuyler Goldner",
-        "first_name": "Schuyler",
-        "profile_image": "https://via.placeholder.com/168x168.png/00bb66?text=quae",
-        "background_image": "https://via.placeholder.com/850x350.png/0088ee?text=laudantium"
-    },
-    {
-        "id": 160,
-        "name": "Luna Harber",
-        "first_name": "Luna",
-        "profile_image": "https://via.placeholder.com/168x168.png/00eedd?text=vero",
-        "background_image": "https://via.placeholder.com/850x350.png/00ff22?text=consequatur"
-    },
-    {
-        "id": 93,
-        "name": "Taurean Olson",
-        "first_name": "Taurean",
-        "profile_image": "https://via.placeholder.com/168x168.png/00aa66?text=quia",
-        "background_image": "https://via.placeholder.com/850x350.png/002255?text=consectetur"
-    },
-    {
-        "id": 81,
-        "name": "Dora Moen",
-        "first_name": "Dora",
-        "profile_image": "https://via.placeholder.com/168x168.png/000088?text=et",
-        "background_image": "https://via.placeholder.com/850x350.png/005533?text=voluptates"
-    },
-    {
-        "id": 235,
-        "name": "Marion Osinski",
-        "first_name": "Marion",
-        "profile_image": "https://via.placeholder.com/168x168.png/00aacc?text=minus",
-        "background_image": "https://via.placeholder.com/850x350.png/0055ff?text=nihil"
-    },
-    {
-        "id": 8,
-        "name": "Kiel Schneider",
-        "first_name": "Kiel",
-        "profile_image": "https://via.placeholder.com/168x168.png/00ccdd?text=ipsum",
-        "background_image": "https://via.placeholder.com/850x350.png/00ee00?text=quibusdam"
-    },
-    {
-        "id": 20,
-        "name": "Lia Howe",
-        "first_name": "Lia",
-        "profile_image": "https://via.placeholder.com/168x168.png/001199?text=quam",
-        "background_image": "https://via.placeholder.com/850x350.png/00aa11?text=consequatur"
-    }
+    { "id": 12, "name": "Eldred Kautzer", "profile_image": "https://picsum.photos/seed/62d44dee98357/168/168" },
+    { "id": 13, "name": "Kristina Aufderhar", "profile_image": "https://picsum.photos/seed/62d44df162ae2/168/168" },
+    { "id": 14, "name": "Rocio Mohr", "profile_image": "https://picsum.photos/seed/62d44df2cb8a5/168/168" },
+    { "id": 15, "name": "Hortense Smith", "profile_image": "https://picsum.photos/seed/62d44df62c09f/168/168" },
+    { "id": 16, "name": "Rita Pouros", "profile_image": "https://picsum.photos/seed/62d44df7b5dae/168/168" },
+    { "id": 17, "name": "Price Legros", "profile_image": "https://picsum.photos/seed/62d4516e7416c/168/168" },
+    { "id": 18, "name": "Houston Moen", "profile_image": "https://picsum.photos/seed/62d451721ef91/168/168" },
+    { "id": 19, "name": "Retta Boyer", "profile_image": "https://picsum.photos/seed/62d451726f084/168/168" },
+    { "id": 20, "name": "Hillary Lemke", "profile_image": "https://picsum.photos/seed/62d45172e5898/168/168" },
+    { "id": 21, "name": "Valentine O'Kon", "profile_image": "https://picsum.photos/seed/62d451738486a/168/168" }
 ]

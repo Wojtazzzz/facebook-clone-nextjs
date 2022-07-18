@@ -1,4 +1,4 @@
-import { UserType } from '@cypress/support/types';
+import { IUser } from '@cypress/support/types';
 import { useDatabaseMigrations } from 'cypress-laravel';
 
 describe('Searching users tests', () => {
@@ -27,7 +27,7 @@ describe('Searching users tests', () => {
     });
 
     it('type friend firstname on input and see his firstname and username on results list', () => {
-        let friend: UserType;
+        let friend: IUser;
         cy.create('User').then((user) => (friend = user));
 
         cy.intercept('/api/user').as('user');
@@ -76,7 +76,6 @@ describe('Searching users tests', () => {
 
         cy.get('[data-testid="nav-search-desktop"]').within(() => {
             cy.get('input[aria-label="User search input"]').type('a');
-
             cy.get('[data-testid="search-hits"]').should('be.visible');
         });
 

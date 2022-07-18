@@ -41,7 +41,7 @@ export type IUserHit = {
 
 export type IUsePaginatedDataState = 'LOADING' | 'FETCHING' | 'ERROR' | 'SUCCESS';
 
-type data<T> = {
+type IUseAxiosData<T> = {
     data: T;
     message: string;
 };
@@ -50,9 +50,20 @@ export type IUseAxiosState<T> =
     | { status: 'EMPTY' }
     | { status: 'LOADING' }
     | { status: 'ERROR'; error: unknown }
-    | { status: 'SUCCESS'; data: data<T> };
+    | { status: 'SUCCESS'; data: IUseAxiosData<T> };
 
-export type IFriendsList = 'SUGGESTS' | 'INVITES' | 'POKES' | 'FRIENDS' | undefined;
+export type IFriendsList = 'Friends' | 'Invites' | 'Suggests' | 'Pokes';
+
+export type IFriendsListItem = {
+    friend: IUser;
+    data?: IPoke;
+};
+
+export type IPoke = {
+    id: number;
+    count: number;
+    updated_at: string;
+};
 
 export type IAuthMiddleware = 'GUEST' | 'AUTH';
 
@@ -100,16 +111,6 @@ export type INotification = {
     created_at: string;
 };
 
-type IPoke = {
-    poke_info: {
-        id: number;
-        count: number;
-        updated_at: string;
-    };
-};
-
-export interface IPokingUser extends IUser, IPoke {}
-
 export type IPost = {
     id: number;
     content: string;
@@ -120,4 +121,10 @@ export type IPost = {
     isLiked: boolean;
     created_at: string;
     updated_at: string;
+};
+
+export type IContact = {
+    id: number;
+    name: string;
+    profile_image: string;
 };
