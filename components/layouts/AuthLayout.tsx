@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
-import { useAppSelector } from '@hooks/redux';
 import { useAuth } from '@hooks/useAuth';
+import { useChat } from '@hooks/useChat';
 
 import { Nav } from '@components/nav/Nav';
 import { NavToggler } from '@components/nav/mobile/NavToggler';
@@ -17,7 +17,7 @@ interface AuthLayoutProps {
 export const AuthLayout = ({ children }: AuthLayoutProps) => {
     useAuth('AUTH');
     const { route } = useRouter();
-    const { friend } = useAppSelector((state) => state.chat);
+    const { friend } = useChat();
 
     return (
         <>

@@ -49,7 +49,9 @@ export const usePaginatedData = <T>(key: string, perList = 10) => {
         setSize(size + 1);
     };
 
-    const isReachedEnd = (flatData.length === 0 || (data && data[data.length - 1].length < perList)) ?? true;
+    const reloadData = () => mutate();
+
+    const isReachedEnd = (flatData.length === 0 || (data && data[data.length - 1]?.length < perList)) ?? true;
     const isEmpty = flatData.length === 0 || !data;
 
     return {
@@ -58,6 +60,6 @@ export const usePaginatedData = <T>(key: string, perList = 10) => {
         isEmpty,
         isReachedEnd,
         loadMore,
-        reloadData: mutate,
+        reloadData,
     };
 };

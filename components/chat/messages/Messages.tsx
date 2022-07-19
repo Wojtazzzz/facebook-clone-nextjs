@@ -2,9 +2,9 @@ import { memo } from 'react';
 import { usePaginatedData } from '@hooks/usePaginatedData';
 
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { Loader } from '@components/chat/inc/Loader';
-import { Message } from '@components/chat/inc/Message';
-import { EmptyChat } from '@components/chat/inc/EmptyChat';
+import { Loader } from '@components/chat/messages/Loader';
+import { Message } from '@components/chat/messages/Message';
+import { EmptyChat } from '@components/chat/messages/EmptyChat';
 import { ApiError } from '@components/inc/ApiError';
 
 import type { IChatMessage } from '@utils/types';
@@ -28,13 +28,13 @@ export const Messages = memo<MessagesProps>(({ friendId }) => {
         <div
             data-testid="chat-messages"
             id="list-of-messages"
-            className="w-full h-full flex flex-col-reverse text-sm overflow-auto scrollbar-thin scrollbar-thumb-dark-200 scrollbar-track-dark-100 pb-2"
+            className="w-full max-h-[350px] overflow-y-scroll scrollbar-thin scrollbar-thumb-dark-100 scrollbar-track-dark-200 pb-2"
         >
             <InfiniteScroll
                 dataLength={MessagesComponents.length}
                 next={loadMore}
                 className="flex flex-col-reverse gap-1"
-                inverse
+                inverse={true}
                 hasMore={!isReachedEnd}
                 loader={<Loader testid="messages-loader_fetching" />}
                 scrollableTarget="list-of-messages"

@@ -1,5 +1,5 @@
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
-import { SendMessage } from '@components/chat/options/SendMessage';
+import { SendMessage } from '@components/chat/panel/sendMessage/SendMessage';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { mock } from '@libs/nock';

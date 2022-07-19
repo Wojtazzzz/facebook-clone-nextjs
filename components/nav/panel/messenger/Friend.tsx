@@ -2,7 +2,7 @@ import { useAppDispatch } from '@hooks/redux';
 
 import { SingleItem } from '@components/nav/panel/inc/SingleItem';
 
-import { showChat } from '@redux/slices/ChatSlice';
+import { openChat } from '@redux/slices/ChatSlice';
 import { toggleActive as toggleActiveMessenger } from '@redux/slices/MessengerSlice';
 
 import type { IUser } from '@utils/types';
@@ -16,7 +16,7 @@ export const Friend = ({ friend }: FriendProps) => {
 
     const handleOpenChat = () => {
         dispatch(toggleActiveMessenger(false));
-        dispatch(showChat(friend));
+        dispatch(openChat(friend));
     };
 
     return (

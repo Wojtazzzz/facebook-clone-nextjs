@@ -1,5 +1,5 @@
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
-import { Panel } from '@components/chat/Panel';
+import { Panel } from '@components/chat/panel/Panel';
 import { screen } from '@testing-library/react';
 
 describe('Panel component', () => {

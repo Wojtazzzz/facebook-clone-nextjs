@@ -5,7 +5,7 @@ import { Failure } from '@components/pages/friends/item/actions/responses/Failur
 import { Success } from '@components/pages/friends/item/actions/responses/Success';
 import { Button } from '@components/inc/Button';
 
-import { showChat } from '@redux/slices/ChatSlice';
+import { openChat } from '@redux/slices/ChatSlice';
 
 import type { IUser } from '@utils/types';
 
@@ -19,7 +19,7 @@ export const FriendActions = ({ friend }: FriendActionsProps) => {
 
     const handleOpenChat = (event: FocusEvent) => {
         event.preventDefault();
-        dispatch(showChat(friend));
+        dispatch(openChat(friend));
     };
 
     const handleRemove = (event: FocusEvent) => {

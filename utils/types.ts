@@ -128,3 +128,9 @@ export type IContact = {
     name: string;
     profile_image: string;
 };
+
+export type IChatFriend = {
+    id: number;
+    name: string;
+    profile_image: string;
+};

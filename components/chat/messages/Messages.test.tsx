@@ -1,5 +1,5 @@
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
-import { Messages } from '@components/chat/Messages';
+import { Messages } from '@components/chat/messages/Messages';
 import JohnDoeJson from '@mocks/user/johnDoe.json';
 import ChatFirstPageJson from '@mocks/chat/firstPage.json';
 import { mock } from '@libs/nock';

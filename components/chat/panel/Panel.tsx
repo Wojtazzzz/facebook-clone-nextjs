@@ -1,5 +1,5 @@
-import { SendImage } from '@components/chat/options/SendImage';
-import { SendMessage } from '@components/chat/options/SendMessage';
+import { SendImage } from '@components/chat/panel/sendImage/SendImage';
+import { SendMessage } from '@components/chat/panel/sendMessage/SendMessage';
 
 export const Panel = () => {
     return (

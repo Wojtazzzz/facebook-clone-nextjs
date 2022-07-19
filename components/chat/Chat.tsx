@@ -1,66 +1,35 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import { useAuth } from '@hooks/useAuth';
+import { useBroadcast } from '@hooks/useBroadcast';
 import { usePaginatedData } from '@hooks/usePaginatedData';
 
-import { Header } from '@components/chat/Header';
-import { Messages } from '@components/chat/Messages';
-import { Panel } from '@components/chat/Panel';
+import { Header } from '@components/chat/header/Header';
+import { Messages } from '@components/chat/messages/Messages';
+import { Panel } from '@components/chat/panel/Panel';
 
-import Echo from 'laravel-echo';
-import axios from '@libs/axios';
-
-import type { IUser } from '@utils/types';
-import type { IChatMessage } from '@utils/types';
-
-require('pusher-js');
+import type { IChatFriend, IChatMessage } from '@utils/types';
 
 interface ChatProps {
-    friend: IUser;
+    friend: IChatFriend;
 }
 
 export const Chat = ({ friend }: ChatProps) => {
-    const { reloadData } = usePaginatedData<IChatMessage>(`/api/messages/${friend.id}`);
     const { user } = useAuth();
-
-    const LaravelEcho = useMemo(
-        () =>
-            new Echo({
-                broadcaster: 'pusher',
-                key: process.env.NEXT_PUBLIC_PUSHER_APP_KEY,
-                cluster: process.env.NEXT_PUBLIC_PUSHER_APP_CLUSTER,
-                forceTLS: true,
-                authEndpoint: `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/broadcasting/auth`,
-                authorizer: (channel: { name: string }) => {
-                    return {
-                        authorize: (socketId: any, callback: (arg0: boolean, arg1: any) => void) => {
-                            axios
-                                .post('/api/broadcasting/auth', {
-                                    socket_id: socketId,
-                                    channel_name: channel.name,
-                                })
-                                .then((response) => callback(false, response.data))
-                                .catch((error) => callback(true, error));
-                        },
-                    };
-                },
-            }),
-        []
-    );
+    const { reloadData } = usePaginatedData<IChatMessage>(`/api/messages/${friend.id}`);
+    const { startListen, stopListen } = useBroadcast();
 
     useEffect(() => {
         if (!user) return;
 
-        LaravelEcho.private(`messages.${user.id}.${friend.id}`).listen('ChatMessageSent', () => reloadData());
+        startListen(`messages.${user.id}.${friend.id}`, 'ChatMessageSent', reloadData);
 
-        return () => {
-            LaravelEcho.private(`messages.${user.id}.${friend.id}`).stopListening('ChatMessageSent');
-        };
-    }, [LaravelEcho, friend.id, user, reloadData]);
+        return () => stopListen(`messages.${user.id}.${friend.id}`, 'ChatMessageSent');
+    }, [friend.id, reloadData, startListen, stopListen, user]);
 
     return (
         <div
             data-testid="chat"
-            className="w-[300px] h-[420px] flex flex-col justify-between bg-dark-200 absolute bottom-0 right-2 md:right-20 z-40 rounded-t-lg shadow-md"
+            className="w-[300px] flex flex-col justify-between bg-dark-200 absolute bottom-0 right-2 md:right-20 z-40 rounded-t-lg shadow-md"
         >
             <Header name={friend.name} profileImage={friend.profile_image} />
             <Messages friendId={friend.id} />

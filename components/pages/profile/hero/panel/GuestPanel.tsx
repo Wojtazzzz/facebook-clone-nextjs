@@ -4,7 +4,7 @@ import { usePokes } from '@hooks/usePokes';
 import { Button } from '@components/inc/Button';
 
 import { clsx } from 'clsx';
-import { showChat } from '@redux/slices/ChatSlice';
+import { openChat } from '@redux/slices/ChatSlice';
 
 import type { IUser } from '@utils/types';
 
@@ -16,7 +16,7 @@ export const GuestPanel = ({ user }: GuestPanelProps) => {
     const dispatch = useAppDispatch();
     const { state, poke } = usePokes();
 
-    const handleOpenChat = () => dispatch(showChat(user));
+    const handleOpenChat = () => dispatch(openChat(user));
     const handlePoke = () => poke(user.id);
 
     return (

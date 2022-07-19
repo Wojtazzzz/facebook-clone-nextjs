@@ -38,7 +38,6 @@ describe('Form component', () => {
 
     it('show too long text validation message', async () => {
         jest.setTimeout(15000);
-
         const user = userEvent.setup();
 
         renderWithDefaultData(<Form />);
@@ -98,7 +97,7 @@ describe('Form component', () => {
         const input = await screen.findByLabelText('Post content');
 
         await user.type(input, 'Test Post');
-        submitButton.click();
+        await user.click(submitButton);
 
         const errorComponent = await screen.findByText('Something went wrong');
 
@@ -196,6 +195,8 @@ describe('Form component', () => {
             generateFile('secondFile.jpg', 'image/jpg'),
             generateFile('thirdFile.jpeg', 'image/jpeg'),
         ];
+
+        mock('/api/posts', 201, {}, 'post');
 
         renderWithDefaultData(<Form />);
 
