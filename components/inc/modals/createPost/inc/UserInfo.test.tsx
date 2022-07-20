@@ -1,7 +1,7 @@
 import RootUserJson from '@mocks/user/root.json';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import { screen } from '@testing-library/react';
-import { UserInfo } from '@components/pages/posts/create/modal/inc/UserInfo';
+import { UserInfo } from '@components/inc/modals/createPost/inc/UserInfo';
 
 describe('UserInfo component', () => {
     it('renders user avatar and name properly', async () => {

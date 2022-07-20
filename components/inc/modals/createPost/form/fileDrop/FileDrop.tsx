@@ -3,7 +3,7 @@ import { useFormikContext } from 'formik';
 import Dropzone from 'react-dropzone';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImages } from '@fortawesome/free-solid-svg-icons';
-import { CloseButton } from '@components/pages/posts/create/modal/form/fileDrop/CloseButton';
+import { CloseButton } from '@components/inc/modals/createPost/form/fileDrop/CloseButton';
 
 import type { IPostPayload } from '@utils/types';
 

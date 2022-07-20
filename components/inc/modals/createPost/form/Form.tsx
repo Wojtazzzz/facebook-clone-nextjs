@@ -3,13 +3,13 @@ import { useAppDispatch } from '@hooks/redux';
 import { usePosts } from '@hooks/usePosts';
 
 import { Formik, Form as FormikForm } from 'formik';
-import { FileDrop } from '@components/pages/posts/create/modal/form/fileDrop/FileDrop';
-import { Errors } from '@components/pages/posts/create/modal/responses/Errors';
+import { FileDrop } from '@components/inc/modals/createPost/form/fileDrop/FileDrop';
+import { Errors } from '@components/inc/modals/createPost/responses/Errors';
 import { SpinnerLoader } from '@components/inc/SpinnerLoader';
-import { SubmitButton } from '@components/pages/posts/create/modal/form/SubmitButton';
-import { TextArea } from '@components/pages/posts/create/modal/form/TextArea';
-import { DropLabel } from '@components/pages/posts/create/modal/form/fileDrop/DropLabel';
-import { UploadedFiles } from '@components/pages/posts/create/modal/form/fileDrop/UploadedFiles';
+import { SubmitButton } from '@components/inc/modals/createPost/form/SubmitButton';
+import { TextArea } from '@components/inc/modals/createPost/form/TextArea';
+import { DropLabel } from '@components/inc/modals/createPost/form/fileDrop/DropLabel';
+import { UploadedFiles } from '@components/inc/modals/createPost/form/fileDrop/UploadedFiles';
 
 import { closeModal } from '@redux/slices/CreatePostModalSlice';
 import { PostSchema } from '@validation/PostSchema';

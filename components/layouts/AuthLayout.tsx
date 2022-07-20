@@ -7,6 +7,7 @@ import { NavToggler } from '@components/nav/mobile/NavToggler';
 import { Sidebar } from '@components/sidebar/Sidebar';
 import { Contacts } from '@components/contacts/Contacts';
 import { Chat } from '@components/chat/Chat';
+import { Modal as CreatePostModal } from '@components/inc/modals/createPost/Modal';
 
 import type { ReactNode } from 'react';
 
@@ -32,6 +33,7 @@ export const AuthLayout = ({ children }: AuthLayoutProps) => {
             </div>
 
             <NavToggler />
+            <CreatePostModal />
 
             {!!friend && <Chat friend={friend} />}
         </>

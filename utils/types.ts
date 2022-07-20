@@ -139,3 +139,5 @@ export type IProfileFriendsData = {
     amount: number;
     list: IUser[];
 };
+
+export type IPostsEndpoints = '/api/posts/self' | '/api/hidden/posts' | '/api/saved/posts';

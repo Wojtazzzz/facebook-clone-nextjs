@@ -11,6 +11,7 @@ import { modalStyles } from '@styles/modalStyles';
 
 interface ModalProps {
     label: string;
+    isOpen: boolean;
     title: string;
     closeModal: () => void;
     children: ReactNode;
@@ -18,11 +19,11 @@ interface ModalProps {
 
 ReactModal.setAppElement('body');
 
-export const Modal = ({ label, title, closeModal, children }: ModalProps) => {
+export const Modal = ({ label, isOpen, title, closeModal, children }: ModalProps) => {
     useKey('Escape', closeModal);
 
     return (
-        <ReactModal isOpen={true} style={modalStyles} onRequestClose={closeModal}>
+        <ReactModal isOpen={isOpen} style={modalStyles} onRequestClose={closeModal}>
             <div aria-label={label} className="h-full flex flex-col bg-dark-200 rounded-lg mx-auto px-1">
                 <div className="w-full flex justify-between text-light-200 border-zinc-600 border-b-[1.5px] p-3">
                     <FontAwesomeIcon className="w-8 text-lg invisible pointer-events-none" icon={faTimes} />

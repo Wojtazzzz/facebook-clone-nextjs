@@ -1,7 +1,7 @@
 import { useAuth } from '@hooks/useAuth';
 
-import { Form } from '@components/pages/posts/create/modal/form/Form';
-import { UserInfo } from '@components/pages/posts/create/modal/inc/UserInfo';
+import { Form } from '@components/inc/modals/createPost/form/Form';
+import { UserInfo } from '@components/inc/modals/createPost/inc/UserInfo';
 import { SpinnerLoader } from '@components/inc/SpinnerLoader';
 
 export const ModalContent = () => {

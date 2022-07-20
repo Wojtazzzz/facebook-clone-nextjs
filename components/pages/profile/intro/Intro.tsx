@@ -22,7 +22,7 @@ export const Intro = ({ works_at, went_to, lives_in, from, created_at, marital_s
         <section
             data-testid="profile-intro"
             aria-label="User info"
-            className="w-2/6 bg-dark-200 shadow-sm rounded-lg p-4"
+            className="w-2/6 h-fit bg-dark-200 shadow-sm rounded-lg p-4"
         >
             <h5 className="text-xl text-light-200 font-bold">Intro</h5>
 

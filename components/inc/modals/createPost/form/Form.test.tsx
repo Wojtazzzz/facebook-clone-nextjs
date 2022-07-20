@@ -3,7 +3,7 @@ import RootUserJson from '@mocks/user/root.json';
 import CreateSuccessResponseJson from '@mocks/posts/actions/createPostSuccess.json';
 import PostsFirstPageJson from '@mocks/posts/firstPage.json';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
-import { Form } from '@components/pages/posts/create/modal/form/Form';
+import { Form } from '@components/inc/modals/createPost/form/Form';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import nock from 'nock';

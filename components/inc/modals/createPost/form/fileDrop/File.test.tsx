@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
-import { File as FileComponent } from '@components/pages/posts/create/modal/form/fileDrop/File';
+import { File as FileComponent } from '@components/inc/modals/createPost/form/fileDrop/File';
 import * as Formik from 'formik';
 import { generateFile } from '@utils/generateFile';
 

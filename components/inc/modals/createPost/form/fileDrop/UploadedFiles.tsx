@@ -1,6 +1,6 @@
 import { useFormikContext } from 'formik';
 
-import { File } from '@components/pages/posts/create/modal/form/fileDrop/File';
+import { File } from '@components/inc/modals/createPost/form/fileDrop/File';
 
 import { v4 as uuidv4 } from 'uuid';
 
