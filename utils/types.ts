@@ -134,3 +134,8 @@ export type IChatFriend = {
     name: string;
     profile_image: string;
 };
+
+export type IProfileFriendsData = {
+    amount: number;
+    list: IUser[];
+};

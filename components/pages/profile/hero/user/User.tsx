@@ -1,17 +1,14 @@
 import Image from 'next/image';
 import { Friend } from '@components/pages/profile/hero/user/Friend';
 
-import type { IUser } from '@utils/types';
+import type { IProfileFriendsData } from '@utils/types';
 
 interface UserProps {
     id: number;
     first_name: string;
     name: string;
     profile_image: string;
-    friends: {
-        amount: number;
-        list: IUser[];
-    };
+    friends: IProfileFriendsData;
 }
 
 export const User = ({ first_name, name, profile_image, friends }: UserProps) => {

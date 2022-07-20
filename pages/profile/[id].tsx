@@ -3,14 +3,11 @@ import { Profile as ProfileComponent } from '@components/pages/profile/Profile';
 
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import type { ParsedUrlQuery } from 'querystring';
-import type { IUser, IUserProfile } from '@utils/types';
+import type { IProfileFriendsData, IUserProfile } from '@utils/types';
 
 interface ProfileProps {
     user: IUserProfile;
-    friends: {
-        amount: number;
-        list: IUser[];
-    };
+    friends: IProfileFriendsData;
 }
 
 export default function Profile({ user, friends }: ProfileProps) {

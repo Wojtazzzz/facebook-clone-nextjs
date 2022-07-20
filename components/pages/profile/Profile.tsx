@@ -1,14 +1,11 @@
 import { Hero } from '@components/pages/profile/hero/Hero';
 import { Intro } from '@components/pages/profile/intro/Intro';
 
-import type { IUser, IUserProfile } from '@utils/types';
+import type { IUserProfile, IProfileFriendsData } from '@utils/types';
 
 interface ProfileProps {
     user: IUserProfile;
-    friends: {
-        amount: number;
-        list: IUser[];
-    };
+    friends: IProfileFriendsData;
 }
 
 export const Profile = ({ user, friends }: ProfileProps) => {

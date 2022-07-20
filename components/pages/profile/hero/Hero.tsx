@@ -4,14 +4,11 @@ import { Background } from '@components/pages/profile/hero/Background';
 import { User } from '@components/pages/profile/hero/user/User';
 import { Panel } from '@components/pages/profile/hero/panel/Panel';
 
-import type { IUser } from '@utils/types';
+import type { IProfileFriendsData, IUser } from '@utils/types';
 
 interface HeroProps {
     user: IUser;
-    friends: {
-        amount: number;
-        list: IUser[];
-    };
+    friends: IProfileFriendsData;
 }
 
 export const Hero = memo<HeroProps>(({ user, friends }) => {
