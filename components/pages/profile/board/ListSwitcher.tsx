@@ -11,12 +11,16 @@ export const ListSwitcher = ({ changePostsList }: ListSwitcherProps) => {
 
     return (
         <div className="w-full flex justify-end items-center">
-            <select name="list" onChange={handleChangePostsList}>
+            <select
+                name="list"
+                className="w-full text-light-50 bg-dark-100 rounded-lg border-x-[12px] border-transparent transition-all hover:brightness-110 py-3"
+                onChange={handleChangePostsList}
+            >
                 <option value="OWN" selected>
-                    Own
+                    Own posts
                 </option>
-                <option value="HIDDEN">Hidden</option>
-                <option value="SAVED">Saved</option>
+                <option value="HIDDEN">Hidden posts</option>
+                <option value="SAVED">Saved posts</option>
             </select>
         </div>
     );
