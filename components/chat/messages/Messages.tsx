@@ -28,7 +28,7 @@ export const Messages = memo<MessagesProps>(({ friendId }) => {
         <div
             data-testid="chat-messages"
             id="list-of-messages"
-            className="w-full max-h-[350px] overflow-y-scroll scrollbar-thin scrollbar-thumb-dark-100 scrollbar-track-dark-200 pb-2"
+            className="w-full max-h-[312px] overflow-y-scroll scrollbar-thin scrollbar-thumb-dark-100 scrollbar-track-dark-200 pb-2"
         >
             <InfiniteScroll
                 dataLength={MessagesComponents.length}
