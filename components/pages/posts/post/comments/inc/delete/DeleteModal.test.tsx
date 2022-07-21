@@ -16,7 +16,7 @@ describe('DeleteModal component', () => {
     it('execute close modal function on click on close cross (;times)', async () => {
         const mockCloseModal = jest.fn();
 
-        renderWithDefaultData(<DeleteModal postId={1} commentId={1} closeModal={mockCloseModal} />);
+        renderWithDefaultData(<DeleteModal isOpen={true} postId={1} commentId={1} closeModal={mockCloseModal} />);
 
         const closeButton = screen.getByLabelText('Close modal');
         await user.click(closeButton);
@@ -27,7 +27,7 @@ describe('DeleteModal component', () => {
     it('execute close modal function on click on "NO" button', async () => {
         const mockCloseModal = jest.fn();
 
-        renderWithDefaultData(<DeleteModal postId={1} commentId={1} closeModal={mockCloseModal} />);
+        renderWithDefaultData(<DeleteModal isOpen={true} postId={1} commentId={1} closeModal={mockCloseModal} />);
 
         const noButton = screen.getByLabelText("Don't delete comment");
         await user.click(noButton);
@@ -38,7 +38,7 @@ describe('DeleteModal component', () => {
     it('show properly modal title', () => {
         const mockCloseModal = jest.fn();
 
-        renderWithDefaultData(<DeleteModal postId={1} commentId={1} closeModal={mockCloseModal} />);
+        renderWithDefaultData(<DeleteModal isOpen={true} postId={1} commentId={1} closeModal={mockCloseModal} />);
 
         const title = screen.getByText('Are you sure you want to delete that comment?');
 
@@ -50,7 +50,7 @@ describe('DeleteModal component', () => {
 
         const mockCloseModal = jest.fn();
 
-        renderWithDefaultData(<DeleteModal postId={1} commentId={1} closeModal={mockCloseModal} />);
+        renderWithDefaultData(<DeleteModal isOpen={true} postId={1} commentId={1} closeModal={mockCloseModal} />);
 
         const yesButton = screen.getByLabelText('Delete comment');
         await user.click(yesButton);
@@ -65,7 +65,7 @@ describe('DeleteModal component', () => {
 
         const mockCloseModal = jest.fn();
 
-        renderWithDefaultData(<DeleteModal postId={1} commentId={1} closeModal={mockCloseModal} />);
+        renderWithDefaultData(<DeleteModal isOpen={true} postId={1} commentId={1} closeModal={mockCloseModal} />);
 
         const yesButton = screen.getByLabelText('Delete comment');
         await user.click(yesButton);
@@ -73,20 +73,5 @@ describe('DeleteModal component', () => {
         const loaders = await screen.findByTestId('deleteModal-loading');
 
         expect(loaders).toBeInTheDocument();
-    });
-
-    it('call close modal mock when api return success', async () => {
-        mock('/api/posts/1/comments/1', 204, {}, 'delete');
-
-        const mockCloseModal = jest.fn();
-
-        renderWithDefaultData(<DeleteModal postId={1} commentId={1} closeModal={mockCloseModal} />);
-
-        const yesButton = screen.getByLabelText('Delete comment');
-        await user.click(yesButton);
-
-        await waitFor(() => {
-            expect(mockCloseModal).toBeCalledTimes(1);
-        });
     });
 });

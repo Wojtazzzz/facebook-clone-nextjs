@@ -5,14 +5,16 @@ import { Content } from '@components/pages/posts/post/comments/inc/delete/Conten
 ReactModal.setAppElement('body');
 
 interface DeleteModalProps {
+    isOpen: boolean;
     postId: number;
     commentId: number;
     closeModal: () => void;
 }
 
-export const DeleteModal = ({ postId, commentId, closeModal }: DeleteModalProps) => {
+export const DeleteModal = ({ isOpen, postId, commentId, closeModal }: DeleteModalProps) => {
     return (
         <Modal
+            isOpen={isOpen}
             label="Confirm delete comment"
             title="Are you sure you want to delete that comment?"
             closeModal={closeModal}

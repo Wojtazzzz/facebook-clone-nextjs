@@ -74,9 +74,12 @@ export const Comment = ({ id, content, author, resource_id, created_at, updated_
                 </div>
             </article>
 
-            {isDeleteModalActive && (
-                <DeleteModal postId={resource_id} commentId={id} closeModal={() => setIsDeleteModalActive(false)} />
-            )}
+            <DeleteModal
+                isOpen={isDeleteModalActive}
+                postId={resource_id}
+                commentId={id}
+                closeModal={() => setIsDeleteModalActive(false)}
+            />
         </>
     );
 };

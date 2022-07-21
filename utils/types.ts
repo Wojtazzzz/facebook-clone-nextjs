@@ -141,3 +141,4 @@ export type IProfileFriendsData = {
 };
 
 export type IPostsEndpoints = '/api/posts/self' | '/api/hidden/posts' | '/api/saved/posts';
+export type IPostType = 'NORMAL' | 'HIDDEN' | 'SAVED';

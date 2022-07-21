@@ -9,9 +9,11 @@ import { LikeButton } from '@components/pages/posts/post/panel/LikeButton';
 import { Comments } from '@components/pages/posts/post/comments/Comments';
 import { CommentButton } from '@components/pages/posts/post/panel/CommentButton';
 
-import type { IPost } from '@utils/types';
+import type { IPost, IPostType } from '@utils/types';
 
-interface PostProps extends IPost {}
+interface PostProps extends IPost {
+    type: IPostType;
+}
 
 export const Post = ({
     id,
@@ -23,6 +25,7 @@ export const Post = ({
     isLiked,
     created_at,
     updated_at,
+    type,
 }: PostProps) => {
     const [isCommentsActive, setIsCommentsActive] = useState(false);
     const [totalLikesCount, setTotalLikesCount] = useState(likes_count);
@@ -34,7 +37,7 @@ export const Post = ({
 
     return (
         <article aria-label="Post" className="w-full bg-dark-200 rounded-lg">
-            <Header postId={id} author={author} created_at={created_at} updated_at={updated_at} />
+            <Header postId={id} author={author} created_at={created_at} updated_at={updated_at} type={type} />
             <Content content={content} images={images} />
 
             {noStats && (

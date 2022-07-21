@@ -1,7 +1,8 @@
+import { useBoard } from '@hooks/useBoard';
+
 import { CreatePost } from '@components/pages/profile/board/CreatePost';
 import { ListSwitcher } from '@components/pages/profile/board/ListSwitcher';
-import { Posts } from '@components/pages/profile/board/posts/Posts';
-import { useBoard } from '@hooks/useBoard';
+import { Posts } from '@components/pages/profile/board/Posts';
 
 export const Board = () => {
     const { changePostsList, ...rest } = useBoard();

@@ -16,7 +16,7 @@ describe('Post component', () => {
     });
 
     it('render like, comment and share buttons', () => {
-        renderWithDefaultData(<Post {...post} />);
+        renderWithDefaultData(<Post {...post} type="NORMAL" />);
 
         const likeButton = screen.getByLabelText('Like');
         const commentButton = screen.getByLabelText('Comment');
@@ -28,7 +28,7 @@ describe('Post component', () => {
     });
 
     it('not show comments section by default', async () => {
-        renderWithDefaultData(<Post {...post} />);
+        renderWithDefaultData(<Post {...post} type="NORMAL" />);
 
         const commentsSection = screen.queryByLabelText('Post comments', { selector: 'section' });
 
@@ -38,7 +38,7 @@ describe('Post component', () => {
     it('show comments section when click on button', async () => {
         mock(`/api/posts/${post.id}/comments?page=1`, 200, CommentsFirstPageJson);
 
-        renderWithDefaultData(<Post {...post} />);
+        renderWithDefaultData(<Post {...post} type="NORMAL" />);
 
         const commentButton = screen.getByLabelText('Comment');
         await user.click(commentButton);
@@ -50,7 +50,7 @@ describe('Post component', () => {
     it('show comments section when click on comments stats', async () => {
         mock(`/api/posts/${post.id}/comments?page=1`, 200, CommentsFirstPageJson);
 
-        renderWithDefaultData(<Post {...post} />);
+        renderWithDefaultData(<Post {...post} type="NORMAL" />);
 
         const commentStats = screen.getByText(`${post.comments_count} comments`);
         await user.click(commentStats);
@@ -62,7 +62,7 @@ describe('Post component', () => {
     it('show loaders before comments section', async () => {
         mock(`/api/posts/${post.id}/comments?page=1`, 200, CommentsFirstPageJson);
 
-        renderWithDefaultData(<Post {...post} />);
+        renderWithDefaultData(<Post {...post} type="NORMAL" />);
 
         const commentStats = screen.getByText(`${post.comments_count} comments`);
         await user.click(commentStats);

@@ -18,7 +18,7 @@ export const List = memo(() => {
     if (state === 'ERROR') return <ApiError size="xl" styles="mt-8" />;
     if (isEmpty) return <EmptyList title="No posts, add some friends!" />;
 
-    const PostsComponents = data.map((post) => <Post key={post.id} {...post} />);
+    const PostsComponents = data.map((post) => <Post key={post.id} {...post} type="NORMAL" />);
 
     return (
         <>

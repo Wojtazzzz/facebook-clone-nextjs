@@ -1,7 +1,4 @@
-import { useAppSelector } from '@hooks/redux';
-
 import { FakeForm } from '@components/pages/posts/create/FakeForm';
-import { Modal } from '@components/inc/modals/createPost/Modal';
 import { List } from '@components/pages/posts/List';
 
 export const Posts = () => {

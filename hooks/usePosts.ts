@@ -9,7 +9,7 @@ import type { ICreatePostResponse } from '@utils/types';
 type Response = ICreatePostResponse | {};
 
 export const usePosts = () => {
-    const { reloadData: reload } = usePaginatedData<IPost>('/api/posts', 15);
+    const { reloadData: reload } = usePaginatedData<IPost>('/api/posts', 10);
     const { state, sendRequest } = useAxios<Response>();
 
     useEffect(() => {
@@ -50,12 +50,36 @@ export const usePosts = () => {
         });
     };
 
+    const unhide = async (id: number) => {
+        if (state.status === 'LOADING') return;
+
+        await sendRequest({
+            method: 'DELETE',
+            url: `/api/hidden/posts/${id}`,
+            data: {
+                post_id: id,
+            },
+        });
+    };
+
     const save = async (id: number) => {
         if (state.status === 'LOADING') return;
 
         await sendRequest({
             method: 'POST',
             url: '/api/saved/posts',
+            data: {
+                post_id: id,
+            },
+        });
+    };
+
+    const unsave = async (id: number) => {
+        if (state.status === 'LOADING') return;
+
+        await sendRequest({
+            method: 'DELETE',
+            url: `/api/saved/posts/${id}`,
             data: {
                 post_id: id,
             },
@@ -70,6 +94,8 @@ export const usePosts = () => {
         create,
         remove,
         hide,
+        unhide,
         save,
+        unsave,
     };
 };
