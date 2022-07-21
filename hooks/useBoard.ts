@@ -11,7 +11,7 @@ const endpoints = {
 
 export const useBoard = () => {
     const [endpoint, setEndpoint] = useState<IPostsEndpoints>('/api/posts/self');
-    const { data, state, isEmpty, isReachedEnd, loadMore, reloadData } = usePaginatedData<IPost>(endpoint, 15);
+    const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginatedData<IPost>(endpoint, 10);
 
     const changePostsList = (value: string) => {
         if (!(value === 'OWN' || value === 'SAVED' || value === 'HIDDEN')) return;
