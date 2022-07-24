@@ -1,22 +1,23 @@
 {
-    "id": 134,
-    "content": "Dignissimos doloribus commodi veniam at delectus saepe dolores. Similique pariatur corporis suscipit ut reprehenderit quo fugit. Consequuntur recusandae ut maiores sint.",
+    "id": 6,
+    "content": "Velit sit molestias ea omnis nesciunt omnis voluptas. Mollitia quis ea quia illo amet et eos sed. Magni rerum voluptatum ex.",
     "images": [
-        "https://via.placeholder.com/850x350.png/0044cc?text=suscipit",
-        "https://via.placeholder.com/850x350.png/0044cc?text=suscipit",
-        "https://via.placeholder.com/850x350.png/0044cc?text=suscipit",
-        "https://via.placeholder.com/850x350.png/0044cc?text=suscipit",
-        "https://via.placeholder.com/850x350.png/0044cc?text=suscipit"
+        "https://picsum.photos/seed/62dd5a3a91742/850/350",
+        "https://picsum.photos/seed/62dd5a3a91744/850/350",
+        "https://picsum.photos/seed/62dd5a3a91746/850/350",
+        "https://picsum.photos/seed/62dd5a351c3fd/850/350",
+        "https://picsum.photos/seed/62dd5a3e8ae09/850/350"
     ],
     "author": {
         "id": 2,
-        "name": "Sven Hansen",
-        "first_name": "Sven",
-        "profile_image": "https://via.placeholder.com/168x168.png/005544?text=ut",
-        "background_image": "https://via.placeholder.com/850x350.png/005555?text=et"
+        "name": "Muriel Wilkinson",
+        "first_name": "Muriel",
+        "profile_image": "https://picsum.photos/seed/62dd5a10b4748/168/168",
+        "background_image": "https://picsum.photos/seed/62dd5a10b4753/850/350"
     },
-    "likes_count": 1,
+    "likes_count": 0,
+    "comments_count": 0,
     "isLiked": false,
-    "created_at": "2020-07-31 00-00-00",
-    "updated_at": "2020-07-31 00-00-00"
+    "created_at": "2022-07-24 14:42",
+    "updated_at": "2022-07-24 14:42"
 }

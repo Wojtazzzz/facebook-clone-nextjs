@@ -12,9 +12,16 @@ import { Avatar } from '@components/inc/Avatar';
 
 import clsx from 'clsx';
 
-import type { IComment } from '@utils/types';
+import type { IUser } from '@utils/types';
 
-interface CommentProps extends IComment {}
+interface CommentProps {
+    id: number;
+    content: string;
+    author: IUser;
+    resource_id: number;
+    created_at: string;
+    updated_at: string;
+}
 
 export const Comment = ({ id, content, author, resource_id, created_at, updated_at }: CommentProps) => {
     const [isEditModeActive, setIsEditModeActive] = useState(false);

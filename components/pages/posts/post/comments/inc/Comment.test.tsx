@@ -7,13 +7,12 @@ import RootUserCommentJson from '@mocks/posts/comments/rootUserComment.json';
 import EditedCommentJson from '@mocks/posts/comments/edited.json';
 import RootUserJson from '@mocks/user/root.json';
 import userEvent from '@testing-library/user-event';
-import type { IComment } from '@utils/types';
 
 describe('Comment component', () => {
     const user = userEvent.setup();
-    const comment = CommentsFirstPageJson[0] as IComment;
-    const editedComment = EditedCommentJson as IComment;
-    const rootUserComment = RootUserCommentJson as IComment;
+    const comment = CommentsFirstPageJson[0];
+    const editedComment = EditedCommentJson;
+    const rootUserComment = RootUserCommentJson;
 
     beforeEach(() => {
         mock('/api/user', 200, RootUserJson);

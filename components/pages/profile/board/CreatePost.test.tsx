@@ -12,7 +12,7 @@ describe('CreatePost component', () => {
     it('component render fake form', async () => {
         renderWithDefaultData(<CreatePost />);
 
-        const switcher = await screen.findByText("What's on your mind, Root?");
+        const switcher = await screen.findByText(`What's on your mind, ${RootUserJson.first_name}?`);
 
         expect(switcher).toBeInTheDocument();
     });

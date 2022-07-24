@@ -67,7 +67,7 @@ describe('Post component', () => {
         const commentStats = screen.getByText(`${post.comments_count} comments`);
         await user.click(commentStats);
 
-        const commentsSection = screen.queryByLabelText('Post comments', { selector: 'section' });
+        const commentsSection = await screen.findByLabelText('Post comments', { selector: 'section' });
         expect(commentsSection).toBeInTheDocument();
     });
 });

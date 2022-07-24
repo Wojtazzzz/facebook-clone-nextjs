@@ -14,7 +14,7 @@ describe('List component', () => {
         expect(loaders).toBeInTheDocument();
     });
 
-    it('load 15 posts', async () => {
+    it('load 10 posts', async () => {
         mock('/api/posts?page=1', 200, PostsFirstPageJson);
 
         renderWithDefaultData(<List />);
@@ -22,7 +22,7 @@ describe('List component', () => {
         const firstPost = await screen.findByText(PostsFirstPageJson[0].content);
         expect(firstPost).toBeInTheDocument();
 
-        const fiveteenthPost = await screen.findByText(PostsFirstPageJson[14].content);
+        const fiveteenthPost = await screen.findByText(PostsFirstPageJson[9].content);
         expect(fiveteenthPost).toBeInTheDocument();
     });
 

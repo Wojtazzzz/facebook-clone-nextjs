@@ -1,14 +1,14 @@
 {
-    "id": "3e465b3b-5ec9-4846-8046-ea04ee452889",
-    "message": "Poked you 320 times in a row",
+    "id": "1a231b94-33cc-390f-9125-074c2ec7b0e1",
+    "message": "Poked you first time",
     "friend": {
-        "id": 366,
-        "name": "Faye Hauck",
-        "first_name": "Faye",
-        "profile_image": "https://picsum.photos/seed/62b847bb5ee26/168/168",
-        "background_image": "https://picsum.photos/seed/62b847bb5ee31/850/350"
+        "id": 118,
+        "name": "Rhianna Wintheiser",
+        "first_name": "Rhianna",
+        "profile_image": "https://picsum.photos/seed/62dd4d0a7da35/168/168",
+        "background_image": "https://picsum.photos/seed/62dd4d0a7da3f/850/350"
     },
     "link": "/friends/pokes",
-    "read_at": "2022-06-26T16:30:22.000000Z",
-    "created_at": "2022-06-26T16:29:55.000000Z"
+    "read_at": null,
+    "created_at": "2022-07-24T13:45:48.000000Z"
 }

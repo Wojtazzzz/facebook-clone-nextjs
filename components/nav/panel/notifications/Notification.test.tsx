@@ -1,8 +1,8 @@
 import { screen } from '@testing-library/react';
 import NotificationsFirstPageJson from '@mocks/notifications/firstPage.json';
 import PokeNotificationJson from '@mocks/notifications/poke.json';
-import FriendshipRequestAcceptedNotificationJson from '@mocks/notifications/friendshipRequestAccepted.json';
-import FriendshipRequestSentNotificationJson from '@mocks/notifications/friendshipRequestSent.json';
+import FriendshipRequestAcceptedNotificationJson from '@mocks/notifications/requestAccepted.json';
+import FriendshipRequestSentNotificationJson from '@mocks/notifications/requestSent.json';
 import { Notification } from '@components/nav/panel/notifications/Notification';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 
@@ -26,7 +26,7 @@ describe('Notifications Notification component', () => {
 
         renderWithDefaultData(<Notification {...notification} />);
 
-        const message = screen.getByText('Poked you 320 times in a row');
+        const message = screen.getByText(notification.message);
 
         expect(message).toBeInTheDocument();
     });
