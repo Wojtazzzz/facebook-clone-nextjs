@@ -28,13 +28,13 @@ export const Messages = memo<MessagesProps>(({ friendId }) => {
         <div
             data-testid="chat-messages"
             id="list-of-messages"
-            className="w-full max-h-[312px] overflow-y-scroll scrollbar-thin scrollbar-thumb-dark-100 scrollbar-track-dark-200 pb-2"
+            className="w-full max-h-[312px] flex flex-col-reverse overflow-y-scroll scrollbar-thin scrollbar-thumb-dark-100 scrollbar-track-dark-200 pb-2"
         >
             <InfiniteScroll
                 dataLength={MessagesComponents.length}
                 next={loadMore}
                 className="flex flex-col-reverse gap-1"
-                inverse={true}
+                inverse
                 hasMore={!isReachedEnd}
                 loader={<Loader testid="messages-loader_fetching" />}
                 scrollableTarget="list-of-messages"
