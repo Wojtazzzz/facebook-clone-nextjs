@@ -1,5 +1,13 @@
 import nock from 'nock';
-import { nockReplyHeaders } from '@libs/nockReplyHeaders';
+import type { ReplyHeaders } from 'nock';
+
+const allowedHeaders = ['ClientName', 'ClientVersion', 'Content-Type', 'Authorization', 'X-Requested-With'];
+
+export const nockReplyHeaders: ReplyHeaders = {
+    'access-control-allow-origin': '*',
+    'access-control-allow-credentials': 'true',
+    'access-control-allow-headers': allowedHeaders.join(','),
+};
 
 type success = 200 | 201 | 202 | 204;
 type userError = 400 | 401 | 403 | 404 | 405 | 408 | 413 | 422;
