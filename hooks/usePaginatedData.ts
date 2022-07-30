@@ -27,7 +27,7 @@ export const usePaginatedData = <T>(key: string, perList = 10) => {
                 throw error;
             });
 
-    const { data, size, setSize, mutate } = useSWRInfinite<T[]>(getKey, fetcher);
+    const { data, size, setSize, mutate, isValidating } = useSWRInfinite<T[]>(getKey, fetcher);
 
     useEffect(() => {
         setState('LOADING');
@@ -40,9 +40,7 @@ export const usePaginatedData = <T>(key: string, perList = 10) => {
 
         setFlatData(data.flat());
         setState('SUCCESS');
-
-        return () => AxiosAbortController.abort();
-    }, [data, AxiosAbortController]);
+    }, [data]);
 
     const loadMore = () => {
         setState('FETCHING');
