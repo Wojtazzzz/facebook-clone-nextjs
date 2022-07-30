@@ -16,7 +16,7 @@ export const Profile = ({ user, friends }: ProfileProps) => {
 
             <div className="w-full flex gap-4 px-1">
                 <Intro {...user} />
-                <Board />
+                <Board userId={user.id} />
             </div>
         </div>
     );

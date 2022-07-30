@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { faShare } from '@fortawesome/free-solid-svg-icons';
-import { Header } from '@components/pages/posts/post/Header';
+import { Header } from '@components/pages/posts/post/header/Header';
 import { Content } from '@components/pages/posts/post/Content';
 import { Stats } from '@components/pages/posts/post/Stats';
 import { PanelButton } from '@components/pages/posts/post/inc/PanelButton';
@@ -9,10 +9,10 @@ import { LikeButton } from '@components/pages/posts/post/panel/LikeButton';
 import { Comments } from '@components/pages/posts/post/comments/Comments';
 import { CommentButton } from '@components/pages/posts/post/panel/CommentButton';
 
-import type { IPost, IPostType } from '@utils/types';
+import type { IPost } from '@utils/types';
 
 interface PostProps extends IPost {
-    type: IPostType;
+    reloadPosts: () => void;
 }
 
 export const Post = ({
@@ -26,6 +26,7 @@ export const Post = ({
     created_at,
     updated_at,
     type,
+    reloadPosts,
 }: PostProps) => {
     const [isCommentsActive, setIsCommentsActive] = useState(false);
     const [totalLikesCount, setTotalLikesCount] = useState(likes_count);
@@ -37,7 +38,14 @@ export const Post = ({
 
     return (
         <article aria-label="Post" className="w-full bg-dark-200 rounded-lg">
-            <Header postId={id} author={author} created_at={created_at} updated_at={updated_at} type={type} />
+            <Header
+                postId={id}
+                author={author}
+                created_at={created_at}
+                updated_at={updated_at}
+                type={type}
+                reloadPosts={reloadPosts}
+            />
             <Content content={content} images={images} />
 
             {noStats && (

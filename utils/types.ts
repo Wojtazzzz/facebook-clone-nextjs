@@ -121,6 +121,7 @@ export type IPost = {
     isLiked: boolean;
     created_at: string;
     updated_at: string;
+    type: IPostType;
 };
 
 export type IContact = {
@@ -140,5 +141,4 @@ export type IProfileFriendsData = {
     list: IUser[];
 };
 
-export type IPostsEndpoints = '/api/posts/self' | '/api/hidden/posts' | '/api/saved/posts';
-export type IPostType = 'NORMAL' | 'HIDDEN' | 'SAVED';
+export type IPostType = 'OWN' | 'FRIEND' | 'HIDDEN' | 'SAVED';

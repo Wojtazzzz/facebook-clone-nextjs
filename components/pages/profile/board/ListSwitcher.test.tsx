@@ -4,11 +4,11 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 describe('ListSwitcher component', () => {
-    const mockChangePostsList = jest.fn();
+    const mockChangeList = jest.fn();
     const user = userEvent.setup();
 
     it('swicher has value OWN as default ', async () => {
-        renderWithDefaultData(<ListSwitcher changePostsList={mockChangePostsList} />);
+        renderWithDefaultData(<ListSwitcher userId={1} changeList={mockChangeList} />);
 
         const switcher = screen.getByLabelText('Change list of posts');
 
@@ -17,7 +17,7 @@ describe('ListSwitcher component', () => {
     });
 
     it('can change swicher value to HIDDEN', async () => {
-        renderWithDefaultData(<ListSwitcher changePostsList={mockChangePostsList} />);
+        renderWithDefaultData(<ListSwitcher userId={1} changeList={mockChangeList} />);
 
         const switcher = screen.getByLabelText('Change list of posts');
         await user.selectOptions(switcher, 'HIDDEN');
@@ -27,7 +27,7 @@ describe('ListSwitcher component', () => {
     });
 
     it('can change swicher value to SAVED', async () => {
-        renderWithDefaultData(<ListSwitcher changePostsList={mockChangePostsList} />);
+        renderWithDefaultData(<ListSwitcher userId={1} changeList={mockChangeList} />);
 
         const switcher = screen.getByLabelText('Change list of posts');
         await user.selectOptions(switcher, 'SAVED');
@@ -37,7 +37,7 @@ describe('ListSwitcher component', () => {
     });
 
     it('can change swicher value to HIDDEN and return back to OWN', async () => {
-        renderWithDefaultData(<ListSwitcher changePostsList={mockChangePostsList} />);
+        renderWithDefaultData(<ListSwitcher userId={1} changeList={mockChangeList} />);
 
         const switcher = screen.getByLabelText('Change list of posts');
         await user.selectOptions(switcher, 'SAVED');

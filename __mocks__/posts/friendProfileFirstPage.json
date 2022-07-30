@@ -1,0 +1,212 @@
+[
+    {
+        "type": "FRIEND",
+        "id": 48,
+        "content": "Dolorum quia deserunt ullam ut rerum. Ut earum ratione ea et nesciunt nisi quis omnis. Laborum fuga et provident in facilis.",
+        "images": [],
+        "author": {
+            "id": 2,
+            "name": "Ivy Paucek",
+            "first_name": "Ivy",
+            "profile_image": "https://picsum.photos/seed/62e0201824a9a/168/168",
+            "background_image": "https://picsum.photos/seed/62e0201824aa5/850/350"
+        },
+        "likes_count": 0,
+        "comments_count": 0,
+        "isLiked": false,
+        "created_at": "2022-07-30 11:33",
+        "updated_at": "2022-07-30 11:33"
+    },
+    {
+        "type": "FRIEND",
+        "id": 49,
+        "content": "Adipisci quisquam perspiciatis molestiae non omnis suscipit ex natus. Omnis in ad quibusdam voluptatem inventore. Accusantium sed quasi quisquam. Eum sed laboriosam pariatur aspernatur.",
+        "images": [],
+        "author": {
+            "id": 2,
+            "name": "Ivy Paucek",
+            "first_name": "Ivy",
+            "profile_image": "https://picsum.photos/seed/62e0201824a9a/168/168",
+            "background_image": "https://picsum.photos/seed/62e0201824aa5/850/350"
+        },
+        "likes_count": 0,
+        "comments_count": 0,
+        "isLiked": false,
+        "created_at": "2022-07-30 11:33",
+        "updated_at": "2022-07-30 11:33"
+    },
+    {
+        "type": "FRIEND",
+        "id": 38,
+        "content": "Illum ut debitis dolor voluptatem commodi. Asperiores sed totam aut. Rem officia facilis ut minus.",
+        "images": [
+            "https://picsum.photos/seed/62e516fac5780/850/350",
+            "https://picsum.photos/seed/62e516fac578d/850/350",
+            "https://picsum.photos/seed/62e516fac579a/850/350",
+            "https://picsum.photos/seed/62e516fac57a8/850/350"
+        ],
+        "author": {
+            "id": 2,
+            "name": "Ivy Paucek",
+            "first_name": "Ivy",
+            "profile_image": "https://picsum.photos/seed/62e0201824a9a/168/168",
+            "background_image": "https://picsum.photos/seed/62e0201824aa5/850/350"
+        },
+        "likes_count": 0,
+        "comments_count": 0,
+        "isLiked": false,
+        "created_at": "2022-07-30 11:33",
+        "updated_at": "2022-07-30 11:33"
+    },
+    {
+        "type": "FRIEND",
+        "id": 39,
+        "content": "Sed quia aliquid voluptates qui. Est minus eaque harum iure est adipisci in. Ut animi illum ipsam quam. Iste eum rerum vel sit. Incidunt ratione aliquam quam distinctio officiis.",
+        "images": [
+            "https://picsum.photos/seed/62e516fe96b86/850/350",
+            "https://picsum.photos/seed/62e516fe96b95/850/350",
+            "https://picsum.photos/seed/62e516fe96ba5/850/350"
+        ],
+        "author": {
+            "id": 2,
+            "name": "Ivy Paucek",
+            "first_name": "Ivy",
+            "profile_image": "https://picsum.photos/seed/62e0201824a9a/168/168",
+            "background_image": "https://picsum.photos/seed/62e0201824aa5/850/350"
+        },
+        "likes_count": 0,
+        "comments_count": 0,
+        "isLiked": false,
+        "created_at": "2022-07-30 11:33",
+        "updated_at": "2022-07-30 11:33"
+    },
+    {
+        "type": "FRIEND",
+        "id": 40,
+        "content": "Odit magnam placeat laborum sit qui. Temporibus aut et assumenda tenetur.",
+        "images": [
+            "https://picsum.photos/seed/62e516ff7bf72/850/350",
+            "https://picsum.photos/seed/62e516ff7bf81/850/350"
+        ],
+        "author": {
+            "id": 2,
+            "name": "Ivy Paucek",
+            "first_name": "Ivy",
+            "profile_image": "https://picsum.photos/seed/62e0201824a9a/168/168",
+            "background_image": "https://picsum.photos/seed/62e0201824aa5/850/350"
+        },
+        "likes_count": 0,
+        "comments_count": 0,
+        "isLiked": false,
+        "created_at": "2022-07-30 11:33",
+        "updated_at": "2022-07-30 11:33"
+    },
+    {
+        "type": "FRIEND",
+        "id": 41,
+        "content": "Nostrum saepe possimus magnam sit repellat. Quam ut officia corrupti asperiores optio sunt sed. Voluptas officia et consequatur.",
+        "images": [
+            "https://picsum.photos/seed/62e5170068103/850/350",
+            "https://picsum.photos/seed/62e517006810c/850/350"
+        ],
+        "author": {
+            "id": 2,
+            "name": "Ivy Paucek",
+            "first_name": "Ivy",
+            "profile_image": "https://picsum.photos/seed/62e0201824a9a/168/168",
+            "background_image": "https://picsum.photos/seed/62e0201824aa5/850/350"
+        },
+        "likes_count": 0,
+        "comments_count": 0,
+        "isLiked": false,
+        "created_at": "2022-07-30 11:33",
+        "updated_at": "2022-07-30 11:33"
+    },
+    {
+        "type": "FRIEND",
+        "id": 42,
+        "content": "Voluptates in mollitia id rerum repellat distinctio quod. Odit asperiores aliquid et molestiae commodi voluptatibus. Voluptate voluptatem aperiam a voluptas facere fugiat.",
+        "images": ["https://picsum.photos/seed/62e517015c8cd/850/350"],
+        "author": {
+            "id": 2,
+            "name": "Ivy Paucek",
+            "first_name": "Ivy",
+            "profile_image": "https://picsum.photos/seed/62e0201824a9a/168/168",
+            "background_image": "https://picsum.photos/seed/62e0201824aa5/850/350"
+        },
+        "likes_count": 0,
+        "comments_count": 0,
+        "isLiked": false,
+        "created_at": "2022-07-30 11:33",
+        "updated_at": "2022-07-30 11:33"
+    },
+    {
+        "type": "FRIEND",
+        "id": 43,
+        "content": "Id animi voluptas impedit possimus magnam at. Quia autem sint placeat consequatur voluptatem sit aliquam. Ab ut possimus voluptatibus esse.",
+        "images": [
+            "https://picsum.photos/seed/62e517024d302/850/350",
+            "https://picsum.photos/seed/62e517024d30f/850/350",
+            "https://picsum.photos/seed/62e517024d31c/850/350",
+            "https://picsum.photos/seed/62e517024d328/850/350"
+        ],
+        "author": {
+            "id": 2,
+            "name": "Ivy Paucek",
+            "first_name": "Ivy",
+            "profile_image": "https://picsum.photos/seed/62e0201824a9a/168/168",
+            "background_image": "https://picsum.photos/seed/62e0201824aa5/850/350"
+        },
+        "likes_count": 0,
+        "comments_count": 0,
+        "isLiked": false,
+        "created_at": "2022-07-30 11:33",
+        "updated_at": "2022-07-30 11:33"
+    },
+    {
+        "type": "FRIEND",
+        "id": 44,
+        "content": "Magni nam eius voluptatem dolorum qui perspiciatis hic. Unde perspiciatis aut deserunt nulla. Aut et minima deserunt quaerat qui eligendi. Et exercitationem autem aut vel sed consequatur est quod.",
+        "images": [
+            "https://picsum.photos/seed/62e5170341350/850/350",
+            "https://picsum.photos/seed/62e517034135c/850/350",
+            "https://picsum.photos/seed/62e5170341368/850/350",
+            "https://picsum.photos/seed/62e5170341374/850/350"
+        ],
+        "author": {
+            "id": 2,
+            "name": "Ivy Paucek",
+            "first_name": "Ivy",
+            "profile_image": "https://picsum.photos/seed/62e0201824a9a/168/168",
+            "background_image": "https://picsum.photos/seed/62e0201824aa5/850/350"
+        },
+        "likes_count": 0,
+        "comments_count": 0,
+        "isLiked": false,
+        "created_at": "2022-07-30 11:33",
+        "updated_at": "2022-07-30 11:33"
+    },
+    {
+        "type": "FRIEND",
+        "id": 45,
+        "content": "Enim rem omnis sequi. Et velit sed quaerat sint est libero expedita. Corporis accusantium nihil ut quam sed. Molestias id iure autem debitis asperiores commodi.",
+        "images": [
+            "https://picsum.photos/seed/62e517041e5fc/850/350",
+            "https://picsum.photos/seed/62e517041e603/850/350",
+            "https://picsum.photos/seed/62e517041e609/850/350",
+            "https://picsum.photos/seed/62e517041e610/850/350"
+        ],
+        "author": {
+            "id": 2,
+            "name": "Ivy Paucek",
+            "first_name": "Ivy",
+            "profile_image": "https://picsum.photos/seed/62e0201824a9a/168/168",
+            "background_image": "https://picsum.photos/seed/62e0201824aa5/850/350"
+        },
+        "likes_count": 0,
+        "comments_count": 0,
+        "isLiked": false,
+        "created_at": "2022-07-30 11:33",
+        "updated_at": "2022-07-30 11:33"
+    }
+]

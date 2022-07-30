@@ -9,7 +9,7 @@ describe('CreatePost component', () => {
         mock('/api/user', 200, RootUserJson);
     });
 
-    it('component render fake form', async () => {
+    it('render fake form', async () => {
         renderWithDefaultData(<CreatePost />);
 
         const switcher = await screen.findByText(`What's on your mind, ${RootUserJson.first_name}?`);

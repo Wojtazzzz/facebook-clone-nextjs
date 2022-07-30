@@ -1,16 +1,10 @@
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import RootUserJson from '@mocks/user/root.json';
-import FriendsFirstPageJson from '@mocks/friendsList/friends/firstPage.json';
 import ProfileFriendsJson from '@mocks/ssg/profileFriends.json';
-import { mock } from '@libs/nock';
 import { screen, within } from '@testing-library/react';
 import { User } from '@components/pages/profile/hero/user/User';
 
 describe('Profile User info tests', () => {
-    beforeEach(() => {
-        mock(`/api/friendship/friends/${RootUserJson.id}?page=1`, 200, FriendsFirstPageJson);
-    });
-
     it('render properly username and profile image', async () => {
         renderWithDefaultData(
             <User

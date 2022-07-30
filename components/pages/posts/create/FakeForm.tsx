@@ -22,6 +22,7 @@ export const FakeForm = () => {
                 <Avatar size={58} src={profile_image} alt={name} />
 
                 <button
+                    aria-label="Show create post modal"
                     className="w-full bg-dark-100 text-light-100 text-left hover:opacity-70 rounded-3xl cursor-pointer px-3"
                     onClick={handleOpenModal}
                 >
