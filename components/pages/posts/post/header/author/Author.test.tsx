@@ -1,15 +1,15 @@
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
-import { UserInfo } from '@components/pages/posts/post/header/userInfo/UserInfo';
+import { Author } from '@components/pages/posts/post/header/author/Author';
 import PostsFirstPageJson from '@mocks/posts/firstPage.json';
 import PostEditedJson from '@mocks/posts/editedPost.json';
 import { screen } from '@testing-library/react';
 
-describe('UserInfo component', () => {
+describe('Author component', () => {
     it('has link to user profile', () => {
         const post = PostsFirstPageJson[0];
         const author = post.author;
 
-        renderWithDefaultData(<UserInfo author={author} created_at={post.created_at} updated_at={post.updated_at} />);
+        renderWithDefaultData(<Author author={author} created_at={post.created_at} updated_at={post.updated_at} />);
 
         const link = screen.getByLabelText(`${author.first_name} profile`);
 
@@ -20,7 +20,7 @@ describe('UserInfo component', () => {
         const post = PostEditedJson;
 
         renderWithDefaultData(
-            <UserInfo author={post.author} created_at={post.created_at} updated_at={post.updated_at} />
+            <Author author={post.author} created_at={post.created_at} updated_at={post.updated_at} />
         );
 
         const element = screen.getByText(`${post.updated_at} (Edited)`);
@@ -32,7 +32,7 @@ describe('UserInfo component', () => {
         const post = PostsFirstPageJson[0];
 
         renderWithDefaultData(
-            <UserInfo author={post.author} created_at={post.created_at} updated_at={post.updated_at} />
+            <Author author={post.author} created_at={post.created_at} updated_at={post.updated_at} />
         );
 
         const name = screen.getByText(post.author.name);

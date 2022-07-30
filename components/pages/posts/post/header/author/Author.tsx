@@ -3,13 +3,13 @@ import { Avatar } from '@components/inc/Avatar';
 
 import type { IUser } from '@utils/types';
 
-interface UserInfoProps {
+interface AuthorProps {
     author: IUser;
     created_at: string;
     updated_at: string;
 }
 
-export const UserInfo = ({ author, created_at, updated_at }: UserInfoProps) => {
+export const Author = ({ author, created_at, updated_at }: AuthorProps) => {
     const { id, first_name, name, profile_image } = author;
 
     return (

@@ -1,4 +1,4 @@
-import { UserInfo } from '@components/pages/posts/post/header/userInfo/UserInfo';
+import { Author } from '@components/pages/posts/post/header/author/Author';
 import { Settings } from '@components/pages/posts/post/header/settings/Settings';
 
 import type { IPostType, IUser } from '@utils/types';
@@ -15,7 +15,7 @@ interface HeaderProps {
 export const Header = ({ postId, author, created_at, updated_at, type, reloadPosts }: HeaderProps) => {
     return (
         <div className="w-full flex justify-between p-4 pb-0">
-            <UserInfo author={author} created_at={created_at} updated_at={updated_at} />
+            <Author author={author} created_at={created_at} updated_at={updated_at} />
             <Settings postId={postId} type={type} reloadPosts={reloadPosts} />
         </div>
     );
