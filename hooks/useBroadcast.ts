@@ -1,7 +1,7 @@
 import { useCallback, useMemo } from 'react';
 
 import Echo from 'laravel-echo';
-import axios from '@libs/axios';
+import { axios } from '@libs/axios';
 
 require('pusher-js');
 

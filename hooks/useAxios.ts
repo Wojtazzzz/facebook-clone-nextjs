@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 
-import axios from '@libs/axios';
+import { axios } from '@libs/axios';
 
 import type { AxiosRequestConfig } from 'axios';
 import type { IUseAxiosState } from '@utils/types';

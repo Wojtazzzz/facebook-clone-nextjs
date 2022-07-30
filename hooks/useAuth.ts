@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import useSWR from 'swr';
 import { useAxios } from '@hooks/useAxios';
 
-import axios from '@libs/axios';
+import { axios } from '@libs/axios';
 import Axios from 'axios';
 
 import type { IUser } from '@utils/types';

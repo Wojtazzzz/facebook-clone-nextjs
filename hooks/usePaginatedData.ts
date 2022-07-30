@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import useSWRInfinite from 'swr/infinite';
 
-import axios, { objectsIntoArray } from '@libs/axios';
+import { axios, objectsIntoArray } from '@libs/axios';
 
 import type { IUsePaginatedDataState } from '@utils/types';
 
