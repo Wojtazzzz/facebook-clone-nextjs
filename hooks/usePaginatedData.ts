@@ -40,9 +40,7 @@ export const usePaginatedData = <T>(key: string, perList = 10) => {
 
         setFlatData(data.flat());
         setState('SUCCESS');
-
-        return () => AxiosAbortController.abort();
-    }, [data, AxiosAbortController]);
+    }, [data]);
 
     const loadMore = () => {
         setState('FETCHING');
