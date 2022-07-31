@@ -10,7 +10,7 @@ interface HiddenMenuProps {
 }
 
 export const HiddenMenu = ({ postId, closeMenu, reloadPosts }: HiddenMenuProps) => {
-    const { unhide } = usePosts();
+    const { isLoading, unhide } = usePosts();
 
     const handleUnhide = async () => {
         await unhide(postId);
@@ -18,5 +18,5 @@ export const HiddenMenu = ({ postId, closeMenu, reloadPosts }: HiddenMenuProps) 
         closeMenu();
     };
 
-    return <Option title="Unhide" icon={faTrash} callback={handleUnhide} />;
+    return <Option title="Unhide" icon={faTrash} isActive={isLoading} callback={handleUnhide} />;
 };

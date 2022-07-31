@@ -3,6 +3,7 @@ import { useOutsideClick } from '@hooks/useOutsideClick';
 
 import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
 import { Menu } from '@components/pages/posts/post/header/settings/menu/Menu';
+import { GlobalMenu } from '@components/pages/posts/post/header/settings/menu/globalMenu/GlobalMenu';
 import { RoundedButton } from '@components/inc/RoundedButton';
 
 import type { IPostType } from '@utils/types';
@@ -39,6 +40,7 @@ export const Settings = ({ postId, type, reloadPosts }: SettingsProps) => {
                     className="min-w-[240px] absolute right-0 z-20 bg-dark-300 shadow-md rounded-xl py-3 px-4"
                 >
                     <Menu postId={postId} closeMenu={handleCloseMenu} type={type} reloadPosts={reloadPosts} />
+                    <GlobalMenu />
                 </div>
             )}
         </div>

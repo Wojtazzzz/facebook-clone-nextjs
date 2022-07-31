@@ -10,7 +10,7 @@ interface SavedMenuProps {
 }
 
 export const SavedMenu = ({ postId, closeMenu, reloadPosts }: SavedMenuProps) => {
-    const { unsave } = usePosts();
+    const { isLoading, unsave } = usePosts();
 
     const handleUnsave = async () => {
         await unsave(postId);
@@ -18,5 +18,5 @@ export const SavedMenu = ({ postId, closeMenu, reloadPosts }: SavedMenuProps) =>
         reloadPosts();
     };
 
-    return <Option title="Unsave" icon={faTrash} callback={handleUnsave} />;
+    return <Option title="Unsave" icon={faTrash} isActive={isLoading} callback={handleUnsave} />;
 };

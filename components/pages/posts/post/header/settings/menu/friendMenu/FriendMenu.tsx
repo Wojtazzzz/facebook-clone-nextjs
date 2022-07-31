@@ -10,7 +10,7 @@ interface FriendMenuProps {
 }
 
 export const FriendMenu = ({ postId, closeMenu, reloadPosts }: FriendMenuProps) => {
-    const { hide, save } = usePosts();
+    const { isLoading, hide, save } = usePosts();
 
     const handleHidePost = async () => {
         await hide(postId);
@@ -26,8 +26,8 @@ export const FriendMenu = ({ postId, closeMenu, reloadPosts }: FriendMenuProps) 
 
     return (
         <>
-            <Option title="Hide" icon={faBan} callback={handleHidePost} />
-            <Option title="Save" icon={faSave} callback={handleSavePost} />
+            <Option title="Hide" icon={faBan} isActive={isLoading} callback={handleHidePost} />
+            <Option title="Save" icon={faSave} isActive={isLoading} callback={handleSavePost} />
         </>
     );
 };

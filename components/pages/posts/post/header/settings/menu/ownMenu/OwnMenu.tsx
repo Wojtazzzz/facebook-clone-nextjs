@@ -10,7 +10,7 @@ interface OwnMenuProps {
 }
 
 export const OwnMenu = ({ postId, closeMenu, reloadPosts }: OwnMenuProps) => {
-    const { remove } = usePosts();
+    const { isLoading, remove } = usePosts();
 
     const handleRemovePost = async () => {
         await remove(postId);
@@ -18,5 +18,5 @@ export const OwnMenu = ({ postId, closeMenu, reloadPosts }: OwnMenuProps) => {
         reloadPosts();
     };
 
-    return <Option title="Delete" icon={faTrashCan} callback={handleRemovePost} />;
+    return <Option title="Delete" icon={faTrashCan} isActive={isLoading} callback={handleRemovePost} />;
 };

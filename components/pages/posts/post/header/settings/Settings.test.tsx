@@ -17,4 +17,15 @@ describe('Settings component', () => {
 
         expect(menu).toBeInTheDocument();
     });
+
+    it('always render global menu', async () => {
+        renderWithDefaultData(<Settings postId={1} type="OWN" reloadPosts={mockReloadPosts} />);
+
+        const button = screen.getByLabelText('Show post settings');
+        await user.click(button);
+
+        const option = screen.getByLabelText('Report');
+
+        expect(option).toBeInTheDocument();
+    });
 });
