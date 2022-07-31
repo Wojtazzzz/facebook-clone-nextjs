@@ -20,7 +20,11 @@ export const usePosts = () => {
 
         data.images.forEach((img) => formData.append('images[]', img));
 
-        await sendRequest({ method: 'POST', url: '/api/posts', data: formData });
+        await sendRequest({
+            method: 'POST',
+            url: '/api/posts',
+            data: formData,
+        });
 
         refreshData();
     };
@@ -92,6 +96,28 @@ export const usePosts = () => {
         refreshData();
     };
 
+    const like = async (id: number) => {
+        if (state.status === 'LOADING') return;
+
+        await sendRequest({
+            method: 'POST',
+            url: `/api/posts/${id}/likes`,
+        });
+
+        refreshData();
+    };
+
+    const unlike = async (id: number) => {
+        if (state.status === 'LOADING') return;
+
+        await sendRequest({
+            method: 'DELETE',
+            url: `/api/posts/${id}/likes`,
+        });
+
+        refreshData();
+    };
+
     const isLoading = state.status === 'LOADING';
 
     return {
@@ -103,5 +129,7 @@ export const usePosts = () => {
         unhide,
         save,
         unsave,
+        like,
+        unlike,
     };
 };

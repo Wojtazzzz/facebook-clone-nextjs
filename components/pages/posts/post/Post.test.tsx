@@ -8,6 +8,7 @@ import userEvent from '@testing-library/user-event';
 import { mock } from '@libs/nock';
 
 describe('Post component', () => {
+    const mockReloadPosts = jest.fn();
     const user = userEvent.setup();
     const post = PostsFirstPageJson[0];
 
@@ -16,7 +17,7 @@ describe('Post component', () => {
     });
 
     it('render like, comment and share buttons', () => {
-        renderWithDefaultData(<Post {...post} type="NORMAL" />);
+        renderWithDefaultData(<Post {...post} type="OWN" reloadPosts={mockReloadPosts} />);
 
         const likeButton = screen.getByLabelText('Like');
         const commentButton = screen.getByLabelText('Comment');
@@ -28,7 +29,7 @@ describe('Post component', () => {
     });
 
     it('not show comments section by default', async () => {
-        renderWithDefaultData(<Post {...post} type="NORMAL" />);
+        renderWithDefaultData(<Post {...post} type="OWN" reloadPosts={mockReloadPosts} />);
 
         const commentsSection = screen.queryByLabelText('Post comments', { selector: 'section' });
 
@@ -38,7 +39,7 @@ describe('Post component', () => {
     it('show comments section when click on button', async () => {
         mock(`/api/posts/${post.id}/comments?page=1`, 200, CommentsFirstPageJson);
 
-        renderWithDefaultData(<Post {...post} type="NORMAL" />);
+        renderWithDefaultData(<Post {...post} type="OWN" reloadPosts={mockReloadPosts} />);
 
         const commentButton = screen.getByLabelText('Comment');
         await user.click(commentButton);
@@ -50,7 +51,7 @@ describe('Post component', () => {
     it('show comments section when click on comments stats', async () => {
         mock(`/api/posts/${post.id}/comments?page=1`, 200, CommentsFirstPageJson);
 
-        renderWithDefaultData(<Post {...post} type="NORMAL" />);
+        renderWithDefaultData(<Post {...post} type="OWN" reloadPosts={mockReloadPosts} />);
 
         const commentStats = screen.getByText(`${post.comments_count} comments`);
         await user.click(commentStats);
@@ -62,7 +63,7 @@ describe('Post component', () => {
     it('show loaders before comments section', async () => {
         mock(`/api/posts/${post.id}/comments?page=1`, 200, CommentsFirstPageJson);
 
-        renderWithDefaultData(<Post {...post} type="NORMAL" />);
+        renderWithDefaultData(<Post {...post} type="OWN" reloadPosts={mockReloadPosts} />);
 
         const commentStats = screen.getByText(`${post.comments_count} comments`);
         await user.click(commentStats);

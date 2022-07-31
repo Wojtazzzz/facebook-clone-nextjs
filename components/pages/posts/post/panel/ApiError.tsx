@@ -1,7 +1,10 @@
+import { faFaceSadTear } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 export const ApiError = () => {
     return (
-        <div className="flex justify-center items-center">
-            <span className="text-sm font-medium text-red-400 text-center">Something went wrong</span>
+        <div data-testid="like-apiError" className="w-1/3 flex justify-center items-center">
+            <FontAwesomeIcon icon={faFaceSadTear} className="text-2xl text-red-400" />
         </div>
     );
 };

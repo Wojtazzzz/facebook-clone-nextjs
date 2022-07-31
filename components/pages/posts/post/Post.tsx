@@ -29,12 +29,9 @@ export const Post = ({
     reloadPosts,
 }: PostProps) => {
     const [isCommentsActive, setIsCommentsActive] = useState(false);
-    const [totalLikesCount, setTotalLikesCount] = useState(likes_count);
-    const [totalCommentsCount, setTotalCommentsCount] = useState(comments_count);
-
     const handleToggleIsCommentsActive = () => setIsCommentsActive((prevState) => !prevState);
 
-    const noStats = !(totalLikesCount === 0 && totalCommentsCount === 0);
+    const AreStatsActive = likes_count !== 0 || comments_count !== 0;
 
     return (
         <article aria-label="Post" className="w-full bg-dark-200 rounded-lg">
@@ -46,18 +43,19 @@ export const Post = ({
                 type={type}
                 reloadPosts={reloadPosts}
             />
+
             <Content content={content} images={images} />
 
-            {noStats && (
+            {AreStatsActive && (
                 <Stats
-                    likesCount={totalLikesCount}
-                    commentsCount={totalCommentsCount}
+                    likesCount={likes_count}
+                    commentsCount={comments_count}
                     handleToggleIsCommentsActive={handleToggleIsCommentsActive}
                 />
             )}
 
             <div className="w-full flex justify-evenly gap-2 p-2">
-                <LikeButton postId={id} isLiked={isLiked} setTotalLikes={setTotalLikesCount} />
+                <LikeButton postId={id} isLiked={isLiked} />
                 <CommentButton handleToggleIsCommentsActive={handleToggleIsCommentsActive} />
                 <PanelButton title="Share" icon={faShare} callback={() => console.log('Share action..')} />
             </div>

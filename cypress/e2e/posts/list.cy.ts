@@ -164,17 +164,23 @@ describe('Posts list tests', () => {
         cy.get('[id="posts-list"] article[aria-label="Post"]')
             .first()
             .within(() => {
-                cy.intercept('/api/likes').as('like');
+                cy.intercept('/api/posts/1/likes').as('like');
+                cy.intercept('/api/posts?page=1').as('posts_page_1');
 
                 cy.get('button[aria-label="Like"]').click();
+
                 cy.wait('@like');
+                cy.wait('@posts_page_1');
 
                 cy.get('[data-testid="post-likes_count"]').contains('1').should('be.visible');
 
-                cy.intercept('/api/likes/1').as('like');
+                cy.intercept('/api/posts/1/likes').as('like');
+                cy.intercept('/api/posts?page=1').as('posts_page_1');
 
                 cy.get('button[aria-label="Like"]').click();
+
                 cy.wait('@like');
+                cy.wait('@posts_page_1');
 
                 cy.get('[data-testid="post-likes_count"]').should('not.exist');
             });

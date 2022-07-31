@@ -1,82 +1,82 @@
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import { LikeButton } from '@components/pages/posts/post/panel/LikeButton';
 import PostsFirstPageJson from '@mocks/posts/firstPage.json';
-import LikeSuccessReponseJson from '@mocks/posts/actions/likeSuccess.json';
-import UnlikeSuccessReponseJson from '@mocks/posts/actions/unlikeSuccess.json';
-import { screen, waitFor } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import { mock } from '@libs/nock';
 import userEvent from '@testing-library/user-event';
+import nock from 'nock';
 
 describe('LikeButton component', () => {
     const user = userEvent.setup();
     const post = PostsFirstPageJson[0];
-    const mockSetTotalLikes = jest.fn();
+
+    beforeEach(() => {
+        nock.cleanAll();
+    });
 
     it('has active (blue) button when post is liked', () => {
-        renderWithDefaultData(<LikeButton postId={post.id} isLiked={true} setTotalLikes={mockSetTotalLikes} />);
+        renderWithDefaultData(<LikeButton postId={post.id} isLiked={true} />);
 
-        const button = screen.getByRole('button');
+        const button = screen.getByLabelText('Like');
 
         expect(button).toHaveClass('text-primary');
     });
 
     it('has deactive (white) button when post is not liked', () => {
-        renderWithDefaultData(<LikeButton postId={post.id} isLiked={false} setTotalLikes={mockSetTotalLikes} />);
+        renderWithDefaultData(<LikeButton postId={post.id} isLiked={false} />);
 
-        const button = screen.getByRole('button');
+        const button = screen.getByLabelText('Like');
 
         expect(button).toHaveClass('text-light-100');
     });
 
     it('change color to blue when try to like post (success)', async () => {
-        mock('/api/likes', 200, LikeSuccessReponseJson, 'post');
+        mock(`/api/posts/${post.id}/likes`, 201, {}, 'post');
 
-        renderWithDefaultData(<LikeButton postId={post.id} isLiked={false} setTotalLikes={mockSetTotalLikes} />);
+        renderWithDefaultData(<LikeButton postId={post.id} isLiked={false} />);
 
-        const button = screen.getByRole('button');
+        const button = screen.getByLabelText('Like');
         await user.click(button);
 
-        await waitFor(() => {
-            expect(button).toHaveClass('text-primary');
-        });
+        expect(button).toHaveClass('text-primary');
     });
 
-    it('stay with white color when try to like post (error)', async () => {
-        mock('/api/likes', 500, {}, 'post');
+    it('button dissapear and show error component when error on like post', async () => {
+        mock(`/api/posts/${post.id}/likes`, 500, {}, 'post');
 
-        renderWithDefaultData(<LikeButton postId={post.id} isLiked={false} setTotalLikes={mockSetTotalLikes} />);
+        renderWithDefaultData(<LikeButton postId={post.id} isLiked={false} />);
 
-        const button = screen.getByRole('button');
+        const button = screen.getByLabelText('Like');
         await user.click(button);
 
-        await waitFor(() => {
-            expect(button).toHaveClass('text-light-100');
-        });
+        const error = await screen.findByTestId('like-apiError');
+
+        expect(error).toBeInTheDocument();
+        expect(button).not.toBeInTheDocument();
     });
 
     it('change color to white when try to unlike post (success)', async () => {
-        mock(`/api/likes/${post.id}`, 200, UnlikeSuccessReponseJson, 'delete');
+        mock(`/api/posts/${post.id}/likes`, 204, {}, 'delete');
 
-        renderWithDefaultData(<LikeButton postId={post.id} isLiked={true} setTotalLikes={mockSetTotalLikes} />);
+        renderWithDefaultData(<LikeButton postId={post.id} isLiked={true} />);
 
-        const button = screen.getByRole('button');
+        const button = screen.getByLabelText('Like');
         await user.click(button);
 
-        await waitFor(() => {
-            expect(button).toHaveClass('text-light-100');
-        });
+        expect(button).toHaveClass('text-light-100');
     });
 
-    it('stay with blue color when try to unlike post (error)', async () => {
-        mock(`/api/likes/${post.id}`, 500, {}, 'delete');
+    it('button dissapear and show error component when error on unlike post', async () => {
+        mock(`/api/posts/${post.id}/likes`, 500, {}, 'delete');
 
-        renderWithDefaultData(<LikeButton postId={post.id} isLiked={true} setTotalLikes={mockSetTotalLikes} />);
+        renderWithDefaultData(<LikeButton postId={post.id} isLiked={true} />);
 
-        const button = screen.getByRole('button');
+        const button = screen.getByLabelText('Like');
         await user.click(button);
 
-        await waitFor(() => {
-            expect(button).toHaveClass('text-primary');
-        });
+        const error = await screen.findByTestId('like-apiError');
+
+        expect(error).toBeInTheDocument();
+        expect(button).not.toBeInTheDocument();
     });
 });

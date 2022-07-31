@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useLikes } from '@hooks/useLikes';
+import { useState } from 'react';
+import { usePosts } from '@hooks/usePosts';
 
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { PanelButton } from '@components/pages/posts/post/inc/PanelButton';
@@ -8,21 +8,19 @@ import { ApiError } from '@components/pages/posts/post/panel/ApiError';
 interface LikeButtonProps {
     postId: number;
     isLiked: boolean;
-    setTotalLikes: (likesCount: number) => void;
 }
 
-export const LikeButton = ({ postId, isLiked, setTotalLikes }: LikeButtonProps) => {
+export const LikeButton = ({ postId, isLiked }: LikeButtonProps) => {
     const [isLikedNow, setIsLikedNow] = useState(isLiked);
-    const { state, handleLike } = useLikes(postId);
+    const { state, like, unlike } = usePosts();
 
-    useEffect(() => {
-        if (state.status !== 'SUCCESS') return;
+    const handleLike = () => {
+        isLiked ? unlike(postId) : like(postId);
 
-        setTotalLikes(state.data.data.likesCount);
         setIsLikedNow((prevState) => !prevState);
-    }, [state, setTotalLikes]);
+    };
 
     if (state.status === 'ERROR') return <ApiError />;
 
-    return <PanelButton title="Like" icon={faThumbsUp} isActive={isLikedNow} callback={() => handleLike(isLikedNow)} />;
+    return <PanelButton title="Like" icon={faThumbsUp} isActive={isLikedNow} callback={handleLike} />;
 };
