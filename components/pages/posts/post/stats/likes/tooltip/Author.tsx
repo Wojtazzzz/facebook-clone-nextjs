@@ -3,5 +3,9 @@ interface AuthorProps {
 }
 
 export const Author = ({ name }: AuthorProps) => {
-    return <span className="text-xs text-light-100">{name}</span>;
+    return (
+        <span aria-label="Like added by" className="text-xs text-light-100">
+            {name}
+        </span>
+    );
 };

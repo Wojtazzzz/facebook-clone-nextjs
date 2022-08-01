@@ -1,4 +1,4 @@
-import { Comments } from 'components/pages/posts/post/stats/Comments';
+import { Comments } from '@components/pages/posts/post/stats/Comments';
 import { Likes } from '@components/pages/posts/post/stats/likes/Likes';
 
 interface StatsProps {

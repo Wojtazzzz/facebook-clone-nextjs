@@ -9,7 +9,7 @@ describe('Stats component', () => {
 
     it('display properly like number', () => {
         renderWithDefaultData(
-            <Stats likesCount={20} commentsCount={7} toggleCommentsActive={mockToggleCommentsActive} />
+            <Stats postId={1} likesCount={20} commentsCount={0} toggleCommentsActive={mockToggleCommentsActive} />
         );
 
         const likesText = screen.getByText('20');
@@ -19,7 +19,7 @@ describe('Stats component', () => {
 
     it('display properly comments number', () => {
         renderWithDefaultData(
-            <Stats likesCount={20} commentsCount={7} toggleCommentsActive={mockToggleCommentsActive} />
+            <Stats postId={1} likesCount={0} commentsCount={7} toggleCommentsActive={mockToggleCommentsActive} />
         );
 
         const commentsText = screen.getByText('7 comments');
@@ -29,7 +29,7 @@ describe('Stats component', () => {
 
     it('execute show comments function on click on comments amount', async () => {
         renderWithDefaultData(
-            <Stats likesCount={20} commentsCount={7} toggleCommentsActive={mockToggleCommentsActive} />
+            <Stats postId={1} likesCount={0} commentsCount={7} toggleCommentsActive={mockToggleCommentsActive} />
         );
 
         const commentsText = screen.getByText('7 comments');
@@ -40,7 +40,7 @@ describe('Stats component', () => {
 
     it('not render when comments and likes amount equals 0', () => {
         renderWithDefaultData(
-            <Stats likesCount={0} commentsCount={0} toggleCommentsActive={mockToggleCommentsActive} />
+            <Stats postId={1} likesCount={0} commentsCount={0} toggleCommentsActive={mockToggleCommentsActive} />
         );
 
         const commentsText = screen.queryByText('0 comments');

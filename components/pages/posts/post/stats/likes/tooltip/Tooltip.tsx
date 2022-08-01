@@ -9,7 +9,10 @@ export const Tooltip = ({ postId }: TooltipProps) => {
     return (
         <ReactTooltip.Portal>
             <ReactTooltip.Content>
-                <div className="flex flex-col gap-3 bg-dark-300 shadow-md rounded-lg p-3">
+                <div
+                    data-testid="post-likesTooltip"
+                    className="flex flex-col gap-3 bg-dark-300 shadow-md rounded-lg p-3"
+                >
                     <span className="text-sm text-light-100 font-medium">Likes</span>
 
                     <AuthorsList postId={postId} />

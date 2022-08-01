@@ -2,7 +2,7 @@ import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import RootUserJson from '@mocks/user/root.json';
 import SelfPostsFirstPageJson from '@mocks/posts/selfProfileFirstPage.json';
 import FriendPostsFirstPageJson from '@mocks/posts/friendProfileFirstPage.json';
-import { screen, waitFor } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import { mock } from '@libs/nock';
 import { Board } from '@components/pages/profile/board/Board';
 

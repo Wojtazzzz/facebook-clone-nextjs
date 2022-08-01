@@ -1,8 +1,8 @@
 import useSWR from 'swr';
 
 import { Author } from '@components/pages/posts/post/stats/likes/tooltip/Author';
-import { ApiError } from 'components/pages/posts/post/stats/likes/tooltip/ApiError';
-import { EmptyList } from 'components/pages/posts/post/stats/likes/tooltip/EmptyList';
+import { ApiError } from '@components/pages/posts/post/stats/likes/tooltip/ApiError';
+import { EmptyList } from '@components/pages/posts/post/stats/likes/tooltip/EmptyList';
 import { SpinnerLoader } from '@components/inc/SpinnerLoader';
 
 import { axios } from '@libs/axios';
@@ -18,9 +18,9 @@ const maxCount = 12;
 export const AuthorsList = ({ postId }: AuthorsListProps) => {
     const { data, error } = useSWR<ILike[]>(`/api/posts/${postId}/likes`, fetcher);
 
-    if (!error && !data) return <SpinnerLoader spinnerStyles="w-4 mx-auto" />;
-    if (!data) return <EmptyList />;
+    if (!error && !data) return <SpinnerLoader testid="likes-spinner" spinnerStyles="w-4 mx-auto" />;
     if (error) return <ApiError />;
+    if (!data) return <EmptyList />;
 
     const LikeComponents = data.map((like, i) => {
         if (i >= maxCount) return;
