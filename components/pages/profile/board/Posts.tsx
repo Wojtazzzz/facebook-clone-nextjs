@@ -34,7 +34,7 @@ export const Posts = ({ endpoint }: PostsProps) => {
                 loader={<Loader testId="boardPosts-fetching_loader" />}
                 scrollableTarget="profile-board-posts"
                 pullDownToRefreshThreshold={100}
-                className="flex flex-col gap-4 pb-[1050px] mb-12"
+                className="flex flex-col gap-4 mb-12"
             >
                 {PostsComponents}
             </InfiniteScroll>

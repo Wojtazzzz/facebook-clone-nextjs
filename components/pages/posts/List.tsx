@@ -30,7 +30,7 @@ export const List = memo(() => {
                 loader={<Loader testId="postsList-fetching_loader" />}
                 scrollableTarget="posts-list"
                 pullDownToRefreshThreshold={100}
-                className="flex flex-col gap-4 pb-[200px] mb-12"
+                className="flex flex-col gap-4 mb-12"
             >
                 {PostsComponents}
             </InfiniteScroll>
