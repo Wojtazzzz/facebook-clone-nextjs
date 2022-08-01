@@ -4,9 +4,10 @@ import { faHome, faShop, faUser } from '@fortawesome/free-solid-svg-icons';
 import { Logo } from '@components/nav/mobile/Logo';
 import { NavItem } from '@components/nav/mobile/NavItem';
 import { Search } from '@components/nav/search/Search';
+
 import { clsx } from 'clsx';
 
-export const Navbar = () => {
+export const MobileNavbar = () => {
     const { isActive } = useAppSelector((store) => store.nav);
 
     return (
