@@ -1,5 +1,7 @@
 import Head from 'next/head';
 import { Provider } from 'react-redux';
+import * as Tooltip from '@radix-ui/react-tooltip';
+
 import { config } from '@fortawesome/fontawesome-svg-core';
 import { store } from '@redux/store';
 
@@ -24,7 +26,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
             </Head>
 
             <Provider store={store}>
-                <Component {...pageProps} />
+                <Tooltip.Provider>
+                    <Component {...pageProps} />
+                </Tooltip.Provider>
             </Provider>
         </>
     );

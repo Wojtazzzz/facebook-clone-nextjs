@@ -142,3 +142,11 @@ export type IProfileFriendsData = {
 };
 
 export type IPostType = 'OWN' | 'FRIEND' | 'HIDDEN' | 'SAVED';
+
+export type ILike = {
+    id: number;
+    author: {
+        id: number;
+        name: string;
+    };
+};
