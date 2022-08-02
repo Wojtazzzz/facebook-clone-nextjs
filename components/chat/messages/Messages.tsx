@@ -7,22 +7,20 @@ import { Message } from '@components/chat/messages/Message';
 import { EmptyChat } from '@components/chat/messages/EmptyChat';
 import { ApiError } from '@components/inc/ApiError';
 
-import type { IChatMessage } from '@utils/types';
+import { useChat } from '@hooks/useChat';
 
 interface MessagesProps {
     friendId: number;
 }
 
-export const Messages = memo<MessagesProps>(({ friendId }) => {
-    const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginatedData<IChatMessage>(
-        `/api/messages/${friendId}`
-    );
+export const Messages = memo<MessagesProps>(() => {
+    const { messages, isLoading, isError, isEmpty, isReachedEnd, loadMore } = useChat();
 
-    if (state === 'LOADING') return <Loader testid="messages-loader_loading" />;
-    if (state === 'ERROR') return <ApiError />;
+    if (isLoading) return <Loader testid="messages-loader_loading" />;
+    if (isError) return <ApiError />;
     if (isEmpty) return <EmptyChat />;
 
-    const MessagesComponents = data.map((message) => <Message key={message.id} {...message} />);
+    const MessagesComponents = messages.map((message) => <Message key={message.id} {...message} />);
 
     return (
         <div

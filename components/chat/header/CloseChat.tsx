@@ -5,6 +5,7 @@ import { RoundedButton } from '@components/inc/RoundedButton';
 
 export const CloseChat = () => {
     const { closeChat } = useChat();
+    const handleCloseChat = () => closeChat();
 
     return (
         <RoundedButton
@@ -13,7 +14,7 @@ export const CloseChat = () => {
             size={8}
             bgColor="dark-200"
             onHover="bg-dark-100"
-            callback={closeChat}
+            callback={handleCloseChat}
         />
     );
 };

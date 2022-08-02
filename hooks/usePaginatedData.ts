@@ -1,63 +1,29 @@
-import { useState, useEffect, useMemo } from 'react';
-import useSWRInfinite from 'swr/infinite';
+import useSWRInfinite, { SWRInfiniteKeyLoader } from 'swr/infinite';
 
-import { axios, objectsIntoArray } from '@libs/axios';
+import { axios } from '@libs/axios';
 
-import type { IUsePaginatedDataState } from '@utils/types';
+export const usePaginatedData = <T>(getKey: SWRInfiniteKeyLoader, perPage = 10) => {
+    const { data, error, size, setSize, mutate } = useSWRInfinite<T[]>(getKey, fetcher);
 
-export const usePaginatedData = <T>(key: string, perList = 10) => {
-    const [state, setState] = useState<IUsePaginatedDataState>('LOADING');
-    const [flatData, setFlatData] = useState<T[]>([]);
-    const AxiosAbortController = useMemo(() => new AbortController(), []);
+    const loadMore = () => setSize(size + 1);
+    const refresh = () => mutate();
 
-    const getKey = (pageIndex: number, previousPageData: []) => {
-        if (previousPageData && !previousPageData.length) return null;
-        return `${key}?page=${++pageIndex}`;
-    };
-
-    const fetcher = (url: string) =>
-        axios
-            .get(url, objectsIntoArray)
-            .then((response) => response.data)
-            .catch((error) => {
-                if (error.message !== 'canceled') {
-                    setState('ERROR');
-                }
-
-                throw error;
-            });
-
-    const { data, size, setSize, mutate, isValidating } = useSWRInfinite<T[]>(getKey, fetcher);
-
-    useEffect(() => {
-        setState('LOADING');
-
-        return () => AxiosAbortController.abort();
-    }, [key, AxiosAbortController]);
-
-    useEffect(() => {
-        if (!data) return;
-
-        setFlatData(data.flat());
-        setState('SUCCESS');
-    }, [data]);
-
-    const loadMore = () => {
-        setState('FETCHING');
-        setSize(size + 1);
-    };
-
-    const reloadData = () => mutate();
-
-    const isReachedEnd = (flatData.length === 0 || (data && data[data.length - 1]?.length < perList)) ?? true;
-    const isEmpty = flatData.length === 0 || !data;
+    const isEmpty = data?.[0]?.length === 0;
+    const isError = !!error;
+    const isReachedEnd = isEmpty || (data && data[data.length - 1]?.length < perPage);
+    const isLoadingInitialData = !data && !error;
+    const isLoadingMore = isLoadingInitialData || (size > 0 && data && typeof data[size - 1] === 'undefined');
 
     return {
-        data: flatData,
-        state,
-        isEmpty,
+        data: data ? data.flat() : [],
         isReachedEnd,
+        isEmpty,
+        isLoadingInitialData,
+        isLoadingMore,
+        isError,
         loadMore,
-        reloadData,
+        refresh,
     };
 };
+
+const fetcher = (url: string) => axios.get(url).then((response) => response.data);

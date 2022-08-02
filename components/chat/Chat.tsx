@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import { useAuth } from '@hooks/useAuth';
 import { useBroadcast } from '@hooks/useBroadcast';
-import { usePaginatedData } from '@hooks/usePaginatedData';
+import { useChat } from '@hooks/useChat';
 
 import { Header } from '@components/chat/header/Header';
 import { Messages } from '@components/chat/messages/Messages';
 import { Panel } from '@components/chat/panel/Panel';
 
-import type { IChatFriend, IChatMessage } from '@utils/types';
+import type { IChatFriend } from '@utils/types';
 
 interface ChatProps {
     friend: IChatFriend;
@@ -15,16 +15,16 @@ interface ChatProps {
 
 export const Chat = ({ friend }: ChatProps) => {
     const { user } = useAuth();
-    const { reloadData } = usePaginatedData<IChatMessage>(`/api/messages/${friend.id}`);
+    const { refresh } = useChat();
     const { startListen, stopListen } = useBroadcast();
 
     useEffect(() => {
         if (!user) return;
 
-        startListen(`messages.${user.id}.${friend.id}`, 'ChatMessageSent', reloadData);
+        startListen(`messages.${user.id}.${friend.id}`, 'ChatMessageSent', refresh);
 
         return () => stopListen(`messages.${user.id}.${friend.id}`, 'ChatMessageSent');
-    }, [friend.id, reloadData, startListen, stopListen, user]);
+    }, [friend.id, refresh, startListen, stopListen, user]);
 
     return (
         <div
