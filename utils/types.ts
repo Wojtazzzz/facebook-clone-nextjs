@@ -150,3 +150,7 @@ export type ILike = {
         name: string;
     };
 };
+
+export type IChatMessagePayload = {
+    text: string;
+};

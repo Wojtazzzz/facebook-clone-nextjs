@@ -22,11 +22,14 @@ export const useChat = () => {
         if (state.status === 'LOADING') return;
         if (!friend) return;
 
-        sendRequest({
-            method: 'POST',
-            url: '/api/messages',
-            data: { text, receiver_id: friend.id },
-        });
+        sendRequest(
+            {
+                method: 'POST',
+                url: '/api/messages',
+                data: { text, receiver_id: friend.id },
+            },
+            () => alert('Something went wrong')
+        );
     };
 
     return {

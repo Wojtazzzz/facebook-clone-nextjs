@@ -15,16 +15,19 @@ export const useAxios = <T>() => {
         return () => axiosAbortController.abort();
     }, [axiosAbortController]);
 
-    const sendRequest = async (params: AxiosRequestConfig) => {
+    const sendRequest = async (params: AxiosRequestConfig, onError?: () => void) => {
         setState({ status: 'LOADING' });
 
         return axios
             .request(Object.assign(params, axiosOptions))
             .then((response) => setState({ status: 'SUCCESS', data: response.data ?? [] }))
             .catch((error) => {
-                if (error.message !== 'canceled') {
-                    setState({ status: 'ERROR', error });
-                }
+                if (error.message === 'canceled') return;
+
+                setState({ status: 'ERROR', error });
+
+                if (!onError) return;
+                onError();
             });
     };
 

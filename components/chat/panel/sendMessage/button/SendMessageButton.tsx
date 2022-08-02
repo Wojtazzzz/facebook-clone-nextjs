@@ -3,7 +3,7 @@ import { useFormikContext } from 'formik';
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import { RoundedButton } from '@components/inc/RoundedButton';
 
-export const SubmitButton = () => {
+export const SendMessageButton = () => {
     const { handleSubmit } = useFormikContext();
 
     return (

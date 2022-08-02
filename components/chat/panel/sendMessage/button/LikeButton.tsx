@@ -1,7 +1,7 @@
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { RoundedButton } from '@components/inc/RoundedButton';
 
-export const SendLikeButton = () => {
+export const LikeButton = () => {
     const handleSendLike = () => alert('Maybe in the future...');
 
     return (
