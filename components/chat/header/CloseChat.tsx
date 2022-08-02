@@ -2,9 +2,13 @@ import { useChat } from '@hooks/useChat';
 
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { RoundedButton } from '@components/inc/RoundedButton';
+import { useDispatch } from 'react-redux';
+import { closeChat } from '@redux/slices/ChatSlice';
 
 export const CloseChat = () => {
-    const { closeChat } = useChat();
+    const dispatch = useDispatch();
+
+    const handleCloseChat = () => dispatch(closeChat());
 
     return (
         <RoundedButton
@@ -13,7 +17,7 @@ export const CloseChat = () => {
             size={8}
             bgColor="dark-200"
             onHover="bg-dark-100"
-            callback={closeChat}
+            callback={handleCloseChat}
         />
     );
 };

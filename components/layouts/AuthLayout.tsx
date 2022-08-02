@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router';
 import { useAuth } from '@hooks/useAuth';
-import { useChat } from '@hooks/useChat';
 
 import { Nav } from '@components/nav/Nav';
 import { NavToggler } from '@components/nav/mobile/NavToggler';
@@ -10,6 +9,7 @@ import { Chat } from '@components/chat/Chat';
 import { Modal as CreatePostModal } from '@components/inc/modals/createPost/Modal';
 
 import type { ReactNode } from 'react';
+import { useAppSelector } from '@hooks/redux';
 
 interface AuthLayoutProps {
     children: ReactNode;
@@ -18,7 +18,7 @@ interface AuthLayoutProps {
 export const AuthLayout = ({ children }: AuthLayoutProps) => {
     useAuth('AUTH');
     const { route } = useRouter();
-    const { friend } = useChat();
+    const friend = useAppSelector((store) => store.chat.friend);
 
     return (
         <>

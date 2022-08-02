@@ -1,14 +1,19 @@
 import { useAppDispatch, useAppSelector } from '@hooks/redux';
-import { useAxios } from '@hooks/useAxios';
+import { usePaginatedData } from '@hooks/usePaginatedData';
 
 import { closeChat, openChat } from '@redux/slices/ChatSlice';
+import { axios } from '@libs/axios';
 
-import type { IChatFriend } from '@utils/types';
+import type { IChatFriend, IChatMessage } from '@utils/types';
 
 export const useChat = () => {
     const dispatch = useAppDispatch();
-    const { state, sendRequest } = useAxios();
     const friend = useAppSelector((store) => store.chat.friend);
+
+    const { data, isEmpty, isError, isReachedEnd, loadMore, refresh } = usePaginatedData<IChatMessage>(
+        (index) => (friend?.id ? `/api/messages/${friend.id}?page=${index + 1}` : null),
+        15
+    );
 
     const handleOpenChat = (friend: IChatFriend) => {
         dispatch(openChat(friend));
@@ -19,22 +24,22 @@ export const useChat = () => {
     };
 
     const handleSendMessage = (text: string) => {
-        if (state.status === 'LOADING') return;
         if (!friend) return;
 
-        sendRequest(
-            {
-                method: 'POST',
-                url: '/api/messages',
-                data: { text, receiver_id: friend.id },
-            },
-            () => alert('Something went wrong')
-        );
+        axios.post('/api/messages', { text, receiver_id: friend.id });
+
+        // Chat component is listening for new messages, so mutation is needless
+        // mutate();
     };
 
     return {
-        friend,
-        state,
+        messages: data,
+        isReachedEnd,
+        isEmpty,
+        isLoading: false,
+        isError,
+        loadMore,
+        refresh,
         openChat: handleOpenChat,
         closeChat: handleCloseChat,
         sendMessage: handleSendMessage,
