@@ -2,9 +2,7 @@ import { Loader } from '@components/pages/friends/inc/Loader';
 import { ApiError } from '@components/inc/ApiError';
 import { EmptyList } from '@components/inc/EmptyList';
 import { Item } from '@components/pages/friends/item/Item';
-
-import React, { memo } from 'react';
-
+import { Fragment, memo } from 'react';
 import type { IFriendsListItem, IFriendsList } from '@utils/types';
 import { useInfiniteData } from '@hooks/useInfiniteData';
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -16,7 +14,7 @@ interface ListProps {
 
 export const List = memo<ListProps>(({ path, type }) => {
     const { data, isLoading, isError, isEmpty, hasNextPage, fetchNextPage } = useInfiniteData<IFriendsListItem>(
-        ['friends'],
+        [type],
         path
     );
 
@@ -25,11 +23,11 @@ export const List = memo<ListProps>(({ path, type }) => {
     if (isEmpty) return <EmptyList title="No users, maybe this app is so boring..." />;
 
     const ItemsComponents = data.pages.map((page) => (
-        <React.Fragment key={page.current_page}>
+        <Fragment key={page.current_page}>
             {page.data.map((item) => (
                 <Item key={item.friend.id} item={item} type={type} />
             ))}
-        </React.Fragment>
+        </Fragment>
     ));
 
     return (

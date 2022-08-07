@@ -2,7 +2,7 @@ import { screen } from '@testing-library/react';
 import RootUserJson from '@mocks/user/root.json';
 import MessengerFirstPageJson from '@mocks/messenger/firstPage.json';
 import MessengerEmptyPageJson from '@mocks/messenger/empty.json';
-import { List } from '@components/nav/panel/messenger/dropdown/list/List';
+import { List } from '@components/nav/panel/messenger/list/List';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import { mock } from '@libs/nock';
 

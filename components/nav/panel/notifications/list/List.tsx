@@ -1,8 +1,8 @@
 import React, { memo } from 'react';
 
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { Notification } from '@components/nav/panel/notifications/dropdown/list/Notification';
-import { Loader } from '@components/nav/panel/messenger/dropdown/list/Loader';
+import { Notification } from '@components/nav/panel/notifications/list/Notification';
+import { Loader } from '@components/nav/panel/inc/Loader';
 import { EmptyList } from '@components/inc/EmptyList';
 import { ApiError } from '@components/inc/ApiError';
 import { useInfiniteData } from '@hooks/useInfiniteData';
@@ -28,6 +28,7 @@ export const List = memo(() => {
 
     return (
         <div
+            data-testid="notifications-list"
             id="list-of-notifications"
             className="w-full h-[500px] overflow-y-scroll scrollbar-thin scrollbar-thumb-dark-100"
         >

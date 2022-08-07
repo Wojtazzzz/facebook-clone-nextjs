@@ -29,7 +29,7 @@ describe('Messenger tests', () => {
             cy.get('[aria-label="Messenger"]').click();
         });
 
-        cy.get('[data-testid="messenger"]').within(() => {
+        cy.get('[data-testid="messenger-list"]').within(() => {
             cy.contains('John Doe').click();
         });
 
@@ -49,11 +49,11 @@ describe('Messenger tests', () => {
             cy.get('[aria-label="Messenger"]').click();
         });
 
-        cy.get('[data-testid="messenger"]').should('be.visible');
+        cy.get('[data-testid="dropdown"]').should('be.visible');
 
         cy.get('body').type('{esc}');
 
-        cy.get('[data-testid="messenger"]').should('not.exist');
+        cy.get('[data-testid="dropdown"]').should('not.exist');
     });
 
     it('messenger dissapears when click on outside page element', () => {
@@ -64,11 +64,11 @@ describe('Messenger tests', () => {
             cy.get('[aria-label="Messenger"]').click();
         });
 
-        cy.get('[data-testid="messenger"]').should('be.visible');
+        cy.get('[data-testid="dropdown"]').should('be.visible');
 
         cy.get('main').click();
 
-        cy.get('[data-testid="messenger"]').should('not.exist');
+        cy.get('[data-testid="dropdown"]').should('not.exist');
     });
 
     it('open messenger, see 15 users, fetch more users by scrolling to bottom', () => {
@@ -89,11 +89,11 @@ describe('Messenger tests', () => {
 
         cy.wait('@messages_page_1');
 
-        cy.get('[data-testid="messenger-messages"] button').should('have.length', 15);
+        cy.get('button[aria-label="Click to open conversation"]').should('have.length', 15);
 
         cy.get('[id="list-of-messenger-contacts"]').scrollTo('bottom', { ensureScrollable: false });
 
-        cy.get('[data-testid="messenger-messages"] button').should('have.length', 22);
+        cy.get('button[aria-label="Click to open conversation"]').should('have.length', 22);
     });
 
     it('messenger render empty component because api return empty data', () => {

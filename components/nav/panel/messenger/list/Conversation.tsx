@@ -20,6 +20,7 @@ export const Conversation = ({ friend }: ConversationProps) => {
 
     return (
         <button
+            aria-label="Click to open conversation"
             className="w-full h-[72px] flex gap-3 hover:bg-dark-100 transition-colors rounded-lg cursor-pointer p-2"
             onClick={handleOpenChat}
         >

@@ -20,11 +20,11 @@ describe('Notifications tests', () => {
             cy.get('[aria-label="Notifications"]').click();
         });
 
-        cy.get('[data-testid="notifications"]').should('be.visible');
+        cy.get('[data-testid="dropdown"]').should('be.visible');
 
         cy.get('body').type('{esc}');
 
-        cy.get('[data-testid="notifications"]').should('not.exist');
+        cy.get('[data-testid="dropdown"]').should('not.exist');
     });
 
     it('open notifications, see 15 notifications, fetch more notifications by scrolling to bottom', () => {
@@ -61,7 +61,7 @@ describe('Notifications tests', () => {
 
         cy.get('main').click();
 
-        cy.get('[data-testid="notifications"]').should('not.exist');
+        cy.get('[data-testid="dropdown"]').should('not.exist');
     });
 
     it('list render empty component because api return empty data', () => {

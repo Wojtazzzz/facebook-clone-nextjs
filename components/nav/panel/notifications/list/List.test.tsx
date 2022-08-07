@@ -2,7 +2,7 @@ import { screen } from '@testing-library/react';
 import RootUserJson from '@mocks/user/root.json';
 import NotificationsFirstPageJson from '@mocks/notifications/firstPage.json';
 import NotificationsEmptyPageJson from '@mocks/notifications/empty.json';
-import { List } from '@components/nav/panel/notifications/dropdown/list/List';
+import { List } from '@components/nav/panel/notifications/list/List';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import { mock } from '@libs/nock';
 

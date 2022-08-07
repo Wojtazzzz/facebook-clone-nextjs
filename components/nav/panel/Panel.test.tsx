@@ -22,9 +22,9 @@ describe('Panel component', () => {
         const messengerOpenButton = screen.getByLabelText('Messenger');
         await user.click(messengerOpenButton);
 
-        const messengerComponent = screen.getByTestId('messenger-dropdown');
+        const messengerDropdown = screen.getByTestId('dropdown');
 
-        expect(messengerComponent).toBeInTheDocument();
+        expect(messengerDropdown).toBeInTheDocument();
     });
 
     it('open notifications dropdown when click on notifications button and close when click one more time', async () => {
@@ -35,8 +35,8 @@ describe('Panel component', () => {
         const notificationsOpenButton = screen.getByLabelText('Notifications');
         await user.click(notificationsOpenButton);
 
-        const notificationsComponent = screen.getByTestId('notifications-dropdown');
+        const notificationsDropdown = screen.getByTestId('dropdown');
 
-        expect(notificationsComponent).toBeInTheDocument();
+        expect(notificationsDropdown).toBeInTheDocument();
     });
 });

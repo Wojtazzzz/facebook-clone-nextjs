@@ -2,8 +2,8 @@ import { Fragment, memo } from 'react';
 import { useInfiniteData } from '@hooks/useInfiniteData';
 
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { Conversation } from '@components/nav/panel/messenger/dropdown/list/Conversation';
-import { Loader } from '@components/nav/panel/messenger/dropdown/list/Loader';
+import { Conversation } from '@components/nav/panel/messenger/list/Conversation';
+import { Loader } from '@components/nav/panel/inc/Loader';
 import { ApiError } from '@components/inc/ApiError';
 import { EmptyList } from '@components/inc/EmptyList';
 
@@ -29,7 +29,7 @@ export const List = memo(() => {
 
     return (
         <div
-            data-testid="messenger-messages"
+            data-testid="messenger-list"
             id="list-of-messenger-contacts"
             className="w-full h-[500px] overflow-y-auto scrollbar-thin scrollbar-thumb-dark-100"
         >

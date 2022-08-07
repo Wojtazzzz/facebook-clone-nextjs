@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 import MessengerFirstPageJson from '@mocks/messenger/firstPage.json';
-import { Conversation } from '@components/nav/panel/messenger/dropdown/list/Conversation';
+import { Conversation } from '@components/nav/panel/messenger/list/Conversation';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 
 describe('Conversation component', () => {

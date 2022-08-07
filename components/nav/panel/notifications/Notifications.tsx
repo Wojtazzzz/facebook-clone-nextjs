@@ -1,21 +1,22 @@
 import { memo } from 'react';
 import { useAppDispatch, useAppSelector } from '@hooks/redux';
 import { toggleActive } from '@redux/slices/NotificationsSlice';
-import { RoundedButton } from '@components/inc/RoundedButton';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
-import { Dropdown } from './dropdown/Dropdown';
+import { OpenButton } from '../inc/OpenButton';
+import { Dropdown } from '../inc/Dropdown';
 
 export const Notifications = memo(() => {
     const dispatch = useAppDispatch();
     const { isActive } = useAppSelector((store) => store.notifications);
 
-    const handleToggle = () => dispatch(toggleActive(true));
+    const handleOpen = () => dispatch(toggleActive(true));
+    const handleClose = () => dispatch(toggleActive(false));
 
     return (
         <div className="relative">
-            <RoundedButton name="Notifications" icon={faBell} onHover="opacity-70" callback={handleToggle} />
+            <OpenButton name="Notifications" icon={faBell} callback={handleOpen} />
 
-            {isActive && <Dropdown />}
+            {isActive && <Dropdown type="Notifications" close={handleClose} />}
         </div>
     );
 });

@@ -23,9 +23,9 @@ describe('Suggests and invites lists tests', () => {
 
         cy.get('[data-testid="friends-nav"] > a').contains('Suggests').click();
 
-        cy.url().should('include', '/friends/suggests');
-
         cy.wait('@suggests_page_1');
+
+        cy.url().should('include', '/friends/suggests');
 
         cy.get('[id="friends-list"]').scrollTo('bottom');
 
