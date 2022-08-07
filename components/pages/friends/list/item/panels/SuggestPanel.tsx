@@ -1,13 +1,13 @@
-import { Failure } from '@components/pages/friends/item/actions/responses/Failure';
-import { Success } from '@components/pages/friends/item/actions/responses/Success';
+import { ErrorMessage } from '@components/pages/friends/list/item/panels/messages/ErrorMessage';
+import { SuccessMessage } from '@components/pages/friends/list/item/panels/messages/SuccessMessage';
 import { Button } from '@components/inc/Button';
 
 import type { IUser } from '@utils/types';
 import { useFriendship } from '@hooks/useFriendship';
 
-interface SuggestActionsProps extends IUser {}
+interface SuggestPanelProps extends IUser {}
 
-export const SuggestActions = ({ id }: SuggestActionsProps) => {
+export const SuggestPanel = ({ id }: SuggestPanelProps) => {
     const { useInvite } = useFriendship();
     const { invite, isLoading, isError, isSuccess } = useInvite();
 
@@ -16,8 +16,8 @@ export const SuggestActions = ({ id }: SuggestActionsProps) => {
         invite(id);
     };
 
-    if (isSuccess) return <Success message="Request sent successfully" />;
-    if (isError) return <Failure message="Something went wrong, try again later" />;
+    if (isSuccess) return <SuccessMessage message="Request sent successfully" />;
+    if (isError) return <ErrorMessage message="Something went wrong, try again later" />;
 
     return <Button title="Invite" styles="w-[150px]" isDisabled={isLoading} callback={handleInvite} />;
 };

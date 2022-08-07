@@ -1,7 +1,7 @@
-interface FailureProps {
+interface ErrorMessageProps {
     message: string;
 }
 
-export const Failure = ({ message }: FailureProps) => {
+export const ErrorMessage = ({ message }: ErrorMessageProps) => {
     return <span className="text-sm text-red-400 font-medium">{message}</span>;
 };

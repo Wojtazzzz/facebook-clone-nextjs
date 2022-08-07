@@ -1,15 +1,15 @@
 import { usePokes } from '@hooks/usePokes';
 
-import { Failure } from '@components/pages/friends/item/actions/responses/Failure';
-import { Success } from '@components/pages/friends/item/actions/responses/Success';
+import { ErrorMessage } from '@components/pages/friends/list/item/panels/messages/ErrorMessage';
+import { SuccessMessage } from '@components/pages/friends/list/item/panels/messages/SuccessMessage';
 import { Button } from '@components/inc/Button';
 
 import type { MouseEvent } from 'react';
 import type { IPoke } from '@utils/types';
 
-interface PokeActionsProps extends IPoke {}
+interface PokePanelProps extends IPoke {}
 
-export const PokeActions = ({ friend, data }: PokeActionsProps) => {
+export const PokePanel = ({ friend, data }: PokePanelProps) => {
     const { poke, isLoading, isSuccess, isError } = usePokes();
 
     const handlePoke = (event: MouseEvent) => {
@@ -17,8 +17,8 @@ export const PokeActions = ({ friend, data }: PokeActionsProps) => {
         poke(friend.id);
     };
 
-    if (isSuccess) return <Success message="Friend poked back" />;
-    if (isError) return <Failure message="Something went wrong" />;
+    if (isSuccess) return <SuccessMessage message="Friend poked back" />;
+    if (isError) return <ErrorMessage message="Something went wrong" />;
 
     return (
         <div className="w-[220px] flex flex-col items-center gap-1">

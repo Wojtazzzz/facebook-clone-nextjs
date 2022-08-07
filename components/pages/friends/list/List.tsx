@@ -1,7 +1,7 @@
-import { Loader } from '@components/pages/friends/inc/Loader';
+import { Loader } from '@components/pages/friends/list/Loader';
 import { ApiError } from '@components/inc/ApiError';
 import { EmptyList } from '@components/inc/EmptyList';
-import { Item } from '@components/pages/friends/item/Item';
+import { Item } from '@components/pages/friends/list/item/Item';
 import { Fragment, memo } from 'react';
 import type { IFriendsListItem, IFriendsList } from '@utils/types';
 import { useInfiniteData } from '@hooks/useInfiniteData';

@@ -1,5 +1,5 @@
 import { screen } from '@testing-library/react';
-import { Header } from '@components/pages/friends/Header';
+import { Header } from '@components/pages/friends/header/Header';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 
 describe('Friends Header component', () => {
@@ -35,7 +35,7 @@ describe('Friends Header component', () => {
         expect(title).toBeInTheDocument();
     });
 
-    it('renders nav with links', () => {
+    it('renders nav with properly links', () => {
         renderWithDefaultData(<Header title="Friends" />);
 
         const friendsLink = screen.getByText('Friends', { selector: 'a' });

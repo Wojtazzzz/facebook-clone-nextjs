@@ -1,7 +1,7 @@
 import { useAppDispatch } from '@hooks/redux';
 
-import { Failure } from '@components/pages/friends/item/actions/responses/Failure';
-import { Success } from '@components/pages/friends/item/actions/responses/Success';
+import { ErrorMessage } from '@components/pages/friends/list/item/panels/messages/ErrorMessage';
+import { SuccessMessage } from '@components/pages/friends/list/item/panels/messages/SuccessMessage';
 import { Button } from '@components/inc/Button';
 
 import { openChat } from '@redux/slices/ChatSlice';
@@ -9,9 +9,9 @@ import { openChat } from '@redux/slices/ChatSlice';
 import type { IUser } from '@utils/types';
 import { useFriendship } from '@hooks/useFriendship';
 
-interface FriendActionsProps extends IUser {}
+interface FriendPanelProps extends IUser {}
 
-export const FriendActions = (friend: FriendActionsProps) => {
+export const FriendPanel = (friend: FriendPanelProps) => {
     const dispatch = useAppDispatch();
     const { useRemove } = useFriendship();
     const { remove, isSuccess, isError, isLoading } = useRemove();
@@ -26,8 +26,8 @@ export const FriendActions = (friend: FriendActionsProps) => {
         remove(friend.id);
     };
 
-    if (isSuccess) return <Success message="Friendship destroyed" />;
-    if (isError) return <Failure message="Something went wrong, try again later" />;
+    if (isSuccess) return <SuccessMessage message="Friendship destroyed" />;
+    if (isError) return <ErrorMessage message="Something went wrong, try again later" />;
 
     return (
         <div className="flex gap-3">

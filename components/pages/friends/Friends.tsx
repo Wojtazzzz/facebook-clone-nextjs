@@ -1,5 +1,5 @@
-import { Header } from '@components/pages/friends/Header';
-import { List } from '@components/pages/friends/List';
+import { Header } from '@components/pages/friends/header/Header';
+import { List } from '@components/pages/friends/list/List';
 
 import type { IFriendsList } from '@utils/types';
 

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Avatar } from '@components/inc/Avatar';
-import { Actions } from '@components/pages/friends/item/actions/Actions';
+import { Panel } from '@components/pages/friends/list/item/panels/Panel';
 
 import type { IFriendsListItem, IFriendsList } from '@utils/types';
 
@@ -20,7 +20,7 @@ export const Item = ({ item, type }: ItemProps) => {
                 <span className="md:text-xl text-light-200 font-medium">{name}</span>
 
                 <div className="ml-auto">
-                    <Actions item={item} listType={type} />
+                    <Panel item={item} listType={type} />
                 </div>
             </a>
         </Link>

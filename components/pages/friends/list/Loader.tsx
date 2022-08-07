@@ -1,10 +1,21 @@
 import { useState, useEffect } from 'react';
-
 import { SkeletonLoading } from '@components/inc/SkeletonLoading';
-
 import { getRandomInt } from '@utils/getRandomInt';
+import { ListLoader } from '@components/inc/ListLoader';
 
-export const SingleLoading = () => {
+interface LoaderProps {
+    testId?: string;
+}
+
+export const Loader = ({ testId = '' }: LoaderProps) => {
+    return (
+        <ListLoader testId={testId}>
+            <SingleLoading />
+        </ListLoader>
+    );
+};
+
+const SingleLoading = () => {
     const [width, setWidth] = useState(180);
 
     useEffect(() => {

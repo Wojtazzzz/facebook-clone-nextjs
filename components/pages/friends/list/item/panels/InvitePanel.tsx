@@ -1,13 +1,13 @@
-import { Failure } from '@components/pages/friends/item/actions/responses/Failure';
-import { Success } from '@components/pages/friends/item/actions/responses/Success';
+import { ErrorMessage } from '@components/pages/friends/list/item/panels/messages/ErrorMessage';
+import { SuccessMessage } from '@components/pages/friends/list/item/panels/messages/SuccessMessage';
 import { Button } from '@components/inc/Button';
 
 import type { IUser } from '@utils/types';
 import { useFriendship } from '@hooks/useFriendship';
 
-interface InviteActionsProps extends IUser {}
+interface InvitePanelProps extends IUser {}
 
-export const InviteActions = ({ id }: InviteActionsProps) => {
+export const InvitePanel = ({ id }: InvitePanelProps) => {
     const { useUpdateInvite } = useFriendship();
     const { updateInvite, isSuccess, isError, isLoading, data } = useUpdateInvite();
 
@@ -23,8 +23,8 @@ export const InviteActions = ({ id }: InviteActionsProps) => {
         updateInvite(id, 'BLOCKED');
     };
 
-    if (isSuccess) return <Success message={data?.data.message} />;
-    if (isError) return <Failure message="Something went wrong, try again later" />;
+    if (isSuccess) return <SuccessMessage message={data?.data.message} />;
+    if (isError) return <ErrorMessage message="Something went wrong, try again later" />;
 
     return (
         <div className="flex gap-3">
