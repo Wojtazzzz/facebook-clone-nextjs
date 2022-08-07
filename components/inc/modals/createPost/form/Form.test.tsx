@@ -7,7 +7,6 @@ import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { generateFile } from '@utils/generateFile';
 import nock from 'nock';
-import { wait } from '@testing-library/user-event/dist/types/utils';
 
 describe('Form component', () => {
     jest.setTimeout(30000);

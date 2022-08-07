@@ -1,9 +1,9 @@
 import { screen } from '@testing-library/react';
-import { Header } from '@components/contacts/Header';
+import { Header } from '@components/contacts/header/Header';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 
-describe('Contacts Header component', () => {
-    it('renders contacts header', () => {
+describe('Header component', () => {
+    it('render title', () => {
         renderWithDefaultData(<Header />);
 
         const title = screen.getByText('Contacts');
@@ -11,7 +11,7 @@ describe('Contacts Header component', () => {
         expect(title).toBeInTheDocument();
     });
 
-    it('renders search engine', () => {
+    it('render search icon', () => {
         renderWithDefaultData(<Header />);
 
         const searchEngine = screen.getByLabelText('Search friend to text');

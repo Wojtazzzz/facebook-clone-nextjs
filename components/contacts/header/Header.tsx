@@ -1,4 +1,4 @@
-import { SearchContact } from '@components/contacts/inc/SearchContact';
+import { SearchContact } from '@components/contacts/header/SearchContact';
 
 export const Header = () => {
     return (

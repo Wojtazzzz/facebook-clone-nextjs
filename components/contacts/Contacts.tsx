@@ -1,5 +1,5 @@
-import { Header } from '@components/contacts/Header';
-import { List } from '@components/contacts/List';
+import { Header } from '@components/contacts/header/Header';
+import { List } from '@components/contacts/list/List';
 
 export const Contacts = () => {
     return (
