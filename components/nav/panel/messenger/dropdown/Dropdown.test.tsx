@@ -3,7 +3,7 @@ import RootUserJson from '@mocks/user/root.json';
 import MessengerFirstPageJson from '@mocks/messenger/firstPage.json';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import { mock } from '@libs/nock';
-import { Header } from '@components/nav/panel/inc/Header';
+import { Header } from '@components/nav/panel/messenger/dropdown/Header';
 
 describe('Messenger component', () => {
     beforeEach(() => {

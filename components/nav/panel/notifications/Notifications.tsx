@@ -1,29 +1,21 @@
 import { memo } from 'react';
-import { useAppDispatch } from '@hooks/redux';
-import { useKey } from '@hooks/useKey';
-import { useOutsideClick } from '@hooks/useOutsideClick';
-
-import { Header } from '@components/nav/panel/inc/Header';
-import { List } from '@components/nav/panel/notifications/List';
-
+import { useAppDispatch, useAppSelector } from '@hooks/redux';
 import { toggleActive } from '@redux/slices/NotificationsSlice';
+import { RoundedButton } from '@components/inc/RoundedButton';
+import { faBell } from '@fortawesome/free-solid-svg-icons';
+import { Dropdown } from './dropdown/Dropdown';
 
 export const Notifications = memo(() => {
     const dispatch = useAppDispatch();
+    const { isActive } = useAppSelector((store) => store.notifications);
 
-    const handleClose = () => dispatch(toggleActive(false));
-
-    useKey('Escape', handleClose);
-    const ref = useOutsideClick(handleClose);
+    const handleToggle = () => dispatch(toggleActive(true));
 
     return (
-        <div
-            data-testid="notifications"
-            ref={ref}
-            className="min-w-[300px] md:min-w-[360px] flex flex-col bg-dark-200 absolute top-full -right-12 z-20 shadow-md rounded-md p-3"
-        >
-            <Header testid="notifications-header" title="Notifications" />
-            <List />
+        <div className="relative">
+            <RoundedButton name="Notifications" icon={faBell} onHover="opacity-70" callback={handleToggle} />
+
+            {isActive && <Dropdown />}
         </div>
     );
 });

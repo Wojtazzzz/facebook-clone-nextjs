@@ -1,33 +1,19 @@
-import { memo } from 'react';
-import { useAppDispatch } from '@hooks/redux';
-import { useKey } from '@hooks/useKey';
-import { useOutsideClick } from '@hooks/useOutsideClick';
-
-import { Header } from '@components/nav/panel/inc/Header';
-import { SearchUser } from '@components/nav/panel/messenger/SearchUser';
-import { Messages } from '@components/nav/panel/messenger/Messages';
-
+import { useAppDispatch, useAppSelector } from '@hooks/redux';
 import { toggleActive } from '@redux/slices/MessengerSlice';
+import { Dropdown } from './dropdown/Dropdown';
+import { OpenButton } from './OpenButton';
 
-export const Messenger = memo(() => {
+export const Messenger = () => {
     const dispatch = useAppDispatch();
+    const { isActive } = useAppSelector((store) => store.messenger);
 
-    const handleClose = () => dispatch(toggleActive(false));
-
-    useKey('Escape', handleClose);
-    const ref = useOutsideClick(handleClose);
+    const handleToggle = () => dispatch(toggleActive(true));
 
     return (
-        <div
-            data-testid="messenger"
-            ref={ref}
-            className="min-w-[300px] md:min-w-[360px] flex flex-col gap-4 bg-dark-200 absolute top-full -right-24 z-20 shadow-md rounded-md p-3"
-        >
-            <Header testid="messenger-header" title="Messenger" />
-            <SearchUser />
-            <Messages />
+        <div className="relative">
+            <OpenButton toggleMessenger={handleToggle} />
+
+            {isActive && <Dropdown />}
         </div>
     );
-});
-
-Messenger.displayName = 'Messenger';
+};

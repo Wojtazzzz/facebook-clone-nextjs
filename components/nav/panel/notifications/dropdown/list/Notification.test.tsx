@@ -3,7 +3,7 @@ import NotificationsFirstPageJson from '@mocks/notifications/firstPage.json';
 import PokeNotificationJson from '@mocks/notifications/poke.json';
 import FriendshipRequestAcceptedNotificationJson from '@mocks/notifications/requestAccepted.json';
 import FriendshipRequestSentNotificationJson from '@mocks/notifications/requestSent.json';
-import { Notification } from '@components/nav/panel/notifications/Notification';
+import { Notification } from '@components/nav/panel/notifications/dropdown/list/Notification';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 
 describe('Notification component', () => {

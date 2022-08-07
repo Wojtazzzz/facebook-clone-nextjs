@@ -1,13 +1,13 @@
 import { screen } from '@testing-library/react';
 import MessengerFirstPageJson from '@mocks/messenger/firstPage.json';
-import { Friend } from '@components/nav/panel/messenger/Friend';
+import { Conversation } from '@components/nav/panel/messenger/dropdown/list/Conversation';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 
-describe('Friend component', () => {
-    it('it renders user avatar, name, label', () => {
+describe('Conversation component', () => {
+    it('render user avatar, name, label', () => {
         const user = MessengerFirstPageJson.data[0];
 
-        renderWithDefaultData(<Friend friend={user} />);
+        renderWithDefaultData(<Conversation friend={user} />);
 
         const avatar = screen.getByRole('img');
         const name = screen.getByText(user.name);

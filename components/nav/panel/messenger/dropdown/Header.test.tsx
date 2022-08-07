@@ -1,5 +1,5 @@
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
-import { Header } from '@components/nav/panel/inc/Header';
+import { Header } from '@components/nav/panel/messenger/dropdown/Header';
 import { screen } from '@testing-library/react';
 
 describe('Messenger/Notifications Header component', () => {

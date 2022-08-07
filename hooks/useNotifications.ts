@@ -1,14 +1,7 @@
-import { useInfiniteData } from '@hooks/useInfiniteData';
-import { INotification } from '@utils/types';
+import { axios } from '@libs/axios';
 import { useMutation } from '@tanstack/react-query';
-import axios from 'axios';
 
 export const useNotifications = () => {
-    const { data, isLoading, isError, isEmpty, hasNextPage, fetchNextPage } = useInfiniteData<INotification>(
-        ['notifications'],
-        '/api/notifications'
-    );
-
     const markAsReadMutation = useMutation(() => axios.put('/api/notifications/mark-as-read'));
 
     const markAsRead = () => {
@@ -18,12 +11,7 @@ export const useNotifications = () => {
     };
 
     return {
-        data,
-        isLoading,
-        isError,
-        isEmpty,
-        hasNextPage,
-        fetchNextPage,
         markAsRead,
+        ...markAsReadMutation,
     };
 };

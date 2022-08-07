@@ -7,7 +7,7 @@ import MessengerFirstPageJson from '@mocks/messenger/firstPage.json';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-describe('Nav Panel component', () => {
+describe('Panel component', () => {
     const user = userEvent.setup();
 
     beforeEach(() => {
@@ -22,9 +22,9 @@ describe('Nav Panel component', () => {
         const messengerOpenButton = screen.getByLabelText('Messenger');
         await user.click(messengerOpenButton);
 
-        const messengerComponent = screen.getByTestId('messenger');
+        const messengerComponent = screen.getByTestId('messenger-dropdown');
 
-        expect(messengerComponent).toBeVisible();
+        expect(messengerComponent).toBeInTheDocument();
     });
 
     it('open notifications dropdown when click on notifications button and close when click one more time', async () => {
@@ -35,8 +35,8 @@ describe('Nav Panel component', () => {
         const notificationsOpenButton = screen.getByLabelText('Notifications');
         await user.click(notificationsOpenButton);
 
-        const notificationsComponent = screen.getByTestId('notifications');
+        const notificationsComponent = screen.getByTestId('notifications-dropdown');
 
-        expect(notificationsComponent).toBeVisible();
+        expect(notificationsComponent).toBeInTheDocument();
     });
 });

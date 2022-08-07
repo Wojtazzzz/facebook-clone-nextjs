@@ -1,14 +1,18 @@
-import { useNotifications } from '@hooks/useNotifications';
 import React, { memo } from 'react';
 
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { Notification } from '@components/nav/panel/notifications/Notification';
-import { Loader } from '@components/nav/panel/inc/Loader';
-import { EmptyList } from '@components/nav/panel/inc/EmptyList';
+import { Notification } from '@components/nav/panel/notifications/dropdown/list/Notification';
+import { Loader } from '@components/nav/panel/messenger/dropdown/list/Loader';
+import { EmptyList } from '@components/inc/EmptyList';
 import { ApiError } from '@components/inc/ApiError';
+import { useInfiniteData } from '@hooks/useInfiniteData';
+import type { INotification } from '@utils/types';
 
 export const List = memo(() => {
-    const { data, isLoading, isError, isEmpty, hasNextPage, fetchNextPage, markAsRead } = useNotifications();
+    const { data, isLoading, isError, isEmpty, hasNextPage, fetchNextPage } = useInfiniteData<INotification>(
+        ['notifications'],
+        '/api/notifications'
+    );
 
     if (isLoading) return <Loader testId="notifications-fetching_loader" />;
     if (!data || isError) return <ApiError />;
