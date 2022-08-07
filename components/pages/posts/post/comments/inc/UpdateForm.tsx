@@ -1,14 +1,13 @@
 import { useEffect, useRef } from 'react';
-import { usePaginatedData } from '@hooks/usePaginatedData';
 import { useComments } from '@hooks/useComments';
 
-import { Formik } from 'formik';
+import { Form, Formik } from 'formik';
 import { Errors } from '@components/pages/posts/post/comments/inc/Errors';
 import { SubmitButton } from '@components/pages/posts/post/comments/create/inc/SubmitButton';
 
 import { CommentSchema } from '@validation/CommentSchema';
 
-import type { IComment } from '@utils/types';
+import type { ICommentPayload } from '@utils/types';
 
 interface UpdateFormProps {
     postId: number;
@@ -19,21 +18,12 @@ interface UpdateFormProps {
 
 export const UpdateForm = ({ postId, commentId, content, closeEditMode }: UpdateFormProps) => {
     const inputRef = useRef<HTMLInputElement>(null);
-    const { reloadData: reloadComments } = usePaginatedData<IComment>(`/api/posts/${postId}/comments`);
-    const { state, updateComment } = useComments();
+    const { useUpdate } = useComments();
+    const { update, isLoading, isError, error } = useUpdate();
 
     useEffect(() => {
         handleFocusInput();
     }, []);
-
-    useEffect(() => {
-        if (state.status === 'LOADING') return;
-
-        if (state.status === 'SUCCESS') {
-            reloadComments();
-            closeEditMode();
-        }
-    }, [state, reloadComments, closeEditMode]);
 
     const handleFocusInput = () => {
         if (!inputRef.current) return;
@@ -41,14 +31,18 @@ export const UpdateForm = ({ postId, commentId, content, closeEditMode }: Update
         inputRef.current.focus();
     };
 
+    const handleUpdateComment = (data: ICommentPayload) => {
+        update(commentId, data, closeEditMode);
+    };
+
     return (
         <Formik
             initialValues={{ content, resource_id: postId }}
             validationSchema={CommentSchema}
-            onSubmit={(values) => updateComment(commentId, values)}
+            onSubmit={handleUpdateComment}
         >
             {({ values, handleChange, handleBlur, handleSubmit }) => (
-                <form className="w-full" onSubmit={handleSubmit}>
+                <Form className="w-full" onSubmit={handleSubmit}>
                     <button aria-label="Enter new comment value" onClick={handleFocusInput}>
                         <small className="text-xs text-light-100 font-medium">Enter new value</small>
                     </button>
@@ -66,11 +60,11 @@ export const UpdateForm = ({ postId, commentId, content, closeEditMode }: Update
                             onBlur={handleBlur}
                         />
 
-                        <SubmitButton isLoading={state.status === 'LOADING'} callback={handleSubmit} />
+                        <SubmitButton isLoading={isLoading} callback={handleSubmit} />
                     </div>
 
-                    <Errors error={state.status === 'ERROR' && state.error} />
-                </form>
+                    <Errors error={isError && error} />
+                </Form>
             )}
         </Formik>
     );

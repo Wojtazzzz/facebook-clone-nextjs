@@ -1,45 +1,35 @@
-import { useState } from 'react';
-import { useAxios } from '@hooks/useAxios';
-
 import { Failure } from '@components/pages/friends/item/actions/responses/Failure';
 import { Success } from '@components/pages/friends/item/actions/responses/Success';
 import { Button } from '@components/inc/Button';
 
 import type { IUser } from '@utils/types';
+import { useFriendship } from '@hooks/useFriendship';
 
-interface InviteActionsProps {
-    friend: IUser;
-}
+interface InviteActionsProps extends IUser {}
 
-export const InviteActions = ({ friend }: InviteActionsProps) => {
-    const { state, sendRequest } = useAxios();
-    const [action, setAction] = useState<'REJECT' | 'ACCEPT'>();
+export const InviteActions = ({ id }: InviteActionsProps) => {
+    const { useUpdateInvite } = useFriendship();
+    const { updateInvite, isSuccess, isError, isLoading, data } = useUpdateInvite();
 
     const handleAccept = (event: FocusEvent) => {
         event.preventDefault();
 
-        sendRequest({ method: 'POST', url: '/api/friendship/accept', data: { friend_id: friend.id } });
-        setAction('ACCEPT');
+        updateInvite(id, 'CONFIRMED');
     };
 
     const handleReject = (event: FocusEvent) => {
         event.preventDefault();
 
-        sendRequest({ method: 'POST', url: '/api/friendship/reject', data: { friend_id: friend.id } });
-        setAction('REJECT');
+        updateInvite(id, 'BLOCKED');
     };
 
-    if (state.status === 'SUCCESS') {
-        const message = action === 'REJECT' ? 'Request rejected successfully' : 'Request accepted successfully';
-        return <Success message={message} />;
-    }
-
-    if (state.status === 'ERROR') return <Failure message="Something went wrong, try again later" />;
+    if (isSuccess) return <Success message={data?.data.message} />;
+    if (isError) return <Failure message="Something went wrong, try again later" />;
 
     return (
         <div className="flex gap-3">
-            <Button title="Reject" styles="w-[100px]" isDisabled={state.status === 'LOADING'} callback={handleReject} />
-            <Button title="Accept" styles="w-[100px]" isDisabled={state.status === 'LOADING'} callback={handleAccept} />
+            <Button title="Reject" styles="w-[100px]" isDisabled={isLoading} callback={handleReject} />
+            <Button title="Accept" styles="w-[100px]" isDisabled={isLoading} callback={handleAccept} />
         </div>
     );
 };

@@ -4,12 +4,13 @@ import { Actions } from '@components/pages/friends/item/actions/Actions';
 
 import type { IFriendsListItem, IFriendsList } from '@utils/types';
 
-interface ItemProps extends IFriendsListItem {
+interface ItemProps {
+    item: IFriendsListItem;
     type: IFriendsList;
 }
 
-export const Item = ({ friend, data, type }: ItemProps) => {
-    const { id, name, profile_image } = friend;
+export const Item = ({ item, type }: ItemProps) => {
+    const { id, name, profile_image } = item.friend;
 
     return (
         <Link href={`/profile/${id}`}>
@@ -19,7 +20,7 @@ export const Item = ({ friend, data, type }: ItemProps) => {
                 <span className="md:text-xl text-light-200 font-medium">{name}</span>
 
                 <div className="ml-auto">
-                    <Actions friend={friend} data={data} listType={type} />
+                    <Actions item={item} listType={type} />
                 </div>
             </a>
         </Link>

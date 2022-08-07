@@ -1,8 +1,8 @@
 import { useAuth } from '@hooks/useAuth';
 
-import { Formik } from 'formik';
+import { Form, Formik } from 'formik';
 import { Input } from '@components/pages/auth/inc/Input';
-import { RequestErrors } from '@components/pages/auth/inc/RequestErrors';
+import { ErrorMessage } from '@components/pages/auth/inc/ErrorMessage';
 import { Button } from '@components/inc/Button';
 
 import { LoginSchema } from '@validation/LoginSchema';
@@ -10,18 +10,15 @@ import { LoginSchema } from '@validation/LoginSchema';
 import type { ILoginPayload } from '@utils/types';
 
 export const LoginForm = () => {
-    const { login, isLoading, error } = useAuth();
+    const { useLogin } = useAuth();
+    const { login, isLoading, isError, errorMessage } = useLogin();
 
     const handleSubmit = (data: ILoginPayload) => login(data);
 
     return (
-        <Formik
-            initialValues={{ email: '', password: '' }}
-            validationSchema={LoginSchema}
-            onSubmit={(values) => handleSubmit(values)}
-        >
+        <Formik initialValues={{ email: '', password: '' }} validationSchema={LoginSchema} onSubmit={handleSubmit}>
             {({ values, handleChange, handleBlur, handleSubmit }) => (
-                <form className="w-full flex flex-col gap-6" onSubmit={handleSubmit}>
+                <Form className="w-full flex flex-col gap-6" onSubmit={handleSubmit}>
                     <p className="text-xl text-light-100 font-bold">LOGIN</p>
 
                     <Input
@@ -50,8 +47,8 @@ export const LoginForm = () => {
                         styles="w-full mt-4"
                     />
 
-                    {error && <RequestErrors error={error} />}
-                </form>
+                    <ErrorMessage isError={isError} message={errorMessage} />
+                </Form>
             )}
         </Formik>
     );

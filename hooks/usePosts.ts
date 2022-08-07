@@ -1,135 +1,141 @@
-import { useAxios } from '@hooks/useAxios';
-import { useMatchMutate } from '@hooks/useMatchMutate';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+
+import { axios } from '@libs/axios';
 
 import type { IPostPayload } from '@utils/types';
-import type { ICreatePostResponse } from '@utils/types';
-
-type Response = ICreatePostResponse | {};
+import { useAuth } from './useAuth';
 
 export const usePosts = () => {
-    const matchMutate = useMatchMutate();
-    const { state, sendRequest } = useAxios<Response>();
+    const { user } = useAuth();
+    const queryClient = useQueryClient();
 
-    const refreshData = () => matchMutate(/\/posts/);
+    const createMutation = useMutation((post: FormData) => axios.post('/api/posts', post));
+    const removeMutation = useMutation((id: number) => axios.delete(`/api/posts/${id}`));
+    const hideMutation = useMutation((id: number) => axios.post('/api/hidden/posts', { post_id: id }));
+    const unhideMutation = useMutation((id: number) => axios.delete(`/api/hidden/posts/${id}`));
+    const saveMutation = useMutation((id: number) => axios.post('/api/saved/posts', { post_id: id }));
+    const unsaveMutation = useMutation((id: number) => axios.delete(`/api/saved/posts/${id}`));
+    const likeMutation = useMutation((id: number) => axios.post(`/api/posts/${id}/likes`));
+    const unlikeMutation = useMutation((id: number) => axios.delete(`/api/posts/${id}/likes`));
 
-    const create = async (data: IPostPayload) => {
-        if (state.status === 'LOADING') return;
+    const queryOptions = {
+        onSuccess: () => queryClient.invalidateQueries(['posts']),
+    };
+
+    const create = (data: IPostPayload, onSuccess: () => void) => {
+        if (createMutation.isLoading || !user) return;
 
         const formData = new FormData();
         formData.append('content', data.content);
 
         data.images.forEach((img) => formData.append('images[]', img));
 
-        await sendRequest({
-            method: 'POST',
-            url: '/api/posts',
-            data: formData,
-        });
-
-        refreshData();
-    };
-
-    const remove = async (id: number) => {
-        if (state.status === 'LOADING') return;
-
-        await sendRequest({
-            method: 'DELETE',
-            url: `/api/posts/${id}`,
-        });
-
-        refreshData();
-    };
-
-    const hide = async (id: number) => {
-        if (state.status === 'LOADING') return;
-
-        await sendRequest({
-            method: 'POST',
-            url: '/api/hidden/posts',
-            data: {
-                post_id: id,
+        createMutation.mutate(formData, {
+            onSuccess: () => {
+                queryClient.invalidateQueries(['posts']);
+                queryClient.invalidateQueries(['OWN', `${user.id}`]);
+                onSuccess();
             },
         });
-
-        refreshData();
     };
 
-    const unhide = async (id: number) => {
-        if (state.status === 'LOADING') return;
+    const remove = (id: number) => {
+        if (removeMutation.isLoading || !user) return;
 
-        await sendRequest({
-            method: 'DELETE',
-            url: `/api/hidden/posts/${id}`,
-            data: {
-                post_id: id,
+        removeMutation.mutate(id, {
+            onSuccess: () => {
+                queryClient.invalidateQueries(['posts']);
+                queryClient.invalidateQueries(['OWN', `${user.id}`]);
             },
         });
-
-        refreshData();
     };
 
-    const save = async (id: number) => {
-        if (state.status === 'LOADING') return;
+    const hide = (id: number) => {
+        if (hideMutation.isLoading) return;
 
-        await sendRequest({
-            method: 'POST',
-            url: '/api/saved/posts',
-            data: {
-                post_id: id,
+        hideMutation.mutate(id, {
+            onSuccess: () => queryClient.invalidateQueries(['posts']),
+        });
+    };
+
+    const unhide = (id: number) => {
+        if (unhideMutation.isLoading || !user) return;
+
+        unhideMutation.mutate(id, {
+            onSuccess: () => queryClient.invalidateQueries(['HIDDEN', `${user.id}`]),
+        });
+    };
+
+    const save = (id: number, onSuccess: () => void) => {
+        if (saveMutation.isLoading) return;
+
+        saveMutation.mutate(id, {
+            onSuccess: () => {
+                queryClient.invalidateQueries(['posts']);
+                onSuccess();
             },
         });
-
-        refreshData();
     };
 
-    const unsave = async (id: number) => {
-        if (state.status === 'LOADING') return;
+    const unsave = (id: number) => {
+        if (unsaveMutation.isLoading || !user) return;
 
-        await sendRequest({
-            method: 'DELETE',
-            url: `/api/saved/posts/${id}`,
-            data: {
-                post_id: id,
-            },
+        unsaveMutation.mutate(id, {
+            onSuccess: () => queryClient.invalidateQueries(['SAVED', `${user.id}`]),
         });
-
-        refreshData();
     };
 
-    const like = async (id: number) => {
-        if (state.status === 'LOADING') return;
+    const like = (id: number) => {
+        if (likeMutation.isLoading) return;
 
-        await sendRequest({
-            method: 'POST',
-            url: `/api/posts/${id}/likes`,
-        });
-
-        refreshData();
+        likeMutation.mutate(id, queryOptions);
     };
 
-    const unlike = async (id: number) => {
-        if (state.status === 'LOADING') return;
+    const unlike = (id: number) => {
+        if (unlikeMutation.isLoading) return;
 
-        await sendRequest({
-            method: 'DELETE',
-            url: `/api/posts/${id}/likes`,
-        });
-
-        refreshData();
+        unlikeMutation.mutate(id, queryOptions);
     };
-
-    const isLoading = state.status === 'LOADING';
 
     return {
-        state,
-        isLoading,
-        create,
-        remove,
-        hide,
-        unhide,
-        save,
-        unsave,
-        like,
-        unlike,
+        useCreate: () => ({
+            create,
+            ...createMutation,
+        }),
+
+        useRemove: () => ({
+            remove,
+            ...removeMutation,
+        }),
+
+        useHide: () => ({
+            hide,
+            ...hideMutation,
+        }),
+
+        useUnhide: () => ({
+            unhide,
+            ...unhideMutation,
+        }),
+
+        useSave: () => ({
+            save,
+            ...saveMutation,
+        }),
+
+        useUnsave: () => ({
+            unsave,
+            ...unsaveMutation,
+        }),
+
+        useLike: () => ({
+            like,
+            ...likeMutation,
+        }),
+
+        useUnlike: () => ({
+            unlike,
+            ...unlikeMutation,
+        }),
     };
 };

@@ -2,11 +2,14 @@ import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import { Messages } from '@components/chat/messages/Messages';
 import JohnDoeJson from '@mocks/user/johnDoe.json';
 import ChatFirstPageJson from '@mocks/chat/firstPage.json';
+import ChatEmptyPageJson from '@mocks/chat/empty.json';
 import { mock } from '@libs/nock';
 import { screen } from '@testing-library/react';
 
 describe('Messages component', () => {
-    it('show loaders when initial loading messages', () => {
+    const messages = ChatFirstPageJson.data;
+
+    it('render loaders when initial loading messages', () => {
         mock(`/api/messages/${JohnDoeJson.id}?page=1`, 200, ChatFirstPageJson);
 
         renderWithDefaultData(<Messages friendId={JohnDoeJson.id} />);
@@ -15,20 +18,20 @@ describe('Messages component', () => {
         expect(loaders).toBeInTheDocument();
     });
 
-    it('load first chat list', async () => {
+    it('load and render 15 messages', async () => {
         mock(`/api/messages/${JohnDoeJson.id}?page=1`, 200, ChatFirstPageJson);
 
         renderWithDefaultData(<Messages friendId={JohnDoeJson.id} />);
 
-        const firstMessage = await screen.findByText(ChatFirstPageJson[0].text);
+        const firstMessage = await screen.findByText(messages[0].text);
         expect(firstMessage).toBeInTheDocument();
 
-        const tenthMessage = await screen.findByText(ChatFirstPageJson[9].text);
+        const tenthMessage = await screen.findByText(messages[14].text);
         expect(tenthMessage).toBeInTheDocument();
     });
 
     it('load empty list and show empty component', async () => {
-        mock(`/api/messages/${JohnDoeJson.id}?page=1`, 200, []);
+        mock(`/api/messages/${JohnDoeJson.id}?page=1`, 200, ChatEmptyPageJson);
 
         renderWithDefaultData(<Messages friendId={JohnDoeJson.id} />);
 
@@ -36,7 +39,7 @@ describe('Messages component', () => {
         expect(emptyComponent).toBeInTheDocument();
     });
 
-    it('show error component on api error', async () => {
+    it('render error component on api error', async () => {
         mock(`/api/messages/${JohnDoeJson.id}?page=1`, 500);
 
         renderWithDefaultData(<Messages friendId={JohnDoeJson.id} />);

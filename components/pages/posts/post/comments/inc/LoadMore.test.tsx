@@ -1,16 +1,26 @@
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import { LoadMore } from '@components/pages/posts/post/comments/inc/LoadMore';
 import { screen } from '@testing-library/react';
+import CommentsFirstPageJson from '@mocks/posts/firstPage.json';
 import userEvent from '@testing-library/user-event';
+import { mock } from '@libs/nock';
 
 describe('LoadMore component', () => {
     const user = userEvent.setup();
 
-    it('show "View more comments" when didn\'t fetch all comments', () => {
-        const mockHandleLoadMoreComments = jest.fn();
+    it('render "View more comments" when don\'t fetch all comments', () => {
+        const mockFetchNextPage = jest.fn();
+        const hasNextPage = true;
+        const isFetchingNextPage = false;
+
+        mock('/api/posts/1/comments', 200, CommentsFirstPageJson);
 
         renderWithDefaultData(
-            <LoadMore isFetching={false} isReachedEnd={false} callback={mockHandleLoadMoreComments} />
+            <LoadMore
+                hasNextPage={hasNextPage}
+                isFetchingNextPage={isFetchingNextPage}
+                fetchNextPage={mockFetchNextPage}
+            />
         );
 
         const viewMoreCommentsText = screen.getByText('View more comments');
@@ -21,10 +31,16 @@ describe('LoadMore component', () => {
     });
 
     it('show "Write a comment..." when fetched all comments', () => {
-        const mockHandleLoadMoreComments = jest.fn();
+        const mockFetchNextPage = jest.fn();
+        const hasNextPage = false;
+        const isFetchingNextPage = false;
 
         renderWithDefaultData(
-            <LoadMore isFetching={false} isReachedEnd={true} callback={mockHandleLoadMoreComments} />
+            <LoadMore
+                hasNextPage={hasNextPage}
+                isFetchingNextPage={isFetchingNextPage}
+                fetchNextPage={mockFetchNextPage}
+            />
         );
 
         const viewMoreCommentsText = screen.queryByText('View more comments');
@@ -34,41 +50,44 @@ describe('LoadMore component', () => {
         expect(writeCommentText).toBeInTheDocument();
     });
 
-    it("execute load more comments function when didn't fetch all comments", async () => {
-        const mockHandleLoadMoreComments = jest.fn();
+    it('execute fetchNextPage when click on "View more comments"', async () => {
+        const mockFetchNextPage = jest.fn();
+        const hasNextPage = true;
+        const isFetchingNextPage = false;
 
         renderWithDefaultData(
-            <LoadMore isFetching={false} isReachedEnd={false} callback={mockHandleLoadMoreComments} />
+            <LoadMore
+                hasNextPage={hasNextPage}
+                isFetchingNextPage={isFetchingNextPage}
+                fetchNextPage={mockFetchNextPage}
+            />
         );
 
         const button = screen.getByLabelText('Load more comments');
         await user.click(button);
 
-        expect(mockHandleLoadMoreComments).toHaveBeenCalledTimes(1);
+        expect(mockFetchNextPage).toHaveBeenCalledTimes(1);
     });
 
-    it('not execute load more comments function when fetched all comments', async () => {
-        const mockHandleLoadMoreComments = jest.fn();
+    it('render loaders without buttons when comments are fetching', () => {
+        const mockFetchNextPage = jest.fn();
+        const hasNextPage = true;
+        const isFetchingNextPage = true;
 
         renderWithDefaultData(
-            <LoadMore isFetching={false} isReachedEnd={true} callback={mockHandleLoadMoreComments} />
+            <LoadMore
+                hasNextPage={hasNextPage}
+                isFetchingNextPage={isFetchingNextPage}
+                fetchNextPage={mockFetchNextPage}
+            />
         );
 
-        const button = screen.getByText('Write a comment...');
-        await user.click(button);
-
-        expect(mockHandleLoadMoreComments).not.toHaveBeenCalled();
-    });
-
-    it('show loaders when comments are fetching', () => {
-        const mockHandleLoadMoreComments = jest.fn();
-
-        renderWithDefaultData(
-            <LoadMore isFetching={true} isReachedEnd={false} callback={mockHandleLoadMoreComments} />
-        );
-
+        const writeCommentText = screen.queryByText('Write a comment...');
+        const viewMoreComments = screen.queryByLabelText('Load more comments');
         const loader = screen.getByTestId('postsCommentsList-fetching_loader');
 
+        expect(writeCommentText).not.toBeInTheDocument();
+        expect(viewMoreComments).not.toBeInTheDocument();
         expect(loader).toBeInTheDocument();
     });
 });

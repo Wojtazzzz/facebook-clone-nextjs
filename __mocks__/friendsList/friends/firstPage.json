@@ -1,92 +1,97 @@
-[
-    {
-        "friend": {
-            "id": 2,
-            "name": "Ellsworth Johns",
-            "first_name": "Ellsworth",
-            "profile_image": "https://picsum.photos/seed/62dd25a12690c/168/168",
-            "background_image": "https://picsum.photos/seed/62dd25a126918/850/350"
+{
+    "data": [
+        {
+            "friend": {
+                "id": 2,
+                "name": "Janae Nitzsche",
+                "first_name": "Janae",
+                "profile_image": "https://picsum.photos/seed/62e9858d59b12/168/168",
+                "background_image": "https://picsum.photos/seed/62e9858d59b19/850/350"
+            }
+        },
+        {
+            "friend": {
+                "id": 3,
+                "name": "Tommie Swaniawski",
+                "first_name": "Tommie",
+                "profile_image": "https://picsum.photos/seed/62e9858e4cfbd/168/168",
+                "background_image": "https://picsum.photos/seed/62e9858e4cfc6/850/350"
+            }
+        },
+        {
+            "friend": {
+                "id": 4,
+                "name": "Elvie Smith",
+                "first_name": "Elvie",
+                "profile_image": "https://picsum.photos/seed/62e9858f09a54/168/168",
+                "background_image": "https://picsum.photos/seed/62e9858f09a5c/850/350"
+            }
+        },
+        {
+            "friend": {
+                "id": 5,
+                "name": "Tyreek Swaniawski",
+                "first_name": "Tyreek",
+                "profile_image": "https://picsum.photos/seed/62e9858f9cce4/168/168",
+                "background_image": "https://picsum.photos/seed/62e9858f9ccec/850/350"
+            }
+        },
+        {
+            "friend": {
+                "id": 6,
+                "name": "Gillian Wunsch",
+                "first_name": "Gillian",
+                "profile_image": "https://picsum.photos/seed/62e985903c0db/168/168",
+                "background_image": "https://picsum.photos/seed/62e985903c0e3/850/350"
+            }
+        },
+        {
+            "friend": {
+                "id": 7,
+                "name": "Moises Stamm",
+                "first_name": "Moises",
+                "profile_image": "https://picsum.photos/seed/62e98590e9bf2/168/168",
+                "background_image": "https://picsum.photos/seed/62e98590e9bfd/850/350"
+            }
+        },
+        {
+            "friend": {
+                "id": 8,
+                "name": "Reginald Torphy",
+                "first_name": "Reginald",
+                "profile_image": "https://picsum.photos/seed/62e985918b6a6/168/168",
+                "background_image": "https://picsum.photos/seed/62e985918b6ad/850/350"
+            }
+        },
+        {
+            "friend": {
+                "id": 9,
+                "name": "Rosina Schmidt",
+                "first_name": "Rosina",
+                "profile_image": "https://picsum.photos/seed/62e9859232249/168/168",
+                "background_image": "https://picsum.photos/seed/62e9859232251/850/350"
+            }
+        },
+        {
+            "friend": {
+                "id": 10,
+                "name": "Trenton Murray",
+                "first_name": "Trenton",
+                "profile_image": "https://picsum.photos/seed/62e98592c5bc1/168/168",
+                "background_image": "https://picsum.photos/seed/62e98592c5bce/850/350"
+            }
+        },
+        {
+            "friend": {
+                "id": 11,
+                "name": "Beulah Hauck",
+                "first_name": "Beulah",
+                "profile_image": "https://picsum.photos/seed/62e9859364959/168/168",
+                "background_image": "https://picsum.photos/seed/62e9859364961/850/350"
+            }
         }
-    },
-    {
-        "friend": {
-            "id": 3,
-            "name": "Rosemarie Hartmann",
-            "first_name": "Rosemarie",
-            "profile_image": "https://picsum.photos/seed/62dd374d6a8f7/168/168",
-            "background_image": "https://picsum.photos/seed/62dd374d6a903/850/350"
-        }
-    },
-    {
-        "friend": {
-            "id": 4,
-            "name": "Jay Schimmel",
-            "first_name": "Jay",
-            "profile_image": "https://picsum.photos/seed/62dd374fdef40/168/168",
-            "background_image": "https://picsum.photos/seed/62dd374fdef4b/850/350"
-        }
-    },
-    {
-        "friend": {
-            "id": 5,
-            "name": "Natalia Terry",
-            "first_name": "Natalia",
-            "profile_image": "https://picsum.photos/seed/62dd37508b0cf/168/168",
-            "background_image": "https://picsum.photos/seed/62dd37508b0da/850/350"
-        }
-    },
-    {
-        "friend": {
-            "id": 6,
-            "name": "Joseph Powlowski",
-            "first_name": "Joseph",
-            "profile_image": "https://picsum.photos/seed/62dd375136074/168/168",
-            "background_image": "https://picsum.photos/seed/62dd375136080/850/350"
-        }
-    },
-    {
-        "friend": {
-            "id": 7,
-            "name": "Dan Ryan",
-            "first_name": "Dan",
-            "profile_image": "https://picsum.photos/seed/62dd3751cf57e/168/168",
-            "background_image": "https://picsum.photos/seed/62dd3751cf588/850/350"
-        }
-    },
-    {
-        "friend": {
-            "id": 8,
-            "name": "Santiago Lubowitz",
-            "first_name": "Santiago",
-            "profile_image": "https://picsum.photos/seed/62dd375277689/168/168",
-            "background_image": "https://picsum.photos/seed/62dd375277694/850/350"
-        }
-    },
-    {
-        "friend": {
-            "id": 9,
-            "name": "Bernadine Hoeger",
-            "first_name": "Bernadine",
-            "profile_image": "https://picsum.photos/seed/62dd375328783/168/168",
-            "background_image": "https://picsum.photos/seed/62dd37532878d/850/350"
-        }
-    },
-    {
-        "friend": {
-            "id": 10,
-            "name": "Aric Pouros",
-            "first_name": "Aric",
-            "profile_image": "https://picsum.photos/seed/62dd3753cae46/168/168",
-            "background_image": "https://picsum.photos/seed/62dd3753cae4f/850/350"
-        }
-    },
-    {
-        "friend": {
-            "id": 11,
-            "name": "Bert Johnson",
-            "first_name": "Bert",
-            "profile_image": "https://picsum.photos/seed/62dd3754788f0/168/168",
-            "background_image": "https://picsum.photos/seed/62dd3754788fb/850/350"
-        }
-    }
-]
+    ],
+    "current_page": 1,
+    "next_page": 2,
+    "prev_page": null
+}

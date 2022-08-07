@@ -1,26 +1,26 @@
 import { useDatabaseMigrations } from 'cypress-laravel';
-import type { IUser } from '@cypress/support/types';
 
 describe('Contacts tests', () => {
     useDatabaseMigrations();
 
     beforeEach(() => {
         cy.loginRequest();
-
-        cy.intercept('/api/user').as('user');
-        cy.intercept('/api/friends/contacts?page=1').as('contacts_page_1');
-        cy.intercept('/api/friends/contacts?page=2').as('contacts_page_2');
     });
 
-    it('opens chat when click on user from list', () => {
-        let friend: IUser;
+    it('open chat when click on user', () => {
+        cy.create('User', {
+            first_name: 'John',
+            last_name: 'Doe',
+        });
 
-        cy.create('User').then((user) => (friend = user));
         cy.create('Friendship', {
             user_id: 1,
             friend_id: 2,
             status: 'CONFIRMED',
         });
+
+        cy.intercept('/api/user').as('user');
+        cy.intercept('/api/contacts?page=1').as('contacts_page_1');
 
         cy.visit('/');
 
@@ -28,17 +28,21 @@ describe('Contacts tests', () => {
         cy.wait('@contacts_page_1');
 
         cy.get('[data-testid="contacts-list"]').within(() => {
-            cy.contains(`${friend.first_name} ${friend.last_name}`).click();
+            cy.contains('John Doe').click();
         });
 
         cy.get('[data-testid="chat"]').should('be.visible');
+        cy.get('[data-testid="chat"]').contains('John Doe');
     });
 
-    it('displays load more button when fetched 10 contacts, can fetch more when click on it and after that load more buttton dissapear', () => {
-        cy.create('Friendship', 15, {
+    it('load and render 20 contacts and fetch more by scrolling to bottom', () => {
+        cy.create('Friendship', 23, {
             user_id: 1,
             status: 'CONFIRMED',
         });
+
+        cy.intercept('/api/user').as('user');
+        cy.intercept('/api/contacts?page=1').as('contacts_page_1');
 
         cy.visit('/');
 
@@ -46,14 +50,38 @@ describe('Contacts tests', () => {
         cy.wait('@contacts_page_1');
 
         cy.get('[data-testid="contacts-list"]').should('be.visible');
-        cy.get('[data-testid="contacts-list"] > button').should('have.length', 10 + 1);
+        cy.get('[data-testid="contacts-list"]').within(() => {
+            cy.get('button[aria-label*="Open chat with"]').should('have.length', 20);
+        });
 
-        cy.get('button[aria-label="Load more contacts"]').click();
+        cy.get('[id="list-of-contacts"]').scrollTo('bottom', { ensureScrollable: false });
 
-        cy.wait('@contacts_page_2');
+        cy.get('[data-testid="contacts-list"]').within(() => {
+            cy.get('button[aria-label*="Open chat with"]').should('have.length', 23);
+        });
+    });
 
-        cy.get('[data-testid="contacts-list"] > button').should('have.length', 15);
+    it('list render empty component when api return empty data', () => {
+        cy.intercept('/api/user').as('user');
+        cy.intercept('/api/contacts?page=1').as('contacts_page_1');
 
-        cy.get('button[aria-label="Load more contacts"]').should('not.exist');
+        cy.visit('/');
+
+        cy.wait('@user');
+        cy.wait('@contacts_page_1');
+
+        cy.get('[data-testid="empty-list"]').should('be.visible');
+    });
+
+    it('list render error component when api return server error', () => {
+        cy.intercept('/api/user').as('user');
+        cy.intercept('/api/contacts?page=1', { statusCode: 500 }).as('contacts_page_1');
+
+        cy.visit('/');
+
+        cy.wait('@user');
+        cy.wait('@contacts_page_1');
+
+        cy.get('[data-testid="server-error"]').should('be.visible');
     });
 });

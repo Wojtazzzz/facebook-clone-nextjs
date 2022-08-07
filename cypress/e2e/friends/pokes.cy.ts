@@ -16,8 +16,8 @@ describe('Pokes list tests', () => {
         cy.loginRequest();
     });
 
-    it('go to pokes page due to sidebar, fetch more pokes by click on button and button dissapear because all pokes fetched', () => {
-        cy.create('Poke', 19, {
+    it('go to pokes page due to sidebar, see 10 pokes, load next 7 pokes by scrolling to bottom', () => {
+        cy.create('Poke', 17, {
             friend_id: 1,
         });
 
@@ -33,21 +33,13 @@ describe('Pokes list tests', () => {
 
         cy.wait('@pokes_page_1');
 
-        cy.get('[data-testid="friends-list"] > a').should('have.length', 10);
+        cy.friendsListItems().should('have.length', 10);
 
-        cy.intercept('/api/pokes?page=1').as('pokes_page_1');
-        cy.intercept('/api/pokes?page=2').as('pokes_page_2');
-
-        cy.get('[aria-label="Fetch more users"]').click();
-
-        cy.wait('@pokes_page_1');
-        cy.wait('@pokes_page_2');
-
-        cy.get('[data-testid="friends-list"] > a').should('have.length', 19);
-        cy.get('[aria-label="Fetch more users"]').should('not.exist');
+        cy.get('[id="friends-list"]').scrollTo('bottom');
+        cy.friendsListItems().should('have.length', 17);
     });
 
-    it('poke back friend when click "Poke back" button, poke dissapears after page refresh, relogin as friend account, check for notification from user arrived, redirect to pokes page due to notification, poke back user, again relogin as user, check for notification from friend arrived, friend poke show at pokes page', () => {
+    it('poke back friend when click "Poke back" button, poke dissapears after page refresh, relogin as friend, check for notification from user arrived, redirect to pokes page due to notification, poke back user, again relogin as user, check for notification from friend arrived, friend poke show at pokes page', () => {
         cy.create('User', friend);
         cy.create('Friendship', {
             user_id: 1,
@@ -68,7 +60,7 @@ describe('Pokes list tests', () => {
 
         cy.intercept('/api/pokes').as('poke');
 
-        cy.get('[data-testid="friends-list"] > a')
+        cy.friendsListItems()
             .should('have.length', 1)
             .within(() => {
                 cy.contains(`${friend.first_name} ${friend.last_name}`);
@@ -87,7 +79,7 @@ describe('Pokes list tests', () => {
         cy.visit('/friends/pokes');
         cy.wait('@pokes_page_1');
 
-        cy.get('[data-testid="friends-list"] > a').should('have.length', 0);
+        cy.friendsListItems().should('not.exist');
 
         cy.relogin(2);
 
@@ -101,7 +93,7 @@ describe('Pokes list tests', () => {
 
         cy.intercept('/api/pokes').as('poke');
 
-        cy.get('[data-testid="friends-list"] > a')
+        cy.friendsListItems()
             .should('have.length', 1)
             .within(() => {
                 cy.contains(`${USER_FIRST_NAME} ${USER_LAST_NAME}`);
@@ -114,11 +106,33 @@ describe('Pokes list tests', () => {
 
         cy.checkNotification(`${friend.first_name} ${friend.last_name}`, 'Poked you 3 times in a row');
 
-        cy.get('[data-testid="friends-list"] > a')
+        cy.friendsListItems()
             .should('have.length', 1)
             .within(() => {
                 cy.contains(`${friend.first_name} ${friend.last_name}`);
                 cy.contains(`${friend.first_name} poked you 3 times in a row`);
             });
+    });
+
+    it('render empty component when api return empty data', () => {
+        cy.intercept('/api/pokes?page=1').as('pokes_page_1');
+
+        cy.visit('/friends/pokes');
+
+        cy.wait('@pokes_page_1');
+
+        cy.friendsListItems().should('not.exist');
+        cy.get('[data-testid="empty-list"]').should('be.visible');
+    });
+
+    it('render error component when api return server error', () => {
+        cy.intercept('/api/pokes?page=1', { statusCode: 500 }).as('pokes_page_1');
+
+        cy.visit('/friends/pokes');
+
+        cy.wait('@pokes_page_1');
+
+        cy.friendsListItems().should('not.exist');
+        cy.get('[data-testid="server-error"]').should('be.visible');
     });
 });

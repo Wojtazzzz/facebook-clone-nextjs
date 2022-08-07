@@ -19,19 +19,13 @@ export const Messenger = memo(() => {
 
     return (
         <div
-            data-testid="messenger-container"
+            data-testid="messenger"
             ref={ref}
             className="min-w-[300px] md:min-w-[360px] flex flex-col gap-4 bg-dark-200 absolute top-full -right-24 z-20 shadow-md rounded-md p-3"
         >
             <Header testid="messenger-header" title="Messenger" />
             <SearchUser />
-
-            <div
-                id="list-of-messenger-contacts"
-                className="w-full max-h-[500px] overflow-y-scroll scrollbar-thin scrollbar-thumb-dark-100"
-            >
-                <Messages />
-            </div>
+            <Messages />
         </div>
     );
 });

@@ -1,17 +1,19 @@
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
-import { Panel } from '@components/pages/profile/hero/panel/Panel';
 import RootUserJson from '@mocks/user/root.json';
+import PokesFirstPageJson from '@mocks/friendsList/pokes/firstPage.json';
 import { mock } from '@libs/nock';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { GuestPanel } from './GuestPanel';
 
 describe('Profile GuestPanel tests', () => {
     beforeEach(() => {
         mock('/api/user', 200, RootUserJson);
+        mock('/api/pokes?page=1', 200, PokesFirstPageJson);
     });
 
     it('render send message and poke buttons button which are enabled', async () => {
-        renderWithDefaultData(<Panel pageUser={RootUserJson} />);
+        renderWithDefaultData(<GuestPanel user={RootUserJson} />);
 
         const sendMessageButton = await screen.findByLabelText('Send message');
         const pokeButton = await screen.findByLabelText('Poke');
@@ -27,16 +29,16 @@ describe('Profile GuestPanel tests', () => {
 
         mock('/api/pokes', 201, {}, 'post');
 
-        renderWithDefaultData(<Panel pageUser={RootUserJson} />);
+        renderWithDefaultData(<GuestPanel user={RootUserJson} />);
 
         const pokeButton = await screen.findByLabelText('Poke');
-
-        expect(pokeButton).toBeInTheDocument();
         expect(pokeButton).toBeEnabled();
 
         await user.click(pokeButton);
 
-        expect(pokeButton).toBeDisabled();
+        await waitFor(() => {
+            expect(pokeButton).toBeDisabled();
+        });
 
         await waitFor(() => {
             expect(pokeButton).toHaveAttribute('disabled', '');

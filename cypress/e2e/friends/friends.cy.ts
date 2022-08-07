@@ -7,7 +7,7 @@ describe('Friends list tests', () => {
         cy.loginRequest();
     });
 
-    it('go to page due to sidebar and fetch more friends by click on button and button dissapear because all users fetched', () => {
+    it('go to friends list page due to sidebar, see 10 friends, load next 5 friends by scrolling to bottom', () => {
         cy.create('Friendship', 15, {
             user_id: 1,
             status: 'CONFIRMED',
@@ -25,19 +25,8 @@ describe('Friends list tests', () => {
 
         cy.wait('@friends_page_1');
 
-        cy.get('[data-testid="friends-list"] > a').should('have.length', 10);
-
-        cy.intercept('/api/friends?page=1').as('friends_page_1');
-        cy.intercept('/api/friends?page=2').as('friends_page_2');
-
-        cy.get('[aria-label="Fetch more users"]').click();
-
-        cy.wait('@friends_page_1');
-        cy.wait('@friends_page_2');
-
-        cy.get('[data-testid="friends-list"] > a').should('have.length', 15);
-
-        cy.get('[aria-label="Fetch more users"]').should('not.exist');
+        cy.get('[id="friends-list"]').scrollTo('bottom');
+        cy.friendsListItems().should('have.length', 15);
     });
 
     it('open chat with friend when click on "Send message" button', () => {
@@ -52,9 +41,11 @@ describe('Friends list tests', () => {
 
         cy.wait('@friends_page_1');
 
-        cy.get('[data-testid="friends-list"] > a:first').within(() => {
-            cy.contains('Send message').click();
-        });
+        cy.friendsListItems()
+            .first()
+            .within(() => {
+                cy.contains('Send message').click();
+            });
 
         cy.get('[data-testid="chat"]').should('be.visible');
     });
@@ -66,34 +57,56 @@ describe('Friends list tests', () => {
         });
 
         cy.intercept('/api/friends?page=1').as('friends_page_1');
-        cy.intercept('/api/friendship/destroy').as('destroy');
+        cy.intercept('/api/friends/2').as('destroy');
 
         cy.visit('/friends');
 
         cy.wait('@friends_page_1');
 
-        cy.get('[data-testid="friends-list"] > a:first').within(() => {
-            cy.contains('Remove').click();
+        cy.friendsListItems()
+            .first()
+            .within(() => {
+                cy.contains('Remove').click();
 
-            cy.wait('@destroy').its('response.statusCode').should('eq', 200);
+                cy.contains('Friendship destroyed').should('be.visible');
+            });
 
-            cy.contains('Friendship destroyed').should('be.visible');
-        });
+        cy.intercept('/api/suggests?page=1').as('suggests_page_1');
 
-        cy.intercept('/api/friends/suggests?page=1').as('suggests_page_1');
-
-        cy.get('[data-testid="friends-nav"] > a').contains('Suggests').click();
+        cy.get('[data-testid="friends-nav"]').contains('Suggests').click();
 
         cy.wait('@suggests_page_1');
 
-        cy.get('[data-testid="friends-list"] > a').should('have.length', 1);
+        cy.friendsListItems().should('have.length', 1);
 
         cy.intercept('/api/friends?page=1').as('friends_page_1');
 
-        cy.get('[data-testid="friends-nav"] > a').contains('Friends').click();
+        cy.get('[data-testid="friends-nav"]').contains('Friends').click();
 
         cy.wait('@friends_page_1');
 
-        cy.get('[data-testid="friends-list"] > a').should('have.length', 7);
+        cy.friendsListItems().should('have.length', 7);
+    });
+
+    it('render empty component when api return empty data', () => {
+        cy.intercept('/api/friends?page=1').as('friends_page_1');
+
+        cy.visit('/friends');
+
+        cy.wait('@friends_page_1');
+
+        cy.friendsListItems().should('not.exist');
+        cy.get('[data-testid="empty-list"]').should('be.visible');
+    });
+
+    it('render error component when api return server error', () => {
+        cy.intercept('/api/friends?page=1', { statusCode: 500 }).as('friends_page_1');
+
+        cy.visit('/friends');
+
+        cy.wait('@friends_page_1');
+
+        cy.friendsListItems().should('not.exist');
+        cy.get('[data-testid="server-error"]').should('be.visible');
     });
 });

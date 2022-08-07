@@ -5,7 +5,7 @@ import { screen } from '@testing-library/react';
 
 describe('Contact component from Contacts List', () => {
     it('it renders name properly', () => {
-        const contact = ContactsFirstPageJson[4];
+        const contact = ContactsFirstPageJson.data[4];
 
         renderWithDefaultData(<Contact {...contact} />);
 

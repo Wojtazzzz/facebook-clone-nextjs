@@ -1,7 +1,6 @@
-import { useAuth } from '@hooks/useAuth';
 import { useAppDispatch, useAppSelector } from '@hooks/redux';
 
-import { faBell, faEllipsisVertical, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { faBell, faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 import { faFacebookMessenger } from '@fortawesome/free-brands-svg-icons';
 import { Messenger } from '@components/nav/panel/messenger/Messenger';
 import { Notifications } from '@components/nav/panel/notifications/Notifications';
@@ -10,9 +9,9 @@ import { RoundedButton } from '@components/inc/RoundedButton';
 import { toggleActive as toggleActiveSidebar } from '@redux/slices/SidebarSlice';
 import { toggleActive as toggleActiveMessenger } from '@redux/slices/MessengerSlice';
 import { toggleActive as toggleActiveNotifications } from '@redux/slices/NotificationsSlice';
+import { Logout } from './Logout';
 
 export const Panel = () => {
-    const { isLoading: isAuthLoading, logout } = useAuth();
     const dispatch = useAppDispatch();
     const {
         messenger: { isActive: isMessengerActive },
@@ -64,13 +63,7 @@ export const Panel = () => {
                 {isNotificationsActive && <Notifications />}
             </div>
 
-            <RoundedButton
-                name="Log out"
-                icon={faRightFromBracket}
-                onHover="opacity-70"
-                isDisabled={isAuthLoading}
-                callback={logout}
-            />
+            <Logout />
         </div>
     );
 };

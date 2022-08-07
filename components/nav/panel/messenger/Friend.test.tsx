@@ -5,7 +5,7 @@ import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 
 describe('Friend component', () => {
     it('it renders user avatar, name, label', () => {
-        const user = MessengerFirstPageJson[0];
+        const user = MessengerFirstPageJson.data[0];
 
         renderWithDefaultData(<Friend friend={user} />);
 

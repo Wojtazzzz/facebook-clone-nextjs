@@ -4,12 +4,9 @@ import { screen } from '@testing-library/react';
 
 describe('Menu component', () => {
     const mockCloseMenu = jest.fn();
-    const mockReloadPosts = jest.fn();
 
     it('render FriendMenu when "FRIEND" type passed', async () => {
-        renderWithDefaultData(
-            <Menu postId={1} type="FRIEND" closeMenu={mockCloseMenu} reloadPosts={mockReloadPosts} />
-        );
+        renderWithDefaultData(<Menu postId={1} type="FRIEND" closeMenu={mockCloseMenu} />);
 
         const option = await screen.findByLabelText('Hide');
 
@@ -17,9 +14,7 @@ describe('Menu component', () => {
     });
 
     it('render HiddenMenu when "HIDDEN" type passed', async () => {
-        renderWithDefaultData(
-            <Menu postId={1} type="HIDDEN" closeMenu={mockCloseMenu} reloadPosts={mockReloadPosts} />
-        );
+        renderWithDefaultData(<Menu postId={1} type="HIDDEN" closeMenu={mockCloseMenu} />);
 
         const option = await screen.findByLabelText('Unhide');
 
@@ -27,7 +22,7 @@ describe('Menu component', () => {
     });
 
     it('render SavedMenu when "SAVED" type passed', async () => {
-        renderWithDefaultData(<Menu postId={1} type="SAVED" closeMenu={mockCloseMenu} reloadPosts={mockReloadPosts} />);
+        renderWithDefaultData(<Menu postId={1} type="SAVED" closeMenu={mockCloseMenu} />);
 
         const option = await screen.findByLabelText('Unsave');
 
@@ -35,7 +30,7 @@ describe('Menu component', () => {
     });
 
     it('render OwnMenu when "OWN" type passed', async () => {
-        renderWithDefaultData(<Menu postId={1} type="OWN" closeMenu={mockCloseMenu} reloadPosts={mockReloadPosts} />);
+        renderWithDefaultData(<Menu postId={1} type="OWN" closeMenu={mockCloseMenu} />);
 
         const option = await screen.findByLabelText('Delete');
 

@@ -22,7 +22,7 @@ describe('Nav Panel component', () => {
         const messengerOpenButton = screen.getByLabelText('Messenger');
         await user.click(messengerOpenButton);
 
-        const messengerComponent = screen.getByTestId('messenger-container');
+        const messengerComponent = screen.getByTestId('messenger');
 
         expect(messengerComponent).toBeVisible();
     });
@@ -35,7 +35,7 @@ describe('Nav Panel component', () => {
         const notificationsOpenButton = screen.getByLabelText('Notifications');
         await user.click(notificationsOpenButton);
 
-        const notificationsComponent = screen.getByTestId('notifications-container');
+        const notificationsComponent = screen.getByTestId('notifications');
 
         expect(notificationsComponent).toBeVisible();
     });

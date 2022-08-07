@@ -1,202 +1,224 @@
-[
-    {
-        "id": 11,
-        "content": "Facere qui officiis sed deserunt. Voluptas sapiente odio illum qui. Id vel alias tenetur cum minima et. Accusamus soluta suscipit ut quae ad nostrum iure. Assumenda perferendis odit iusto odio.",
-        "images": [
-            "https://picsum.photos/seed/62dd5a420765f/850/350",
-            "https://picsum.photos/seed/62dd5a4207660/850/350",
-            "https://picsum.photos/seed/62dd5a4207662/850/350"
-        ],
-        "author": {
-            "id": 4,
-            "name": "Juana Daugherty",
-            "first_name": "Juana",
-            "profile_image": "https://picsum.photos/seed/62dd5a1230cd2/168/168",
-            "background_image": "https://picsum.photos/seed/62dd5a1230cdc/850/350"
+{
+    "data": [
+        {
+            "type": "FRIEND",
+            "id": 63,
+            "content": "Ut temporibus debitis architecto fuga iste doloremque quaerat qui. Veniam dolor pariatur esse dolores. Aperiam laborum omnis est omnis praesentium.",
+            "images": [
+                "https://picsum.photos/seed/62eacb108e90a/850/350",
+                "https://picsum.photos/seed/62eacb108e90b/850/350",
+                "https://picsum.photos/seed/62eacb108e90c/850/350",
+                "https://picsum.photos/seed/62eacb108e90d/850/350"
+            ],
+            "author": {
+                "id": 1191,
+                "name": "Ollie Dach",
+                "first_name": "Ollie",
+                "profile_image": "https://picsum.photos/seed/62eaca0d97103/168/168",
+                "background_image": "https://picsum.photos/seed/62eaca0d9710c/850/350"
+            },
+            "likes_count": 0,
+            "comments_count": 22,
+            "isLiked": false,
+            "created_at": "2022-08-03 19:22",
+            "updated_at": "2022-08-03 19:22"
         },
-        "likes_count": 0,
-        "comments_count": 0,
-        "isLiked": false,
-        "created_at": "2022-07-24 14:42",
-        "updated_at": "2022-07-24 14:42"
-    },
-    {
-        "id": 12,
-        "content": "Voluptas nobis labore quasi deserunt voluptate veniam perspiciatis. Qui corrupti odit tempore qui dignissimos. Dignissimos veniam ullam deserunt itaque.",
-        "images": [
-            "https://picsum.photos/seed/62dd5a42b36a4/850/350",
-            "https://picsum.photos/seed/62dd5a42b36a6/850/350",
-            "https://picsum.photos/seed/62dd5a42b36a8/850/350"
-        ],
-        "author": {
-            "id": 4,
-            "name": "Juana Daugherty",
-            "first_name": "Juana",
-            "profile_image": "https://picsum.photos/seed/62dd5a1230cd2/168/168",
-            "background_image": "https://picsum.photos/seed/62dd5a1230cdc/850/350"
+        {
+            "type": "FRIEND",
+            "id": 64,
+            "content": "Est non ipsam cum nesciunt qui quo. Deserunt est minima sint qui dolorem expedita. Qui rerum eveniet et porro temporibus.",
+            "images": [
+                "https://picsum.photos/seed/62eacb1133163/850/350",
+                "https://picsum.photos/seed/62eacb1133165/850/350",
+                "https://picsum.photos/seed/62eacb1133167/850/350"
+            ],
+            "author": {
+                "id": 1191,
+                "name": "Ollie Dach",
+                "first_name": "Ollie",
+                "profile_image": "https://picsum.photos/seed/62eaca0d97103/168/168",
+                "background_image": "https://picsum.photos/seed/62eaca0d9710c/850/350"
+            },
+            "likes_count": 0,
+            "comments_count": 22,
+            "isLiked": false,
+            "created_at": "2022-08-03 19:22",
+            "updated_at": "2022-08-03 19:22"
         },
-        "likes_count": 0,
-        "comments_count": 0,
-        "isLiked": false,
-        "created_at": "2022-07-24 14:42",
-        "updated_at": "2022-07-24 14:42"
-    },
-    {
-        "id": 7,
-        "content": "Provident voluptas adipisci nam minima nostrum incidunt. Neque omnis autem tenetur blanditiis corporis. Eveniet quasi vel voluptas dolore. Nulla ea ut pariatur dolorem repellat rerum nulla.",
-        "images": [
-            "https://picsum.photos/seed/62dd5a3d0cd9b/850/350",
-            "https://picsum.photos/seed/62dd5a3d0cd9c/850/350",
-            "https://picsum.photos/seed/62dd5a3d0cd9e/850/350",
-            "https://picsum.photos/seed/62dd5a3d0cda0/850/350"
-        ],
-        "author": {
-            "id": 3,
-            "name": "Shaylee Dooley",
-            "first_name": "Shaylee",
-            "profile_image": "https://picsum.photos/seed/62dd5a1183ad8/168/168",
-            "background_image": "https://picsum.photos/seed/62dd5a1183ae5/850/350"
+        {
+            "type": "FRIEND",
+            "id": 59,
+            "content": "Nesciunt autem qui repudiandae rerum doloremque dolorem. Est eius cupiditate dicta quia consequatur. Ducimus debitis consequatur quos ut.",
+            "images": [
+                "https://picsum.photos/seed/62eacae57a91b/850/350",
+                "https://picsum.photos/seed/62eacae57a91c/850/350",
+                "https://picsum.photos/seed/62eacae57a91d/850/350",
+                "https://picsum.photos/seed/62eacae57a91f/850/350"
+            ],
+            "author": {
+                "id": 1189,
+                "name": "Kaela Tromp",
+                "first_name": "Kaela",
+                "profile_image": "https://picsum.photos/seed/62eaca0d03c7c/168/168",
+                "background_image": "https://picsum.photos/seed/62eaca0d03c83/850/350"
+            },
+            "likes_count": 0,
+            "comments_count": 22,
+            "isLiked": false,
+            "created_at": "2022-08-03 19:22",
+            "updated_at": "2022-08-03 19:22"
         },
-        "likes_count": 0,
-        "comments_count": 0,
-        "isLiked": false,
-        "created_at": "2022-07-24 14:42",
-        "updated_at": "2022-07-24 14:42"
-    },
-    {
-        "id": 8,
-        "content": "Repellendus veniam molestias hic adipisci debitis pariatur molestiae. Sunt quasi voluptatem et quas. Deleniti beatae voluptate aut aut velit et facere quia.",
-        "images": [],
-        "author": {
-            "id": 3,
-            "name": "Shaylee Dooley",
-            "first_name": "Shaylee",
-            "profile_image": "https://picsum.photos/seed/62dd5a1183ad8/168/168",
-            "background_image": "https://picsum.photos/seed/62dd5a1183ae5/850/350"
+        {
+            "type": "FRIEND",
+            "id": 60,
+            "content": "In modi incidunt possimus aliquid. Atque quia odit tenetur corrupti commodi. Cupiditate sed dolorem numquam.",
+            "images": [
+                "https://picsum.photos/seed/62eacae618b42/850/350",
+                "https://picsum.photos/seed/62eacae618b43/850/350",
+                "https://picsum.photos/seed/62eacae618b45/850/350"
+            ],
+            "author": {
+                "id": 1189,
+                "name": "Kaela Tromp",
+                "first_name": "Kaela",
+                "profile_image": "https://picsum.photos/seed/62eaca0d03c7c/168/168",
+                "background_image": "https://picsum.photos/seed/62eaca0d03c83/850/350"
+            },
+            "likes_count": 0,
+            "comments_count": 22,
+            "isLiked": false,
+            "created_at": "2022-08-03 19:22",
+            "updated_at": "2022-08-03 19:22"
         },
-        "likes_count": 0,
-        "comments_count": 0,
-        "isLiked": false,
-        "created_at": "2022-07-24 14:42",
-        "updated_at": "2022-07-24 14:42"
-    },
-    {
-        "id": 9,
-        "content": "Qui itaque eum veniam saepe qui. Labore omnis reprehenderit eos voluptatem iusto eos. Aut velit id modi facilis tempora praesentium.",
-        "images": [
-            "https://picsum.photos/seed/62dd5a3e8ae09/850/350",
-            "https://picsum.photos/seed/62dd5a3e8ae0b/850/350",
-            "https://picsum.photos/seed/62dd5a3e8ae0d/850/350"
-        ],
-        "author": {
-            "id": 3,
-            "name": "Shaylee Dooley",
-            "first_name": "Shaylee",
-            "profile_image": "https://picsum.photos/seed/62dd5a1183ad8/168/168",
-            "background_image": "https://picsum.photos/seed/62dd5a1183ae5/850/350"
+        {
+            "type": "FRIEND",
+            "id": 61,
+            "content": "Pariatur aut eum corporis. Eum eaque et voluptates consectetur error quia sit. Praesentium deleniti commodi non tempore libero quod. Mollitia perspiciatis tempore eos nemo.",
+            "images": [
+                "https://picsum.photos/seed/62eacae6ae674/850/350",
+                "https://picsum.photos/seed/62eacae6ae675/850/350",
+                "https://picsum.photos/seed/62eacae6ae676/850/350"
+            ],
+            "author": {
+                "id": 1189,
+                "name": "Kaela Tromp",
+                "first_name": "Kaela",
+                "profile_image": "https://picsum.photos/seed/62eaca0d03c7c/168/168",
+                "background_image": "https://picsum.photos/seed/62eaca0d03c83/850/350"
+            },
+            "likes_count": 0,
+            "comments_count": 22,
+            "isLiked": false,
+            "created_at": "2022-08-03 19:22",
+            "updated_at": "2022-08-03 19:22"
         },
-        "likes_count": 0,
-        "comments_count": 0,
-        "isLiked": false,
-        "created_at": "2022-07-24 14:42",
-        "updated_at": "2022-07-24 14:42"
-    },
-    {
-        "id": 4,
-        "content": "Tempore non non sequi quas debitis. Quia expedita eligendi rerum non ipsam sunt quasi. Et ipsum corrupti maxime eveniet nihil autem ut.",
-        "images": [
-            "https://picsum.photos/seed/62dd5a39104fe/850/350",
-            "https://picsum.photos/seed/62dd5a3910500/850/350",
-            "https://picsum.photos/seed/62dd5a3910502/850/350"
-        ],
-        "author": {
-            "id": 2,
-            "name": "Muriel Wilkinson",
-            "first_name": "Muriel",
-            "profile_image": "https://picsum.photos/seed/62dd5a10b4748/168/168",
-            "background_image": "https://picsum.photos/seed/62dd5a10b4753/850/350"
+        {
+            "type": "FRIEND",
+            "id": 56,
+            "content": "Et quam omnis harum. Reiciendis numquam deleniti iste corrupti unde aut recusandae. Animi laudantium veniam provident nihil id qui quam. Magni qui illo non sit est dolorem.",
+            "images": [
+                "https://picsum.photos/seed/62eacabb274cf/850/350",
+                "https://picsum.photos/seed/62eacabb274d0/850/350"
+            ],
+            "author": {
+                "id": 1187,
+                "name": "Christ Stark",
+                "first_name": "Christ",
+                "profile_image": "https://picsum.photos/seed/62eaca0c65938/168/168",
+                "background_image": "https://picsum.photos/seed/62eaca0c6593e/850/350"
+            },
+            "likes_count": 0,
+            "comments_count": 22,
+            "isLiked": false,
+            "created_at": "2022-08-03 19:21",
+            "updated_at": "2022-08-03 19:21"
         },
-        "likes_count": 0,
-        "comments_count": 0,
-        "isLiked": false,
-        "created_at": "2022-07-24 14:42",
-        "updated_at": "2022-07-24 14:42"
-    },
-    {
-        "id": 5,
-        "content": "Eum tempore et temporibus at at. Aspernatur aut nihil totam laboriosam voluptate sed. Earum nemo eum molestiae minus quos. Deserunt qui repellat harum pariatur.",
-        "images": [
-            "https://picsum.photos/seed/62dd5a39d8908/850/350",
-            "https://picsum.photos/seed/62dd5a39d890b/850/350",
-            "https://picsum.photos/seed/62dd5a39d890d/850/350",
-            "https://picsum.photos/seed/62dd5a39d890f/850/350"
-        ],
-        "author": {
-            "id": 2,
-            "name": "Muriel Wilkinson",
-            "first_name": "Muriel",
-            "profile_image": "https://picsum.photos/seed/62dd5a10b4748/168/168",
-            "background_image": "https://picsum.photos/seed/62dd5a10b4753/850/350"
+        {
+            "type": "FRIEND",
+            "id": 57,
+            "content": "Pariatur amet quis sunt consequatur molestiae at provident. Id nemo quisquam dolores non natus. Magni consequatur deleniti ut possimus. Tenetur ut saepe explicabo non.",
+            "images": [
+                "https://picsum.photos/seed/62eacabbb8cfd/850/350",
+                "https://picsum.photos/seed/62eacabbb8d00/850/350",
+                "https://picsum.photos/seed/62eacabbb8d02/850/350",
+                "https://picsum.photos/seed/62eacabbb8d04/850/350"
+            ],
+            "author": {
+                "id": 1187,
+                "name": "Christ Stark",
+                "first_name": "Christ",
+                "profile_image": "https://picsum.photos/seed/62eaca0c65938/168/168",
+                "background_image": "https://picsum.photos/seed/62eaca0c6593e/850/350"
+            },
+            "likes_count": 0,
+            "comments_count": 22,
+            "isLiked": false,
+            "created_at": "2022-08-03 19:21",
+            "updated_at": "2022-08-03 19:21"
         },
-        "likes_count": 0,
-        "comments_count": 0,
-        "isLiked": false,
-        "created_at": "2022-07-24 14:42",
-        "updated_at": "2022-07-24 14:42"
-    },
-    {
-        "id": 6,
-        "content": "Velit sit molestias ea omnis nesciunt omnis voluptas. Mollitia quis ea quia illo amet et eos sed. Magni rerum voluptatum ex.",
-        "images": [
-            "https://picsum.photos/seed/62dd5a3a91742/850/350",
-            "https://picsum.photos/seed/62dd5a3a91744/850/350",
-            "https://picsum.photos/seed/62dd5a3a91746/850/350"
-        ],
-        "author": {
-            "id": 2,
-            "name": "Muriel Wilkinson",
-            "first_name": "Muriel",
-            "profile_image": "https://picsum.photos/seed/62dd5a10b4748/168/168",
-            "background_image": "https://picsum.photos/seed/62dd5a10b4753/850/350"
+        {
+            "type": "FRIEND",
+            "id": 58,
+            "content": "Aut ut laboriosam atque facere veniam. Eligendi magnam tempora expedita saepe. Quo earum consequatur iure recusandae et.",
+            "images": [
+                "https://picsum.photos/seed/62eacabc5920f/850/350",
+                "https://picsum.photos/seed/62eacabc59211/850/350",
+                "https://picsum.photos/seed/62eacabc59214/850/350"
+            ],
+            "author": {
+                "id": 1187,
+                "name": "Christ Stark",
+                "first_name": "Christ",
+                "profile_image": "https://picsum.photos/seed/62eaca0c65938/168/168",
+                "background_image": "https://picsum.photos/seed/62eaca0c6593e/850/350"
+            },
+            "likes_count": 0,
+            "comments_count": 22,
+            "isLiked": false,
+            "created_at": "2022-08-03 19:21",
+            "updated_at": "2022-08-03 19:21"
         },
-        "likes_count": 0,
-        "comments_count": 0,
-        "isLiked": false,
-        "created_at": "2022-07-24 14:42",
-        "updated_at": "2022-07-24 14:42"
-    },
-    {
-        "id": 1,
-        "content": "Omnis recusandae consequatur ipsam nemo voluptas. Eos dolores voluptate occaecati animi. Libero consequatur libero sed qui sit a est.",
-        "images": ["https://picsum.photos/seed/62dd5a351c3fd/850/350"],
-        "author": {
-            "id": 1,
-            "name": "Marcin Witas",
-            "first_name": "Marcin",
-            "profile_image": "https://picsum.photos/seed/62dd5a016e6cf/168/168",
-            "background_image": "https://picsum.photos/seed/62dd5a016e6dc/850/350"
+        {
+            "type": "FRIEND",
+            "id": 53,
+            "content": "Ut quam earum enim. Est ut a dolorem voluptatibus facilis vero consectetur. Expedita quas rem et voluptatem placeat suscipit nemo. Rerum nam qui veniam impedit nihil expedita.",
+            "images": [
+                "https://picsum.photos/seed/62eaca913364e/850/350",
+                "https://picsum.photos/seed/62eaca913364f/850/350"
+            ],
+            "author": {
+                "id": 1185,
+                "name": "Otilia Bartell",
+                "first_name": "Otilia",
+                "profile_image": "https://picsum.photos/seed/62eaca0bc638f/168/168",
+                "background_image": "https://picsum.photos/seed/62eaca0bc63a6/850/350"
+            },
+            "likes_count": 0,
+            "comments_count": 22,
+            "isLiked": false,
+            "created_at": "2022-08-03 19:20",
+            "updated_at": "2022-08-03 19:20"
         },
-        "likes_count": 0,
-        "comments_count": 0,
-        "isLiked": false,
-        "created_at": "2022-07-24 14:41",
-        "updated_at": "2022-07-24 14:41"
-    },
-    {
-        "id": 2,
-        "content": "Similique accusantium nam ipsam magni. Doloremque aut modi quod iste quia quia voluptas.",
-        "images": ["https://picsum.photos/seed/62dd5a35dcf58/850/350"],
-        "author": {
-            "id": 1,
-            "name": "Marcin Witas",
-            "first_name": "Marcin",
-            "profile_image": "https://picsum.photos/seed/62dd5a016e6cf/168/168",
-            "background_image": "https://picsum.photos/seed/62dd5a016e6dc/850/350"
-        },
-        "likes_count": 0,
-        "comments_count": 0,
-        "isLiked": false,
-        "created_at": "2022-07-24 14:41",
-        "updated_at": "2022-07-24 14:41"
-    }
-]
+        {
+            "type": "FRIEND",
+            "id": 54,
+            "content": "Dolor enim aut veritatis labore. Aliquam quae ullam omnis quod dicta aut in. Totam nisi quisquam et. Sint cum et aut quos fuga est quia. Modi nemo et sunt nostrum totam.",
+            "images": ["https://picsum.photos/seed/62eaca91c6128/850/350"],
+            "author": {
+                "id": 1185,
+                "name": "Otilia Bartell",
+                "first_name": "Otilia",
+                "profile_image": "https://picsum.photos/seed/62eaca0bc638f/168/168",
+                "background_image": "https://picsum.photos/seed/62eaca0bc63a6/850/350"
+            },
+            "likes_count": 0,
+            "comments_count": 22,
+            "isLiked": false,
+            "created_at": "2022-08-03 19:20",
+            "updated_at": "2022-08-03 19:20"
+        }
+    ],
+    "current_page": 2,
+    "next_page": 3,
+    "prev_page": 1
+}

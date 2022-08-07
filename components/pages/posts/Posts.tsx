@@ -1,13 +1,14 @@
 import { FakeForm } from '@components/pages/posts/create/FakeForm';
-import { List } from '@components/pages/posts/List';
+import { List } from '@components/pages/posts/list/List';
 
 export const Posts = () => {
     return (
-        <div className="max-w-[700px] flex flex-col gap-6 text-black mx-auto p-5">
-            <div id="posts-list" className="h-screen flex flex-col gap-4 overflow-auto scroll-smooth scrollbar-none">
-                <FakeForm />
-                <List />
-            </div>
+        <div
+            id="posts-list"
+            className="max-w-[700px] h-screen flex flex-col gap-4 overflow-auto scroll-smooth scrollbar-none text-black mx-auto p-5"
+        >
+            <FakeForm />
+            <List />
         </div>
     );
 };

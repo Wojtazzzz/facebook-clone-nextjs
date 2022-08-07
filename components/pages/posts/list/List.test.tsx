@@ -1,11 +1,14 @@
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
-import { List } from '@components/pages/posts/List';
+import { List } from '@components/pages/posts/list/List';
 import PostsFirstPageJson from '@mocks/posts/firstPage.json';
+import PostsEmptyPageJson from '@mocks/posts/empty.json';
 import { screen } from '@testing-library/react';
 import { mock } from '@libs/nock';
 
 describe('List component', () => {
-    it('show loaders on initial fetching posts', () => {
+    const posts = PostsFirstPageJson.data;
+
+    it('render loaders on initial fetching posts', () => {
         mock('/api/posts?page=1', 200, PostsFirstPageJson);
 
         renderWithDefaultData(<List />);
@@ -14,20 +17,20 @@ describe('List component', () => {
         expect(loaders).toBeInTheDocument();
     });
 
-    it('load 10 posts', async () => {
+    it('load and render 10 posts', async () => {
         mock('/api/posts?page=1', 200, PostsFirstPageJson);
 
         renderWithDefaultData(<List />);
 
-        const firstPost = await screen.findByText(PostsFirstPageJson[0].content);
+        const firstPost = await screen.findByText(posts[0].content);
         expect(firstPost).toBeInTheDocument();
 
-        const fiveteenthPost = await screen.findByText(PostsFirstPageJson[9].content);
+        const fiveteenthPost = await screen.findByText(posts[9].content);
         expect(fiveteenthPost).toBeInTheDocument();
     });
 
-    it('show empty component when fetch no posts', async () => {
-        mock('/api/posts?page=1', 200, []);
+    it('render empty component when fetch no posts', async () => {
+        mock('/api/posts?page=1', 200, PostsEmptyPageJson);
 
         renderWithDefaultData(<List />);
 
@@ -35,7 +38,7 @@ describe('List component', () => {
         expect(emptyComponent).toBeInTheDocument();
     });
 
-    it('show error component when api returns error', async () => {
+    it('render error component when api returns error', async () => {
         mock('/api/posts?page=1', 500);
 
         renderWithDefaultData(<List />);

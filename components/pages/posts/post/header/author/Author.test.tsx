@@ -6,7 +6,7 @@ import { screen } from '@testing-library/react';
 
 describe('Author component', () => {
     it('has link to user profile', () => {
-        const post = PostsFirstPageJson[0];
+        const post = PostsFirstPageJson.data[0];
         const author = post.author;
 
         renderWithDefaultData(<Author author={author} created_at={post.created_at} updated_at={post.updated_at} />);
@@ -29,8 +29,8 @@ describe('Author component', () => {
     });
 
     it('display author name properly', () => {
-        const post = PostsFirstPageJson[0];
-
+        const post = PostsFirstPageJson.data[0];
+        
         renderWithDefaultData(
             <Author author={post.author} created_at={post.created_at} updated_at={post.updated_at} />
         );

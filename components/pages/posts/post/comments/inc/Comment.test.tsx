@@ -10,7 +10,7 @@ import userEvent from '@testing-library/user-event';
 
 describe('Comment component', () => {
     const user = userEvent.setup();
-    const comment = CommentsFirstPageJson[0];
+    const comment = CommentsFirstPageJson.data[0];
     const editedComment = EditedCommentJson;
     const rootUserComment = RootUserCommentJson;
 

@@ -3,11 +3,11 @@ import { ValidationError } from '@components/inc/ValidationError';
 
 import Axios from 'axios';
 
-interface ErrorsProps {
+interface ErrorMessageProps {
     error: unknown;
 }
 
-export const Errors = ({ error }: ErrorsProps) => {
+export const ErrorMessage = ({ error }: ErrorMessageProps) => {
     if (Axios.isAxiosError(error)) {
         const contentTooLarge = error.message.includes('413');
 
@@ -16,10 +16,6 @@ export const Errors = ({ error }: ErrorsProps) => {
         ) : (
             <ApiError />
         );
-    }
-
-    if (error) {
-        return <></>;
     }
 
     return (

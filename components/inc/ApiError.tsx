@@ -9,7 +9,7 @@ interface ApiErrorProps {
 
 export const ApiError = ({ size = 'base', styles = '' }: ApiErrorProps) => {
     return (
-        <div className={`w-full flex flex-col justify-center items-center my-5 ${styles}`}>
+        <div data-testid="server-error" className={`w-full flex flex-col justify-center items-center my-5 ${styles}`}>
             <Image
                 width={stylesProps[size].img}
                 height={stylesProps[size].img}

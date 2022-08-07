@@ -1,37 +1,44 @@
-import { usePaginatedData } from '@hooks/usePaginatedData';
-
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Loader } from '@components/contacts/inc/Loader';
 import { Contact } from '@components/contacts/inc/Contact';
 import { ApiError } from '@components/inc/ApiError';
 import { EmptyList } from '@components/inc/EmptyList';
 
-import { memo } from 'react';
-
+import React, { memo } from 'react';
+import { useInfiniteData } from '@hooks/useInfiniteData';
 import type { IContact } from '@utils/types';
 
 export const List = memo(() => {
-    const { data, isLoadingInitialData, isError, isEmpty, isReachedEnd, loadMore } = usePaginatedData<IContact>(
-        (index) => `/api/friends/contacts?page=${index + 1}`,
-        20
+    const { data, isLoading, isError, isEmpty, hasNextPage, fetchNextPage } = useInfiniteData<IContact>(
+        ['contacts'],
+        '/api/contacts'
     );
 
-    if (isLoadingInitialData) return <Loader testId="contacts-loading_loader" />;
-    if (isError) return <ApiError size="lg" styles="h-full" />;
+    if (isLoading) return <Loader testId="contacts-loading_loader" />;
+    if (!data || isError) return <ApiError size="lg" styles="h-full" />;
     if (isEmpty) return <EmptyList title="No contacts, add some friends!" />;
 
-    const ContactsComponents = data.map((contact) => <Contact key={contact.id} {...contact} />);
+    const ContactsComponents = data.pages.map((page) => (
+        <React.Fragment key={page.current_page}>
+            {page.data.map((contact) => (
+                <Contact key={contact.id} {...contact} />
+            ))}
+        </React.Fragment>
+    ));
 
     return (
-        <div data-testid="contacts-list" id="list-of-contacts" className="w-full">
+        <div
+            data-testid="contacts-list"
+            id="list-of-contacts"
+            className="w-full overflow-y-scroll scrollbar-thin scrollbar-thumb-dark-200 max-h-full flex flex-col "
+        >
             <InfiniteScroll
                 dataLength={ContactsComponents.length}
-                next={loadMore}
-                className="flex flex-col-reverse gap-1"
-                inverse
-                hasMore={!isReachedEnd}
+                next={fetchNextPage}
+                className="flex flex-col gap-1"
+                hasMore={!!hasNextPage}
                 loader={<Loader testId="contacts-fetching_loader" />}
-                scrollableTarget="list-of-messages"
+                scrollableTarget="list-of-contacts"
             >
                 {ContactsComponents}
             </InfiniteScroll>

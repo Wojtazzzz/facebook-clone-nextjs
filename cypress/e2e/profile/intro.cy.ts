@@ -34,31 +34,4 @@ describe('Profile intro tests', () => {
                 cy.get('[aria-label="Marital status"]').should('be.visible').should('contain.text', 'Widowed');
             });
     });
-
-    it('visit self profile, check intro section shows "joined on" info and only this data which user has in database', () => {
-        cy.loginRequest({
-            works_at: null,
-            went_to: null,
-            lives_in: 'Simple city',
-            from: null,
-            marital_status: null,
-            created_at: '2018-07-17 04:48:13',
-        });
-
-        cy.visit('/profile/1');
-
-        cy.intercept('/api/user').as('user');
-        cy.reload();
-        cy.wait('@user');
-
-        cy.get('[data-testid="profile-intro"]')
-            .should('be.visible')
-            .within(() => {
-                cy.get('[aria-label="Went to"]').should('not.exist');
-                cy.get('[aria-label="Lives in"]').should('be.visible').should('contain.text', 'Lives in Simple city');
-                cy.get('[aria-label="From"]').should('not.exist');
-                cy.get('[aria-label="Joined on"]').should('be.visible').should('contain.text', 'Joined on July 2018');
-                cy.get('[aria-label="Widowed"]').should('not.exist');
-            });
-    });
 });

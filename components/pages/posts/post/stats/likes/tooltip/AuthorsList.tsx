@@ -1,5 +1,3 @@
-import useSWR from 'swr';
-
 import { Author } from '@components/pages/posts/post/stats/likes/tooltip/Author';
 import { ApiError } from '@components/pages/posts/post/stats/likes/tooltip/ApiError';
 import { EmptyList } from '@components/pages/posts/post/stats/likes/tooltip/EmptyList';
@@ -8,6 +6,7 @@ import { SpinnerLoader } from '@components/inc/SpinnerLoader';
 import { axios } from '@libs/axios';
 
 import type { ILike } from '@utils/types';
+import { useQuery } from '@tanstack/react-query';
 
 interface AuthorsListProps {
     postId: number;
@@ -16,10 +15,12 @@ interface AuthorsListProps {
 const maxCount = 12;
 
 export const AuthorsList = ({ postId }: AuthorsListProps) => {
-    const { data, error } = useSWR<ILike[]>(`/api/posts/${postId}/likes`, fetcher);
+    const { isLoading, isError, data } = useQuery<ILike[]>(['likes'], () =>
+        axios.get(`/api/posts/${postId}/likes`).then((response) => response.data)
+    );
 
-    if (!error && !data) return <SpinnerLoader testid="likes-spinner" spinnerStyles="w-4 mx-auto" />;
-    if (error) return <ApiError />;
+    if (isLoading) return <SpinnerLoader testid="likes-spinner" spinnerStyles="w-4 mx-auto" />;
+    if (isError) return <ApiError />;
     if (!data) return <EmptyList />;
 
     const LikeComponents = data.map((like, i) => {
@@ -37,11 +38,3 @@ export const AuthorsList = ({ postId }: AuthorsListProps) => {
         </div>
     );
 };
-
-const fetcher = (url: string) =>
-    axios
-        .get(url)
-        .then((response) => response.data)
-        .catch((error) => {
-            throw error;
-        });

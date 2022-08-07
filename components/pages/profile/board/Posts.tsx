@@ -1,25 +1,32 @@
-import { usePaginatedData } from '@hooks/usePaginatedData';
-
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Post } from '@components/pages/posts/post/Post';
 import { Loader } from '@components/pages/posts/Loader';
 import { ApiError } from '@components/inc/ApiError';
 import { EmptyList } from '@components/inc/EmptyList';
 
-import type { IPost } from '@utils/types';
+import React from 'react';
+import { useInfiniteData } from '@hooks/useInfiniteData';
+import { IPost } from '@utils/types';
 
 interface PostsProps {
-    endpoint: string;
+    queryKey: string[];
+    path: string;
 }
 
-export const Posts = ({ endpoint }: PostsProps) => {
-    const { data, state, isEmpty, isReachedEnd, reloadData, loadMore } = usePaginatedData<IPost>(endpoint);
+export const Posts = ({ queryKey, path }: PostsProps) => {
+    const { data, isLoading, isError, isEmpty, hasNextPage, fetchNextPage } = useInfiniteData<IPost>(queryKey, path);
 
-    if (state === 'LOADING') return <Loader testId="boardPosts-loading_loader" />;
-    if (state === 'ERROR') return <ApiError size="xl" styles="mt-8" />;
+    if (isLoading) return <Loader testId="boardPosts-loading_loader" />;
+    if (!data || isError) return <ApiError size="xl" styles="mt-8" />;
     if (isEmpty) return <EmptyList title="No posts, add some friends!" />;
 
-    const PostsComponents = data.map((post) => <Post key={post.id} {...post} reloadPosts={reloadData} />);
+    const PostsComponents = data.pages.map((page) => (
+        <React.Fragment key={page.current_page}>
+            {page.data.map((post) => (
+                <Post key={post.id} {...post} />
+            ))}
+        </React.Fragment>
+    ));
 
     return (
         <div
@@ -29,11 +36,10 @@ export const Posts = ({ endpoint }: PostsProps) => {
         >
             <InfiniteScroll
                 dataLength={PostsComponents.length}
-                next={loadMore}
-                hasMore={!isReachedEnd}
+                next={fetchNextPage}
+                hasMore={!!hasNextPage}
                 loader={<Loader testId="boardPosts-fetching_loader" />}
                 scrollableTarget="profile-board-posts"
-                pullDownToRefreshThreshold={100}
                 className="flex flex-col gap-4 mb-12"
             >
                 {PostsComponents}

@@ -11,8 +11,7 @@ describe('CreateForm component', () => {
     jest.setTimeout(30000);
 
     const user = userEvent.setup();
-    const post = PostsFirstPageJson[0];
-    const mockReloadComments = jest.fn();
+    const post = PostsFirstPageJson.data[0];
 
     beforeEach(() => {
         mock(`/api/posts/${post.id}/comments?page=1`, 200, CommentsFirstPageJson);
@@ -20,7 +19,7 @@ describe('CreateForm component', () => {
     });
 
     it('can write on input', async () => {
-        renderWithDefaultData(<CreateForm postId={post.id} reloadComments={mockReloadComments} />);
+        renderWithDefaultData(<CreateForm postId={post.id} />);
 
         const input = screen.getByLabelText('Write a comment');
         await user.type(input, 'John Doe');
@@ -31,7 +30,7 @@ describe('CreateForm component', () => {
     it('clear input when comment was created', async () => {
         mock(`/api/posts/${post.id}/comments`, 201, CommentSuccessResponseJson, 'post');
 
-        renderWithDefaultData(<CreateForm postId={post.id} reloadComments={mockReloadComments} />);
+        renderWithDefaultData(<CreateForm postId={post.id} />);
 
         const input = screen.getByLabelText('Write a comment');
         await user.type(input, 'John Doe is super facebook-clone user!');
@@ -47,7 +46,7 @@ describe('CreateForm component', () => {
     it('not clear input when create api return error', async () => {
         mock(`/api/posts/${post.id}/comments`, 500, {}, 'post');
 
-        renderWithDefaultData(<CreateForm postId={post.id} reloadComments={mockReloadComments} />);
+        renderWithDefaultData(<CreateForm postId={post.id} />);
 
         const input = screen.getByLabelText('Write a comment');
         await user.type(input, 'John Doe is super facebook-clone user!');
@@ -61,7 +60,7 @@ describe('CreateForm component', () => {
     });
 
     it('"Comment must be at least 2 characters" validation error', async () => {
-        renderWithDefaultData(<CreateForm postId={post.id} reloadComments={mockReloadComments} />);
+        renderWithDefaultData(<CreateForm postId={post.id} />);
 
         const input = screen.getByLabelText('Write a comment');
         await user.type(input, 'a');
@@ -75,7 +74,7 @@ describe('CreateForm component', () => {
     });
 
     it('"Comment must contain text" validation error', async () => {
-        renderWithDefaultData(<CreateForm postId={post.id} reloadComments={mockReloadComments} />);
+        renderWithDefaultData(<CreateForm postId={post.id} />);
 
         const submitButton = screen.getByLabelText('Submit comment');
         await user.click(submitButton);
@@ -86,7 +85,7 @@ describe('CreateForm component', () => {
     });
 
     it('"Comment must be at most 1000 characters" validation error', async () => {
-        renderWithDefaultData(<CreateForm postId={post.id} reloadComments={mockReloadComments} />);
+        renderWithDefaultData(<CreateForm postId={post.id} />);
 
         const input = screen.getByLabelText('Write a comment');
         await user.type(input, LONG_TEXT);

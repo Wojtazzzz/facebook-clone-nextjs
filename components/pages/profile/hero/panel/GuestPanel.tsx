@@ -14,7 +14,7 @@ interface GuestPanelProps {
 
 export const GuestPanel = ({ user }: GuestPanelProps) => {
     const dispatch = useAppDispatch();
-    const { state, poke } = usePokes();
+    const { poke, isLoading } = usePokes();
 
     const handleOpenChat = () => dispatch(openChat(user));
     const handlePoke = () => poke(user.id);
@@ -22,13 +22,7 @@ export const GuestPanel = ({ user }: GuestPanelProps) => {
     return (
         <div className="w-full flex justify-end items-end gap-4 mb-6 mr-6">
             <Button title="Send message" styles="w-[130px] xl:w-[155px]" callback={handleOpenChat} />
-
-            <Button
-                title="Poke"
-                styles={clsx('w-[130px] xl:w-[155px]')}
-                isDisabled={state.status === 'LOADING'}
-                callback={handlePoke}
-            />
+            <Button title="Poke" styles={clsx('w-[130px] xl:w-[155px]')} isDisabled={isLoading} callback={handlePoke} />
         </div>
     );
 };

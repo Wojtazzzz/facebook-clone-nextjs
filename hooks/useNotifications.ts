@@ -1,22 +1,29 @@
-import { useState } from 'react';
-import { useAxios } from '@hooks/useAxios';
+import { useInfiniteData } from '@hooks/useInfiniteData';
+import { INotification } from '@utils/types';
+import { useMutation } from '@tanstack/react-query';
+import axios from 'axios';
 
 export const useNotifications = () => {
-    const [marked, setMarked] = useState(false);
-    const { sendRequest } = useAxios();
+    const { data, isLoading, isError, isEmpty, hasNextPage, fetchNextPage } = useInfiniteData<INotification>(
+        ['notifications'],
+        '/api/notifications'
+    );
+
+    const markAsReadMutation = useMutation(() => axios.put('/api/notifications/mark-as-read'));
 
     const markAsRead = () => {
-        if (marked) return;
+        if (markAsReadMutation.isLoading) return;
 
-        sendRequest({
-            method: 'PUT',
-            url: '/api/notifications/mark-as-read',
-        });
-
-        setMarked(true);
+        markAsReadMutation.mutate();
     };
 
     return {
+        data,
+        isLoading,
+        isError,
+        isEmpty,
+        hasNextPage,
+        fetchNextPage,
         markAsRead,
     };
 };

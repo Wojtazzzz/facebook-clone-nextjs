@@ -1,11 +1,14 @@
 import { screen } from '@testing-library/react';
 import RootUserJson from '@mocks/user/root.json';
 import MessengerFirstPageJson from '@mocks/messenger/firstPage.json';
+import MessengerEmptyPageJson from '@mocks/messenger/empty.json';
 import { Messages } from '@components/nav/panel/messenger/Messages';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import { mock } from '@libs/nock';
 
 describe('Messenger component', () => {
+    const messages = MessengerFirstPageJson.data;
+
     beforeEach(() => {
         mock('/api/user', 200, RootUserJson);
     });
@@ -25,15 +28,15 @@ describe('Messenger component', () => {
 
         renderWithDefaultData(<Messages />);
 
-        const firstElement = await screen.findByText(MessengerFirstPageJson[0].name);
+        const firstElement = await screen.findByText(messages[0].name);
         expect(firstElement).toBeInTheDocument();
 
-        const tenthElement = await screen.findByText(MessengerFirstPageJson[9].name);
+        const tenthElement = await screen.findByText(messages[9].name);
         expect(tenthElement).toBeInTheDocument();
     });
 
     it('render properly empty component when response return empty array', async () => {
-        mock('/api/messages?page=1', 200, []);
+        mock('/api/messages?page=1', 200, MessengerEmptyPageJson);
 
         renderWithDefaultData(<Messages />);
 

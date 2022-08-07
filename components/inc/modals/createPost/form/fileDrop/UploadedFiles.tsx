@@ -16,7 +16,7 @@ export const UploadedFiles = () => {
     const ImagesComponents = images.map((file) => <File key={uuidv4()} file={file} />);
 
     return (
-        <ul className="list-disc mb-4">
+        <ul aria-label="List of uploaded images" className="list-disc mb-4">
             <h5 className="text-light-100 font-medium">Uploaded files: {images.length}</h5>
             {ImagesComponents}
         </ul>

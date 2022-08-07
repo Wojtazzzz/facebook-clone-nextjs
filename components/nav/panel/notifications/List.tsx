@@ -1,6 +1,5 @@
-import { usePaginatedData } from '@hooks/usePaginatedData';
 import { useNotifications } from '@hooks/useNotifications';
-import { memo, useEffect } from 'react';
+import React, { memo } from 'react';
 
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Notification } from '@components/nav/panel/notifications/Notification';
@@ -8,36 +7,37 @@ import { Loader } from '@components/nav/panel/inc/Loader';
 import { EmptyList } from '@components/nav/panel/inc/EmptyList';
 import { ApiError } from '@components/inc/ApiError';
 
-import type { INotification } from '@utils/types';
-
 export const List = memo(() => {
-    const { data, state, isEmpty, isReachedEnd, loadMore } = usePaginatedData<INotification>('/api/notifications');
-    const { markAsRead } = useNotifications();
+    const { data, isLoading, isError, isEmpty, hasNextPage, fetchNextPage, markAsRead } = useNotifications();
 
-    useEffect(() => {
-        if (state !== 'SUCCESS') return;
-
-        markAsRead();
-    }, [state, markAsRead]);
-
-    if (state === 'LOADING') return <Loader testId="notifications-fetching_loader" />;
-    if (state === 'ERROR') return <ApiError />;
+    if (isLoading) return <Loader testId="notifications-fetching_loader" />;
+    if (!data || isError) return <ApiError />;
     if (isEmpty) return <EmptyList title="Your Notifications list is empty" />;
 
-    const NotificationsComponents = data.map((notification) => (
-        <Notification key={notification.id} {...notification} />
+    const NotificationsComponents = data.pages.map((page) => (
+        <React.Fragment key={page.current_page}>
+            {page.data.map((notification) => (
+                <Notification key={notification.id} {...notification} />
+            ))}
+        </React.Fragment>
     ));
 
     return (
-        <InfiniteScroll
-            dataLength={NotificationsComponents.length}
-            next={loadMore}
-            hasMore={!isReachedEnd}
-            loader={<Loader testId="notifications-loading_loader" />}
-            scrollableTarget="list-of-notifications"
+        <div
+            id="list-of-notifications"
+            className="w-full h-[500px] overflow-y-scroll scrollbar-thin scrollbar-thumb-dark-100"
         >
-            {NotificationsComponents}
-        </InfiniteScroll>
+            <InfiniteScroll
+                dataLength={NotificationsComponents.length}
+                next={fetchNextPage}
+                hasMore={!!hasNextPage}
+                loader={<Loader testId="notifications-loading_loader" />}
+                scrollableTarget="list-of-notifications"
+                className="w-full flex flex-col gap-2"
+            >
+                {NotificationsComponents}
+            </InfiniteScroll>
+        </div>
     );
 });
 

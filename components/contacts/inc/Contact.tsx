@@ -15,7 +15,7 @@ export const Contact = (contact: ContactProps) => {
 
     return (
         <button
-            aria-label="Show chat with user"
+            aria-label={`Open chat with ${contact.name}`}
             className="w-full flex items-center gap-3 hover:bg-dark-100 rounded-lg transition-colors cursor-pointer p-2"
             onClick={handleOpenChat}
         >

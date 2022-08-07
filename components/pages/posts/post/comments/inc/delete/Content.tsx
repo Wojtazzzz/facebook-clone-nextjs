@@ -1,11 +1,7 @@
-import { useEffect } from 'react';
-import { usePaginatedData } from '@hooks/usePaginatedData';
 import { useComments } from '@hooks/useComments';
 
 import { SpinnerLoader } from '@components/inc/SpinnerLoader';
 import { ApiError } from '@components/inc/ApiError';
-
-import type { IComment } from '@utils/types';
 
 interface ContentProps {
     postId: number;
@@ -14,23 +10,18 @@ interface ContentProps {
 }
 
 export const Content = ({ postId, commentId, closeModal }: ContentProps) => {
-    const { reloadData: reloadComments } = usePaginatedData<IComment>(`/api/posts/${postId}/comments`);
-    const { state, removeComment } = useComments();
+    const { useRemove } = useComments();
+    const { remove, isLoading, isError } = useRemove();
 
-    useEffect(() => {
-        if (state.status !== 'SUCCESS') return;
+    const handleRemoveComment = () => {
+        remove(postId, commentId, closeModal);
+    };
 
-        reloadComments();
-        closeModal();
-    }, [state, reloadComments, closeModal]);
-
-    const handleRemoveComment = () => removeComment(postId, commentId);
-
-    if (state.status === 'LOADING') {
+    if (isLoading) {
         return <SpinnerLoader testid="deleteModal-loading" containerStyles="w-[80px] my-10 mx-auto" />;
     }
 
-    if (state.status === 'ERROR') {
+    if (isError) {
         return <ApiError size="lg" />;
     }
 

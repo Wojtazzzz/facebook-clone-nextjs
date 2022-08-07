@@ -2,19 +2,27 @@ import { Comment } from '@components/pages/posts/post/comments/inc/Comment';
 import { Loader } from '@components/pages/posts/post/comments/inc/Loader';
 import { ApiError } from '@components/inc/ApiError';
 
-import type { IComment } from '@utils/types';
-import type { IUsePaginatedDataState } from '@utils/types';
+import React from 'react';
+import type { IComment, IPaginatedResponse } from '@utils/types';
+import type { InfiniteData } from '@tanstack/react-query';
 
 interface ListProps {
-    state: IUsePaginatedDataState;
-    comments: IComment[];
+    data: InfiniteData<IPaginatedResponse<IComment>> | undefined;
+    isLoading: boolean;
+    isError: boolean;
 }
 
-export const List = ({ state, comments }: ListProps) => {
-    if (state === 'LOADING') return <Loader testId="postsCommentsList-loading_loader" />;
-    if (state === 'ERROR') return <ApiError styles="my-1" />;
+export const List = ({ data, isLoading, isError }: ListProps) => {
+    if (isLoading) return <Loader testId="postsCommentsList-loading_loader" />;
+    if (!data || isError) return <ApiError styles="my-1" />;
 
-    const CommentsComponents = comments.map((comment) => <Comment key={comment.id} {...comment} />);
+    const CommentsComponents = data.pages.map((page) => (
+        <React.Fragment key={page.current_page}>
+            {page.data.map((comment) => (
+                <Comment key={comment.id} {...comment} />
+            ))}
+        </React.Fragment>
+    ));
 
     return (
         <div data-testid="post-comments_list" className="flex flex-col items-start gap-1">

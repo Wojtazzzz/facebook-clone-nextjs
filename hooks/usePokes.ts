@@ -1,14 +1,21 @@
-import { useAxios } from '@hooks/useAxios';
+import { axios } from '@libs/axios';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export const usePokes = () => {
-    const { state, sendRequest } = useAxios();
+    const queryClient = useQueryClient();
+
+    const pokeMutation = useMutation((friendId: number) => axios.post('/api/pokes', { friend_id: friendId }));
 
     const poke = (friendId: number) => {
-        sendRequest({ method: 'POST', url: '/api/pokes', data: { friend_id: friendId } });
+        if (pokeMutation.isLoading) return;
+
+        pokeMutation.mutate(friendId, {
+            onSuccess: () => queryClient.invalidateQueries(['friends']),
+        });
     };
 
     return {
-        state,
         poke,
+        ...pokeMutation,
     };
 };

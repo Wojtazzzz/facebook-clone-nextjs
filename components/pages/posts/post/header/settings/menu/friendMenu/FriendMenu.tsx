@@ -6,28 +6,27 @@ import { Option } from '@components/pages/posts/post/header/settings/menu/Option
 interface FriendMenuProps {
     postId: number;
     closeMenu: () => void;
-    reloadPosts: () => void;
 }
 
-export const FriendMenu = ({ postId, closeMenu, reloadPosts }: FriendMenuProps) => {
-    const { isLoading, hide, save } = usePosts();
+export const FriendMenu = ({ postId, closeMenu }: FriendMenuProps) => {
+    const { useHide, useSave } = usePosts();
+    const { hide, isLoading: isHideLoading } = useHide();
+    const { save, isLoading: isSaveLoading } = useSave();
 
-    const handleHidePost = async () => {
-        await hide(postId);
-        reloadPosts();
-        closeMenu();
+    const handleHidePost = () => {
+        hide(postId);
     };
 
-    const handleSavePost = async () => {
-        await save(postId);
-        reloadPosts();
-        closeMenu();
+    const handleSavePost = () => {
+        save(postId, () => {
+            closeMenu();
+        });
     };
 
     return (
         <>
-            <Option title="Hide" icon={faBan} isActive={isLoading} callback={handleHidePost} />
-            <Option title="Save" icon={faSave} isActive={isLoading} callback={handleSavePost} />
+            <Option title="Hide" icon={faBan} isActive={isHideLoading} callback={handleHidePost} />
+            <Option title="Save" icon={faSave} isActive={isSaveLoading} callback={handleSavePost} />
         </>
     );
 };

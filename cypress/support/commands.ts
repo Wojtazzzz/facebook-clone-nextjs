@@ -2,12 +2,12 @@ import 'cypress-file-upload';
 import type { IMaritalStatus } from '@utils/types';
 
 type IUserDataParam = {
-    works_at: string | null;
-    went_to: string | null;
-    lives_in: string | null;
-    from: string | null;
-    marital_status: IMaritalStatus | null;
-    created_at: string | null;
+    works_at: string;
+    went_to: string;
+    lives_in: string;
+    from: string;
+    marital_status: IMaritalStatus;
+    created_at: string;
 };
 
 Cypress.Commands.add('loginRequest', (data: Partial<IUserDataParam>) => {
@@ -29,7 +29,7 @@ Cypress.Commands.add('checkNotification', (title: string, label: string, click: 
 
     cy.wait('@notifications_page_1');
 
-    cy.get('[class="infinite-scroll-component "] > button').should('have.length', 1);
+    cy.get('[id="list-of-notifications"] button').should('have.length', 1);
 
     cy.get('[id="list-of-notifications"]').within(() => {
         cy.get('button:first').contains(title).should('be.visible');
@@ -47,12 +47,15 @@ Cypress.Commands.add('relogin', (id: number, path: string = '/') => {
     cy.visit(path);
 });
 
+Cypress.Commands.add('friendsListItems', () => cy.get('[id="friends-list"] a[href*="/profile"]'));
+
 declare global {
     namespace Cypress {
         interface Chainable {
             loginRequest(data?: Partial<IUserDataParam>): Chainable<void>;
             checkNotification(title: string, label: string, click?: boolean): Chainable<void>;
             relogin(id: number, path?: string): Chainable<void>;
+            friendsListItems(): Chainable<void>;
         }
     }
 }

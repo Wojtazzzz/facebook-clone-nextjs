@@ -1,23 +1,27 @@
 import { mock } from '@libs/nock';
 import RootUserJson from '@mocks/user/root.json';
-import CreateSuccessResponseJson from '@mocks/posts/actions/createPostSuccess.json';
 import PostsFirstPageJson from '@mocks/posts/firstPage.json';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import { Form } from '@components/inc/modals/createPost/form/Form';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import nock from 'nock';
 import { generateFile } from '@utils/generateFile';
+import nock from 'nock';
+import { wait } from '@testing-library/user-event/dist/types/utils';
 
 describe('Form component', () => {
     jest.setTimeout(30000);
 
     beforeEach(() => {
+        nock.disableNetConnect();
         nock.cleanAll();
 
         mock('/api/user', 200, RootUserJson);
         mock('/api/posts?page=1', 200, PostsFirstPageJson);
-        mock('/api/posts?page=1', 200, PostsFirstPageJson);
+    });
+
+    afterEach(() => {
+        nock.cleanAll();
     });
 
     it('show too short text validation message', async () => {
@@ -25,7 +29,7 @@ describe('Form component', () => {
 
         renderWithDefaultData(<Form />);
 
-        const input = await screen.findByLabelText('Post content');
+        const input = screen.getByLabelText('Post content');
         const submitButton = screen.getByLabelText('Create post');
 
         await user.type(input, 'f');
@@ -37,13 +41,12 @@ describe('Form component', () => {
     });
 
     it('show too long text validation message', async () => {
-        jest.setTimeout(15000);
         const user = userEvent.setup();
 
         renderWithDefaultData(<Form />);
 
         const submitButton = screen.getByLabelText('Create post');
-        const input = await screen.findByLabelText('Post content');
+        const input = screen.getByLabelText('Post content');
 
         await user.type(input, LONG_TEXT);
         await user.click(submitButton);
@@ -51,8 +54,6 @@ describe('Form component', () => {
         const emptyPostValidationMessage = await screen.findByText('Post must be at most 1000 characters');
 
         expect(emptyPostValidationMessage).toBeInTheDocument();
-
-        jest.setTimeout(5000);
     });
 
     it('show empty post validation message', async () => {
@@ -69,56 +70,20 @@ describe('Form component', () => {
     });
 
     it('show loader when request called', async () => {
-        mock('/api/posts', 201, CreateSuccessResponseJson, 'post');
+        mock('/api/posts', 201, {}, 'post');
         const user = userEvent.setup();
 
         renderWithDefaultData(<Form />);
 
-        await waitFor(async () => {
-            const submitButton = screen.getByLabelText('Create post');
-            const input = await screen.findByLabelText('Post content');
+        const input = screen.getByLabelText('Post content');
+        const submitButton = screen.getByLabelText('Create post');
 
-            await user.type(input, 'Test Post');
-            await user.click(submitButton);
-        });
+        await user.type(input, 'Test Post');
+        await user.click(submitButton);
 
         const loader = screen.getByTestId('createPost-loader');
 
         expect(loader).toBeInTheDocument();
-    });
-
-    it('show api error component when post was not created', async () => {
-        mock('/api/posts', 500, {}, 'post');
-        const user = userEvent.setup();
-
-        renderWithDefaultData(<Form />);
-
-        const submitButton = screen.getByLabelText('Create post');
-        const input = await screen.findByLabelText('Post content');
-
-        await user.type(input, 'Test Post');
-        await user.click(submitButton);
-
-        const errorComponent = await screen.findByText('Something went wrong');
-
-        expect(errorComponent).toBeInTheDocument();
-    });
-
-    it('show error component when post was not created because content is too large', async () => {
-        mock('/api/posts', 413, {}, 'post');
-        const user = userEvent.setup();
-
-        renderWithDefaultData(<Form />);
-
-        const submitButton = screen.getByLabelText('Create post');
-        const input = await screen.findByLabelText('Post content');
-
-        await user.type(input, 'Test Post');
-        await user.click(submitButton);
-
-        const errorComponent = await screen.findByText('Your content is too large');
-
-        expect(errorComponent).toBeInTheDocument();
     });
 
     it('show input file when click on show button', async () => {
@@ -170,24 +135,6 @@ describe('Form component', () => {
         expect(displayedFileName).not.toBeInTheDocument();
     });
 
-    it('cannot upload file which is illicit', async () => {
-        const user = userEvent.setup();
-        const file = generateFile('testFile.pdf', 'application/pdf');
-
-        renderWithDefaultData(<Form />);
-
-        const showButton = screen.getByLabelText('Show input file');
-        await user.click(showButton);
-
-        const inputFile = screen.getByLabelText('Images input');
-
-        await user.upload(inputFile, file);
-
-        const displayedFileName = screen.queryByText(file.name);
-
-        expect(displayedFileName).not.toBeInTheDocument();
-    });
-
     it('can upload multiple files', async () => {
         const user = userEvent.setup();
         const files = [
@@ -219,7 +166,7 @@ describe('Form component', () => {
 
         const errors = screen.queryByTestId('post-validation');
 
-        expect(errors).not.toBeInTheDocument();
+        expect(errors).toHaveTextContent('');
     });
 
     it('can remove file from uploaded files list', async () => {

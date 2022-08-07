@@ -57,20 +57,18 @@ describe('Posts settings tests', () => {
                 cy.intercept('/api/posts/1').as('delete');
                 cy.intercept('/api/posts?page=1').as('posts_page_1');
 
-                cy.get('[aria-label="Settings"]').should('be.visible');
-                cy.get('[aria-label="Settings"] > button[aria-label="Delete"]').click();
-
-                cy.wait('@delete');
-
-                cy.get('[aria-label="Settings"]').should('not.exist');
+                cy.get('[aria-label="Settings"]').within(() => {
+                    cy.get('button[aria-label="Delete"]').click();
+                });
             });
 
+        cy.wait('@delete');
         cy.wait('@posts_page_1');
 
         cy.get('[id="posts-list"] article[aria-label="Post"]').should('have.length', 1);
     });
 
-    it("open settings on someone's post, hide post, post settings dissapears, post dissapears from list, post displays on user's list of hidden posts, unhide post, post display again on main post list", () => {
+    it("open settings on someone's post, hide post, post dissapears from list, post displays on user's list of hidden posts, unhide post, post display again on main post list", () => {
         cy.create('Post', 2).then((posts) => {
             posts.forEach((post: IPost) => {
                 cy.create('Friendship', {
@@ -97,14 +95,12 @@ describe('Posts settings tests', () => {
                 cy.intercept('/api/hidden/posts').as('hide');
                 cy.intercept('/api/posts?page=1').as('posts_page_1');
 
-                cy.get('[aria-label="Settings"]').should('be.visible');
-                cy.get('[aria-label="Settings"] > button[aria-label="Hide"]').click();
-
-                cy.wait('@hide');
-
-                cy.get('[aria-label="Settings"]').should('not.exist');
+                cy.get('[aria-label="Settings"]').within(() => {
+                    cy.get('button[aria-label="Hide"]').click();
+                });
             });
 
+        cy.wait('@hide');
         cy.wait('@posts_page_1');
 
         cy.get('[id="posts-list"] article[aria-label="Post"]').should('have.length', 1);
@@ -123,14 +119,17 @@ describe('Posts settings tests', () => {
                 cy.get('button[aria-label="Show post settings"]').click();
 
                 cy.intercept('/api/hidden/posts/1').as('unhide');
-                cy.intercept('/api/posts?page=1').as('posts_page_1');
+                cy.intercept('/api/hidden/posts?page=1').as('posts_page_1');
 
-                cy.get('[aria-label="Settings"] > button[aria-label="Unhide"]').click();
+                cy.get('[aria-label="Settings"]').within(() => {
+                    cy.get('button[aria-label="Unhide"]').click();
+                });
             });
 
         cy.wait('@unhide');
+        cy.wait('@posts_page_1');
 
-        cy.get('[data-testid="board-posts"] article[aria-label="Post"]').should('have.length', 0);
+        cy.get('[data-testid="board-posts"] article[aria-label="Post"]').should('not.exist');
 
         cy.intercept('/api/posts?page=1').as('posts_page_1');
 
@@ -167,8 +166,9 @@ describe('Posts settings tests', () => {
                 cy.intercept('/api/saved/posts').as('save');
                 cy.intercept('/api/posts?page=1').as('posts_page_1');
 
-                cy.get('[aria-label="Settings"]').should('be.visible');
-                cy.get('[aria-label="Settings"] > button[aria-label="Save"]').click();
+                cy.get('[aria-label="Settings"]').within(() => {
+                    cy.get('button[aria-label="Save"]').click();
+                });
 
                 cy.wait('@save');
 

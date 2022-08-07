@@ -10,11 +10,14 @@ interface BoardProps {
 }
 
 export const Board = ({ userId }: BoardProps) => {
-    const [endpoint, setEndpoint] = useState(`/api/users/${userId}/posts`);
+    const [queryKey, setQueryKey] = useState(['OWN', `${userId}`]);
+    const [path, setPath] = useState(`/api/users/${userId}/posts`);
+
     const { user } = useAuth();
 
-    const changeList = (value: string) => {
-        setEndpoint(value);
+    const changeList = (queryKey: string[], value: string) => {
+        setQueryKey(queryKey);
+        setPath(value);
     };
 
     const isSelfProfile = user && user.id === userId;
@@ -28,7 +31,7 @@ export const Board = ({ userId }: BoardProps) => {
                 </>
             )}
 
-            <Posts endpoint={endpoint} />
+            <Posts queryKey={queryKey} path={path} />
         </div>
     );
 };

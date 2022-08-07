@@ -13,30 +13,26 @@ import type { ICommentPayload } from '@utils/types';
 
 interface CreateFormProps {
     postId: number;
-    reloadComments: () => void;
 }
 
-export const CreateForm = ({ postId, reloadComments }: CreateFormProps) => {
+export const CreateForm = ({ postId }: CreateFormProps) => {
     const formRef = useRef<FormikProps<ICommentPayload>>(null);
     const inputRef = useRef<HTMLInputElement>(null);
-    const { state, createComment } = useComments();
+    const { useCreate } = useComments();
+    const { create, isLoading: isCreateLoading, isError: isCreateError, error: createError } = useCreate();
 
     useEffect(() => {
         if (!inputRef.current) return;
-
         inputRef.current.focus();
     }, []);
 
-    useEffect(() => {
-        if (state.status === 'LOADING') return;
-
-        if (state.status === 'SUCCESS') {
+    const handleSubmit = (values: { content: string }) => {
+        create({ content: values.content, resource_id: postId }, () => {
             if (!formRef.current) return;
 
-            reloadComments();
             formRef.current.resetForm();
-        }
-    }, [state, reloadComments]);
+        });
+    };
 
     return (
         <Formik
@@ -45,14 +41,14 @@ export const CreateForm = ({ postId, reloadComments }: CreateFormProps) => {
             validationSchema={CommentSchema}
             validateOnChange={false}
             validateOnBlur={false}
-            onSubmit={createComment}
+            onSubmit={handleSubmit}
         >
             {({ values, errors, handleChange, handleBlur, handleSubmit }) => (
                 <form className="w-full" onSubmit={handleSubmit}>
                     <div
                         className={clsx(
                             'w-full flex justify-between items-center bg-dark-100 text-light-200 rounded-3xl focus:outline-none py-2 px-4',
-                            (state.status === 'ERROR' || errors.content) && 'border-[1px] border-red-400'
+                            (isCreateError || errors.content) && 'border-[1px] border-red-400'
                         )}
                     >
                         <input
@@ -60,22 +56,22 @@ export const CreateForm = ({ postId, reloadComments }: CreateFormProps) => {
                             type="text"
                             aria-label="Write a comment"
                             name="content"
-                            disabled={state.status === 'LOADING'}
+                            disabled={isCreateLoading}
                             value={values.content}
                             placeholder="Write a comment..."
                             className={clsx(
                                 'w-full bg-transparent focus:outline-none',
-                                state.status === 'LOADING' && 'cursor-progress'
+                                isCreateLoading && 'cursor-progress'
                             )}
                             autoComplete="off"
                             onChange={handleChange}
                             onBlur={handleBlur}
                         />
 
-                        <SubmitButton isLoading={state.status === 'LOADING'} callback={handleSubmit} />
+                        <SubmitButton isLoading={isCreateLoading} callback={handleSubmit} />
                     </div>
 
-                    <Errors error={state.status === 'ERROR' && state.error} />
+                    <Errors error={isCreateError && createError} />
                 </form>
             )}
         </Formik>

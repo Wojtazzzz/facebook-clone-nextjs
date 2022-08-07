@@ -15,16 +15,16 @@ interface ChatProps {
 
 export const Chat = ({ friend }: ChatProps) => {
     const { user } = useAuth();
-    const { refresh } = useChat();
+    const { invalidate } = useChat();
     const { startListen, stopListen } = useBroadcast();
 
     useEffect(() => {
         if (!user) return;
 
-        startListen(`messages.${user.id}.${friend.id}`, 'ChatMessageSent', refresh);
+        startListen(`messages.${user.id}.${friend.id}`, 'ChatMessageSent', invalidate);
 
         return () => stopListen(`messages.${user.id}.${friend.id}`, 'ChatMessageSent');
-    }, [friend.id, refresh, startListen, stopListen, user]);
+    }, [friend.id, invalidate, startListen, stopListen, user]);
 
     return (
         <div

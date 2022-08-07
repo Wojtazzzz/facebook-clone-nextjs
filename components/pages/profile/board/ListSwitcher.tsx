@@ -3,7 +3,7 @@ import type { IPostType } from '@utils/types';
 
 interface ListSwitcherProps {
     userId: number;
-    changeList: (value: string) => void;
+    changeList: (queryKey: string[], value: string) => void;
 }
 
 export const ListSwitcher = ({ userId, changeList }: ListSwitcherProps) => {
@@ -19,7 +19,7 @@ export const ListSwitcher = ({ userId, changeList }: ListSwitcherProps) => {
 
         if (!isPostListType(value)) return;
 
-        changeList(endpoints[value]);
+        changeList([value, userId.toString()], endpoints[value]);
     };
 
     return (

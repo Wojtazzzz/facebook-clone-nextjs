@@ -88,7 +88,7 @@ describe('Profile hero tests', () => {
         cy.checkNotification(`${USER_FIRST_NAME} ${USER_LAST_NAME}`, 'Poked you first time');
         cy.wait('@pokes_page_1');
 
-        cy.get('[data-testid="friends-list"] > a')
+        cy.friendsListItems()
             .should('have.length', 1)
             .within(() => {
                 cy.contains(`${USER_FIRST_NAME} ${USER_LAST_NAME}`);

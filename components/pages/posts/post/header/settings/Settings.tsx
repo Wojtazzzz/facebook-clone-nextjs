@@ -11,10 +11,9 @@ import type { IPostType } from '@utils/types';
 interface SettingsProps {
     postId: number;
     type: IPostType;
-    reloadPosts: () => void;
 }
 
-export const Settings = ({ postId, type, reloadPosts }: SettingsProps) => {
+export const Settings = ({ postId, type }: SettingsProps) => {
     const [isActive, setIsActive] = useState(false);
 
     const handleToggleMenuActive = () => setIsActive((prevState) => !prevState);
@@ -39,7 +38,7 @@ export const Settings = ({ postId, type, reloadPosts }: SettingsProps) => {
                     ref={ref}
                     className="min-w-[240px] absolute right-0 z-20 bg-dark-300 shadow-md rounded-xl py-3 px-4"
                 >
-                    <Menu postId={postId} closeMenu={handleCloseMenu} type={type} reloadPosts={reloadPosts} />
+                    <Menu postId={postId} closeMenu={handleCloseMenu} type={type} />
                     <GlobalMenu />
                 </div>
             )}

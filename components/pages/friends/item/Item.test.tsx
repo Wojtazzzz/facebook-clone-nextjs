@@ -7,23 +7,21 @@ import SuggestsFirstPageJson from '@mocks/friendsList/suggests/firstPage.json';
 import PokesFirstPageJson from '@mocks/friendsList/pokes/firstPage.json';
 import InvitesFirstPageJson from '@mocks/friendsList/suggests/firstPage.json';
 import FriendsFirstPageJson from '@mocks/friendsList/friends/firstPage.json';
+import InviteAcceptedJson from '@mocks/friendsList/invites/accept.json';
+import InviteRejectedJson from '@mocks/friendsList/invites/reject.json';
 import userEvent from '@testing-library/user-event';
 
 describe('Item component', () => {
     const user = userEvent.setup();
 
-    describe('Item from Suggests List', () => {
-        const jsonUser = SuggestsFirstPageJson[0].friend;
+    describe('Item from suggests list', () => {
+        const item = SuggestsFirstPageJson.data[0];
 
-        beforeEach(() => {
-            nock.disableNetConnect();
-        });
+        it('render user image, name, poked data, invite button', async () => {
+            renderWithDefaultData(<Item type="Suggests" item={item} />);
 
-        it('renders user image, name, poked data, invite button', async () => {
-            renderWithDefaultData(<Item type="Suggests" friend={jsonUser} />);
-
-            const userName = await screen.findByText(jsonUser.name);
-            const userProfileImage = await screen.findByAltText(jsonUser.name);
+            const userName = await screen.findByText(item.friend.name);
+            const userProfileImage = await screen.findByAltText(item.friend.name);
             const inviteButton = await screen.findByTitle('Invite');
 
             expect(userProfileImage).toBeInTheDocument();
@@ -31,10 +29,10 @@ describe('Item component', () => {
             expect(inviteButton).toBeInTheDocument();
         });
 
-        it('shows success message on successfully sent invite', async () => {
-            renderWithDefaultData(<Item type="Suggests" friend={jsonUser} />);
+        it('render success message on successfully sent invite', async () => {
+            renderWithDefaultData(<Item type="Suggests" item={item} />);
 
-            mock('/api/friendship/invite', 201, {}, 'post');
+            mock('/api/invites', 201, {}, 'post');
 
             const inviteButton = await screen.findByTitle('Invite');
             await user.click(inviteButton);
@@ -43,10 +41,10 @@ describe('Item component', () => {
             expect(successMessage).toBeInTheDocument();
         });
 
-        it('shows error message on failed request sent', async () => {
-            renderWithDefaultData(<Item type="Suggests" friend={jsonUser} />);
+        it('render error message on failed request', async () => {
+            renderWithDefaultData(<Item type="Suggests" item={item} />);
 
-            mock('/api/friendship/invite', 500, {}, 'post');
+            mock('/api/invites', 500, {}, 'post');
 
             const inviteButton = await screen.findByTitle('Invite');
             await user.click(inviteButton);
@@ -56,23 +54,18 @@ describe('Item component', () => {
         });
     });
 
-    describe('User from Pokes List', () => {
-        const jsonUser = PokesFirstPageJson[0].friend;
-        const jsonData = PokesFirstPageJson[0].data;
+    describe('User from pokes list', () => {
+        const poke = PokesFirstPageJson.data[0];
 
-        beforeEach(() => {
-            nock.disableNetConnect();
-        });
+        it('render user image, name, poke data', async () => {
+            renderWithDefaultData(<Item type="Pokes" item={poke} />);
 
-        it('renders user image, name, poked data', async () => {
-            renderWithDefaultData(<Item type="Pokes" friend={jsonUser} data={jsonData} />);
-
-            const userName = await screen.findByText(jsonUser.name);
-            const userProfileImage = await screen.findByAltText(jsonUser.name);
+            const userName = await screen.findByText(poke.friend.name);
+            const userProfileImage = await screen.findByAltText(poke.friend.name);
             const pokesCount = await screen.findByText(
-                `${jsonUser.first_name} poked you ${jsonData.count} times in a row`
+                `${poke.friend.first_name} poked you ${poke.data.count} times in a row`
             );
-            const pokeDate = await screen.findByText(jsonData.updated_at);
+            const pokeDate = await screen.findByText(poke.data.updated_at);
 
             expect(userProfileImage).toBeInTheDocument();
             expect(userName).toBeInTheDocument();
@@ -80,8 +73,8 @@ describe('Item component', () => {
             expect(pokeDate).toBeInTheDocument();
         });
 
-        it('shows success message on successfully poke', async () => {
-            renderWithDefaultData(<Item type="Pokes" friend={jsonUser} data={jsonData} />);
+        it('render success message on successfully poke', async () => {
+            renderWithDefaultData(<Item type="Pokes" item={poke} />);
 
             const pokeButton = await screen.findByTitle('Poke back');
             expect(pokeButton).toBeInTheDocument();
@@ -94,8 +87,8 @@ describe('Item component', () => {
             expect(successMessage).toBeInTheDocument();
         });
 
-        it('shows error message on failed poke', async () => {
-            renderWithDefaultData(<Item type="Pokes" friend={jsonUser} data={jsonData} />);
+        it('render error message on failed poke', async () => {
+            renderWithDefaultData(<Item type="Pokes" item={poke} />);
 
             const pokeButton = await screen.findByTitle('Poke back');
             expect(pokeButton).toBeInTheDocument();
@@ -109,18 +102,14 @@ describe('Item component', () => {
         });
     });
 
-    describe('User from Invites List', () => {
-        const jsonUser = InvitesFirstPageJson[0].friend;
+    describe('User from invites list', () => {
+        const item = InvitesFirstPageJson.data[0];
 
-        beforeEach(() => {
-            nock.disableNetConnect();
-        });
+        it('render user image, name, invite button', async () => {
+            renderWithDefaultData(<Item type="Invites" item={item} />);
 
-        it('renders user image, name, poked data, invite button', async () => {
-            renderWithDefaultData(<Item type="Invites" friend={jsonUser} />);
-
-            const userName = await screen.findByText(jsonUser.name);
-            const userProfileImage = await screen.findByAltText(jsonUser.name);
+            const userName = await screen.findByText(item.friend.name);
+            const userProfileImage = await screen.findByAltText(item.friend.name);
             const rejectButton = await screen.findByTitle('Reject');
             const acceptButton = await screen.findByTitle('Accept');
 
@@ -130,22 +119,22 @@ describe('Item component', () => {
             expect(acceptButton).toBeInTheDocument();
         });
 
-        it('shows success message on successfully reject invite', async () => {
-            renderWithDefaultData(<Item type="Invites" friend={jsonUser} />);
+        it('render success message on successfully reject invite', async () => {
+            mock(`/api/invites/${item.friend.id}`, 201, InviteRejectedJson, 'put');
 
-            mock('/api/friendship/reject', 201, {}, 'post');
+            renderWithDefaultData(<Item type="Invites" item={item} />);
 
             const rejectButton = await screen.findByTitle('Reject');
             await user.click(rejectButton);
 
-            const successMessage = await screen.findByText('Request rejected successfully');
+            const successMessage = await screen.findByText(InviteRejectedJson.message);
             expect(successMessage).toBeInTheDocument();
         });
 
-        it('shows error message on failed reject invite', async () => {
-            renderWithDefaultData(<Item type="Invites" friend={jsonUser} />);
+        it('render error message on failed reject invite', async () => {
+            renderWithDefaultData(<Item type="Invites" item={item} />);
 
-            mock('/api/friendship/reject', 500, {}, 'post');
+            mock(`/api/invites/${item.friend.id}`, 500, {}, 'put');
 
             const rejectButton = await screen.findByTitle('Reject');
             await user.click(rejectButton);
@@ -154,22 +143,22 @@ describe('Item component', () => {
             expect(successMessage).toBeInTheDocument();
         });
 
-        it('shows success message on successfully accept invite', async () => {
-            renderWithDefaultData(<Item type="Invites" friend={jsonUser} />);
+        it('render success message on successfully accept invite', async () => {
+            renderWithDefaultData(<Item type="Invites" item={item} />);
 
-            mock('/api/friendship/accept', 201, {}, 'post');
+            mock(`/api/invites/${item.friend.id}`, 201, InviteAcceptedJson, 'put');
 
             const acceptButton = await screen.findByTitle('Accept');
             await user.click(acceptButton);
 
-            const successMessage = await screen.findByText('Request accepted successfully');
+            const successMessage = await screen.findByText(InviteAcceptedJson.message);
             expect(successMessage).toBeInTheDocument();
         });
 
-        it('shows error message on failed reject invite', async () => {
-            renderWithDefaultData(<Item type="Invites" friend={jsonUser} />);
+        it('render error message on failed reject invite', async () => {
+            renderWithDefaultData(<Item type="Invites" item={item} />);
 
-            mock('/api/friendship/accept', 500, {}, 'post');
+            mock(`/api/invites/${item.friend.id}`, 500, {}, 'put');
 
             const acceptButton = await screen.findByTitle('Accept');
             await user.click(acceptButton);
@@ -179,18 +168,14 @@ describe('Item component', () => {
         });
     });
 
-    describe('User from Friends List', () => {
-        const jsonUser = FriendsFirstPageJson[0].friend;
+    describe('User from friends list', () => {
+        const item = FriendsFirstPageJson.data[0];
 
-        beforeEach(() => {
-            nock.disableNetConnect();
-        });
+        it('render user image, name, poked data, buttons', async () => {
+            renderWithDefaultData(<Item type="Friends" item={item} />);
 
-        it('renders user image, name, poked data, buttons', async () => {
-            renderWithDefaultData(<Item type="Friends" friend={jsonUser} />);
-
-            const userName = await screen.findByText(jsonUser.name);
-            const userProfileImage = await screen.findByAltText(jsonUser.name);
+            const userName = await screen.findByText(item.friend.name);
+            const userProfileImage = await screen.findByAltText(item.friend.name);
             const sendMessageButton = await screen.findByTitle('Send message');
             const removeButton = await screen.findByTitle('Remove');
 
@@ -200,10 +185,10 @@ describe('Item component', () => {
             expect(removeButton).toBeInTheDocument();
         });
 
-        it('shows success message on successfully destroyed friendship', async () => {
-            renderWithDefaultData(<Item type="Friends" friend={jsonUser} />);
+        it('render success message on successfully destroyed friendship', async () => {
+            renderWithDefaultData(<Item type="Friends" item={item} />);
 
-            mock('/api/friendship/destroy', 201, {}, 'post');
+            mock(`/api/friends/${item.friend.id}`, 204, {}, 'delete');
 
             const removeButton = await screen.findByTitle('Remove');
             await user.click(removeButton);
@@ -212,10 +197,10 @@ describe('Item component', () => {
             expect(successMessage).toBeInTheDocument();
         });
 
-        it('shows error message on failed destroying friendship', async () => {
-            renderWithDefaultData(<Item type="Friends" friend={jsonUser} />);
+        it('render error message on failed destroying friendship', async () => {
+            renderWithDefaultData(<Item type="Friends" item={item} />);
 
-            mock('/api/friendship/destroy', 500, {}, 'post');
+            mock(`/api/friends/${item.friend.id}`, 500, {}, 'delete');
 
             const removeButton = await screen.findByTitle('Remove');
             await user.click(removeButton);

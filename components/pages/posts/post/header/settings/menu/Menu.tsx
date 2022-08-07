@@ -11,14 +11,13 @@ interface MenuProps {
     postId: number;
     type: IPostType;
     closeMenu: () => void;
-    reloadPosts: () => void;
 }
 
-export const Menu = ({ postId, type, closeMenu, reloadPosts }: MenuProps) => {
+export const Menu = ({ postId, type, closeMenu }: MenuProps) => {
     useKey('Escape', closeMenu);
 
-    if (type === 'FRIEND') return <FriendMenu postId={postId} closeMenu={closeMenu} reloadPosts={reloadPosts} />;
-    if (type === 'HIDDEN') return <HiddenMenu postId={postId} closeMenu={closeMenu} reloadPosts={reloadPosts} />;
-    if (type === 'SAVED') return <SavedMenu postId={postId} closeMenu={closeMenu} reloadPosts={reloadPosts} />;
-    return <OwnMenu postId={postId} closeMenu={closeMenu} reloadPosts={reloadPosts} />;
+    if (type === 'FRIEND') return <FriendMenu postId={postId} closeMenu={closeMenu} />;
+    if (type === 'HIDDEN') return <HiddenMenu postId={postId} />;
+    if (type === 'SAVED') return <SavedMenu postId={postId} />;
+    return <OwnMenu postId={postId} />;
 };

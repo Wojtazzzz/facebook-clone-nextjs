@@ -1,100 +1,86 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { useRouter } from 'next/router';
-import useSWR from 'swr';
-import { useAxios } from '@hooks/useAxios';
-
 import { axios } from '@libs/axios';
-import Axios from 'axios';
 
-import type { IUser } from '@utils/types';
+import type { IUser, IValidationError } from '@utils/types';
 import type { IAuthMiddleware } from '@utils/types';
 import type { ILoginPayload } from '@utils/types';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { AxiosResponse } from 'axios';
 
 export const useAuth = (middleware?: IAuthMiddleware) => {
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState('');
     const router = useRouter();
-    const { state, sendRequest } = useAxios();
+    const queryClient = useQueryClient();
+    const queryOptions = useMemo(
+        () => ({
+            // onSuccess: () => queryClient.invalidateQueries(['user']),
+            onSuccess: () => console.log('x'),
+        }),
+        []
+    );
 
-    const fetcher = () =>
-        axios
-            .get('/api/user')
-            .then((response) => response.data)
-            .catch((error) => {
-                throw error;
-            });
+    const {
+        data: user,
+        isLoading,
+        isError,
+        error,
+    } = useQuery<IUser>(['user'], () => axios.get('/api/user').then((response) => response.data));
 
-    const { data: user, error: fetchError, mutate } = useSWR<IUser>('/api/user', fetcher);
+    const registerMutation = useMutation<AxiosResponse<any, any>, IValidationError>(() => axios.post('/register'));
+    const loginMutation = useMutation<AxiosResponse<any, any>, IValidationError, ILoginPayload>((data: ILoginPayload) =>
+        axios.post('/login', data)
+    );
+    const logoutMutation = useMutation(() => axios.post('/logout'));
 
     const csrf = () => axios.get('/sanctum/csrf-cookie');
 
     const register = async () => {
-        setIsLoading(true);
-        setError('');
+        if (registerMutation.isLoading) return;
 
         await csrf();
 
-        await sendRequest({
-            method: 'POST',
-            url: '/register',
-        });
-
-        mutate();
+        registerMutation.mutate(undefined, queryOptions);
     };
 
     const login = async (data: ILoginPayload) => {
-        setIsLoading(true);
-        setError('');
+        if (loginMutation.isLoading) return;
 
         await csrf();
 
-        await sendRequest({
-            method: 'POST',
-            url: '/login',
-            data,
-        });
-
-        mutate();
+        loginMutation.mutate(data, queryOptions);
     };
 
     const logout = useCallback(async () => {
-        if (!fetchError) {
-            setIsLoading(true);
+        if (logoutMutation.isLoading) return;
 
-            await sendRequest({
-                method: 'POST',
-                url: '/logout',
-            });
-
-            mutate();
-        }
-
-        window.location.pathname = '/login';
-    }, [fetchError, sendRequest, mutate]);
+        logoutMutation.mutate(undefined, queryOptions);
+    }, [logoutMutation, queryOptions]);
 
     useEffect(() => {
-        if (state.status === 'LOADING') return;
-
-        setIsLoading(false);
-
-        if (state.status === 'ERROR') {
-            Axios.isAxiosError(state.error)
-                ? setError(state.error.response?.data.message ?? state.error.message)
-                : setError('Something went wrong, try again later');
-        }
-    }, [state, mutate]);
-
-    useEffect(() => {
+        if (middleware === 'AUTH' && isError) window.location.pathname = '/login';
         if (middleware === 'GUEST' && user) router.push('/');
-        if (middleware === 'AUTH' && fetchError) logout();
-    }, [user, fetchError, middleware, router, logout]);
+    }, [isError, logout, middleware, router, user]);
 
     return {
         user,
         isLoading,
         error,
-        register,
-        login,
-        logout,
+
+        useLogin: () => ({
+            login,
+            ...loginMutation,
+            errorMessage: loginMutation.error?.response.data.message,
+        }),
+
+        useRegister: () => ({
+            register,
+            ...registerMutation,
+            errorMessage: registerMutation.error?.response.data.message,
+        }),
+
+        useLogout: () => ({
+            logout,
+            ...logoutMutation,
+        }),
     };
 };

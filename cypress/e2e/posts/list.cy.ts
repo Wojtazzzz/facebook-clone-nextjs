@@ -53,39 +53,6 @@ describe('Posts list tests', () => {
         });
     });
 
-    it('user see ten posts and fetch five more when scroll to bottom', () => {
-        cy.create('User').then((user) => {
-            cy.create('Friendship', {
-                user_id: 1,
-                friend_id: user.id,
-                status: 'CONFIRMED',
-            });
-
-            cy.create('Post', 15, {
-                author_id: user.id,
-            });
-        });
-
-        cy.intercept('/api/user').as('user');
-        cy.intercept('/api/posts?page=1').as('posts_page_1');
-
-        cy.visit('/');
-        cy.wait('@user');
-        cy.wait('@posts_page_1');
-
-        cy.get('[id="posts-list"] article[aria-label="Post"]').should('have.length', 10);
-
-        cy.intercept('/api/posts?page=1').as('posts_page_1');
-        cy.intercept('/api/posts?page=2').as('posts_page_2');
-
-        cy.get('[id="posts-list"]').scrollTo('bottom', { ensureScrollable: false });
-
-        cy.wait('@posts_page_1');
-        cy.wait('@posts_page_2');
-
-        cy.get('[id="posts-list"] article[aria-label="Post"]').should('have.length', 15);
-    });
-
     it('hidden posts are not displayed on list', () => {
         cy.create('Friendship', {
             user_id: 1,
@@ -139,9 +106,36 @@ describe('Posts list tests', () => {
         cy.intercept('/api/posts?page=1').as('posts_page_1');
 
         cy.visit('/');
+
         cy.wait('@user');
         cy.wait('@posts_page_1');
 
         cy.get('[id="posts-list"] article[aria-label="Post"]').should('have.length', 3);
+    });
+
+    it('list render empty component when api return empty data', () => {
+        cy.intercept('/api/user').as('user');
+        cy.intercept('/api/posts?page=1').as('posts_page_1');
+
+        cy.visit('/');
+
+        cy.wait('@user');
+        cy.wait('@posts_page_1');
+
+        cy.get('[id="posts-list"] article[aria-label="Post"]').should('not.exist');
+        cy.get('[data-testid="empty-list"]').should('be.visible');
+    });
+
+    it('list render error component when api return server error', () => {
+        cy.intercept('/api/user').as('user');
+        cy.intercept('/api/posts?page=1', { statusCode: 500 }).as('posts_page_1');
+
+        cy.visit('/');
+
+        cy.wait('@user');
+        cy.wait('@posts_page_1');
+
+        cy.get('[id="posts-list"] article[aria-label="Post"]').should('not.exist');
+        cy.get('[data-testid="server-error"]').should('be.visible');
     });
 });

@@ -1,6 +1,6 @@
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import { DeleteModal } from '@components/pages/posts/post/comments/inc/delete/DeleteModal';
-import { screen, waitFor } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import { mock } from '@libs/nock';
 import CommentsFirstPageJson from '@mocks/posts/comments/firstPage.json';
 import userEvent from '@testing-library/user-event';

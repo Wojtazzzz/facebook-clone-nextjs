@@ -7,13 +7,18 @@ describe('Profile board tests', () => {
         cy.loginRequest();
     });
 
-    it('visit self profile, see create post component, switch list of posts component and only own posts which are not hidden', () => {
-        cy.create('Post', 3, {
+    it('see create post component, switch list of posts component and only own posts without hidden and saved posts', () => {
+        cy.create('Post', 4, {
             author_id: 1,
-        }).then(([firstPost]) => {
+        }).then(([firstPost, secondPost]) => {
             cy.create('HiddenPost', {
                 user_id: 1,
                 post_id: firstPost.id,
+            });
+
+            cy.create('HiddenPost', {
+                user_id: 1,
+                post_id: secondPost.id,
             });
         });
 
@@ -30,7 +35,7 @@ describe('Profile board tests', () => {
         cy.get('[data-testid="board-posts"] article[aria-label="Post"]').should('have.length', 2);
     });
 
-    it('visit self profile, see empty list of own posts, change list to hidden posts and see 3 hidden post, change list to saved posts and see 4 saved posts, change list to own posts and see 0 posts', () => {
+    it('see empty list of own posts, change list to hidden posts and see 3 hidden post, change list to saved posts and see 4 saved posts, change list to own posts and again see 0 posts', () => {
         cy.create('HiddenPost', 3, {
             user_id: 1,
         });
@@ -69,7 +74,7 @@ describe('Profile board tests', () => {
         cy.get('[data-testid="board-posts"] article[aria-label="Post"]').should('not.exist');
     });
 
-    it('visit self profile, click on fake create post form, create post modal show, create post, new post shows on list', () => {
+    it('click on fake create post form, create post modal show, create post, new post show on list', () => {
         cy.intercept('/api/user').as('user');
         cy.intercept('/api/users/1/posts?page=1').as('posts');
 
@@ -85,13 +90,13 @@ describe('Profile board tests', () => {
         cy.get('[aria-label="Create post modal"]').should('be.visible');
 
         cy.intercept('/api/posts').as('store');
-        cy.intercept('/api/users/1/posts?page=1').as('posts');
+        cy.intercept('/api/users/1/posts?page=1').as('posts_page_1');
 
         cy.get('[aria-label="Post content"]').type('New post');
         cy.get('button').contains('Create post').click();
 
         cy.wait('@store');
-        cy.wait('@posts');
+        cy.wait('@posts_page_1');
 
         cy.get('[aria-label="Create post modal"]').should('not.exist');
 
@@ -99,7 +104,7 @@ describe('Profile board tests', () => {
         cy.get('article[aria-label="Post"]').first().should('contain.text', 'New post');
     });
 
-    it('visit self profile, scroll list to bottom, see loaders, see new fetched posts', () => {
+    it('see 10 own posts on list, fetch more by scrolling to bottom', () => {
         cy.create('Post', 14, {
             author_id: 1,
         });
@@ -114,15 +119,7 @@ describe('Profile board tests', () => {
 
         cy.get('[data-testid="board-posts"] article[aria-label="Post"]').should('have.length', 10);
 
-        cy.intercept('/api/users/1/posts?page=1').as('posts_page_1');
-        cy.intercept('/api/users/1/posts?page=2').as('posts_page_2');
-
         cy.get('[id="profile-board-posts"]').scrollTo('bottom', { ensureScrollable: false });
-
-        cy.get('[data-testid="boardPosts-fetching_loader"]').should('be.visible');
-
-        cy.wait('@posts_page_1');
-        cy.wait('@posts_page_2');
 
         cy.get('[data-testid="board-posts"] article[aria-label="Post"]').should('have.length', 14);
     });
@@ -153,13 +150,7 @@ describe('Profile board tests', () => {
         cy.get('[aria-label="Change list of posts"]').should('not.exist');
         cy.get('[data-testid="board-posts"] article[aria-label="Post"]').should('have.length', 10);
 
-        cy.intercept('/api/users/2/posts?page=1').as('posts_page_1');
-        cy.intercept('/api/users/2/posts?page=2').as('posts_page_2');
-
         cy.get('[id="profile-board-posts"]').scrollTo('bottom', { ensureScrollable: false });
-
-        cy.wait('@posts_page_1');
-        cy.wait('@posts_page_2');
 
         cy.get('[data-testid="board-posts"] article[aria-label="Post"]').should('have.length', 12);
     });
@@ -202,7 +193,7 @@ describe('Profile board tests', () => {
         });
     });
 
-    it('visit self profile, delete post', () => {
+    it('try to delete own post', () => {
         cy.create('Post', {
             author_id: 1,
         });
@@ -229,11 +220,11 @@ describe('Profile board tests', () => {
         cy.wait('@delete');
         cy.wait('@posts_page_1');
 
-        cy.get('[data-testid="board-posts"] article[aria-label="Post"]').should('have.length', 0);
+        cy.get('[data-testid="board-posts"] article[aria-label="Post"]').should('not.exist');
         cy.get('img[alt="List is empty"]').should('exist');
     });
 
-    it("visit friend's profile, save post, check that post displays on list of saved posts, unsave post, cehck that post dissapear from list of saved posts", () => {
+    it("visit friend's profile, save post, check that post displays on list of saved posts, unsave post, check that post dissapear from list of saved posts", () => {
         cy.create('User');
 
         cy.create('Post', {

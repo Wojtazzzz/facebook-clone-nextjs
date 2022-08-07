@@ -9,6 +9,7 @@ import { Board } from '@components/pages/profile/board/Board';
 describe('Board component', () => {
     beforeEach(() => {
         mock('/api/user', 200, RootUserJson);
+        mock('/api/user', 200, RootUserJson);
     });
 
     it('render CreatePost, Switcher and list of posts if profile is self profile', async () => {

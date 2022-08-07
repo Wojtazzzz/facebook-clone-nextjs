@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useAppDispatch } from '@hooks/redux';
 import { usePosts } from '@hooks/usePosts';
 
 import { Formik, Form as FormikForm } from 'formik';
 import { FileDrop } from '@components/inc/modals/createPost/form/fileDrop/FileDrop';
-import { Errors } from '@components/inc/modals/createPost/responses/Errors';
+import { ErrorMessage } from '@components/inc/modals/createPost/responses/ErrorMessage';
 import { SpinnerLoader } from '@components/inc/SpinnerLoader';
 import { SubmitButton } from '@components/inc/modals/createPost/form/SubmitButton';
 import { TextArea } from '@components/inc/modals/createPost/form/TextArea';
@@ -20,20 +20,19 @@ export const Form = () => {
     const [isUploadActive, setIsUploadActive] = useState(false);
     const [oldData, setOldData] = useState<IPostPayload>({ content: '', images: [] });
     const dispatch = useAppDispatch();
-    const { state, isLoading, create } = usePosts();
 
-    useEffect(() => {
-        if (state.status !== 'SUCCESS') return;
+    const { useCreate } = usePosts();
+    const { create, isLoading, error } = useCreate();
 
-        dispatch(closeModal());
-    }, [state, dispatch]);
-
-    const handleClose = () => setIsUploadActive(false);
+    const handleCloseFileDrop = () => setIsUploadActive(false);
+    const handleCloseModal = () => dispatch(closeModal());
     const handleChangeUploadIsActive = () => setIsUploadActive((prevState) => !prevState);
 
     const handleSubmit = (values: IPostPayload) => {
-        create(values);
-        setOldData(values);
+        create(values, () => {
+            setOldData(values);
+            handleCloseModal();
+        });
     };
 
     if (isLoading) return <SpinnerLoader testid="createPost-loader" containerStyles="w-[100px] my-10 mx-auto" />;
@@ -48,11 +47,11 @@ export const Form = () => {
                 <FormikForm className="m-3">
                     <TextArea handleChange={handleChange} handleBlur={handleBlur} value={values.content} />
 
-                    {isUploadActive && <FileDrop handleClose={handleClose} />}
+                    {isUploadActive && <FileDrop handleClose={handleCloseFileDrop} />}
 
                     <UploadedFiles />
 
-                    <Errors error={state.status === 'ERROR' ? state.error : null} />
+                    <ErrorMessage error={error} />
 
                     <DropLabel changeUploadActive={handleChangeUploadIsActive} />
 

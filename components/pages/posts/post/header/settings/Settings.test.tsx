@@ -5,10 +5,9 @@ import userEvent from '@testing-library/user-event';
 
 describe('Settings component', () => {
     const user = userEvent.setup();
-    const mockReloadPosts = jest.fn();
 
     it('open menu when click on button', async () => {
-        renderWithDefaultData(<Settings postId={1} type="OWN" reloadPosts={mockReloadPosts} />);
+        renderWithDefaultData(<Settings postId={1} type="OWN" />);
 
         const button = screen.getByLabelText('Show post settings');
         await user.click(button);
@@ -19,7 +18,7 @@ describe('Settings component', () => {
     });
 
     it('always render global menu', async () => {
-        renderWithDefaultData(<Settings postId={1} type="OWN" reloadPosts={mockReloadPosts} />);
+        renderWithDefaultData(<Settings postId={1} type="OWN" />);
 
         const button = screen.getByLabelText('Show post settings');
         await user.click(button);

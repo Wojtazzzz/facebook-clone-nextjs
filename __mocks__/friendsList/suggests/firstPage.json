@@ -1,92 +1,97 @@
-[
-    {
-        "friend": {
-            "id": 2,
-            "name": "Jammie Rau",
-            "first_name": "Jammie",
-            "profile_image": "https://picsum.photos/seed/62dd437fe0781/168/168",
-            "background_image": "https://picsum.photos/seed/62dd437fe078c/850/350"
+{
+    "data": [
+        {
+            "friend": {
+                "id": 68,
+                "name": "Leslie Kling",
+                "first_name": "Leslie",
+                "profile_image": "https://picsum.photos/seed/62ea5010c5ec3/168/168",
+                "background_image": "https://picsum.photos/seed/62ea5010c5ec8/850/350"
+            }
+        },
+        {
+            "friend": {
+                "id": 69,
+                "name": "Kaylie Olson",
+                "first_name": "Kaylie",
+                "profile_image": "https://picsum.photos/seed/62ea5011634bb/168/168",
+                "background_image": "https://picsum.photos/seed/62ea5011634bf/850/350"
+            }
+        },
+        {
+            "friend": {
+                "id": 70,
+                "name": "Marcos Rice",
+                "first_name": "Marcos",
+                "profile_image": "https://picsum.photos/seed/62ea5012019db/168/168",
+                "background_image": "https://picsum.photos/seed/62ea5012019e0/850/350"
+            }
+        },
+        {
+            "friend": {
+                "id": 71,
+                "name": "Arely Marks",
+                "first_name": "Arely",
+                "profile_image": "https://picsum.photos/seed/62ea501294412/168/168",
+                "background_image": "https://picsum.photos/seed/62ea501294417/850/350"
+            }
+        },
+        {
+            "friend": {
+                "id": 72,
+                "name": "Elliot McCullough",
+                "first_name": "Elliot",
+                "profile_image": "https://picsum.photos/seed/62ea501331c7e/168/168",
+                "background_image": "https://picsum.photos/seed/62ea501331c82/850/350"
+            }
+        },
+        {
+            "friend": {
+                "id": 73,
+                "name": "Helen Sporer",
+                "first_name": "Helen",
+                "profile_image": "https://picsum.photos/seed/62ea5013c386d/168/168",
+                "background_image": "https://picsum.photos/seed/62ea5013c3873/850/350"
+            }
+        },
+        {
+            "friend": {
+                "id": 74,
+                "name": "Stephan Lang",
+                "first_name": "Stephan",
+                "profile_image": "https://picsum.photos/seed/62ea501460e00/168/168",
+                "background_image": "https://picsum.photos/seed/62ea501460e16/850/350"
+            }
+        },
+        {
+            "friend": {
+                "id": 75,
+                "name": "Kirstin Emard",
+                "first_name": "Kirstin",
+                "profile_image": "https://picsum.photos/seed/62ea5014f28b9/168/168",
+                "background_image": "https://picsum.photos/seed/62ea5014f28bd/850/350"
+            }
+        },
+        {
+            "friend": {
+                "id": 76,
+                "name": "Trystan Stiedemann",
+                "first_name": "Trystan",
+                "profile_image": "https://picsum.photos/seed/62ea50159f15b/168/168",
+                "background_image": "https://picsum.photos/seed/62ea50159f160/850/350"
+            }
+        },
+        {
+            "friend": {
+                "id": 77,
+                "name": "Roman Stark",
+                "first_name": "Roman",
+                "profile_image": "https://picsum.photos/seed/62ea50163ffd6/168/168",
+                "background_image": "https://picsum.photos/seed/62ea50163ffdd/850/350"
+            }
         }
-    },
-    {
-        "friend": {
-            "id": 3,
-            "name": "Evie Ziemann",
-            "first_name": "Evie",
-            "profile_image": "https://picsum.photos/seed/62dd4380004b1/168/168",
-            "background_image": "https://picsum.photos/seed/62dd4380004bc/850/350"
-        }
-    },
-    {
-        "friend": {
-            "id": 4,
-            "name": "Patricia Bashirian",
-            "first_name": "Patricia",
-            "profile_image": "https://picsum.photos/seed/62dd4380131a5/168/168",
-            "background_image": "https://picsum.photos/seed/62dd4380131af/850/350"
-        }
-    },
-    {
-        "friend": {
-            "id": 5,
-            "name": "Vida Stanton",
-            "first_name": "Vida",
-            "profile_image": "https://picsum.photos/seed/62dd438025055/168/168",
-            "background_image": "https://picsum.photos/seed/62dd43802505d/850/350"
-        }
-    },
-    {
-        "friend": {
-            "id": 6,
-            "name": "Mertie Hermiston",
-            "first_name": "Mertie",
-            "profile_image": "https://picsum.photos/seed/62dd438036eba/168/168",
-            "background_image": "https://picsum.photos/seed/62dd438036ebf/850/350"
-        }
-    },
-    {
-        "friend": {
-            "id": 7,
-            "name": "Marquis Nienow",
-            "first_name": "Marquis",
-            "profile_image": "https://picsum.photos/seed/62dd438049c4f/168/168",
-            "background_image": "https://picsum.photos/seed/62dd438049c5f/850/350"
-        }
-    },
-    {
-        "friend": {
-            "id": 8,
-            "name": "Braden Bailey",
-            "first_name": "Braden",
-            "profile_image": "https://picsum.photos/seed/62dd43805c91f/168/168",
-            "background_image": "https://picsum.photos/seed/62dd43805c92a/850/350"
-        }
-    },
-    {
-        "friend": {
-            "id": 9,
-            "name": "Estrella Lakin",
-            "first_name": "Estrella",
-            "profile_image": "https://picsum.photos/seed/62dd43806e7c4/168/168",
-            "background_image": "https://picsum.photos/seed/62dd43806e7cd/850/350"
-        }
-    },
-    {
-        "friend": {
-            "id": 10,
-            "name": "Nicholaus Skiles",
-            "first_name": "Nicholaus",
-            "profile_image": "https://picsum.photos/seed/62dd438080ed6/168/168",
-            "background_image": "https://picsum.photos/seed/62dd438080ee1/850/350"
-        }
-    },
-    {
-        "friend": {
-            "id": 11,
-            "name": "Clarabelle Robel",
-            "first_name": "Clarabelle",
-            "profile_image": "https://picsum.photos/seed/62dd4380934b8/168/168",
-            "background_image": "https://picsum.photos/seed/62dd4380934c8/850/350"
-        }
-    }
-]
+    ],
+    "current_page": 1,
+    "next_page": 2,
+    "prev_page": null
+}

@@ -29,7 +29,7 @@ describe('Register tests', () => {
         cy.url().should('eq', `${APP_URL}/`);
     });
 
-    it('failed registration show error message', () => {
+    it('register response return server error', () => {
         cy.intercept('/register', { statusCode: 500 }).as('register');
         cy.intercept('/sanctum/csrf-cookie').as('csrf');
 
@@ -44,9 +44,8 @@ describe('Register tests', () => {
 
         cy.wait('@csrf');
         cy.wait('@register');
-        cy.wait('@secondUser');
 
         cy.url().should('eq', `${APP_URL}/login`);
-        cy.contains('Request failed with status code 500');
+        cy.contains('Something went wrong, please try again later');
     });
 });

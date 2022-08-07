@@ -6,9 +6,9 @@ import FriendshipRequestSentNotificationJson from '@mocks/notifications/requestS
 import { Notification } from '@components/nav/panel/notifications/Notification';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 
-describe('Notifications Notification component', () => {
-    it('renders user avatar, name and message', () => {
-        const notification = NotificationsFirstPageJson[0];
+describe('Notification component', () => {
+    it('render user avatar, name and message', () => {
+        const notification = NotificationsFirstPageJson.data[0];
 
         renderWithDefaultData(<Notification {...notification} />);
 
@@ -21,7 +21,7 @@ describe('Notifications Notification component', () => {
         expect(message).toBeInTheDocument();
     });
 
-    it('Poked notification renders properly message', () => {
+    it('poked notification renders properly message', () => {
         const notification = PokeNotificationJson;
 
         renderWithDefaultData(<Notification {...notification} />);
@@ -31,7 +31,7 @@ describe('Notifications Notification component', () => {
         expect(message).toBeInTheDocument();
     });
 
-    it('Friendship request accepted notification renders properly message', () => {
+    it('friendship request accepted notification renders properly message', () => {
         const notification = FriendshipRequestAcceptedNotificationJson;
 
         renderWithDefaultData(<Notification {...notification} />);
@@ -41,7 +41,7 @@ describe('Notifications Notification component', () => {
         expect(message).toBeInTheDocument();
     });
 
-    it('Friendship request sent notification renders properly message', () => {
+    it('friendship request sent notification renders properly message', () => {
         const notification = FriendshipRequestSentNotificationJson;
 
         renderWithDefaultData(<Notification {...notification} />);

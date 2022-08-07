@@ -5,30 +5,24 @@ import { Success } from '@components/pages/friends/item/actions/responses/Succes
 import { Button } from '@components/inc/Button';
 
 import type { MouseEvent } from 'react';
-import type { IFriendsListItem } from '@utils/types';
+import type { IPoke } from '@utils/types';
 
-interface PokeActionsProps extends Required<IFriendsListItem> {}
+interface PokeActionsProps extends IPoke {}
 
 export const PokeActions = ({ friend, data }: PokeActionsProps) => {
-    const { state, poke } = usePokes();
+    const { poke, isLoading, isSuccess, isError } = usePokes();
 
     const handlePoke = (event: MouseEvent) => {
         event.preventDefault();
-
         poke(friend.id);
     };
 
-    if (state.status === 'SUCCESS') return <Success message="Friend poked back" />;
-    if (state.status === 'ERROR') return <Failure message="Something went wrong" />;
+    if (isSuccess) return <Success message="Friend poked back" />;
+    if (isError) return <Failure message="Something went wrong" />;
 
     return (
         <div className="w-[220px] flex flex-col items-center gap-1">
-            <Button
-                title="Poke back"
-                isDisabled={state.status === 'LOADING'}
-                styles="w-[150px]"
-                callback={handlePoke}
-            />
+            <Button title="Poke back" isDisabled={isLoading} styles="w-[150px]" callback={handlePoke} />
 
             <div className="flex flex-col items-center text-light-100">
                 <small>

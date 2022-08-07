@@ -1,10 +1,10 @@
 import { SkeletonLoading } from '@components/inc/SkeletonLoading';
 
-interface FakeFormLoaderProps {
+interface LoaderProps {
     testid?: string;
 }
 
-export const FakeFormLoader = ({ testid = '' }: FakeFormLoaderProps) => {
+export const Loader = ({ testid = '' }: LoaderProps) => {
     return (
         <div data-testid={testid} className="w-full flex gap-3 bg-dark-200 rounded-lg p-3">
             <SkeletonLoading classNames="w-[55px] h-[50px]" isCircle />

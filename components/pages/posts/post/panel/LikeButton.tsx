@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { usePosts } from '@hooks/usePosts';
 
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
@@ -11,16 +10,16 @@ interface LikeButtonProps {
 }
 
 export const LikeButton = ({ postId, isLiked }: LikeButtonProps) => {
-    const [isLikedNow, setIsLikedNow] = useState(isLiked);
-    const { state, like, unlike } = usePosts();
+    const { useLike, useUnlike } = usePosts();
+
+    const { like, isError: isLikeError } = useLike();
+    const { unlike, isError: isUnlikeError } = useUnlike();
 
     const handleLike = () => {
         isLiked ? unlike(postId) : like(postId);
-
-        setIsLikedNow((prevState) => !prevState);
     };
 
-    if (state.status === 'ERROR') return <ApiError />;
+    if (isLikeError || isUnlikeError) return <ApiError />;
 
-    return <PanelButton title="Like" icon={faThumbsUp} isActive={isLikedNow} callback={handleLike} />;
+    return <PanelButton title="Like" icon={faThumbsUp} isActive={isLiked} callback={handleLike} />;
 };

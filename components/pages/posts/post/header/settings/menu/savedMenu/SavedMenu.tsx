@@ -5,17 +5,14 @@ import { Option } from '@components/pages/posts/post/header/settings/menu/Option
 
 interface SavedMenuProps {
     postId: number;
-    closeMenu: () => void;
-    reloadPosts: () => void;
 }
 
-export const SavedMenu = ({ postId, closeMenu, reloadPosts }: SavedMenuProps) => {
-    const { isLoading, unsave } = usePosts();
+export const SavedMenu = ({ postId }: SavedMenuProps) => {
+    const { useUnsave } = usePosts();
+    const { unsave, isLoading } = useUnsave();
 
-    const handleUnsave = async () => {
-        await unsave(postId);
-        closeMenu();
-        reloadPosts();
+    const handleUnsave = () => {
+        unsave(postId);
     };
 
     return <Option title="Unsave" icon={faTrash} isActive={isLoading} callback={handleUnsave} />;

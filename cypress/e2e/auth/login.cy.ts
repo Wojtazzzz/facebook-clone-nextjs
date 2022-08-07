@@ -11,21 +11,13 @@ describe('Login tests', () => {
         cy.create('User', {
             email: USER_EMAIL,
         });
-
-        cy.intercept('/api/user').as('user');
-    });
-
-    it('main page redirects to "/login" when user not logged', () => {
-        cy.visit('/');
-
-        cy.wait('@user').its('response.statusCode').should('eq', 401);
-
-        cy.url().should('include', '/login');
     });
 
     it('successful login to app redirects to main page', () => {
-        cy.intercept('/login').as('login');
+        cy.intercept('/api/user').as('user');
+
         cy.intercept('/sanctum/csrf-cookie').as('csrf');
+        cy.intercept('/login').as('login');
 
         cy.visit('/');
 
@@ -35,28 +27,47 @@ describe('Login tests', () => {
         cy.get('input[aria-label="Password"]').type(USER_PASSWORD);
         cy.get('button[aria-label="Login"]').click();
 
-        cy.intercept('/api/user').as('secondUser');
+        cy.intercept('/api/user').as('user');
 
         cy.wait('@csrf');
         cy.wait('@login');
-        cy.wait('@secondUser');
+        cy.wait('@user');
 
         cy.url().should('eq', `${APP_URL}/`);
     });
 
-    it('failed login to app shows error message', () => {
+    it('login with wrong credentials', () => {
+        cy.intercept('/api/user').as('user');
+
+        cy.intercept('/sanctum/csrf-cookie').as('csrf');
         cy.intercept('/login').as('login');
 
         cy.visit('/');
-
-        cy.wait('@user');
 
         cy.get('input[aria-label="Address e-mail"]').type(`WRONG_EMAIL@GMAIL.COM`);
         cy.get('input[aria-label="Password"]').type('WRONG_PASSWORD');
         cy.get('button[aria-label="Login"]').click();
 
+        cy.wait('@csrf');
         cy.wait('@login');
 
         cy.contains('These credentials do not match our records.');
+    });
+
+    it('login response return server error', () => {
+        cy.intercept('/sanctum/csrf-cookie').as('csrf');
+        cy.intercept('post', '/login', { statusCode: 500 }).as('login');
+
+        cy.visit('/');
+
+        cy.get('input[aria-label="Address e-mail"]').type(`email@gmail.com`);
+        cy.get('input[aria-label="Password"]').type('password');
+        cy.get('button[aria-label="Login"]').click();
+
+        cy.wait('@csrf');
+        cy.wait('@login');
+
+        cy.url().should('eq', `${APP_URL}/login`);
+        cy.contains('Something went wrong, please try again later');
     });
 });

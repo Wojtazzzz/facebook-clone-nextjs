@@ -7,20 +7,20 @@ import userEvent from '@testing-library/user-event';
 describe('SingleItem component', () => {
     const user = userEvent.setup();
     const mockCallback = jest.fn();
-    const jsonUser = MessengerFirstPageJson[0];
+    const friend = MessengerFirstPageJson.data[0];
 
     it('it renders user avatar, name, label', () => {
         renderWithDefaultData(
             <SingleItem
-                title={jsonUser.name}
+                title={friend.name}
                 message="Click to open chat"
-                image={jsonUser.profile_image}
+                image={friend.profile_image}
                 callback={mockCallback}
             />
         );
 
         const avatar = screen.getByRole('img');
-        const name = screen.getByText(jsonUser.name);
+        const name = screen.getByText(friend.name);
         const label = screen.getByText('Click to open chat');
 
         expect(avatar).toBeInTheDocument();
@@ -31,9 +31,9 @@ describe('SingleItem component', () => {
     it('it execute callback function on click', async () => {
         renderWithDefaultData(
             <SingleItem
-                title={jsonUser.name}
+                title={friend.name}
                 message="Click to open chat"
-                image={jsonUser.profile_image}
+                image={friend.profile_image}
                 callback={mockCallback}
             />
         );

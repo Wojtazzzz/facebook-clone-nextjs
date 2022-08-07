@@ -41,28 +41,21 @@ export type IUserHit = {
 
 export type IUsePaginatedDataState = 'LOADING' | 'FETCHING' | 'ERROR' | 'SUCCESS';
 
-type IUseAxiosData<T> = {
-    data: T;
-    message: string;
-};
-
-export type IUseAxiosState<T> =
-    | { status: 'EMPTY' }
-    | { status: 'LOADING' }
-    | { status: 'ERROR'; error: unknown }
-    | { status: 'SUCCESS'; data: IUseAxiosData<T> };
-
 export type IFriendsList = 'Friends' | 'Invites' | 'Suggests' | 'Pokes';
 
-export type IFriendsListItem = {
-    friend: IUser;
-    data?: IPoke;
-};
+export type IFriendsListItem =
+    | {
+          friend: IUser;
+      }
+    | IPoke;
 
 export type IPoke = {
-    id: number;
-    count: number;
-    updated_at: string;
+    friend: IUser;
+    data: {
+        id: number;
+        count: number;
+        updated_at: string;
+    };
 };
 
 export type IAuthMiddleware = 'GUEST' | 'AUTH';
@@ -153,4 +146,31 @@ export type ILike = {
 
 export type IChatMessagePayload = {
     text: string;
+};
+
+export type IPaginatedResponse<T> = {
+    data: T[];
+    current_page: number;
+    next_page: number | undefined;
+    prev_page: number | undefined;
+};
+
+export type IUpdateInviteStatus = 'CONFIRMED' | 'BLOCKED';
+
+export type IUpdateInvite = {
+    friendId: number;
+    status: IUpdateInviteStatus;
+};
+
+export type IValidationError = {
+    response: {
+        data: {
+            message: string;
+            errors: {
+                [key: string]: [messages: string[]];
+            };
+        };
+        status: number;
+        statusText: string;
+    };
 };

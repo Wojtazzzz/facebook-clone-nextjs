@@ -10,14 +10,14 @@ import { mock } from '@libs/nock';
 describe('Post component', () => {
     const mockReloadPosts = jest.fn();
     const user = userEvent.setup();
-    const post = PostsFirstPageJson[0];
+    const post = PostsFirstPageJson.data[0];
 
     beforeEach(() => {
         mock('/api/user', 200, RootUserJson);
     });
 
     it('render like, comment and share buttons', () => {
-        renderWithDefaultData(<Post {...post} type="OWN" reloadPosts={mockReloadPosts} />);
+        renderWithDefaultData(<Post {...post} type="OWN" />);
 
         const likeButton = screen.getByLabelText('Like');
         const commentButton = screen.getByLabelText('Comment');
@@ -28,18 +28,18 @@ describe('Post component', () => {
         expect(shareButton).toBeInTheDocument();
     });
 
-    it('not show comments section by default', async () => {
-        renderWithDefaultData(<Post {...post} type="OWN" reloadPosts={mockReloadPosts} />);
+    it('not render comments section by default', async () => {
+        renderWithDefaultData(<Post {...post} type="OWN" />);
 
         const commentsSection = screen.queryByLabelText('Post comments', { selector: 'section' });
 
         expect(commentsSection).not.toBeInTheDocument();
     });
 
-    it('show comments section when click on button', async () => {
+    it('render comments section when click on button', async () => {
         mock(`/api/posts/${post.id}/comments?page=1`, 200, CommentsFirstPageJson);
 
-        renderWithDefaultData(<Post {...post} type="OWN" reloadPosts={mockReloadPosts} />);
+        renderWithDefaultData(<Post {...post} type="OWN" />);
 
         const commentButton = screen.getByLabelText('Comment');
         await user.click(commentButton);
@@ -48,10 +48,10 @@ describe('Post component', () => {
         expect(commentsSection).toBeInTheDocument();
     });
 
-    it('show comments section when click on comments stats', async () => {
+    it('render comments section when click on comments stats', async () => {
         mock(`/api/posts/${post.id}/comments?page=1`, 200, CommentsFirstPageJson);
 
-        renderWithDefaultData(<Post {...post} type="OWN" reloadPosts={mockReloadPosts} />);
+        renderWithDefaultData(<Post {...post} type="OWN" />);
 
         const commentStats = screen.getByText(`${post.comments_count} comments`);
         await user.click(commentStats);
@@ -60,10 +60,10 @@ describe('Post component', () => {
         expect(commentsSection).toBeInTheDocument();
     });
 
-    it('show loaders before comments section', async () => {
+    it('render loaders before comments section', async () => {
         mock(`/api/posts/${post.id}/comments?page=1`, 200, CommentsFirstPageJson);
 
-        renderWithDefaultData(<Post {...post} type="OWN" reloadPosts={mockReloadPosts} />);
+        renderWithDefaultData(<Post {...post} type="OWN" />);
 
         const commentStats = screen.getByText(`${post.comments_count} comments`);
         await user.click(commentStats);

@@ -11,9 +11,7 @@ import { CommentButton } from '@components/pages/posts/post/panel/CommentButton'
 
 import type { IPost } from '@utils/types';
 
-interface PostProps extends IPost {
-    reloadPosts: () => void;
-}
+interface PostProps extends IPost {}
 
 export const Post = ({
     id,
@@ -26,21 +24,13 @@ export const Post = ({
     created_at,
     updated_at,
     type,
-    reloadPosts,
 }: PostProps) => {
     const [areCommentsActive, setAreCommentsActive] = useState(false);
     const handleToggleAreCommentsActive = () => setAreCommentsActive((prevState) => !prevState);
 
     return (
         <article aria-label="Post" className="w-full bg-dark-200 rounded-lg">
-            <Header
-                postId={id}
-                author={author}
-                created_at={created_at}
-                updated_at={updated_at}
-                type={type}
-                reloadPosts={reloadPosts}
-            />
+            <Header postId={id} author={author} created_at={created_at} updated_at={updated_at} type={type} />
 
             <Content content={content} images={images} />
 

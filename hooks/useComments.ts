@@ -1,39 +1,76 @@
-import { useAxios } from '@hooks/useAxios';
+import { axios } from '@libs/axios';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import type { ICommentPayload } from '@utils/types';
-import type { IComment } from '@utils/types';
 
 export const useComments = () => {
-    const { state, sendRequest } = useAxios<IComment>();
+    const queryClient = useQueryClient();
 
-    const createComment = (values: ICommentPayload) => {
-        if (state.status === 'LOADING') return;
+    const createMutation = useMutation(({ content, resource_id }: ICommentPayload) =>
+        axios.post(`/api/posts/${resource_id}/comments`, { content })
+    );
 
-        sendRequest({
-            url: `/api/posts/${values.resource_id}/comments`,
-            method: 'POST',
-            data: values,
+    const updateMutation = useMutation(({ commentId, data }: { commentId: number; data: ICommentPayload }) =>
+        axios.put(`/api/posts/${data.resource_id}/comments/${commentId}`, { content: data.content })
+    );
+
+    const removeMutation = useMutation(({ resourceId, commentId }: { resourceId: number; commentId: number }) =>
+        axios.delete(`/api/posts/${resourceId}/comments/${commentId}`)
+    );
+
+    const create = (data: ICommentPayload, onSuccess: () => void) => {
+        if (createMutation.isLoading) return;
+
+        createMutation.mutate(data, {
+            onSuccess: () => {
+                queryClient.invalidateQueries(['comments']);
+                onSuccess();
+            },
         });
     };
 
-    const updateComment = (commentId: number, values: ICommentPayload) => {
-        if (state.status === 'LOADING') return;
+    const update = (commentId: number, data: ICommentPayload, onSuccess: () => void) => {
+        if (updateMutation.isLoading) return;
 
-        sendRequest({
-            url: `/api/posts/${values.resource_id}/comments/${commentId}`,
-            method: 'PUT',
-            data: values,
-        });
+        updateMutation.mutate(
+            { commentId, data },
+            {
+                onSuccess: () => {
+                    queryClient.invalidateQueries(['comments']);
+                    onSuccess();
+                },
+            }
+        );
     };
 
-    const removeComment = (resourceId: number, commentId: number) => {
-        if (state.status === 'LOADING') return;
+    const remove = (resourceId: number, commentId: number, onSuccess: () => void) => {
+        if (removeMutation.isLoading) return;
 
-        sendRequest({
-            url: `/api/posts/${resourceId}/comments/${commentId}`,
-            method: 'DELETE',
-        });
+        removeMutation.mutate(
+            { resourceId, commentId },
+            {
+                onSuccess: () => {
+                    queryClient.invalidateQueries(['comments']);
+                    onSuccess();
+                },
+            }
+        );
     };
 
-    return { state, createComment, updateComment, removeComment };
+    return {
+        useCreate: () => ({
+            create,
+            ...createMutation,
+        }),
+
+        useRemove: () => ({
+            remove,
+            ...removeMutation,
+        }),
+
+        useUpdate: () => ({
+            update,
+            ...updateMutation,
+        }),
+    };
 };

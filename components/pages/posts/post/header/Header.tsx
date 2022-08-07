@@ -9,14 +9,13 @@ interface HeaderProps {
     created_at: string;
     updated_at: string;
     type: IPostType;
-    reloadPosts: () => void;
 }
 
-export const Header = ({ postId, author, created_at, updated_at, type, reloadPosts }: HeaderProps) => {
+export const Header = ({ postId, author, created_at, updated_at, type }: HeaderProps) => {
     return (
         <div className="w-full flex justify-between p-4 pb-0">
             <Author author={author} created_at={created_at} updated_at={updated_at} />
-            <Settings postId={postId} type={type} reloadPosts={reloadPosts} />
+            <Settings postId={postId} type={type} />
         </div>
     );
 };

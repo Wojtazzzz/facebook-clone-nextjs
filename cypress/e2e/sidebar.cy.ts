@@ -12,7 +12,7 @@ describe('Sidebar links tests', () => {
         cy.intercept('/api/user').as('user');
     });
 
-    it('link displays logged user name and redirects to profile page on click', () => {
+    it('link displays logged user name and redirects to profile page by click', () => {
         cy.visit('/');
 
         cy.wait('@user');

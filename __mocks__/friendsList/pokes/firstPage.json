@@ -1,102 +1,107 @@
-[
-    {
-        "friend": {
-            "id": 25,
-            "name": "Keely Hand",
-            "first_name": "Keely",
-            "profile_image": "https://picsum.photos/seed/62dd464ee06aa/168/168",
-            "background_image": "https://picsum.photos/seed/62dd464ee06b5/850/350"
+{
+    "data": [
+        {
+            "friend": {
+                "id": 67,
+                "name": "Terry O'Conner",
+                "first_name": "Terry",
+                "profile_image": "https://picsum.photos/seed/62ea50100d37b/168/168",
+                "background_image": "https://picsum.photos/seed/62ea50100d384/850/350"
+            },
+            "data": { "id": 1, "count": 9955, "updated_at": "2022-08-03 10:38" }
         },
-        "data": { "id": 1, "count": 8737, "updated_at": "2022-07-24 13:17" }
-    },
-    {
-        "friend": {
-            "id": 26,
-            "name": "Heather Hegmann",
-            "first_name": "Heather",
-            "profile_image": "https://picsum.photos/seed/62dd466001f3d/168/168",
-            "background_image": "https://picsum.photos/seed/62dd466001f51/850/350"
+        {
+            "friend": {
+                "id": 68,
+                "name": "Leslie Kling",
+                "first_name": "Leslie",
+                "profile_image": "https://picsum.photos/seed/62ea5010c5ec3/168/168",
+                "background_image": "https://picsum.photos/seed/62ea5010c5ec8/850/350"
+            },
+            "data": { "id": 2, "count": 5979, "updated_at": "2022-08-03 10:38" }
         },
-        "data": { "id": 2, "count": 2450, "updated_at": "2022-07-24 13:17" }
-    },
-    {
-        "friend": {
-            "id": 32,
-            "name": "Albertha Cole",
-            "first_name": "Albertha",
-            "profile_image": "https://picsum.photos/seed/62dd48398324f/168/168",
-            "background_image": "https://picsum.photos/seed/62dd48398325e/850/350"
+        {
+            "friend": {
+                "id": 69,
+                "name": "Kaylie Olson",
+                "first_name": "Kaylie",
+                "profile_image": "https://picsum.photos/seed/62ea5011634bb/168/168",
+                "background_image": "https://picsum.photos/seed/62ea5011634bf/850/350"
+            },
+            "data": { "id": 3, "count": 3315, "updated_at": "2022-08-03 10:38" }
         },
-        "data": { "id": 8, "count": 1671, "updated_at": "2022-07-24 13:25" }
-    },
-    {
-        "friend": {
-            "id": 33,
-            "name": "Jewel Jones",
-            "first_name": "Jewel",
-            "profile_image": "https://picsum.photos/seed/62dd483a67e91/168/168",
-            "background_image": "https://picsum.photos/seed/62dd483a67e9c/850/350"
+        {
+            "friend": {
+                "id": 70,
+                "name": "Marcos Rice",
+                "first_name": "Marcos",
+                "profile_image": "https://picsum.photos/seed/62ea5012019db/168/168",
+                "background_image": "https://picsum.photos/seed/62ea5012019e0/850/350"
+            },
+            "data": { "id": 4, "count": 6451, "updated_at": "2022-08-03 10:38" }
         },
-        "data": { "id": 9, "count": 8140, "updated_at": "2022-07-24 13:25" }
-    },
-    {
-        "friend": {
-            "id": 34,
-            "name": "Lizeth Mitchell",
-            "first_name": "Lizeth",
-            "profile_image": "https://picsum.photos/seed/62dd483b2e2b3/168/168",
-            "background_image": "https://picsum.photos/seed/62dd483b2e2bf/850/350"
+        {
+            "friend": {
+                "id": 71,
+                "name": "Arely Marks",
+                "first_name": "Arely",
+                "profile_image": "https://picsum.photos/seed/62ea501294412/168/168",
+                "background_image": "https://picsum.photos/seed/62ea501294417/850/350"
+            },
+            "data": { "id": 5, "count": 6912, "updated_at": "2022-08-03 10:38" }
         },
-        "data": { "id": 10, "count": 947, "updated_at": "2022-07-24 13:25" }
-    },
-    {
-        "friend": {
-            "id": 35,
-            "name": "Madie Gutkowski",
-            "first_name": "Madie",
-            "profile_image": "https://picsum.photos/seed/62dd483bcf1b9/168/168",
-            "background_image": "https://picsum.photos/seed/62dd483bcf1c1/850/350"
+        {
+            "friend": {
+                "id": 72,
+                "name": "Elliot McCullough",
+                "first_name": "Elliot",
+                "profile_image": "https://picsum.photos/seed/62ea501331c7e/168/168",
+                "background_image": "https://picsum.photos/seed/62ea501331c82/850/350"
+            },
+            "data": { "id": 6, "count": 6313, "updated_at": "2022-08-03 10:38" }
         },
-        "data": { "id": 11, "count": 9158, "updated_at": "2022-07-24 13:25" }
-    },
-    {
-        "friend": {
-            "id": 36,
-            "name": "Kaia Ruecker",
-            "first_name": "Kaia",
-            "profile_image": "https://picsum.photos/seed/62dd483c8327c/168/168",
-            "background_image": "https://picsum.photos/seed/62dd483c83288/850/350"
+        {
+            "friend": {
+                "id": 73,
+                "name": "Helen Sporer",
+                "first_name": "Helen",
+                "profile_image": "https://picsum.photos/seed/62ea5013c386d/168/168",
+                "background_image": "https://picsum.photos/seed/62ea5013c3873/850/350"
+            },
+            "data": { "id": 7, "count": 23, "updated_at": "2022-08-03 10:38" }
         },
-        "data": { "id": 12, "count": 8970, "updated_at": "2022-07-24 13:25" }
-    },
-    {
-        "friend": {
-            "id": 37,
-            "name": "Zoey Leffler",
-            "first_name": "Zoey",
-            "profile_image": "https://picsum.photos/seed/62dd483d3ca37/168/168",
-            "background_image": "https://picsum.photos/seed/62dd483d3ca43/850/350"
+        {
+            "friend": {
+                "id": 74,
+                "name": "Stephan Lang",
+                "first_name": "Stephan",
+                "profile_image": "https://picsum.photos/seed/62ea501460e00/168/168",
+                "background_image": "https://picsum.photos/seed/62ea501460e16/850/350"
+            },
+            "data": { "id": 8, "count": 8588, "updated_at": "2022-08-03 10:38" }
         },
-        "data": { "id": 13, "count": 9622, "updated_at": "2022-07-24 13:25" }
-    },
-    {
-        "friend": {
-            "id": 38,
-            "name": "Elena Nitzsche",
-            "first_name": "Elena",
-            "profile_image": "https://picsum.photos/seed/62dd483ddfab0/168/168",
-            "background_image": "https://picsum.photos/seed/62dd483ddfaba/850/350"
+        {
+            "friend": {
+                "id": 75,
+                "name": "Kirstin Emard",
+                "first_name": "Kirstin",
+                "profile_image": "https://picsum.photos/seed/62ea5014f28b9/168/168",
+                "background_image": "https://picsum.photos/seed/62ea5014f28bd/850/350"
+            },
+            "data": { "id": 9, "count": 6859, "updated_at": "2022-08-03 10:38" }
         },
-        "data": { "id": 14, "count": 6540, "updated_at": "2022-07-24 13:25" }
-    },
-    {
-        "friend": {
-            "id": 39,
-            "name": "Melvin Macejkovic",
-            "first_name": "Melvin",
-            "profile_image": "https://picsum.photos/seed/62dd483e88c9d/168/168",
-            "background_image": "https://picsum.photos/seed/62dd483e88ca9/850/350"
-        },
-        "data": { "id": 15, "count": 3874, "updated_at": "2022-07-24 13:25" }
-    }
-]
+        {
+            "friend": {
+                "id": 76,
+                "name": "Trystan Stiedemann",
+                "first_name": "Trystan",
+                "profile_image": "https://picsum.photos/seed/62ea50159f15b/168/168",
+                "background_image": "https://picsum.photos/seed/62ea50159f160/850/350"
+            },
+            "data": { "id": 10, "count": 7064, "updated_at": "2022-08-03 10:38" }
+        }
+    ],
+    "current_page": 1,
+    "next_page": 2,
+    "prev_page": null
+}

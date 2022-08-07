@@ -5,17 +5,14 @@ import { Option } from '@components/pages/posts/post/header/settings/menu/Option
 
 interface HiddenMenuProps {
     postId: number;
-    closeMenu: () => void;
-    reloadPosts: () => void;
 }
 
-export const HiddenMenu = ({ postId, closeMenu, reloadPosts }: HiddenMenuProps) => {
-    const { isLoading, unhide } = usePosts();
+export const HiddenMenu = ({ postId }: HiddenMenuProps) => {
+    const { useUnhide } = usePosts();
+    const { unhide, isLoading } = useUnhide();
 
-    const handleUnhide = async () => {
-        await unhide(postId);
-        reloadPosts();
-        closeMenu();
+    const handleUnhide = () => {
+        unhide(postId);
     };
 
     return <Option title="Unhide" icon={faTrash} isActive={isLoading} callback={handleUnhide} />;
