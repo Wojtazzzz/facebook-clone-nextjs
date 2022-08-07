@@ -1,4 +1,4 @@
-import { LoginForm } from '@components/pages/auth/LoginForm';
+import { Login } from '@components/pages/auth/authorization/login/Login';
 import CannotLoginResponse from '@mocks/user/cannotLogin.json';
 import { screen } from '@testing-library/react';
 import nock from 'nock';
@@ -6,7 +6,7 @@ import userEvent from '@testing-library/user-event';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import { mock } from '@libs/nock';
 
-describe('LoginForm component', () => {
+describe('Login component', () => {
     const user = userEvent.setup();
 
     beforeEach(() => {
@@ -15,7 +15,7 @@ describe('LoginForm component', () => {
     });
 
     it('render email, password and button input', () => {
-        renderWithDefaultData(<LoginForm />);
+        renderWithDefaultData(<Login />);
 
         const emailInput = screen.getByLabelText('Address e-mail');
         const passwordInput = screen.getByLabelText('Password');
@@ -28,7 +28,7 @@ describe('LoginForm component', () => {
     });
 
     it('display "required" validation message when input values are empty', async () => {
-        renderWithDefaultData(<LoginForm />);
+        renderWithDefaultData(<Login />);
 
         const emailInput = screen.getByLabelText('Address e-mail');
         const passwordInput = screen.getByLabelText('Password');
@@ -47,7 +47,7 @@ describe('LoginForm component', () => {
     });
 
     it('display "incorrect email" validation message when email is invalid', async () => {
-        renderWithDefaultData(<LoginForm />);
+        renderWithDefaultData(<Login />);
 
         const emailInput = screen.getByLabelText('Address e-mail');
         const submitButton = screen.getByRole('button');
@@ -65,7 +65,7 @@ describe('LoginForm component', () => {
         mock('/api/user', 401);
         mock('/login', 422, CannotLoginResponse, 'post');
 
-        renderWithDefaultData(<LoginForm />);
+        renderWithDefaultData(<Login />);
 
         const emailInput = screen.getByLabelText('Address e-mail');
         const passwordInput = screen.getByLabelText('Password');

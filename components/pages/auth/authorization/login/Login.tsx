@@ -1,15 +1,15 @@
 import { useAuth } from '@hooks/useAuth';
 
 import { Form, Formik } from 'formik';
-import { Input } from '@components/pages/auth/inc/Input';
-import { ErrorMessage } from '@components/pages/auth/inc/ErrorMessage';
+import { Input } from '@components/pages/auth/authorization/inc/Input';
+import { ErrorMessage } from '@components/pages/auth/authorization/inc/ErrorMessage';
 import { Button } from '@components/inc/Button';
 
 import { LoginSchema } from '@validation/LoginSchema';
 
 import type { ILoginPayload } from '@utils/types';
 
-export const LoginForm = () => {
+export const Login = () => {
     const { useLogin } = useAuth();
     const { login, isLoading, isError, errorMessage } = useLogin();
 
@@ -19,7 +19,7 @@ export const LoginForm = () => {
         <Formik initialValues={{ email: '', password: '' }} validationSchema={LoginSchema} onSubmit={handleSubmit}>
             {({ values, handleChange, handleBlur, handleSubmit }) => (
                 <Form className="w-full flex flex-col gap-6" onSubmit={handleSubmit}>
-                    <p className="text-xl text-light-100 font-bold">LOGIN</p>
+                    <span className="text-xl text-light-100 font-bold">LOGIN</span>
 
                     <Input
                         type="email"

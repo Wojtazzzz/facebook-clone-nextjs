@@ -1,11 +1,11 @@
-import { Form } from '@components/pages/auth/Form';
+import { Authorization } from '@components/pages/auth/authorization/Authorization';
 import { mock } from '@libs/nock';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import nock from 'nock';
 
-describe('Form component', () => {
+describe('Authorization component', () => {
     const user = userEvent.setup();
 
     beforeEach(() => {
@@ -13,16 +13,16 @@ describe('Form component', () => {
         mock('/api/user', 401);
     });
 
-    it('renders login as default form', () => {
-        renderWithDefaultData(<Form />);
+    it('render login as default form', () => {
+        renderWithDefaultData(<Authorization />);
 
         const loginHeader = screen.getByText('Login');
 
         expect(loginHeader).toBeInTheDocument();
     });
 
-    it('redirects between forms', async () => {
-        renderWithDefaultData(<Form />);
+    it('can redirect between forms', async () => {
+        renderWithDefaultData(<Authorization />);
 
         const redirectToRegisterFormElement = screen.getByText((content) =>
             content.startsWith("Don't have an account?")

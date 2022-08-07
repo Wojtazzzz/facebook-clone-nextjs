@@ -1,16 +1,16 @@
 import { useAuth } from '@hooks/useAuth';
 
-import { Input } from '@components/pages/auth/inc/Input';
-import { ErrorMessage } from '@components/pages/auth/inc/ErrorMessage';
+import { Input } from '@components/pages/auth/authorization/inc/Input';
+import { ErrorMessage } from '@components/pages/auth/authorization/inc/ErrorMessage';
 import { Button } from '@components/inc/Button';
 
-export const RegisterForm = () => {
+export const Register = () => {
     const { useRegister } = useAuth();
     const { register, isLoading, isError, errorMessage } = useRegister();
 
     return (
-        <form onSubmit={register} className="w-full flex flex-col gap-6">
-            <p className="text-xl text-light-100 font-bold">REGISTER</p>
+        <form className="w-full flex flex-col gap-6" onSubmit={register}>
+            <span className="text-xl text-light-100 font-bold">REGISTER</span>
 
             <Input type="text" name="first_name" placeholder="First name" isDisabled />
             <Input type="text" name="last_name" placeholder="Last name" isDisabled />
