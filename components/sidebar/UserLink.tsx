@@ -1,7 +1,7 @@
 import { useAuth } from '@hooks/useAuth';
 
-import { Link } from '@components/sidebar/inc/Link';
-import { LinkLoader } from '@components/sidebar/inc/LinkLoader';
+import { Link } from '@components/sidebar/Link';
+import { LinkLoader } from '@components/sidebar/LinkLoader';
 import { Avatar } from '@components/inc/Avatar';
 
 export const UserLink = () => {

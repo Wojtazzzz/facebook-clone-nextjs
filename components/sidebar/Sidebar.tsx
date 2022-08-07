@@ -3,8 +3,8 @@ import { useAppSelector } from '@hooks/redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHandLizard, faUsers } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import { UserLink } from '@components/sidebar/inc/UserLink';
-import { Link } from '@components/sidebar/inc/Link';
+import { UserLink } from '@components/sidebar/UserLink';
+import { Link } from '@components/sidebar/Link';
 
 import { clsx } from 'clsx';
 
