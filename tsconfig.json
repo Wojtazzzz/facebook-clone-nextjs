@@ -19,7 +19,6 @@
         "paths": {
             "@mocks/*": ["__mocks__/*"],
             "@components/*": ["components/*"],
-            "@constants/*": ["constants/*"],
             "@cypress/*": ["cypress/*"],
             "@hooks/*": ["hooks/*"],
             "@libs/*": ["libs/*"],
