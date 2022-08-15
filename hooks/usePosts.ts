@@ -3,13 +3,11 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { axios } from '@libs/axios';
 
 import type { IPostPayload } from '@utils/types';
-import { useAuth } from './useAuth';
 
 export const usePosts = () => {
-    const { user } = useAuth();
     const queryClient = useQueryClient();
 
-    const createMutation = useMutation((post: FormData) => axios.post('/api/posts', post));
+    const createMutation = useMutation((data: FormData) => axios.post('/api/posts', data));
     const removeMutation = useMutation((id: number) => axios.delete(`/api/posts/${id}`));
     const hideMutation = useMutation((id: number) => axios.post('/api/hidden/posts', { post_id: id }));
     const unhideMutation = useMutation((id: number) => axios.delete(`/api/hidden/posts/${id}`));
@@ -23,7 +21,7 @@ export const usePosts = () => {
     };
 
     const create = (data: IPostPayload, onSuccess: () => void) => {
-        if (createMutation.isLoading || !user) return;
+        if (createMutation.isLoading) return;
 
         const formData = new FormData();
         formData.append('content', data.content);
@@ -33,19 +31,19 @@ export const usePosts = () => {
         createMutation.mutate(formData, {
             onSuccess: () => {
                 queryClient.invalidateQueries(['posts']);
-                queryClient.invalidateQueries(['OWN', `${user.id}`]);
+                queryClient.invalidateQueries(['OWN']);
                 onSuccess();
             },
         });
     };
 
     const remove = (id: number) => {
-        if (removeMutation.isLoading || !user) return;
+        if (removeMutation.isLoading) return;
 
         removeMutation.mutate(id, {
             onSuccess: () => {
                 queryClient.invalidateQueries(['posts']);
-                queryClient.invalidateQueries(['OWN', `${user.id}`]);
+                queryClient.invalidateQueries(['OWN']);
             },
         });
     };
@@ -59,10 +57,10 @@ export const usePosts = () => {
     };
 
     const unhide = (id: number) => {
-        if (unhideMutation.isLoading || !user) return;
+        if (unhideMutation.isLoading) return;
 
         unhideMutation.mutate(id, {
-            onSuccess: () => queryClient.invalidateQueries(['HIDDEN', `${user.id}`]),
+            onSuccess: () => queryClient.invalidateQueries(['HIDDEN']),
         });
     };
 
@@ -78,10 +76,10 @@ export const usePosts = () => {
     };
 
     const unsave = (id: number) => {
-        if (unsaveMutation.isLoading || !user) return;
+        if (unsaveMutation.isLoading) return;
 
         unsaveMutation.mutate(id, {
-            onSuccess: () => queryClient.invalidateQueries(['SAVED', `${user.id}`]),
+            onSuccess: () => queryClient.invalidateQueries(['SAVED']),
         });
     };
 
@@ -108,14 +106,14 @@ export const usePosts = () => {
             ...removeMutation,
         }),
 
-        useHide: () => ({
-            hide,
-            ...hideMutation,
+        useLike: () => ({
+            like,
+            ...likeMutation,
         }),
 
-        useUnhide: () => ({
-            unhide,
-            ...unhideMutation,
+        useUnlike: () => ({
+            unlike,
+            ...unlikeMutation,
         }),
 
         useSave: () => ({
@@ -128,14 +126,14 @@ export const usePosts = () => {
             ...unsaveMutation,
         }),
 
-        useLike: () => ({
-            like,
-            ...likeMutation,
+        useHide: () => ({
+            hide,
+            ...hideMutation,
         }),
 
-        useUnlike: () => ({
-            unlike,
-            ...unlikeMutation,
+        useUnhide: () => ({
+            unhide,
+            ...unhideMutation,
         }),
     };
 };

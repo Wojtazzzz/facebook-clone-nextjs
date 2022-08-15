@@ -1,19 +1,16 @@
 import { useState } from 'react';
 import { useAppDispatch } from '@hooks/redux';
 import { usePosts } from '@hooks/usePosts';
-
 import { Formik, Form as FormikForm } from 'formik';
 import { FileDrop } from '@components/inc/modals/createPost/form/fileDrop/FileDrop';
 import { ErrorMessage } from '@components/inc/modals/createPost/responses/ErrorMessage';
 import { SpinnerLoader } from '@components/inc/SpinnerLoader';
 import { SubmitButton } from '@components/inc/modals/createPost/form/SubmitButton';
-import { TextArea } from '@components/inc/modals/createPost/form/TextArea';
+import { ContentInput } from '@components/inc/modals/createPost/form/ContentInput';
 import { DropLabel } from '@components/inc/modals/createPost/form/fileDrop/DropLabel';
 import { UploadedFiles } from '@components/inc/modals/createPost/form/fileDrop/UploadedFiles';
-
 import { closeModal } from '@redux/slices/CreatePostModalSlice';
 import { PostSchema } from '@validation/PostSchema';
-
 import type { IPostPayload } from '@utils/types';
 
 export const Form = () => {
@@ -29,10 +26,9 @@ export const Form = () => {
     const handleChangeUploadIsActive = () => setIsUploadActive((prevState) => !prevState);
 
     const handleSubmit = (values: IPostPayload) => {
-        create(values, () => {
-            setOldData(values);
-            handleCloseModal();
-        });
+        setOldData(values);
+
+        create(values, handleCloseModal);
     };
 
     if (isLoading) return <SpinnerLoader testid="createPost-loader" containerStyles="w-[100px] my-10 mx-auto" />;
@@ -43,21 +39,19 @@ export const Form = () => {
             validationSchema={PostSchema}
             onSubmit={handleSubmit}
         >
-            {({ values, handleChange, handleBlur }) => (
-                <FormikForm className="m-3">
-                    <TextArea handleChange={handleChange} handleBlur={handleBlur} value={values.content} />
+            <FormikForm className="m-3">
+                <ContentInput />
 
-                    {isUploadActive && <FileDrop handleClose={handleCloseFileDrop} />}
+                {isUploadActive && <FileDrop handleClose={handleCloseFileDrop} />}
 
-                    <UploadedFiles />
+                <UploadedFiles />
 
-                    <ErrorMessage error={error} />
+                <ErrorMessage error={error} />
 
-                    <DropLabel changeUploadActive={handleChangeUploadIsActive} />
+                <DropLabel changeUploadActive={handleChangeUploadIsActive} />
 
-                    <SubmitButton isDisabled={isLoading} />
-                </FormikForm>
-            )}
+                <SubmitButton isDisabled={isLoading} />
+            </FormikForm>
         </Formik>
     );
 };

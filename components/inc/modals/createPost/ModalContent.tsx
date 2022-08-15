@@ -1,7 +1,6 @@
 import { useAuth } from '@hooks/useAuth';
 
 import { Form } from '@components/inc/modals/createPost/form/Form';
-import { UserInfo } from '@components/inc/modals/createPost/inc/UserInfo';
 import { SpinnerLoader } from '@components/inc/SpinnerLoader';
 
 export const ModalContent = () => {
@@ -11,7 +10,6 @@ export const ModalContent = () => {
 
     return (
         <div className="p-4">
-            <UserInfo user={user} />
             <Form />
         </div>
     );

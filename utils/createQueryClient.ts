@@ -10,6 +10,7 @@ export const createQueryClient = () =>
         defaultOptions: {
             queries: {
                 retry: false,
+                staleTime: 6000,
             },
         },
     });

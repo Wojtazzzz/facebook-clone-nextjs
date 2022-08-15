@@ -5,9 +5,15 @@ import ChatFirstPageJson from '@mocks/chat/firstPage.json';
 import ChatEmptyPageJson from '@mocks/chat/empty.json';
 import { mock } from '@libs/nock';
 import { screen } from '@testing-library/react';
+import nock from 'nock';
 
 describe('Messages component', () => {
     const messages = ChatFirstPageJson.data;
+
+    afterEach(() => {
+        nock.cleanAll();
+        nock.enableNetConnect();
+    });
 
     it('render loaders when initial loading messages', () => {
         mock(`/api/messages/${JohnDoeJson.id}?page=1`, 200, ChatFirstPageJson);

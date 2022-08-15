@@ -69,7 +69,7 @@ export type ILikeResponse = {
     likesCount: number;
 };
 
-export type ICommentPayload = { content: string; resource_id: number };
+export type ICommentPayload = { content: string };
 
 export type ILoginPayload = {
     email: string;
@@ -174,3 +174,12 @@ export type IValidationError = {
         statusText: string;
     };
 };
+
+export type ICommentCreateMutationPayload = {
+    resourceId: number;
+} & ICommentPayload;
+
+export type ICommentUpdateMutationPayload = {
+    resourceId: number;
+    commentId: number;
+} & ICommentPayload;

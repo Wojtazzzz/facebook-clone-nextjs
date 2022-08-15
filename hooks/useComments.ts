@@ -1,24 +1,24 @@
 import { axios } from '@libs/axios';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import type { ICommentPayload } from '@utils/types';
+import type { ICommentCreateMutationPayload, ICommentUpdateMutationPayload } from '@utils/types';
 
 export const useComments = () => {
     const queryClient = useQueryClient();
 
-    const createMutation = useMutation(({ content, resource_id }: ICommentPayload) =>
-        axios.post(`/api/posts/${resource_id}/comments`, { content })
+    const createMutation = useMutation(({ content, resourceId }: ICommentCreateMutationPayload) =>
+        axios.post(`/api/posts/${resourceId}/comments`, { content })
     );
 
-    const updateMutation = useMutation(({ commentId, data }: { commentId: number; data: ICommentPayload }) =>
-        axios.put(`/api/posts/${data.resource_id}/comments/${commentId}`, { content: data.content })
+    const updateMutation = useMutation(({ content, resourceId, commentId }: ICommentUpdateMutationPayload) =>
+        axios.put(`/api/posts/${resourceId}/comments/${commentId}`, { content })
     );
 
     const removeMutation = useMutation(({ resourceId, commentId }: { resourceId: number; commentId: number }) =>
         axios.delete(`/api/posts/${resourceId}/comments/${commentId}`)
     );
 
-    const create = (data: ICommentPayload, onSuccess: () => void) => {
+    const create = (data: ICommentCreateMutationPayload, onSuccess: () => void) => {
         if (createMutation.isLoading) return;
 
         createMutation.mutate(data, {
@@ -29,18 +29,15 @@ export const useComments = () => {
         });
     };
 
-    const update = (commentId: number, data: ICommentPayload, onSuccess: () => void) => {
+    const update = (data: ICommentUpdateMutationPayload, onSuccess: () => void) => {
         if (updateMutation.isLoading) return;
 
-        updateMutation.mutate(
-            { commentId, data },
-            {
-                onSuccess: () => {
-                    queryClient.invalidateQueries(['comments']);
-                    onSuccess();
-                },
-            }
-        );
+        updateMutation.mutate(data, {
+            onSuccess: () => {
+                queryClient.invalidateQueries(['comments']);
+                onSuccess();
+            },
+        });
     };
 
     const remove = (resourceId: number, commentId: number, onSuccess: () => void) => {

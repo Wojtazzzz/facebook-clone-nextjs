@@ -13,10 +13,9 @@ export const useAuth = (middleware?: IAuthMiddleware) => {
     const queryClient = useQueryClient();
     const queryOptions = useMemo(
         () => ({
-            // onSuccess: () => queryClient.invalidateQueries(['user']),
-            onSuccess: () => console.log('x'),
+            onSuccess: () => queryClient.invalidateQueries(['user']),
         }),
-        []
+        [queryClient]
     );
 
     const {

@@ -1,12 +1,11 @@
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { Post } from '@components/pages/posts/post/Post';
-import { Loader } from '@components/pages/posts/Loader';
+import { Loader } from '@components/pages/posts/list/Loader';
 import { ApiError } from '@components/inc/ApiError';
 import { EmptyList } from '@components/inc/EmptyList';
-
-import React from 'react';
+import { Fragment } from 'react';
 import { useInfiniteData } from '@hooks/useInfiniteData';
 import { IPost } from '@utils/types';
+import { Post } from '@components/pages/posts/list/post/Post';
 
 interface PostsProps {
     queryKey: string[];
@@ -21,11 +20,11 @@ export const Posts = ({ queryKey, path }: PostsProps) => {
     if (isEmpty) return <EmptyList title="No posts, add some friends!" />;
 
     const PostsComponents = data.pages.map((page) => (
-        <React.Fragment key={page.current_page}>
+        <Fragment key={page.current_page}>
             {page.data.map((post) => (
                 <Post key={post.id} {...post} />
             ))}
-        </React.Fragment>
+        </Fragment>
     ));
 
     return (

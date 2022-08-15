@@ -1,5 +1,5 @@
-import { FakeForm } from '@components/pages/posts/create/FakeForm';
+import { CreatePostModal } from '@components/pages/posts/createPostModal/CreatePostModal';
 
 export const CreatePost = () => {
-    return <FakeForm />;
+    return <CreatePostModal />;
 };

@@ -13,14 +13,9 @@ describe('Form component', () => {
 
     beforeEach(() => {
         nock.disableNetConnect();
-        nock.cleanAll();
 
         mock('/api/user', 200, RootUserJson);
         mock('/api/posts?page=1', 200, PostsFirstPageJson);
-    });
-
-    afterEach(() => {
-        nock.cleanAll();
     });
 
     it('show too short text validation message', async () => {
@@ -70,6 +65,7 @@ describe('Form component', () => {
 
     it('show loader when request called', async () => {
         mock('/api/posts', 201, {}, 'post');
+
         const user = userEvent.setup();
 
         renderWithDefaultData(<Form />);
@@ -142,8 +138,6 @@ describe('Form component', () => {
             generateFile('thirdFile.jpeg', 'image/jpeg'),
         ];
 
-        mock('/api/posts', 201, {}, 'post');
-
         renderWithDefaultData(<Form />);
 
         const showButton = screen.getByLabelText('Show input file');
@@ -159,13 +153,6 @@ describe('Form component', () => {
         expect(displayedFirstFileName).toBeInTheDocument();
         expect(displayedSecondFileName).toBeInTheDocument();
         expect(displayedThirdFileName).toBeInTheDocument();
-
-        const submitButton = screen.getByLabelText('Create post');
-        await user.click(submitButton);
-
-        const errors = screen.queryByTestId('post-validation');
-
-        expect(errors).toHaveTextContent('');
     });
 
     it('can remove file from uploaded files list', async () => {

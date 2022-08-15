@@ -10,13 +10,21 @@ import InvitesFirstPageJson from '@mocks/friendsList/invites/firstPage.json';
 import InvitesEmptyPageJson from '@mocks/friendsList/invites/empty.json';
 import FriendsFirstPageJson from '@mocks/friendsList/friends/firstPage.json';
 import FriendsEmptyPageJson from '@mocks/friendsList/friends/empty.json';
-import userEvent from '@testing-library/user-event';
+import RootUserJson from '@mocks/user/root.json';
+import nock from 'nock';
 
 describe('List component', () => {
-    const user = userEvent.setup();
-
     describe('Suggests list', () => {
         const users = SuggestsFirstPageJson.data;
+
+        beforeEach(() => {
+            mock('/api/user', 200, RootUserJson, 'get');
+        });
+
+        afterEach(() => {
+            nock.cleanAll();
+            nock.enableNetConnect();
+        });
 
         it('render loaders on initial loading', async () => {
             mock('/api/suggests?page=1', 200, SuggestsFirstPageJson);

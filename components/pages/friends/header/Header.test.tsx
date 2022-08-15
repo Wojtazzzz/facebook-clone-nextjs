@@ -6,33 +6,33 @@ describe('Friends Header component', () => {
     it('renders properly Friends title', () => {
         renderWithDefaultData(<Header title="Friends" />);
 
-        const title = screen.getByText('Friends', { selector: 'h5' });
+        const header = screen.getByTestId('friendsList-header');
 
-        expect(title).toBeInTheDocument();
+        expect(header).toHaveTextContent('Friends');
     });
 
     it('renders properly Invites title', () => {
         renderWithDefaultData(<Header title="Invites" />);
 
-        const title = screen.getByText('Invites', { selector: 'h5' });
+        const header = screen.getByTestId('friendsList-header');
 
-        expect(title).toBeInTheDocument();
+        expect(header).toHaveTextContent('Invites');
     });
 
     it('renders properly Suggests title', () => {
         renderWithDefaultData(<Header title="Suggests" />);
 
-        const title = screen.getByText('Suggests', { selector: 'h5' });
+        const header = screen.getByTestId('friendsList-header');
 
-        expect(title).toBeInTheDocument();
+        expect(header).toHaveTextContent('Suggests');
     });
 
     it('renders properly Pokes title', () => {
         renderWithDefaultData(<Header title="Pokes" />);
 
-        const title = screen.getByText('Pokes', { selector: 'h5' });
+        const header = screen.getByTestId('friendsList-header');
 
-        expect(title).toBeInTheDocument();
+        expect(header).toHaveTextContent('Pokes');
     });
 
     it('renders nav with properly links', () => {
