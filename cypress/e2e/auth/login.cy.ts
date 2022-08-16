@@ -16,8 +16,7 @@ describe('Login tests', () => {
     it('successful login to app redirects to main page', () => {
         cy.intercept('/api/user').as('user');
 
-        cy.intercept('/sanctum/csrf-cookie').as('csrf');
-        cy.intercept('/login').as('login');
+        cy.intercept('/api/login').as('login');
 
         cy.visit('/');
 
@@ -29,7 +28,6 @@ describe('Login tests', () => {
 
         cy.intercept('/api/user').as('user');
 
-        cy.wait('@csrf');
         cy.wait('@login');
         cy.wait('@user');
 
@@ -39,8 +37,7 @@ describe('Login tests', () => {
     it('login with wrong credentials', () => {
         cy.intercept('/api/user').as('user');
 
-        cy.intercept('/sanctum/csrf-cookie').as('csrf');
-        cy.intercept('/login').as('login');
+        cy.intercept('/api/login').as('login');
 
         cy.visit('/');
 
@@ -48,15 +45,13 @@ describe('Login tests', () => {
         cy.get('input[aria-label="Password"]').type('WRONG_PASSWORD');
         cy.get('button[aria-label="Login"]').click();
 
-        cy.wait('@csrf');
         cy.wait('@login');
 
         cy.contains('These credentials do not match our records.');
     });
 
     it('login response return server error', () => {
-        cy.intercept('/sanctum/csrf-cookie').as('csrf');
-        cy.intercept('post', '/login', { statusCode: 500 }).as('login');
+        cy.intercept('post', '/api/login', { statusCode: 500 }).as('login');
 
         cy.visit('/');
 
@@ -64,7 +59,6 @@ describe('Login tests', () => {
         cy.get('input[aria-label="Password"]').type('password');
         cy.get('button[aria-label="Login"]').click();
 
-        cy.wait('@csrf');
         cy.wait('@login');
 
         cy.url().should('eq', `${APP_URL}/login`);

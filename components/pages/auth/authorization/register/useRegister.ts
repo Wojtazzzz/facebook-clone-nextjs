@@ -25,7 +25,7 @@ export const useRegister = () => {
     };
 };
 
-const csrf = () => axios.get('/sanctum/csrf-cookie');
-const mutationFn = () => axios.post('/register');
+const csrf = () => axios.get('/api/csrf-cookie');
+const mutationFn = () => axios.post('/api/register');
 
 type IMutationFn = UseMutationResult<AxiosResponse<any, any>, IValidationError, void, unknown>;

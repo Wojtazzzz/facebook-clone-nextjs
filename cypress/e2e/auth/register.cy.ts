@@ -10,8 +10,7 @@ describe('Register tests', () => {
     });
 
     it('after successful registration redirect to main page', () => {
-        cy.intercept('/register').as('register');
-        cy.intercept('/sanctum/csrf-cookie').as('csrf');
+        cy.intercept('/api/register').as('register');
 
         cy.visit('/');
 
@@ -22,7 +21,6 @@ describe('Register tests', () => {
 
         cy.intercept('/api/user').as('secondUser');
 
-        cy.wait('@csrf');
         cy.wait('@register');
         cy.wait('@secondUser');
 
@@ -30,8 +28,7 @@ describe('Register tests', () => {
     });
 
     it('register response return server error', () => {
-        cy.intercept('/register', { statusCode: 500 }).as('register');
-        cy.intercept('/sanctum/csrf-cookie').as('csrf');
+        cy.intercept('/api/register', { statusCode: 500 }).as('register');
 
         cy.visit('/');
 
@@ -42,7 +39,6 @@ describe('Register tests', () => {
 
         cy.intercept('/api/user').as('secondUser');
 
-        cy.wait('@csrf');
         cy.wait('@register');
 
         cy.url().should('eq', `${APP_URL}/login`);

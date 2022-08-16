@@ -16,7 +16,7 @@ describe('Logout tests', () => {
 
         cy.wait('@user');
 
-        cy.intercept('/logout').as('logout');
+        cy.intercept('/api/logout').as('logout');
 
         cy.get('button[aria-label="Log out"]').click();
 

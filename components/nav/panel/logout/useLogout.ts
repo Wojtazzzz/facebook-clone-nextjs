@@ -20,4 +20,4 @@ export const useLogout = () => {
     };
 };
 
-const mutationFn = () => axios.post('/logout');
+const mutationFn = () => axios.post('/api/logout');

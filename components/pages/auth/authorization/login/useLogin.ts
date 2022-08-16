@@ -25,7 +25,7 @@ export const useLogin = () => {
     };
 };
 
-const mutationFn = (data: ILoginPayload) => axios.post('/login', data);
-const csrf = () => axios.get('/sanctum/csrf-cookie');
+const mutationFn = (data: ILoginPayload) => axios.post('/api/login', data);
+const csrf = () => axios.get('/api/csrf-cookie');
 
 type IMutationFn = UseMutationResult<AxiosResponse<any, any>, IValidationError, ILoginPayload, unknown>;
