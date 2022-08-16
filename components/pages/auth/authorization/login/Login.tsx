@@ -1,18 +1,13 @@
-import { useAuth } from '@hooks/useAuth';
-
 import { Form, Formik } from 'formik';
 import { Input } from '@components/pages/auth/authorization/inc/Input';
 import { ErrorMessage } from '@components/pages/auth/authorization/inc/ErrorMessage';
 import { Button } from '@components/inc/Button';
-
 import { LoginSchema } from '@validation/LoginSchema';
-
 import type { ILoginPayload } from '@utils/types';
+import { useLogin } from './useLogin';
 
 export const Login = () => {
-    const { useLogin } = useAuth();
     const { login, isLoading, isError, errorMessage } = useLogin();
-
     const handleSubmit = (data: ILoginPayload) => login(data);
 
     return (

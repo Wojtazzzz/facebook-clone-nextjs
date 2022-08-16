@@ -1,11 +1,9 @@
-import { useAuth } from '@hooks/useAuth';
-
 import { Input } from '@components/pages/auth/authorization/inc/Input';
 import { ErrorMessage } from '@components/pages/auth/authorization/inc/ErrorMessage';
 import { Button } from '@components/inc/Button';
+import { useRegister } from './useRegister';
 
 export const Register = () => {
-    const { useRegister } = useAuth();
     const { register, isLoading, isError, errorMessage } = useRegister();
 
     return (

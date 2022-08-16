@@ -1,9 +1,8 @@
 import { RoundedButton } from '@components/inc/RoundedButton';
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
-import { useAuth } from '@hooks/useAuth';
+import { useLogout } from './useLogout';
 
 export const Logout = () => {
-    const { useLogout } = useAuth();
     const { logout, isLoading } = useLogout();
 
     return (

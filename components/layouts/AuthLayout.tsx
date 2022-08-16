@@ -1,22 +1,20 @@
 import { useRouter } from 'next/router';
-import { useAuth } from '@hooks/useAuth';
-
 import { Nav } from '@components/nav/Nav';
 import { NavToggler } from '@components/nav/mobile/NavToggler';
 import { Sidebar } from '@components/sidebar/Sidebar';
 import { Contacts } from '@components/contacts/Contacts';
 import { Chat } from '@components/chat/Chat';
 import { Modal as CreatePostModal } from '@components/inc/modals/createPost/Modal';
-
 import type { ReactNode } from 'react';
 import { useAppSelector } from '@hooks/redux';
+import { useAuthMiddleware } from './useAuthMiddleware';
 
 interface AuthLayoutProps {
     children: ReactNode;
 }
 
 export const AuthLayout = ({ children }: AuthLayoutProps) => {
-    useAuth('AUTH');
+    useAuthMiddleware('AUTH');
     const { route } = useRouter();
     const friend = useAppSelector((store) => store.chat.friend);
 
