@@ -40,16 +40,13 @@ export const useComments = () => {
         });
     };
 
-    const remove = (resourceId: number, commentId: number, onSuccess: () => void) => {
+    const remove = (resourceId: number, commentId: number) => {
         if (removeMutation.isLoading) return;
 
         removeMutation.mutate(
             { resourceId, commentId },
             {
-                onSuccess: () => {
-                    queryClient.invalidateQueries(['comments']);
-                    onSuccess();
-                },
+                onSuccess: () => queryClient.invalidateQueries(['comments']),
             }
         );
     };

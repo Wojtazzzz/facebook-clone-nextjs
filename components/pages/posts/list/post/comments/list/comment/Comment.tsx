@@ -36,6 +36,8 @@ export const Comment = ({ id, content, author, resource_id, created_at, updated_
 
                 <div className="flex gap-2 pl-3">
                     <Panel
+                        postId={resource_id}
+                        commentId={id}
                         authorId={author.id}
                         isEditModeActive={isEditModeActive}
                         toggleEditMode={handleToggleIsEditModeActive}

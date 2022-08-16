@@ -5,12 +5,14 @@ import { LikeAction } from '../../inc/actions/LikeAction';
 import { ReplyAction } from '../../inc/actions/ReplyAction';
 
 interface PanelProps {
+    postId: number;
+    commentId: number;
     authorId: number;
     isEditModeActive: boolean;
     toggleEditMode: () => void;
 }
 
-export const Panel = ({ authorId, isEditModeActive, toggleEditMode }: PanelProps) => {
+export const Panel = ({ postId, commentId, authorId, isEditModeActive, toggleEditMode }: PanelProps) => {
     const { user } = useAuth();
 
     return (
@@ -21,7 +23,7 @@ export const Panel = ({ authorId, isEditModeActive, toggleEditMode }: PanelProps
             {authorId === user?.id && (
                 <>
                     <EditAction isEditModeActive={isEditModeActive} toggleEditMode={toggleEditMode} />
-                    <DeleteAction />
+                    <DeleteAction postId={postId} commentId={commentId} />
                 </>
             )}
         </div>
