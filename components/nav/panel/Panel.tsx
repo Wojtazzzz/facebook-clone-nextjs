@@ -1,5 +1,5 @@
 import { Notifications } from '@components/nav/panel/notifications/Notifications';
-import { Logout } from './Logout';
+import { Logout } from './logout/Logout';
 import { Messenger } from './messenger/Messenger';
 import { OpenSidebar } from './OpenSidebar';
 

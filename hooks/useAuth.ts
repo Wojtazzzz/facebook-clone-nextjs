@@ -1,12 +1,11 @@
 import { useCallback, useEffect, useMemo } from 'react';
 import { useRouter } from 'next/router';
 import { axios } from '@libs/axios';
-
 import type { IUser, IValidationError } from '@utils/types';
 import type { IAuthMiddleware } from '@utils/types';
 import type { ILoginPayload } from '@utils/types';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { AxiosResponse } from 'axios';
+import type { AxiosResponse } from 'axios';
 
 export const useAuth = (middleware?: IAuthMiddleware) => {
     const router = useRouter();
