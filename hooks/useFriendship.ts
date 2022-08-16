@@ -20,7 +20,7 @@ export const useFriendship = () => {
         if (inviteMutation.isLoading) return;
 
         inviteMutation.mutate(friendId, {
-            onSuccess: () => queryClient.invalidateQueries(['suggests']),
+            onSuccess: () => queryClient.invalidateQueries(['Suggests']),
         });
     };
 
@@ -30,7 +30,7 @@ export const useFriendship = () => {
         updateInviteMutation.mutate(
             { friendId, status },
             {
-                onSuccess: () => queryClient.invalidateQueries(['invites']),
+                onSuccess: () => queryClient.invalidateQueries(['Invites']),
             }
         );
     };
@@ -39,7 +39,7 @@ export const useFriendship = () => {
         if (removeMutation.isLoading) return;
 
         removeMutation.mutate(friendId, {
-            onSuccess: () => queryClient.invalidateQueries(['friends']),
+            onSuccess: () => queryClient.invalidateQueries(['Friends']),
         });
     };
 
