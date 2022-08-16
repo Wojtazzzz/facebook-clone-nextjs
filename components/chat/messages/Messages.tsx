@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import { Fragment, memo } from 'react';
 
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Loader } from '@components/chat/messages/Loader';
@@ -24,11 +24,11 @@ export const Messages = memo<MessagesProps>(({ friendId }) => {
     if (isEmpty) return <EmptyChat />;
 
     const MessagesComponents = data.pages.map((page) => (
-        <React.Fragment key={page.current_page}>
+        <Fragment key={page.current_page}>
             {page.data.map((message) => (
                 <Message key={message.id} {...message} />
             ))}
-        </React.Fragment>
+        </Fragment>
     ));
 
     return (

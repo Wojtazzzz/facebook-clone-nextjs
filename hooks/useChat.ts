@@ -1,8 +1,6 @@
 import { useAppDispatch, useAppSelector } from '@hooks/redux';
-
 import { closeChat, openChat } from '@redux/slices/ChatSlice';
 import { axios } from '@libs/axios';
-
 import type { IChatFriend } from '@utils/types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
@@ -12,7 +10,7 @@ export const useChat = () => {
     const queryClient = useQueryClient();
 
     const sendMessageMutation = useMutation((data: { text: string; receiver_id: number }) =>
-        axios.post('/api/messages', { data })
+        axios.post('/api/messages', data)
     );
 
     const handleOpenChat = (friend: IChatFriend) => {
@@ -32,11 +30,11 @@ export const useChat = () => {
             receiver_id: friend.id,
         });
 
-        // Chat component is listening for new messages, so mutation is needless
+        // Chat component is listening for new messages, so invalidate is needless
     };
 
-    const invalidate = () => {
-        queryClient.invalidateQueries(['chat']);
+    const invalidate = (friendId: number) => {
+        queryClient.invalidateQueries(['chat', `${friendId}`]);
     };
 
     return {

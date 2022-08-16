@@ -12,7 +12,7 @@ describe('Chat tests', () => {
         cy.loginRequest();
 
         cy.intercept('/api/user').as('user');
-        cy.intercept('/api/friends/contacts?page=1').as('contacts_page_1');
+        cy.intercept('/api/contacts?page=1').as('contacts_page_1');
 
         cy.create('User', friend);
         cy.create('Friendship', {
