@@ -9,8 +9,11 @@ import { mockResizeObserver } from '@utils/mockResizeObserver';
 describe('AuthorsList component', () => {
     mockResizeObserver();
 
-    it('show spinner when data not loaded yet', () => {
-        mock('/api/posts/1/likes', 200, MoreLikesJson);
+    it('render spinner when data not loaded yet', () => {
+        mock({
+            path: '/api/posts/1/likes',
+            data: MoreLikesJson,
+        });
 
         renderWithDefaultData(<AuthorsList postId={1} />);
 
@@ -18,8 +21,11 @@ describe('AuthorsList component', () => {
         expect(spinner).toBeInTheDocument();
     });
 
-    it('show ApiError when response return error', async () => {
-        mock('/api/posts/1/likes', 500);
+    it('render ApiError when response return error', async () => {
+        mock({
+            path: '/api/posts/1/likes',
+            status: 500,
+        });
 
         renderWithDefaultData(<AuthorsList postId={1} />);
 
@@ -27,8 +33,11 @@ describe('AuthorsList component', () => {
         expect(error).toBeInTheDocument();
     });
 
-    it('show "and x more..." when fetched more likes', async () => {
-        mock('/api/posts/1/likes', 200, MoreLikesJson);
+    it('render "and x more..." when fetched more likes', async () => {
+        mock({
+            path: '/api/posts/1/likes',
+            data: MoreLikesJson,
+        });
 
         renderWithDefaultData(<AuthorsList postId={1} />);
 
@@ -37,7 +46,10 @@ describe('AuthorsList component', () => {
     });
 
     it('render max 12 likes authors', async () => {
-        mock('/api/posts/1/likes', 200, MoreLikesJson);
+        mock({
+            path: '/api/posts/1/likes',
+            data: MoreLikesJson,
+        });
 
         renderWithDefaultData(<AuthorsList postId={1} />);
 
@@ -45,8 +57,11 @@ describe('AuthorsList component', () => {
         expect(authors).toHaveLength(12);
     });
 
-    it('dont show "and x more..." when 12 or less likes', () => {
-        mock('/api/posts/1/likes', 200, LessLikesJson);
+    it('dont render "and x more..." when 12 or less likes', () => {
+        mock({
+            path: '/api/posts/1/likes',
+            data: LessLikesJson,
+        });
 
         renderWithDefaultData(<AuthorsList postId={1} />);
 

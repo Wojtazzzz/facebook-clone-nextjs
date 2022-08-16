@@ -9,7 +9,7 @@ interface CommentsProps {
 }
 
 export const Comments = ({ postId }: CommentsProps) => {
-    const { data, isLoading, isError, error, isEmpty, hasNextPage, isFetchingNextPage, fetchNextPage } =
+    const { data, isLoading, isError, isEmpty, hasNextPage, isFetchingNextPage, fetchNextPage } =
         useInfiniteData<IComment>(['comments', `${postId}`], `/api/posts/${postId}/comments`);
 
     return (

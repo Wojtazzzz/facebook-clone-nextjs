@@ -32,7 +32,6 @@ export const FriendPanel = (friend: FriendPanelProps) => {
     return (
         <div className="flex gap-3">
             <Button title="Send message" styles="w-[140px]" isDisabled={isLoading} callback={handleOpenChat} />
-
             <Button title="Remove" styles="w-[100px]" isDisabled={isLoading} callback={handleRemove} />
         </div>
     );

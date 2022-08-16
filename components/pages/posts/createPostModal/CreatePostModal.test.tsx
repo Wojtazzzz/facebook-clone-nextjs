@@ -6,7 +6,10 @@ import { screen } from '@testing-library/react';
 
 describe('CreatePostModal component', () => {
     beforeEach(() => {
-        mock('/api/user', 200, RootUserJson);
+        mock({
+            path: '/api/user',
+            data: RootUserJson,
+        });
     });
 
     it('render loaders when user not loaded', () => {

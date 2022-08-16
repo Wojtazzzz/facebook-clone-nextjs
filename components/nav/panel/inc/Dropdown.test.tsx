@@ -9,7 +9,10 @@ describe('Dropdown component', () => {
     it('render properly header for messenger', () => {
         const mockClose = jest.fn();
 
-        mock('/api/messages?page=1', 200, MessengerFirstPageJson);
+        mock({
+            path: '/api/messages?page=1',
+            data: MessengerFirstPageJson,
+        });
 
         renderWithDefaultData(<Dropdown type="Messenger" close={mockClose} />);
 
@@ -21,7 +24,10 @@ describe('Dropdown component', () => {
     it('render properly header for notifications', () => {
         const mockClose = jest.fn();
 
-        mock('/api/notifications?page=1', 200, NotificationsFirstPageJson);
+        mock({
+            path: '/api/notifications?page=1',
+            data: NotificationsFirstPageJson,
+        });
 
         renderWithDefaultData(<Dropdown type="Notifications" close={mockClose} />);
 
@@ -33,7 +39,10 @@ describe('Dropdown component', () => {
     it('render properly list for messenger', async () => {
         const mockClose = jest.fn();
 
-        mock('/api/messages?page=1', 200, MessengerFirstPageJson);
+        mock({
+            path: '/api/messages?page=1',
+            data: MessengerFirstPageJson,
+        });
 
         renderWithDefaultData(<Dropdown type="Messenger" close={mockClose} />);
 
@@ -45,7 +54,10 @@ describe('Dropdown component', () => {
     it('render properly list for notifications', async () => {
         const mockClose = jest.fn();
 
-        mock('/api/notifications?page=1', 200, NotificationsFirstPageJson);
+        mock({
+            path: '/api/notifications?page=1',
+            data: NotificationsFirstPageJson,
+        });
 
         renderWithDefaultData(<Dropdown type="Notifications" close={mockClose} />);
 

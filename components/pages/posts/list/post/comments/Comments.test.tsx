@@ -17,16 +17,18 @@ describe('Comments component', () => {
     const commentsSecondPage = CommentsSecondPageJson.data;
 
     beforeEach(() => {
-        mock('/api/user', 200, RootUserJson, 'get', 2);
-    });
-
-    afterEach(() => {
-        nock.cleanAll();
-        nock.enableNetConnect();
+        mock({
+            path: '/api/user',
+            data: RootUserJson,
+            times: 2,
+        });
     });
 
     it('render loaders on initial loading', () => {
-        mock(`/api/posts/${post.id}/comments?page=1`, 200, CommentsFirstPageJson);
+        mock({
+            path: `/api/posts/${post.id}/comments?page=1`,
+            data: CommentsFirstPageJson,
+        });
 
         renderWithDefaultData(<Comments postId={post.id} />);
 
@@ -36,7 +38,10 @@ describe('Comments component', () => {
     });
 
     it('load and render 10 comments', async () => {
-        mock(`/api/posts/${post.id}/comments?page=1`, 200, CommentsFirstPageJson);
+        mock({
+            path: `/api/posts/${post.id}/comments?page=1`,
+            data: CommentsFirstPageJson,
+        });
 
         renderWithDefaultData(<Comments postId={post.id} />);
 
@@ -47,13 +52,48 @@ describe('Comments component', () => {
         expect(tenthComment).toBeInTheDocument();
     });
 
-    it('fetch 10 more comments when click on button', async () => {
-        mock(`/api/posts/${post.id}/comments?page=1`, 200, CommentsFirstPageJson);
+    it('render ApiError component when api return error', async () => {
+        mock({
+            path: `/api/posts/${post.id}/comments?page=1`,
+            status: 500,
+        });
 
         renderWithDefaultData(<Comments postId={post.id} />);
 
-        mock(`/api/posts/${post.id}/comments?page=1`, 200, CommentsFirstPageJson);
-        mock(`/api/posts/${post.id}/comments?page=2`, 200, CommentsSecondPageJson);
+        const apiErrorComponent = await screen.findByText('Something went wrong');
+
+        await waitFor(() => {
+            expect(apiErrorComponent).toBeInTheDocument();
+        });
+    });
+
+    it('not render LoadMore button when post has no comments', async () => {
+        mock({
+            path: `/api/posts/${post.id}/comments?page=1`,
+            data: CommentsEmptyPageJson,
+        });
+
+        renderWithDefaultData(<Comments postId={post.id} />);
+
+        const fetchButton = screen.queryByLabelText('Load more comments');
+
+        expect(fetchButton).not.toBeInTheDocument();
+    });
+
+    beforeEach(() => {
+        mock({
+            path: `/api/posts/${post.id}/comments?page=2`,
+            data: CommentsSecondPageJson,
+        });
+    });
+
+    it('fetch 10 more comments when click on button', async () => {
+        mock({
+            path: `/api/posts/${post.id}/comments?page=1`,
+            data: CommentsFirstPageJson,
+        });
+
+        renderWithDefaultData(<Comments postId={post.id} />);
 
         const fetchButton = await screen.findByLabelText('Load more comments');
         await user.click(fetchButton);
@@ -69,15 +109,16 @@ describe('Comments component', () => {
         expect(twentythComment).toBeInTheDocument();
     });
 
-    it('render loaders when 10 more user is fetching', async () => {
-        mock(`/api/posts/${post.id}/comments?page=1`, 200, CommentsFirstPageJson);
+    it('render loaders when more comments are fetching', async () => {
+        mock({
+            path: `/api/posts/${post.id}/comments?page=1`,
+            data: CommentsFirstPageJson,
+        });
 
         renderWithDefaultData(<Comments postId={post.id} />);
 
-        mock(`/api/posts/${post.id}/comments?page=1`, 200, CommentsFirstPageJson);
-        mock(`/api/posts/${post.id}/comments?page=2`, 200, CommentsSecondPageJson);
-
         const fetchButton = await screen.findByLabelText('Load more comments');
+
         await user.click(fetchButton);
 
         const loaders = await screen.findByTestId('postsCommentsList-fetching_loader');
@@ -85,37 +126,20 @@ describe('Comments component', () => {
         expect(loaders).toBeInTheDocument();
     });
 
-    it('render ApiError component when api return error', async () => {
-        mock(`/api/posts/${post.id}/comments?page=1`, 500);
-
-        renderWithDefaultData(<Comments postId={post.id} />);
-
-        const apiErrorComponent = await screen.findByText('Something went wrong');
-
-        expect(apiErrorComponent).toBeInTheDocument();
-    });
-
-    it('not render LoadMore button when post has no comments', async () => {
-        mock(`/api/posts/${post.id}/comments?page=1`, 200, CommentsEmptyPageJson);
-
-        renderWithDefaultData(<Comments postId={post.id} />);
-
-        const fetchButton = screen.queryByLabelText('Load more comments');
-
-        expect(fetchButton).not.toBeInTheDocument();
-    });
-
     it('not render LoadMore button when user fetch all posts', async () => {
-        mock(`/api/posts/${post.id}/comments?page=1`, 200, CommentsFirstPageJson);
+        mock({
+            path: `/api/posts/${post.id}/comments?page=1`,
+            data: CommentsFirstPageJson,
+        });
 
         renderWithDefaultData(<Comments postId={post.id} />);
-
-        mock(`/api/posts/${post.id}/comments?page=1`, 200, CommentsFirstPageJson);
-        mock(`/api/posts/${post.id}/comments?page=2`, 200, CommentsSecondPageJson);
 
         const fetchButton = await screen.findByLabelText('Load more comments');
+
         await user.click(fetchButton);
 
-        expect(fetchButton).not.toBeInTheDocument();
+        await waitFor(() => {
+            expect(fetchButton).not.toBeInTheDocument();
+        });
     });
 });

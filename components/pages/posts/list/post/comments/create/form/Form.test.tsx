@@ -19,25 +19,12 @@ describe('Form component', () => {
         expect(input).toHaveValue('John Doe');
     });
 
-    it('clear input when comment was created', async () => {
-        mock(`/api/posts/${post.id}/comments`, 201, CommentSuccessResponseJson, 'post');
-
-        renderWithDefaultData(<Form postId={post.id} />);
-
-        const input = screen.getByLabelText('Write a comment');
-        await user.type(input, 'John Doe is super facebook-clone user!');
-
-        const submitButton = screen.getByLabelText('Submit comment');
-
-        await user.click(submitButton);
-
-        await waitFor(() => {
-            expect(input).toHaveValue('');
-        });
-    });
-
     it('not clear input when api return error', async () => {
-        mock(`/api/posts/${post.id}/comments`, 500, {}, 'post');
+        mock({
+            path: `/api/posts/${post.id}/comments`,
+            status: 500,
+            method: 'post',
+        });
 
         renderWithDefaultData(<Form postId={post.id} />);
 
@@ -91,6 +78,28 @@ describe('Form component', () => {
         const validationError = await screen.findByText('Comment must be at most 1000 characters');
 
         expect(validationError).toBeInTheDocument();
+    });
+
+    it('clear input when comment was created', async () => {
+        mock({
+            path: `/api/posts/${post.id}/comments`,
+            data: CommentSuccessResponseJson,
+            status: 201,
+            method: 'post',
+        });
+
+        renderWithDefaultData(<Form postId={post.id} />);
+
+        const input = screen.getByLabelText('Write a comment');
+        await user.type(input, 'John Doe is super facebook-clone user!');
+
+        const submitButton = screen.getByLabelText('Submit comment');
+
+        await user.click(submitButton);
+
+        await waitFor(() => {
+            expect(input).toHaveValue('');
+        });
     });
 });
 

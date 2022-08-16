@@ -1,9 +1,8 @@
 import nock from 'nock';
-import type { ReplyHeaders } from 'nock';
 
 const allowedHeaders = ['ClientName', 'ClientVersion', 'Content-Type', 'Authorization', 'X-Requested-With'];
 
-const nockReplyHeaders: ReplyHeaders = {
+const ReplyHeaders = {
     'access-control-allow-origin': '*',
     'access-control-allow-credentials': 'true',
     'access-control-allow-headers': allowedHeaders.join(','),
@@ -17,7 +16,15 @@ type IMethod = 'get' | 'post' | 'delete' | 'put';
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'http://localhost:8000';
 
-export const mock = (path: string, status: IStatus = 200, data?: {}, method: IMethod = 'get') => {
-    nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders).options(path).reply(200);
-    nock(BACKEND_URL).defaultReplyHeaders(nockReplyHeaders)[method](path).reply(status, data);
+type IMockFunctionArguments = {
+    path: string;
+    status?: IStatus;
+    data?: {};
+    method?: IMethod;
+    times?: number;
+};
+
+export const mock = ({ path, status = 200, data = {}, method = 'get', times = 0 }: IMockFunctionArguments) => {
+    nock(BACKEND_URL).defaultReplyHeaders(ReplyHeaders).options(path).times(times).reply(200);
+    nock(BACKEND_URL).defaultReplyHeaders(ReplyHeaders)[method](path).times(times).reply(status, data);
 };

@@ -5,17 +5,22 @@ import ContactsEmptyPageJson from '@mocks/contacts/empty.json';
 import { List } from '@components/contacts/list/List';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import { mock } from '@libs/nock';
-import userEvent from '@testing-library/user-event';
 
 describe('Contacts list component', () => {
     const contacts = ContactsFirstPageJson.data;
 
     beforeEach(() => {
-        mock('/api/user', 200, RootUserJson);
+        mock({
+            path: '/api/user',
+            data: RootUserJson,
+        });
     });
 
     it('loads and render 15 contacts', async () => {
-        mock('/api/contacts?page=1', 200, ContactsFirstPageJson);
+        mock({
+            path: '/api/contacts?page=1',
+            data: ContactsFirstPageJson,
+        });
 
         renderWithDefaultData(<List />);
 
@@ -27,7 +32,10 @@ describe('Contacts list component', () => {
     });
 
     it('render loaders when first page is loading', () => {
-        mock('/api/contacts?page=1', 200, ContactsFirstPageJson);
+        mock({
+            path: '/api/contacts?page=1',
+            data: ContactsFirstPageJson,
+        });
 
         renderWithDefaultData(<List />);
 
@@ -36,7 +44,10 @@ describe('Contacts list component', () => {
     });
 
     it('render empty component when response return empty data', async () => {
-        mock('/api/contacts?page=1', 200, ContactsEmptyPageJson);
+        mock({
+            path: '/api/contacts?page=1',
+            data: ContactsEmptyPageJson,
+        });
 
         renderWithDefaultData(<List />);
 
@@ -45,7 +56,10 @@ describe('Contacts list component', () => {
     });
 
     it('render error component when api return server error', async () => {
-        mock('/api/contacts?page=1', 500);
+        mock({
+            path: '/api/contacts?page=1',
+            status: 500,
+        });
 
         renderWithDefaultData(<List />);
 

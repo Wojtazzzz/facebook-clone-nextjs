@@ -12,7 +12,7 @@ interface PanelProps {
 export const Panel = ({ pageUser }: PanelProps) => {
     const { user } = useAuth();
 
-    if (user && user.id === pageUser.id) {
+    if (user?.id === pageUser.id) {
         return <AuthPanel />;
     }
 

@@ -12,7 +12,10 @@ describe('Post component', () => {
     const post = PostsFirstPageJson.data[0];
 
     beforeEach(() => {
-        mock('/api/user', 200, RootUserJson);
+        mock({
+            path: '/api/user',
+            data: RootUserJson,
+        });
     });
 
     it('render like, comment and share buttons', () => {
@@ -36,7 +39,10 @@ describe('Post component', () => {
     });
 
     it('render comments section when click on button', async () => {
-        mock(`/api/posts/${post.id}/comments?page=1`, 200, CommentsFirstPageJson);
+        mock({
+            path: `/api/posts/${post.id}/comments?page=1`,
+            data: CommentsFirstPageJson,
+        });
 
         renderWithDefaultData(<Post {...post} type="OWN" />);
 
@@ -48,7 +54,10 @@ describe('Post component', () => {
     });
 
     it('render comments section when click on comments stats', async () => {
-        mock(`/api/posts/${post.id}/comments?page=1`, 200, CommentsFirstPageJson);
+        mock({
+            path: `/api/posts/${post.id}/comments?page=1`,
+            data: CommentsFirstPageJson,
+        });
 
         renderWithDefaultData(<Post {...post} type="OWN" />);
 
@@ -60,7 +69,10 @@ describe('Post component', () => {
     });
 
     it('render loaders before comments section', async () => {
-        mock(`/api/posts/${post.id}/comments?page=1`, 200, CommentsFirstPageJson);
+        mock({
+            path: `/api/posts/${post.id}/comments?page=1`,
+            data: CommentsFirstPageJson,
+        });
 
         renderWithDefaultData(<Post {...post} type="OWN" />);
 

@@ -1,7 +1,6 @@
 import { Login } from '@components/pages/auth/authorization/login/Login';
 import CannotLoginResponse from '@mocks/user/cannotLogin.json';
 import { screen } from '@testing-library/react';
-import nock from 'nock';
 import userEvent from '@testing-library/user-event';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import { mock } from '@libs/nock';
@@ -10,8 +9,10 @@ describe('Login component', () => {
     const user = userEvent.setup();
 
     beforeEach(() => {
-        nock.disableNetConnect();
-        mock('/api/user', 401);
+        mock({
+            path: '/api/user',
+            status: 401,
+        });
     });
 
     it('render email, password and button input', () => {
@@ -24,7 +25,6 @@ describe('Login component', () => {
         expect(emailInput).toBeInTheDocument();
         expect(passwordInput).toBeInTheDocument();
         expect(submitButton).toBeInTheDocument();
-        expect(submitButton).toHaveTextContent('Login');
     });
 
     it('display "required" validation message when input values are empty', async () => {
@@ -61,9 +61,17 @@ describe('Login component', () => {
     });
 
     it('display "incorrect credentials" message when login response returns 422 error', async () => {
-        mock('/sanctum/csrf-cookie', 204);
-        mock('/api/user', 401);
-        mock('/login', 422, CannotLoginResponse, 'post');
+        mock({
+            path: '/sanctum/csrf-cookie',
+            status: 204,
+        });
+
+        mock({
+            path: '/login',
+            status: 422,
+            data: CannotLoginResponse,
+            method: 'post',
+        });
 
         renderWithDefaultData(<Login />);
 

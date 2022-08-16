@@ -15,7 +15,10 @@ describe('Comment component', () => {
     const rootUserComment = RootUserCommentJson;
 
     beforeEach(() => {
-        mock('/api/user', 200, RootUserJson);
+        mock({
+            path: '/api/user',
+            data: RootUserJson,
+        });
     });
 
     it("has link to author's profile", () => {
@@ -45,7 +48,10 @@ describe('Comment component', () => {
     });
 
     it('turn on edit mode when click on edit button', async () => {
-        mock(`/api/posts/${comment.resource_id}/comments?page=1`, 200, CommentsFirstPageJson);
+        mock({
+            path: `/api/posts/${comment.resource_id}/comments?page=1`,
+            data: CommentsFirstPageJson,
+        });
 
         renderWithDefaultData(<Comment {...rootUserComment} />);
 

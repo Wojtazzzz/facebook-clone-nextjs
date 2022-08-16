@@ -3,11 +3,17 @@ import { Panel } from '@components/pages/profile/hero/panel/Panel';
 import RootUserJson from '@mocks/user/root.json';
 import { mock } from '@libs/nock';
 import { screen } from '@testing-library/react';
+import nock from 'nock';
 
 describe('Profile Panel tests', () => {
-    it("render AuthPanel when profile is logged user's, GuestPanel not showed", async () => {
-        mock('/api/user', 200, RootUserJson);
+    beforeEach(() => {
+        mock({
+            path: '/api/user',
+            data: RootUserJson,
+        });
+    });
 
+    it("render AuthPanel when profile is logged user's, GuestPanel not showed", async () => {
         renderWithDefaultData(<Panel pageUser={RootUserJson} />);
 
         const editButton = await screen.findByLabelText('Edit profile');
@@ -20,8 +26,6 @@ describe('Profile Panel tests', () => {
     });
 
     it("render GuestPanel when profile is not logged user's, AuthPanel not showed", async () => {
-        mock('/api/user', 200, RootUserJson);
-
         renderWithDefaultData(<Panel pageUser={RootUserJson} />);
 
         const editButton = screen.queryByLabelText('Edit profile');

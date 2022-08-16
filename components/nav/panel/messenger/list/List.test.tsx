@@ -10,11 +10,17 @@ describe('List component', () => {
     const messages = MessengerFirstPageJson.data;
 
     beforeEach(() => {
-        mock('/api/user', 200, RootUserJson);
+        mock({
+            path: '/api/user',
+            data: RootUserJson,
+        });
     });
 
     it('render loaders on initial fetching users to text', () => {
-        mock('/api/messages?page=1', 200, MessengerFirstPageJson);
+        mock({
+            path: '/api/messages?page=1',
+            data: MessengerFirstPageJson,
+        });
 
         renderWithDefaultData(<List />);
 
@@ -24,7 +30,10 @@ describe('List component', () => {
     });
 
     it('render properly first list of users to text', async () => {
-        mock('/api/messages?page=1', 200, MessengerFirstPageJson);
+        mock({
+            path: '/api/messages?page=1',
+            data: MessengerFirstPageJson,
+        });
 
         renderWithDefaultData(<List />);
 
@@ -36,7 +45,10 @@ describe('List component', () => {
     });
 
     it('render properly empty component when response return empty array', async () => {
-        mock('/api/messages?page=1', 200, MessengerEmptyPageJson);
+        mock({
+            path: '/api/messages?page=1',
+            data: MessengerEmptyPageJson,
+        });
 
         renderWithDefaultData(<List />);
 
@@ -45,7 +57,10 @@ describe('List component', () => {
     });
 
     it('render properly error component when api return error', async () => {
-        mock('/api/messages?page=1', 500, []);
+        mock({
+            path: '/api/messages?page=1',
+            status: 500,
+        });
 
         renderWithDefaultData(<List />);
 

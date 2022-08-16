@@ -32,7 +32,11 @@ describe('Item component', () => {
         it('render success message on successfully sent invite', async () => {
             renderWithDefaultData(<Item type="Suggests" item={item} />);
 
-            mock('/api/invites', 201, {}, 'post');
+            mock({
+                path: '/api/invites',
+                status: 201,
+                method: 'post',
+            });
 
             const inviteButton = await screen.findByTitle('Invite');
             await user.click(inviteButton);
@@ -44,7 +48,11 @@ describe('Item component', () => {
         it('render error message on failed request', async () => {
             renderWithDefaultData(<Item type="Suggests" item={item} />);
 
-            mock('/api/invites', 500, {}, 'post');
+            mock({
+                path: '/api/invites',
+                status: 500,
+                method: 'post',
+            });
 
             const inviteButton = await screen.findByTitle('Invite');
             await user.click(inviteButton);
@@ -79,7 +87,11 @@ describe('Item component', () => {
             const pokeButton = await screen.findByTitle('Poke back');
             expect(pokeButton).toBeInTheDocument();
 
-            mock('/api/pokes', 201, {}, 'post');
+            mock({
+                path: '/api/pokes',
+                status: 201,
+                method: 'post',
+            });
 
             await user.click(pokeButton);
 
@@ -93,7 +105,11 @@ describe('Item component', () => {
             const pokeButton = await screen.findByTitle('Poke back');
             expect(pokeButton).toBeInTheDocument();
 
-            mock('/api/pokes', 500, {}, 'post');
+            mock({
+                path: '/api/pokes',
+                status: 500,
+                method: 'post',
+            });
 
             await user.click(pokeButton);
 
@@ -120,7 +136,12 @@ describe('Item component', () => {
         });
 
         it('render success message on successfully reject invite', async () => {
-            mock(`/api/invites/${item.friend.id}`, 201, InviteRejectedJson, 'put');
+            mock({
+                path: `/api/invites/${item.friend.id}`,
+                status: 201,
+                method: 'put',
+                data: InviteRejectedJson,
+            });
 
             renderWithDefaultData(<Item type="Invites" item={item} />);
 
@@ -134,7 +155,11 @@ describe('Item component', () => {
         it('render error message on failed reject invite', async () => {
             renderWithDefaultData(<Item type="Invites" item={item} />);
 
-            mock(`/api/invites/${item.friend.id}`, 500, {}, 'put');
+            mock({
+                path: `/api/invites/${item.friend.id}`,
+                status: 500,
+                method: 'put',
+            });
 
             const rejectButton = await screen.findByTitle('Reject');
             await user.click(rejectButton);
@@ -146,7 +171,12 @@ describe('Item component', () => {
         it('render success message on successfully accept invite', async () => {
             renderWithDefaultData(<Item type="Invites" item={item} />);
 
-            mock(`/api/invites/${item.friend.id}`, 201, InviteAcceptedJson, 'put');
+            mock({
+                path: `/api/invites/${item.friend.id}`,
+                status: 201,
+                method: 'put',
+                data: InviteAcceptedJson,
+            });
 
             const acceptButton = await screen.findByTitle('Accept');
             await user.click(acceptButton);
@@ -158,7 +188,11 @@ describe('Item component', () => {
         it('render error message on failed reject invite', async () => {
             renderWithDefaultData(<Item type="Invites" item={item} />);
 
-            mock(`/api/invites/${item.friend.id}`, 500, {}, 'put');
+            mock({
+                path: `/api/invites/${item.friend.id}`,
+                status: 500,
+                method: 'put',
+            });
 
             const acceptButton = await screen.findByTitle('Accept');
             await user.click(acceptButton);
@@ -188,7 +222,11 @@ describe('Item component', () => {
         it('render success message on successfully destroyed friendship', async () => {
             renderWithDefaultData(<Item type="Friends" item={item} />);
 
-            mock(`/api/friends/${item.friend.id}`, 204, {}, 'delete');
+            mock({
+                path: `/api/friends/${item.friend.id}`,
+                status: 204,
+                method: 'delete',
+            });
 
             const removeButton = await screen.findByTitle('Remove');
             await user.click(removeButton);
@@ -200,7 +238,11 @@ describe('Item component', () => {
         it('render error message on failed destroying friendship', async () => {
             renderWithDefaultData(<Item type="Friends" item={item} />);
 
-            mock(`/api/friends/${item.friend.id}`, 500, {}, 'delete');
+            mock({
+                path: `/api/friends/${item.friend.id}`,
+                status: 500,
+                method: 'delete',
+            });
 
             const removeButton = await screen.findByTitle('Remove');
             await user.click(removeButton);

@@ -11,11 +11,17 @@ describe('Panel component', () => {
     const user = userEvent.setup();
 
     beforeEach(() => {
-        mock('/api/user', 200, RootUserJson);
+        mock({
+            path: '/api/user',
+            data: RootUserJson,
+        });
     });
 
     it('open messenger dropdown when click on messenger button and close when click one more time', async () => {
-        mock('/api/messages?page=1', 200, MessengerFirstPageJson);
+        mock({
+            path: '/api/messages?page=1',
+            data: MessengerFirstPageJson,
+        });
 
         renderWithDefaultData(<Panel />);
 
@@ -28,7 +34,10 @@ describe('Panel component', () => {
     });
 
     it('open notifications dropdown when click on notifications button and close when click one more time', async () => {
-        mock('/api/notifications?page=1', 200, NotificationsFirstPageJson);
+        mock({
+            path: '/api/notifications?page=1',
+            data: NotificationsFirstPageJson,
+        });
 
         renderWithDefaultData(<Panel />);
 

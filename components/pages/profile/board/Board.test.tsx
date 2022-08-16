@@ -8,12 +8,17 @@ import { Board } from '@components/pages/profile/board/Board';
 
 describe('Board component', () => {
     beforeEach(() => {
-        mock('/api/user', 200, RootUserJson);
-        mock('/api/user', 200, RootUserJson);
+        mock({
+            path: '/api/user',
+            data: RootUserJson,
+        });
     });
 
     it('render CreatePost, Switcher and list of posts if profile is self profile', async () => {
-        mock(`/api/users/${RootUserJson.id}/posts?page=1`, 200, SelfPostsFirstPageJson);
+        mock({
+            path: `/api/users/${RootUserJson.id}/posts?page=1`,
+            data: SelfPostsFirstPageJson,
+        });
 
         renderWithDefaultData(<Board userId={RootUserJson.id} />);
 
@@ -28,7 +33,10 @@ describe('Board component', () => {
     });
 
     it('render only list of posts if profile is not self profile', async () => {
-        mock('/api/users/2/posts?page=1', 200, FriendPostsFirstPageJson);
+        mock({
+            path: `/api/users/2/posts?page=1`,
+            data: FriendPostsFirstPageJson,
+        });
 
         renderWithDefaultData(<Board userId={2} />);
 

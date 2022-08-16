@@ -9,13 +9,11 @@ import { mock } from '@libs/nock';
 describe('List component', () => {
     const notifications = NotificationsFirstPageJson.data;
 
-    beforeEach(() => {
-        mock('/api/user', 200, RootUserJson);
-        mock('/api/notifications/mark-as-read', 204, {}, 'put');
-    });
-
     it('render loaders on initial fetching notifications', () => {
-        mock('/api/notifications?page=1', 200, NotificationsFirstPageJson);
+        mock({
+            path: '/api/notifications?page=1',
+            data: NotificationsFirstPageJson,
+        });
 
         renderWithDefaultData(<List />);
 
@@ -25,7 +23,10 @@ describe('List component', () => {
     });
 
     it('render properly first list of notifications', async () => {
-        mock('/api/notifications?page=1', 200, NotificationsFirstPageJson);
+        mock({
+            path: '/api/notifications?page=1',
+            data: NotificationsFirstPageJson,
+        });
 
         renderWithDefaultData(<List />);
 
@@ -37,7 +38,10 @@ describe('List component', () => {
     });
 
     it('render properly empty component when response return empty array', async () => {
-        mock('/api/notifications?page=1', 200, NotificationsEmptyPageJson);
+        mock({
+            path: '/api/notifications?page=1',
+            data: NotificationsEmptyPageJson,
+        });
 
         renderWithDefaultData(<List />);
 
@@ -46,7 +50,10 @@ describe('List component', () => {
     });
 
     it('render properly error component when api return error', async () => {
-        mock('/api/notifications?page=1', 500);
+        mock({
+            path: '/api/notifications?page=1',
+            status: 500,
+        });
 
         renderWithDefaultData(<List />);
 
@@ -55,7 +62,10 @@ describe('List component', () => {
     });
 
     it('renders properly notifications labels', () => {
-        mock('/api/notifications?page=1', 200, NotificationsFirstPageJson);
+        mock({
+            path: '/api/notifications?page=1',
+            data: NotificationsFirstPageJson,
+        });
 
         renderWithDefaultData(<List />);
 

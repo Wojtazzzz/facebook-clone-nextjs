@@ -9,10 +9,14 @@ const useRouter = jest.spyOn(require('next/router'), 'useRouter');
 describe('NotLoaded component', () => {
     beforeEach(() => {
         useRouter.mockReturnValue({ push: jest.fn() });
-        mock('/api/user', 200, RootUserJson);
+
+        mock({
+            path: '/api/user',
+            data: RootUserJson,
+        });
     });
 
-    it('show "Waiting..." on button when user is fetching', () => {
+    it('render "Waiting..." on button when user is fetching', () => {
         renderWithDefaultData(<NotLoaded />);
 
         const button = screen.getByText('Waiting...');
@@ -20,7 +24,7 @@ describe('NotLoaded component', () => {
         expect(button).toBeInTheDocument();
     });
 
-    it('show "Go to profile page" when user fetched', async () => {
+    it('render "Go to profile page" when user fetched', async () => {
         renderWithDefaultData(<NotLoaded />);
 
         const button = await screen.findByText('Go to profile page');
@@ -28,7 +32,7 @@ describe('NotLoaded component', () => {
         expect(button).toBeInTheDocument();
     });
 
-    it('show main headers', () => {
+    it('render main headers', () => {
         renderWithDefaultData(<NotLoaded />);
 
         const title = screen.getByText('Ease down!');

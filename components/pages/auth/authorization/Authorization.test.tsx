@@ -3,14 +3,15 @@ import { mock } from '@libs/nock';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
-import nock from 'nock';
 
 describe('Authorization component', () => {
     const user = userEvent.setup();
 
     beforeEach(() => {
-        nock.disableNetConnect();
-        mock('/api/user', 401);
+        mock({
+            path: '/api/user',
+            status: 401,
+        });
     });
 
     it('render login as default form', () => {

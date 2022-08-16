@@ -9,7 +9,10 @@ describe('List component', () => {
     const posts = PostsFirstPageJson.data;
 
     it('render loaders on initial fetching posts', () => {
-        mock('/api/posts?page=1', 200, PostsFirstPageJson);
+        mock({
+            path: '/api/posts?page=1',
+            data: PostsFirstPageJson,
+        });
 
         renderWithDefaultData(<List />);
 
@@ -18,7 +21,10 @@ describe('List component', () => {
     });
 
     it('load and render 10 posts', async () => {
-        mock('/api/posts?page=1', 200, PostsFirstPageJson);
+        mock({
+            path: '/api/posts?page=1',
+            data: PostsFirstPageJson,
+        });
 
         renderWithDefaultData(<List />);
 
@@ -30,7 +36,10 @@ describe('List component', () => {
     });
 
     it('render empty component when fetch no posts', async () => {
-        mock('/api/posts?page=1', 200, PostsEmptyPageJson);
+        mock({
+            path: '/api/posts?page=1',
+            data: PostsEmptyPageJson,
+        });
 
         renderWithDefaultData(<List />);
 
@@ -39,7 +48,10 @@ describe('List component', () => {
     });
 
     it('render error component when api returns error', async () => {
-        mock('/api/posts?page=1', 500);
+        mock({
+            path: '/api/posts?page=1',
+            status: 500,
+        });
 
         renderWithDefaultData(<List />);
 

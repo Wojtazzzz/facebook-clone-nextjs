@@ -1,15 +1,27 @@
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import SelfProfileFirstPageJson from '@mocks/posts/selfProfileFirstPage.json';
 import SelfProfileEmptyPageJson from '@mocks/posts/selfProfileEmptyPageJson.json';
+import RootUserJson from '@mocks/user/root.json';
 import { screen } from '@testing-library/react';
 import { Posts } from '@components/pages/profile/board/Posts';
 import { mock } from '@libs/nock';
+import nock from 'nock';
 
 describe('Posts component', () => {
     const posts = SelfProfileFirstPageJson.data;
 
-    it('show loaders when loading', () => {
-        mock('/api/users/1/posts?page=1', 200, SelfProfileFirstPageJson);
+    beforeEach(() => {
+        mock({
+            path: '/api/user',
+            data: RootUserJson,
+        });
+    });
+
+    it('render loaders when loading', () => {
+        mock({
+            path: '/api/users/1/posts?page=1',
+            data: SelfProfileFirstPageJson,
+        });
 
         renderWithDefaultData(<Posts queryKey={['posts', '1']} path="/api/users/1/posts" />);
 
@@ -17,8 +29,11 @@ describe('Posts component', () => {
         expect(loaders).toBeInTheDocument();
     });
 
-    it('fetch 10 posts', async () => {
-        mock('/api/users/1/posts?page=1', 200, SelfProfileFirstPageJson);
+    it('load and render 10 posts', async () => {
+        mock({
+            path: '/api/users/1/posts?page=1',
+            data: SelfProfileFirstPageJson,
+        });
 
         renderWithDefaultData(<Posts queryKey={['posts', '1']} path="/api/users/1/posts" />);
 
@@ -29,8 +44,11 @@ describe('Posts component', () => {
         expect(tenthPost).toBeInTheDocument();
     });
 
-    it('show empty component when fetched no posts', async () => {
-        mock('/api/users/1/posts?page=1', 200, SelfProfileEmptyPageJson);
+    it('render empty component when fetched no posts', async () => {
+        mock({
+            path: '/api/users/1/posts?page=1',
+            data: SelfProfileEmptyPageJson,
+        });
 
         renderWithDefaultData(<Posts queryKey={['posts', '1']} path="/api/users/1/posts" />);
 
@@ -38,8 +56,11 @@ describe('Posts component', () => {
         expect(emptyComponent).toBeInTheDocument();
     });
 
-    it('show error component when api returns error', async () => {
-        mock('/api/users/1/posts?page=1', 500, {});
+    it('render error component when api returns error', async () => {
+        mock({
+            path: '/api/users/1/posts?page=1',
+            status: 500,
+        });
 
         renderWithDefaultData(<Posts queryKey={['posts', '1']} path="/api/users/1/posts" />);
 

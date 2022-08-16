@@ -8,6 +8,12 @@ import { Likes } from './Likes';
 describe('Likes component', () => {
     mockResizeObserver();
 
+    beforeEach(() => {
+        mock({
+            path: `/api/posts/1/likes`,
+        });
+    });
+
     it('display properly count', () => {
         renderWithDefaultData(<Likes postId={1} count={3} />);
 
@@ -22,10 +28,6 @@ describe('Likes component', () => {
         expect(tooltip).not.toBeInTheDocument();
     });
 
-    beforeEach(() => {
-        mock('/api/posts/1/likes', 200, {});
-    });
-
     it('display tooltip when hover on count element', async () => {
         const user = userEvent.setup();
         renderWithDefaultData(<Likes postId={1} count={3} />);
@@ -38,7 +40,7 @@ describe('Likes component', () => {
         expect(tooltip[0]).toBeInTheDocument();
     });
 
-    it('Tooltip has properly header and ', async () => {
+    it('Tooltip has properly header', async () => {
         const user = userEvent.setup();
         renderWithDefaultData(<Likes postId={1} count={3} />);
 

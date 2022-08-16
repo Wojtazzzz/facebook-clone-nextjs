@@ -9,7 +9,10 @@ describe('Notifications component', () => {
     const user = userEvent.setup();
 
     beforeEach(() => {
-        mock('/api/notifications?page=1', 200, NotificationsFirstPageJson);
+        mock({
+            path: '/api/notifications?page=1',
+            data: NotificationsFirstPageJson,
+        });
     });
 
     it('not render dropdown by default', () => {

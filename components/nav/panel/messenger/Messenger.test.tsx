@@ -9,7 +9,10 @@ describe('Messenger component', () => {
     const user = userEvent.setup();
 
     beforeEach(() => {
-        mock('/api/messages?page=1', 200, MessengerFirstPageJson);
+        mock({
+            path: '/api/messages?page=1',
+            data: MessengerFirstPageJson,
+        });
     });
 
     it('not render dropdown by default', () => {

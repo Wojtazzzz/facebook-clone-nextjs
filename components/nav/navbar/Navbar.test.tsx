@@ -6,7 +6,10 @@ import { screen, waitFor } from '@testing-library/react';
 
 describe('Navbar component', () => {
     beforeEach(() => {
-        mock('/api/user', 200, RootUserJson);
+        mock({
+            path: '/api/user',
+            data: RootUserJson,
+        });
 
         const useRouter = jest.spyOn(require('next/router'), 'useRouter');
         useRouter.mockImplementation(() => ({

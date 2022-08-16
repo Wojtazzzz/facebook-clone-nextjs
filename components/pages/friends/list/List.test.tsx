@@ -10,24 +10,16 @@ import InvitesFirstPageJson from '@mocks/friendsList/invites/firstPage.json';
 import InvitesEmptyPageJson from '@mocks/friendsList/invites/empty.json';
 import FriendsFirstPageJson from '@mocks/friendsList/friends/firstPage.json';
 import FriendsEmptyPageJson from '@mocks/friendsList/friends/empty.json';
-import RootUserJson from '@mocks/user/root.json';
-import nock from 'nock';
 
 describe('List component', () => {
     describe('Suggests list', () => {
         const users = SuggestsFirstPageJson.data;
 
-        beforeEach(() => {
-            mock('/api/user', 200, RootUserJson, 'get');
-        });
-
-        afterEach(() => {
-            nock.cleanAll();
-            nock.enableNetConnect();
-        });
-
         it('render loaders on initial loading', async () => {
-            mock('/api/suggests?page=1', 200, SuggestsFirstPageJson);
+            mock({
+                path: '/api/suggests?page=1',
+                data: SuggestsFirstPageJson,
+            });
 
             renderWithDefaultData(<List path="/api/suggests" type="Suggests" />);
 
@@ -36,8 +28,11 @@ describe('List component', () => {
             expect(loader).toBeInTheDocument();
         });
 
-        it('load and print 10 suggests users', async () => {
-            mock('/api/suggests?page=1', 200, SuggestsFirstPageJson);
+        it('load and render 10 suggests users', async () => {
+            mock({
+                path: '/api/suggests?page=1',
+                data: SuggestsFirstPageJson,
+            });
 
             renderWithDefaultData(<List path="/api/suggests" type="Suggests" />);
 
@@ -49,7 +44,10 @@ describe('List component', () => {
         });
 
         it('render empty component when api return empty data', async () => {
-            mock('/api/suggests?page=1', 200, SuggestsEmptyPageJson);
+            mock({
+                path: '/api/suggests?page=1',
+                data: SuggestsEmptyPageJson,
+            });
 
             renderWithDefaultData(<List path="/api/suggests" type="Suggests" />);
 
@@ -58,7 +56,10 @@ describe('List component', () => {
         });
 
         it('render error component when api return empty data', async () => {
-            mock('/api/suggests?page=1', 500);
+            mock({
+                path: '/api/suggests?page=1',
+                status: 500,
+            });
 
             renderWithDefaultData(<List path="/api/suggests" type="Suggests" />);
 
@@ -74,7 +75,10 @@ describe('List component', () => {
         const pokes = PokesFirstPageJson.data;
 
         it('render loaders on initial loading', async () => {
-            mock('/api/pokes?page=1', 200, PokesFirstPageJson);
+            mock({
+                path: '/api/pokes?page=1',
+                data: PokesFirstPageJson,
+            });
 
             renderWithDefaultData(<List path="/api/pokes" type="Pokes" />);
 
@@ -83,8 +87,11 @@ describe('List component', () => {
             expect(loader).toBeInTheDocument();
         });
 
-        it('load and print 10 pokes', async () => {
-            mock('/api/pokes?page=1', 200, PokesFirstPageJson);
+        it('load and render 10 pokes', async () => {
+            mock({
+                path: '/api/pokes?page=1',
+                data: PokesFirstPageJson,
+            });
 
             renderWithDefaultData(<List path="/api/pokes" type="Pokes" />);
 
@@ -96,7 +103,10 @@ describe('List component', () => {
         });
 
         it('render empty component when api return empty data', async () => {
-            mock('/api/pokes?page=1', 200, PokesEmptyPageJson);
+            mock({
+                path: '/api/pokes?page=1',
+                data: PokesEmptyPageJson,
+            });
 
             renderWithDefaultData(<List path="/api/pokes" type="Pokes" />);
 
@@ -105,7 +115,10 @@ describe('List component', () => {
         });
 
         it('render error component when api return empty data', async () => {
-            mock('/api/pokes?page=1', 500);
+            mock({
+                path: '/api/pokes?page=1',
+                status: 500,
+            });
 
             renderWithDefaultData(<List path="/api/pokes" type="Pokes" />);
 
@@ -121,7 +134,10 @@ describe('List component', () => {
         const users = InvitesFirstPageJson.data;
 
         it('render loaders on initial loading', async () => {
-            mock('/api/invites?page=1', 200, InvitesFirstPageJson);
+            mock({
+                path: '/api/invites?page=1',
+                data: InvitesFirstPageJson,
+            });
 
             renderWithDefaultData(<List path="/api/invites" type="Invites" />);
 
@@ -130,8 +146,11 @@ describe('List component', () => {
             expect(loader).toBeInTheDocument();
         });
 
-        it('load and print 10 invites', async () => {
-            mock('/api/invites?page=1', 200, InvitesFirstPageJson);
+        it('load and render 10 invites', async () => {
+            mock({
+                path: '/api/invites?page=1',
+                data: InvitesFirstPageJson,
+            });
 
             renderWithDefaultData(<List path="/api/invites" type="Invites" />);
 
@@ -143,7 +162,10 @@ describe('List component', () => {
         });
 
         it('render empty component when api return empty data', async () => {
-            mock('/api/invites?page=1', 200, InvitesEmptyPageJson);
+            mock({
+                path: '/api/invites?page=1',
+                data: InvitesEmptyPageJson,
+            });
 
             renderWithDefaultData(<List path="/api/invites" type="Invites" />);
 
@@ -152,7 +174,10 @@ describe('List component', () => {
         });
 
         it('render error component when api return empty data', async () => {
-            mock('/api/invites?page=1', 500);
+            mock({
+                path: '/api/invites?page=1',
+                status: 500,
+            });
 
             renderWithDefaultData(<List path="/api/invites" type="Invites" />);
 
@@ -168,7 +193,10 @@ describe('List component', () => {
         const users = FriendsFirstPageJson.data;
 
         it('render loaders on initial loading', async () => {
-            mock('/api/friends?page=1', 200, FriendsFirstPageJson);
+            mock({
+                path: '/api/friends?page=1',
+                data: FriendsFirstPageJson,
+            });
 
             renderWithDefaultData(<List path="/api/friends" type="Friends" />);
 
@@ -177,8 +205,11 @@ describe('List component', () => {
             expect(loader).toBeInTheDocument();
         });
 
-        it('load and print 10 friends', async () => {
-            mock('/api/friends?page=1', 200, FriendsFirstPageJson);
+        it('load and render 10 friends', async () => {
+            mock({
+                path: '/api/friends?page=1',
+                data: FriendsFirstPageJson,
+            });
 
             renderWithDefaultData(<List path="/api/friends" type="Friends" />);
 
@@ -190,7 +221,10 @@ describe('List component', () => {
         });
 
         it('render empty component when api return empty data', async () => {
-            mock('/api/friends?page=1', 200, FriendsEmptyPageJson);
+            mock({
+                path: '/api/friends?page=1',
+                data: FriendsEmptyPageJson,
+            });
 
             renderWithDefaultData(<List path="/api/friends" type="Friends" />);
 
@@ -199,7 +233,10 @@ describe('List component', () => {
         });
 
         it('render error component when api return empty data', async () => {
-            mock('/api/friends?page=1', 500);
+            mock({
+                path: '/api/friends?page=1',
+                status: 500,
+            });
 
             renderWithDefaultData(<List path="/api/friends" type="Friends" />);
 

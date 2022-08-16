@@ -6,7 +6,10 @@ import { mock } from '@libs/nock';
 
 describe('CreatePost component', () => {
     beforeEach(() => {
-        mock('/api/user', 200, RootUserJson);
+        mock({
+            path: '/api/user',
+            data: RootUserJson,
+        });
     });
 
     it('render fake form', async () => {

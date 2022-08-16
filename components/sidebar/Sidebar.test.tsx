@@ -1,15 +1,15 @@
 import { Sidebar } from '@components/sidebar/Sidebar';
 import { screen } from '@testing-library/react';
 import RootUserJson from '@mocks/user/root.json';
-import nock from 'nock';
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
 import { mock } from '@libs/nock';
 
 describe('Sidebar component', () => {
     beforeEach(() => {
-        nock.disableNetConnect();
-
-        mock('/api/user', 200, RootUserJson);
+        mock({
+            path: '/api/user',
+            data: RootUserJson,
+        });
     });
 
     it('loads logged user', async () => {

@@ -5,18 +5,15 @@ import ChatFirstPageJson from '@mocks/chat/firstPage.json';
 import ChatEmptyPageJson from '@mocks/chat/empty.json';
 import { mock } from '@libs/nock';
 import { screen } from '@testing-library/react';
-import nock from 'nock';
 
 describe('Messages component', () => {
     const messages = ChatFirstPageJson.data;
 
-    afterEach(() => {
-        nock.cleanAll();
-        nock.enableNetConnect();
-    });
-
     it('render loaders when initial loading messages', () => {
-        mock(`/api/messages/${JohnDoeJson.id}?page=1`, 200, ChatFirstPageJson);
+        mock({
+            path: `/api/messages/${JohnDoeJson.id}?page=1`,
+            data: ChatFirstPageJson,
+        });
 
         renderWithDefaultData(<Messages friendId={JohnDoeJson.id} />);
 
@@ -25,7 +22,10 @@ describe('Messages component', () => {
     });
 
     it('load and render 15 messages', async () => {
-        mock(`/api/messages/${JohnDoeJson.id}?page=1`, 200, ChatFirstPageJson);
+        mock({
+            path: `/api/messages/${JohnDoeJson.id}?page=1`,
+            data: ChatFirstPageJson,
+        });
 
         renderWithDefaultData(<Messages friendId={JohnDoeJson.id} />);
 
@@ -37,7 +37,10 @@ describe('Messages component', () => {
     });
 
     it('load empty list and show empty component', async () => {
-        mock(`/api/messages/${JohnDoeJson.id}?page=1`, 200, ChatEmptyPageJson);
+        mock({
+            path: `/api/messages/${JohnDoeJson.id}?page=1`,
+            data: ChatEmptyPageJson,
+        });
 
         renderWithDefaultData(<Messages friendId={JohnDoeJson.id} />);
 
@@ -46,7 +49,10 @@ describe('Messages component', () => {
     });
 
     it('render error component on api error', async () => {
-        mock(`/api/messages/${JohnDoeJson.id}?page=1`, 500);
+        mock({
+            path: `/api/messages/${JohnDoeJson.id}?page=1`,
+            status: 500,
+        });
 
         renderWithDefaultData(<Messages friendId={JohnDoeJson.id} />);
 
