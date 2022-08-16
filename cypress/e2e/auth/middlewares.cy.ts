@@ -10,7 +10,17 @@ describe('Auth middlewares tests', () => {
 
         cy.visit('/');
 
-        cy.wait('@user').its('response.statusCode').should('eq', 401);
+        cy.wait('@user');
+
+        cy.url().should('include', '/login');
+    });
+
+    it('unauthorized user can be in login page', () => {
+        cy.intercept('/api/user').as('user');
+
+        cy.visit('/login');
+
+        cy.wait('@user');
 
         cy.url().should('include', '/login');
     });
@@ -21,6 +31,18 @@ describe('Auth middlewares tests', () => {
         cy.intercept('/api/user').as('user');
 
         cy.visit('/login');
+
+        cy.wait('@user');
+
+        cy.url().should('eq', `${APP_URL}/`);
+    });
+
+    it('authorized user can be in app main page', () => {
+        cy.loginRequest();
+
+        cy.intercept('/api/user').as('user');
+
+        cy.visit('/');
 
         cy.wait('@user');
 
