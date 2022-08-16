@@ -1,4 +1,3 @@
-import { useEffect, useRef } from 'react';
 import { Formik, Form as FormikForm } from 'formik';
 import type { FormikHelpers } from 'formik';
 import { clsx } from 'clsx';
@@ -17,13 +16,6 @@ interface FormProps {
 }
 
 export const Form = ({ content = '', isLoading, isError, error, handleSubmit }: FormProps) => {
-    const inputRef = useRef<HTMLInputElement>(null);
-
-    useEffect(() => {
-        if (!inputRef.current) return;
-        inputRef.current.focus();
-    }, []);
-
     return (
         <Formik
             initialValues={{ content }}
@@ -40,7 +32,7 @@ export const Form = ({ content = '', isLoading, isError, error, handleSubmit }: 
                             (isError || errors.content) && 'border-[1px] border-red-400'
                         )}
                     >
-                        <InputContent elRef={inputRef} isLoading={isLoading} />
+                        <InputContent isLoading={isLoading} />
                         <SubmitButton isLoading={isLoading} />
                     </div>
 

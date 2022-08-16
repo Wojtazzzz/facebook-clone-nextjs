@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import type InfiniteScroll from 'react-infinite-scroll-component';
 
 export const useScroll = () => {
     const [scrollDistance, setScrollDistance] = useState(0);

@@ -1,19 +1,17 @@
 import type { ICommentPayload } from '@utils/types';
 import clsx from 'clsx';
 import { useFormikContext } from 'formik';
-import type { RefObject } from 'react';
 
 interface InputContentProps {
-    elRef: RefObject<HTMLInputElement>;
     isLoading: boolean;
 }
 
-export const InputContent = ({ elRef, isLoading }: InputContentProps) => {
+export const InputContent = ({ isLoading }: InputContentProps) => {
     const { values, handleChange, handleBlur } = useFormikContext<ICommentPayload>();
 
     return (
         <input
-            ref={elRef}
+            autoFocus
             type="text"
             aria-label="Write a comment"
             name="content"
