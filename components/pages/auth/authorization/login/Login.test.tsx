@@ -67,7 +67,7 @@ describe('Login component', () => {
         });
 
         mock({
-            path: '/login',
+            path: '/api/login',
             status: 422,
             data: CannotLoginResponse,
             method: 'post',

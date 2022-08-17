@@ -17,7 +17,7 @@ describe('Logout component', () => {
 
     it('after click button change to disabled', async () => {
         mock({
-            path: '/logout',
+            path: '/api/logout',
             status: 204,
         });
 
