@@ -1,17 +1,18 @@
 {
-    "id": 1,
-    "content": "dsasdasad",
+    "type": "OWN",
+    "id": 29,
+    "content": "Esse qui hic odio vel eius minus et non. Totam aut iure occaecati sint. Aut nostrum soluta et. Ea consequatur ut doloremque culpa nemo consequatur voluptas.",
     "images": [],
     "author": {
         "id": 1,
         "name": "Marcin Witas",
         "first_name": "Marcin",
-        "profile_image": "https://picsum.photos/seed/62dd5a10b4748/168/168",
-        "background_image": "https://picsum.photos/seed/62dd5a10b4753/850/350"
+        "profile_image": "https://picsum.photos/seed/62fbea7394901/168/168",
+        "background_image": "https://picsum.photos/seed/62fbea739490a/850/350"
     },
     "likes_count": 0,
     "comments_count": 0,
-    "isLiked": false,
-    "created_at": "2022-07-24 14:42",
-    "updated_at": "2022-07-24 14:43"
+    "is_liked": false,
+    "is_edited": true,
+    "created_at": "4m"
 }

@@ -10,11 +10,11 @@ interface CommentProps {
     content: string;
     author: IUser;
     resource_id: number;
+    is_edited: boolean;
     created_at: string;
-    updated_at: string;
 }
 
-export const Comment = ({ id, content, author, resource_id, created_at, updated_at }: CommentProps) => {
+export const Comment = ({ id, content, author, resource_id, created_at, is_edited }: CommentProps) => {
     const [isEditModeActive, setIsEditModeActive] = useState(false);
 
     const handleToggleIsEditModeActive = () => setIsEditModeActive((prevState) => !prevState);
@@ -43,7 +43,7 @@ export const Comment = ({ id, content, author, resource_id, created_at, updated_
                         toggleEditMode={handleToggleIsEditModeActive}
                     />
 
-                    <Date createdAt={created_at} updatedAt={updated_at} />
+                    <Date createdAt={created_at} isEdited={is_edited} />
                 </div>
             </div>
         </article>

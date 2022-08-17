@@ -84,8 +84,8 @@ export type IComment = {
     author: IUser;
     resource_id: number;
     resource: 'POST' | 'COMMENT' | 'SALE';
+    is_edited: boolean;
     created_at: string;
-    updated_at: string;
 };
 
 export type IChatMessage = {
@@ -111,9 +111,9 @@ export type IPost = {
     author: IUser;
     likes_count: number;
     comments_count: number;
-    isLiked: boolean;
+    is_liked: boolean;
+    is_edited: boolean;
     created_at: string;
-    updated_at: string;
     type: IPostType;
 };
 

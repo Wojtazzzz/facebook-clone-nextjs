@@ -9,21 +9,19 @@ describe('Author component', () => {
         const post = PostsFirstPageJson.data[0];
         const author = post.author;
 
-        renderWithDefaultData(<Author author={author} created_at={post.created_at} updated_at={post.updated_at} />);
+        renderWithDefaultData(<Author author={author} createdAt={post.created_at} isEdited={false} />);
 
         const link = screen.getByLabelText(`${author.first_name} profile`);
 
         expect(link).toHaveAttribute('href', `/profile/${author.id}`);
     });
 
-    it('display "(edited)" when post update date is different', () => {
+    it('display "(edited)" when post was edited', () => {
         const post = PostEditedJson;
 
-        renderWithDefaultData(
-            <Author author={post.author} created_at={post.created_at} updated_at={post.updated_at} />
-        );
+        renderWithDefaultData(<Author author={post.author} createdAt={post.created_at} isEdited={true} />);
 
-        const element = screen.getByText(`${post.updated_at} (Edited)`);
+        const element = screen.getByText(`${post.created_at} (Edited)`);
 
         expect(element).toBeInTheDocument();
     });
@@ -31,9 +29,7 @@ describe('Author component', () => {
     it('display author name properly', () => {
         const post = PostsFirstPageJson.data[0];
 
-        renderWithDefaultData(
-            <Author author={post.author} created_at={post.created_at} updated_at={post.updated_at} />
-        );
+        renderWithDefaultData(<Author author={post.author} createdAt={post.created_at} isEdited={false} />);
 
         const name = screen.getByText(post.author.name);
 

@@ -1,12 +1,12 @@
 interface DateProps {
-    updatedAt: string;
     createdAt: string;
+    isEdited: boolean;
 }
 
-export const Date = ({ updatedAt, createdAt }: DateProps) => {
+export const Date = ({ createdAt, isEdited }: DateProps) => {
     return (
         <span className="text-xs text-light-100 font-bold">
-            {updatedAt} {createdAt !== updatedAt && '(Edited)'}
+            {createdAt} {isEdited && '(Edited)'}
         </span>
     );
 };

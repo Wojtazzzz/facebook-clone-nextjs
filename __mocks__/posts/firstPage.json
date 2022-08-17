@@ -2,218 +2,218 @@
     "data": [
         {
             "type": "FRIEND",
-            "id": 71,
-            "content": "Dolores corporis quo et neque qui sunt voluptatem. Omnis animi explicabo eos distinctio. Cum dolor nam expedita vel provident. Excepturi dolores atque similique et unde mollitia saepe nesciunt.",
+            "id": 7,
+            "content": "Reiciendis autem tempore ea officia dicta. Officiis aut est debitis vero voluptates rerum. Omnis molestiae quas dolorum quis et.",
             "images": [
-                "https://picsum.photos/seed/62eacb926a23f/850/350",
-                "https://picsum.photos/seed/62eacb926a240/850/350"
+                "https://picsum.photos/seed/62fd0d5fe74d3/850/350",
+                "https://picsum.photos/seed/62fd0d5fe74d4/850/350",
+                "https://picsum.photos/seed/62fd0d5fe74d6/850/350"
             ],
             "author": {
-                "id": 1197,
-                "name": "Heath Corwin",
-                "first_name": "Heath",
-                "profile_image": "https://picsum.photos/seed/62eaca0f84cfb/168/168",
-                "background_image": "https://picsum.photos/seed/62eaca0f84d07/850/350"
+                "id": 7,
+                "name": "Fay Hodkiewicz",
+                "first_name": "Fay",
+                "profile_image": "https://picsum.photos/seed/62fd0d6001f5e/168/168",
+                "background_image": "https://picsum.photos/seed/62fd0d6001f66/850/350"
             },
             "likes_count": 0,
-            "comments_count": 22,
-            "isLiked": false,
-            "created_at": "2022-08-03 19:25",
-            "updated_at": "2022-08-03 19:25"
+            "comments_count": 16,
+            "is_liked": false,
+            "is_edited": false,
+            "created_at": "1m"
         },
         {
             "type": "FRIEND",
-            "id": 72,
-            "content": "Voluptas voluptatem qui optio fugiat. Est libero animi tempore et esse quia recusandae molestias. Nisi necessitatibus aut mollitia est cum et officiis explicabo.",
+            "id": 8,
+            "content": "Voluptate minima aut error est ducimus qui. In dolor id qui libero. Quisquam sint fugit similique adipisci facilis facilis.",
             "images": [
-                "https://picsum.photos/seed/62eacb93081c2/850/350",
-                "https://picsum.photos/seed/62eacb93081c4/850/350",
-                "https://picsum.photos/seed/62eacb93081c7/850/350",
-                "https://picsum.photos/seed/62eacb93081c9/850/350"
+                "https://picsum.photos/seed/62fd0d60d49cc/850/350",
+                "https://picsum.photos/seed/62fd0d60d49cd/850/350"
             ],
             "author": {
-                "id": 1197,
-                "name": "Heath Corwin",
-                "first_name": "Heath",
-                "profile_image": "https://picsum.photos/seed/62eaca0f84cfb/168/168",
-                "background_image": "https://picsum.photos/seed/62eaca0f84d07/850/350"
+                "id": 8,
+                "name": "Hermina Zboncak",
+                "first_name": "Hermina",
+                "profile_image": "https://picsum.photos/seed/62fd0d60e416f/168/168",
+                "background_image": "https://picsum.photos/seed/62fd0d60e417b/850/350"
             },
             "likes_count": 0,
-            "comments_count": 22,
-            "isLiked": false,
-            "created_at": "2022-08-03 19:25",
-            "updated_at": "2022-08-03 19:25"
+            "comments_count": 16,
+            "is_liked": false,
+            "is_edited": false,
+            "created_at": "1m"
         },
         {
             "type": "FRIEND",
-            "id": 73,
-            "content": "Delectus magnam et tenetur qui nemo quasi saepe. Magni accusamus magni quidem eligendi. Molestiae temporibus tenetur laboriosam voluptatibus ea quas et.",
+            "id": 9,
+            "content": "Et nostrum eligendi consequatur tenetur fugit sed. Quisquam deleniti voluptas aut nobis rerum. Iusto illo dignissimos atque. Natus mollitia quia quia enim. Impedit esse quia impedit sit.",
             "images": [
-                "https://picsum.photos/seed/62eacb939b998/850/350",
-                "https://picsum.photos/seed/62eacb939b999/850/350"
+                "https://picsum.photos/seed/62fd0d633be76/850/350",
+                "https://picsum.photos/seed/62fd0d633be78/850/350"
             ],
             "author": {
-                "id": 1197,
-                "name": "Heath Corwin",
-                "first_name": "Heath",
-                "profile_image": "https://picsum.photos/seed/62eaca0f84cfb/168/168",
-                "background_image": "https://picsum.photos/seed/62eaca0f84d07/850/350"
+                "id": 9,
+                "name": "Maymie Schmeler",
+                "first_name": "Maymie",
+                "profile_image": "https://picsum.photos/seed/62fd0d634beaa/168/168",
+                "background_image": "https://picsum.photos/seed/62fd0d634beb3/850/350"
             },
             "likes_count": 0,
-            "comments_count": 22,
-            "isLiked": false,
-            "created_at": "2022-08-03 19:25",
-            "updated_at": "2022-08-03 19:25"
+            "comments_count": 16,
+            "is_liked": false,
+            "is_edited": false,
+            "created_at": "1m"
         },
         {
             "type": "FRIEND",
-            "id": 68,
-            "content": "Voluptas maiores sequi suscipit saepe. Facere quod fuga enim veritatis quibusdam. Consequatur asperiores et eius numquam illum doloremque.",
-            "images": [
-                "https://picsum.photos/seed/62eacb675637f/850/350",
-                "https://picsum.photos/seed/62eacb6756380/850/350",
-                "https://picsum.photos/seed/62eacb6756382/850/350"
-            ],
+            "id": 10,
+            "content": "Cupiditate iure ut repudiandae vitae natus ipsum. Qui et et laborum temporibus sapiente nisi. Et et iste ex aut.",
+            "images": [],
             "author": {
-                "id": 1195,
-                "name": "Maxwell Daniel",
-                "first_name": "Maxwell",
-                "profile_image": "https://picsum.photos/seed/62eaca0ec934d/168/168",
-                "background_image": "https://picsum.photos/seed/62eaca0ec9353/850/350"
+                "id": 10,
+                "name": "Deon Windler",
+                "first_name": "Deon",
+                "profile_image": "https://picsum.photos/seed/62fd0d649cfc3/168/168",
+                "background_image": "https://picsum.photos/seed/62fd0d649cfca/850/350"
             },
             "likes_count": 0,
-            "comments_count": 22,
-            "isLiked": false,
-            "created_at": "2022-08-03 19:24",
-            "updated_at": "2022-08-03 19:24"
+            "comments_count": 16,
+            "is_liked": false,
+            "is_edited": false,
+            "created_at": "1m"
         },
         {
             "type": "FRIEND",
-            "id": 69,
-            "content": "Expedita ut delectus distinctio iste quisquam qui. Est labore corrupti omnis veritatis. Veniam qui enim hic dolore ipsa explicabo rem.",
+            "id": 11,
+            "content": "Rerum quo blanditiis optio veritatis. Consequatur eveniet reiciendis ipsam dolorem soluta voluptatem ab itaque.",
             "images": [
-                "https://picsum.photos/seed/62eacb6814510/850/350",
-                "https://picsum.photos/seed/62eacb6814513/850/350",
-                "https://picsum.photos/seed/62eacb6814516/850/350",
-                "https://picsum.photos/seed/62eacb6814519/850/350"
+                "https://picsum.photos/seed/62fd0d653fee8/850/350",
+                "https://picsum.photos/seed/62fd0d653fee9/850/350",
+                "https://picsum.photos/seed/62fd0d653feea/850/350",
+                "https://picsum.photos/seed/62fd0d653feeb/850/350"
             ],
             "author": {
-                "id": 1195,
-                "name": "Maxwell Daniel",
-                "first_name": "Maxwell",
-                "profile_image": "https://picsum.photos/seed/62eaca0ec934d/168/168",
-                "background_image": "https://picsum.photos/seed/62eaca0ec9353/850/350"
+                "id": 11,
+                "name": "Camylle Schimmel",
+                "first_name": "Camylle",
+                "profile_image": "https://picsum.photos/seed/62fd0d654ef6f/168/168",
+                "background_image": "https://picsum.photos/seed/62fd0d654ef77/850/350"
             },
             "likes_count": 0,
-            "comments_count": 22,
-            "isLiked": false,
-            "created_at": "2022-08-03 19:24",
-            "updated_at": "2022-08-03 19:24"
+            "comments_count": 16,
+            "is_liked": false,
+            "is_edited": false,
+            "created_at": "1m"
         },
         {
             "type": "FRIEND",
-            "id": 70,
-            "content": "Architecto blanditiis debitis et. Non similique sint ipsam sint. Velit animi hic qui iste neque nesciunt.",
+            "id": 12,
+            "content": "Est recusandae itaque animi. Impedit molestiae nobis cupiditate voluptatibus quia. Laborum eos rerum nemo dolores doloremque. Aut tenetur et quos sit officia nulla a.",
             "images": [
-                "https://picsum.photos/seed/62eacb68a7ce0/850/350",
-                "https://picsum.photos/seed/62eacb68a7ce3/850/350"
+                "https://picsum.photos/seed/62fd0d65a65ed/850/350",
+                "https://picsum.photos/seed/62fd0d65a65ef/850/350",
+                "https://picsum.photos/seed/62fd0d65a65f1/850/350",
+                "https://picsum.photos/seed/62fd0d65a65f3/850/350"
             ],
             "author": {
-                "id": 1195,
-                "name": "Maxwell Daniel",
-                "first_name": "Maxwell",
-                "profile_image": "https://picsum.photos/seed/62eaca0ec934d/168/168",
-                "background_image": "https://picsum.photos/seed/62eaca0ec9353/850/350"
+                "id": 12,
+                "name": "Cyrus Thiel",
+                "first_name": "Cyrus",
+                "profile_image": "https://picsum.photos/seed/62fd0d65b7147/168/168",
+                "background_image": "https://picsum.photos/seed/62fd0d65b7160/850/350"
             },
             "likes_count": 0,
-            "comments_count": 22,
-            "isLiked": false,
-            "created_at": "2022-08-03 19:24",
-            "updated_at": "2022-08-03 19:24"
+            "comments_count": 16,
+            "is_liked": false,
+            "is_edited": false,
+            "created_at": "1m"
         },
         {
             "type": "FRIEND",
-            "id": 65,
-            "content": "Magnam est aut ut odit eum laboriosam. Ea similique dolorem earum velit omnis est vel. Illum incidunt est eos nesciunt.",
-            "images": ["https://picsum.photos/seed/62eacb3b6cbb1/850/350"],
+            "id": 13,
+            "content": "Quia vero qui enim eos nulla quia nobis. Eum adipisci asperiores est aut exercitationem.",
+            "images": [
+                "https://picsum.photos/seed/62fd0d685214c/850/350",
+                "https://picsum.photos/seed/62fd0d685214f/850/350"
+            ],
             "author": {
-                "id": 1193,
-                "name": "Nicholaus Little",
-                "first_name": "Nicholaus",
-                "profile_image": "https://picsum.photos/seed/62eaca0e36ab0/168/168",
-                "background_image": "https://picsum.photos/seed/62eaca0e36ab8/850/350"
+                "id": 13,
+                "name": "Keagan Will",
+                "first_name": "Keagan",
+                "profile_image": "https://picsum.photos/seed/62fd0d6862e19/168/168",
+                "background_image": "https://picsum.photos/seed/62fd0d6862e23/850/350"
             },
             "likes_count": 0,
-            "comments_count": 22,
-            "isLiked": false,
-            "created_at": "2022-08-03 19:23",
-            "updated_at": "2022-08-03 19:23"
+            "comments_count": 16,
+            "is_liked": false,
+            "is_edited": false,
+            "created_at": "1m"
         },
         {
             "type": "FRIEND",
-            "id": 66,
-            "content": "Quia sit sunt ut officiis tenetur excepturi. Sit in sequi voluptate voluptatem accusantium quos. Saepe similique delectus est odio quis. Sit ducimus porro autem in aliquid praesentium.",
+            "id": 14,
+            "content": "Assumenda pariatur quibusdam omnis autem. Et et repellendus optio enim suscipit. Qui molestias soluta in in. Natus dolor omnis odio minus.",
             "images": [
-                "https://picsum.photos/seed/62eacb3c12ff9/850/350",
-                "https://picsum.photos/seed/62eacb3c12ffb/850/350",
-                "https://picsum.photos/seed/62eacb3c12ffe/850/350"
+                "https://picsum.photos/seed/62fd0d69af5a3/850/350",
+                "https://picsum.photos/seed/62fd0d69af5a6/850/350",
+                "https://picsum.photos/seed/62fd0d69af5a8/850/350"
             ],
             "author": {
-                "id": 1193,
-                "name": "Nicholaus Little",
-                "first_name": "Nicholaus",
-                "profile_image": "https://picsum.photos/seed/62eaca0e36ab0/168/168",
-                "background_image": "https://picsum.photos/seed/62eaca0e36ab8/850/350"
+                "id": 14,
+                "name": "Virginie Reynolds",
+                "first_name": "Virginie",
+                "profile_image": "https://picsum.photos/seed/62fd0d69bfb8d/168/168",
+                "background_image": "https://picsum.photos/seed/62fd0d69bfb95/850/350"
             },
             "likes_count": 0,
-            "comments_count": 22,
-            "isLiked": false,
-            "created_at": "2022-08-03 19:23",
-            "updated_at": "2022-08-03 19:23"
+            "comments_count": 0,
+            "is_liked": false,
+            "is_edited": false,
+            "created_at": "1m"
         },
         {
             "type": "FRIEND",
-            "id": 67,
-            "content": "Officia ullam dolores eligendi necessitatibus. Aut quis iusto voluptas porro. Totam molestiae rerum et recusandae nam dignissimos. Qui harum impedit aliquam velit pariatur eum in.",
+            "id": 15,
+            "content": "Veritatis qui accusamus expedita at. Temporibus sapiente aut ipsum nisi ratione.",
             "images": [
-                "https://picsum.photos/seed/62eacb3cafeba/850/350",
-                "https://picsum.photos/seed/62eacb3cafebc/850/350",
-                "https://picsum.photos/seed/62eacb3cafebe/850/350",
-                "https://picsum.photos/seed/62eacb3cafebf/850/350"
+                "https://picsum.photos/seed/62fd0d6a44ced/850/350",
+                "https://picsum.photos/seed/62fd0d6a44cee/850/350",
+                "https://picsum.photos/seed/62fd0d6a44cef/850/350"
             ],
             "author": {
-                "id": 1193,
-                "name": "Nicholaus Little",
-                "first_name": "Nicholaus",
-                "profile_image": "https://picsum.photos/seed/62eaca0e36ab0/168/168",
-                "background_image": "https://picsum.photos/seed/62eaca0e36ab8/850/350"
+                "id": 15,
+                "name": "Keyshawn Kozey",
+                "first_name": "Keyshawn",
+                "profile_image": "https://picsum.photos/seed/62fd0d6a53802/168/168",
+                "background_image": "https://picsum.photos/seed/62fd0d6a5380a/850/350"
             },
             "likes_count": 0,
-            "comments_count": 22,
-            "isLiked": false,
-            "created_at": "2022-08-03 19:23",
-            "updated_at": "2022-08-03 19:23"
+            "comments_count": 0,
+            "is_liked": false,
+            "is_edited": false,
+            "created_at": "1m"
         },
         {
             "type": "FRIEND",
-            "id": 62,
-            "content": "Omnis deleniti amet facilis esse. Officiis et voluptas consequatur nulla. Occaecati quas pariatur saepe.",
+            "id": 16,
+            "content": "Ipsum modi id odit omnis culpa. Molestias mollitia eligendi aut ullam quo. Tempora ut velit temporibus ea sunt. Occaecati quod quod dolor ad ducimus ut.",
             "images": [
-                "https://picsum.photos/seed/62eacb0fee678/850/350",
-                "https://picsum.photos/seed/62eacb0fee679/850/350"
+                "https://picsum.photos/seed/62fd0d6d68e88/850/350",
+                "https://picsum.photos/seed/62fd0d6d68e89/850/350",
+                "https://picsum.photos/seed/62fd0d6d68e8a/850/350"
             ],
             "author": {
-                "id": 1191,
-                "name": "Ollie Dach",
-                "first_name": "Ollie",
-                "profile_image": "https://picsum.photos/seed/62eaca0d97103/168/168",
-                "background_image": "https://picsum.photos/seed/62eaca0d9710c/850/350"
+                "id": 16,
+                "name": "Kristoffer Durgan",
+                "first_name": "Kristoffer",
+                "profile_image": "https://picsum.photos/seed/62fd0d6d78f29/168/168",
+                "background_image": "https://picsum.photos/seed/62fd0d6d78f31/850/350"
             },
             "likes_count": 0,
-            "comments_count": 22,
-            "isLiked": false,
-            "created_at": "2022-08-03 19:22",
-            "updated_at": "2022-08-03 19:22"
+            "comments_count": 0,
+            "is_liked": false,
+            "is_edited": false,
+            "created_at": "1m"
         }
     ],
     "current_page": 1,

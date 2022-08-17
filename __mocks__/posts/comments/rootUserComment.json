@@ -1,14 +1,14 @@
 {
-    "id": 32,
-    "content": "Root user comment",
+    "id": 242,
+    "content": "My Comment",
     "author": {
         "id": 1,
         "name": "Marcin Witas",
         "first_name": "Marcin",
-        "profile_image": "https://picsum.photos/seed/62dd5a016e6cf/168/168",
-        "background_image": "https://picsum.photos/seed/62dd5a016e6dc/850/350"
+        "profile_image": "https://picsum.photos/seed/62fbea7394901/168/168",
+        "background_image": "https://picsum.photos/seed/62fbea739490a/850/350"
     },
-    "resource_id": 22,
-    "created_at": "2022-07-24 15:07",
-    "updated_at": "2022-07-24 15:07"
+    "resource_id": 73,
+    "is_edited": false,
+    "created_at": "1s"
 }

@@ -6,15 +6,15 @@ import type { IPostType, IUser } from '@utils/types';
 interface HeaderProps {
     postId: number;
     author: IUser;
-    created_at: string;
-    updated_at: string;
+    createdAt: string;
+    isEdited: boolean;
     type: IPostType;
 }
 
-export const Header = ({ postId, author, created_at, updated_at, type }: HeaderProps) => {
+export const Header = ({ postId, author, createdAt, isEdited, type }: HeaderProps) => {
     return (
         <div className="w-full flex justify-between p-4 pb-0">
-            <Author author={author} created_at={created_at} updated_at={updated_at} />
+            <Author author={author} createdAt={createdAt} isEdited={isEdited} />
             <Settings postId={postId} type={type} />
         </div>
     );

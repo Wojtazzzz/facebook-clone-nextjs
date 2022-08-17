@@ -8,7 +8,6 @@ import RootUserJson from '@mocks/user/root.json';
 import { mock } from '@libs/nock';
 import userEvent from '@testing-library/user-event';
 import { Comments } from './Comments';
-import nock from 'nock';
 
 describe('Comments component', () => {
     const user = userEvent.setup();

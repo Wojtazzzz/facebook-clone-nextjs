@@ -5,11 +5,11 @@ import type { IUser } from '@utils/types';
 
 interface AuthorProps {
     author: IUser;
-    created_at: string;
-    updated_at: string;
+    createdAt: string;
+    isEdited: boolean;
 }
 
-export const Author = ({ author, created_at, updated_at }: AuthorProps) => {
+export const Author = ({ author, createdAt, isEdited }: AuthorProps) => {
     const { id, first_name, name, profile_image } = author;
 
     return (
@@ -21,7 +21,7 @@ export const Author = ({ author, created_at, updated_at }: AuthorProps) => {
                     <span className="text-sm text-light-50 font-medium">{name}</span>
 
                     <span className="text-xs text-light-100">
-                        {updated_at} {created_at !== updated_at && '(Edited)'}
+                        {createdAt} {isEdited && '(Edited)'}
                     </span>
                 </div>
             </a>

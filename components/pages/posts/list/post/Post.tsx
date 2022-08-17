@@ -15,9 +15,9 @@ export const Post = ({
     author,
     likes_count,
     comments_count,
-    isLiked,
+    is_liked,
+    is_edited,
     created_at,
-    updated_at,
     type,
 }: PostProps) => {
     const [areCommentsActive, setAreCommentsActive] = useState(false);
@@ -25,7 +25,7 @@ export const Post = ({
 
     return (
         <article aria-label="Post" className="w-full bg-dark-200 rounded-lg">
-            <Header postId={id} author={author} created_at={created_at} updated_at={updated_at} type={type} />
+            <Header postId={id} author={author} createdAt={created_at} isEdited={is_edited} type={type} />
 
             <Content content={content} images={images} />
 
@@ -36,7 +36,7 @@ export const Post = ({
                 toggleCommentsActive={handleToggleAreCommentsActive}
             />
 
-            <Panel postId={id} isPostLiked={isLiked} toggleAreCommentsActive={handleToggleAreCommentsActive} />
+            <Panel postId={id} isPostLiked={is_liked} toggleAreCommentsActive={handleToggleAreCommentsActive} />
 
             {areCommentsActive && <Comments postId={id} />}
         </article>

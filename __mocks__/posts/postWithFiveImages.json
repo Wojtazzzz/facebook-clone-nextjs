@@ -1,23 +1,24 @@
 {
-    "id": 6,
-    "content": "Velit sit molestias ea omnis nesciunt omnis voluptas. Mollitia quis ea quia illo amet et eos sed. Magni rerum voluptatum ex.",
+    "type": "FRIEND",
+    "id": 18,
+    "content": "Quo ipsam porro voluptatum et. Voluptatem explicabo maiores quia deleniti accusantium ut. Voluptas tempore ratione aliquid quas voluptatem suscipit accusamus. Voluptatem eos inventore placeat vitae.",
     "images": [
-        "https://picsum.photos/seed/62dd5a3a91742/850/350",
-        "https://picsum.photos/seed/62dd5a3a91744/850/350",
-        "https://picsum.photos/seed/62dd5a3a91746/850/350",
-        "https://picsum.photos/seed/62dd5a351c3fd/850/350",
-        "https://picsum.photos/seed/62dd5a3e8ae09/850/350"
+        "https://picsum.photos/seed/62fd0d6ea9cac/850/350",
+        "https://picsum.photos/seed/62fd0d6ea9cad/850/350",
+        "https://picsum.photos/seed/62fd0d6ea9cae/850/350",
+        "https://picsum.photos/seed/62fd0d6ea9caf/850/350",
+        "https://picsum.photos/seed/62fd0d6dd6210/850/350"
     ],
     "author": {
-        "id": 2,
-        "name": "Muriel Wilkinson",
-        "first_name": "Muriel",
-        "profile_image": "https://picsum.photos/seed/62dd5a10b4748/168/168",
-        "background_image": "https://picsum.photos/seed/62dd5a10b4753/850/350"
+        "id": 18,
+        "name": "Anabelle Stamm",
+        "first_name": "Anabelle",
+        "profile_image": "https://picsum.photos/seed/62fd0d6eb9730/168/168",
+        "background_image": "https://picsum.photos/seed/62fd0d6eb9737/850/350"
     },
     "likes_count": 0,
     "comments_count": 0,
-    "isLiked": false,
-    "created_at": "2022-07-24 14:42",
-    "updated_at": "2022-07-24 14:42"
+    "is_liked": false,
+    "is_edited": false,
+    "created_at": "2m"
 }

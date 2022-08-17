@@ -2,203 +2,208 @@
     "data": [
         {
             "type": "FRIEND",
-            "id": 26,
-            "content": "Distinctio aliquid quasi ut in et. Adipisci alias modi dolorem sed officia impedit alias. Est recusandae ipsa provident dolores in. Optio reprehenderit mollitia eum et.",
+            "id": 51,
+            "content": "Dicta eos aut et neque. Consectetur voluptas et vitae sint consequuntur quasi voluptatum. Ducimus explicabo sunt libero quia. Similique et eos repellendus ut veritatis. Iusto illo quidem est veniam.",
+            "images": [
+                "https://picsum.photos/seed/62fd0e85999a1/850/350",
+                "https://picsum.photos/seed/62fd0e85999a2/850/350",
+                "https://picsum.photos/seed/62fd0e85999a3/850/350",
+                "https://picsum.photos/seed/62fd0e85999a4/850/350"
+            ],
+            "author": {
+                "id": 2,
+                "name": "Glenna Gerlach",
+                "first_name": "Glenna",
+                "profile_image": "https://picsum.photos/seed/62fd0979d7944/168/168",
+                "background_image": "https://picsum.photos/seed/62fd0979d794b/850/350"
+            },
+            "likes_count": 0,
+            "comments_count": 0,
+            "is_liked": false,
+            "is_edited": false,
+            "created_at": "45s"
+        },
+        {
+            "type": "FRIEND",
+            "id": 52,
+            "content": "In aut eos cum. Praesentium est facere architecto. Omnis tempora iure labore nihil quia nemo. Eos eum eum neque.",
             "images": [],
             "author": {
                 "id": 2,
-                "name": "Marcelo Yost",
-                "first_name": "Marcelo",
-                "profile_image": "https://picsum.photos/seed/62ebad9ae1824/168/168",
-                "background_image": "https://picsum.photos/seed/62ebad9ae1829/850/350"
+                "name": "Glenna Gerlach",
+                "first_name": "Glenna",
+                "profile_image": "https://picsum.photos/seed/62fd0979d7944/168/168",
+                "background_image": "https://picsum.photos/seed/62fd0979d794b/850/350"
             },
             "likes_count": 0,
             "comments_count": 0,
-            "isLiked": false,
-            "created_at": "2022-08-04 15:31",
-            "updated_at": "2022-08-04 15:31"
+            "is_liked": false,
+            "is_edited": false,
+            "created_at": "45s"
         },
         {
             "type": "FRIEND",
-            "id": 27,
-            "content": "Molestias et asperiores magni nesciunt sed quae autem. Eos enim et totam officiis nostrum ullam ipsum consequatur. Ratione dolor molestiae tempore quis dolor sint magnam.",
-            "images": ["https://picsum.photos/seed/62ebe61f1fc7e/850/350"],
+            "id": 53,
+            "content": "Accusantium magni adipisci provident praesentium molestiae temporibus. Ut delectus reiciendis sunt dolorem. Ipsam ipsam necessitatibus inventore fugit dolor et tempora.",
+            "images": ["https://picsum.photos/seed/62fd0e875a435/850/350"],
             "author": {
                 "id": 2,
-                "name": "Marcelo Yost",
-                "first_name": "Marcelo",
-                "profile_image": "https://picsum.photos/seed/62ebad9ae1824/168/168",
-                "background_image": "https://picsum.photos/seed/62ebad9ae1829/850/350"
+                "name": "Glenna Gerlach",
+                "first_name": "Glenna",
+                "profile_image": "https://picsum.photos/seed/62fd0979d7944/168/168",
+                "background_image": "https://picsum.photos/seed/62fd0979d794b/850/350"
             },
             "likes_count": 0,
             "comments_count": 0,
-            "isLiked": false,
-            "created_at": "2022-08-04 15:31",
-            "updated_at": "2022-08-04 15:31"
+            "is_liked": false,
+            "is_edited": false,
+            "created_at": "46s"
         },
         {
             "type": "FRIEND",
-            "id": 28,
-            "content": "Et ut sed occaecati velit tempore corporis qui. Necessitatibus ipsa et dolor libero ut. Eveniet et animi nobis et.",
+            "id": 54,
+            "content": "Expedita vitae beatae cupiditate fuga. Aliquid totam suscipit eum. Voluptates voluptatem id delectus sit et animi libero culpa.",
             "images": [
-                "https://picsum.photos/seed/62ebe61fca266/850/350",
-                "https://picsum.photos/seed/62ebe61fca267/850/350"
+                "https://picsum.photos/seed/62fd0e87bfc4d/850/350",
+                "https://picsum.photos/seed/62fd0e87bfc4e/850/350",
+                "https://picsum.photos/seed/62fd0e87bfc50/850/350",
+                "https://picsum.photos/seed/62fd0e87bfc51/850/350"
             ],
             "author": {
                 "id": 2,
-                "name": "Marcelo Yost",
-                "first_name": "Marcelo",
-                "profile_image": "https://picsum.photos/seed/62ebad9ae1824/168/168",
-                "background_image": "https://picsum.photos/seed/62ebad9ae1829/850/350"
+                "name": "Glenna Gerlach",
+                "first_name": "Glenna",
+                "profile_image": "https://picsum.photos/seed/62fd0979d7944/168/168",
+                "background_image": "https://picsum.photos/seed/62fd0979d794b/850/350"
             },
             "likes_count": 0,
             "comments_count": 0,
-            "isLiked": false,
-            "created_at": "2022-08-04 15:31",
-            "updated_at": "2022-08-04 15:31"
+            "is_liked": false,
+            "is_edited": false,
+            "created_at": "46s"
         },
         {
             "type": "FRIEND",
-            "id": 29,
-            "content": "Beatae impedit corporis facilis dolorum cupiditate. Nostrum et doloribus adipisci est. At aspernatur ut dolores nisi at corrupti doloribus placeat.",
+            "id": 55,
+            "content": "Repellat voluptatibus fuga repellat ut. Et commodi qui omnis reiciendis temporibus voluptatum corrupti. Cumque laudantium nihil ut voluptas iste voluptatum.",
             "images": [
-                "https://picsum.photos/seed/62ebe6217caa4/850/350",
-                "https://picsum.photos/seed/62ebe6217caa5/850/350",
-                "https://picsum.photos/seed/62ebe6217caa6/850/350"
+                "https://picsum.photos/seed/62fd0e8852c51/850/350",
+                "https://picsum.photos/seed/62fd0e8852c52/850/350"
             ],
             "author": {
                 "id": 2,
-                "name": "Marcelo Yost",
-                "first_name": "Marcelo",
-                "profile_image": "https://picsum.photos/seed/62ebad9ae1824/168/168",
-                "background_image": "https://picsum.photos/seed/62ebad9ae1829/850/350"
+                "name": "Glenna Gerlach",
+                "first_name": "Glenna",
+                "profile_image": "https://picsum.photos/seed/62fd0979d7944/168/168",
+                "background_image": "https://picsum.photos/seed/62fd0979d794b/850/350"
             },
             "likes_count": 0,
             "comments_count": 0,
-            "isLiked": false,
-            "created_at": "2022-08-04 15:31",
-            "updated_at": "2022-08-04 15:31"
+            "is_liked": false,
+            "is_edited": false,
+            "created_at": "46s"
         },
         {
             "type": "FRIEND",
-            "id": 30,
-            "content": "Eum dicta aut ut esse sed nobis eos. Qui tenetur quas labore odit veniam porro magni. Qui officia laboriosam tempora nostrum nobis veritatis. Iure ut omnis asperiores velit.",
-            "images": ["https://picsum.photos/seed/62ebe6225a410/850/350"],
+            "id": 56,
+            "content": "Id deleniti itaque molestias quis blanditiis et. Autem optio quisquam maxime architecto sunt. Nobis non in temporibus officia dolor omnis quis.",
+            "images": ["https://picsum.photos/seed/62fd0e890e785/850/350"],
             "author": {
                 "id": 2,
-                "name": "Marcelo Yost",
-                "first_name": "Marcelo",
-                "profile_image": "https://picsum.photos/seed/62ebad9ae1824/168/168",
-                "background_image": "https://picsum.photos/seed/62ebad9ae1829/850/350"
+                "name": "Glenna Gerlach",
+                "first_name": "Glenna",
+                "profile_image": "https://picsum.photos/seed/62fd0979d7944/168/168",
+                "background_image": "https://picsum.photos/seed/62fd0979d794b/850/350"
             },
             "likes_count": 0,
             "comments_count": 0,
-            "isLiked": false,
-            "created_at": "2022-08-04 15:31",
-            "updated_at": "2022-08-04 15:31"
+            "is_liked": false,
+            "is_edited": false,
+            "created_at": "46s"
         },
         {
             "type": "FRIEND",
-            "id": 31,
-            "content": "Aut aut totam inventore quis beatae voluptas. Vitae temporibus ut maiores adipisci aperiam odio.",
+            "id": 57,
+            "content": "Dolores non vero quia incidunt incidunt quia est. Qui quos ipsum doloribus voluptatem. Molestiae quibusdam necessitatibus dolorum nihil debitis est beatae autem.",
             "images": [
-                "https://picsum.photos/seed/62ebe624e7553/850/350",
-                "https://picsum.photos/seed/62ebe624e7554/850/350",
-                "https://picsum.photos/seed/62ebe624e7556/850/350",
-                "https://picsum.photos/seed/62ebe624e7557/850/350"
+                "https://picsum.photos/seed/62fd0e89db612/850/350",
+                "https://picsum.photos/seed/62fd0e89db614/850/350",
+                "https://picsum.photos/seed/62fd0e89db617/850/350",
+                "https://picsum.photos/seed/62fd0e89db619/850/350"
             ],
             "author": {
                 "id": 2,
-                "name": "Marcelo Yost",
-                "first_name": "Marcelo",
-                "profile_image": "https://picsum.photos/seed/62ebad9ae1824/168/168",
-                "background_image": "https://picsum.photos/seed/62ebad9ae1829/850/350"
+                "name": "Glenna Gerlach",
+                "first_name": "Glenna",
+                "profile_image": "https://picsum.photos/seed/62fd0979d7944/168/168",
+                "background_image": "https://picsum.photos/seed/62fd0979d794b/850/350"
             },
             "likes_count": 0,
             "comments_count": 0,
-            "isLiked": false,
-            "created_at": "2022-08-04 15:31",
-            "updated_at": "2022-08-04 15:31"
+            "is_liked": false,
+            "is_edited": false,
+            "created_at": "46s"
         },
         {
             "type": "FRIEND",
-            "id": 32,
-            "content": "Nihil cumque dolorum et at earum et. Quae et sed odit eum a velit magni. Repudiandae eveniet perferendis consectetur inventore dolorem.",
+            "id": 58,
+            "content": "Aliquid iusto ut reprehenderit accusantium eaque velit eum. Odit consequatur eos ipsum. Soluta ea vitae deserunt laborum ducimus non.",
             "images": [
-                "https://picsum.photos/seed/62ebe6255a3cd/850/350",
-                "https://picsum.photos/seed/62ebe6255a3d0/850/350"
+                "https://picsum.photos/seed/62fd0e8a8afe2/850/350",
+                "https://picsum.photos/seed/62fd0e8a8afe4/850/350",
+                "https://picsum.photos/seed/62fd0e8a8afe7/850/350"
             ],
             "author": {
                 "id": 2,
-                "name": "Marcelo Yost",
-                "first_name": "Marcelo",
-                "profile_image": "https://picsum.photos/seed/62ebad9ae1824/168/168",
-                "background_image": "https://picsum.photos/seed/62ebad9ae1829/850/350"
+                "name": "Glenna Gerlach",
+                "first_name": "Glenna",
+                "profile_image": "https://picsum.photos/seed/62fd0979d7944/168/168",
+                "background_image": "https://picsum.photos/seed/62fd0979d794b/850/350"
             },
             "likes_count": 0,
             "comments_count": 0,
-            "isLiked": false,
-            "created_at": "2022-08-04 15:31",
-            "updated_at": "2022-08-04 15:31"
+            "is_liked": false,
+            "is_edited": false,
+            "created_at": "46s"
         },
         {
             "type": "FRIEND",
-            "id": 33,
-            "content": "Excepturi et culpa nobis beatae alias molestiae. Placeat molestiae nihil autem rerum quia. Ratione ab facilis cumque temporibus. Est autem aut natus voluptate vel ipsum.",
-            "images": [],
-            "author": {
-                "id": 2,
-                "name": "Marcelo Yost",
-                "first_name": "Marcelo",
-                "profile_image": "https://picsum.photos/seed/62ebad9ae1824/168/168",
-                "background_image": "https://picsum.photos/seed/62ebad9ae1829/850/350"
-            },
-            "likes_count": 0,
-            "comments_count": 0,
-            "isLiked": false,
-            "created_at": "2022-08-04 15:31",
-            "updated_at": "2022-08-04 15:31"
-        },
-        {
-            "type": "FRIEND",
-            "id": 34,
-            "content": "Eius totam odio vero ut dolorem itaque sint. Porro odio non et vitae eum recusandae. Consectetur amet et rerum assumenda illo repellendus pariatur. Quisquam quia similique voluptas.",
+            "id": 59,
+            "content": "Enim temporibus totam repudiandae. Quidem veniam illum fugit fugiat voluptatem sed. Qui praesentium sunt voluptatem est sit quae aut.",
             "images": [
-                "https://picsum.photos/seed/62ebe62751473/850/350",
-                "https://picsum.photos/seed/62ebe62751475/850/350",
-                "https://picsum.photos/seed/62ebe62751476/850/350",
-                "https://picsum.photos/seed/62ebe62751478/850/350"
+                "https://picsum.photos/seed/62fd0e8b1e0a9/850/350",
+                "https://picsum.photos/seed/62fd0e8b1e0ac/850/350"
             ],
             "author": {
                 "id": 2,
-                "name": "Marcelo Yost",
-                "first_name": "Marcelo",
-                "profile_image": "https://picsum.photos/seed/62ebad9ae1824/168/168",
-                "background_image": "https://picsum.photos/seed/62ebad9ae1829/850/350"
+                "name": "Glenna Gerlach",
+                "first_name": "Glenna",
+                "profile_image": "https://picsum.photos/seed/62fd0979d7944/168/168",
+                "background_image": "https://picsum.photos/seed/62fd0979d794b/850/350"
             },
             "likes_count": 0,
             "comments_count": 0,
-            "isLiked": false,
-            "created_at": "2022-08-04 15:31",
-            "updated_at": "2022-08-04 15:31"
+            "is_liked": false,
+            "is_edited": false,
+            "created_at": "46s"
         },
         {
             "type": "FRIEND",
-            "id": 35,
-            "content": "Et est dolor ea quasi ut est. Hic sed tempore harum facere enim veniam.",
-            "images": ["https://picsum.photos/seed/62ebe6297acdc/850/350"],
+            "id": 60,
+            "content": "Ea sapiente amet eaque sequi. Nesciunt dicta sit quis quas praesentium beatae. Ut dolores reiciendis praesentium animi aspernatur.",
+            "images": ["https://picsum.photos/seed/62fd0e8b87377/850/350"],
             "author": {
                 "id": 2,
-                "name": "Marcelo Yost",
-                "first_name": "Marcelo",
-                "profile_image": "https://picsum.photos/seed/62ebad9ae1824/168/168",
-                "background_image": "https://picsum.photos/seed/62ebad9ae1829/850/350"
+                "name": "Glenna Gerlach",
+                "first_name": "Glenna",
+                "profile_image": "https://picsum.photos/seed/62fd0979d7944/168/168",
+                "background_image": "https://picsum.photos/seed/62fd0979d794b/850/350"
             },
             "likes_count": 0,
             "comments_count": 0,
-            "isLiked": false,
-            "created_at": "2022-08-04 15:31",
-            "updated_at": "2022-08-04 15:31"
+            "is_liked": false,
+            "is_edited": false,
+            "created_at": "46s"
         }
     ],
     "current_page": 1,
