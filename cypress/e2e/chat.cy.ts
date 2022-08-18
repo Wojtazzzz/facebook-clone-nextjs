@@ -71,6 +71,89 @@ describe('Chat tests', () => {
         cy.get('[data-testid="chat"]').should('not.exist');
     });
 
+    it('open chat, send new message, response return error, message should not exist on list, chat show Internal Server Error, second message with success response remove Internal Server Error from chat', () => {
+        cy.intercept('/api/messages/2?page=1').as('messages_page_1');
+
+        cy.visit('/');
+
+        cy.wait('@user');
+        cy.wait('@contacts_page_1');
+
+        cy.get('[data-testid="contacts-list"]').within(() => {
+            cy.contains(`${friend.first_name} ${friend.last_name}`).click();
+        });
+
+        cy.wait('@messages_page_1');
+
+        cy.get('[data-testid="chat"]').should('be.visible');
+
+        // Creating first message
+        cy.intercept('/api/messages', { statusCode: 500 }).as('messages');
+        cy.intercept('/api/messages/2?page=1').as('messages_page_1');
+
+        cy.get('input[aria-label="Message input"]').type('Hello World!{enter}');
+
+        cy.wait('@messages');
+        cy.wait('@messages_page_1');
+
+        cy.get('[data-testid="chat"]').should('not.contain.text', 'Hello World!');
+        cy.get('[data-testid="chat"]').should('contain.text', 'Internal Server Error');
+
+        // Creating second message
+        cy.intercept('/api/messages', { statusCode: 201 }).as('messages');
+        cy.intercept('/api/messages/2?page=1').as('messages_page_1');
+
+        cy.get('input[aria-label="Message input"]').type('Second approach{enter}');
+
+        cy.wait('@messages');
+        cy.wait('@messages_page_1');
+
+        cy.get('[data-testid="chat"]').should('contain.text', 'Second approach');
+        cy.get('[data-testid="chat"]').should('not.contain.text', 'Internal Server Error');
+    });
+
+    it('open chat, generate Internal Server Error, close chat, open same chat, Internal Server Error is not showing', () => {
+        cy.intercept('/api/messages/2?page=1').as('messages_page_1');
+
+        cy.visit('/');
+
+        cy.wait('@user');
+        cy.wait('@contacts_page_1');
+
+        cy.get('[data-testid="contacts-list"]').within(() => {
+            cy.contains(`${friend.first_name} ${friend.last_name}`).click();
+        });
+
+        cy.wait('@messages_page_1');
+
+        cy.get('[data-testid="chat"]').should('be.visible');
+
+        // Creating first message
+        cy.intercept('/api/messages', { statusCode: 500 }).as('messages');
+        cy.intercept('/api/messages/2?page=1').as('messages_page_1');
+
+        cy.get('input[aria-label="Message input"]').type('Hello World!{enter}');
+
+        cy.wait('@messages');
+        cy.wait('@messages_page_1');
+
+        cy.get('[data-testid="chat"]').should('not.contain.text', 'Hello World!');
+        cy.get('[data-testid="chat"]').should('contain.text', 'Internal Server Error');
+
+        cy.get('[aria-label="Close chat"]').click();
+        cy.get('[data-testid="chat"]').should('not.exist');
+
+        cy.get('[data-testid="contacts-list"]').within(() => {
+            cy.contains(`${friend.first_name} ${friend.last_name}`).click();
+        });
+
+        cy.wait('@messages_page_1');
+
+        cy.get('[data-testid="chat"]').should('be.visible');
+
+        cy.get('[data-testid="chat"]').should('not.contain.text', 'Internal Server Error');
+    });
+
     // it('open chat, conversation should has 15 messages, WIP', () => {
     //     cy.create('Message', 22, {
     //         sender_id: 1,

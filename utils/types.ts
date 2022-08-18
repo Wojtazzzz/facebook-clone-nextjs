@@ -89,7 +89,7 @@ export type IComment = {
 };
 
 export type IChatMessage = {
-    id: number;
+    id: number | string;
     text: string;
     isReceived: boolean;
     created_at: string;

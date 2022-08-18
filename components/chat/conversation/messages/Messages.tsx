@@ -1,12 +1,10 @@
 import { Fragment, memo } from 'react';
-
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { Loader } from '@components/chat/messages/Loader';
-import { Message } from '@components/chat/messages/Message';
-import { EmptyChat } from '@components/chat/messages/EmptyChat';
+import { Loader } from '@components/chat/conversation/messages/Loader';
+import { Message } from '@components/chat/conversation/messages/Message';
+import { EmptyChat } from '@components/chat/conversation/messages/EmptyChat';
 import { ApiError } from '@components/inc/ApiError';
-
-import { IChatMessage } from '@utils/types';
+import type { IChatMessage } from '@utils/types';
 import { useInfiniteData } from '@hooks/useInfiniteData';
 
 interface MessagesProps {
@@ -35,12 +33,12 @@ export const Messages = memo<MessagesProps>(({ friendId }) => {
         <div
             data-testid="chat-messages"
             id="list-of-messages"
-            className="w-full max-h-[312px] flex flex-col-reverse overflow-y-scroll scrollbar-thin scrollbar-thumb-dark-100 scrollbar-track-dark-200 pb-2"
+            className="w-full h-full max-h-[312px] flex flex-col justify-end relative overflow-y-scroll scrollbar-thin scrollbar-thumb-dark-100 scrollbar-track-dark-200 pb-2"
         >
             <InfiniteScroll
                 dataLength={MessagesComponents.length}
                 next={fetchNextPage}
-                className="flex flex-col-reverse gap-1"
+                className="w-full flex flex-col-reverse justify-end gap-1"
                 inverse
                 hasMore={!!hasNextPage}
                 loader={<Loader testid="messages-loader_fetching" />}

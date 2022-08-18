@@ -1,5 +1,5 @@
 import { renderWithDefaultData } from '@utils/renderWithDefaultData';
-import { Message } from '@components/chat/messages/Message';
+import { Message } from '@components/chat/conversation/messages/Message';
 import { screen } from '@testing-library/react';
 
 describe('Message component', () => {
