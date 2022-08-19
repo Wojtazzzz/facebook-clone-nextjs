@@ -1,26 +1,30 @@
 import { ErrorMessage } from '@components/pages/friends/list/item/panels/messages/ErrorMessage';
 import { SuccessMessage } from '@components/pages/friends/list/item/panels/messages/SuccessMessage';
 import { Button } from '@components/inc/Button';
-
 import type { IUser } from '@utils/types';
-import { useFriendship } from '@hooks/useFriendship';
+import { useUpdateInvite } from './useUpdateInvite';
 
 interface InvitePanelProps extends IUser {}
 
 export const InvitePanel = ({ id }: InvitePanelProps) => {
-    const { useUpdateInvite } = useFriendship();
     const { updateInvite, isSuccess, isError, isLoading, data } = useUpdateInvite();
 
     const handleAccept = (event: FocusEvent) => {
         event.preventDefault();
 
-        updateInvite(id, 'CONFIRMED');
+        updateInvite({
+            friendId: id,
+            status: 'CONFIRMED',
+        });
     };
 
     const handleReject = (event: FocusEvent) => {
         event.preventDefault();
 
-        updateInvite(id, 'BLOCKED');
+        updateInvite({
+            friendId: id,
+            status: 'BLOCKED',
+        });
     };
 
     if (isSuccess) return <SuccessMessage message={data?.data.message} />;

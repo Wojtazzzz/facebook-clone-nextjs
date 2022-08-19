@@ -15,125 +15,8 @@ describe('Posts comments tests', () => {
         });
     });
 
-    // it('see 10 comments and fetch 5 more by click on "View more comments", after that button dissapears', () => {
-    //     cy.create('Comment', 15, {
-    //         resource_id: 1,
-    //     });
-
-    //     cy.intercept('/api/user').as('user');
-    //     cy.intercept('/api/posts?page=1').as('posts_page_1');
-
-    //     cy.visit('/');
-    //     cy.wait('@user');
-    //     cy.wait('@posts_page_1');
-
-    //     cy.get('[id="posts-list"] article[aria-label="Post"]')
-    //         .first()
-    //         .within(() => {
-    //             cy.intercept('/api/posts/1/comments?page=1').as('comments_page_1');
-
-    //             cy.get('[aria-label="Comment"]').click();
-    //             cy.wait('@comments_page_1');
-
-    //             cy.get('[data-testid="post-comments_list"]').children().should('have.length', 10);
-
-    //             cy.intercept('/api/posts/1/comments?page=2').as('comments_page_2');
-
-    //             cy.get('button[aria-label="Load more comments"]').click();
-
-    //             cy.wait('@comments_page_2');
-
-    //             cy.get('[data-testid="post-comments_list"]').children().should('have.length', 15);
-    //             cy.get('button[aria-label="Load more comments"]').should('not.exist');
-    //         });
-    // });
-
-    // it('create new comment and see it on list', () => {
-    //     const newCommentContent = 'New simple comment';
-
-    //     cy.create('Comment', 1, {
-    //         resource_id: 1,
-    //     });
-
-    //     cy.intercept('/api/user').as('user');
-    //     cy.intercept('/api/posts?page=1').as('posts_page_1');
-
-    //     cy.visit('/');
-    //     cy.wait('@user');
-    //     cy.wait('@posts_page_1');
-
-    //     cy.get('[id="posts-list"] article[aria-label="Post"]')
-    //         .first()
-    //         .within(() => {
-    //             cy.intercept('/api/posts/1/comments?page=1').as('comments_page_1');
-
-    //             cy.get('[aria-label="Comment"]').click();
-    //             cy.wait('@comments_page_1');
-
-    //             cy.get('article[aria-label="Comment"]').should('have.length', 1);
-
-    //             cy.intercept('/api/posts/1/comments').as('create');
-    //             cy.intercept('/api/posts/1/comments?page=1').as('comments_page_1');
-
-    //             cy.get('[aria-label="Write a comment"]').type(`${newCommentContent}{enter}`);
-
-    //             cy.wait('@create');
-    //             cy.wait('@comments_page_1');
-
-    //             cy.get('article[aria-label="Comment"]').should('have.length', 2);
-    //             cy.get('article[aria-label="Comment"]')
-    //                 .contains(`${USER_FIRST_NAME} ${USER_LAST_NAME}`)
-    //                 .should('be.visible');
-    //             cy.get('article[aria-label="Comment"]').contains(newCommentContent).should('be.visible');
-    //         });
-    // });
-
-    // it('create new comment and see server error', () => {
-    //     const newCommentContent = 'New simple comment';
-
-    //     cy.create('Comment', 1, {
-    //         resource_id: 1,
-    //     });
-
-    //     cy.intercept('/api/user').as('user');
-    //     cy.intercept('/api/posts?page=1').as('posts_page_1');
-
-    //     cy.visit('/');
-    //     cy.wait('@user');
-    //     cy.wait('@posts_page_1');
-
-    //     cy.get('[id="posts-list"] article[aria-label="Post"]')
-    //         .first()
-    //         .within(() => {
-    //             cy.intercept('/api/posts/1/comments?page=1').as('comments_page_1');
-
-    //             cy.get('[aria-label="Comment"]').click();
-    //             cy.wait('@comments_page_1');
-
-    //             cy.get('article[aria-label="Comment"]').should('have.length', 1);
-
-    //             cy.intercept('/api/posts/1/comments', { statusCode: 500 }).as('create');
-
-    //             cy.get('[aria-label="Write a comment"]').type(`${newCommentContent}{enter}`);
-
-    //             cy.wait('@create');
-
-    //             cy.contains('Request failed with status code 500').should('be.visible');
-    //             cy.get('article[aria-label="Comment"]').should('have.length', 1);
-    //         });
-    // });
-
-    it('click on delete button, comment dissapear from list', () => {
-        const commentContent = 'Simple comment';
-
-        cy.create('Comment', {
-            author_id: 1,
-            resource_id: 1,
-            content: commentContent,
-        });
-
-        cy.create('Comment', {
-            author_id: 1,
+    it('see 10 comments and fetch 5 more by click on "View more comments", after that button dissapears', () => {
+        cy.create('Comment', 15, {
             resource_id: 1,
         });
 
@@ -152,17 +35,137 @@ describe('Posts comments tests', () => {
                 cy.get('[aria-label="Comment"]').click();
                 cy.wait('@comments_page_1');
 
-                cy.get('[data-testid="post-comments_list"]').children().should('have.length', 2);
+                cy.get('[data-testid="post-comments_list"]').children().should('have.length', 10);
 
-                cy.get('article[aria-label="Comment"]').first().contains(commentContent).should('be.visible');
+                cy.intercept('/api/posts/1/comments?page=2').as('comments_page_2');
+
+                cy.get('button[aria-label="Load more comments"]').click();
+
+                cy.wait('@comments_page_2');
+
+                cy.get('[data-testid="post-comments_list"]').children().should('have.length', 15);
+                cy.get('button[aria-label="Load more comments"]').should('not.exist');
+            });
+    });
+
+    it('create new comment and see it on list', () => {
+        const newCommentContent = 'New simple comment';
+
+        cy.create('Comment', 1, {
+            resource_id: 1,
+        });
+
+        cy.intercept('/api/user').as('user');
+        cy.intercept('/api/posts?page=1').as('posts_page_1');
+
+        cy.visit('/');
+        cy.wait('@user');
+        cy.wait('@posts_page_1');
+
+        cy.get('[id="posts-list"] article[aria-label="Post"]')
+            .first()
+            .within(() => {
+                cy.intercept('/api/posts/1/comments?page=1').as('comments_page_1');
+
+                cy.get('[aria-label="Comment"]').click();
+                cy.wait('@comments_page_1');
+
+                cy.get('article[aria-label="Comment"]').should('have.length', 1);
+
+                cy.intercept('/api/posts/1/comments').as('create');
+                cy.intercept('/api/posts/1/comments?page=1').as('comments_page_1');
+
+                cy.get('[aria-label="Write a comment"]').type(`${newCommentContent}{enter}`);
+
+                cy.wait('@create');
+                cy.wait('@comments_page_1');
+
+                cy.get('article[aria-label="Comment"]').should('have.length', 2);
                 cy.get('article[aria-label="Comment"]')
-                    .first()
+                    .contains(`${USER_FIRST_NAME} ${USER_LAST_NAME}`)
+                    .should('be.visible');
+                cy.get('article[aria-label="Comment"]').contains(newCommentContent).should('be.visible');
+            });
+    });
+
+    it('create new comment and see server error', () => {
+        const newCommentContent = 'New simple comment';
+
+        cy.create('Comment', 1, {
+            resource_id: 1,
+        });
+
+        cy.intercept('/api/user').as('user');
+        cy.intercept('/api/posts?page=1').as('posts_page_1');
+
+        cy.visit('/');
+        cy.wait('@user');
+        cy.wait('@posts_page_1');
+
+        cy.get('[id="posts-list"] article[aria-label="Post"]')
+            .first()
+            .within(() => {
+                cy.intercept('/api/posts/1/comments?page=1').as('comments_page_1');
+
+                cy.get('[aria-label="Comment"]').click();
+                cy.wait('@comments_page_1');
+
+                cy.get('article[aria-label="Comment"]').should('have.length', 1);
+
+                cy.intercept('/api/posts/1/comments', { statusCode: 500 }).as('create');
+
+                cy.get('[aria-label="Write a comment"]').type(`${newCommentContent}{enter}`);
+
+                cy.wait('@create');
+
+                cy.contains('Request failed with status code 500').should('be.visible');
+                cy.get('article[aria-label="Comment"]').should('have.length', 1);
+            });
+    });
+
+    it('click on delete button, comment dissapear from list', () => {
+        const commentContent = 'Simple comment';
+
+        cy.create('Comment', {
+            author_id: 1,
+            resource_id: 1,
+            content: commentContent,
+        });
+
+        cy.create('Comment', {
+            author_id: 1,
+            resource_id: 1,
+        });
+
+        cy.create('Comment', {
+            resource_id: 1,
+        });
+
+        cy.intercept('/api/user').as('user');
+        cy.intercept('/api/posts?page=1').as('posts_page_1');
+
+        cy.visit('/');
+        cy.wait('@user');
+        cy.wait('@posts_page_1');
+
+        cy.get('[id="posts-list"] article[aria-label="Post"]')
+            .first()
+            .within(() => {
+                cy.intercept('/api/posts/1/comments?page=1').as('comments_page_1');
+
+                cy.get('[aria-label="Comment"]').click();
+                cy.wait('@comments_page_1');
+
+                cy.get('[data-testid="post-comments_list"]').children().should('have.length', 3);
+
+                cy.get('article[aria-label="Comment"]')
+                    .filter(`:contains("${commentContent}")`)
                     .within(() => {
                         cy.get('button[aria-label="Delete"]').click();
                     });
             });
 
-        cy.get('[data-testid="post-comments_list"]').children().should('have.length', 1);
+        cy.get('[data-testid="post-comments_list"]').children().should('have.length', 2);
         cy.get('[data-testid="post-comments_list"]').children().contains(commentContent).should('not.exist');
     });
 

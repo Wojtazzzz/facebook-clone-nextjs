@@ -1,14 +1,12 @@
 import { ErrorMessage } from '@components/pages/friends/list/item/panels/messages/ErrorMessage';
 import { SuccessMessage } from '@components/pages/friends/list/item/panels/messages/SuccessMessage';
 import { Button } from '@components/inc/Button';
-
 import type { IUser } from '@utils/types';
-import { useFriendship } from '@hooks/useFriendship';
+import { useInvite } from './useInvite';
 
 interface SuggestPanelProps extends IUser {}
 
 export const SuggestPanel = ({ id }: SuggestPanelProps) => {
-    const { useInvite } = useFriendship();
     const { invite, isLoading, isError, isSuccess } = useInvite();
 
     const handleInvite = (event: FocusEvent) => {

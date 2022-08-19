@@ -1,6 +1,6 @@
-import { FriendPanel } from '@components/pages/friends/list/item/panels/FriendPanel';
-import { InvitePanel } from '@components/pages/friends/list/item/panels/InvitePanel';
-import { SuggestPanel } from '@components/pages/friends/list/item/panels/SuggestPanel';
+import { FriendPanel } from '@components/pages/friends/list/item/panels/friendPanel/FriendPanel';
+import { InvitePanel } from '@components/pages/friends/list/item/panels/invitePanel/InvitePanel';
+import { SuggestPanel } from '@components/pages/friends/list/item/panels/suggestPanel/SuggestPanel';
 import { PokePanel } from '@components/pages/friends/list/item/panels/PokePanel';
 
 import type { IFriendsListItem, IFriendsList, IPoke } from '@utils/types';
