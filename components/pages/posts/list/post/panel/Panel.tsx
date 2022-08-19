@@ -1,5 +1,5 @@
 import { CommentButton } from './CommentButton';
-import { LikeButton } from './LikeButton';
+import { LikeButton } from './likeButton/LikeButton';
 import { ShareButton } from './ShareButton';
 
 interface PanelProps {

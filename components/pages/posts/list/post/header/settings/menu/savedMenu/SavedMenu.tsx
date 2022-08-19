@@ -1,14 +1,12 @@
-import { usePosts } from '@hooks/usePosts';
-
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Option } from '../Option';
+import { useUnsave } from './useUnsave';
 
 interface SavedMenuProps {
     postId: number;
 }
 
 export const SavedMenu = ({ postId }: SavedMenuProps) => {
-    const { useUnsave } = usePosts();
     const { unsave, isLoading } = useUnsave();
 
     const handleUnsave = () => {

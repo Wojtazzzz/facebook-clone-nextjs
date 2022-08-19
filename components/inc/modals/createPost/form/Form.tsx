@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useAppDispatch } from '@hooks/redux';
-import { usePosts } from '@hooks/usePosts';
 import { Formik, Form as FormikForm } from 'formik';
 import { FileDrop } from '@components/inc/modals/createPost/form/fileDrop/FileDrop';
 import { ErrorMessage } from '@components/inc/modals/createPost/responses/ErrorMessage';
@@ -12,13 +11,13 @@ import { UploadedFiles } from '@components/inc/modals/createPost/form/fileDrop/U
 import { closeModal } from '@redux/slices/CreatePostModalSlice';
 import { PostSchema } from '@validation/PostSchema';
 import type { IPostPayload } from '@utils/types';
+import { useCreate } from './useCreate';
 
 export const Form = () => {
     const [isUploadActive, setIsUploadActive] = useState(false);
     const [oldData, setOldData] = useState<IPostPayload>({ content: '', images: [] });
     const dispatch = useAppDispatch();
 
-    const { useCreate } = usePosts();
     const { create, isLoading, error } = useCreate();
 
     const handleCloseFileDrop = () => setIsUploadActive(false);

@@ -1,7 +1,7 @@
-import { usePosts } from '@hooks/usePosts';
-
 import { faBan, faSave } from '@fortawesome/free-solid-svg-icons';
 import { Option } from '../Option';
+import { useHide } from './useHide';
+import { useSave } from './useSave';
 
 interface FriendMenuProps {
     postId: number;
@@ -9,7 +9,6 @@ interface FriendMenuProps {
 }
 
 export const FriendMenu = ({ postId, closeMenu }: FriendMenuProps) => {
-    const { useHide, useSave } = usePosts();
     const { hide, isLoading: isHideLoading } = useHide();
     const { save, isLoading: isSaveLoading } = useSave();
 

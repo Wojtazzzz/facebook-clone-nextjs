@@ -67,9 +67,7 @@ describe('Profile board tests', () => {
 
         cy.get('[data-testid="board-posts"] article[aria-label="Post"]').should('have.length', 4);
 
-        cy.intercept('/api/users/1/posts?page=1').as('posts');
         cy.get('[aria-label="Change list of posts"]').select('Own posts');
-        cy.wait('@posts');
 
         cy.get('[data-testid="board-posts"] article[aria-label="Post"]').should('not.exist');
     });
@@ -171,10 +169,13 @@ describe('Profile board tests', () => {
 
         cy.get('[data-testid="board-posts"] article[aria-label="Post"]').should('have.length', 1);
         cy.get('[data-testid="board-posts"] article[aria-label="Post"]').within(() => {
-            cy.intercept('/api/likes').as('like');
+            cy.intercept('/api/posts/1/likes').as('like');
+            cy.intercept('/api/posts/?page=1').as('posts_page_1');
 
             cy.get('[aria-label="Like"]').click();
+
             cy.wait('@like');
+            cy.wait('@posts_page_1');
 
             cy.get('[data-testid="post-likes_count"]').should('contain.text', 1);
 

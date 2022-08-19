@@ -1,8 +1,8 @@
-import { usePosts } from '@hooks/usePosts';
-
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
-import { PanelButton } from './inc/PanelButton';
-import { ApiError } from './inc/ApiError';
+import { PanelButton } from '../inc/PanelButton';
+import { ApiError } from '../inc/ApiError';
+import { useLike } from './useLike';
+import { useUnlike } from './useUnlike';
 
 interface LikeButtonProps {
     postId: number;
@@ -10,8 +10,6 @@ interface LikeButtonProps {
 }
 
 export const LikeButton = ({ postId, isLiked }: LikeButtonProps) => {
-    const { useLike, useUnlike } = usePosts();
-
     const { like, isError: isLikeError } = useLike();
     const { unlike, isError: isUnlikeError } = useUnlike();
 

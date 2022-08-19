@@ -10,7 +10,7 @@ interface TriggerProps {
 export const Trigger = ({ count }: TriggerProps) => {
     return (
         <ReactTooltip.Trigger>
-            <div className="flex items-center gap-2">
+            <div data-testid="post-likesTrigger" className="flex items-center gap-2">
                 <div className="w-5 h-5 flex justify-center items-center bg-primary rounded-full">
                     <FontAwesomeIcon icon={faThumbsUp} className="text-xs text-white" />
                 </div>
