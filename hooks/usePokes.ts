@@ -3,19 +3,20 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export const usePokes = () => {
     const queryClient = useQueryClient();
-
-    const pokeMutation = useMutation((friendId: number) => axios.post('/api/pokes', { friend_id: friendId }));
+    const mutation = useMutation(mutationFn);
 
     const poke = (friendId: number) => {
-        if (pokeMutation.isLoading) return;
+        if (mutation.isLoading) return;
 
-        pokeMutation.mutate(friendId, {
+        mutation.mutate(friendId, {
             onSuccess: () => queryClient.invalidateQueries(['friends']),
         });
     };
 
     return {
         poke,
-        ...pokeMutation,
+        ...mutation,
     };
 };
+
+const mutationFn = (friendId: number) => axios.post('/api/pokes', { friend_id: friendId });
