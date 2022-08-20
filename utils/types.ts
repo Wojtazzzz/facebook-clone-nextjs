@@ -174,12 +174,3 @@ export type IValidationError = {
         statusText: string;
     };
 };
-
-export type ICommentCreateMutationPayload = {
-    resourceId: number;
-} & ICommentPayload;
-
-export type ICommentUpdateMutationPayload = {
-    resourceId: number;
-    commentId: number;
-} & ICommentPayload;

@@ -1,5 +1,5 @@
-import { useComments } from '@hooks/useComments';
 import { ActionButton } from '../ActionButton';
+import { useRemove } from './useRemove';
 
 interface DeleteActionProps {
     postId: number;
@@ -7,11 +7,13 @@ interface DeleteActionProps {
 }
 
 export const DeleteAction = ({ postId, commentId }: DeleteActionProps) => {
-    const { useRemove } = useComments();
     const { remove, isLoading } = useRemove();
 
     const handleRemove = () => {
-        remove(postId, commentId);
+        remove({
+            resourceId: postId,
+            commentId,
+        });
     };
 
     return <ActionButton title="Delete" isDisabled={isLoading} callback={handleRemove} />;
