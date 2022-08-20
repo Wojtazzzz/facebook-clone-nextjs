@@ -50,7 +50,7 @@ export const useChat = () => {
             return { previousMessages };
         },
 
-        onSuccess(data, variables, context) {
+        onSuccess() {
             if (!error) return;
 
             dispatch(setChatError(undefined));
@@ -113,6 +113,6 @@ const createMessage = (text: string) => {
         id: uuid(),
         text,
         isReceived: false,
-        created_at: `${date.getHours()}:${date.getMinutes()}`,
+        created_at: 'Just now',
     };
 };
