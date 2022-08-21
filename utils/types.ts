@@ -88,10 +88,14 @@ export type IComment = {
     created_at: string;
 };
 
+export type IChatMessageStatus = 'SENDING' | 'DELIVERED' | 'READ';
+
 export type IChatMessage = {
     id: number | string;
     text: string;
-    isReceived: boolean;
+    is_received: boolean;
+    status: IChatMessageStatus;
+    read_at: string | undefined;
     created_at: string;
 };
 
@@ -118,12 +122,6 @@ export type IPost = {
 };
 
 export type IContact = {
-    id: number;
-    name: string;
-    profile_image: string;
-};
-
-export type IChatFriend = {
     id: number;
     name: string;
     profile_image: string;
@@ -174,3 +172,6 @@ export type IValidationError = {
         statusText: string;
     };
 };
+
+export type IMessageIconType = 'AVATAR' | 'SENDING' | 'DELIVERED' | undefined;
+export type IChatFriend = IUser | IContact;

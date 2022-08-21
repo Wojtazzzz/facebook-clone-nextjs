@@ -1,19 +1,21 @@
-import { Fragment, memo } from 'react';
+import { memo } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Loader } from '@components/chat/conversation/messages/Loader';
-import { Message } from '@components/chat/conversation/messages/Message';
+import { Message } from '@components/chat/conversation/messages/message/Message';
 import { EmptyChat } from '@components/chat/conversation/messages/EmptyChat';
 import { ApiError } from '@components/inc/ApiError';
-import type { IChatMessage } from '@utils/types';
+import type { IChatFriend, IChatMessage } from '@utils/types';
 import { useInfiniteData } from '@hooks/useInfiniteData';
 
 interface MessagesProps {
-    friendId: number;
+    friend: IChatFriend;
 }
 
-export const Messages = memo<MessagesProps>(({ friendId }) => {
+export const Messages = memo<MessagesProps>(({ friend }) => {
+    const friendId = friend.id.toString();
+
     const { data, isLoading, isError, isEmpty, hasNextPage, fetchNextPage } = useInfiniteData<IChatMessage>(
-        ['chat', `${friendId}`],
+        ['chat', friendId],
         `/api/messages/${friendId}`
     );
 
@@ -21,12 +23,11 @@ export const Messages = memo<MessagesProps>(({ friendId }) => {
     if (!data || isError) return <ApiError />;
     if (isEmpty) return <EmptyChat />;
 
-    const MessagesComponents = data.pages.map((page) => (
-        <Fragment key={page.current_page}>
-            {page.data.map((message) => (
-                <Message key={message.id} {...message} />
-            ))}
-        </Fragment>
+    const flatData = data.pages.flatMap((page) => page.data);
+    const lastReadIndex = getLastReadIndex(flatData);
+
+    const MessagesComponents = flatData.map((message, i) => (
+        <Message senderAvatar={friend.profile_image} isLastRead={i === lastReadIndex} key={message.id} {...message} />
     ));
 
     return (
@@ -38,7 +39,7 @@ export const Messages = memo<MessagesProps>(({ friendId }) => {
             <InfiniteScroll
                 dataLength={MessagesComponents.length}
                 next={fetchNextPage}
-                className="w-full flex flex-col-reverse justify-end gap-1"
+                className="w-full flex flex-col-reverse justify-end gap-1 pr-2"
                 inverse
                 hasMore={!!hasNextPage}
                 loader={<Loader testid="messages-loader_fetching" />}
@@ -51,3 +52,7 @@ export const Messages = memo<MessagesProps>(({ friendId }) => {
 });
 
 Messages.displayName = 'Messages';
+
+const getLastReadIndex = (messages: IChatMessage[]) => {
+    return messages.findIndex(({ status, is_received }) => status === 'READ' || is_received);
+};

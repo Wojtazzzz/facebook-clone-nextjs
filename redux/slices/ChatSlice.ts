@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { IChatFriend, IContact, IUser } from '@utils/types';
+import type { IChatFriend } from '@utils/types';
 
 type ChatState = {
-    friend: IFriend;
+    friend: IChatSliceFriend;
     error: IError;
 };
 
@@ -17,7 +17,7 @@ export const ChatSlice = createSlice({
     name: 'chat',
     initialState,
     reducers: {
-        openChat: (state, action: PayloadAction<IPayloadFriend>) => {
+        openChat: (state, action: PayloadAction<IChatFriend>) => {
             state.friend = action.payload;
             state.error = undefined;
         },
@@ -36,6 +36,5 @@ export const ChatSlice = createSlice({
 export const { openChat, closeChat, setChatError } = ChatSlice.actions;
 export default ChatSlice.reducer;
 
-type IPayloadFriend = IUser | IContact | IChatFriend;
-type IFriend = IPayloadFriend | undefined;
 type IError = string | undefined;
+type IChatSliceFriend = IChatFriend | undefined;

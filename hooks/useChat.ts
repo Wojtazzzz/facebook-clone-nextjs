@@ -3,6 +3,7 @@ import { closeChat, openChat, setChatError } from '@redux/slices/ChatSlice';
 import { axios } from '@libs/axios';
 import type { IChatFriend, IChatMessage, IPaginatedResponse } from '@utils/types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import type { UseMutationResult } from '@tanstack/react-query';
 import type { InfiniteData } from '@tanstack/react-query';
 import { v4 as uuid } from 'uuid';
 import { AxiosError, AxiosResponse } from 'axios';
@@ -13,17 +14,7 @@ export const useChat = () => {
     const queryClient = useQueryClient();
     const error = useAppSelector((store) => store.chat.error);
 
-    const mutation = useMutation<
-        AxiosResponse<any, any>,
-        AxiosError,
-        {
-            text: string;
-            receiver_id: number;
-        },
-        {
-            previousMessages: unknown;
-        }
-    >(mutationFn, {
+    const mutation: IMutation = useMutation(mutationFn, {
         onMutate: async ({ text }) => {
             if (!friend) return;
 
@@ -103,16 +94,27 @@ export const useChat = () => {
     };
 };
 
+type IMutation = UseMutationResult<
+    AxiosResponse<any, any>,
+    AxiosError<any, any>,
+    {
+        text: string;
+        receiver_id: number;
+    },
+    {
+        previousMessages: unknown;
+    }
+>;
 type IQueryData = InfiniteData<IPaginatedResponse<IChatMessage>>;
 
 const mutationFn = (data: { text: string; receiver_id: number }) => axios.post('/api/messages', data);
-const createMessage = (text: string) => {
-    const date = new Date();
-
+const createMessage = (text: string): IChatMessage => {
     return {
         id: uuid(),
         text,
-        isReceived: false,
+        is_received: false,
+        status: 'SENDING',
+        read_at: undefined,
         created_at: 'Just now',
     };
 };

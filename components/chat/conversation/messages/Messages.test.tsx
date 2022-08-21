@@ -8,6 +8,7 @@ import { screen } from '@testing-library/react';
 
 describe('Messages component', () => {
     const messages = ChatFirstPageJson.data;
+    const friend = JohnDoeJson;
 
     it('render loaders when initial loading messages', () => {
         mock({
@@ -15,7 +16,7 @@ describe('Messages component', () => {
             data: ChatFirstPageJson,
         });
 
-        renderWithDefaultData(<Messages friendId={JohnDoeJson.id} />);
+        renderWithDefaultData(<Messages friend={friend} />);
 
         const loaders = screen.getByTestId('messages-loader_loading');
         expect(loaders).toBeInTheDocument();
@@ -27,13 +28,13 @@ describe('Messages component', () => {
             data: ChatFirstPageJson,
         });
 
-        renderWithDefaultData(<Messages friendId={JohnDoeJson.id} />);
+        renderWithDefaultData(<Messages friend={friend} />);
 
         const firstMessage = await screen.findByText(messages[0].text);
         expect(firstMessage).toBeInTheDocument();
 
-        const tenthMessage = await screen.findByText(messages[14].text);
-        expect(tenthMessage).toBeInTheDocument();
+        const fourteenthMessage = await screen.findByText(messages[14].text);
+        expect(fourteenthMessage).toBeInTheDocument();
     });
 
     it('load empty list and show empty component', async () => {
@@ -42,7 +43,7 @@ describe('Messages component', () => {
             data: ChatEmptyPageJson,
         });
 
-        renderWithDefaultData(<Messages friendId={JohnDoeJson.id} />);
+        renderWithDefaultData(<Messages friend={friend} />);
 
         const emptyComponent = await screen.findByText('Say hello to your friend!');
         expect(emptyComponent).toBeInTheDocument();
@@ -54,7 +55,7 @@ describe('Messages component', () => {
             status: 500,
         });
 
-        renderWithDefaultData(<Messages friendId={JohnDoeJson.id} />);
+        renderWithDefaultData(<Messages friend={friend} />);
 
         const errorComponent = await screen.findByText('Something went wrong');
         expect(errorComponent).toBeInTheDocument();

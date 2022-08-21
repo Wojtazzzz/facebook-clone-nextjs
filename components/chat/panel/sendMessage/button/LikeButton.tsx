@@ -1,8 +1,10 @@
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { RoundedButton } from '@components/inc/RoundedButton';
+import { useChat } from '@hooks/useChat';
 
 export const LikeButton = () => {
-    const handleSendLike = () => alert('Maybe in the future...');
+    const { sendMessage } = useChat();
+    const handleSendLike = () => sendMessage('👍');
 
     return (
         <RoundedButton

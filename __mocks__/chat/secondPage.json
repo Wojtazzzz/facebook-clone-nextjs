@@ -1,97 +1,79 @@
 {
     "data": [
         {
-            "id": 45,
-            "text": "Maxime distinctio quod consequuntur iure nihil. Velit sunt rerum aut possimus fugit. Tempora nihil commodi perspiciatis aut aut accusantium.",
-            "isReceived": false,
-            "created_at": "August 3rd 2022, 8:35:31 pm"
+            "id": 24,
+            "text": "Et aut ut neque. Velit reprehenderit dolorem laborum blanditiis eveniet est. Autem facere suscipit exercitationem reiciendis vel. Laborum delectus et voluptatem nihil cupiditate expedita nemo.",
+            "is_received": false,
+            "status": "READ",
+            "read_at": "03:50",
+            "created_at": "03:50"
         },
         {
-            "id": 46,
-            "text": "Aspernatur non et nisi pariatur sed quia non. Dicta sequi laudantium occaecati est aut animi consequatur. Est in qui impedit sed sunt. Consectetur quisquam aut rerum animi.",
-            "isReceived": false,
-            "created_at": "August 3rd 2022, 8:35:31 pm"
+            "id": 9,
+            "text": "Vero possimus illo quia minima. Quo sapiente sunt aut quo neque dolores. Ut eveniet a eaque modi eveniet. Ab dicta quaerat corporis atque delectus.",
+            "is_received": false,
+            "status": "READ",
+            "read_at": "03:48",
+            "created_at": "03:48"
         },
         {
-            "id": 47,
-            "text": "Sit et sit ea itaque dolorem reprehenderit esse. Eveniet quas provident incidunt et aliquid nam. Autem nihil est quisquam quia.",
-            "isReceived": false,
-            "created_at": "August 3rd 2022, 8:35:31 pm"
+            "id": 10,
+            "text": "Provident velit provident vero quo sit. Eius sapiente aut ea commodi voluptatem commodi. Et excepturi aut reprehenderit aliquam facere iure non.",
+            "is_received": false,
+            "status": "READ",
+            "read_at": "03:48",
+            "created_at": "03:48"
         },
         {
-            "id": 25,
-            "text": "Consequatur sapiente porro qui fuga rerum. Iusto et optio ea consequuntur est aliquid. Ut nihil voluptates ut aut est iusto.",
-            "isReceived": false,
-            "created_at": "August 3rd 2022, 8:35:30 pm"
+            "id": 11,
+            "text": "Est aut quia ipsa explicabo. Temporibus vero rerum autem blanditiis veritatis. Voluptatem vel et adipisci eos.",
+            "is_received": false,
+            "status": "READ",
+            "read_at": "03:48",
+            "created_at": "03:48"
         },
         {
-            "id": 26,
-            "text": "Qui non molestiae et nulla. Ut repellat rerum aut sint impedit consequatur laboriosam dignissimos. Maiores ut eos qui.",
-            "isReceived": false,
-            "created_at": "August 3rd 2022, 8:35:30 pm"
-        },
-        {
-            "id": 27,
-            "text": "Vel temporibus quia magni et voluptatem. At voluptatum eum culpa sint rerum impedit cum. Sit vel rerum asperiores sed quae. Eum corrupti itaque sed.",
-            "isReceived": false,
-            "created_at": "August 3rd 2022, 8:35:30 pm"
-        },
-        {
-            "id": 28,
-            "text": "Reiciendis eveniet eum quaerat qui vel. Sed necessitatibus facere veritatis voluptas. Blanditiis omnis quis a laudantium blanditiis. Ullam amet consequatur ex.",
-            "isReceived": false,
-            "created_at": "August 3rd 2022, 8:35:30 pm"
-        },
-        {
-            "id": 29,
-            "text": "Reprehenderit consequuntur rerum praesentium qui suscipit accusamus necessitatibus. Unde molestias maiores ut quia voluptates laborum.",
-            "isReceived": false,
-            "created_at": "August 3rd 2022, 8:35:30 pm"
-        },
-        {
-            "id": 30,
-            "text": "Inventore veniam laborum nobis modi occaecati praesentium. Quos dolores et repellendus numquam eaque quisquam. Nisi corporis consequatur accusantium fugit. Voluptatem temporibus incidunt dolores.",
-            "isReceived": false,
-            "created_at": "August 3rd 2022, 8:35:30 pm"
-        },
-        {
-            "id": 31,
-            "text": "Libero vitae commodi aliquam et totam. Quo vel sint dolorum excepturi qui aut et. Suscipit sint tempore repudiandae tenetur debitis soluta. Et ea nostrum dolor id eligendi voluptatem.",
-            "isReceived": false,
-            "created_at": "August 3rd 2022, 8:35:30 pm"
-        },
-        {
-            "id": 32,
-            "text": "Provident aperiam occaecati facere nulla doloribus placeat. Excepturi libero nisi repellendus dicta ut architecto occaecati. Error aut earum in libero cumque assumenda atque accusantium.",
-            "isReceived": false,
-            "created_at": "August 3rd 2022, 8:35:30 pm"
+            "id": 12,
+            "text": "Omnis a ea in provident. Dolor minus nesciunt occaecati quaerat itaque. Quam id molestiae cumque ut sunt.",
+            "is_received": false,
+            "status": "READ",
+            "read_at": "03:48",
+            "created_at": "03:48"
         },
         {
             "id": 13,
-            "text": "Dicta a nisi cum. Labore molestias dolor recusandae culpa. Voluptas maiores et et ut qui sit. Aperiam eaque distinctio voluptatum est dolorem consectetur repudiandae.",
-            "isReceived": false,
-            "created_at": "August 3rd 2022, 8:35:29 pm"
+            "text": "Dolorem rem temporibus sint distinctio. Nemo omnis omnis qui voluptatem omnis. Veritatis illo tenetur molestiae illum sint velit enim.",
+            "is_received": false,
+            "status": "READ",
+            "read_at": "03:48",
+            "created_at": "03:48"
         },
         {
             "id": 14,
-            "text": "Perferendis architecto quia quo et. Ipsum ea aspernatur nihil placeat tempora omnis rerum quis. Quis qui rem qui iusto eum. Reprehenderit sed natus quia.",
-            "isReceived": false,
-            "created_at": "August 3rd 2022, 8:35:29 pm"
+            "text": "Nostrum temporibus accusantium totam necessitatibus. Aut non consequatur magni provident labore et molestiae. Voluptates distinctio sint nisi aut culpa.",
+            "is_received": false,
+            "status": "READ",
+            "read_at": "03:48",
+            "created_at": "03:48"
         },
         {
             "id": 15,
-            "text": "Dolores iure animi quia expedita. Nihil delectus culpa ullam reiciendis. Fuga quis velit cum quasi suscipit veniam omnis natus. Beatae unde quaerat quisquam incidunt.",
-            "isReceived": false,
-            "created_at": "August 3rd 2022, 8:35:29 pm"
+            "text": "Dolor est natus laborum dolore ex neque. Aut rerum consequuntur perferendis sunt omnis.",
+            "is_received": false,
+            "status": "READ",
+            "read_at": "03:48",
+            "created_at": "03:48"
         },
         {
             "id": 16,
-            "text": "Officiis impedit quo earum inventore. Aut repudiandae qui et animi ullam alias. Vitae dolorem molestiae et dolorem id esse. Nulla vel quas tenetur praesentium.",
-            "isReceived": false,
-            "created_at": "August 3rd 2022, 8:35:29 pm"
+            "text": "Nemo impedit nisi rerum at. Autem non magnam fuga doloribus cumque quisquam soluta. Adipisci qui molestiae quas voluptatem corrupti minima fugit consequuntur. Est sunt qui provident praesentium.",
+            "is_received": false,
+            "status": "READ",
+            "read_at": "03:48",
+            "created_at": "03:48"
         }
     ],
     "current_page": 2,
-    "next_page": 3,
+    "next_page": null,
     "prev_page": 1
 }
