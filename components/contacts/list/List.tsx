@@ -3,8 +3,7 @@ import { Loader } from '@components/contacts/list/Loader';
 import { Contact } from '@components/contacts/list/Contact';
 import { ApiError } from '@components/inc/ApiError';
 import { EmptyList } from '@components/inc/EmptyList';
-
-import { Fragment, memo } from 'react';
+import { memo } from 'react';
 import { useInfiniteData } from '@hooks/useInfiniteData';
 import type { IContact } from '@utils/types';
 
@@ -18,13 +17,7 @@ export const List = memo(() => {
     if (!data || isError) return <ApiError size="lg" styles="h-full" />;
     if (isEmpty) return <EmptyList title="No contacts, add some friends!" />;
 
-    const ContactsComponents = data.pages.map((page) => (
-        <Fragment key={page.current_page}>
-            {page.data.map((contact) => (
-                <Contact key={contact.id} {...contact} />
-            ))}
-        </Fragment>
-    ));
+    const ContactsComponents = data.map((contact) => <Contact key={contact.id} {...contact} />);
 
     return (
         <div

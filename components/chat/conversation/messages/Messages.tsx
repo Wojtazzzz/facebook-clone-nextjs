@@ -23,10 +23,9 @@ export const Messages = memo<MessagesProps>(({ friend }) => {
     if (!data || isError) return <ApiError />;
     if (isEmpty) return <EmptyChat />;
 
-    const flatData = data.pages.flatMap((page) => page.data);
-    const lastReadIndex = getLastReadIndex(flatData);
+    const lastReadIndex = getLastReadIndex(data);
 
-    const MessagesComponents = flatData.map((message, i) => (
+    const MessagesComponents = data.map((message, i) => (
         <Message senderAvatar={friend.profile_image} isLastRead={i === lastReadIndex} key={message.id} {...message} />
     ));
 

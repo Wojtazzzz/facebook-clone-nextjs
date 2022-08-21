@@ -1,4 +1,4 @@
-import { Fragment, memo } from 'react';
+import { memo } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Loader } from '@components/pages/posts/list/Loader';
 import { ApiError } from '@components/inc/ApiError';
@@ -17,13 +17,7 @@ export const List = memo(() => {
     if (!data || isError) return <ApiError size="xl" styles="mt-8" />;
     if (isEmpty) return <EmptyList title="No posts, add some friends!" />;
 
-    const PostsComponents = data.pages.map((page) => (
-        <Fragment key={page.current_page}>
-            {page.data.map((post) => (
-                <Post key={post.id} {...post} />
-            ))}
-        </Fragment>
-    ));
+    const PostsComponents = data.map((post) => <Post key={post.id} {...post} />);
 
     return (
         <InfiniteScroll

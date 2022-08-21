@@ -25,9 +25,10 @@ export const useInfiniteData = <T>(queryKey: string[], endpoint: string) => {
     );
 
     const isEmpty = (data?.pages[0].data.length ?? 0) <= 0;
+    const flatData = data?.pages.flatMap((page) => page.data);
 
     return {
-        data,
+        data: flatData,
         isLoading,
         isError,
         error,

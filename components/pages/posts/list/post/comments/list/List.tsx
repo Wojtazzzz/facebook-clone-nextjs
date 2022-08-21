@@ -1,12 +1,10 @@
 import { ApiError } from '@components/inc/ApiError';
-import { Fragment } from 'react';
-import type { IComment, IPaginatedResponse } from '@utils/types';
-import type { InfiniteData } from '@tanstack/react-query';
+import type { IComment } from '@utils/types';
 import { Loader } from './Loader';
 import { Comment } from './comment/Comment';
 
 interface ListProps {
-    data: InfiniteData<IPaginatedResponse<IComment>> | undefined;
+    data: IComment[] | undefined;
     isLoading: boolean;
     isEmpty: boolean;
     isError: boolean;
@@ -17,13 +15,7 @@ export const List = ({ data, isLoading, isEmpty, isError }: ListProps) => {
     if (!data || isError) return <ApiError styles="my-1" />;
     if (isEmpty) return null;
 
-    const CommentsComponents = data.pages.map((page) => (
-        <Fragment key={page.current_page}>
-            {page.data.map((comment) => (
-                <Comment key={comment.id} {...comment} />
-            ))}
-        </Fragment>
-    ));
+    const CommentsComponents = data.map((comment) => <Comment key={comment.id} {...comment} />);
 
     return (
         <div data-testid="post-comments_list" className="flex flex-col items-start gap-1">

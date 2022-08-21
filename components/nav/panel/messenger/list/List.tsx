@@ -1,4 +1,4 @@
-import { Fragment, memo } from 'react';
+import { memo } from 'react';
 import { useInfiniteData } from '@hooks/useInfiniteData';
 
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -19,13 +19,7 @@ export const List = memo(() => {
     if (!data || isError) return <ApiError />;
     if (isEmpty) return <EmptyList title="Your Messenger is empty" />;
 
-    const ConversationsComponents = data.pages.map((page) => (
-        <Fragment key={page.current_page}>
-            {page.data.map((friend) => (
-                <Conversation key={friend.id} friend={friend} />
-            ))}
-        </Fragment>
-    ));
+    const ConversationsComponents = data.map((friend) => <Conversation key={friend.id} friend={friend} />);
 
     return (
         <div

@@ -1,5 +1,4 @@
-import React, { memo } from 'react';
-
+import { memo } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Notification } from '@components/nav/panel/notifications/list/Notification';
 import { Loader } from '@components/nav/panel/inc/Loader';
@@ -18,12 +17,8 @@ export const List = memo(() => {
     if (!data || isError) return <ApiError />;
     if (isEmpty) return <EmptyList title="Your Notifications list is empty" />;
 
-    const NotificationsComponents = data.pages.map((page) => (
-        <React.Fragment key={page.current_page}>
-            {page.data.map((notification) => (
-                <Notification key={notification.id} {...notification} />
-            ))}
-        </React.Fragment>
+    const NotificationsComponents = data.map((notification) => (
+        <Notification key={notification.id} {...notification} />
     ));
 
     return (
