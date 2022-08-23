@@ -72,6 +72,8 @@ export const useChat = () => {
 
     const handleSendMessage = (text: string) => {
         if (!friend) return;
+
+        // @todo remove it, setup backend throttling
         if (mutation.isLoading) return;
 
         mutation.mutate({

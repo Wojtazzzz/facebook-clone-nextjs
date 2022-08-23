@@ -1,6 +1,6 @@
 import { useChat } from '@hooks/useChat';
 import { Form, Formik } from 'formik';
-import { Input } from '@components/chat/panel/sendMessage/Input';
+import { Input } from '@components/chat/panel/sendMessage/input/Input';
 import { Button } from '@components/chat/panel/sendMessage/button/Button';
 import { SendMessageSchema } from '@validation/SendMessageSchema';
 import type { FormikHelpers } from 'formik';

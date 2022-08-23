@@ -154,6 +154,170 @@ describe('Chat tests', () => {
         cy.get('[data-testid="chat"]').should('not.contain.text', 'Internal Server Error');
     });
 
+    it('create and send message with emoji', () => {
+        cy.intercept('/api/messages/2?page=1').as('messages_page_1');
+
+        cy.visit('/');
+
+        cy.wait('@user');
+        cy.wait('@contacts_page_1');
+
+        cy.get('[data-testid="contacts-list"]').within(() => {
+            cy.contains(`${friend.first_name} ${friend.last_name}`).click();
+        });
+
+        cy.wait('@messages_page_1');
+
+        cy.get('[data-testid="chat"]').should('be.visible');
+
+        cy.intercept('/api/messages').as('messages');
+        cy.intercept('/api/messages/2?page=1').as('messages_page_1');
+
+        cy.get('input[aria-label="Message input"]').type('Hello ');
+
+        cy.get('[aria-label="Choose an emoji"]').click();
+
+        cy.get('[aria-label="Emojis list"]').within(() => {
+            cy.get('button').contains('👋').click();
+        });
+
+        cy.get('input[aria-label="Message input"]').should('have.value', 'Hello 👋');
+
+        cy.get('[aria-label="Send message"]').click();
+
+        cy.wait('@messages');
+        cy.wait('@messages_page_1');
+
+        cy.get('[data-testid="chat"]').within(() => {
+            cy.contains('Hello 👋');
+        });
+    });
+
+    it('emojis list can be closed by pressing esc', () => {
+        cy.intercept('/api/messages/2?page=1').as('messages_page_1');
+
+        cy.visit('/');
+
+        cy.wait('@user');
+        cy.wait('@contacts_page_1');
+
+        cy.get('[data-testid="contacts-list"]').within(() => {
+            cy.contains(`${friend.first_name} ${friend.last_name}`).click();
+        });
+
+        cy.wait('@messages_page_1');
+
+        cy.get('[data-testid="chat"]').should('be.visible');
+
+        cy.intercept('/api/messages').as('messages');
+        cy.intercept('/api/messages/2?page=1').as('messages_page_1');
+
+        cy.get('[aria-label="Choose an emoji"]').click();
+
+        cy.get('[aria-label="Emojis list"]').should('be.visible');
+
+        cy.get('body').type('{esc}');
+
+        cy.get('[aria-label="Emojis list"]').should('not.exist');
+    });
+
+    it('emojis list can be closed by click on outside element', () => {
+        cy.intercept('/api/messages/2?page=1').as('messages_page_1');
+
+        cy.visit('/');
+
+        cy.wait('@user');
+        cy.wait('@contacts_page_1');
+
+        cy.get('[data-testid="contacts-list"]').within(() => {
+            cy.contains(`${friend.first_name} ${friend.last_name}`).click();
+        });
+
+        cy.wait('@messages_page_1');
+
+        cy.get('[data-testid="chat"]').should('be.visible');
+
+        cy.intercept('/api/messages').as('messages');
+        cy.intercept('/api/messages/2?page=1').as('messages_page_1');
+
+        cy.get('[aria-label="Choose an emoji"]').click();
+
+        cy.get('[aria-label="Emojis list"]').should('be.visible');
+
+        cy.get('[data-testid="nav"]').click();
+
+        cy.get('[aria-label="Emojis list"]').should('not.exist');
+    });
+
+    it('send like by click on like button', () => {
+        cy.intercept('/api/messages/2?page=1').as('messages_page_1');
+
+        cy.visit('/');
+
+        cy.wait('@user');
+        cy.wait('@contacts_page_1');
+
+        cy.get('[data-testid="contacts-list"]').within(() => {
+            cy.contains(`${friend.first_name} ${friend.last_name}`).click();
+        });
+
+        cy.wait('@messages_page_1');
+
+        cy.get('[data-testid="chat"]').should('be.visible');
+
+        cy.intercept('/api/messages').as('messages');
+        cy.intercept('/api/messages/2?page=1').as('messages_page_1');
+
+        cy.get('[aria-label="Send like"]').click();
+
+        cy.get('[data-testid="chat"]').within(() => {
+            cy.contains('👍');
+        });
+    });
+
+    it('send message which contain only emojis', () => {
+        cy.intercept('/api/messages/2?page=1').as('messages_page_1');
+
+        cy.visit('/');
+
+        cy.wait('@user');
+        cy.wait('@contacts_page_1');
+
+        cy.get('[data-testid="contacts-list"]').within(() => {
+            cy.contains(`${friend.first_name} ${friend.last_name}`).click();
+        });
+
+        cy.wait('@messages_page_1');
+
+        cy.get('[data-testid="chat"]').should('be.visible');
+
+        cy.intercept('/api/messages').as('messages');
+        cy.intercept('/api/messages/2?page=1').as('messages_page_1');
+
+        cy.get('[aria-label="Choose an emoji"]').click();
+
+        cy.get('[aria-label="Emojis list"]').within(() => {
+            cy.get('button').contains('😃').click();
+            cy.get('button').contains('😅').click();
+            cy.get('button').contains('🤣').click();
+            cy.get('button').contains('🙂').click();
+            cy.get('button').contains('🥰').click();
+            cy.get('button').contains('😝').click();
+            cy.get('button').contains('😏').click();
+            cy.get('button').contains('😭').click();
+            cy.get('button').contains('👍').click();
+            cy.get('button').contains('❤️').click();
+        });
+
+        cy.get('input[aria-label="Message input"]').should('have.value', '😃😅🤣🙂🥰😝😏😭👍❤️');
+
+        cy.get('[aria-label="Send message"]').click();
+
+        cy.get('[data-testid="chat"]').within(() => {
+            cy.contains('😃😅🤣🙂🥰😝😏😭👍❤️');
+        });
+    });
+
     // it('open chat, conversation should has 15 messages, WIP', () => {
     //     cy.create('Message', 22, {
     //         sender_id: 1,

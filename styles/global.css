@@ -1,11 +1,14 @@
 aside::-webkit-scrollbar,
 main::-webkit-scrollbar {
-	display: none;
+    display: none;
 }
 
 aside,
 main {
-	-ms-overflow-style: none;
-	scrollbar-width: none;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
+* {
+    font-family: 'Segoe UI Historic', 'Segoe UI', 'Helvetica', 'Arial', sans-serif;
+}
