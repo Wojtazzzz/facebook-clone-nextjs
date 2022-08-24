@@ -1,4 +1,4 @@
-import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { Panel } from '@components/nav/panel/Panel';
 import { mock } from '@libs/nock';
 import RootUserJson from '@mocks/user/root.json';

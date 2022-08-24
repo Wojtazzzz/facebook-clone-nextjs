@@ -1,6 +1,7 @@
 import { mock } from '@libs/nock';
 import RootUserJson from '@mocks/user/root.json';
-import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+
+import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { Navbar } from '@components/nav/navbar/Navbar';
 import { screen, waitFor } from '@testing-library/react';
 

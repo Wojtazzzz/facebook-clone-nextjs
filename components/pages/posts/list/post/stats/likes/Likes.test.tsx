@@ -1,8 +1,8 @@
 import { screen } from '@testing-library/react';
-import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import userEvent from '@testing-library/user-event';
 import { mock } from '@libs/nock';
-import { mockResizeObserver } from '@utils/mockResizeObserver';
+import { mockResizeObserver } from '@utils/tests/mockResizeObserver';
 import { Likes } from './Likes';
 
 describe('Likes component', () => {

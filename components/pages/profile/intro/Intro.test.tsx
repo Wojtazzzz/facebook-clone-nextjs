@@ -1,4 +1,4 @@
-import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { Intro } from '@components/pages/profile/intro/Intro';
 import { screen } from '@testing-library/react';
 

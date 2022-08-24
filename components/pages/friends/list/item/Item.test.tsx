@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
 import nock from 'nock';
 import { Item } from '@components/pages/friends/list/item/Item';
-import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { mock } from '@libs/nock';
 import SuggestsFirstPageJson from '@mocks/friendsList/suggests/firstPage.json';
 import PokesFirstPageJson from '@mocks/friendsList/pokes/firstPage.json';

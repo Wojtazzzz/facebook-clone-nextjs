@@ -1,4 +1,4 @@
-import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { screen } from '@testing-library/react';
 import CommentsFirstPageJson from '@mocks/posts/firstPage.json';
 import userEvent from '@testing-library/user-event';

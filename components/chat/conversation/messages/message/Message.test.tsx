@@ -1,4 +1,4 @@
-import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { Message } from '@components/chat/conversation/messages/message/Message';
 import { screen } from '@testing-library/react';
 import MessagesFirstPageJson from '@mocks/chat/firstPage.json';

@@ -3,7 +3,7 @@ import RootUserJson from '@mocks/user/root.json';
 import NotificationsFirstPageJson from '@mocks/notifications/firstPage.json';
 import NotificationsEmptyPageJson from '@mocks/notifications/empty.json';
 import { List } from '@components/nav/panel/notifications/list/List';
-import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { mock } from '@libs/nock';
 
 describe('List component', () => {

@@ -1,4 +1,4 @@
-import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { CommentButton } from './CommentButton';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';

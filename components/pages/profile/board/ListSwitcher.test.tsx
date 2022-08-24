@@ -1,4 +1,4 @@
-import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { ListSwitcher } from '@components/pages/profile/board/ListSwitcher';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';

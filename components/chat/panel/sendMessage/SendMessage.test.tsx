@@ -1,10 +1,10 @@
-import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { SendMessage } from '@components/chat/panel/sendMessage/SendMessage';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { mock } from '@libs/nock';
 import CreatePostSuccessResponseJson from '@mocks/posts/actions/createPostSuccess.json';
-import { mockResizeObserver } from '@utils/mockResizeObserver';
+import { mockResizeObserver } from '@utils/tests/mockResizeObserver';
 
 describe('SendMessage component', () => {
     const user = userEvent.setup();

@@ -1,7 +1,6 @@
 import { screen } from '@testing-library/react';
 import { Header } from '@components/contacts/header/Header';
-import { renderWithDefaultData } from '@utils/renderWithDefaultData';
-
+import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 describe('Header component', () => {
     it('render title', () => {
         renderWithDefaultData(<Header />);

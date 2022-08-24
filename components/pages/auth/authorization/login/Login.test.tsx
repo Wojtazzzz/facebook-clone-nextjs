@@ -2,7 +2,7 @@ import { Login } from '@components/pages/auth/authorization/login/Login';
 import CannotLoginResponse from '@mocks/user/cannotLogin.json';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { mock } from '@libs/nock';
 
 describe('Login component', () => {

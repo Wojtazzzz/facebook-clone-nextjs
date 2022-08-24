@@ -1,7 +1,7 @@
 import { Register } from '@components/pages/auth/authorization/register/Register';
 import { mock } from '@libs/nock';
 import { screen } from '@testing-library/react';
-import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import nock from 'nock';
 
 describe('Register component', () => {

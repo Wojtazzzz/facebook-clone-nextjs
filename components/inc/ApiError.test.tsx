@@ -1,4 +1,4 @@
-import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { ApiError } from '@components/inc/ApiError';
 import { screen } from '@testing-library/react';
 

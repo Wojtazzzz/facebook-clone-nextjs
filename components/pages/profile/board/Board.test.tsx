@@ -1,4 +1,4 @@
-import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import RootUserJson from '@mocks/user/root.json';
 import SelfPostsFirstPageJson from '@mocks/posts/selfProfileFirstPage.json';
 import FriendPostsFirstPageJson from '@mocks/posts/friendProfileFirstPage.json';

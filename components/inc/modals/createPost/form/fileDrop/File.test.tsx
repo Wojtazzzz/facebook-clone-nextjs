@@ -1,20 +1,12 @@
 import { screen } from '@testing-library/react';
-import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { File as FileComponent } from '@components/inc/modals/createPost/form/fileDrop/File';
-import * as Formik from 'formik';
-import { generateFile } from '@utils/generateFile';
+import { generateFile } from '@utils/tests/generateFile';
+import { mockFormikContext } from '@utils/tests/mockFormikContext';
 
 describe('File component', () => {
-    const useFormikContextMock = jest.spyOn(Formik, 'useFormikContext');
-
     beforeEach(() => {
-        useFormikContextMock.mockReturnValue({
-            getFieldMeta: {
-                value: 'testValue',
-                initialTouched: true,
-                touched: false,
-            },
-        } as any);
+        mockFormikContext();
     });
 
     it('display file name', () => {

@@ -1,11 +1,11 @@
 import { mock } from '@libs/nock';
 import RootUserJson from '@mocks/user/root.json';
 import PostsFirstPageJson from '@mocks/posts/firstPage.json';
-import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { Form } from '@components/inc/modals/createPost/form/Form';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { generateFile } from '@utils/generateFile';
+import { generateFile } from '@utils/tests/generateFile';
 
 describe('Form component', () => {
     jest.setTimeout(30000);

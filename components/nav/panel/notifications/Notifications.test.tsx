@@ -1,7 +1,7 @@
 import { mock } from '@libs/nock';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { Notifications } from './Notifications';
 import NotificationsFirstPageJson from '@mocks/notifications/firstPage.json';
 

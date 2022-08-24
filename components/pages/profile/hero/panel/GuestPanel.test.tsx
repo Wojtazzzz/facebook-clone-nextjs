@@ -1,4 +1,4 @@
-import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import RootUserJson from '@mocks/user/root.json';
 import PokesFirstPageJson from '@mocks/friendsList/pokes/firstPage.json';
 import { mock } from '@libs/nock';

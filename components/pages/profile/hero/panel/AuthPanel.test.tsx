@@ -1,4 +1,4 @@
-import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { Panel } from '@components/pages/profile/hero/panel/Panel';
 import RootUserJson from '@mocks/user/root.json';
 import { mock } from '@libs/nock';

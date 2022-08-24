@@ -2,7 +2,7 @@ import { mock } from '@libs/nock';
 import { screen } from '@testing-library/react';
 import MessengerFirstPageJson from '@mocks/messenger/firstPage.json';
 import NotificationsFirstPageJson from '@mocks/notifications/firstPage.json';
-import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { Dropdown } from './Dropdown';
 
 describe('Dropdown component', () => {

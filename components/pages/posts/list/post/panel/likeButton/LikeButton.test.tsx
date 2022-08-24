@@ -1,4 +1,4 @@
-import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import PostsFirstPageJson from '@mocks/posts/firstPage.json';
 import { screen } from '@testing-library/react';
 import { mock } from '@libs/nock';

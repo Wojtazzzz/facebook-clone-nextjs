@@ -1,4 +1,4 @@
-import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { Button } from '@components/inc/Button';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';

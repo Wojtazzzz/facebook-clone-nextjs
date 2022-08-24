@@ -1,6 +1,6 @@
 import { Informations } from '@components/pages/auth/informations/Informations';
 import { screen } from '@testing-library/react';
-import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 
 describe('Informations component', () => {
     it('render header info', () => {

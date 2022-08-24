@@ -2,7 +2,7 @@ import { Authorization } from '@components/pages/auth/authorization/Authorizatio
 import { mock } from '@libs/nock';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 
 describe('Authorization component', () => {
     const user = userEvent.setup();

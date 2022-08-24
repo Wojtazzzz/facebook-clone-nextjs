@@ -1,5 +1,5 @@
 import { mock } from '@libs/nock';
-import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { NotLoaded } from '@components/pages/profile/NotLoaded';
 import RootUserJson from '@mocks/user/root.json';
 import { screen } from '@testing-library/react';

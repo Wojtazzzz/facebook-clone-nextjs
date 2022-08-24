@@ -3,7 +3,7 @@ import RootUserJson from '@mocks/user/root.json';
 import MessengerFirstPageJson from '@mocks/messenger/firstPage.json';
 import MessengerEmptyPageJson from '@mocks/messenger/empty.json';
 import { List } from '@components/nav/panel/messenger/list/List';
-import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { mock } from '@libs/nock';
 
 describe('List component', () => {

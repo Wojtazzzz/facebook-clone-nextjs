@@ -1,4 +1,4 @@
-import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { PanelButton } from '@components/pages/posts/list/post/panel/inc/PanelButton';
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { screen } from '@testing-library/react';

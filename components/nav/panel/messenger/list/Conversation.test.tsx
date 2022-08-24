@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
 import MessengerFirstPageJson from '@mocks/messenger/firstPage.json';
 import { Conversation } from '@components/nav/panel/messenger/list/Conversation';
-import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 
 describe('Conversation component', () => {
     it('render user avatar, name, label', () => {

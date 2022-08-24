@@ -1,4 +1,4 @@
-import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import PostsFirstPageJson from '@mocks/posts/firstPage.json';
 import CommentSuccessResponseJson from '@mocks/posts/comments/actions/createCommentSuccess.json';
 import { screen, waitFor } from '@testing-library/react';

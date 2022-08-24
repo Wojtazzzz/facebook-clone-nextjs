@@ -1,25 +1,16 @@
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { ChooseEmoji } from './ChooseEmoji';
-import * as Formik from 'formik';
-import { mockResizeObserver } from '@utils/mockResizeObserver';
+import { mockResizeObserver } from '@utils/tests/mockResizeObserver';
+import { mockFormikContext } from '@utils/tests/mockFormikContext';
 
 describe('ChooseEmoji component', () => {
     const user = userEvent.setup();
 
-    const useFormikContextMock = jest.spyOn(Formik, 'useFormikContext');
-
     beforeEach(() => {
         mockResizeObserver();
-
-        useFormikContextMock.mockReturnValue({
-            getFieldMeta: {
-                value: 'testValue',
-                initialTouched: true,
-                touched: false,
-            },
-        } as any);
+        mockFormikContext();
     });
 
     it('open tooltip when click on trigger button', async () => {

@@ -1,4 +1,4 @@
-import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { Author } from '@components/pages/posts/list/post/header/Author';
 import PostsFirstPageJson from '@mocks/posts/firstPage.json';
 import PostEditedJson from '@mocks/posts/editedPost.json';

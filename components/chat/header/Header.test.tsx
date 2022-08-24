@@ -1,4 +1,4 @@
-import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { Header } from '@components/chat/header/Header';
 import JohnDoeJson from '@mocks/user/johnDoe.json';
 import { screen } from '@testing-library/react';

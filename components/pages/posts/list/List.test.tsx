@@ -1,4 +1,4 @@
-import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { List } from '@components/pages/posts/list/List';
 import PostsFirstPageJson from '@mocks/posts/firstPage.json';
 import PostsEmptyPageJson from '@mocks/posts/empty.json';

@@ -1,4 +1,4 @@
-import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { Contact } from '@components/contacts/list/Contact';
 import ContactsFirstPageJson from '@mocks/contacts/firstPage.json';
 import { screen } from '@testing-library/react';

@@ -1,4 +1,4 @@
-import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { CreatePostModal } from '@components/pages/posts/createPostModal/CreatePostModal';
 import { mock } from '@libs/nock';
 import RootUserJson from '@mocks/user/root.json';

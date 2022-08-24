@@ -1,5 +1,5 @@
 import { screen } from '@testing-library/react';
-import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import userEvent from '@testing-library/user-event';
 import { Stats } from './Stats';
 

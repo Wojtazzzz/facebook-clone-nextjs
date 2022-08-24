@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 import { Header } from '@components/pages/friends/header/Header';
-import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 
 describe('Friends Header component', () => {
     it('renders properly Friends title', () => {

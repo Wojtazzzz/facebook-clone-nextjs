@@ -1,4 +1,4 @@
-import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { Info } from '@components/pages/profile/intro/Info';
 import { screen } from '@testing-library/react';
 import { faHome } from '@fortawesome/free-solid-svg-icons';

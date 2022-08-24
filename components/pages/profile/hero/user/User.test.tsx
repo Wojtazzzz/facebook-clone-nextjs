@@ -1,4 +1,4 @@
-import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import RootUserJson from '@mocks/user/root.json';
 import ProfileFriendsJson from '@mocks/ssg/profileFriends.json';
 import { screen, within } from '@testing-library/react';

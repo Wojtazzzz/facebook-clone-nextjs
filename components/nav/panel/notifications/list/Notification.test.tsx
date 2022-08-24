@@ -4,7 +4,7 @@ import PokeNotificationJson from '@mocks/notifications/poke.json';
 import FriendshipRequestAcceptedNotificationJson from '@mocks/notifications/requestAccepted.json';
 import FriendshipRequestSentNotificationJson from '@mocks/notifications/requestSent.json';
 import { Notification } from '@components/nav/panel/notifications/list/Notification';
-import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 
 describe('Notification component', () => {
     it('render user avatar, name and message', () => {

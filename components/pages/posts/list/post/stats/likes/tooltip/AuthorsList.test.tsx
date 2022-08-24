@@ -1,10 +1,10 @@
 import { screen } from '@testing-library/react';
-import { renderWithDefaultData } from '@utils/renderWithDefaultData';
+import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import MoreLikesJson from '@mocks/posts/likes/moreLikes.json';
 import LessLikesJson from '@mocks/posts/likes/lessLikes.json';
 import { mock } from '@libs/nock';
 import { AuthorsList } from './AuthorsList';
-import { mockResizeObserver } from '@utils/mockResizeObserver';
+import { mockResizeObserver } from '@utils/tests/mockResizeObserver';
 
 describe('AuthorsList component', () => {
     mockResizeObserver();
