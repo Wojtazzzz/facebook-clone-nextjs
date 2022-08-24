@@ -138,4 +138,84 @@ describe('Post tests', () => {
                 cy.url().should('contain', '/profile/1');
             });
     });
+
+    it("like friend's post, dislike, like again, relogin to friend account, see only one like notification, notification redirect to user profile", () => {
+        cy.create('Friendship', {
+            user_id: 1,
+            status: 'CONFIRMED',
+        });
+
+        cy.create('Post', {
+            author_id: 2,
+        });
+
+        cy.intercept('/api/user').as('user');
+        cy.intercept('/api/posts?page=1').as('posts_page_1');
+
+        cy.visit('/');
+        cy.wait('@user');
+        cy.wait('@posts_page_1');
+
+        cy.get('[id="posts-list"] article[aria-label="Post"]')
+            .should('have.length', 1)
+            .within(() => {
+                cy.intercept('/api/posts/1/likes').as('like');
+
+                cy.get('button[aria-label="Like"]').click();
+                cy.wait('@like');
+
+                cy.intercept('/api/posts/1/likes').as('dislike');
+
+                cy.get('button[aria-label="Like"]').click();
+                cy.wait('@dislike');
+            });
+
+        cy.intercept('/api/notifications?page=1').as('notifications_page_1');
+
+        cy.get('[data-testid="nav"]').within(() => {
+            cy.get('[aria-label="Notifications"]').click();
+        });
+
+        cy.wait('@notifications_page_1');
+
+        cy.get('[id="list-of-notifications"] button').should('not.exist');
+
+        cy.relogin(2);
+
+        cy.checkNotification(`${USER_FIRST_NAME} ${USER_LAST_NAME}`, 'Liked your post', true);
+
+        cy.url().should('contain', '/profile/1');
+    });
+
+    it('like own post, notification list is empty', () => {
+        cy.create('Post', {
+            author_id: 1,
+        });
+
+        cy.intercept('/api/user').as('user');
+        cy.intercept('/api/posts?page=1').as('posts_page_1');
+
+        cy.visit('/');
+        cy.wait('@user');
+        cy.wait('@posts_page_1');
+
+        cy.get('[id="posts-list"] article[aria-label="Post"]')
+            .should('have.length', 1)
+            .within(() => {
+                cy.intercept('/api/posts/1/likes').as('like');
+
+                cy.get('button[aria-label="Like"]').click();
+                cy.wait('@like');
+            });
+
+        cy.intercept('/api/notifications?page=1').as('notifications_page_1');
+
+        cy.get('[data-testid="nav"]').within(() => {
+            cy.get('[aria-label="Notifications"]').click();
+        });
+
+        cy.wait('@notifications_page_1');
+
+        cy.get('[id="list-of-notifications"] button').should('not.exist');
+    });
 });
