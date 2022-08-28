@@ -29,6 +29,11 @@ describe('Dropdown component', () => {
             data: NotificationsFirstPageJson,
         });
 
+        mock({
+            path: '/api/notifications',
+            method: 'put',
+        });
+
         renderWithDefaultData(<Dropdown type="Notifications" close={mockClose} />);
 
         const header = screen.getByText('Notifications');
@@ -57,6 +62,11 @@ describe('Dropdown component', () => {
         mock({
             path: '/api/notifications?page=1',
             data: NotificationsFirstPageJson,
+        });
+
+        mock({
+            path: '/api/notifications',
+            method: 'put',
         });
 
         renderWithDefaultData(<Dropdown type="Notifications" close={mockClose} />);

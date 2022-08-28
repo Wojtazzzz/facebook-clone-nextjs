@@ -13,6 +13,11 @@ describe('Notifications component', () => {
             path: '/api/notifications?page=1',
             data: NotificationsFirstPageJson,
         });
+
+        mock({
+            path: '/api/notifications',
+            method: 'put',
+        });
     });
 
     it('not render dropdown by default', () => {

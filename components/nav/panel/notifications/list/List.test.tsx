@@ -15,6 +15,11 @@ describe('List component', () => {
             data: NotificationsFirstPageJson,
         });
 
+        mock({
+            path: '/api/notifications',
+            method: 'put',
+        });
+
         renderWithDefaultData(<List />);
 
         const loader = screen.getByTestId('notifications-fetching_loader');
@@ -26,6 +31,11 @@ describe('List component', () => {
         mock({
             path: '/api/notifications?page=1',
             data: NotificationsFirstPageJson,
+        });
+
+        mock({
+            path: '/api/notifications',
+            method: 'put',
         });
 
         renderWithDefaultData(<List />);
@@ -65,6 +75,11 @@ describe('List component', () => {
         mock({
             path: '/api/notifications?page=1',
             data: NotificationsFirstPageJson,
+        });
+
+        mock({
+            path: '/api/notifications',
+            method: 'put',
         });
 
         renderWithDefaultData(<List />);
