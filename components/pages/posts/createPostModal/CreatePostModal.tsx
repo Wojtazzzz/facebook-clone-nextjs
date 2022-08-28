@@ -10,7 +10,7 @@ export const CreatePostModal = () => {
 
     const handleOpenModal = () => dispatch(openModal());
 
-    if (!user) return <Loader testid="createPostModal-loaders" />;
+    if (!user) return <Loader testId="createPostModal-loaders" />;
 
     const { name, first_name, profile_image } = user;
 

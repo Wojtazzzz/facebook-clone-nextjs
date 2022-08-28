@@ -30,7 +30,7 @@ export const Form = () => {
         create(values, handleCloseModal);
     };
 
-    if (isLoading) return <SpinnerLoader testid="createPost-loader" containerStyles="w-[100px] my-10 mx-auto" />;
+    if (isLoading) return <SpinnerLoader testId="createPost-loader" containerStyles="w-[100px] my-10 mx-auto" />;
 
     return (
         <Formik

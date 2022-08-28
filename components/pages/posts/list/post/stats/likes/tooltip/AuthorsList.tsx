@@ -17,7 +17,7 @@ export const AuthorsList = ({ postId }: AuthorsListProps) => {
         axios.get(`/api/posts/${postId}/likes`).then((response) => response.data)
     );
 
-    if (isLoading) return <SpinnerLoader testid="likes-spinner" spinnerStyles="w-4 mx-auto" />;
+    if (isLoading) return <SpinnerLoader testId="likes-spinner" spinnerStyles="w-4 mx-auto" />;
     if (isError) return <ApiError />;
     if (!data) return <EmptyList />;
 

@@ -8,7 +8,7 @@ interface SubmitButtonProps {
 
 export const SubmitButton = ({ isLoading }: SubmitButtonProps) => {
     if (isLoading) {
-        return <SpinnerLoader testid="commentSubmitButton-loader" containerStyles="w-[25px] h-[25px]" />;
+        return <SpinnerLoader testId="commentSubmitButton-loader" containerStyles="w-[25px] h-[25px]" />;
     }
 
     return (

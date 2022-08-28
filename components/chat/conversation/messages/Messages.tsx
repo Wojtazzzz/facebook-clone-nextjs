@@ -19,7 +19,7 @@ export const Messages = memo<MessagesProps>(({ friend }) => {
         endpoint: `/api/messages/${friendId}`,
     });
 
-    if (isLoading) return <Loader testid="messages-loader_loading" />;
+    if (isLoading) return <Loader testId="messages-loader_loading" />;
     if (!data || isError) return <ApiError />;
     if (isEmpty) return <EmptyChat />;
 
@@ -41,7 +41,7 @@ export const Messages = memo<MessagesProps>(({ friend }) => {
                 className="w-full flex flex-col-reverse justify-end gap-1 pr-2"
                 inverse
                 hasMore={!!hasNextPage}
-                loader={<Loader testid="messages-loader_fetching" />}
+                loader={<Loader testId="messages-loader_fetching" />}
                 scrollableTarget="list-of-messages"
             >
                 {MessagesComponents}

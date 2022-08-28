@@ -25,7 +25,7 @@ export const Hits = ({ data, hasNextPage, fetchNextPage }: HitsProps) => {
                 <InfiniteScroll
                     dataLength={HitsComponents.length}
                     hasMore={!!hasNextPage}
-                    loader={<SpinnerLoader testid="hits-fetching_loader" spinnerStyles="w-5" />}
+                    loader={<SpinnerLoader testId="hits-fetching_loader" spinnerStyles="w-5" />}
                     className="w-full flex flex-col gap-2"
                     next={fetchNextPage}
                     scrollableTarget="hits-list"
