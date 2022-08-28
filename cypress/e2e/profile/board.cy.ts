@@ -339,4 +339,85 @@ describe('Profile board tests', () => {
 
         cy.get('[data-testid="board-posts"] article[aria-label="Post"]').should('have.length', 1);
     });
+
+    it('change list to hidden posts, like hidden post, comment hidden post, change list to saved posts, like saved post, comment saved post', () => {
+        cy.create('HiddenPost', {
+            user_id: 1,
+        });
+
+        cy.create('SavedPost', {
+            user_id: 1,
+        });
+
+        cy.intercept('/api/user').as('user');
+        cy.intercept('/api/users/1/posts?page=1').as('posts');
+        cy.intercept('/api/hidden/posts?page=1').as('hiddenPosts');
+        cy.intercept('/api/saved/posts?page=1').as('savedPosts');
+
+        cy.visit('/profile/1');
+
+        cy.wait('@user');
+        cy.wait('@posts');
+
+        cy.get('[data-testid="board-posts"] article[aria-label="Post"]').should('not.exist');
+        cy.get('img[alt="List is empty"]').should('exist');
+
+        cy.get('[aria-label="Change list of posts"]').select('Hidden posts');
+        cy.wait('@hiddenPosts');
+
+        cy.get('[data-testid="board-posts"] article[aria-label="Post"]').should('have.length', 1);
+        cy.get('[data-testid="board-posts"] article[aria-label="Post"]').within(() => {
+            cy.intercept('/api/posts/1/likes').as('like');
+            cy.intercept('/api/hidden/posts?page=1').as('posts_page_1');
+
+            cy.get('[aria-label="Like"]').click();
+
+            cy.wait('@like');
+            cy.wait('@posts_page_1');
+
+            cy.get('[data-testid="post-likes_count"]').should('contain.text', 1);
+
+            cy.intercept('/api/posts/1/comments?page=1').as('comments_page_1');
+
+            cy.get('[aria-label="Comment"]').click();
+            cy.wait('@comments_page_1');
+
+            cy.intercept('/api/posts/1/comments?page=1').as('comments_page_1');
+
+            cy.get('[aria-label="Write a comment"]').type('New comment');
+            cy.get('[aria-label="Submit comment"]').click();
+            cy.wait('@comments_page_1');
+
+            cy.get('[data-testid="post-comments_list"]').children().should('have.length', 1);
+        });
+
+        cy.get('[aria-label="Change list of posts"]').select('Saved posts');
+        cy.wait('@savedPosts');
+
+        cy.get('[data-testid="board-posts"] article[aria-label="Post"]').should('have.length', 1);
+        cy.get('[data-testid="board-posts"] article[aria-label="Post"]').within(() => {
+            cy.intercept('/api/posts/2/likes').as('like');
+            cy.intercept('/api/saved/posts?page=1').as('posts_page_1');
+
+            cy.get('[aria-label="Like"]').click();
+
+            cy.wait('@like');
+            cy.wait('@posts_page_1');
+
+            cy.get('[data-testid="post-likes_count"]').should('contain.text', 1);
+
+            cy.intercept('/api/posts/2/comments?page=1').as('comments_page_1');
+
+            cy.get('[aria-label="Comment"]').click();
+            cy.wait('@comments_page_1');
+
+            cy.intercept('/api/posts/12comments?page=1').as('comments_page_1');
+
+            cy.get('[aria-label="Write a comment"]').type('New comment');
+            cy.get('[aria-label="Submit comment"]').click();
+            cy.wait('@comments_page_1');
+
+            cy.get('[data-testid="post-comments_list"]').children().should('have.length', 1);
+        });
+    });
 });

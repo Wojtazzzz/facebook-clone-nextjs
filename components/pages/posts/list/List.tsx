@@ -9,7 +9,7 @@ import { Post } from './post/Post';
 
 export const List = memo(() => {
     const { data, isLoading, isError, isEmpty, hasNextPage, fetchNextPage } = useInfiniteData<IPost>({
-        queryKey: ['posts'],
+        queryKey: ['posts', 'all'],
         endpoint: '/api/posts',
     });
 
@@ -17,7 +17,7 @@ export const List = memo(() => {
     if (!data || isError) return <ApiError size="xl" styles="mt-8" />;
     if (isEmpty) return <EmptyList title="No posts, add some friends!" />;
 
-    const PostsComponents = data.map((post) => <Post key={post.id} {...post} />);
+    const PostsComponents = data.map((post) => <Post queryKey={['posts', 'all']} key={post.id} {...post} />);
 
     return (
         <InfiniteScroll

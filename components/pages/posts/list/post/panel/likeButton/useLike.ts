@@ -3,15 +3,15 @@ import type { InfiniteData } from '@tanstack/react-query';
 import { axios } from '@libs/axios';
 import type { IPaginatedResponse, IPost } from '@utils/types';
 
-export const useLike = () => {
+export const useLike = (queryKey: unknown[]) => {
     const queryClient = useQueryClient();
 
     const mutation = useMutation(mutationFn, {
         onMutate: async (id) => {
-            const previousPosts = queryClient.getQueryData(['posts']);
-            await queryClient.cancelQueries(['posts']);
+            const previousPosts = queryClient.getQueryData(queryKey);
+            await queryClient.cancelQueries(queryKey);
 
-            queryClient.setQueryData<IQueryData>(['posts'], (data) => {
+            queryClient.setQueryData<IQueryData>(queryKey, (data) => {
                 if (!data) return;
 
                 const pages = data.pages.map((page) => {
@@ -43,7 +43,7 @@ export const useLike = () => {
         },
 
         onSettled: () => {
-            queryClient.invalidateQueries(['posts']);
+            queryClient.invalidateQueries(queryKey);
         },
     });
 

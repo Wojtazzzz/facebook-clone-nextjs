@@ -11,7 +11,7 @@ interface CommentsProps {
 export const Comments = ({ postId }: CommentsProps) => {
     const { data, isLoading, isError, isEmpty, hasNextPage, isFetchingNextPage, fetchNextPage } =
         useInfiniteData<IComment>({
-            queryKey: ['comments', `${postId}`],
+            queryKey: ['comments', postId],
             endpoint: `/api/posts/${postId}/comments`,
         });
 

@@ -11,8 +11,8 @@ export const Background = ({ first_name, background_image }: BackgroundProps) =>
             <Image
                 layout="fill"
                 src={background_image}
-                alt={`${first_name} User background image`}
-                priority
+                alt={`${first_name} user background image`}
+                // priority
                 className="rounded-b-lg"
             />
         </div>

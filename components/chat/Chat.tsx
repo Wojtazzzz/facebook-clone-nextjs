@@ -19,7 +19,7 @@ export const Chat = ({ friend }: ChatProps) => {
     useEffect(() => {
         if (!user) return;
 
-        startListen(`messages.${user.id}.${friend.id}`, 'ChatMessageSent', () => invalidate(friend.id));
+        startListen(`messages.${user.id}.${friend.id}`, 'ChatMessageSent', invalidate);
 
         return () => stopListen(`messages.${user.id}.${friend.id}`, 'ChatMessageSent');
     }, [friend.id, invalidate, startListen, stopListen, user]);

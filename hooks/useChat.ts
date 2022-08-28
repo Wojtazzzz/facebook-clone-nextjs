@@ -18,13 +18,12 @@ export const useChat = () => {
         onMutate: async ({ text }) => {
             if (!friend) return;
 
-            const friendId = friend.id.toString();
             const message = createMessage(text);
 
-            const previousMessages = queryClient.getQueryData(['chat', friendId]);
-            await queryClient.cancelQueries(['chat', friendId]);
+            const previousMessages = queryClient.getQueryData(['chat', friend.id]);
+            await queryClient.cancelQueries(['chat', friend.id]);
 
-            queryClient.setQueryData<IQueryData>(['chat', friendId], (data) => {
+            queryClient.setQueryData<IQueryData>(['chat', friend.id], (data) => {
                 if (!data) return;
 
                 const pages = data.pages.map((page) => ({
@@ -52,13 +51,13 @@ export const useChat = () => {
 
             dispatch(setChatError(err.response?.statusText ?? 'Something went wrong'));
 
-            queryClient.setQueryData(['chat', friend.id.toString()], context.previousMessages);
+            queryClient.setQueryData(['chat', friend.id], context.previousMessages);
         },
 
         onSettled: () => {
             if (!friend) return;
 
-            queryClient.invalidateQueries(['chat', friend.id.toString()]);
+            queryClient.invalidateQueries(['chat', friend.id]);
         },
     });
 
@@ -84,8 +83,10 @@ export const useChat = () => {
         // Chat component is listening for new messages, so invalidate is needless
     };
 
-    const invalidate = (friendId: number) => {
-        queryClient.invalidateQueries(['chat', `${friendId}`]);
+    const invalidate = () => {
+        if (!friend) return;
+
+        queryClient.invalidateQueries(['chat', friend.id]);
     };
 
     return {

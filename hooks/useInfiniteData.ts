@@ -18,7 +18,7 @@ export const useInfiniteData = <T>({ queryKey, endpoint, params, options }: IUse
         queryKey,
         async ({ pageParam = 1 }) =>
             await axios
-                .get<IPaginatedResponse<T>>(`${endpoint}`, { params: { ...params, page: pageParam } })
+                .get<IPaginatedResponse<T>>(endpoint, { params: { ...params, page: pageParam } })
                 .then((response) => response.data),
         {
             getPreviousPageParam: (_, pages) => pages[pages.length - 1].prev_page,
@@ -46,7 +46,7 @@ export const useInfiniteData = <T>({ queryKey, endpoint, params, options }: IUse
 };
 
 type IUseInfiniteDataArgs = {
-    queryKey: string[];
+    queryKey: unknown[];
     endpoint: string;
     params?: {};
     options?: {};

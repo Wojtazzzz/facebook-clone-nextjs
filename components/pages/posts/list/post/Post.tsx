@@ -6,7 +6,9 @@ import type { IPost } from '@utils/types';
 import { Content } from './content/Content';
 import { Panel } from './panel/Panel';
 
-interface PostProps extends IPost {}
+interface PostProps extends IPost {
+    queryKey: unknown[];
+}
 
 export const Post = ({
     id,
@@ -19,6 +21,7 @@ export const Post = ({
     is_edited,
     created_at,
     type,
+    queryKey,
 }: PostProps) => {
     const [areCommentsActive, setAreCommentsActive] = useState(false);
     const handleToggleAreCommentsActive = () => setAreCommentsActive((prevState) => !prevState);
@@ -26,7 +29,6 @@ export const Post = ({
     return (
         <article aria-label="Post" className="w-full bg-dark-200 rounded-lg">
             <Header postId={id} author={author} createdAt={created_at} isEdited={is_edited} type={type} />
-
             <Content content={content} images={images} />
 
             <Stats
@@ -36,7 +38,12 @@ export const Post = ({
                 toggleCommentsActive={handleToggleAreCommentsActive}
             />
 
-            <Panel postId={id} isPostLiked={is_liked} toggleAreCommentsActive={handleToggleAreCommentsActive} />
+            <Panel
+                postId={id}
+                isPostLiked={is_liked}
+                queryKey={queryKey}
+                toggleAreCommentsActive={handleToggleAreCommentsActive}
+            />
 
             {areCommentsActive && <Comments postId={id} />}
         </article>

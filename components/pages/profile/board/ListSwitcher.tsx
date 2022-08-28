@@ -3,7 +3,7 @@ import type { IPostType } from '@utils/types';
 
 interface ListSwitcherProps {
     userId: number;
-    changeList: (queryKey: string[], value: string) => void;
+    changeList: (queryKey: unknown[], value: string) => void;
 }
 
 export const ListSwitcher = ({ userId, changeList }: ListSwitcherProps) => {
@@ -19,7 +19,9 @@ export const ListSwitcher = ({ userId, changeList }: ListSwitcherProps) => {
 
         if (!isPostListType(value)) return;
 
-        changeList([value, userId.toString()], endpoints[value]);
+        const queryKey = getQueryKey(value, userId);
+
+        changeList(queryKey, endpoints[value]);
     };
 
     return (
@@ -42,3 +44,20 @@ export const ListSwitcher = ({ userId, changeList }: ListSwitcherProps) => {
 function isPostListType(value: string): value is IPostType {
     return ['OWN', 'FRIEND', 'HIDDEN', 'SAVED'].includes(value);
 }
+
+const getQueryKey = (type: IPostType, userId: number) => {
+    switch (type) {
+        case 'OWN':
+            return ['posts', 'own', { user: userId }];
+
+        case 'HIDDEN':
+            return ['posts', 'hidden'];
+
+        case 'SAVED':
+            return ['posts', 'saved'];
+
+        default:
+        case 'FRIEND':
+            return ['posts', 'all'];
+    }
+};

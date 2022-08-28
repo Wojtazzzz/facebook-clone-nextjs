@@ -11,7 +11,7 @@ export const useCreate = () => {
 
         mutation.mutate(data, {
             onSuccess: () => {
-                queryClient.invalidateQueries(['comments']);
+                queryClient.invalidateQueries(['comments', data.resourceId]);
                 onSuccess();
             },
         });

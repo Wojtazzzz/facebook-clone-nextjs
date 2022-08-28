@@ -9,7 +9,7 @@ export const useUnsave = () => {
         if (mutation.isLoading) return;
 
         mutation.mutate(id, {
-            onSuccess: () => queryClient.invalidateQueries(['SAVED']),
+            onSuccess: () => queryClient.invalidateQueries(['posts', 'saved']),
         });
     };
 

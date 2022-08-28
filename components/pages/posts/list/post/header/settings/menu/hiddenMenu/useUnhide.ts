@@ -9,7 +9,7 @@ export const useUnhide = () => {
         if (mutation.isLoading) return;
 
         mutation.mutate(id, {
-            onSuccess: () => queryClient.invalidateQueries(['HIDDEN']),
+            onSuccess: () => queryClient.invalidateQueries(['posts', 'hidden']),
         });
     };
 

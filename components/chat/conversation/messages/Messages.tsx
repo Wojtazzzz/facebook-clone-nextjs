@@ -12,11 +12,9 @@ interface MessagesProps {
 }
 
 export const Messages = memo<MessagesProps>(({ friend }) => {
-    const friendId = friend.id.toString();
-
     const { data, isLoading, isError, isEmpty, hasNextPage, fetchNextPage } = useInfiniteData<IChatMessage>({
-        queryKey: ['chat', friendId],
-        endpoint: `/api/messages/${friendId}`,
+        queryKey: ['chat', friend.id],
+        endpoint: `/api/messages/${friend.id}`,
     });
 
     if (isLoading) return <Loader testId="messages-loader_loading" />;

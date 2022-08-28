@@ -173,4 +173,5 @@ export type IValidationError = {
 };
 
 export type IMessageIconType = 'AVATAR' | 'SENDING' | 'DELIVERED' | undefined;
+
 export type IChatFriend = IUser | IContact;

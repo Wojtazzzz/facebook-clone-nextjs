@@ -3,11 +3,11 @@ import { Loader } from '@components/pages/posts/list/Loader';
 import { ApiError } from '@components/inc/ApiError';
 import { EmptyList } from '@components/inc/EmptyList';
 import { useInfiniteData } from '@hooks/useInfiniteData';
-import { IPost } from '@utils/types';
+import type { IPost } from '@utils/types';
 import { Post } from '@components/pages/posts/list/post/Post';
 
 interface PostsProps {
-    queryKey: string[];
+    queryKey: unknown[];
     path: string;
 }
 
@@ -21,7 +21,7 @@ export const Posts = ({ queryKey, path }: PostsProps) => {
     if (!data || isError) return <ApiError size="xl" styles="mt-8" />;
     if (isEmpty) return <EmptyList title="No posts, add some friends!" />;
 
-    const PostsComponents = data.map((post) => <Post key={post.id} {...post} />);
+    const PostsComponents = data.map((post) => <Post key={post.id} queryKey={queryKey} {...post} />);
 
     return (
         <div

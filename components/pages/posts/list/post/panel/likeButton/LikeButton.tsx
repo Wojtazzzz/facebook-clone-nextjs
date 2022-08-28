@@ -7,11 +7,12 @@ import { useUnlike } from './useUnlike';
 interface LikeButtonProps {
     postId: number;
     isLiked: boolean;
+    queryKey: unknown[];
 }
 
-export const LikeButton = ({ postId, isLiked }: LikeButtonProps) => {
-    const { like, isError: isLikeError } = useLike();
-    const { unlike, isError: isUnlikeError } = useUnlike();
+export const LikeButton = ({ postId, isLiked, queryKey }: LikeButtonProps) => {
+    const { like, isError: isLikeError } = useLike(queryKey);
+    const { unlike, isError: isUnlikeError } = useUnlike(queryKey);
 
     const handleLike = () => {
         isLiked ? unlike(postId) : like(postId);
