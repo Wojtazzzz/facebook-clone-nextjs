@@ -1,10 +1,8 @@
 import { SpinnerLoader } from '@components/inc/SpinnerLoader';
-import { axios } from '@libs/axios';
-import type { ILike } from '@utils/types';
-import { useQuery } from '@tanstack/react-query';
 import { ApiError } from './ApiError';
 import { EmptyList } from './EmptyList';
 import { Author } from './Author';
+import { useGetLikes } from './useGetLikes';
 
 interface AuthorsListProps {
     postId: number;
@@ -13,9 +11,7 @@ interface AuthorsListProps {
 const maxCount = 12;
 
 export const AuthorsList = ({ postId }: AuthorsListProps) => {
-    const { isLoading, isError, data } = useQuery<ILike[]>(['likes'], () =>
-        axios.get(`/api/posts/${postId}/likes`).then((response) => response.data)
-    );
+    const { data, isLoading, isError } = useGetLikes(postId);
 
     if (isLoading) return <SpinnerLoader testId="likes-spinner" spinnerStyles="w-4 mx-auto" />;
     if (isError) return <ApiError />;
