@@ -1,7 +1,5 @@
 import type { ChangeEvent } from 'react';
 import { useKey } from '@hooks/useKey';
-import { SearchButton } from '@components/nav/search/input/button/SearchButton';
-import { ClearButton } from './button/ClearButton';
 import { useInputFocus } from '@hooks/useInputFocus';
 import { Button } from './button/Button';
 
