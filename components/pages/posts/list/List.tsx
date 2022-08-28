@@ -8,10 +8,10 @@ import type { IPost } from '@utils/types';
 import { Post } from './post/Post';
 
 export const List = memo(() => {
-    const { data, isLoading, isError, isEmpty, hasNextPage, fetchNextPage } = useInfiniteData<IPost>(
-        ['posts'],
-        '/api/posts'
-    );
+    const { data, isLoading, isError, isEmpty, hasNextPage, fetchNextPage } = useInfiniteData<IPost>({
+        queryKey: ['posts'],
+        endpoint: '/api/posts',
+    });
 
     if (isLoading) return <Loader testId="postsList-loading_loader" />;
     if (!data || isError) return <ApiError size="xl" styles="mt-8" />;

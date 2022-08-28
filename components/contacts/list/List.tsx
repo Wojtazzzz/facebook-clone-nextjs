@@ -8,10 +8,10 @@ import { useInfiniteData } from '@hooks/useInfiniteData';
 import type { IContact } from '@utils/types';
 
 export const List = memo(() => {
-    const { data, isLoading, isError, isEmpty, hasNextPage, fetchNextPage } = useInfiniteData<IContact>(
-        ['contacts'],
-        '/api/contacts'
-    );
+    const { data, isLoading, isError, isEmpty, hasNextPage, fetchNextPage } = useInfiniteData<IContact>({
+        queryKey: ['contacts'],
+        endpoint: '/api/contacts',
+    });
 
     if (isLoading) return <Loader testId="contacts-loading_loader" />;
     if (!data || isError) return <ApiError size="lg" styles="h-full" />;

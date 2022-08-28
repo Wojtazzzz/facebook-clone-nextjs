@@ -34,8 +34,7 @@ export type IUserProfile = {
 
 export type IUserHit = {
     id: number;
-    first_name: string;
-    last_name: string;
+    name: string;
     profile_image: string;
 };
 

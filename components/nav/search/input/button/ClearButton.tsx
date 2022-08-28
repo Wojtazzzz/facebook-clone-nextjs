@@ -2,12 +2,12 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface ClearButtonProps {
-    handleClear: () => void;
+    clear: () => void;
 }
 
-export const ClearButton = ({ handleClear }: ClearButtonProps) => {
+export const ClearButton = ({ clear }: ClearButtonProps) => {
     return (
-        <button aria-label="Clear input" onClick={handleClear}>
+        <button aria-label="Clear input" onClick={clear}>
             <FontAwesomeIcon icon={faTimes} className="text-md" />
         </button>
     );

@@ -6,17 +6,18 @@ describe('Searching users tests', () => {
 
     beforeEach(() => {
         cy.loginRequest();
-        cy.artisan('algolia:clear');
     });
 
-    it('type something on input and see "No Results" message and clear input by click on clear button', () => {
+    it('type something in input, see No Results, clear input by ClearButton', () => {
         cy.intercept('/api/user').as('user');
+        cy.intercept('/api/users?search=Joh&page=1').as('searching');
 
         cy.visit('/');
         cy.wait('@user');
 
         cy.get('[data-testid="nav-search-desktop"]').within(() => {
-            cy.get('input[aria-label="User search input"]').type('xxxxxx');
+            cy.get('input[aria-label="User search input"]').type('Joh');
+            cy.wait('@searching');
 
             cy.contains('No Results');
 
@@ -26,23 +27,29 @@ describe('Searching users tests', () => {
         });
     });
 
-    it('type friend firstname on input and see his firstname and username on results list', () => {
-        let friend: IUser;
-        cy.create('User').then((user) => (friend = user));
+    it('type friend firstname on input and see his firstname and username on results list, redirect to his profile by click on hit', () => {
+        cy.create('User', {
+            first_name: 'John',
+            last_name: 'Doe',
+        });
 
         cy.intercept('/api/user').as('user');
+        cy.intercept(`/api/users?search=John&page=1`).as('searching');
 
         cy.visit('/');
         cy.wait('@user');
 
         cy.get('[data-testid="nav-search-desktop"]').within(() => {
-            cy.get('input[aria-label="User search input"]').type(`${friend.first_name}`);
+            cy.get('input[aria-label="User search input"]').type('John');
+            cy.wait('@searching');
 
-            cy.contains(`${friend.first_name} ${friend.last_name}`);
+            cy.contains('John Doe').click();
+
+            cy.url().should('contain', '/profile/2');
         });
     });
 
-    it('type "a", see 8 users and load more button, fetch second list on click on that button and button dissapear because all users fetched', () => {
+    it('type "a", see 10 users, fetch second page of users by scrolling list to bottom', () => {
         cy.create('User', { first_name: 'Adam' });
         cy.create('User', { first_name: 'Adrian' });
         cy.create('User', { first_name: 'Agapetus' });
@@ -53,36 +60,89 @@ describe('Searching users tests', () => {
         cy.create('User', { first_name: 'Angel' });
         cy.create('User', { first_name: 'Anthony' });
         cy.create('User', { first_name: 'Arkady' });
+        cy.create('User', { first_name: 'Arthur' });
+        cy.create('User', { first_name: 'Adrien' });
+        cy.create('User', { first_name: 'Adalbert' });
 
         cy.intercept('/api/user').as('user');
+        cy.intercept(`/api/users?search=a&page=1`).as('searching');
+
         cy.visit('/');
         cy.wait('@user');
 
         cy.get('[data-testid="nav-search-desktop"]').within(() => {
             cy.get('input[aria-label="User search input"]').type('a');
+            cy.wait('@searching');
 
-            cy.get('[data-testid="search-hits"] > a').should('have.length', 8);
-            cy.get('button[aria-label="Load more results"]').click();
+            cy.get('[data-testid="search-hits"] a').should('have.length', 10);
 
-            cy.get('button[aria-label="Load more results"]').should('not.exist');
+            cy.get('[id="hits-list"]').scrollTo('bottom', { ensureScrollable: false });
+
+            cy.get('[data-testid="search-hits"] a').should('have.length', 13);
         });
     });
 
-    it('hits dissapear when click on outside page element', () => {
+    it('focus input by click on SearchButton, search friend, hits dissapear when click on outside page element', () => {
+        cy.create('User', { first_name: 'Adam' });
+
         cy.intercept('/api/user').as('user');
+        cy.intercept(`/api/users?search=a&page=1`).as('searching');
 
         cy.visit('/');
         cy.wait('@user');
 
         cy.get('[data-testid="nav-search-desktop"]').within(() => {
+            cy.get('[aria-label="Focus input"]').click();
+
+            cy.get('input[aria-label="User search input"]').should('be.focused');
             cy.get('input[aria-label="User search input"]').type('a');
-            cy.get('[data-testid="search-hits"]').should('be.visible');
+            cy.wait('@searching');
+
+            cy.get('[data-testid="search-hits"] a').should('have.length', 1);
         });
 
         cy.get('main').click();
 
         cy.get('[data-testid="nav-search-desktop"]').within(() => {
             cy.get('[data-testid="search-hits"]').should('not.exist');
+        });
+    });
+
+    it('search friend, hits dissapear when press esc', () => {
+        cy.create('User', { first_name: 'Adam' });
+
+        cy.intercept('/api/user').as('user');
+        cy.intercept(`/api/users?search=a&page=1`).as('searching');
+
+        cy.visit('/');
+        cy.wait('@user');
+
+        cy.get('[data-testid="nav-search-desktop"]').within(() => {
+            cy.get('input[aria-label="User search input"]').type('a');
+            cy.wait('@searching');
+
+            cy.get('[data-testid="search-hits"] a').should('have.length', 1);
+        });
+
+        cy.get('body').type('{esc}');
+
+        cy.get('[data-testid="nav-search-desktop"]').within(() => {
+            cy.get('[data-testid="search-hits"]').should('not.exist');
+        });
+    });
+
+    it('try search user, api return error', () => {
+        cy.intercept('/api/user').as('user');
+        cy.intercept(`/api/users?search=a&page=1`, { statusCode: 500 }).as('searching');
+
+        cy.visit('/');
+        cy.wait('@user');
+
+        cy.get('[data-testid="nav-search-desktop"]').within(() => {
+            cy.get('input[aria-label="User search input"]').type('a');
+            cy.wait('@searching');
+
+            cy.get('[data-testid="search-apiError"]').should('be.visible');
         });
     });
 });

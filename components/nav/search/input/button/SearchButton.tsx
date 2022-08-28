@@ -2,12 +2,12 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface SearchButtonProps {
-    handleFocus: () => void;
+    focus: () => void;
 }
 
-export const SearchButton = ({ handleFocus }: SearchButtonProps) => {
+export const SearchButton = ({ focus }: SearchButtonProps) => {
     return (
-        <button aria-label="Focus input" onClick={handleFocus}>
+        <button aria-label="Focus input" onClick={focus}>
             <FontAwesomeIcon icon={faSearch} className="text-md" />
         </button>
     );

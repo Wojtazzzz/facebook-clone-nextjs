@@ -1,22 +1,16 @@
-import { InstantSearch } from 'react-instantsearch-hooks-web';
 import { SearchBox } from '@components/nav/search/input/SearchBox';
-import { Hits } from '@components/nav/search/hits/Hits';
-
-import algoliasearch from 'algoliasearch/lite';
+import { useOutsideClick } from '@hooks/useOutsideClick';
+import { useSearch } from '@hooks/useSearch';
+import { Hits } from './hits/Hits';
 
 export const Search = () => {
-    if (true) {
-        return <div className="w-[220px] relative">No searching</div>;
-    }
-
-    const searchClient = algoliasearch('AQHMU0MNAT', '01322bb95c6341b4a8b048c5b050ad99');
+    const { data, hasNextPage, fetchNextPage, clearQuery, ...rest } = useSearch();
+    const ref = useOutsideClick(clearQuery);
 
     return (
-        <InstantSearch searchClient={searchClient} indexName="users">
-            <div className="w-[220px] relative">
-                <SearchBox />
-                <Hits />
-            </div>
-        </InstantSearch>
+        <div ref={ref} className="w-[220px] relative">
+            <SearchBox clearQuery={clearQuery} {...rest} />
+            <Hits data={data} hasNextPage={hasNextPage} fetchNextPage={fetchNextPage} />
+        </div>
     );
 };

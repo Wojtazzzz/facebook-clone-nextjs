@@ -2,7 +2,7 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 import { axios } from '@libs/axios';
 import type { IPaginatedResponse } from '@utils/types';
 
-export const useInfiniteData = <T>(queryKey: string[], endpoint: string) => {
+export const useInfiniteData = <T>({ queryKey, endpoint, params, options }: IUseInfiniteDataArgs) => {
     const {
         data,
         isError,
@@ -17,10 +17,13 @@ export const useInfiniteData = <T>(queryKey: string[], endpoint: string) => {
     } = useInfiniteQuery(
         queryKey,
         async ({ pageParam = 1 }) =>
-            await axios.get<IPaginatedResponse<T>>(`${endpoint}?page=${pageParam}`).then((response) => response.data),
+            await axios
+                .get<IPaginatedResponse<T>>(`${endpoint}`, { params: { ...params, page: pageParam } })
+                .then((response) => response.data),
         {
             getPreviousPageParam: (_, pages) => pages[pages.length - 1].prev_page,
             getNextPageParam: (_, pages) => pages[pages.length - 1].next_page,
+            ...options,
         }
     );
 
@@ -40,4 +43,11 @@ export const useInfiniteData = <T>(queryKey: string[], endpoint: string) => {
         fetchNextPage,
         fetchPreviousPage,
     };
+};
+
+type IUseInfiniteDataArgs = {
+    queryKey: string[];
+    endpoint: string;
+    params?: {};
+    options?: {};
 };

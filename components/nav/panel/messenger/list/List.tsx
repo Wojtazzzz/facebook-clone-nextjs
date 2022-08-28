@@ -10,10 +10,10 @@ import { EmptyList } from '@components/inc/EmptyList';
 import type { IUser } from '@utils/types';
 
 export const List = memo(() => {
-    const { data, isLoading, isError, isEmpty, hasNextPage, fetchNextPage } = useInfiniteData<IUser>(
-        ['messages'],
-        '/api/messages'
-    );
+    const { data, isLoading, isError, isEmpty, hasNextPage, fetchNextPage } = useInfiniteData<IUser>({
+        queryKey: ['messages'],
+        endpoint: '/api/messages',
+    });
 
     if (isLoading) return <Loader testId="messenger-fetching_loader" />;
     if (!data || isError) return <ApiError />;

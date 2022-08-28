@@ -14,10 +14,10 @@ interface MessagesProps {
 export const Messages = memo<MessagesProps>(({ friend }) => {
     const friendId = friend.id.toString();
 
-    const { data, isLoading, isError, isEmpty, hasNextPage, fetchNextPage } = useInfiniteData<IChatMessage>(
-        ['chat', friendId],
-        `/api/messages/${friendId}`
-    );
+    const { data, isLoading, isError, isEmpty, hasNextPage, fetchNextPage } = useInfiniteData<IChatMessage>({
+        queryKey: ['chat', friendId],
+        endpoint: `/api/messages/${friendId}`,
+    });
 
     if (isLoading) return <Loader testid="messages-loader_loading" />;
     if (!data || isError) return <ApiError />;

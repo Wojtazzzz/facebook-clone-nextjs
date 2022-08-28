@@ -12,7 +12,10 @@ interface PostsProps {
 }
 
 export const Posts = ({ queryKey, path }: PostsProps) => {
-    const { data, isLoading, isError, isEmpty, hasNextPage, fetchNextPage } = useInfiniteData<IPost>(queryKey, path);
+    const { data, isLoading, isError, isEmpty, hasNextPage, fetchNextPage } = useInfiniteData<IPost>({
+        queryKey,
+        endpoint: path,
+    });
 
     if (isLoading) return <Loader testId="boardPosts-loading_loader" />;
     if (!data || isError) return <ApiError size="xl" styles="mt-8" />;

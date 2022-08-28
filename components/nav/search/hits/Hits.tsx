@@ -1,35 +1,37 @@
-import { useConfigure, useInfiniteHits, useSearchBox } from 'react-instantsearch-hooks-web';
-import { useOutsideClick } from '@hooks/useOutsideClick';
-
+import { SpinnerLoader } from '@components/inc/SpinnerLoader';
 import { Hit } from '@components/nav/search/hits/Hit';
-import { NoResults } from '@components/nav/search/hits/NoResults';
-import { LoadMore } from '@components/nav/search/hits/LoadMore';
-
 import type { IUserHit } from '@utils/types';
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { NoResults } from './NoResults';
 
-export const Hits = () => {
-    const { clear } = useSearchBox();
-    const { hits, results, showMore, isLastPage } = useInfiniteHits<IUserHit>();
-    useConfigure({
-        hitsPerPage: 8,
-    });
-    const ref = useOutsideClick(clear);
+interface HitsProps {
+    data: IUserHit[] | undefined;
+    hasNextPage: boolean | undefined;
+    fetchNextPage: () => void;
+}
 
-    const HitsComponents = hits.map((hit) => <Hit key={hit.id} {...hit} />);
+export const Hits = ({ data, hasNextPage, fetchNextPage }: HitsProps) => {
+    if (!data) return null;
 
-    if (!!!results?.query) return <></>;
+    const HitsComponents = data.map((hit) => <Hit key={hit.id} {...hit} />);
 
     return (
         <div
+            id="hits-list"
             data-testid="search-hits"
-            ref={ref}
-            className="w-full max-h-[450px] absolute top-full left-0 bg-dark-200 overflow-y-auto rounded-md shadow-md scrollbar-thin scrollbar-thumb-dark-100 p-2"
+            className="w-full max-h-[450px] absolute top-full left-0 overflow-auto bg-dark-200 overflow-y-auto rounded-md shadow-md scrollbar-thin scrollbar-thumb-dark-100 p-2"
         >
-            {!!hits.length ? (
-                <>
+            {!!data.length ? (
+                <InfiniteScroll
+                    dataLength={HitsComponents.length}
+                    hasMore={!!hasNextPage}
+                    loader={<SpinnerLoader testid="hits-fetching_loader" spinnerStyles="w-5" />}
+                    className="w-full flex flex-col gap-2"
+                    next={fetchNextPage}
+                    scrollableTarget="hits-list"
+                >
                     {HitsComponents}
-                    {isLastPage || <LoadMore loadMore={showMore} />}
-                </>
+                </InfiniteScroll>
             ) : (
                 <NoResults />
             )}

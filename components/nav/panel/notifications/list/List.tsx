@@ -8,10 +8,10 @@ import { useInfiniteData } from '@hooks/useInfiniteData';
 import type { INotification } from '@utils/types';
 
 export const List = memo(() => {
-    const { data, isLoading, isError, isEmpty, hasNextPage, fetchNextPage } = useInfiniteData<INotification>(
-        ['notifications'],
-        '/api/notifications'
-    );
+    const { data, isLoading, isError, isEmpty, hasNextPage, fetchNextPage } = useInfiniteData<INotification>({
+        queryKey: ['notifications'],
+        endpoint: '/api/notifications',
+    });
 
     if (isLoading) return <Loader testId="notifications-fetching_loader" />;
     if (!data || isError) return <ApiError />;

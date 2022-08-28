@@ -1,0 +1,38 @@
+{
+    "data": [
+        { "id": 65, "name": "John Doe", "profile_image": "https://picsum.photos/seed/6309104cc06d2/168/168" },
+        { "id": 64, "name": "John Doee", "profile_image": "https://picsum.photos/seed/6309104cb163b/168/168" },
+        { "id": 63, "name": "John Doeee", "profile_image": "https://picsum.photos/seed/6309104ca25c9/168/168" },
+        { "id": 62, "name": "John Doeeee", "profile_image": "https://picsum.photos/seed/6309104c92b8d/168/168" },
+        { "id": 61, "name": "John Doeeeee", "profile_image": "https://picsum.photos/seed/6309104c835f7/168/168" },
+        { "id": 60, "name": "John Doeeeeee", "profile_image": "https://picsum.photos/seed/6309104c73b6b/168/168" },
+        { "id": 59, "name": "John Doeeeeeee", "profile_image": "https://picsum.photos/seed/6309104c652ed/168/168" },
+        { "id": 58, "name": "John Doeeeeeeee", "profile_image": "https://picsum.photos/seed/6309104c5613a/168/168" },
+        { "id": 57, "name": "John Doeeeeeeeee", "profile_image": "https://picsum.photos/seed/6309104c46a56/168/168" },
+        { "id": 56, "name": "John Doeeeeeeeeee", "profile_image": "https://picsum.photos/seed/6309104c36ad2/168/168" },
+        { "id": 55, "name": "John Doeeeeeeeeeee", "profile_image": "https://picsum.photos/seed/6309104c26b62/168/168" },
+        {
+            "id": 54,
+            "name": "John Doeeeeeeeeeeee",
+            "profile_image": "https://picsum.photos/seed/6309104c17183/168/168"
+        },
+        {
+            "id": 53,
+            "name": "John Doeeeeeeeeeeeee",
+            "profile_image": "https://picsum.photos/seed/6309104c0702d/168/168"
+        },
+        {
+            "id": 52,
+            "name": "John Doeeeeeeeeeeeeee",
+            "profile_image": "https://picsum.photos/seed/6309104beacb3/168/168"
+        },
+        {
+            "id": 51,
+            "name": "John Doeeeeeeeeeeeeeee",
+            "profile_image": "https://picsum.photos/seed/6309104bda53b/168/168"
+        }
+    ],
+    "current_page": 1,
+    "next_page": 2,
+    "prev_page": null
+}

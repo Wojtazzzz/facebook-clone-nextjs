@@ -10,7 +10,10 @@ interface CommentsProps {
 
 export const Comments = ({ postId }: CommentsProps) => {
     const { data, isLoading, isError, isEmpty, hasNextPage, isFetchingNextPage, fetchNextPage } =
-        useInfiniteData<IComment>(['comments', `${postId}`], `/api/posts/${postId}/comments`);
+        useInfiniteData<IComment>({
+            queryKey: ['comments', `${postId}`],
+            endpoint: `/api/posts/${postId}/comments`,
+        });
 
     return (
         <section aria-label="Post comments" className="w-full border-t-2 border-t-dark-100 p-2">
