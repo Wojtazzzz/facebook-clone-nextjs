@@ -14,16 +14,20 @@ export const useNotifications = () => {
             onSuccess: (data: InfiniteData<IPaginatedResponse<INotification>> | undefined) => {
                 if (!data) return;
 
-                const unreadNotifications = data.pages.flatMap((page) =>
-                    page.data.filter((notification) => !!!notification.read_at)
+                const ids = data.pages.flatMap((page) =>
+                    page.data.flatMap((notification) => {
+                        if (!notification.read_at) {
+                            return notification.id;
+                        }
+
+                        return [];
+                    })
                 );
 
-                if (!!!unreadNotifications.length) return;
-
-                const unreadNotificationsIds = unreadNotifications.map((notification) => notification.id);
+                if (!!!ids.length) return;
 
                 mutation.mutate({
-                    ids: unreadNotificationsIds,
+                    ids,
                 });
             },
         },
