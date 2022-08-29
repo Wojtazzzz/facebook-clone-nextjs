@@ -29,7 +29,7 @@ export const Post = ({
 
     return (
         <article aria-label="Post" className="w-full bg-dark-200 rounded-lg">
-            <Header postId={id} author={author} createdAt={created_at} isEdited={is_edited} type={type} />
+            <Header commenting={commenting}  postId={id} author={author} createdAt={created_at} isEdited={is_edited} type={type} />
             <Content content={content} images={images} />
 
             <Stats

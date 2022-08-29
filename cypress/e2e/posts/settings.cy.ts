@@ -1,6 +1,9 @@
 import { useDatabaseMigrations } from 'cypress-laravel';
 import type { IPost } from '@cypress/support/types';
 
+const USER_FIRST_NAME = Cypress.env('USER_FIRST_NAME');
+const USER_LAST_NAME = Cypress.env('USER_LAST_NAME');
+
 describe('Posts settings tests', () => {
     useDatabaseMigrations();
 
@@ -66,6 +69,71 @@ describe('Posts settings tests', () => {
         cy.wait('@posts_page_1');
 
         cy.get('[id="posts-list"] article[aria-label="Post"]').should('have.length', 1);
+    });
+
+    it('open post settings on own post, turn off comments, check that comments are off, turn on comments, try to create new comment', () => {
+        cy.create('Post', {
+            author_id: 1,
+        });
+
+        cy.intercept('/api/user').as('user');
+        cy.intercept('/api/posts?page=1').as('posts_page_1');
+
+        cy.visit('/');
+        cy.wait('@user');
+        cy.wait('@posts_page_1');
+
+        cy.get('[id="posts-list"] article[aria-label="Post"]').should('have.length', 1);
+        cy.get('[id="posts-list"] article[aria-label="Post"]')
+            .first()
+            .within(() => {
+                cy.get('button[aria-label="Show post settings"]').click();
+
+                cy.intercept('/api/posts/1/turn-off-comments').as('turnOffComments');
+                cy.intercept('/api/posts?page=1').as('posts_page_1');
+
+                cy.get('[aria-label="Settings"]').within(() => {
+                    cy.get('button[aria-label="Turn on comments"]').should('not.exist');
+
+                    cy.get('button[aria-label="Turn off comments"]').click();
+                });
+            });
+
+        cy.wait('@turnOffComments');
+        cy.wait('@posts_page_1');
+
+        cy.get('[id="posts-list"] article[aria-label="Post"]').should('have.length', 1);
+        cy.get('[id="posts-list"] article[aria-label="Post"]')
+            .first()
+            .within(() => {
+                cy.get('button[aria-label="Comment"]').click();
+                cy.contains(`${USER_FIRST_NAME} ${USER_LAST_NAME} turned off commenting for this post.`);
+
+                cy.get('button[aria-label="Show post settings"]').click();
+
+                cy.intercept('/api/posts/1/turn-on-comments').as('turnOnComments');
+                cy.intercept('/api/posts?page=1').as('posts_page_1');
+
+                cy.get('[aria-label="Settings"]').within(() => {
+                    cy.get('button[aria-label="Turn off comments"]').should('not.exist');
+
+                    cy.get('button[aria-label="Turn on comments"]').click();
+                });
+            });
+
+        cy.wait('@turnOnComments');
+        cy.wait('@posts_page_1');
+
+        cy.get('[id="posts-list"] article[aria-label="Post"]').should('have.length', 1);
+        cy.get('[id="posts-list"] article[aria-label="Post"]')
+            .first()
+            .within(() => {
+                cy.contains(`${USER_FIRST_NAME} ${USER_LAST_NAME} turned off commenting for this post.`).should(
+                    'not.exist'
+                );
+
+                cy.get('[aria-label="Write a comment"]').should('be.visible');
+            });
     });
 
     it("open settings on someone's post, hide post, post dissapears from list, post displays on user's list of hidden posts, unhide post, post display again on main post list", () => {

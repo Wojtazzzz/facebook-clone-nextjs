@@ -8,14 +8,15 @@ import { SavedMenu } from './savedMenu/SavedMenu';
 interface MenuProps {
     postId: number;
     type: IPostType;
+    commenting: boolean;
     closeMenu: () => void;
 }
 
-export const Menu = ({ postId, type, closeMenu }: MenuProps) => {
+export const Menu = ({ postId, type, commenting, closeMenu }: MenuProps) => {
     useKey('Escape', closeMenu);
 
     if (type === 'FRIEND') return <FriendMenu postId={postId} closeMenu={closeMenu} />;
     if (type === 'HIDDEN') return <HiddenMenu postId={postId} />;
     if (type === 'SAVED') return <SavedMenu postId={postId} />;
-    return <OwnMenu postId={postId} />;
+    return <OwnMenu commenting={commenting} postId={postId} />;
 };
