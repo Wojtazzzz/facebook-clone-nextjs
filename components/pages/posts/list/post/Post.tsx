@@ -19,6 +19,7 @@ export const Post = ({
     comments_count,
     is_liked,
     is_edited,
+    commenting,
     created_at,
     type,
     queryKey,
@@ -45,7 +46,7 @@ export const Post = ({
                 toggleAreCommentsActive={handleToggleAreCommentsActive}
             />
 
-            {areCommentsActive && <Comments postId={id} />}
+            {areCommentsActive && <Comments authorName={author.name} commenting={commenting} postId={id} />}
         </article>
     );
 };

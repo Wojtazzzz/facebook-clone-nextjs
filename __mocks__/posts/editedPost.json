@@ -14,5 +14,6 @@
     "comments_count": 0,
     "is_liked": false,
     "is_edited": true,
+    "commenting": true,
     "created_at": "4m"
 }

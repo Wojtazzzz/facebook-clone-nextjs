@@ -116,6 +116,7 @@ export type IPost = {
     comments_count: number;
     is_liked: boolean;
     is_edited: boolean;
+    commenting: boolean;
     created_at: string;
     type: IPostType;
 };

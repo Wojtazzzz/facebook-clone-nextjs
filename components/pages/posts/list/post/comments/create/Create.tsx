@@ -13,7 +13,7 @@ export const Create = ({ postId }: CreateProps) => {
     if (!user) return <Loader testId="commentsCreate-loader" />;
 
     return (
-        <div className="flex gap-2 p-3">
+        <div className="flex gap-2 p-1">
             <Avatar src={user.profile_image} size={40} alt="" />
             <Form postId={postId} />
         </div>

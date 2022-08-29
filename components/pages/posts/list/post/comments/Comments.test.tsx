@@ -29,7 +29,7 @@ describe('Comments component', () => {
             data: CommentsFirstPageJson,
         });
 
-        renderWithDefaultData(<Comments postId={post.id} />);
+        renderWithDefaultData(<Comments commenting={post.commenting} authorName={post.author.name} postId={post.id} />);
 
         const loaders = screen.getByTestId('postsCommentsList-loading_loader');
 
@@ -42,7 +42,7 @@ describe('Comments component', () => {
             data: CommentsFirstPageJson,
         });
 
-        renderWithDefaultData(<Comments postId={post.id} />);
+        renderWithDefaultData(<Comments commenting={post.commenting} authorName={post.author.name} postId={post.id} />);
 
         const firstComment = await screen.findByText(commentsFirstPage[0].content);
         const tenthComment = await screen.findByText(commentsFirstPage[9].content);
@@ -57,7 +57,7 @@ describe('Comments component', () => {
             status: 500,
         });
 
-        renderWithDefaultData(<Comments postId={post.id} />);
+        renderWithDefaultData(<Comments commenting={post.commenting} authorName={post.author.name} postId={post.id} />);
 
         const apiErrorComponent = await screen.findByText('Something went wrong');
 
@@ -72,11 +72,26 @@ describe('Comments component', () => {
             data: CommentsEmptyPageJson,
         });
 
-        renderWithDefaultData(<Comments postId={post.id} />);
+        renderWithDefaultData(<Comments commenting={post.commenting} authorName={post.author.name} postId={post.id} />);
 
         const fetchButton = screen.queryByLabelText('Load more comments');
 
         expect(fetchButton).not.toBeInTheDocument();
+    });
+
+    it('render only "comments turned off" when commenting is disabled', () => {
+        mock({
+            path: `/api/posts/${post.id}/comments?page=1`,
+            data: CommentsFirstPageJson,
+        });
+
+        renderWithDefaultData(<Comments commenting={false} authorName={post.author.name} postId={post.id} />);
+
+        const text = screen.getByText(`${post.author.name} turned off commenting for this post.`);
+        const commentsSection = screen.queryByLabelText('Post comments');
+
+        expect(text).toBeInTheDocument();
+        expect(commentsSection).not.toBeInTheDocument();
     });
 
     beforeEach(() => {
@@ -92,7 +107,7 @@ describe('Comments component', () => {
             data: CommentsFirstPageJson,
         });
 
-        renderWithDefaultData(<Comments postId={post.id} />);
+        renderWithDefaultData(<Comments commenting={post.commenting} authorName={post.author.name} postId={post.id} />);
 
         const fetchButton = await screen.findByLabelText('Load more comments');
         await user.click(fetchButton);
@@ -114,7 +129,7 @@ describe('Comments component', () => {
             data: CommentsFirstPageJson,
         });
 
-        renderWithDefaultData(<Comments postId={post.id} />);
+        renderWithDefaultData(<Comments commenting={post.commenting} authorName={post.author.name} postId={post.id} />);
 
         const fetchButton = await screen.findByLabelText('Load more comments');
 
@@ -131,7 +146,7 @@ describe('Comments component', () => {
             data: CommentsFirstPageJson,
         });
 
-        renderWithDefaultData(<Comments postId={post.id} />);
+        renderWithDefaultData(<Comments commenting={post.commenting} authorName={post.author.name} postId={post.id} />);
 
         const fetchButton = await screen.findByLabelText('Load more comments');
 

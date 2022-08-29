@@ -26,7 +26,8 @@ export const List = memo(() => {
             hasMore={!!hasNextPage}
             loader={<Loader testId="postsList-fetching_loader" />}
             scrollableTarget="posts-list"
-            className="flex flex-col gap-4 mb-12"
+            className="h-full flex flex-col gap-4 mb-12"
+            style={{ height: '100%' }}
         >
             {PostsComponents}
         </InfiniteScroll>
