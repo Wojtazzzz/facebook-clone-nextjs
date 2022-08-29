@@ -138,4 +138,24 @@ describe('Posts list tests', () => {
         cy.get('[id="posts-list"] article[aria-label="Post"]').should('not.exist');
         cy.get('[data-testid="server-error"]').should('be.visible');
     });
+
+    // it('see 10 posts, load more by scrolling to bottom, click on ScrollToTop component which scroll to top', () => {
+    it('see 10 posts, load more by scrolling to bottom', () => {
+        cy.create('Post', 18, {
+            author_id: 1,
+        });
+
+        cy.intercept('/api/user').as('user');
+        cy.intercept('/api/posts?page=1').as('posts_page_1');
+
+        cy.visit('/');
+        cy.wait('@user');
+        cy.wait('@posts_page_1');
+
+        cy.get('[id="posts-list"] article[aria-label="Post"]').should('have.length', 10);
+
+        cy.get('[id="posts-list"]').scrollTo('bottom', { ensureScrollable: false });
+
+        cy.get('[id="posts-list"] article[aria-label="Post"]').should('have.length', 18);
+    });
 });
