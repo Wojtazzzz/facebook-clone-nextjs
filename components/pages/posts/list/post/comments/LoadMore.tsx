@@ -3,6 +3,7 @@ import type { IComment, IPaginatedResponse } from '@utils/types';
 import { Loader } from './list/Loader';
 
 interface LoadMoreProps {
+    isEmpty: boolean;
     hasNextPage: boolean | undefined;
     isFetchingNextPage: boolean;
     fetchNextPage: (
@@ -10,12 +11,9 @@ interface LoadMoreProps {
     ) => Promise<InfiniteQueryObserverResult<IPaginatedResponse<IComment>, unknown>>;
 }
 
-export const LoadMore = ({ hasNextPage, isFetchingNextPage, fetchNextPage }: LoadMoreProps) => {
+export const LoadMore = ({ isEmpty, hasNextPage, isFetchingNextPage, fetchNextPage }: LoadMoreProps) => {
+    if (!hasNextPage || isEmpty) return null;
     if (isFetchingNextPage) return <Loader testId="postsCommentsList-fetching_loader" />;
-
-    if (!hasNextPage) {
-        return <span className="text-sm text-light-100 font-bold hover:underline py-1 px-2">Write a comment...</span>;
-    }
 
     const handleFetchNextPage = () => fetchNextPage();
 

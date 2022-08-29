@@ -10,13 +10,18 @@ describe('LoadMore component', () => {
 
     it('render "View more comments" when don\'t fetch all comments', () => {
         const mockFetchNextPage = jest.fn();
+        const isEmpty = false;
         const hasNextPage = true;
         const isFetchingNextPage = false;
 
-        mock('/api/posts/1/comments', 200, CommentsFirstPageJson);
+        mock({
+            path: '/api/posts/1/comments',
+            data: CommentsFirstPageJson,
+        });
 
         renderWithDefaultData(
             <LoadMore
+                isEmpty={isEmpty}
                 hasNextPage={hasNextPage}
                 isFetchingNextPage={isFetchingNextPage}
                 fetchNextPage={mockFetchNextPage}
@@ -24,39 +29,19 @@ describe('LoadMore component', () => {
         );
 
         const viewMoreCommentsText = screen.getByText('View more comments');
+
         expect(viewMoreCommentsText).toBeInTheDocument();
-
-        const writeCommentText = screen.queryByText('Write a comment...');
-        expect(writeCommentText).not.toBeInTheDocument();
-    });
-
-    it('show "Write a comment..." when fetched all comments', () => {
-        const mockFetchNextPage = jest.fn();
-        const hasNextPage = false;
-        const isFetchingNextPage = false;
-
-        renderWithDefaultData(
-            <LoadMore
-                hasNextPage={hasNextPage}
-                isFetchingNextPage={isFetchingNextPage}
-                fetchNextPage={mockFetchNextPage}
-            />
-        );
-
-        const viewMoreCommentsText = screen.queryByText('View more comments');
-        expect(viewMoreCommentsText).not.toBeInTheDocument();
-
-        const writeCommentText = screen.getByText('Write a comment...');
-        expect(writeCommentText).toBeInTheDocument();
     });
 
     it('execute fetchNextPage when click on "View more comments"', async () => {
         const mockFetchNextPage = jest.fn();
+        const isEmpty = false;
         const hasNextPage = true;
         const isFetchingNextPage = false;
 
         renderWithDefaultData(
             <LoadMore
+                isEmpty={isEmpty}
                 hasNextPage={hasNextPage}
                 isFetchingNextPage={isFetchingNextPage}
                 fetchNextPage={mockFetchNextPage}
@@ -71,23 +56,63 @@ describe('LoadMore component', () => {
 
     it('render loaders without buttons when comments are fetching', () => {
         const mockFetchNextPage = jest.fn();
+        const isEmpty = false;
         const hasNextPage = true;
         const isFetchingNextPage = true;
 
         renderWithDefaultData(
             <LoadMore
+                isEmpty={isEmpty}
                 hasNextPage={hasNextPage}
                 isFetchingNextPage={isFetchingNextPage}
                 fetchNextPage={mockFetchNextPage}
             />
         );
 
-        const writeCommentText = screen.queryByText('Write a comment...');
         const viewMoreComments = screen.queryByLabelText('Load more comments');
         const loader = screen.getByTestId('postsCommentsList-fetching_loader');
 
-        expect(writeCommentText).not.toBeInTheDocument();
         expect(viewMoreComments).not.toBeInTheDocument();
         expect(loader).toBeInTheDocument();
+    });
+
+    it('render nothing when isEmpty is true', () => {
+        const mockFetchNextPage = jest.fn();
+        const isEmpty = true;
+        const hasNextPage = true;
+        const isFetchingNextPage = true;
+
+        renderWithDefaultData(
+            <LoadMore
+                isEmpty={isEmpty}
+                hasNextPage={hasNextPage}
+                isFetchingNextPage={isFetchingNextPage}
+                fetchNextPage={mockFetchNextPage}
+            />
+        );
+
+        const viewMoreComments = screen.queryByLabelText('Load more comments');
+
+        expect(viewMoreComments).not.toBeInTheDocument();
+    });
+
+    it('render nothing when hasNextPage is false', () => {
+        const mockFetchNextPage = jest.fn();
+        const isEmpty = true;
+        const hasNextPage = false;
+        const isFetchingNextPage = true;
+
+        renderWithDefaultData(
+            <LoadMore
+                isEmpty={isEmpty}
+                hasNextPage={hasNextPage}
+                isFetchingNextPage={isFetchingNextPage}
+                fetchNextPage={mockFetchNextPage}
+            />
+        );
+
+        const viewMoreComments = screen.queryByLabelText('Load more comments');
+
+        expect(viewMoreComments).not.toBeInTheDocument();
     });
 });

@@ -26,13 +26,12 @@ export const Comments = ({ postId, authorName, commenting }: CommentsProps) => {
             <Create postId={postId} />
             <List data={data} isLoading={isLoading} isError={isError} isEmpty={isEmpty} />
 
-            {!isEmpty && (
-                <LoadMore
-                    hasNextPage={hasNextPage}
-                    isFetchingNextPage={isFetchingNextPage}
-                    fetchNextPage={fetchNextPage}
-                />
-            )}
+            <LoadMore
+                isEmpty={isEmpty}
+                hasNextPage={hasNextPage}
+                isFetchingNextPage={isFetchingNextPage}
+                fetchNextPage={fetchNextPage}
+            />
         </section>
     );
 };
