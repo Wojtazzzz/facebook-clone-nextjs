@@ -17,6 +17,8 @@ export const Posts = ({ queryKey, path }: PostsProps) => {
         endpoint: path,
     });
 
+    console.log('Fetching: ', queryKey);
+
     if (isLoading) return <Loader testId="boardPosts-loading_loader" />;
     if (!data || isError) return <ApiError size="xl" styles="mt-8" />;
     if (isEmpty) return <EmptyList title="No posts, add some friends!" />;

@@ -10,10 +10,12 @@ export const useRemove = () => {
     const remove = (id: number) => {
         if (mutation.isLoading || !user) return;
 
+        console.log('Refetching: ', { user: user.id });
+
         mutation.mutate(id, {
             onSuccess: () => {
                 queryClient.invalidateQueries(['posts', 'all']);
-                queryClient.invalidateQueries(['posts', { user: user.id }]);
+                queryClient.invalidateQueries(['posts', 'own', { user: user.id }]);
             },
         });
     };
