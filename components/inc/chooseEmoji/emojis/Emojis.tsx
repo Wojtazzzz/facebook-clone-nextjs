@@ -2,11 +2,14 @@ import * as ReactTooltip from '@radix-ui/react-tooltip';
 import { Emoji } from './Emoji';
 
 interface EmojisProps {
+    addToContent: (emoji: string) => void;
     close: () => void;
 }
 
-export const Emojis = ({ close }: EmojisProps) => {
-    const EmojisComponents = availableEmojis.map((emoji, i) => <Emoji key={i} emoji={emoji} />);
+export const Emojis = ({ addToContent, close }: EmojisProps) => {
+    const EmojisComponents = availableEmojis.map((emoji, i) => (
+        <Emoji key={i} addToContent={addToContent} emoji={emoji} />
+    ));
 
     return (
         <ReactTooltip.Portal>

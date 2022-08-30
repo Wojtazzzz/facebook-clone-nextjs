@@ -1,5 +1,5 @@
-import { ICommentPayload } from '@utils/types';
-import { FormikHelpers } from 'formik';
+import type { ICommentPayload } from '@utils/types';
+import type { FormikHelpers } from 'formik';
 import { Form as CreateForm } from '../../inc/Form';
 import { useCreate } from './useCreate';
 

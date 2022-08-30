@@ -91,7 +91,7 @@ export type IChatMessageStatus = 'SENDING' | 'DELIVERED' | 'READ';
 
 export type IChatMessage = {
     id: number | string;
-    text: string;
+    content: string;
     is_received: boolean;
     status: IChatMessageStatus;
     read_at: string | undefined;
@@ -143,7 +143,7 @@ export type ILike = {
 };
 
 export type IChatMessagePayload = {
-    text: string;
+    content: string;
 };
 
 export type IPaginatedResponse<T> = {

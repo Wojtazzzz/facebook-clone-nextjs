@@ -1,15 +1,17 @@
 import type { IChatMessagePayload } from '@utils/types';
 import { useFormikContext } from 'formik';
 
-export const useAddToMessage = () => {
+export const useAddEmojiToComment = () => {
     const { setValues } = useFormikContext<IChatMessagePayload>();
 
-    const addToMessage = (emoji: string) => {
+    const addToComment = (emoji: string) => {
         setValues((prevState) => ({
             ...prevState,
-            text: prevState.text + emoji,
+            content: prevState.content + emoji,
         }));
     };
 
-    return { addToMessage };
+    return {
+        addToComment,
+    };
 };

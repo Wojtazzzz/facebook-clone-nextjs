@@ -8,7 +8,15 @@ interface MessageProps extends IChatMessage {
     isLastRead: boolean;
 }
 
-export const Message = ({ senderAvatar, isLastRead, text, is_received, status, read_at, created_at }: MessageProps) => {
+export const Message = ({
+    senderAvatar,
+    isLastRead,
+    content,
+    is_received,
+    status,
+    read_at,
+    created_at,
+}: MessageProps) => {
     const ariaLabel = is_received ? 'Message received' : 'Message sent';
     const icon = getIcon(isLastRead, is_received, status);
 
@@ -16,7 +24,7 @@ export const Message = ({ senderAvatar, isLastRead, text, is_received, status, r
         <article aria-label={ariaLabel} className="w-full flex items-end">
             {is_received && <FriendAvatar profileImage={senderAvatar} />}
 
-            <Text text={text} createdAt={created_at} isReceived={is_received} />
+            <Text text={content} createdAt={created_at} isReceived={is_received} />
 
             <StatusIcon icon={icon} friendAvatar={senderAvatar} readAt={read_at} />
         </article>

@@ -15,10 +15,10 @@ export const useChat = () => {
     const error = useAppSelector((store) => store.chat.error);
 
     const mutation: IMutation = useMutation(mutationFn, {
-        onMutate: async ({ text }) => {
+        onMutate: async ({ content }) => {
             if (!friend) return;
 
-            const message = createMessage(text);
+            const message = createMessage(content);
 
             const previousMessages = queryClient.getQueryData(['chat', friend.id]);
             await queryClient.cancelQueries(['chat', friend.id]);
@@ -69,14 +69,14 @@ export const useChat = () => {
         dispatch(closeChat());
     };
 
-    const handleSendMessage = (text: string) => {
+    const handleSendMessage = (content: string) => {
         if (!friend) return;
 
         // @todo remove it, setup backend throttling
         if (mutation.isLoading) return;
 
         mutation.mutate({
-            text,
+            content,
             receiver_id: friend.id,
         });
 
@@ -101,7 +101,7 @@ type IMutation = UseMutationResult<
     AxiosResponse<any, any>,
     AxiosError<any, any>,
     {
-        text: string;
+        content: string;
         receiver_id: number;
     },
     {
@@ -110,11 +110,11 @@ type IMutation = UseMutationResult<
 >;
 type IQueryData = InfiniteData<IPaginatedResponse<IChatMessage>>;
 
-const mutationFn = (data: { text: string; receiver_id: number }) => axios.post('/api/messages', data);
-const createMessage = (text: string): IChatMessage => {
+const mutationFn = (data: { content: string; receiver_id: number }) => axios.post('/api/messages', data);
+const createMessage = (content: string): IChatMessage => {
     return {
         id: uuid(),
-        text,
+        content,
         is_received: false,
         status: 'SENDING',
         read_at: undefined,

@@ -4,8 +4,8 @@ import { clsx } from 'clsx';
 import { CommentSchema } from '@validation/CommentSchema';
 import { ValidationErrors } from './ValidationErrors';
 import { InputContent } from './InputContent';
-import { SubmitButton } from './SubmitButton';
 import type { ICommentPayload } from '@utils/types';
+import { MessagePanel } from './messagePanel/MessagePanel';
 
 interface FormProps {
     content?: string;
@@ -23,7 +23,7 @@ export const Form = ({ content = '', isLoading, isError, handleSubmit }: FormPro
             validateOnChange={false}
             onSubmit={handleSubmit}
         >
-            {({ errors }) => (
+            {({ errors, handleChange }) => (
                 <FormikForm className="w-full">
                     <div
                         className={clsx(
@@ -32,7 +32,7 @@ export const Form = ({ content = '', isLoading, isError, handleSubmit }: FormPro
                         )}
                     >
                         <InputContent isLoading={isLoading} />
-                        <SubmitButton isLoading={isLoading} />
+                        <MessagePanel isLoading={isLoading} />
                     </div>
 
                     <ValidationErrors />

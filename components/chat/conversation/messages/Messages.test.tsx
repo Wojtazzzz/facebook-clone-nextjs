@@ -30,10 +30,10 @@ describe('Messages component', () => {
 
         renderWithDefaultData(<Messages friend={friend} />);
 
-        const firstMessage = await screen.findByText(messages[0].text);
+        const firstMessage = await screen.findByText(messages[0].content);
         expect(firstMessage).toBeInTheDocument();
 
-        const fourteenthMessage = await screen.findByText(messages[14].text);
+        const fourteenthMessage = await screen.findByText(messages[14].content);
         expect(fourteenthMessage).toBeInTheDocument();
     });
 

@@ -1,4 +1,4 @@
-import { ActionButton } from '../ActionButton';
+import { ActionButton } from './ActionButton';
 
 interface EditActionProps {
     isEditModeActive: boolean;

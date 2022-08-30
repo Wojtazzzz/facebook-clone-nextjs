@@ -6,7 +6,7 @@ import FriendJson from '@mocks/user/johnDoe.json';
 import { IChatMessage } from '@utils/types';
 
 describe('Message component', () => {
-    const { id, text, status, read_at, created_at } = MessagesFirstPageJson.data[0] as IChatMessage;
+    const { id, content, status, read_at, created_at } = MessagesFirstPageJson.data[0] as IChatMessage;
     const friend = FriendJson;
 
     it('Sent message has properly aria-label', () => {
@@ -14,7 +14,7 @@ describe('Message component', () => {
             <Message
                 isLastRead={false}
                 id={id}
-                text={text}
+                content={content}
                 is_received={false}
                 status={status}
                 read_at={read_at}
@@ -33,7 +33,7 @@ describe('Message component', () => {
             <Message
                 isLastRead={false}
                 id={id}
-                text={text}
+                content={content}
                 is_received={true}
                 status={status}
                 read_at={read_at}
@@ -52,7 +52,7 @@ describe('Message component', () => {
             <Message
                 isLastRead={false}
                 id={id}
-                text={text}
+                content={content}
                 is_received={false}
                 status={status}
                 read_at={read_at}
@@ -61,7 +61,7 @@ describe('Message component', () => {
             />
         );
 
-        const message = screen.getByText(text);
+        const message = screen.getByText(content);
 
         expect(message).toHaveClass('ml-auto');
         expect(message).toHaveClass('bg-primary');
@@ -72,7 +72,7 @@ describe('Message component', () => {
             <Message
                 isLastRead={false}
                 id={id}
-                text={text}
+                content={content}
                 is_received={true}
                 status={status}
                 read_at={read_at}
@@ -81,7 +81,7 @@ describe('Message component', () => {
             />
         );
 
-        const message = screen.getByText(text);
+        const message = screen.getByText(content);
 
         expect(message).not.toHaveClass('ml-auto');
         expect(message).toHaveClass('bg-dark-100');
@@ -92,7 +92,7 @@ describe('Message component', () => {
             <Message
                 isLastRead={true}
                 id={id}
-                text={text}
+                content={content}
                 is_received={false}
                 status={status}
                 read_at={read_at}
@@ -111,7 +111,7 @@ describe('Message component', () => {
             <Message
                 isLastRead={true}
                 id={id}
-                text={text}
+                content={content}
                 is_received={false}
                 status={status}
                 read_at={read_at}
@@ -130,7 +130,7 @@ describe('Message component', () => {
             <Message
                 isLastRead={false}
                 id={id}
-                text={text}
+                content={content}
                 is_received={false}
                 status={status}
                 read_at={read_at}
@@ -149,7 +149,7 @@ describe('Message component', () => {
             <Message
                 isLastRead={false}
                 id={id}
-                text={text}
+                content={content}
                 is_received={false}
                 status="DELIVERED"
                 read_at={read_at}
@@ -168,7 +168,7 @@ describe('Message component', () => {
             <Message
                 isLastRead={false}
                 id={id}
-                text={text}
+                content={content}
                 is_received={false}
                 status="SENDING"
                 read_at={read_at}

@@ -3,9 +3,11 @@ import { useState } from 'react';
 import { Emojis } from './emojis/Emojis';
 import { TriggerButton } from './TriggerButton';
 
-interface ChooseEmojiProps {}
+interface ChooseEmojiProps {
+    addToContent: (emoji: string) => void;
+}
 
-export const ChooseEmoji = ({}: ChooseEmojiProps) => {
+export const ChooseEmoji = ({ addToContent }: ChooseEmojiProps) => {
     const [isOpen, setIsOpen] = useState(false);
 
     const handleOpen = () => setIsOpen(true);
@@ -14,7 +16,7 @@ export const ChooseEmoji = ({}: ChooseEmojiProps) => {
     return (
         <ReactTooltip.Root open={isOpen} disableHoverableContent={true} delayDuration={0}>
             <TriggerButton open={handleOpen} />
-            <Emojis close={handleClose} />
+            <Emojis addToContent={addToContent} close={handleClose} />
         </ReactTooltip.Root>
     );
 };

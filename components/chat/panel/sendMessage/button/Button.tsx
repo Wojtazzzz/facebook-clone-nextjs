@@ -6,7 +6,7 @@ import type { IChatMessagePayload } from '@utils/types';
 export const Button = () => {
     const { values } = useFormikContext<IChatMessagePayload>();
 
-    if (!!values.text) {
+    if (!!values.content) {
         return <SendMessageButton />;
     }
 

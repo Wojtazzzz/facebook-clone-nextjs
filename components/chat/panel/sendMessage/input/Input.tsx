@@ -1,36 +1,32 @@
-import { useFormikContext } from 'formik';
 import clsx from 'clsx';
-import { ChooseEmoji } from './chooseEmoji/ChooseEmoji';
-
-type MessageForm = {
-    text: string;
-};
+import { ChooseEmoji } from '../../../../inc/chooseEmoji/ChooseEmoji';
+import { useMessageContext } from './useMessageContext';
 
 export const Input = () => {
-    const { values, handleBlur, handleChange } = useFormikContext<MessageForm>();
+    const { content, handleBlur, handleChange, addEmojiToMessage } = useMessageContext();
 
     return (
         <div
             data-testid="message-input-container"
             className={clsx(
                 'h-9 flex justify-between items-center rounded-[20px] bg-dark-100 transition-width px-2',
-                !!values.text.length ? 'w-52' : 'w-36'
+                !!content.length ? 'w-52' : 'w-36'
             )}
         >
             <input
                 autoFocus
                 aria-label="Message input"
                 type="text"
-                name="text"
+                name="content"
                 placeholder="Aa"
-                value={values.text}
+                value={content}
                 autoComplete="off"
                 className="w-full h-9 bg-transparent text-light-100 focus:outline-none"
                 onChange={handleChange}
                 onBlur={handleBlur}
             />
 
-            <ChooseEmoji />
+            <ChooseEmoji addToContent={addEmojiToMessage} />
         </div>
     );
 };

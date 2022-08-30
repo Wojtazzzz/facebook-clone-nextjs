@@ -9,13 +9,13 @@ import type { IChatMessagePayload } from '@utils/types';
 export const SendMessage = () => {
     const { sendMessage } = useChat();
 
-    const handleSendMessage: IHandleSendMessage = ({ text }, { resetForm }) => {
-        sendMessage(text);
+    const handleSendMessage: IHandleSendMessage = ({ content }, { resetForm }) => {
+        sendMessage(content);
         resetForm();
     };
 
     return (
-        <Formik initialValues={{ text: '' }} validationSchema={SendMessageSchema} onSubmit={handleSendMessage}>
+        <Formik initialValues={{ content: '' }} validationSchema={SendMessageSchema} onSubmit={handleSendMessage}>
             <Form data-testid="sendMessage-form" className="flex items-center gap-2">
                 <Input />
                 <Button />
