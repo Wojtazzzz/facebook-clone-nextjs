@@ -6,6 +6,7 @@ import ChatReducer from '@redux/slices/ChatSlice';
 import MessengerReducer from '@redux/slices/MessengerSlice';
 import NotificationsReducer from '@redux/slices/NotificationsSlice';
 import CreatePostModalReducer from '@redux/slices/CreatePostModalSlice';
+import AlertModalReducer from '@redux/slices/AlertModalSlice';
 
 export const generateStore = () =>
     configureStore({
@@ -16,6 +17,7 @@ export const generateStore = () =>
             messenger: MessengerReducer,
             notifications: NotificationsReducer,
             createPostModal: CreatePostModalReducer,
+            alertModal: AlertModalReducer,
         },
     });
 

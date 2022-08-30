@@ -8,6 +8,7 @@ import { Modal as CreatePostModal } from '@components/inc/modals/createPost/Moda
 import type { ReactNode } from 'react';
 import { useAppSelector } from '@hooks/redux';
 import { useAuthMiddleware } from './useAuthMiddleware';
+import { AlertModal } from '@components/inc/AlertModal';
 
 interface AuthLayoutProps {
     children: ReactNode;
@@ -32,6 +33,7 @@ export const AuthLayout = ({ children }: AuthLayoutProps) => {
 
             <NavToggler />
             <CreatePostModal />
+            <AlertModal />
 
             {!!friend && <Chat friend={friend} />}
         </>

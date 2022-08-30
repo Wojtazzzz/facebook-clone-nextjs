@@ -49,6 +49,41 @@ Cypress.Commands.add('relogin', (id: number, path: string = '/') => {
 
 Cypress.Commands.add('friendsListItems', () => cy.get('[id="friends-list"] a[href*="/profile"]'));
 
+Cypress.Commands.add('showAlertModal', () => {
+    cy.create('Post', {
+        author_id: 1,
+    });
+
+    cy.create('Comment', 1, {
+        resource_id: 1,
+        author_id: 1,
+    });
+
+    cy.intercept('/api/user').as('user');
+    cy.intercept('/api/posts?page=1').as('posts_page_1');
+
+    cy.visit('/');
+    cy.wait('@user');
+    cy.wait('@posts_page_1');
+
+    cy.get('[id="posts-list"] article[aria-label="Post"]')
+        .first()
+        .within(() => {
+            cy.intercept('/api/posts/1/comments?page=1').as('comments_page_1');
+            cy.intercept('/api/posts/1/comments/1', { statusCode: 500 }).as('delete');
+
+            cy.get('[aria-label="Comment"]').click();
+            cy.wait('@comments_page_1');
+
+            cy.get('[data-testid="post-comments_list"]')
+                .first()
+                .within(() => {
+                    cy.get('[aria-label="Delete"]').click();
+                    cy.wait('@delete');
+                });
+        });
+});
+
 declare global {
     namespace Cypress {
         interface Chainable {
@@ -56,6 +91,7 @@ declare global {
             checkNotification(title: string, label: string, click?: boolean): Chainable<void>;
             relogin(id: number, path?: string): Chainable<void>;
             friendsListItems(): Chainable<void>;
+            showAlertModal(): Chainable<void>;
         }
     }
 }
