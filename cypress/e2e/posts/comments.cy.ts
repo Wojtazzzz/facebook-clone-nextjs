@@ -168,6 +168,46 @@ describe('Posts comments tests', () => {
         cy.get('[data-testid="post-comments_list"]').children().contains(commentContent).should('not.exist');
     });
 
+    it('click on delete button, see App Error', () => {
+        cy.create('Comment', {
+            author_id: 1,
+            resource_id: 1,
+        });
+
+        cy.intercept('/api/user').as('user');
+        cy.intercept('/api/posts?page=1').as('posts_page_1');
+
+        cy.visit('/');
+        cy.wait('@user');
+        cy.wait('@posts_page_1');
+
+        cy.get('[id="posts-list"] article[aria-label="Post"]')
+            .first()
+            .within(() => {
+                cy.intercept('/api/posts/1/comments?page=1').as('comments_page_1');
+
+                cy.get('[aria-label="Comment"]').click();
+                cy.wait('@comments_page_1');
+
+                cy.get('article[aria-label="Comment"]')
+                    .first()
+                    .within(() => {
+                        cy.intercept('/api/posts/1/comments/1', { statusCode: 500 }).as('delete');
+
+                        cy.get('button[aria-label="Delete"]').click();
+                    });
+            });
+
+        cy.get('div[role="alertdialog"]').within(() => {
+            cy.contains('App Error');
+            cy.contains('Something went wrong, please try again later.');
+
+            cy.get('button[aria-label="OK"]').click();
+        });
+
+        cy.get('div[role="alertdialog"]').should('not.exist');
+    });
+
     it("cannot see 'Delete' and 'Edit' buttons on somebody's comment but see 'Like' and 'Reply' buttons", () => {
         cy.create('Comment', {
             resource_id: 1,
