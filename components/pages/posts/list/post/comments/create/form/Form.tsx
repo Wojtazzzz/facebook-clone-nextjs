@@ -8,11 +8,11 @@ interface FormProps {
 }
 
 export const Form = ({ postId }: FormProps) => {
-    const { create, isLoading, isError, error } = useCreate();
+    const { create, isLoading, isError } = useCreate();
 
     const handleSubmit = async ({ content }: ICommentPayload, { resetForm }: FormikHelpers<ICommentPayload>) => {
         create({ content, resourceId: postId }, resetForm);
     };
 
-    return <CreateForm isLoading={isLoading} isError={isError} error={error} handleSubmit={handleSubmit} />;
+    return <CreateForm isLoading={isLoading} isError={isError} handleSubmit={handleSubmit} />;
 };

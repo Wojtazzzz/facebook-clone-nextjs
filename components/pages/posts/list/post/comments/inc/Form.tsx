@@ -2,7 +2,7 @@ import { Formik, Form as FormikForm } from 'formik';
 import type { FormikHelpers } from 'formik';
 import { clsx } from 'clsx';
 import { CommentSchema } from '@validation/CommentSchema';
-import { Errors } from './Errors';
+import { ValidationErrors } from './ValidationErrors';
 import { InputContent } from './InputContent';
 import { SubmitButton } from './SubmitButton';
 import type { ICommentPayload } from '@utils/types';
@@ -11,11 +11,10 @@ interface FormProps {
     content?: string;
     isLoading: boolean;
     isError: boolean;
-    error: unknown;
     handleSubmit: ({ content }: ICommentPayload, { resetForm }: FormikHelpers<ICommentPayload>) => void;
 }
 
-export const Form = ({ content = '', isLoading, isError, error, handleSubmit }: FormProps) => {
+export const Form = ({ content = '', isLoading, isError, handleSubmit }: FormProps) => {
     return (
         <Formik
             initialValues={{ content }}
@@ -36,7 +35,7 @@ export const Form = ({ content = '', isLoading, isError, error, handleSubmit }: 
                         <SubmitButton isLoading={isLoading} />
                     </div>
 
-                    <Errors error={isError && error} />
+                    <ValidationErrors />
                 </FormikForm>
             )}
         </Formik>

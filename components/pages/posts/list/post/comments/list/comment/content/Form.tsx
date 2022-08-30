@@ -10,19 +10,11 @@ interface FormProps {
 }
 
 export const Form = ({ content, postId, commentId, closeEditMode }: FormProps) => {
-    const { update, isLoading, isError, error } = useUpdate();
+    const { update, isLoading, isError } = useUpdate();
 
     const handleSubmit = ({ content }: ICommentPayload) => {
         update({ content, resourceId: postId, commentId }, closeEditMode);
     };
 
-    return (
-        <UpdateForm
-            content={content}
-            isLoading={isLoading}
-            isError={isError}
-            error={error}
-            handleSubmit={handleSubmit}
-        />
-    );
+    return <UpdateForm content={content} isLoading={isLoading} isError={isError} handleSubmit={handleSubmit} />;
 };

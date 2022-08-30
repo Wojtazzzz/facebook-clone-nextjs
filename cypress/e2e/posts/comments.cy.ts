@@ -116,10 +116,13 @@ describe('Posts comments tests', () => {
                 cy.get('[aria-label="Write a comment"]').type(`${newCommentContent}{enter}`);
 
                 cy.wait('@create');
-
-                cy.contains('Request failed with status code 500').should('be.visible');
                 cy.get('article[aria-label="Comment"]').should('have.length', 1);
             });
+
+        cy.get('div[role="alertdialog"]').within(() => {
+            cy.contains('App Error');
+            cy.contains('Something went wrong, please try again later.');
+        });
     });
 
     it('click on delete button, comment dissapear from list', () => {
@@ -201,11 +204,7 @@ describe('Posts comments tests', () => {
         cy.get('div[role="alertdialog"]').within(() => {
             cy.contains('App Error');
             cy.contains('Something went wrong, please try again later.');
-
-            cy.get('button[aria-label="OK"]').click();
         });
-
-        cy.get('div[role="alertdialog"]').should('not.exist');
     });
 
     it("cannot see 'Delete' and 'Edit' buttons on somebody's comment but see 'Like' and 'Reply' buttons", () => {
@@ -301,7 +300,7 @@ describe('Posts comments tests', () => {
             });
     });
 
-    it('click on "Edit" button, enter new comment value, submit, check that edition not impact on other comments', () => {
+    it('try to edit comment, response return server error', () => {
         cy.create('Comment', {
             author_id: 1,
             resource_id: 1,
@@ -335,9 +334,13 @@ describe('Posts comments tests', () => {
                         cy.get('[aria-label="Submit comment"]').click();
 
                         cy.wait('@update');
-                        cy.contains('Request failed with status code 500');
                     });
             });
+
+        cy.get('div[role="alertdialog"]').within(() => {
+            cy.contains('App Error');
+            cy.contains('Something went wrong, please try again later.');
+        });
     });
 
     it('list not render empty component when api return empty data', () => {
