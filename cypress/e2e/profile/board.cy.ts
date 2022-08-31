@@ -177,7 +177,7 @@ describe('Profile board tests', () => {
             cy.wait('@like');
             cy.wait('@posts_page_1');
 
-            cy.get('[data-testid="post-likes_count"]').should('contain.text', 1);
+            cy.get('[data-testid="post-likesCount"]').should('contain.text', 1);
 
             cy.intercept('/api/posts/1/comments?page=1').as('comments_page_1');
 
@@ -375,7 +375,7 @@ describe('Profile board tests', () => {
             cy.wait('@like');
             cy.wait('@posts_page_1');
 
-            cy.get('[data-testid="post-likes_count"]').should('contain.text', 1);
+            cy.get('[data-testid="post-likesCount"]').should('contain.text', 1);
 
             cy.intercept('/api/posts/1/comments?page=1').as('comments_page_1');
 
@@ -404,7 +404,7 @@ describe('Profile board tests', () => {
             cy.wait('@like');
             cy.wait('@posts_page_1');
 
-            cy.get('[data-testid="post-likes_count"]').should('contain.text', 1);
+            cy.get('[data-testid="post-likesCount"]').should('contain.text', 1);
 
             cy.intercept('/api/posts/2/comments?page=1').as('comments_page_1');
 

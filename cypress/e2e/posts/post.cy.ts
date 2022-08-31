@@ -37,7 +37,7 @@ describe('Post tests', () => {
                 cy.wait('@like');
                 cy.wait('@posts_page_1');
 
-                cy.get('[data-testid="post-likes_count"]').contains('1').should('be.visible');
+                cy.get('[data-testid="post-likesCount"]').contains('1').should('be.visible');
 
                 cy.intercept('/api/posts/1/likes').as('like');
                 cy.intercept('/api/posts?page=1').as('posts_page_1');
@@ -47,7 +47,7 @@ describe('Post tests', () => {
                 cy.wait('@like');
                 cy.wait('@posts_page_1');
 
-                cy.get('[data-testid="post-likes_count"]').should('not.exist');
+                cy.get('[data-testid="post-likesCount"]').should('not.exist');
             });
     });
 

@@ -29,7 +29,7 @@ export const Content = ({
             <span className="font-medium">{authorName}</span>
             <span>{content}</span>
 
-            <Likes commentId={commentId} contentLength={content.length} count={likesCount} />
+            {likesCount && <Likes commentId={commentId} contentLength={content.length} count={likesCount} />}
         </div>
     );
 };

@@ -1,26 +1,24 @@
 import { SpinnerLoader } from '@components/inc/SpinnerLoader';
+import type { ILike } from '@utils/types';
 import { ApiError } from './ApiError';
 import { EmptyList } from './EmptyList';
-import { Author } from './Author';
-import { useGetLikes } from './useGetLikes';
+import { Like } from './Like';
 
-interface AuthorsListProps {
-    postId: number;
+interface ListProps {
+    data: ILike[] | undefined;
+    isLoading: boolean;
+    isError: boolean;
 }
 
-const maxCount = 12;
-
-export const AuthorsList = ({ postId }: AuthorsListProps) => {
-    const { data, isLoading, isError } = useGetLikes(postId);
-
-    if (isLoading) return <SpinnerLoader testId="likes-spinner" spinnerStyles="w-4 mx-auto" />;
+export const List = ({ data, isLoading, isError }: ListProps) => {
+    if (isLoading) return <SpinnerLoader testId="tooltip-spinner" spinnerStyles="w-4 mx-auto" />;
     if (isError) return <ApiError />;
-    if (!data) return <EmptyList />;
+    if (!!!data?.length) return <EmptyList />;
 
     const LikeComponents = data.map((like, i) => {
         if (i >= maxCount) return;
 
-        return <Author key={like.id} name={like.author.name} />;
+        return <Like key={like.id} name={like.author.name} />;
     });
 
     const isMore = data.length > maxCount;
@@ -32,3 +30,5 @@ export const AuthorsList = ({ postId }: AuthorsListProps) => {
         </div>
     );
 };
+
+const maxCount = 12;

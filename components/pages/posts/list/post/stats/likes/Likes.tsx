@@ -1,6 +1,8 @@
-import * as ReactTooltip from '@radix-ui/react-tooltip';
-import { Trigger } from '@components/pages/posts/list/post/stats/likes/Trigger';
-import { Tooltip } from '@components/pages/posts/list/post/stats/likes/tooltip/Tooltip';
+import { LikesTooltip } from '@components/inc/likesTooltip/LikesTooltip';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { useGetPostLikes } from './useGetPostLikes';
+import { useTooltip } from '@hooks/useTooltip';
 
 interface LikesProps {
     postId: number;
@@ -8,14 +10,21 @@ interface LikesProps {
 }
 
 export const Likes = ({ postId, count }: LikesProps) => {
-    if (!!!count) {
-        return null;
-    }
+    const { isOpen, toggle } = useTooltip();
+
+    const { data, isLoading, isError } = useGetPostLikes(postId, {
+        enabled: isOpen,
+    });
 
     return (
-        <ReactTooltip.Root delayDuration={300}>
-            <Trigger count={count} />
-            <Tooltip postId={postId} />
-        </ReactTooltip.Root>
+        <LikesTooltip isOpen={isOpen} toggle={toggle} data={data} isLoading={isLoading} isError={isError}>
+            <div data-testid="post-likesTrigger" className="flex items-center gap-2">
+                <div className="w-5 h-5 flex justify-center items-center bg-primary rounded-full">
+                    <FontAwesomeIcon icon={faThumbsUp} className="text-xs text-white" />
+                </div>
+
+                <span data-testid="post-likesCount">{count}</span>
+            </div>
+        </LikesTooltip>
     );
 };

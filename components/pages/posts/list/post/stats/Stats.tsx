@@ -17,7 +17,7 @@ export const Stats = ({ postId, likesCount, commentsCount, toggleCommentsActive 
 
     return (
         <div className="w-full flex items-center text-light-100 border-b-2 border-b-dark-100 p-3">
-            <Likes postId={postId} count={likesCount} />
+            {likesCount && <Likes postId={postId} count={likesCount} />}
             <Comments count={commentsCount} toggleCommentsActive={toggleCommentsActive} />
         </div>
     );
