@@ -23,7 +23,7 @@ export const Form = ({ content = '', isLoading, isError, handleSubmit }: FormPro
             validateOnChange={false}
             onSubmit={handleSubmit}
         >
-            {({ errors, handleChange }) => (
+            {({ errors }) => (
                 <FormikForm className="w-full">
                     <div
                         className={clsx(

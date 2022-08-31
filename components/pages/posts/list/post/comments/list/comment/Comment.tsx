@@ -1,20 +1,22 @@
 import { useState } from 'react';
-import type { IUser } from '@utils/types';
+import type { IComment } from '@utils/types';
 import { Author } from './Author';
 import { Panel } from './Panel';
 import { Date } from './Date';
 import { Content } from './content/Content';
 
-interface CommentProps {
-    id: number;
-    content: string;
-    author: IUser;
-    resource_id: number;
-    is_edited: boolean;
-    created_at: string;
-}
+interface CommentProps extends IComment {}
 
-export const Comment = ({ id, content, author, resource_id, created_at, is_edited }: CommentProps) => {
+export const Comment = ({
+    id,
+    content,
+    author,
+    resource_id,
+    is_edited,
+    is_liked,
+    likes_count,
+    created_at,
+}: CommentProps) => {
     const [isEditModeActive, setIsEditModeActive] = useState(false);
 
     const handleToggleIsEditModeActive = () => setIsEditModeActive((prevState) => !prevState);
@@ -26,6 +28,7 @@ export const Comment = ({ id, content, author, resource_id, created_at, is_edite
 
             <div className="w-full flex flex-col gap-1">
                 <Content
+                    likesCount={likes_count}
                     isEditModeActive={isEditModeActive}
                     content={content}
                     resourceId={resource_id}
@@ -36,6 +39,7 @@ export const Comment = ({ id, content, author, resource_id, created_at, is_edite
 
                 <div className="flex gap-2 pl-3">
                     <Panel
+                        isLiked={is_liked}
                         postId={resource_id}
                         commentId={id}
                         authorId={author.id}

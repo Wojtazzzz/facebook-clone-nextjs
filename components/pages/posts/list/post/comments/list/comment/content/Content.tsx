@@ -1,3 +1,4 @@
+import { Likes } from './likes/Likes';
 import { Form } from './Form';
 
 interface ContentProps {
@@ -5,6 +6,7 @@ interface ContentProps {
     content: string;
     resourceId: number;
     commentId: number;
+    likesCount: number;
     authorName: string;
     closeEditMode: () => void;
 }
@@ -15,6 +17,7 @@ export const Content = ({
     authorName,
     resourceId,
     commentId,
+    likesCount,
     closeEditMode,
 }: ContentProps) => {
     if (isEditModeActive) {
@@ -22,9 +25,11 @@ export const Content = ({
     }
 
     return (
-        <div className="w-fit flex flex-col bg-dark-100 text-sm text-light-200 rounded-3xl py-2 px-3">
+        <div className="w-fit flex flex-col bg-dark-100 text-sm text-light-200 relative rounded-3xl py-2 px-3">
             <span className="font-medium">{authorName}</span>
             <span>{content}</span>
+
+            <Likes commentId={commentId} contentLength={content.length} count={likesCount} />
         </div>
     );
 };

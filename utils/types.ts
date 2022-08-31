@@ -84,6 +84,8 @@ export type IComment = {
     resource_id: number;
     resource: 'POST' | 'COMMENT' | 'SALE';
     is_edited: boolean;
+    is_liked: boolean;
+    likes_count: number;
     created_at: string;
 };
 
