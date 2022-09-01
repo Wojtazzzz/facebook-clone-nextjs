@@ -243,8 +243,6 @@ describe('Posts settings tests', () => {
                 cy.get('[aria-label="Settings"]').should('not.exist');
             });
 
-        cy.wait('@posts_page_1');
-
         cy.get('[id="posts-list"] article[aria-label="Post"]').should('have.length', 2);
 
         cy.visit('/profile/1');

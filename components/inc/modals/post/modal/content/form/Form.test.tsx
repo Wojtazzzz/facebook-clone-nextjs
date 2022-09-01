@@ -2,7 +2,7 @@ import { mock } from '@libs/nock';
 import RootUserJson from '@mocks/user/root.json';
 import PostsFirstPageJson from '@mocks/posts/firstPage.json';
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
-import { Form } from '@components/inc/modals/createPost/form/Form';
+import { Form } from './Form';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { generateFile } from '@utils/tests/generateFile';
@@ -67,34 +67,12 @@ describe('Form component', () => {
         expect(emptyPostValidationMessage).toBeInTheDocument();
     });
 
-    it('render loader when request called', async () => {
-        mock({
-            path: '/api/posts',
-            status: 201,
-            method: 'post',
-        });
-
-        const user = userEvent.setup();
-
-        renderWithDefaultData(<Form />);
-
-        const input = screen.getByLabelText('Post content');
-        const submitButton = screen.getByLabelText('Create post');
-
-        await user.type(input, 'Test Post');
-        await user.click(submitButton);
-
-        const loader = screen.getByTestId('createPost-loader');
-
-        expect(loader).toBeInTheDocument();
-    });
-
     it('render input file when click on render button', async () => {
         const user = userEvent.setup();
 
         renderWithDefaultData(<Form />);
 
-        const renderButton = screen.getByLabelText('Show input file');
+        const renderButton = screen.getByLabelText('Show files uploader');
 
         await user.click(renderButton);
 
@@ -109,7 +87,7 @@ describe('Form component', () => {
 
         renderWithDefaultData(<Form />);
 
-        const renderButton = screen.getByLabelText('Show input file');
+        const renderButton = screen.getByLabelText('Show files uploader');
         await user.click(renderButton);
 
         const inputFile = screen.getByLabelText('Images input');
@@ -126,7 +104,7 @@ describe('Form component', () => {
 
         renderWithDefaultData(<Form />);
 
-        const renderButton = screen.getByLabelText('Show input file');
+        const renderButton = screen.getByLabelText('Show files uploader');
         await user.click(renderButton);
 
         const inputFile = screen.getByLabelText('Images input');
@@ -148,7 +126,7 @@ describe('Form component', () => {
 
         renderWithDefaultData(<Form />);
 
-        const renderButton = screen.getByLabelText('Show input file');
+        const renderButton = screen.getByLabelText('Show files uploader');
         await user.click(renderButton);
 
         const inputFile = screen.getByLabelText('Images input');
@@ -173,7 +151,7 @@ describe('Form component', () => {
 
         renderWithDefaultData(<Form />);
 
-        const renderButton = screen.getByLabelText('Show input file');
+        const renderButton = screen.getByLabelText('Show files uploader');
         await user.click(renderButton);
 
         const inputFile = screen.getByLabelText('Images input');
@@ -201,7 +179,7 @@ describe('Form component', () => {
 
         renderWithDefaultData(<Form />);
 
-        const renderButton = screen.getByLabelText('Show input file');
+        const renderButton = screen.getByLabelText('Show files uploader');
         await user.click(renderButton);
 
         const inputFile = screen.getByLabelText('Images input');
@@ -240,7 +218,7 @@ describe('Form component', () => {
 
         renderWithDefaultData(<Form />);
 
-        const renderButton = screen.getByLabelText('Show input file');
+        const renderButton = screen.getByLabelText('Show files uploader');
         await user.click(renderButton);
 
         const inputFile = screen.getByLabelText('Images input');

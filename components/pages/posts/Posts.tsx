@@ -1,10 +1,10 @@
-import { CreatePostModal } from '@components/pages/posts/createPostModal/CreatePostModal';
 import { List } from '@components/pages/posts/list/List';
 import { ScrollToTop } from './ScrollToTop';
 import { useScroll } from '@hooks/useScroll';
+import { CreatePost } from '@components/inc/modals/post/createPost/CreatePost';
 
 export const Posts = () => {
-    const { ref, scrollDistance, scroll } = useScroll();
+    const { ref, ...rest } = useScroll();
 
     return (
         <div
@@ -12,10 +12,9 @@ export const Posts = () => {
             id="posts-list"
             className="max-w-[700px] h-screen flex flex-col gap-4 overflow-auto scroll-smooth scrollbar-none text-black mx-auto p-5"
         >
-            <CreatePostModal />
+            <CreatePost />
             <List />
-
-            <ScrollToTop scrollDistance={scrollDistance} scroll={scroll} />
+            <ScrollToTop {...rest} />
         </div>
     );
 };

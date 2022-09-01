@@ -1,16 +1,13 @@
 import { useAuth } from '@hooks/useAuth';
-import { useAppDispatch } from '@hooks/redux';
-import { Loader } from '@components/pages/posts/createPostModal/Loader';
+import { Loader } from './Loader';
 import { Avatar } from '@components/inc/Avatar';
-import { openModal } from '@redux/slices/CreatePostModalSlice';
+import { useCreatePostModal } from '../useCreatePostModal';
 
-export const CreatePostModal = () => {
-    const dispatch = useAppDispatch();
+export const CreatePost = () => {
     const { user } = useAuth();
+    const { open } = useCreatePostModal();
 
-    const handleOpenModal = () => dispatch(openModal());
-
-    if (!user) return <Loader testId="createPostModal-loaders" />;
+    if (!user) return <Loader />;
 
     const { name, first_name, profile_image } = user;
 
@@ -19,9 +16,9 @@ export const CreatePostModal = () => {
             <Avatar size={58} src={profile_image} alt={name} />
 
             <button
-                aria-label="Show create post modal"
+                aria-label="Create a post"
                 className="w-full bg-dark-100 text-light-100 text-left hover:opacity-70 rounded-3xl cursor-pointer px-3"
-                onClick={handleOpenModal}
+                onClick={open}
             >
                 What&apos;s on your mind, {first_name}?
             </button>

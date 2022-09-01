@@ -3,7 +3,7 @@ import { axios } from '@libs/axios';
 import type { IPostPayload } from '@utils/types';
 import { useAuth } from '@hooks/useAuth';
 
-export const useCreate = () => {
+export const useCreatePost = () => {
     const queryClient = useQueryClient();
     const mutation = useMutation(mutationFn);
     const { user } = useAuth();
@@ -19,7 +19,7 @@ export const useCreate = () => {
         mutation.mutate(formData, {
             onSuccess: () => {
                 queryClient.invalidateQueries(['posts', 'all']);
-                queryClient.invalidateQueries(['posts', 'OWN', user.id]);
+                queryClient.invalidateQueries(['posts', 'own', user.id]);
                 onSuccess();
             },
         });

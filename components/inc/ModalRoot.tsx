@@ -1,15 +1,14 @@
 import { useKey } from '@hooks/useKey';
-
 import ReactModal from 'react-modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { RoundedButton } from '@components/inc/RoundedButton';
-
 import type { ReactNode } from 'react';
-
 import { modalStyles } from '@styles/modalStyles';
 
-interface ModalProps {
+ReactModal.setAppElement('body');
+
+interface ModalRootProps {
     label: string;
     isOpen: boolean;
     title: string;
@@ -17,9 +16,7 @@ interface ModalProps {
     children: ReactNode;
 }
 
-ReactModal.setAppElement('body');
-
-export const Modal = ({ label, isOpen, title, closeModal, children }: ModalProps) => {
+export const ModalRoot = ({ label, isOpen, title, closeModal, children }: ModalRootProps) => {
     useKey('Escape', closeModal);
 
     return (

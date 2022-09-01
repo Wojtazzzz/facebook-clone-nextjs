@@ -18,17 +18,17 @@ describe('Create post tests', () => {
         cy.visit('/');
         cy.wait('@user');
 
-        cy.get('button[aria-label="Show create post modal"]').click();
+        cy.get('button[aria-label="Create a post"]').click();
         cy.get('[aria-label="Create post modal"]').should('be.visible');
 
         cy.intercept('/api/posts').as('create');
         cy.intercept('/api/posts?page=1').as('posts_page_1');
 
-        cy.get('button[aria-label="Show input file"]').click();
+        cy.get('button[aria-label="Show files uploader"]').click();
         cy.get('[aria-label="Post content"]').type(newPostContent);
         cy.get('input[type=file]').attachFile('/postImage1.jpg');
 
-        cy.get('ul > h5').contains('Uploaded files: 1');
+        cy.get('h5').contains('Uploaded files: 1');
         cy.get('ul').contains('postImage1.jpg').should('be.visible');
 
         cy.get('button[aria-label="Create post"]').click();
@@ -49,7 +49,7 @@ describe('Create post tests', () => {
         cy.visit('/');
         cy.wait('@user');
 
-        cy.get('button[aria-label="Show create post modal"]').click();
+        cy.get('button[aria-label="Create a post"]').click();
 
         cy.get('[aria-label="Create post modal"]').within(() => {
             cy.get('button[aria-label="Create post"]').click();
@@ -73,15 +73,15 @@ describe('Create post tests', () => {
         cy.visit('/');
         cy.wait('@user');
 
-        cy.get('button[aria-label="Show create post modal"]').click();
+        cy.get('button[aria-label="Create a post"]').click();
 
         cy.intercept('/api/posts', { statusCode: 500 }).as('create');
 
-        cy.get('button[aria-label="Show input file"]').click();
+        cy.get('button[aria-label="Show files uploader"]').click();
         cy.get('[aria-label="Post content"]').type(newPostContent);
         cy.get('input[type=file]').attachFile('/postImage1.jpg');
 
-        cy.get('ul > h5').contains('Uploaded files: 1');
+        cy.get('h5').contains('Uploaded files: 1');
         cy.get('ul').contains('postImage1.jpg').should('be.visible');
 
         cy.get('button[aria-label="Create post"]').click();
@@ -100,7 +100,7 @@ describe('Create post tests', () => {
         cy.visit('/');
         cy.wait('@user');
 
-        cy.get('button[aria-label="Show create post modal"]').click();
+        cy.get('button[aria-label="Create a post"]').click();
 
         cy.intercept('/api/posts').as('create');
         cy.intercept('/api/posts?page=1').as('posts_page_1');
@@ -128,12 +128,12 @@ describe('Create post tests', () => {
         cy.visit('/');
         cy.wait('@user');
 
-        cy.get('button[aria-label="Show create post modal"]').click();
+        cy.get('button[aria-label="Create a post"]').click();
 
         cy.intercept('/api/posts').as('create');
         cy.intercept('/api/posts?page=1').as('posts_page_1');
 
-        cy.get('button[aria-label="Show input file"]').click();
+        cy.get('button[aria-label="Show files uploader"]').click();
         cy.get('input[type=file]').attachFile([
             '/postImage1.jpg',
             '/postImage2.jpg',
@@ -164,12 +164,12 @@ describe('Create post tests', () => {
         cy.visit('/');
         cy.wait('@user');
 
-        cy.get('button[aria-label="Show create post modal"]').click();
+        cy.get('button[aria-label="Create a post"]').click();
 
         cy.intercept('/api/posts').as('create');
         cy.intercept('/api/posts?page=1').as('posts_page_1');
 
-        cy.get('button[aria-label="Show input file"]').click();
+        cy.get('button[aria-label="Show files uploader"]').click();
         cy.get('input[type=file]').attachFile([
             '/postImage1.jpg',
             '/postImage2.jpg',
@@ -178,7 +178,7 @@ describe('Create post tests', () => {
             '/postImage5.jpg',
         ]);
 
-        cy.get('[aria-label="List of uploaded images"]').within(() => {
+        cy.get('[data-testid="uploaded-files"]').within(() => {
             cy.contains('Uploaded files: 5');
             cy.contains('postImage1.jpg').should('be.visible');
             cy.contains('postImage2.jpg').should('be.visible');
@@ -190,7 +190,7 @@ describe('Create post tests', () => {
         cy.get(`button[aria-label="Remove postImage3.jpg from updated files list"]`).click();
         cy.get(`button[aria-label="Remove postImage5.jpg from updated files list"]`).click();
 
-        cy.get('[aria-label="List of uploaded images"]').within(() => {
+        cy.get('[data-testid="uploaded-files"]').within(() => {
             cy.contains('Uploaded files: 3');
             cy.contains('postImage1.jpg').should('be.visible');
             cy.contains('postImage2.jpg').should('be.visible');
@@ -220,7 +220,7 @@ describe('Create post tests', () => {
         cy.visit('/');
         cy.wait('@user');
 
-        cy.get('button[aria-label="Show create post modal"]').click();
+        cy.get('button[aria-label="Create a post"]').click();
 
         cy.get('[aria-label="Create post modal"]').should('be.visible');
 
@@ -235,7 +235,7 @@ describe('Create post tests', () => {
         cy.visit('/');
         cy.wait('@user');
 
-        cy.get('button[aria-label="Show create post modal"]').click();
+        cy.get('button[aria-label="Create a post"]').click();
 
         cy.get('[aria-label="Create post modal"]').should('be.visible');
 

@@ -48,7 +48,7 @@ function isPostListType(value: string): value is IPostType {
 const getQueryKey = (type: IPostType, userId: number) => {
     switch (type) {
         case 'OWN':
-            return ['posts', 'own', { user: userId }];
+            return ['posts', 'own', userId];
 
         case 'HIDDEN':
             return ['posts', 'hidden'];

@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import { useAuth } from '@hooks/useAuth';
-import { CreatePost } from '@components/pages/profile/board/CreatePost';
 import { ListSwitcher } from '@components/pages/profile/board/ListSwitcher';
 import { Posts } from '@components/pages/profile/board/Posts';
+import { CreatePost } from '@components/inc/modals/post/createPost/CreatePost';
 
 interface BoardProps {
     userId: number;
 }
 
 export const Board = ({ userId }: BoardProps) => {
-    const [queryKey, setQueryKey] = useState<unknown[]>(['posts', 'own', { user: userId }]);
+    const [queryKey, setQueryKey] = useState<unknown[]>(['posts', 'own', userId]);
     const [path, setPath] = useState(`/api/users/${userId}/posts`);
     const { user } = useAuth();
 

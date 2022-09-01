@@ -32,7 +32,7 @@ function checkIfFilesAreCorrectType(files?: File[]) {
     return valid;
 }
 
-export const PostSchema = Yup.object().shape(
+export const PostCreateSchema = Yup.object().shape(
     {
         content: Yup.string()
             .nullable()

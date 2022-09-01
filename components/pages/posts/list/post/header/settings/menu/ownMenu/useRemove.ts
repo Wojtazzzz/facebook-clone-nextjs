@@ -13,7 +13,7 @@ export const useRemove = () => {
         mutation.mutate(id, {
             onSuccess: () => {
                 queryClient.invalidateQueries(['posts', 'all']);
-                queryClient.invalidateQueries(['posts', 'OWN', user.id]);
+                queryClient.invalidateQueries(['posts', 'own', user.id]);
             },
         });
     };

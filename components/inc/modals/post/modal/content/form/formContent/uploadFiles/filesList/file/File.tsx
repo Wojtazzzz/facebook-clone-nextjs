@@ -1,20 +1,16 @@
-import { useFormikContext } from 'formik';
-
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-import type { IPostPayload } from '@utils/types';
+import { useRemoveFile } from './useRemoveFile';
 
 interface FileProps {
     file: File;
 }
 
 export const File = ({ file }: FileProps) => {
-    const { values, setFieldValue } = useFormikContext<IPostPayload>();
+    const { remove } = useRemoveFile();
 
     const handleRemove = () => {
-        const newImages = values.images.filter((img) => img !== file);
-        setFieldValue('images', newImages);
+        remove(file);
     };
 
     return (

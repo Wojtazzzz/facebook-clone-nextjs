@@ -1,33 +1,26 @@
-import { useFormikContext } from 'formik';
-
 import Dropzone from 'react-dropzone';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImages } from '@fortawesome/free-solid-svg-icons';
-import { CloseButton } from '@components/inc/modals/createPost/form/fileDrop/CloseButton';
-
-import type { IPostPayload } from '@utils/types';
+import { CloseButton } from './CloseButton';
+import { useUpload } from './useUpload';
 
 interface FileDropProps {
-    handleClose: () => void;
+    close: () => void;
 }
 
-export const FileDrop = ({ handleClose }: FileDropProps) => {
-    const { values, setFieldValue } = useFormikContext<IPostPayload>();
+export const FileDrop = ({ close }: FileDropProps) => {
+    const { onDrop, cancelUpload } = useUpload();
 
-    const handleCancelUpload = () => {
-        handleClose();
-        setFieldValue('images', []);
-    };
-
-    const handleDrop = (acceptedFiles: File[]) => {
-        setFieldValue('images', [...values.images, ...acceptedFiles]);
+    const handleClose = () => {
+        cancelUpload();
+        close();
     };
 
     return (
-        <Dropzone accept="image/*" onDrop={handleDrop}>
+        <Dropzone accept="image/*" onDrop={onDrop}>
             {({ getRootProps, getInputProps }) => (
                 <section className="group relative hover:bg-dark-100 border-[1px] border-dark-100 transition-colors active:bg-dark-200 rounded-lg mb-4 py-6">
-                    <CloseButton handleClose={handleCancelUpload} />
+                    <CloseButton close={handleClose} />
 
                     <div {...getRootProps()}>
                         <input {...getInputProps()} aria-label="Images input" />

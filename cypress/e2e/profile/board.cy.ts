@@ -30,7 +30,7 @@ describe('Profile board tests', () => {
         cy.wait('@user');
         cy.wait('@posts');
 
-        cy.get('button[aria-label="Show create post modal"]').should('be.visible');
+        cy.get('button[aria-label="Create a post"]').should('be.visible');
         cy.get('[aria-label="Change list of posts"]').should('be.visible');
         cy.get('[data-testid="board-posts"] article[aria-label="Post"]').should('have.length', 2);
     });
@@ -84,7 +84,7 @@ describe('Profile board tests', () => {
         cy.get('[data-testid="board-posts"] article[aria-label="Post"]').should('not.exist');
         cy.get('img[alt="List is empty"]').should('exist');
 
-        cy.get('button[aria-label="Show create post modal"]').click();
+        cy.get('button[aria-label="Create a post"]').click();
         cy.get('[aria-label="Create post modal"]').should('be.visible');
 
         cy.intercept('/api/posts').as('store');
@@ -122,7 +122,7 @@ describe('Profile board tests', () => {
         cy.get('[data-testid="board-posts"] article[aria-label="Post"]').should('have.length', 14);
     });
 
-    it("visit friends's profile, cannot see show create post modal and list switcher components, scroll list to bottom, see new fetched posts but cannot see his hidden and saved posts", () => {
+    it("visit friends's profile, cannot see Create post and list switcher components, scroll list to bottom, see new fetched posts but cannot see his hidden and saved posts", () => {
         cy.create('User');
         cy.create('Post', 12, {
             author_id: 2,
@@ -144,7 +144,7 @@ describe('Profile board tests', () => {
         cy.wait('@user');
         cy.wait('@posts_page_1');
 
-        cy.get('button[aria-label="Show create post modal"]').should('not.exist');
+        cy.get('button[aria-label="Create a post"]').should('not.exist');
         cy.get('[aria-label="Change list of posts"]').should('not.exist');
         cy.get('[data-testid="board-posts"] article[aria-label="Post"]').should('have.length', 10);
 
