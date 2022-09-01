@@ -12,6 +12,7 @@ export const useHide = () => {
             onSuccess: () => queryClient.invalidateQueries(['posts']),
         });
     };
+
     return {
         hide,
         ...mutation,

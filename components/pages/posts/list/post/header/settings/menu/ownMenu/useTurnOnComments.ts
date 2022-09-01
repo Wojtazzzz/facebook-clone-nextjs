@@ -13,7 +13,7 @@ export const useTurnOnComments = () => {
         mutation.mutate(id, {
             onSuccess: () => {
                 queryClient.invalidateQueries(['posts', 'all']);
-                queryClient.invalidateQueries(['posts', { user: user.id }]);
+                queryClient.invalidateQueries(['posts', 'OWN', user.id]);
             },
         });
     };

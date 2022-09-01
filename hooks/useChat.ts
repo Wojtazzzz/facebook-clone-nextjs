@@ -6,7 +6,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import type { UseMutationResult } from '@tanstack/react-query';
 import type { InfiniteData } from '@tanstack/react-query';
 import { v4 as uuid } from 'uuid';
-import { AxiosError, AxiosResponse } from 'axios';
+import type { AxiosError, AxiosResponse } from 'axios';
 
 export const useChat = () => {
     const dispatch = useAppDispatch();

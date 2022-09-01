@@ -1,13 +1,15 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { axios } from '@libs/axios';
 import type { IPostPayload } from '@utils/types';
+import { useAuth } from '@hooks/useAuth';
 
 export const useCreate = () => {
     const queryClient = useQueryClient();
     const mutation = useMutation(mutationFn);
+    const { user } = useAuth();
 
     const create = (data: IPostPayload, onSuccess: () => void) => {
-        if (mutation.isLoading) return;
+        if (mutation.isLoading || !user) return;
 
         const formData = new FormData();
         formData.append('content', data.content);
@@ -16,8 +18,8 @@ export const useCreate = () => {
 
         mutation.mutate(formData, {
             onSuccess: () => {
-                queryClient.invalidateQueries(['posts']);
-                queryClient.invalidateQueries(['OWN']);
+                queryClient.invalidateQueries(['posts', 'all']);
+                queryClient.invalidateQueries(['posts', 'OWN', user.id]);
                 onSuccess();
             },
         });
