@@ -9,6 +9,8 @@
         "background_image": "https://picsum.photos/seed/62fbea739490a/850/350"
     },
     "resource_id": 73,
+    "likes_count": 0,
+    "is_liked": false,
     "is_edited": true,
     "created_at": "3m"
 }

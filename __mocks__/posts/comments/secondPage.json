@@ -11,6 +11,8 @@
                 "background_image": "https://picsum.photos/seed/62fd0eeebea52/850/350"
             },
             "resource_id": 73,
+            "likes_count": 0,
+            "is_liked": false,
             "is_edited": false,
             "created_at": "2m"
         },
@@ -25,6 +27,8 @@
                 "background_image": "https://picsum.photos/seed/62fd0ef1670d7/850/350"
             },
             "resource_id": 73,
+            "likes_count": 0,
+            "is_liked": false,
             "is_edited": false,
             "created_at": "2m"
         },
@@ -39,6 +43,8 @@
                 "background_image": "https://picsum.photos/seed/62fd0ef294045/850/350"
             },
             "resource_id": 73,
+            "likes_count": 0,
+            "is_liked": false,
             "is_edited": false,
             "created_at": "2m"
         },
@@ -53,6 +59,8 @@
                 "background_image": "https://picsum.photos/seed/62fd0ef4149ff/850/350"
             },
             "resource_id": 73,
+            "likes_count": 0,
+            "is_liked": false,
             "is_edited": false,
             "created_at": "2m"
         },
@@ -67,6 +75,8 @@
                 "background_image": "https://picsum.photos/seed/62fd0ef487812/850/350"
             },
             "resource_id": 73,
+            "likes_count": 0,
+            "is_liked": false,
             "is_edited": false,
             "created_at": "2m"
         },
@@ -81,6 +91,8 @@
                 "background_image": "https://picsum.photos/seed/62fd0ef5bb058/850/350"
             },
             "resource_id": 73,
+            "likes_count": 0,
+            "is_liked": false,
             "is_edited": false,
             "created_at": "2m"
         },
@@ -95,6 +107,8 @@
                 "background_image": "https://picsum.photos/seed/62fd0ef6dfbf8/850/350"
             },
             "resource_id": 73,
+            "likes_count": 0,
+            "is_liked": false,
             "is_edited": false,
             "created_at": "2m"
         },
@@ -109,6 +123,8 @@
                 "background_image": "https://picsum.photos/seed/62fd0ef859b76/850/350"
             },
             "resource_id": 73,
+            "likes_count": 0,
+            "is_liked": false,
             "is_edited": false,
             "created_at": "2m"
         },
@@ -123,6 +139,8 @@
                 "background_image": "https://picsum.photos/seed/62fd0ef917f9d/850/350"
             },
             "resource_id": 73,
+            "likes_count": 0,
+            "is_liked": false,
             "is_edited": false,
             "created_at": "2m"
         },
@@ -137,6 +155,8 @@
                 "background_image": "https://picsum.photos/seed/62fd0efa1a8ab/850/350"
             },
             "resource_id": 73,
+            "likes_count": 0,
+            "is_liked": false,
             "is_edited": false,
             "created_at": "2m"
         }

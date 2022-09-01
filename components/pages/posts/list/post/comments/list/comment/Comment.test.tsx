@@ -39,7 +39,7 @@ describe('Comment component', () => {
         expect(commentContent).toBeInTheDocument();
     });
 
-    it('show that post was edited when updated_at and created_at are not same', () => {
+    it('show that post was edited when has is_edited to true', () => {
         renderWithDefaultData(<Comment {...editedComment} />);
 
         const editedDate = screen.getByText(`${editedComment.created_at} (Edited)`);
