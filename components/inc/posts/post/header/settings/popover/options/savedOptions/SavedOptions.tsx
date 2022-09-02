@@ -1,13 +1,13 @@
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Option } from '../Option';
-import { useUnsave } from './useUnsave';
+import { useUnsavePost } from './useUnsavePost';
 
-interface SavedMenuProps {
+interface SavedOptionsProps {
     postId: number;
 }
 
-export const SavedMenu = ({ postId }: SavedMenuProps) => {
-    const { unsave, isLoading } = useUnsave();
+export const SavedOptions = ({ postId }: SavedOptionsProps) => {
+    const { unsave, isLoading } = useUnsavePost();
 
     const handleUnsave = () => {
         unsave(postId);

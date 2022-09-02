@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { axios } from '@libs/axios';
 import { useAuth } from '@hooks/useAuth';
 
-export const useRemove = () => {
+export const useRemovePost = () => {
     const queryClient = useQueryClient();
     const mutation = useMutation(mutationFn);
     const { user } = useAuth();

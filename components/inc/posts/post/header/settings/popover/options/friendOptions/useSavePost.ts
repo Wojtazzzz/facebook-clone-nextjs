@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { axios } from '@libs/axios';
 
-export const useSave = () => {
+export const useSavePost = () => {
     const mutation = useMutation(mutationFn);
 
     const save = (id: number, onSuccess: () => void) => {

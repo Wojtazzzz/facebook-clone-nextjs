@@ -1,13 +1,13 @@
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Option } from '../Option';
-import { useUnhide } from './useUnhide';
+import { useUnhidePost } from './useUnhidePost';
 
-interface HiddenMenuProps {
+interface HiddenOptionsProps {
     postId: number;
 }
 
-export const HiddenMenu = ({ postId }: HiddenMenuProps) => {
-    const { unhide, isLoading } = useUnhide();
+export const HiddenOptions = ({ postId }: HiddenOptionsProps) => {
+    const { unhide, isLoading } = useUnhidePost();
 
     const handleUnhide = () => {
         unhide(postId);

@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { axios } from '@libs/axios';
 
-export const useUnsave = () => {
+export const useUnsavePost = () => {
     const queryClient = useQueryClient();
     const mutation = useMutation(mutationFn);
 

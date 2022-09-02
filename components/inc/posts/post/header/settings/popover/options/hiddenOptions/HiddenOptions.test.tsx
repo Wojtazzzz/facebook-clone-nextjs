@@ -1,10 +1,10 @@
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { screen } from '@testing-library/react';
-import { HiddenMenu } from './HiddenMenu';
+import { HiddenOptions } from './HiddenOptions';
 
-describe('HiddenMenu component', () => {
+describe('HiddenOptions component', () => {
     it('render unhide option', () => {
-        renderWithDefaultData(<HiddenMenu postId={1} />);
+        renderWithDefaultData(<HiddenOptions postId={1} />);
 
         const unhideOption = screen.getByLabelText('Unhide');
 

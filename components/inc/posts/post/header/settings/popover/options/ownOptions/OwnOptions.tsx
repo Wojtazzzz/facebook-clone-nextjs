@@ -1,16 +1,16 @@
 import { faCircleCheck, faCommentSlash, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { Option } from '../Option';
-import { useRemove } from './useRemove';
+import { useRemovePost } from './useRemovePost';
 import { useTurnOffComments } from './useTurnOffComments';
 import { useTurnOnComments } from './useTurnOnComments';
 
-interface OwnMenuProps {
+interface OwnOptionsProps {
     postId: number;
     commenting: boolean;
 }
 
-export const OwnMenu = ({ postId, commenting }: OwnMenuProps) => {
-    const { remove, isLoading: isRemoveLoading } = useRemove();
+export const OwnOptions = ({ postId, commenting }: OwnOptionsProps) => {
+    const { remove, isLoading: isRemoveLoading } = useRemovePost();
     const { turnOffComments, isLoading: isTurnOffCommentsLoading } = useTurnOffComments();
     const { turnOnComments, isLoading: isTurnOnCommentsLoading } = useTurnOnComments();
 

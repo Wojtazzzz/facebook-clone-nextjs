@@ -1,16 +1,16 @@
 import { faBan, faSave } from '@fortawesome/free-solid-svg-icons';
 import { Option } from '../Option';
-import { useHide } from './useHide';
-import { useSave } from './useSave';
+import { useHidePost } from './useHidePost';
+import { useSavePost } from './useSavePost';
 
-interface FriendMenuProps {
+interface FriendOptionsProps {
     postId: number;
     closeMenu: () => void;
 }
 
-export const FriendMenu = ({ postId, closeMenu }: FriendMenuProps) => {
-    const { hide, isLoading: isHideLoading } = useHide();
-    const { save, isLoading: isSaveLoading } = useSave();
+export const FriendOptions = ({ postId, closeMenu }: FriendOptionsProps) => {
+    const { hide, isLoading: isHideLoading } = useHidePost();
+    const { save, isLoading: isSaveLoading } = useSavePost();
 
     const handleHidePost = () => {
         hide(postId);

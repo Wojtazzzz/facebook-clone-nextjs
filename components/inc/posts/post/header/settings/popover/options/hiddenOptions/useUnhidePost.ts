@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { axios } from '@libs/axios';
 
-export const useUnhide = () => {
+export const useUnhidePost = () => {
     const queryClient = useQueryClient();
     const mutation = useMutation(mutationFn);
 

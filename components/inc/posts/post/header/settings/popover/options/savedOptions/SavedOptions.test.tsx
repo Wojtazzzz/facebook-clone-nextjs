@@ -1,10 +1,10 @@
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { screen } from '@testing-library/react';
-import { SavedMenu } from './SavedMenu';
+import { SavedOptions } from './SavedOptions';
 
-describe('SavedMenu component', () => {
+describe('SavedOptions component', () => {
     it('render unsave option', () => {
-        renderWithDefaultData(<SavedMenu postId={1} />);
+        renderWithDefaultData(<SavedOptions postId={1} />);
 
         const unsaveOption = screen.getByLabelText('Unsave');
 

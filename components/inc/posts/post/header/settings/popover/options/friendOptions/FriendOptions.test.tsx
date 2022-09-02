@@ -1,12 +1,12 @@
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { screen } from '@testing-library/react';
-import { FriendMenu } from './FriendMenu';
+import { FriendOptions } from './FriendOptions';
 
-describe('FriendMenu component', () => {
+describe('FriendOptions component', () => {
     it('render hide and save options', () => {
         const mockCloseMenu = jest.fn();
 
-        renderWithDefaultData(<FriendMenu postId={1} closeMenu={mockCloseMenu} />);
+        renderWithDefaultData(<FriendOptions postId={1} closeMenu={mockCloseMenu} />);
 
         const hideOption = screen.getByLabelText('Hide');
         const saveOption = screen.getByLabelText('Save');

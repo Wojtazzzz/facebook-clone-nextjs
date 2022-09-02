@@ -1,10 +1,10 @@
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { screen } from '@testing-library/react';
-import { GlobalMenu } from './GlobalMenu';
+import { GlobalOptions } from './GlobalOptions';
 
-describe('GlobalMenu component', () => {
+describe('GlobalOptions component', () => {
     it('render report option which is disabled', () => {
-        renderWithDefaultData(<GlobalMenu />);
+        renderWithDefaultData(<GlobalOptions />);
 
         const reportOption = screen.getByLabelText('Report');
 
