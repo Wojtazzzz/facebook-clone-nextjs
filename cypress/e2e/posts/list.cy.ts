@@ -1,14 +1,6 @@
 import { useDatabaseMigrations } from 'cypress-laravel';
 import type { IPost } from '@cypress/support/types';
 
-const disableSmoothScroll = () => {
-    cy.document().then((document) => {
-        const node = document.createElement('style');
-        node.innerHTML = '* { scroll-behavior: inherit !important; }';
-        document.body.appendChild(node);
-    });
-};
-
 describe('Posts list tests', () => {
     useDatabaseMigrations();
 
@@ -148,8 +140,6 @@ describe('Posts list tests', () => {
     });
 
     it('see 10 posts, load more by scrolling to bottom, click on ScrollToTop component which scroll to top', () => {
-        disableSmoothScroll();
-
         cy.create('Post', 18, {
             author_id: 1,
         });
@@ -163,7 +153,8 @@ describe('Posts list tests', () => {
 
         cy.get('[id="posts-list"] article[aria-label="Post"]').should('have.length', 10);
 
-        cy.get('[id="posts-list"] article[aria-label="Post"]')
+        cy.get('[id="posts-list"]')
+            .children()
             .first()
             .then((element) => {
                 expect(element.position().top).greaterThan(0);
@@ -173,7 +164,8 @@ describe('Posts list tests', () => {
 
         cy.get('[id="posts-list"] article[aria-label="Post"]').should('have.length', 18);
 
-        cy.get('[id="posts-list"] article[aria-label="Post"]')
+        cy.get('[id="posts-list"]')
+            .children()
             .first()
             .then((element) => {
                 expect(element.position().top).lessThan(0);
@@ -184,7 +176,8 @@ describe('Posts list tests', () => {
         // wait for smooth scrolling
         cy.wait(2500);
 
-        cy.get('[id="posts-list"] article[aria-label="Post"]')
+        cy.get('[id="posts-list"]')
+            .children()
             .first()
             .then((element) => {
                 expect(element.position().top).greaterThan(0);

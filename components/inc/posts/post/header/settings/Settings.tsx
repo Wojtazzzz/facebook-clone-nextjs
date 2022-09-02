@@ -1,11 +1,10 @@
-import { useState } from 'react';
 import { useOutsideClick } from '@hooks/useOutsideClick';
-
 import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
 import { RoundedButton } from '@components/inc/RoundedButton';
 import type { IPostType } from '@utils/types';
 import { Menu } from './menu/Menu';
 import { GlobalMenu } from './menu/globalMenu/GlobalMenu';
+import { useSettings } from './useSettings';
 
 interface SettingsProps {
     postId: number;
@@ -14,12 +13,8 @@ interface SettingsProps {
 }
 
 export const Settings = ({ postId, commenting, type }: SettingsProps) => {
-    const [isActive, setIsActive] = useState(false);
-
-    const handleToggleMenuActive = () => setIsActive((prevState) => !prevState);
-    const handleCloseMenu = () => setIsActive(false);
-
-    const ref = useOutsideClick(handleCloseMenu);
+    const { isActive, open, close } = useSettings();
+    const ref = useOutsideClick(close);
 
     return (
         <div className="relative">
@@ -29,7 +24,7 @@ export const Settings = ({ postId, commenting, type }: SettingsProps) => {
                 size={8}
                 bgColor="dark-200"
                 onHover="bg-dark-100"
-                callback={handleToggleMenuActive}
+                callback={open}
             />
 
             {isActive && (
@@ -38,7 +33,7 @@ export const Settings = ({ postId, commenting, type }: SettingsProps) => {
                     ref={ref}
                     className="min-w-[240px] absolute right-0 z-20 bg-dark-300 shadow-md rounded-xl py-3 px-4"
                 >
-                    <Menu postId={postId} commenting={commenting} closeMenu={handleCloseMenu} type={type} />
+                    <Menu postId={postId} commenting={commenting} closeMenu={close} type={type} />
                     <GlobalMenu />
                 </div>
             )}

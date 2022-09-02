@@ -1,5 +1,5 @@
-import { Comments } from '@components/pages/posts/list/post/stats/Comments';
-import { Likes } from '@components/pages/posts/list/post/stats/likes/Likes';
+import { Comments } from './Comments';
+import { Likes } from './likes/Likes';
 
 interface StatsProps {
     postId: number;

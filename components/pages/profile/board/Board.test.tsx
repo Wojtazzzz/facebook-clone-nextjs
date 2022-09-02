@@ -26,7 +26,7 @@ describe('Board component', () => {
         expect(fakeForm).toBeInTheDocument();
 
         const switcher = await screen.findByLabelText('Change list of posts');
-        const postsList = await screen.findByTestId('board-posts');
+        const postsList = await screen.findByTestId('posts-list');
 
         expect(switcher).toBeInTheDocument();
         expect(postsList).toBeInTheDocument();
@@ -42,7 +42,7 @@ describe('Board component', () => {
 
         const fakeForm = screen.queryByText(`What's on your mind, ${RootUserJson.first_name}?`);
         const switcher = screen.queryByLabelText('Change list of posts');
-        const postsList = await screen.findByTestId('board-posts');
+        const postsList = await screen.findByTestId('posts-list');
 
         expect(fakeForm).not.toBeInTheDocument();
         expect(switcher).not.toBeInTheDocument();

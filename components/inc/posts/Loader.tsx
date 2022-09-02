@@ -3,13 +3,9 @@ import { SkeletonLoading } from '@components/inc/SkeletonLoading';
 import { getRandomInt } from '@utils/getRandomInt';
 import { ListLoader } from '@components/inc/ListLoader';
 
-interface LoaderProps {
-    testId?: string;
-}
-
-export const Loader = ({ testId = '' }: LoaderProps) => {
+export const Loader = () => {
     return (
-        <ListLoader testId={testId} count={15} styles="flex flex-col gap-4">
+        <ListLoader testId="posts-loadingLoader" count={15} styles="flex flex-col gap-4">
             <SingleLoading />
         </ListLoader>
     );

@@ -1,7 +1,7 @@
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
-import { Content } from '@components/pages/posts/list/post/content/Content';
 import PostWithFiveImagesJson from '@mocks/posts/postWithFiveImages.json';
 import { screen } from '@testing-library/react';
+import { Content } from './Content';
 
 describe('Content component', () => {
     const { content, images } = PostWithFiveImagesJson;

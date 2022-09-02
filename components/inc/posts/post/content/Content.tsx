@@ -1,4 +1,4 @@
-import { Images } from '@components/pages/posts/list/post/content/images/Images';
+import { Images } from './images/Images';
 import { Text } from './Text';
 
 interface ContentProps {

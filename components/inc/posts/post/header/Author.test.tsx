@@ -1,5 +1,5 @@
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
-import { Author } from '@components/pages/posts/list/post/header/Author';
+import { Author } from './Author';
 import PostsFirstPageJson from '@mocks/posts/firstPage.json';
 import PostEditedJson from '@mocks/posts/editedPost.json';
 import { screen } from '@testing-library/react';

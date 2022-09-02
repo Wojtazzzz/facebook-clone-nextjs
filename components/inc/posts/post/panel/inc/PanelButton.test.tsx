@@ -1,8 +1,8 @@
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
-import { PanelButton } from '@components/pages/posts/list/post/panel/inc/PanelButton';
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { PanelButton } from './PanelButton';
 
 describe('PanelButton component', () => {
     const user = userEvent.setup();
