@@ -118,9 +118,15 @@ export type IPost = {
     comments_count: number;
     is_liked: boolean;
     is_edited: boolean;
+    type: IPostType;
     commenting: boolean;
     created_at: string;
-    type: IPostType;
+};
+
+export type IPostType = {
+    is_own: boolean;
+    is_saved: boolean;
+    is_hidden: boolean;
 };
 
 export type IContact = {
@@ -133,8 +139,6 @@ export type IProfileFriendsData = {
     amount: number;
     list: IUser[];
 };
-
-export type IPostType = 'OWN' | 'FRIEND' | 'HIDDEN' | 'SAVED';
 
 export type ILike = {
     id: number;

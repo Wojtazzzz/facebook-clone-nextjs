@@ -180,8 +180,8 @@ describe('Posts settings tests', () => {
         cy.get('[aria-label="Change list of posts"]').select('Hidden posts');
         cy.wait('@hiddenPosts');
 
-        cy.get('[data-testid="board-posts"] article[aria-label="Post"]').should('have.length', 1);
-        cy.get('[data-testid="board-posts"] article[aria-label="Post"]')
+        cy.get('[data-testid="posts-list"] article[aria-label="Post"]').should('have.length', 1);
+        cy.get('[data-testid="posts-list"] article[aria-label="Post"]')
             .first()
             .within(() => {
                 cy.get('button[aria-label="Show post settings"]').click();
@@ -197,7 +197,7 @@ describe('Posts settings tests', () => {
         cy.wait('@unhide');
         cy.wait('@posts_page_1');
 
-        cy.get('[data-testid="board-posts"] article[aria-label="Post"]').should('not.exist');
+        cy.get('[data-testid="posts-list"] article[aria-label="Post"]').should('not.exist');
 
         cy.intercept('/api/posts?page=1').as('posts_page_1');
 
@@ -252,6 +252,6 @@ describe('Posts settings tests', () => {
         cy.get('[aria-label="Change list of posts"]').select('Saved posts');
         cy.wait('@savedPosts');
 
-        cy.get('[data-testid="board-posts"] article[aria-label="Post"]').should('have.length', 1);
+        cy.get('[data-testid="posts-list"] article[aria-label="Post"]').should('have.length', 1);
     });
 });

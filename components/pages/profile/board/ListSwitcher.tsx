@@ -1,63 +1,23 @@
 import type { ChangeEvent } from 'react';
-import type { IPostType } from '@utils/types';
 
 interface ListSwitcherProps {
-    userId: number;
-    changeList: (queryKey: unknown[], value: string) => void;
+    changeList: (type: ChangeEvent<HTMLSelectElement>) => void;
 }
 
-export const ListSwitcher = ({ userId, changeList }: ListSwitcherProps) => {
-    const endpoints = {
-        OWN: `/api/users/${userId}/posts`,
-        FRIEND: '/api/posts',
-        HIDDEN: '/api/hidden/posts',
-        SAVED: '/api/saved/posts',
-    } as const;
-
-    const handleChangeList = (event: ChangeEvent<HTMLSelectElement>) => {
-        const value = event.target.value;
-
-        if (!isPostListType(value)) return;
-
-        const queryKey = getQueryKey(value, userId);
-
-        changeList(queryKey, endpoints[value]);
-    };
-
+export const ListSwitcher = ({ changeList }: ListSwitcherProps) => {
     return (
         <div className="w-full flex justify-end items-center">
             <select
                 aria-label="Change list of posts"
                 name="list"
-                defaultValue="OWN"
+                defaultValue="own"
                 className="w-full text-light-50 bg-dark-100 rounded-lg border-x-[12px] border-transparent transition-all hover:brightness-110 py-3"
-                onChange={handleChangeList}
+                onChange={changeList}
             >
-                <option value="OWN">Own posts</option>
-                <option value="HIDDEN">Hidden posts</option>
-                <option value="SAVED">Saved posts</option>
+                <option value="own">Own posts</option>
+                <option value="hidden">Hidden posts</option>
+                <option value="saved">Saved posts</option>
             </select>
         </div>
     );
-};
-
-function isPostListType(value: string): value is IPostType {
-    return ['OWN', 'FRIEND', 'HIDDEN', 'SAVED'].includes(value);
-}
-
-const getQueryKey = (type: IPostType, userId: number) => {
-    switch (type) {
-        case 'OWN':
-            return ['posts', 'own', userId];
-
-        case 'HIDDEN':
-            return ['posts', 'hidden'];
-
-        case 'SAVED':
-            return ['posts', 'saved'];
-
-        default:
-        case 'FRIEND':
-            return ['posts', 'all'];
-    }
 };

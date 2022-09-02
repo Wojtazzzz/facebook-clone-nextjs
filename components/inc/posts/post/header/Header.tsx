@@ -1,7 +1,6 @@
-import { Author } from '@components/pages/posts/list/post/header/Author';
-import { Settings } from '@components/pages/posts/list/post/header/settings/Settings';
-
 import type { IPostType, IUser } from '@utils/types';
+import { Author } from './Author';
+import { Settings } from './settings/Settings';
 
 interface HeaderProps {
     postId: number;

@@ -15,8 +15,10 @@ interface MenuProps {
 export const Menu = ({ postId, type, commenting, closeMenu }: MenuProps) => {
     useKey('Escape', closeMenu);
 
-    if (type === 'FRIEND') return <FriendMenu postId={postId} closeMenu={closeMenu} />;
-    if (type === 'HIDDEN') return <HiddenMenu postId={postId} />;
-    if (type === 'SAVED') return <SavedMenu postId={postId} />;
-    return <OwnMenu commenting={commenting} postId={postId} />;
+    const { is_saved, is_hidden, is_own } = type;
+
+    if (is_saved) return <SavedMenu postId={postId} />;
+    if (is_hidden) return <HiddenMenu postId={postId} />;
+    if (is_own) return <OwnMenu commenting={commenting} postId={postId} />;
+    return <FriendMenu postId={postId} closeMenu={closeMenu} />;
 };
