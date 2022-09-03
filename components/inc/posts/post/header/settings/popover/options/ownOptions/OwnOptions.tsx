@@ -7,12 +7,13 @@ import { useTurnOnComments } from './useTurnOnComments';
 interface OwnOptionsProps {
     postId: number;
     commenting: boolean;
+    queryKey: unknown[];
 }
 
-export const OwnOptions = ({ postId, commenting }: OwnOptionsProps) => {
-    const { remove, isLoading: isRemoveLoading } = useRemovePost();
-    const { turnOffComments, isLoading: isTurnOffCommentsLoading } = useTurnOffComments();
-    const { turnOnComments, isLoading: isTurnOnCommentsLoading } = useTurnOnComments();
+export const OwnOptions = ({ postId, commenting, queryKey }: OwnOptionsProps) => {
+    const { remove, isLoading: isRemoveLoading } = useRemovePost(queryKey);
+    const { turnOffComments, isLoading: isTurnOffCommentsLoading } = useTurnOffComments(queryKey);
+    const { turnOnComments, isLoading: isTurnOnCommentsLoading } = useTurnOnComments(queryKey);
 
     const handleRemovePost = () => remove(postId);
     const handleTurnOffComments = () => turnOffComments(postId);

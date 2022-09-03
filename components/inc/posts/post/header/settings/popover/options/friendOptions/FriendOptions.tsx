@@ -5,12 +5,13 @@ import { useSavePost } from './useSavePost';
 
 interface FriendOptionsProps {
     postId: number;
+    queryKey: unknown[];
     closeMenu: () => void;
 }
 
-export const FriendOptions = ({ postId, closeMenu }: FriendOptionsProps) => {
-    const { hide, isLoading: isHideLoading } = useHidePost();
-    const { save, isLoading: isSaveLoading } = useSavePost();
+export const FriendOptions = ({ postId, queryKey, closeMenu }: FriendOptionsProps) => {
+    const { hide, isLoading: isHideLoading } = useHidePost(queryKey);
+    const { save, isLoading: isSaveLoading } = useSavePost(queryKey);
 
     const handleHidePost = () => {
         hide(postId);

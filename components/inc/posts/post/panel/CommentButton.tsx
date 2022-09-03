@@ -2,9 +2,9 @@ import { faMessage } from '@fortawesome/free-solid-svg-icons';
 import { PanelButton } from './inc/PanelButton';
 
 interface CommentButtonProps {
-    handleToggleIsCommentsActive: () => void;
+    toggleCommentsActive: () => void;
 }
 
-export const CommentButton = ({ handleToggleIsCommentsActive }: CommentButtonProps) => {
-    return <PanelButton title="Comment" icon={faMessage} callback={handleToggleIsCommentsActive} />;
+export const CommentButton = ({ toggleCommentsActive }: CommentButtonProps) => {
+    return <PanelButton title="Comment" icon={faMessage} callback={toggleCommentsActive} />;
 };

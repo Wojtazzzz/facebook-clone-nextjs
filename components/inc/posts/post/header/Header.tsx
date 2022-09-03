@@ -9,13 +9,14 @@ interface HeaderProps {
     createdAt: string;
     isEdited: boolean;
     type: IPostType;
+    queryKey: unknown[];
 }
 
-export const Header = ({ postId, commenting, author, createdAt, isEdited, type }: HeaderProps) => {
+export const Header = ({ postId, commenting, author, createdAt, isEdited, type, queryKey }: HeaderProps) => {
     return (
         <div className="w-full flex justify-between p-4 pb-0">
             <Author author={author} createdAt={createdAt} isEdited={isEdited} />
-            <Settings commenting={commenting} postId={postId} type={type} />
+            <Settings queryKey={queryKey} commenting={commenting} postId={postId} type={type} />
         </div>
     );
 };

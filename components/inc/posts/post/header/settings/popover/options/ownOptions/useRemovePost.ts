@@ -2,18 +2,16 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { axios } from '@libs/axios';
 import { useAuth } from '@hooks/useAuth';
 
-export const useRemovePost = () => {
+export const useRemovePost = (queryKey: unknown[]) => {
     const queryClient = useQueryClient();
     const mutation = useMutation(mutationFn);
-    const { user } = useAuth();
 
     const remove = (id: number) => {
-        if (mutation.isLoading || !user) return;
+        if (mutation.isLoading) return;
 
         mutation.mutate(id, {
             onSuccess: () => {
-                queryClient.invalidateQueries(['posts', 'all']);
-                queryClient.invalidateQueries(['posts', 'own', user.id]);
+                queryClient.invalidateQueries(queryKey);
             },
         });
     };

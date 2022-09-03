@@ -4,10 +4,11 @@ import { useUnsavePost } from './useUnsavePost';
 
 interface SavedOptionsProps {
     postId: number;
+    queryKey: unknown[];
 }
 
-export const SavedOptions = ({ postId }: SavedOptionsProps) => {
-    const { unsave, isLoading } = useUnsavePost();
+export const SavedOptions = ({ postId, queryKey }: SavedOptionsProps) => {
+    const { unsave, isLoading } = useUnsavePost(queryKey);
 
     const handleUnsave = () => {
         unsave(postId);
