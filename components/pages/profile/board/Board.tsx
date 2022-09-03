@@ -16,7 +16,7 @@ export const Board = ({ userId }: BoardProps) => {
             className="w-4/6 h-screen flex flex-col gap-4 overflow-auto scroll-smooth scrollbar-none"
         >
             <Panel userId={userId} changeList={changeList} />
-            <Posts postsList={postsList} userId={userId} />
+            <Posts userId={userId} postsList={postsList} />
         </div>
     );
 };

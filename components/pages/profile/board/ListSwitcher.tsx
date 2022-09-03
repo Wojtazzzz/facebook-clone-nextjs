@@ -1,7 +1,7 @@
 import type { ChangeEvent } from 'react';
 
 interface ListSwitcherProps {
-    changeList: (type: ChangeEvent<HTMLSelectElement>) => void;
+    changeList: (event: ChangeEvent<HTMLSelectElement>) => void;
 }
 
 export const ListSwitcher = ({ changeList }: ListSwitcherProps) => {

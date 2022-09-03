@@ -27,16 +27,13 @@ describe('Posts settings tests', () => {
             .first()
             .within(() => {
                 cy.get('button[aria-label="Show post settings"]').click();
-                cy.get('[aria-label="Settings"]').should('be.visible');
             });
+
+        cy.get('[aria-label="Settings"]').should('be.visible');
 
         cy.get('[data-testid="sidebar"]').click();
 
-        cy.get('[id="posts-list"] article[aria-label="Post"]')
-            .first()
-            .within(() => {
-                cy.get('[aria-label="Settings"]').should('not.exist');
-            });
+        cy.get('[aria-label="Settings"]').should('not.exist');
     });
 
     it('open post settings on own post, delete post, post dissapears from posts list', () => {
@@ -59,11 +56,11 @@ describe('Posts settings tests', () => {
 
                 cy.intercept('/api/posts/1').as('delete');
                 cy.intercept('/api/posts?page=1').as('posts_page_1');
-
-                cy.get('[aria-label="Settings"]').within(() => {
-                    cy.get('button[aria-label="Delete"]').click();
-                });
             });
+
+        cy.get('[aria-label="Settings"]').within(() => {
+            cy.get('button[aria-label="Delete"]').click();
+        });
 
         cy.wait('@delete');
         cy.wait('@posts_page_1');
@@ -88,16 +85,16 @@ describe('Posts settings tests', () => {
             .first()
             .within(() => {
                 cy.get('button[aria-label="Show post settings"]').click();
-
-                cy.intercept('/api/posts/1/turn-off-comments').as('turnOffComments');
-                cy.intercept('/api/posts?page=1').as('posts_page_1');
-
-                cy.get('[aria-label="Settings"]').within(() => {
-                    cy.get('button[aria-label="Turn on comments"]').should('not.exist');
-
-                    cy.get('button[aria-label="Turn off comments"]').click();
-                });
             });
+
+        cy.intercept('/api/posts/1/turn-off-comments').as('turnOffComments');
+        cy.intercept('/api/posts?page=1').as('posts_page_1');
+
+        cy.get('[aria-label="Settings"]').within(() => {
+            cy.get('button[aria-label="Turn on comments"]').should('not.exist');
+
+            cy.get('button[aria-label="Turn off comments"]').click();
+        });
 
         cy.wait('@turnOffComments');
         cy.wait('@posts_page_1');
@@ -110,16 +107,16 @@ describe('Posts settings tests', () => {
                 cy.contains(`${USER_FIRST_NAME} ${USER_LAST_NAME} turned off commenting for this post.`);
 
                 cy.get('button[aria-label="Show post settings"]').click();
-
-                cy.intercept('/api/posts/1/turn-on-comments').as('turnOnComments');
-                cy.intercept('/api/posts?page=1').as('posts_page_1');
-
-                cy.get('[aria-label="Settings"]').within(() => {
-                    cy.get('button[aria-label="Turn off comments"]').should('not.exist');
-
-                    cy.get('button[aria-label="Turn on comments"]').click();
-                });
             });
+
+        cy.intercept('/api/posts/1/turn-on-comments').as('turnOnComments');
+        cy.intercept('/api/posts?page=1').as('posts_page_1');
+
+        cy.get('[aria-label="Settings"]').within(() => {
+            cy.get('button[aria-label="Turn off comments"]').should('not.exist');
+
+            cy.get('button[aria-label="Turn on comments"]').click();
+        });
 
         cy.wait('@turnOnComments');
         cy.wait('@posts_page_1');
@@ -159,14 +156,14 @@ describe('Posts settings tests', () => {
             .first()
             .within(() => {
                 cy.get('button[aria-label="Show post settings"]').click();
-
-                cy.intercept('/api/hidden/posts').as('hide');
-                cy.intercept('/api/posts?page=1').as('posts_page_1');
-
-                cy.get('[aria-label="Settings"]').within(() => {
-                    cy.get('button[aria-label="Hide"]').click();
-                });
             });
+
+        cy.intercept('/api/hidden/posts').as('hide');
+        cy.intercept('/api/posts?page=1').as('posts_page_1');
+
+        cy.get('[aria-label="Settings"]').within(() => {
+            cy.get('button[aria-label="Hide"]').click();
+        });
 
         cy.wait('@hide');
         cy.wait('@posts_page_1');
@@ -185,14 +182,14 @@ describe('Posts settings tests', () => {
             .first()
             .within(() => {
                 cy.get('button[aria-label="Show post settings"]').click();
-
-                cy.intercept('/api/hidden/posts/1').as('unhide');
-                cy.intercept('/api/hidden/posts?page=1').as('posts_page_1');
-
-                cy.get('[aria-label="Settings"]').within(() => {
-                    cy.get('button[aria-label="Unhide"]').click();
-                });
             });
+
+        cy.intercept('/api/hidden/posts/1').as('unhide');
+        cy.intercept('/api/hidden/posts?page=1').as('posts_page_1');
+
+        cy.get('[aria-label="Settings"]').within(() => {
+            cy.get('button[aria-label="Unhide"]').click();
+        });
 
         cy.wait('@unhide');
         cy.wait('@posts_page_1');
@@ -230,18 +227,18 @@ describe('Posts settings tests', () => {
             .first()
             .within(() => {
                 cy.get('button[aria-label="Show post settings"]').click();
-
-                cy.intercept('/api/saved/posts').as('save');
-                cy.intercept('/api/posts?page=1').as('posts_page_1');
-
-                cy.get('[aria-label="Settings"]').within(() => {
-                    cy.get('button[aria-label="Save"]').click();
-                });
-
-                cy.wait('@save');
-
-                cy.get('[aria-label="Settings"]').should('not.exist');
             });
+
+        cy.intercept('/api/saved/posts').as('save');
+        cy.intercept('/api/posts?page=1').as('posts_page_1');
+
+        cy.get('[aria-label="Settings"]').within(() => {
+            cy.get('button[aria-label="Save"]').click();
+        });
+
+        cy.wait('@save');
+
+        cy.get('[aria-label="Settings"]').should('not.exist');
 
         cy.get('[id="posts-list"] article[aria-label="Post"]').should('have.length', 2);
 

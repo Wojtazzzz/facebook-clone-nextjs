@@ -27,9 +27,12 @@ const getEndpoint = (type: IPostList, userId: number | undefined) => {
         case 'saved':
             return '/api/saved/posts';
 
-        default:
         case 'own':
             return `/api/users/${userId}/posts`;
+
+        default:
+        case 'all':
+            return '/api/posts';
     }
 };
 
@@ -41,8 +44,11 @@ const getQueryKey = (type: IPostList, userId: number | undefined) => {
         case 'saved':
             return ['posts', 'saved'];
 
-        default:
         case 'own':
             return ['posts', 'own', userId];
+
+        default:
+        case 'all':
+            return ['posts', 'all'];
     }
 };

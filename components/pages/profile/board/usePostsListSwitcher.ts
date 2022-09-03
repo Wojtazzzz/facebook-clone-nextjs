@@ -10,7 +10,7 @@ export const usePostsListSwitcher = () => {
 
         if (!isPostListType(type)) return;
 
-        setPostsList(postsList);
+        setPostsList(type);
     };
 
     return {

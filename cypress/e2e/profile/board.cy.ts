@@ -213,9 +213,10 @@ describe('Profile board tests', () => {
         cy.get('[data-testid="posts-list"] article[aria-label="Post"]').should('have.length', 1);
         cy.get('[data-testid="posts-list"] article[aria-label="Post"]').within(() => {
             cy.get('[aria-label="Show post settings"]').click();
-            cy.get('[aria-label="Settings"]').within(() => {
-                cy.get('[aria-label="Delete"]').click();
-            });
+        });
+
+        cy.get('[aria-label="Settings"]').within(() => {
+            cy.get('[aria-label="Delete"]').click();
         });
 
         cy.wait('@delete');
@@ -245,9 +246,10 @@ describe('Profile board tests', () => {
         cy.get('[data-testid="posts-list"] article[aria-label="Post"]').should('have.length', 1);
         cy.get('[data-testid="posts-list"] article[aria-label="Post"]').within(() => {
             cy.get('[aria-label="Show post settings"]').click();
-            cy.get('[aria-label="Settings"]').within(() => {
-                cy.get('[aria-label="Save"]').click();
-            });
+        });
+
+        cy.get('[aria-label="Settings"]').within(() => {
+            cy.get('[aria-label="Save"]').click();
         });
 
         cy.wait('@save');
@@ -265,9 +267,10 @@ describe('Profile board tests', () => {
         cy.get('[data-testid="posts-list"] article[aria-label="Post"]').should('have.length', 1);
         cy.get('[data-testid="posts-list"] article[aria-label="Post"]').within(() => {
             cy.get('[aria-label="Show post settings"]').click();
-            cy.get('[aria-label="Settings"]').within(() => {
-                cy.get('[aria-label="Unsave"]').click();
-            });
+        });
+
+        cy.get('[aria-label="Settings"]').within(() => {
+            cy.get('[aria-label="Unsave"]').click();
         });
 
         cy.wait('@unsave');
@@ -297,9 +300,10 @@ describe('Profile board tests', () => {
         cy.get('[data-testid="posts-list"] article[aria-label="Post"]').should('have.length', 1);
         cy.get('[data-testid="posts-list"] article[aria-label="Post"]').within(() => {
             cy.get('[aria-label="Show post settings"]').click();
-            cy.get('[aria-label="Settings"]').within(() => {
-                cy.get('[aria-label="Hide"]').click();
-            });
+        });
+
+        cy.get('[aria-label="Settings"]').within(() => {
+            cy.get('[aria-label="Hide"]').click();
         });
 
         cy.wait('@hide');
@@ -320,9 +324,10 @@ describe('Profile board tests', () => {
         cy.get('[data-testid="posts-list"] article[aria-label="Post"]').should('have.length', 1);
         cy.get('[data-testid="posts-list"] article[aria-label="Post"]').within(() => {
             cy.get('[aria-label="Show post settings"]').click();
-            cy.get('[aria-label="Settings"]').within(() => {
-                cy.get('[aria-label="Unhide"]').click();
-            });
+        });
+
+        cy.get('[aria-label="Settings"]').within(() => {
+            cy.get('[aria-label="Unhide"]').click();
         });
 
         cy.wait('@unhide');
