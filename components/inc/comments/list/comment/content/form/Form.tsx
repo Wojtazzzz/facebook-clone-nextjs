@@ -3,18 +3,23 @@ import { CommentSchema } from '@validation/CommentSchema';
 import type { FormikHelpers } from 'formik';
 import { Formik, Form as FormikForm } from 'formik';
 import { FormContent } from './formContent/FormContent';
-import { useCreateComment } from './useCreateComment';
+import { useUpdateComment } from './useUpdateComment';
 
 interface FormProps {
+    content: string;
     postId: number;
+    commentId: number;
+    closeEditMode: () => void;
 }
 
-export const Form = ({ postId }: FormProps) => {
-    const { create, isLoading, isError } = useCreateComment();
+export const Form = ({ content, postId, commentId, closeEditMode }: FormProps) => {
+    const { update, isLoading, isError } = useUpdateComment();
 
-    const handleSubmit: IHandleSubmit = ({ content }, { resetForm }) => {
-        create({ content, resourceId: postId }, resetForm);
+    const handleSubmit: IHandleSubmit = ({ content }) => {
+        update({ content, resourceId: postId, commentId }, closeEditMode);
     };
+
+    const initialValues = { content };
 
     return (
         <Formik
@@ -32,7 +37,3 @@ export const Form = ({ postId }: FormProps) => {
 };
 
 type IHandleSubmit = (comment: ICommentPayload, helpers: FormikHelpers<ICommentPayload>) => void;
-
-const initialValues = {
-    content: '',
-};

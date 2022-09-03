@@ -1,12 +1,12 @@
-import { ActionButton } from './ActionButton';
-import { useRemove } from './useRemove';
+import { ActionButton } from '../ActionButton';
+import { useRemove } from './useRemoveComment';
 
-interface DeleteActionProps {
+interface DeleteProps {
     postId: number;
     commentId: number;
 }
 
-export const DeleteAction = ({ postId, commentId }: DeleteActionProps) => {
+export const Delete = ({ postId, commentId }: DeleteProps) => {
     const { remove, isLoading } = useRemove();
 
     const handleRemove = () => {

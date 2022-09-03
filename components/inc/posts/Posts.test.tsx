@@ -1,13 +1,13 @@
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
-import SelfProfileFirstPageJson from '@mocks/posts/selfProfileFirstPage.json';
-import SelfProfileEmptyPageJson from '@mocks/posts/selfProfileEmptyPageJson.json';
+import PostsFirstPageJson from '@mocks/posts/firstPage.json';
+import PostsEmptyPageJson from '@mocks/posts/empty.json';
 import RootUserJson from '@mocks/user/root.json';
 import { screen } from '@testing-library/react';
 import { mock } from '@libs/nock';
 import { Posts } from './Posts';
 
 describe('Posts component', () => {
-    const posts = SelfProfileFirstPageJson.data;
+    const posts = PostsFirstPageJson.data;
 
     beforeEach(() => {
         mock({
@@ -18,8 +18,8 @@ describe('Posts component', () => {
 
     it('render loaders when loading', () => {
         mock({
-            path: '/api/users/1/posts?page=1',
-            data: SelfProfileFirstPageJson,
+            path: '/api/posts?page=1',
+            data: PostsFirstPageJson,
         });
 
         renderWithDefaultData(<Posts postsList="all" userId={1} />);
@@ -30,8 +30,8 @@ describe('Posts component', () => {
 
     it('load and render 10 posts', async () => {
         mock({
-            path: '/api/users/1/posts?page=1',
-            data: SelfProfileFirstPageJson,
+            path: '/api/posts?page=1',
+            data: PostsFirstPageJson,
         });
 
         renderWithDefaultData(<Posts postsList="all" userId={1} />);
@@ -45,8 +45,8 @@ describe('Posts component', () => {
 
     it('render empty component when fetched no posts', async () => {
         mock({
-            path: '/api/users/1/posts?page=1',
-            data: SelfProfileEmptyPageJson,
+            path: '/api/posts?page=1',
+            data: PostsEmptyPageJson,
         });
 
         renderWithDefaultData(<Posts postsList="all" userId={1} />);
@@ -57,7 +57,7 @@ describe('Posts component', () => {
 
     it('render error component when api returns error', async () => {
         mock({
-            path: '/api/users/1/posts?page=1',
+            path: '/api/posts?page=1',
             status: 500,
         });
 

@@ -2,11 +2,11 @@ import { ChooseEmoji } from '@components/inc/chooseEmoji/ChooseEmoji';
 import { SubmitButton } from './SubmitButton';
 import { useAddEmojiToComment } from './useAddEmojiToComment';
 
-interface MessagePanelProps {
+interface PanelProps {
     isLoading: boolean;
 }
 
-export const MessagePanel = ({ isLoading }: MessagePanelProps) => {
+export const Panel = ({ isLoading }: PanelProps) => {
     const { addToComment } = useAddEmojiToComment();
 
     return (

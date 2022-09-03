@@ -9,9 +9,6 @@ interface BoardProps {
 export const Board = ({ userId }: BoardProps) => {
     const { postsList, changeList } = usePostsListSwitcher();
 
-    console.log('USERID: ', userId); // userId się zmienia
-    console.log('QUERYKEY: ', queryKey); // queryKey się nie zmienia
-
     return (
         <div
             data-testid="posts-list"

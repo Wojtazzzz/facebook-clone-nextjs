@@ -54,7 +54,7 @@ describe('LoadMore component', () => {
         expect(mockFetchNextPage).toHaveBeenCalledTimes(1);
     });
 
-    it('render loaders without buttons when comments are fetching', () => {
+    it('render loaders without View more comments when comments are fetching', () => {
         const mockFetchNextPage = jest.fn();
         const isEmpty = false;
         const hasNextPage = true;
@@ -70,7 +70,7 @@ describe('LoadMore component', () => {
         );
 
         const viewMoreComments = screen.queryByLabelText('Load more comments');
-        const loader = screen.getByTestId('postsCommentsList-fetching_loader');
+        const loader = screen.getByTestId('postsCommentsList-loading_loader');
 
         expect(viewMoreComments).not.toBeInTheDocument();
         expect(loader).toBeInTheDocument();

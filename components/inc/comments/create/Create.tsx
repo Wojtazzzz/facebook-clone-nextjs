@@ -10,7 +10,7 @@ interface CreateProps {
 export const Create = ({ postId }: CreateProps) => {
     const { user } = useAuth();
 
-    if (!user) return <Loader testId="commentsCreate-loader" />;
+    if (!user) return <Loader />;
 
     return (
         <div className="flex gap-2 p-1">

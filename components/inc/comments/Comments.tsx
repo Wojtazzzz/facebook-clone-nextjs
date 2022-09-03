@@ -24,6 +24,7 @@ export const Comments = ({ postId, authorName, commenting }: CommentsProps) => {
     return (
         <section aria-label="Post comments" className="w-full border-t-2 border-t-dark-100 p-2">
             <Create postId={postId} />
+
             <List data={data} isLoading={isLoading} isError={isError} isEmpty={isEmpty} />
 
             <LoadMore

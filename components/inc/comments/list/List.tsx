@@ -11,7 +11,7 @@ interface ListProps {
 }
 
 export const List = ({ data, isLoading, isEmpty, isError }: ListProps) => {
-    if (isLoading) return <Loader testId="postsCommentsList-loading_loader" />;
+    if (isLoading) return <Loader />;
     if (!data || isError) return <ApiError styles="my-1" />;
     if (isEmpty) return null;
 

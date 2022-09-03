@@ -1,14 +1,14 @@
 import { screen } from '@testing-library/react';
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import userEvent from '@testing-library/user-event';
-import { EditAction } from './EditAction';
+import { Edit } from './Edit';
 
-describe('EditAction button', () => {
+describe('Edit button', () => {
     const user = userEvent.setup();
     const mockToggleEditMode = jest.fn();
 
     it('show "Edit" title when edit mode is inactive', () => {
-        renderWithDefaultData(<EditAction isEditModeActive={false} toggleEditMode={mockToggleEditMode} />);
+        renderWithDefaultData(<Edit isEditModeActive={false} toggleEditMode={mockToggleEditMode} />);
 
         const editTitle = screen.getByText('Edit');
         expect(editTitle).toBeInTheDocument();
@@ -18,7 +18,7 @@ describe('EditAction button', () => {
     });
 
     it('show "Close" title when edit mode is active', () => {
-        renderWithDefaultData(<EditAction isEditModeActive={true} toggleEditMode={mockToggleEditMode} />);
+        renderWithDefaultData(<Edit isEditModeActive={true} toggleEditMode={mockToggleEditMode} />);
 
         const editTitle = screen.queryByText('Edit');
         expect(editTitle).not.toBeInTheDocument();
@@ -28,7 +28,7 @@ describe('EditAction button', () => {
     });
 
     it('execute toggle edit mode function when click', async () => {
-        renderWithDefaultData(<EditAction isEditModeActive={false} toggleEditMode={mockToggleEditMode} />);
+        renderWithDefaultData(<Edit isEditModeActive={false} toggleEditMode={mockToggleEditMode} />);
 
         const button = screen.getByLabelText('Edit');
         await user.click(button);

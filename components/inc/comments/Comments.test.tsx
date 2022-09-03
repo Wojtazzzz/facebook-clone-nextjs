@@ -135,7 +135,7 @@ describe('Comments component', () => {
 
         await user.click(fetchButton);
 
-        const loaders = await screen.findByTestId('postsCommentsList-fetching_loader');
+        const loaders = await screen.findByTestId('postsCommentsList-loading_loader');
 
         expect(loaders).toBeInTheDocument();
     });

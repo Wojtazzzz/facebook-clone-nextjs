@@ -1,10 +1,10 @@
-import { ActionButton } from './ActionButton';
+import { ActionButton } from '../ActionButton';
 
-interface EditActionProps {
+interface EditProps {
     isEditModeActive: boolean;
     toggleEditMode: () => void;
 }
 
-export const EditAction = ({ isEditModeActive, toggleEditMode }: EditActionProps) => {
+export const Edit = ({ isEditModeActive, toggleEditMode }: EditProps) => {
     return <ActionButton title={isEditModeActive ? 'Close' : 'Edit'} callback={toggleEditMode} />;
 };

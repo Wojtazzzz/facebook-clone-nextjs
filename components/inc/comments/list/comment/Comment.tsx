@@ -1,9 +1,8 @@
-import { useState } from 'react';
 import type { IComment } from '@utils/types';
 import { Author } from './Author';
-import { Panel } from './Panel';
-import { Date } from './Date';
+import { Panel } from './panel/Panel';
 import { Content } from './content/Content';
+import { useEditMode } from './useEditMode';
 
 interface CommentProps extends IComment {}
 
@@ -17,10 +16,7 @@ export const Comment = ({
     likes_count,
     created_at,
 }: CommentProps) => {
-    const [isEditModeActive, setIsEditModeActive] = useState(false);
-
-    const handleToggleIsEditModeActive = () => setIsEditModeActive((prevState) => !prevState);
-    const handleCloseEditMode = () => setIsEditModeActive(false);
+    const { isEditModeActive, toggleEditMode, closeEditMode } = useEditMode();
 
     return (
         <article aria-label="Comment" className="w-full flex gap-2 px-3 py-1">
@@ -34,21 +30,19 @@ export const Comment = ({
                     resourceId={resource_id}
                     commentId={id}
                     authorName={author.name}
-                    closeEditMode={handleCloseEditMode}
+                    closeEditMode={closeEditMode}
                 />
 
-                <div className="flex gap-2 pl-3">
-                    <Panel
-                        isLiked={is_liked}
-                        postId={resource_id}
-                        commentId={id}
-                        authorId={author.id}
-                        isEditModeActive={isEditModeActive}
-                        toggleEditMode={handleToggleIsEditModeActive}
-                    />
-
-                    <Date createdAt={created_at} isEdited={is_edited} />
-                </div>
+                <Panel
+                    isLiked={is_liked}
+                    isEdited={is_edited}
+                    createdAt={created_at}
+                    postId={resource_id}
+                    commentId={id}
+                    authorId={author.id}
+                    isEditModeActive={isEditModeActive}
+                    toggleEditMode={toggleEditMode}
+                />
             </div>
         </article>
     );

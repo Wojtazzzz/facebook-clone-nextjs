@@ -2,13 +2,13 @@ import { ActionButton } from '../ActionButton';
 import { useLikeComment } from './useLikeComment';
 import { useUnlikeComment } from './useUnlikeComment';
 
-interface LikeActionProps {
+interface LikeProps {
     isLiked: boolean;
     commentId: number;
     postId: number;
 }
 
-export const LikeAction = ({ isLiked, commentId, postId }: LikeActionProps) => {
+export const Like = ({ isLiked, commentId, postId }: LikeProps) => {
     const { like } = useLikeComment(postId);
     const { unlike } = useUnlikeComment(postId);
 

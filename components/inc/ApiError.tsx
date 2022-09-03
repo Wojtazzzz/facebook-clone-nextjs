@@ -18,7 +18,7 @@ export const ApiError = ({ size = 'base', styles = '' }: ApiErrorProps) => {
     );
 };
 
-export const sizes = {
+const sizes = {
     xs: {
         img: 50,
         text: 'xs',

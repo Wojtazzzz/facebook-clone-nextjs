@@ -1,12 +1,12 @@
-import type { ICommentPayload } from '@utils/types';
+import { ICommentPayload } from '@utils/types';
 import clsx from 'clsx';
 import { useFormikContext } from 'formik';
 
-interface InputContentProps {
+interface InputProps {
     isLoading: boolean;
 }
 
-export const InputContent = ({ isLoading }: InputContentProps) => {
+export const Input = ({ isLoading }: InputProps) => {
     const { values, handleChange, handleBlur } = useFormikContext<ICommentPayload>();
 
     return (

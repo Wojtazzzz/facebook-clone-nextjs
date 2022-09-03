@@ -58,7 +58,7 @@ describe('Comment component', () => {
         const editButton = await screen.findByLabelText('Edit');
         await user.click(editButton);
 
-        const editInput = await screen.findByLabelText('Write a comment');
+        const editInput = await screen.findByLabelText('Update a comment');
 
         expect(editInput).toBeVisible();
     });

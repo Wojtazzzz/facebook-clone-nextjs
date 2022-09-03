@@ -1,5 +1,5 @@
 import { Likes } from './likes/Likes';
-import { Form } from './Form';
+import { Form } from './form/Form';
 
 interface ContentProps {
     isEditModeActive: boolean;

@@ -3,7 +3,7 @@ import { axios } from '@libs/axios';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import type { ICommentPayload } from '@utils/types';
 
-export const useUpdate = () => {
+export const useUpdateComment = () => {
     const queryClient = useQueryClient();
     const mutation = useMutation(mutationFn);
     const { alert } = useAlertModal();
