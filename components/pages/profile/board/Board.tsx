@@ -1,5 +1,5 @@
 import { Posts } from '@components/inc/posts/Posts';
-import { useListSwitcher } from './useListSwitcher';
+import { usePostsListSwitcher } from './usePostsListSwitcher';
 import { Panel } from './panel/Panel';
 
 interface BoardProps {
@@ -7,7 +7,7 @@ interface BoardProps {
 }
 
 export const Board = ({ userId }: BoardProps) => {
-    const { queryKey, endpoint, changeList } = useListSwitcher(userId);
+    const { postsList, changeList } = usePostsListSwitcher();
 
     return (
         <div
@@ -16,7 +16,7 @@ export const Board = ({ userId }: BoardProps) => {
             className="w-4/6 h-screen flex flex-col gap-4 overflow-auto scroll-smooth scrollbar-none"
         >
             <Panel userId={userId} changeList={changeList} />
-            <Posts queryKey={queryKey} endpoint={endpoint} />
+            <Posts postsList={postsList} userId={userId} />
         </div>
     );
 };

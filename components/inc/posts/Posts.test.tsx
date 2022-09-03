@@ -22,7 +22,7 @@ describe('Posts component', () => {
             data: SelfProfileFirstPageJson,
         });
 
-        renderWithDefaultData(<Posts queryKey={['posts', '1']} endpoint="/api/users/1/posts" />);
+        renderWithDefaultData(<Posts postsList="all" userId={1} />);
 
         const loaders = screen.getByTestId('posts-loadingLoader');
         expect(loaders).toBeInTheDocument();
@@ -34,7 +34,7 @@ describe('Posts component', () => {
             data: SelfProfileFirstPageJson,
         });
 
-        renderWithDefaultData(<Posts queryKey={['posts', '1']} endpoint="/api/users/1/posts" />);
+        renderWithDefaultData(<Posts postsList="all" userId={1} />);
 
         const firstPost = await screen.findByText(posts[0].content);
         expect(firstPost).toBeInTheDocument();
@@ -49,7 +49,7 @@ describe('Posts component', () => {
             data: SelfProfileEmptyPageJson,
         });
 
-        renderWithDefaultData(<Posts queryKey={['posts', '1']} endpoint="/api/users/1/posts" />);
+        renderWithDefaultData(<Posts postsList="all" userId={1} />);
 
         const emptyComponent = await screen.findByText('No posts, add some friends!');
         expect(emptyComponent).toBeInTheDocument();
@@ -61,7 +61,7 @@ describe('Posts component', () => {
             status: 500,
         });
 
-        renderWithDefaultData(<Posts queryKey={['posts', '1']} endpoint="/api/users/1/posts" />);
+        renderWithDefaultData(<Posts postsList="all" userId={1} />);
 
         const errorImage = await screen.findByAltText('Server error');
         expect(errorImage).toBeInTheDocument();

@@ -1,14 +1,18 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { axios } from '@libs/axios';
 
-export const useSavePost = () => {
+export const useSavePost = (queryKey: unknown[]) => {
     const mutation = useMutation(mutationFn);
+    const queryClient = useQueryClient();
 
     const save = (id: number, onSuccess: () => void) => {
         if (mutation.isLoading) return;
 
         mutation.mutate(id, {
-            onSuccess,
+            onSuccess: () => {
+                queryClient.invalidateQueries(queryKey);
+                onSuccess();
+            },
         });
     };
 

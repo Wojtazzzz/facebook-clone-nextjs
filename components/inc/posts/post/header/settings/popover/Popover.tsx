@@ -7,10 +7,11 @@ interface PopoverProps {
     postId: number;
     type: IPostType;
     commenting: boolean;
+    queryKey: unknown[];
     close: () => void;
 }
 
-export const Popover = ({ postId, type, commenting, close }: PopoverProps) => {
+export const Popover = ({ postId, type, commenting, queryKey, close }: PopoverProps) => {
     return (
         <RadixPopover.Portal>
             <RadixPopover.Content onEscapeKeyDown={close} onInteractOutside={close}>
@@ -18,7 +19,7 @@ export const Popover = ({ postId, type, commenting, close }: PopoverProps) => {
                     aria-label="Settings"
                     className="min-w-[240px] absolute right-0 z-20 bg-dark-300 shadow-md rounded-xl py-3 px-4"
                 >
-                    <Options postId={postId} commenting={commenting} type={type} close={close} />
+                    <Options postId={postId} commenting={commenting} type={type} queryKey={queryKey} close={close} />
 
                     <GlobalOptions />
                 </div>

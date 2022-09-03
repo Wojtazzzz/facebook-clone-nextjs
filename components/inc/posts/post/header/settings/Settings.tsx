@@ -8,6 +8,7 @@ interface SettingsProps {
     postId: number;
     type: IPostType;
     commenting: boolean;
+    queryKey: unknown[];
 }
 
 export const Settings = (props: SettingsProps) => {

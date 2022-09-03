@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { axios } from '@libs/axios';
 
-export const useHidePost = () => {
+export const useHidePost = (queryKey: unknown[]) => {
     const queryClient = useQueryClient();
     const mutation = useMutation(mutationFn);
 
@@ -9,7 +9,7 @@ export const useHidePost = () => {
         if (mutation.isLoading) return;
 
         mutation.mutate(id, {
-            onSuccess: () => queryClient.invalidateQueries(['posts']),
+            onSuccess: () => queryClient.invalidateQueries(queryKey),
         });
     };
 

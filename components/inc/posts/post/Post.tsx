@@ -35,6 +35,7 @@ export const Post = ({
                 createdAt={created_at}
                 isEdited={is_edited}
                 type={type}
+                queryKey={queryKey}
             />
 
             <Content content={content} images={images} />
@@ -46,12 +47,7 @@ export const Post = ({
                 toggleCommentsActive={toggleCommentsActive}
             />
 
-            <Panel
-                postId={id}
-                isPostLiked={is_liked}
-                queryKey={queryKey}
-                toggleAreCommentsActive={toggleCommentsActive}
-            />
+            <Panel postId={id} isPostLiked={is_liked} queryKey={queryKey} toggleCommentsActive={toggleCommentsActive} />
 
             {commentsActive && <Comments authorName={author.name} commenting={commenting} postId={id} />}
         </article>

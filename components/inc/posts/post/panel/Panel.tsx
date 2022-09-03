@@ -6,14 +6,14 @@ interface PanelProps {
     postId: number;
     isPostLiked: boolean;
     queryKey: unknown[];
-    toggleAreCommentsActive: () => void;
+    toggleCommentsActive: () => void;
 }
 
-export const Panel = ({ postId, isPostLiked, queryKey, toggleAreCommentsActive }: PanelProps) => {
+export const Panel = ({ postId, isPostLiked, queryKey, toggleCommentsActive }: PanelProps) => {
     return (
         <div className="w-full flex justify-evenly gap-2 p-2">
             <LikeButton postId={postId} isLiked={isPostLiked} queryKey={queryKey} />
-            <CommentButton handleToggleIsCommentsActive={toggleAreCommentsActive} />
+            <CommentButton toggleCommentsActive={toggleCommentsActive} />
             <ShareButton />
         </div>
     );

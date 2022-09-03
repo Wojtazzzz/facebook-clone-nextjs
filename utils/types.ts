@@ -129,6 +129,8 @@ export type IPostType = {
     is_hidden: boolean;
 };
 
+export type IPostList = 'own' | 'all' | 'hidden' | 'saved';
+
 export type IContact = {
     id: number;
     name: string;

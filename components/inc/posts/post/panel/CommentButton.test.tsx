@@ -5,14 +5,14 @@ import userEvent from '@testing-library/user-event';
 
 describe('CommentButton component', () => {
     const user = userEvent.setup();
-    const mockHandleToggleIsCommentsActive = jest.fn();
+    const mockToggleCommentsActive = jest.fn();
 
     it('can execute show comments function when click on button', async () => {
-        renderWithDefaultData(<CommentButton handleToggleIsCommentsActive={mockHandleToggleIsCommentsActive} />);
+        renderWithDefaultData(<CommentButton toggleCommentsActive={mockToggleCommentsActive} />);
 
         const button = screen.getByLabelText('Comment');
         await user.click(button);
 
-        expect(mockHandleToggleIsCommentsActive).toBeCalledTimes(1);
+        expect(mockToggleCommentsActive).toBeCalledTimes(1);
     });
 });

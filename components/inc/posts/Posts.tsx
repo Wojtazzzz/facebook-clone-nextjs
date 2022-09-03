@@ -1,23 +1,20 @@
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { ApiError } from '@components/inc/ApiError';
 import { EmptyList } from '@components/inc/EmptyList';
-import { useInfiniteData } from '@hooks/useInfiniteData';
-import type { IPost } from '@utils/types';
+import type { IPostList } from '@utils/types';
 import { Loader } from './Loader';
 import { Post } from './post/Post';
+import { useGetPosts } from './useGetPosts';
 
 interface PostsProps {
-    queryKey: unknown[];
-    endpoint: string;
+    postsList: IPostList;
+    userId: number | undefined;
 }
 
-export const Posts = ({ queryKey, endpoint }: PostsProps) => {
-    const { data, isLoading, isError, isEmpty, hasNextPage, fetchNextPage } = useInfiniteData<IPost>({
-        queryKey,
-        endpoint,
-    });
+export const Posts = ({ postsList, userId }: PostsProps) => {
+    const { data, isLoading, isError, isEmpty, hasNextPage, fetchNextPage, queryKey } = useGetPosts(postsList, userId);
 
-    if (isLoading) return <Loader />;
+    if (isLoading || !!!userId) return <Loader />;
     if (!data || isError) return <ApiError size="xl" styles="mt-8" />;
     if (isEmpty) return <EmptyList title="No posts, add some friends!" />;
 
