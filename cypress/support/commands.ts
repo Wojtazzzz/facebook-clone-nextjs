@@ -84,6 +84,13 @@ Cypress.Commands.add('showAlertModal', () => {
         });
 });
 
+Cypress.Commands.add('expectAlert', (message: string) => {
+    cy.get('div[role="alertdialog"]').within(() => {
+        cy.contains('App Error');
+        cy.contains(message);
+    });
+});
+
 declare global {
     namespace Cypress {
         interface Chainable {
@@ -92,6 +99,7 @@ declare global {
             relogin(id: number, path?: string): Chainable<void>;
             friendsListItems(): Chainable<void>;
             showAlertModal(): Chainable<void>;
+            expectAlert(message: string): Chainable<void>;
         }
     }
 }

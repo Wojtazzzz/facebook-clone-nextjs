@@ -2,10 +2,12 @@ import { axios } from '@libs/axios';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import type { InfiniteData } from '@tanstack/react-query';
 import type { IComment, IPaginatedResponse } from '@utils/types';
+import { useAlertModal } from '@hooks/useAlertModal';
 
 export const useUnlikeComment = (postId: number) => {
     const queryClient = useQueryClient();
     const queryKey = ['comments', postId];
+    const { alert } = useAlertModal();
 
     const mutation = useMutation(mutationFn, {
         onMutate: async (id) => {
@@ -42,6 +44,8 @@ export const useUnlikeComment = (postId: number) => {
 
             return { previousComments };
         },
+
+        onError: () => alert('Something went wrong, please try again later.'),
 
         onSettled: () => {
             queryClient.invalidateQueries(queryKey);
