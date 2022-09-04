@@ -28,9 +28,7 @@ describe('Notifications tests', () => {
     });
 
     it('open notifications, see 15 notifications, fetch more notifications by scrolling to bottom', () => {
-        cy.create('Notification', 17, {
-            notifiable_id: 1,
-        });
+        cy.artisan('data:notification 1 17');
 
         cy.intercept('/api/notifications?page=1').as('notifications_page_1');
 
@@ -97,10 +95,7 @@ describe('Notifications tests', () => {
     });
 
     it('open notifications, see 3 unread notifications, close dropdown, open again, see 3 read notifications', () => {
-        cy.create('Notification', 3, {
-            notifiable_id: 1,
-            read_at: null,
-        });
+        cy.artisan('data:notification 1 3');
 
         cy.intercept('/api/notifications?page=1').as('notifications_page_1');
 
