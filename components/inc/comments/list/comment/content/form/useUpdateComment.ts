@@ -1,23 +1,51 @@
 import { useAlertModal } from '@hooks/useAlertModal';
 import { axios } from '@libs/axios';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import type { ICommentPayload } from '@utils/types';
+import type { InfiniteData } from '@tanstack/react-query';
+import type { IComment, ICommentPayload, IPaginatedResponse } from '@utils/types';
+import type { AxiosResponse } from 'axios';
 
 export const useUpdateComment = () => {
     const queryClient = useQueryClient();
-    const mutation = useMutation(mutationFn);
     const { alert } = useAlertModal();
+
+    const mutation = useMutation(mutationFn, {
+        onSuccess: (response, data) => {
+            queryClient.setQueryData<IQueryData>(['comments', data.resourceId], (prevData) => {
+                if (!prevData) return;
+
+                const pages = prevData.pages.map((page) => {
+                    const data = page.data.map((comment) => {
+                        if (comment.id === response.data.id) {
+                            return response.data;
+                        }
+
+                        return comment;
+                    });
+
+                    return {
+                        ...page,
+                        data,
+                    };
+                });
+
+                return {
+                    ...prevData,
+                    pages,
+                };
+            });
+
+            queryClient.invalidateQueries(['comments', data.resourceId]);
+        },
+
+        onError: () => alert('Something went wrong, please try again later.'),
+    });
 
     const update = (data: ICommentUpdateMutationPayload, onSuccess: () => void) => {
         if (mutation.isLoading) return;
 
         mutation.mutate(data, {
-            onSuccess: () => {
-                queryClient.invalidateQueries(['comments', data.resourceId]);
-                onSuccess();
-            },
-
-            onError: () => alert('Something went wrong, please try again later.'),
+            onSuccess,
         });
     };
 
@@ -27,10 +55,16 @@ export const useUpdateComment = () => {
     };
 };
 
+type IQueryData = InfiniteData<IPaginatedResponse<IComment>>;
+
 type ICommentUpdateMutationPayload = {
     resourceId: number;
     commentId: number;
 } & ICommentPayload;
 
-const mutationFn = ({ content, resourceId, commentId }: ICommentUpdateMutationPayload) =>
+const mutationFn = ({
+    content,
+    resourceId,
+    commentId,
+}: ICommentUpdateMutationPayload): Promise<AxiosResponse<IComment>> =>
     axios.put(`/api/posts/${resourceId}/comments/${commentId}`, { content });
