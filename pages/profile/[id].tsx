@@ -1,6 +1,5 @@
 import { AuthLayout } from '@components/layouts/AuthLayout';
 import { Profile as ProfileComponent } from '@components/pages/profile/Profile';
-
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import type { ParsedUrlQuery } from 'querystring';
 import type { IProfileFriendsData, IUserProfile } from '@utils/types';
@@ -26,13 +25,10 @@ export const getStaticProps: GetStaticProps = async (context) => {
     const { id } = context.params as IParams;
 
     const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/next/profiles/${id}`);
-    const { user, friends } = await response.json();
+    const data = await response.json();
 
     return {
-        props: {
-            user,
-            friends,
-        },
+        props: data,
         revalidate: 1,
     };
 };
