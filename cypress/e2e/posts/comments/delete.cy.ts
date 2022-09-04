@@ -16,17 +16,20 @@ describe('Posts comments delete tests', () => {
 
         cy.create('Comment', {
             author_id: 1,
-            resource_id: 1,
+            commentable_id: 1,
+            commentable_type: 'App\\Models\\Post',
             content: commentContent,
         });
 
         cy.create('Comment', {
             author_id: 1,
-            resource_id: 1,
+            commentable_id: 1,
+            commentable_type: 'App\\Models\\Post',
         });
 
         cy.create('Comment', {
-            resource_id: 1,
+            commentable_id: 1,
+            commentable_type: 'App\\Models\\Post',
         });
 
         cy.intercept('/api/user').as('user');
@@ -60,7 +63,8 @@ describe('Posts comments delete tests', () => {
     it('click on delete button, see App Error', () => {
         cy.create('Comment', {
             author_id: 1,
-            resource_id: 1,
+            commentable_id: 1,
+            commentable_type: 'App\\Models\\Post',
         });
 
         cy.intercept('/api/user').as('user');
@@ -95,7 +99,8 @@ describe('Posts comments delete tests', () => {
 
     it("cannot see Delete button on somebody's comment", () => {
         cy.create('Comment', {
-            resource_id: 1,
+            commentable_id: 1,
+            commentable_type: 'App\\Models\\Post',
         });
 
         cy.intercept('/api/user').as('user');

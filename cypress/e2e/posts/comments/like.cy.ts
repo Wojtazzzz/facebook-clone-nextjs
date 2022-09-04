@@ -14,18 +14,21 @@ describe('Posts comments like tests', () => {
     it('like comment, like button has text in blue, in comment content can see like emoji, unlike comment', () => {
         cy.create('Comment', {
             author_id: 1,
-            resource_id: 1,
+            commentable_id: 1,
+            commentable_type: 'App\\Models\\Post',
             content: 'First comment',
         });
 
         cy.create('Comment', {
             author_id: 1,
-            resource_id: 1,
+            commentable_id: 1,
+            commentable_type: 'App\\Models\\Post',
             content: 'Second comment',
         });
 
         cy.create('Comment', {
-            resource_id: 1,
+            commentable_id: 1,
+            commentable_type: 'App\\Models\\Post',
             content: 'Third comment',
         });
 
@@ -118,7 +121,8 @@ describe('Posts comments like tests', () => {
 
     it('see alert when like response return error', () => {
         cy.create('Comment', {
-            resource_id: 1,
+            commentable_id: 1,
+            commentable_type: 'App\\Models\\Post',
         });
 
         cy.intercept('/api/user').as('user');
@@ -150,7 +154,8 @@ describe('Posts comments like tests', () => {
 
     it('see alert when unlike response return error', () => {
         cy.create('Comment', {
-            resource_id: 1,
+            commentable_id: 1,
+            commentable_type: 'App\\Models\\Post',
         });
 
         cy.intercept('/api/user').as('user');

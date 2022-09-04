@@ -19,19 +19,22 @@ describe('Posts comments update tests', () => {
 
         cy.create('Comment', {
             author_id: 1,
-            resource_id: 1,
+            commentable_id: 1,
+            commentable_type: 'App\\Models\\Post',
             content: firstComment,
         });
 
         cy.create('Comment', {
             id: 99999,
             author_id: 1,
-            resource_id: 1,
+            commentable_id: 1,
+            commentable_type: 'App\\Models\\Post',
             content: initialContent,
         });
 
         cy.create('Comment', {
-            resource_id: 1,
+            commentable_id: 1,
+            commentable_type: 'App\\Models\\Post',
             content: secondComment,
         });
 
@@ -76,7 +79,8 @@ describe('Posts comments update tests', () => {
     it('try to edit comment, response return server error', () => {
         cy.create('Comment', {
             author_id: 1,
-            resource_id: 1,
+            commentable_id: 1,
+            commentable_type: 'App\\Models\\Post',
         });
 
         cy.intercept('/api/user').as('user');
@@ -118,7 +122,8 @@ describe('Posts comments update tests', () => {
 
     it("cannot see Edit button on somebody's comment", () => {
         cy.create('Comment', {
-            resource_id: 1,
+            commentable_id: 1,
+            commentable_type: 'App\\Models\\Post',
         });
 
         cy.intercept('/api/user').as('user');

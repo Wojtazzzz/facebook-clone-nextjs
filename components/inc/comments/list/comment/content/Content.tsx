@@ -4,7 +4,7 @@ import { Form } from './form/Form';
 interface ContentProps {
     isEditModeActive: boolean;
     content: string;
-    resourceId: number;
+    postId: number;
     commentId: number;
     likesCount: number;
     authorName: string;
@@ -15,13 +15,13 @@ export const Content = ({
     isEditModeActive,
     content,
     authorName,
-    resourceId,
+    postId,
     commentId,
     likesCount,
     closeEditMode,
 }: ContentProps) => {
     if (isEditModeActive) {
-        return <Form content={content} postId={resourceId} commentId={commentId} closeEditMode={closeEditMode} />;
+        return <Form content={content} postId={postId} commentId={commentId} closeEditMode={closeEditMode} />;
     }
 
     return (

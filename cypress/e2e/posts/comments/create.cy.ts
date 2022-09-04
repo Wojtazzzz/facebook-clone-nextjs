@@ -18,7 +18,8 @@ describe('Posts comments create tests', () => {
         const newCommentContent = 'New simple comment';
 
         cy.create('Comment', {
-            resource_id: 1,
+            commentable_id: 1,
+            commentable_type: 'App\\Models\\Post',
         });
 
         cy.intercept('/api/user').as('user');
@@ -58,7 +59,8 @@ describe('Posts comments create tests', () => {
         const newCommentContent = 'New simple comment';
 
         cy.create('Comment', {
-            resource_id: 1,
+            commentable_id: 1,
+            commentable_type: 'App\\Models\\Post',
         });
 
         cy.intercept('/api/user').as('user');
@@ -94,7 +96,8 @@ describe('Posts comments create tests', () => {
 
     it('create comment with text and emoji', () => {
         cy.create('Comment', {
-            resource_id: 1,
+            commentable_id: 1,
+            commentable_type: 'App\\Models\\Post',
         });
 
         cy.intercept('/api/user').as('user');
@@ -147,7 +150,8 @@ describe('Posts comments create tests', () => {
 
     it('create comment with only emoji', () => {
         cy.create('Comment', {
-            resource_id: 1,
+            commentable_id: 1,
+            commentable_type: 'App\\Models\\Post',
         });
 
         cy.intercept('/api/user').as('user');

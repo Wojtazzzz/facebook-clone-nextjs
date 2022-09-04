@@ -16,7 +16,9 @@ describe('Posts comments list tests', () => {
 
     it('see 10 comments and fetch 5 more by click on "View more comments", after that button dissapears', () => {
         cy.create('Comment', 15, {
-            resource_id: 1,
+            commentable_id: 1,
+            commentable_type: 'App\\Models\\Post',
+            content: 'Second comment',
         });
 
         cy.intercept('/api/user').as('user');
@@ -99,7 +101,8 @@ describe('Posts comments list tests', () => {
 
         cy.create('Comment', {
             author_id: 1,
-            resource_id: 999,
+            commentable_id: 1,
+            commentable_type: 'App\\Models\\Post',
         });
 
         cy.intercept('/api/user').as('user');
@@ -122,8 +125,9 @@ describe('Posts comments list tests', () => {
     });
 
     it("cannot see 'Delete' and 'Edit' buttons on somebody's comment but see 'Like' and 'Reply' buttons", () => {
-        cy.create('Comment', {
-            resource_id: 1,
+        cy.create('Comment', 2, {
+            commentable_id: 1,
+            commentable_type: 'App\\Models\\Post',
         });
 
         cy.intercept('/api/user').as('user');

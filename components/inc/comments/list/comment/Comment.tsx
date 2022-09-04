@@ -10,7 +10,7 @@ export const Comment = ({
     id,
     content,
     author,
-    resource_id,
+    commentable_id,
     is_edited,
     is_liked,
     likes_count,
@@ -27,7 +27,7 @@ export const Comment = ({
                     likesCount={likes_count}
                     isEditModeActive={isEditModeActive}
                     content={content}
-                    resourceId={resource_id}
+                    postId={commentable_id}
                     commentId={id}
                     authorName={author.name}
                     closeEditMode={closeEditMode}
@@ -37,7 +37,7 @@ export const Comment = ({
                     isLiked={is_liked}
                     isEdited={is_edited}
                     createdAt={created_at}
-                    postId={resource_id}
+                    postId={commentable_id}
                     commentId={id}
                     authorId={author.id}
                     isEditModeActive={isEditModeActive}

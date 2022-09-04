@@ -55,7 +55,8 @@ Cypress.Commands.add('showAlertModal', () => {
     });
 
     cy.create('Comment', 1, {
-        resource_id: 1,
+        commentable_id: 1,
+        commentable_type: 'App\\Models\\Post',
         author_id: 1,
     });
 
