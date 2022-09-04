@@ -25,6 +25,13 @@ export const getStaticProps: GetStaticProps = async (context) => {
     const { id } = context.params as IParams;
 
     const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/next/profiles/${id}`);
+
+    if (response.status === 404) {
+        return {
+            notFound: true,
+        };
+    }
+
     const data = await response.json();
 
     return {

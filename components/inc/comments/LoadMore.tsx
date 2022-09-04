@@ -13,7 +13,7 @@ interface LoadMoreProps {
 
 export const LoadMore = ({ isEmpty, hasNextPage, isFetchingNextPage, fetchNextPage }: LoadMoreProps) => {
     if (!hasNextPage || isEmpty) return null;
-    if (isFetchingNextPage) return <Loader testId="postsCommentsList-fetching_loader" />;
+    if (isFetchingNextPage) return <Loader />;
 
     const handleFetchNextPage = () => fetchNextPage();
 
