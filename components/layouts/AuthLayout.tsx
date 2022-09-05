@@ -4,7 +4,7 @@ import { NavToggler } from '@components/nav/mobile/NavToggler';
 import { Sidebar } from '@components/sidebar/Sidebar';
 import { Contacts } from '@components/contacts/Contacts';
 import { Chat } from '@components/chat/Chat';
-import { Modal as CreatePostModal } from '@components/inc/modals/post/modal/Modal';
+import { Modal as CreatePostModal } from '@components/inc/modals/post/create/modal/Modal';
 import type { ReactNode } from 'react';
 import { useAppSelector } from '@hooks/redux';
 import { useAuthMiddleware } from './useAuthMiddleware';

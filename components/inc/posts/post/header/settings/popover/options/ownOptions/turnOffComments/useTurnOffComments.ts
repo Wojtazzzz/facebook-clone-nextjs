@@ -1,12 +1,11 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { axios } from '@libs/axios';
-import { useAuth } from '@hooks/useAuth';
 
-export const useRemovePost = (queryKey: unknown[]) => {
+export const useTurnOffComments = (queryKey: unknown[]) => {
     const queryClient = useQueryClient();
     const mutation = useMutation(mutationFn);
 
-    const remove = (id: number) => {
+    const turnOffComments = (id: number) => {
         if (mutation.isLoading) return;
 
         mutation.mutate(id, {
@@ -17,9 +16,9 @@ export const useRemovePost = (queryKey: unknown[]) => {
     };
 
     return {
-        remove,
+        turnOffComments,
         ...mutation,
     };
 };
 
-const mutationFn = (id: number) => axios.delete(`/api/posts/${id}`);
+const mutationFn = (id: number) => axios.put(`/api/posts/${id}/turn-off-comments`);

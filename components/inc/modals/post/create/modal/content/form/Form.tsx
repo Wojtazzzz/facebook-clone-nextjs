@@ -1,5 +1,5 @@
 import { Formik, Form as FormikForm } from 'formik';
-import { PostCreateSchema } from '@validation/PostCreateSchema';
+import { PostSchema } from '@validation/PostSchema';
 import type { IPostPayload } from '@utils/types';
 import { useCreatePost } from './useCreatePost';
 import { useCreatePostModal } from '../../../useCreatePostModal';
@@ -14,7 +14,7 @@ export const Form = () => {
     };
 
     return (
-        <Formik initialValues={initialValues} validationSchema={PostCreateSchema} onSubmit={handleSubmit}>
+        <Formik initialValues={initialValues} validationSchema={PostSchema} onSubmit={handleSubmit}>
             <FormikForm>
                 <FormContent isLoading={isLoading} error={error} />
             </FormikForm>

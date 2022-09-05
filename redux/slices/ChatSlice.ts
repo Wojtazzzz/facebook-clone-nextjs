@@ -30,10 +30,14 @@ export const ChatSlice = createSlice({
         setChatError: (state, action: PayloadAction<IError>) => {
             state.error = action.payload;
         },
+
+        clearChatError: (state) => {
+            state.error = undefined;
+        },
     },
 });
 
-export const { openChat, closeChat, setChatError } = ChatSlice.actions;
+export const { openChat, closeChat, setChatError, clearChatError } = ChatSlice.actions;
 export default ChatSlice.reducer;
 
 type IError = string | undefined;
