@@ -21,7 +21,11 @@ export const ModalRoot = ({ label, isOpen, title, closeModal, children }: ModalR
 
     return (
         <ReactModal isOpen={isOpen} style={modalStyles} onRequestClose={closeModal}>
-            <div aria-label={label} className="h-full flex flex-col bg-dark-200 rounded-lg mx-auto px-1">
+            <div
+                aria-label={label}
+                className="h-full flex flex-col bg-dark-200 rounded-lg mx-auto px-1"
+                style={{ maxHeight: '75vh' }}
+            >
                 <div className="w-full flex justify-between text-light-200 border-zinc-600 border-b-[1.5px] p-3">
                     <FontAwesomeIcon className="w-8 text-lg invisible pointer-events-none" icon={faTimes} />
 
@@ -37,7 +41,9 @@ export const ModalRoot = ({ label, isOpen, title, closeModal, children }: ModalR
                     />
                 </div>
 
-                {children}
+                <div className="overflow-y-scroll scrollbar-thin scrollbar-thumb-dark-100 scrollbar-track-dark-200">
+                    {children}
+                </div>
             </div>
         </ReactModal>
     );

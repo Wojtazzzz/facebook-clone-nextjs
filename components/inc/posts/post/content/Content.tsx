@@ -2,8 +2,8 @@ import { Images } from './images/Images';
 import { Text } from './Text';
 
 interface ContentProps {
-    content?: string;
-    images?: string[];
+    content: string;
+    images: string[];
 }
 
 export const Content = ({ content, images }: ContentProps) => {

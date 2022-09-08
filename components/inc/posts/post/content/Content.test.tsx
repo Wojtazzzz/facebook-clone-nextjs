@@ -17,7 +17,7 @@ describe('Content component', () => {
     });
 
     it('render only text when no images passed', () => {
-        renderWithDefaultData(<Content content={content} />);
+        renderWithDefaultData(<Content images={[]} content={content} />);
 
         const textComponent = screen.getByLabelText('Content', { selector: 'section' });
         const imagesComponent = screen.queryByLabelText('Images', { selector: 'section' });
@@ -29,7 +29,7 @@ describe('Content component', () => {
     });
 
     it('render only images when no text passed', () => {
-        renderWithDefaultData(<Content images={images} />);
+        renderWithDefaultData(<Content images={images} content="" />);
 
         const textComponent = screen.queryByLabelText('Content', { selector: 'section' });
         const imagesComponent = screen.getByLabelText('Images', { selector: 'section' });

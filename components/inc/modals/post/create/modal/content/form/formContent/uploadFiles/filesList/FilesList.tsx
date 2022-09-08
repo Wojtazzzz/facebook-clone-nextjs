@@ -1,12 +1,12 @@
 import { useFormikContext } from 'formik';
 import { File } from './file/File';
 import { v4 as uuidv4 } from 'uuid';
-import type { IPostPayload } from '@utils/types';
+import type { IPostCreatePayload } from '@utils/types';
 
 export const FilesList = () => {
     const {
         values: { images },
-    } = useFormikContext<IPostPayload>();
+    } = useFormikContext<IPostCreatePayload>();
 
     if (!!!images.length) return null;
 

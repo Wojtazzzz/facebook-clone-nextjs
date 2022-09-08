@@ -1,6 +1,6 @@
 import { ScrollToTop } from './ScrollToTop';
 import { useScroll } from '@hooks/useScroll';
-import { CreatePost } from '@components/inc/modals/post/createPost/CreatePost';
+import { CreatePost } from '@components/inc/modals/post/create/createPost/CreatePost';
 import { Posts as PostsList } from '@components/inc/posts/Posts';
 import { useAuth } from '@hooks/useAuth';
 

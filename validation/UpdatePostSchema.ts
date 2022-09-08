@@ -32,12 +32,24 @@ function checkIfFilesAreCorrectType(files?: File[]) {
     return valid;
 }
 
-export const PostSchema = Yup.object().shape(
+const isContent = () => {
+    (images?: File[], imagesToDelete?: string[]) => {
+        const hasUploadedMessages = (images?.length ?? 0) > 0;
+        const hasImagesToDelete = (imagesToDelete?.length ?? 0) > 0;
+
+        console.log(hasUploadedMessages);
+        console.log(hasImagesToDelete);
+
+        return !hasUploadedMessages && !hasImagesToDelete;
+    };
+};
+
+export const UpdatePostSchema = Yup.object().shape(
     {
         content: Yup.string()
             .nullable()
-            .when('images', {
-                is: (images: []) => images?.length <= 0,
+            .when(['images', 'imagesToDelete'], {
+                is: isContent,
                 then: Yup.string().required('Post must contain text or image(s)'),
             })
             .min(2, 'Post must be at least 2 characters')
@@ -51,6 +63,8 @@ export const PostSchema = Yup.object().shape(
             })
             .test('is-big-file', 'Uploaded image is too big', checkIfFilesAreTooBig)
             .test('is-correct-type-file', 'Uploaded image has wrong type', checkIfFilesAreCorrectType),
+
+        imagesToDelete: Yup.mixed().nullable(),
     },
     [['content', 'images']]
 );

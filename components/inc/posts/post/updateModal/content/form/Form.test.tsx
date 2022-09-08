@@ -8,6 +8,8 @@ import userEvent from '@testing-library/user-event';
 import { generateFile } from '@utils/tests/generateFile';
 
 describe('Form component', () => {
+    const user = userEvent.setup();
+
     jest.setTimeout(30000);
 
     beforeEach(() => {
@@ -23,13 +25,14 @@ describe('Form component', () => {
     });
 
     it('render too short text validation message', async () => {
-        const user = userEvent.setup();
+        const mockCloseModal = jest.fn();
 
-        renderWithDefaultData(<Form />);
+        renderWithDefaultData(<Form postId={1} content="Test content" images={[]} closeModal={mockCloseModal} />);
 
         const input = screen.getByLabelText('Post content');
-        const submitButton = screen.getByLabelText('Create post');
+        const submitButton = screen.getByLabelText('Update post');
 
+        await user.clear(input);
         await user.type(input, 'f');
         await user.click(submitButton);
 
@@ -39,11 +42,11 @@ describe('Form component', () => {
     });
 
     it('render too long text validation message', async () => {
-        const user = userEvent.setup();
+        const mockCloseModal = jest.fn();
 
-        renderWithDefaultData(<Form />);
+        renderWithDefaultData(<Form postId={1} content="Test content" images={[]} closeModal={mockCloseModal} />);
 
-        const submitButton = screen.getByLabelText('Create post');
+        const submitButton = screen.getByLabelText('Update post');
         const input = screen.getByLabelText('Post content');
 
         await user.type(input, LONG_TEXT);
@@ -54,23 +57,32 @@ describe('Form component', () => {
         expect(emptyPostValidationMessage).toBeInTheDocument();
     });
 
-    it('render empty post validation message', async () => {
-        const user = userEvent.setup();
+    it('can pass empty content', async () => {
+        mock({
+            path: '/api/posts',
+            status: 201,
+            method: 'post',
+        });
 
-        renderWithDefaultData(<Form />);
+        const mockCloseModal = jest.fn();
 
-        const submitButton = screen.getByLabelText('Create post');
+        renderWithDefaultData(<Form postId={1} content="Test content" images={[]} closeModal={mockCloseModal} />);
+
+        const submitButton = screen.getByLabelText('Update post');
+        const input = screen.getByLabelText('Post content');
+
+        await user.clear(input);
         await user.click(submitButton);
 
-        const emptyPostValidationMessage = await screen.findByText('Post must contain text or image(s)');
+        const validationError = screen.queryByText('Comment must contain text');
 
-        expect(emptyPostValidationMessage).toBeInTheDocument();
+        expect(validationError).not.toBeInTheDocument();
     });
 
     it('render input file when click on render button', async () => {
-        const user = userEvent.setup();
+        const mockCloseModal = jest.fn();
 
-        renderWithDefaultData(<Form />);
+        renderWithDefaultData(<Form postId={1} content="Test content" images={[]} closeModal={mockCloseModal} />);
 
         const renderButton = screen.getByLabelText('Show files uploader');
 
@@ -82,10 +94,11 @@ describe('Form component', () => {
     });
 
     it('render file name when file uploaded', async () => {
-        const user = userEvent.setup();
+        const mockCloseModal = jest.fn();
+
         const file = generateFile('testImage.png', 'image/png');
 
-        renderWithDefaultData(<Form />);
+        renderWithDefaultData(<Form postId={1} content="Test content" images={[]} closeModal={mockCloseModal} />);
 
         const renderButton = screen.getByLabelText('Show files uploader');
         await user.click(renderButton);
@@ -99,10 +112,11 @@ describe('Form component', () => {
     });
 
     it('cannot upload file which is illicit', async () => {
-        const user = userEvent.setup();
+        const mockCloseModal = jest.fn();
+
         const file = generateFile('testFile.pdf', 'application/pdf');
 
-        renderWithDefaultData(<Form />);
+        renderWithDefaultData(<Form postId={1} content="Test content" images={[]} closeModal={mockCloseModal} />);
 
         const renderButton = screen.getByLabelText('Show files uploader');
         await user.click(renderButton);
@@ -117,14 +131,15 @@ describe('Form component', () => {
     });
 
     it('can upload multiple files', async () => {
-        const user = userEvent.setup();
+        const mockCloseModal = jest.fn();
+
         const files = [
             generateFile('firstFile.png', 'image/png'),
             generateFile('secondFile.jpg', 'image/jpg'),
             generateFile('thirdFile.jpeg', 'image/jpeg'),
         ];
 
-        renderWithDefaultData(<Form />);
+        renderWithDefaultData(<Form postId={1} content="Test content" images={[]} closeModal={mockCloseModal} />);
 
         const renderButton = screen.getByLabelText('Show files uploader');
         await user.click(renderButton);
@@ -142,14 +157,15 @@ describe('Form component', () => {
     });
 
     it('can remove file from uploaded files list', async () => {
-        const user = userEvent.setup();
+        const mockCloseModal = jest.fn();
+
         const files = [
             generateFile('firstFile.png', 'image/png'),
             generateFile('secondFile.jpg', 'image/jpg'),
             generateFile('thirdFile.jpeg', 'image/jpeg'),
         ];
 
-        renderWithDefaultData(<Form />);
+        renderWithDefaultData(<Form postId={1} content="Test content" images={[]} closeModal={mockCloseModal} />);
 
         const renderButton = screen.getByLabelText('Show files uploader');
         await user.click(renderButton);
@@ -170,14 +186,15 @@ describe('Form component', () => {
     });
 
     it('removing one file cannot remove another file(s) from list', async () => {
-        const user = userEvent.setup();
+        const mockCloseModal = jest.fn();
+
         const files = [
             generateFile('firstFile.png', 'image/png'),
             generateFile('secondFile.jpg', 'image/jpg'),
             generateFile('thirdFile.jpeg', 'image/jpeg'),
         ];
 
-        renderWithDefaultData(<Form />);
+        renderWithDefaultData(<Form postId={1} content="Test content" images={[]} closeModal={mockCloseModal} />);
 
         const renderButton = screen.getByLabelText('Show files uploader');
         await user.click(renderButton);
@@ -207,7 +224,8 @@ describe('Form component', () => {
     });
 
     it('render properly count of uploaded files', async () => {
-        const user = userEvent.setup();
+        const mockCloseModal = jest.fn();
+
         const files = [
             generateFile('firstFile.png', 'image/png'),
             generateFile('secondFile.jpg', 'image/jpg'),
@@ -216,7 +234,7 @@ describe('Form component', () => {
             generateFile('fivethFile.jpeg', 'image/webp'),
         ];
 
-        renderWithDefaultData(<Form />);
+        renderWithDefaultData(<Form postId={1} content="Test content" images={[]} closeModal={mockCloseModal} />);
 
         const renderButton = screen.getByLabelText('Show files uploader');
         await user.click(renderButton);
@@ -228,6 +246,46 @@ describe('Form component', () => {
         const count = screen.getByText(`Uploaded files: ${files.length}`);
 
         expect(count).toBeInTheDocument();
+    });
+
+    it('list of uploaded files render properly count of images', async () => {
+        const mockCloseModal = jest.fn();
+
+        renderWithDefaultData(
+            <Form
+                postId={1}
+                content="Test content"
+                images={['/posts/firstFile.png', '/posts/secondFile.jpg']}
+                closeModal={mockCloseModal}
+            />
+        );
+
+        const listOfUploadedFiles = screen.getAllByLabelText('Uploaded image');
+
+        expect(listOfUploadedFiles).toHaveLength(2);
+    });
+
+    it('can remove file from uploaded', async () => {
+        const mockCloseModal = jest.fn();
+
+        renderWithDefaultData(
+            <Form
+                postId={1}
+                content="Test content"
+                images={['/posts/firstFile.png', '/posts/secondFile.jpg']}
+                closeModal={mockCloseModal}
+            />
+        );
+
+        const listOfUploadedFiles = screen.getAllByLabelText('Uploaded image');
+
+        expect(listOfUploadedFiles).toHaveLength(2);
+
+        const removeButton = screen.getAllByLabelText('Remove file');
+
+        await user.click(removeButton[0]);
+
+        expect(screen.getAllByLabelText('Uploaded image')).toHaveLength(1);
     });
 });
 

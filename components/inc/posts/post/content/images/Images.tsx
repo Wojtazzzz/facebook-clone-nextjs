@@ -4,7 +4,7 @@ import { getStoredImagePath } from '@utils/getStoredImagePath';
 import { Gallery } from './gallery/Gallery';
 
 interface ImagesProps {
-    images?: string[];
+    images: string[];
 }
 
 export const Images = ({ images }: ImagesProps) => {
@@ -12,9 +12,7 @@ export const Images = ({ images }: ImagesProps) => {
 
     const handleToggleGallery = () => setIsGalleryActive((prevState) => !prevState);
 
-    if (!!!images?.length) {
-        return null;
-    }
+    if (!!!images.length) return null;
 
     return (
         <>

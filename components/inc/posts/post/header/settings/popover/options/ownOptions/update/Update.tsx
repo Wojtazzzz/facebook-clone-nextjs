@@ -1,11 +1,10 @@
-import { faEdit, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { Option } from '../../Option';
 
 interface UpdateProps {
-    postId: number;
-    queryKey: unknown[];
+    openUpdateModal: () => void;
 }
 
-export const Update = ({ postId, queryKey }: UpdateProps) => {
-    return <Option title="Update" icon={faEdit} isActive={isRemoveLoading} callback={handleRemovePost} />;
+export const Update = ({ openUpdateModal }: UpdateProps) => {
+    return <Option title="Update" icon={faEdit} isActive={false} callback={openUpdateModal} />;
 };

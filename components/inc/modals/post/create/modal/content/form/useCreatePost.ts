@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { axios } from '@libs/axios';
-import type { IPostPayload } from '@utils/types';
+import type { IPostCreatePayload } from '@utils/types';
 import { useAuth } from '@hooks/useAuth';
 
 export const useCreatePost = () => {
@@ -8,7 +8,7 @@ export const useCreatePost = () => {
     const mutation = useMutation(mutationFn);
     const { user } = useAuth();
 
-    const create = (data: IPostPayload, onSuccess: () => void) => {
+    const create = (data: IPostCreatePayload, onSuccess: () => void) => {
         if (mutation.isLoading || !user) return;
 
         const formData = new FormData();

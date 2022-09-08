@@ -5,18 +5,20 @@ import { ErrorMessage } from './ErrorMessage';
 import { Textarea } from './Textarea';
 import { UploadFiles } from './uploadFiles/UploadFiles';
 import { useUploadActive } from './useUploadActive';
+import { UploadedFiles } from './uploadedFiles/UploadedFiles';
 
 interface FormContentProps {
     isLoading: boolean;
+    images: string[];
     error: unknown;
 }
 
-export const FormContent = ({ isLoading, error }: FormContentProps) => {
+export const FormContent = ({ isLoading, images, error }: FormContentProps) => {
     const { isUploadActive, closeUpload, toggleUpload } = useUploadActive();
 
     // Not move to parent component
     // It will remove all values from Formik when submit
-    if (isLoading) return <SpinnerLoader testId="createPost-loader" containerStyles="w-[100px] my-10 mx-auto" />;
+    if (isLoading) return <SpinnerLoader testId="updatePost-loader" containerStyles="w-[100px] my-10 mx-auto" />;
 
     return (
         <div className="m-3">
@@ -28,7 +30,9 @@ export const FormContent = ({ isLoading, error }: FormContentProps) => {
 
             <ToggleFilesUpload toggle={toggleUpload} />
 
-            <Button type="submit" title="Create post" isDisabled={isLoading} styles="w-full mt-5" />
+            <UploadedFiles images={images} />
+
+            <Button type="submit" title="Update post" isDisabled={isLoading} styles="w-full mt-5" />
         </div>
     );
 };

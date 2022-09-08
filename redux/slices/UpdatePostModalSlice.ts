@@ -1,44 +1,34 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { IPost } from '@utils/types';
+import type { IPostToUpdate } from '@utils/types';
 
 type IState =
     | {
           isActive: true;
-          post: IPost;
+          post: IPostToUpdate;
       }
     | {
           isActive: false;
           post: undefined;
       };
 
-const initialState: IState = {
+const initialState = {
     isActive: false,
     post: undefined,
-};
+} as IState;
 
 export const UpdatePostModalSlice = createSlice({
     name: 'updatePostModal',
     initialState,
     reducers: {
-        openModal: (state, action: PayloadAction<IPost>) => {
-            // state.isActive = true;
-            // state.post = action.payload;
-
-            return {
-                isActive: true,
-                post: action.payload,
-            };
+        openModal: (state, action: PayloadAction<IPostToUpdate>) => {
+            state.isActive = true;
+            state.post = action.payload;
         },
 
         closeModal: (state) => {
-            // state.isActive = false;
-            // state.post = undefined;
-
-            return {
-                isActive: false,
-                post: undefined,
-            };
+            state.isActive = false;
+            state.post = undefined;
         },
     },
 });

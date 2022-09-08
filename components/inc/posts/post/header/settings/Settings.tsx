@@ -9,6 +9,7 @@ interface SettingsProps {
     type: IPostType;
     commenting: boolean;
     queryKey: unknown[];
+    openUpdateModal: () => void;
 }
 
 export const Settings = (props: SettingsProps) => {

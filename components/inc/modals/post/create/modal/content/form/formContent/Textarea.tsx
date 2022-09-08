@@ -1,8 +1,8 @@
-import type { IPostPayload } from '@utils/types';
+import type { IPostCreatePayload } from '@utils/types';
 import { useFormikContext } from 'formik';
 
 export const Textarea = () => {
-    const { values, handleChange, handleBlur } = useFormikContext<IPostPayload>();
+    const { values, handleChange, handleBlur } = useFormikContext<IPostCreatePayload>();
 
     return (
         <div className="w-full">

@@ -75,7 +75,14 @@ export type ILoginPayload = {
     password: string;
 };
 
-export type IPostPayload = { content: string; images: File[] };
+export type IPostCreatePayload = { content: string; images: File[] };
+export type IPostUpdatePayload = { content: string; images: File[]; imagesToDelete: string[] };
+
+export type IPostToUpdate = {
+    id: number;
+    content: string;
+    images?: string[];
+};
 
 export type IComment = {
     id: number;
@@ -111,7 +118,7 @@ export type INotification = {
 export type IPost = {
     id: number;
     content: string;
-    images?: string[];
+    images: string[];
     author: IUser;
     likes_count: number;
     comments_count: number;

@@ -1,4 +1,4 @@
-import { CreatePost } from '@components/inc/modals/post/createPost/CreatePost';
+import { CreatePost } from '@components/inc/modals/post/create/createPost/CreatePost';
 import { useAuth } from '@hooks/useAuth';
 import type { ChangeEvent } from 'react';
 import { ListSwitcher } from '../ListSwitcher';

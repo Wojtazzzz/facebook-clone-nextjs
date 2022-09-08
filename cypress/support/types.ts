@@ -11,7 +11,7 @@ export type IUser = {
 export type IPost = {
     id: number;
     content: string;
-    images?: string[];
+    images: string[];
     author_id: number;
     created_at: string;
     updated_at: string;

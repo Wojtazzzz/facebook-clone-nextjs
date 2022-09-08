@@ -92,6 +92,16 @@ Cypress.Commands.add('expectAlert', (message: string) => {
     });
 });
 
+Cypress.Commands.add('openUpdatePostModal', () => {
+    cy.get('article[aria-label="Post"]')
+        .first()
+        .within(() => {
+            cy.get('[aria-label="Show post settings"]').click();
+        });
+
+    cy.get('[aria-label="Update"]').click();
+});
+
 declare global {
     namespace Cypress {
         interface Chainable {
@@ -101,6 +111,7 @@ declare global {
             friendsListItems(): Chainable<void>;
             showAlertModal(): Chainable<void>;
             expectAlert(message: string): Chainable<void>;
+            openUpdatePostModal(): Chainable<void>;
         }
     }
 }

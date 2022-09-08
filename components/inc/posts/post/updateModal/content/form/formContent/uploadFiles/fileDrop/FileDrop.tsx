@@ -29,7 +29,7 @@ export const FileDrop = ({ close }: FileDropProps) => {
                             <FontAwesomeIcon icon={faImages} className="text-3xl text-light-200" />
 
                             <div className="flex flex-col text-light-100 text-center">
-                                <span className="text-xl font-medium">Add photos</span>
+                                <span className="text-xl font-medium">Add more photos</span>
                                 <span className="text-xs">or drag and drop</span>
                             </div>
                         </div>

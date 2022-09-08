@@ -3,9 +3,7 @@ interface TextProps {
 }
 
 export const Text = ({ content }: TextProps) => {
-    if (!content) {
-        return null;
-    }
+    if (!!!content) return null;
 
     return (
         <section aria-label="Content" className="px-4">
