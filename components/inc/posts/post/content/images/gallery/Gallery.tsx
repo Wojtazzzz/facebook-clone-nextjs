@@ -3,6 +3,7 @@ import { Swiper as SwiperReact, SwiperSlide } from 'swiper/react';
 import Swiper, { Keyboard, Pagination, Navigation } from 'swiper';
 import { Slide } from './Slide';
 import { CloseButton } from './CloseButton';
+import { useOutsideClick } from '@hooks/useOutsideClick';
 
 interface GalleryProps {
     images: string[];
@@ -13,6 +14,7 @@ Swiper.use([Keyboard, Pagination, Navigation]);
 
 export const Gallery = ({ images, closeGallery }: GalleryProps) => {
     useKey('Escape', closeGallery);
+    const ref = useOutsideClick(closeGallery);
 
     const SlidesComponents = images.map((image, i) => (
         <SwiperSlide key={i}>
@@ -21,18 +23,14 @@ export const Gallery = ({ images, closeGallery }: GalleryProps) => {
     ));
 
     return (
-        <section aria-label="Post gallery" className="w-full h-full fixed top-0 left-0 bg-black z-30">
+        <section ref={ref} aria-label="Post gallery" className="w-full h-full fixed top-0 left-0 bg-black z-50">
             <CloseButton closeGallery={closeGallery} />
 
             <SwiperReact
                 slidesPerView={1}
                 spaceBetween={30}
-                keyboard={{
-                    enabled: true,
-                }}
-                pagination={{
-                    clickable: true,
-                }}
+                keyboard={{ enabled: true }}
+                pagination={{ clickable: true }}
                 navigation={{
                     prevEl: '.swiper-button-prev',
                     nextEl: '.swiper-button-next',
