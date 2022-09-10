@@ -3,7 +3,7 @@ import { useDatabaseMigrations } from 'cypress-laravel';
 const USER_FIRST_NAME = Cypress.env('USER_FIRST_NAME');
 const USER_LAST_NAME = Cypress.env('USER_LAST_NAME');
 
-describe('Sidebar links tests', () => {
+describe('Menu tests', () => {
     useDatabaseMigrations();
 
     beforeEach(() => {
@@ -17,7 +17,7 @@ describe('Sidebar links tests', () => {
 
         cy.wait('@user');
 
-        cy.get('[data-testid="sidebar"]').within(() => {
+        cy.get('[data-testid="menu"]').within(() => {
             cy.contains(`${USER_FIRST_NAME} ${USER_LAST_NAME}`).click();
 
             cy.url().should('include', '/profile/1');
@@ -29,17 +29,17 @@ describe('Sidebar links tests', () => {
 
         cy.wait('@user');
 
-        cy.get('[data-testid="sidebar"]').within(() => {
+        cy.get('[data-testid="menu"]').within(() => {
             cy.contains('Friends').click();
             cy.url().should('include', '/friends');
         });
 
-        cy.get('[data-testid="sidebar"]').within(() => {
+        cy.get('[data-testid="menu"]').within(() => {
             cy.contains('Pokes').click();
             cy.url().should('include', '/friends/pokes');
         });
 
-        cy.get('[data-testid="sidebar"]').within(() => {
+        cy.get('[data-testid="menu"]').within(() => {
             cy.contains('GitHub').should('have.attr', 'target', '_blank');
             cy.contains('GitHub').should('have.attr', 'href', 'https://github.com/CubeStorm/');
         });

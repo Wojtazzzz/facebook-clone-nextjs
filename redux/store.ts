@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import NavReducer from '@redux/slices/NavSlice';
-import SidebarReducer from '@redux/slices/SidebarSlice';
+import MenuReducer from '@redux/slices/MenuSlice';
 import ChatReducer from '@redux/slices/ChatSlice';
 import MessengerReducer from '@redux/slices/MessengerSlice';
 import NotificationsReducer from '@redux/slices/NotificationsSlice';
@@ -12,7 +12,7 @@ export const generateStore = () =>
     configureStore({
         reducer: {
             nav: NavReducer,
-            sidebar: SidebarReducer,
+            menu: MenuReducer,
             chat: ChatReducer,
             messenger: MessengerReducer,
             notifications: NotificationsReducer,

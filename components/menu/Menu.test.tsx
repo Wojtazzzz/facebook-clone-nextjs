@@ -1,10 +1,11 @@
-import { Sidebar } from '@components/sidebar/Sidebar';
+import { Menu } from './Menu';
 import { screen } from '@testing-library/react';
 import RootUserJson from '@mocks/user/root.json';
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { mock } from '@libs/nock';
+import React from 'react';
 
-describe('Sidebar component', () => {
+describe('Menu component', () => {
     beforeEach(() => {
         mock({
             path: '/api/user',
@@ -13,14 +14,14 @@ describe('Sidebar component', () => {
     });
 
     it('loads logged user', async () => {
-        renderWithDefaultData(<Sidebar />);
+        renderWithDefaultData(<Menu />);
 
         const loggedUser = await screen.findByText(RootUserJson.name);
         expect(loggedUser).toBeInTheDocument();
     });
 
     it('renders friends, pokes, github link properly', () => {
-        renderWithDefaultData(<Sidebar />);
+        renderWithDefaultData(<Menu />);
 
         const friendsElement = screen.getByTitle('Friends');
         const pokesElement = screen.getByTitle('Pokes');

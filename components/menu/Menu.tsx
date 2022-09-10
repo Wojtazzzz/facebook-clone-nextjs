@@ -1,19 +1,17 @@
 import { useAppSelector } from '@hooks/redux';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHandLizard, faUsers } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import { UserLink } from '@components/sidebar/UserLink';
-import { Link } from '@components/sidebar/Link';
-
+import { UserLink } from '@components/menu/UserLink';
+import { Link } from '@components/menu/Link';
 import { clsx } from 'clsx';
 
-export const Sidebar = () => {
-    const { isActive } = useAppSelector((store) => store.sidebar);
+export const Menu = () => {
+    const { isActive } = useAppSelector((store) => store.menu);
 
     return (
         <aside
-            data-testid="sidebar"
+            data-testid="menu"
             className={clsx(
                 'w-full max-w-[250px] xl:max-w-[300px] h-screen flex flex-col fixed lg:relative top-0 left-0 bg-dark-300 transition-transform z-30 py-5 px-2',
                 !isActive && '-translate-x-[300px] lg:translate-x-[0px]'

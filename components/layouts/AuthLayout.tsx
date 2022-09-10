@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { Nav } from '@components/nav/Nav';
 import { NavToggler } from '@components/nav/mobile/NavToggler';
-import { Sidebar } from '@components/sidebar/Sidebar';
+import { Menu } from '@components/menu/Menu';
 import { Contacts } from '@components/contacts/Contacts';
 import { Chat } from '@components/chat/Chat';
 import { Modal as CreatePostModal } from '@components/inc/modals/post/create/modal/Modal';
@@ -24,7 +24,7 @@ export const AuthLayout = ({ children }: AuthLayoutProps) => {
             <Nav />
 
             <div className="flex justify-between relative translate-y-14">
-                <Sidebar />
+                <Menu />
 
                 <main className="w-full max-w-[1024px] h-screen overflow-y-scroll mx-auto pb-14">{children}</main>
 
