@@ -8,15 +8,9 @@ describe('Contacts tests', () => {
     });
 
     it('open chat when click on user', () => {
-        cy.create('User', {
+        cy.createUser(1, true, {
             first_name: 'John',
             last_name: 'Doe',
-        });
-
-        cy.create('Friendship', {
-            user_id: 1,
-            friend_id: 2,
-            status: 'CONFIRMED',
         });
 
         cy.intercept('/api/user').as('user');
@@ -36,10 +30,7 @@ describe('Contacts tests', () => {
     });
 
     it('load and render 20 contacts and fetch more by scrolling to bottom', () => {
-        cy.create('Friendship', 23, {
-            user_id: 1,
-            status: 'CONFIRMED',
-        });
+        cy.createFriendship(23);
 
         cy.intercept('/api/user').as('user');
         cy.intercept('/api/contacts?page=1').as('contacts_page_1');

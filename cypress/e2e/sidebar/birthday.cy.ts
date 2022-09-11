@@ -1,7 +1,9 @@
 import { useDatabaseMigrations } from 'cypress-laravel';
 
-describe('Contacts tests', () => {
+describe('Birthdays tests', () => {
     useDatabaseMigrations();
+
+    const ISODate = new Date().toISOString();
 
     beforeEach(() => {
         cy.loginRequest();
@@ -37,16 +39,10 @@ describe('Contacts tests', () => {
     });
 
     it('see that one user has birthday, redirect to his profile by click on his name', () => {
-        cy.create('User', {
+        cy.createUser(1, true, {
             first_name: 'John',
             last_name: 'Doe',
-            born_at: new Date().toISOString(),
-        }).then((user) => {
-            cy.create('Friendship', {
-                user_id: 1,
-                friend_id: user.id,
-                status: 'CONFIRMED',
-            });
+            born_at: ISODate,
         });
 
         cy.intercept('/api/user').as('user');
@@ -66,28 +62,16 @@ describe('Contacts tests', () => {
     });
 
     it('see that two users has birthday, redirect to their profiles by click on names', () => {
-        cy.create('User', {
+        cy.createUser(1, true, {
             first_name: 'John',
             last_name: 'Doe',
-            born_at: new Date().toISOString(),
-        }).then((user) => {
-            cy.create('Friendship', {
-                user_id: 1,
-                friend_id: user.id,
-                status: 'CONFIRMED',
-            });
+            born_at: ISODate,
         });
 
-        cy.create('User', {
+        cy.createUser(1, true, {
             first_name: 'Adam',
             last_name: 'Walker',
-            born_at: new Date().toISOString(),
-        }).then((user) => {
-            cy.create('Friendship', {
-                user_id: 1,
-                friend_id: user.id,
-                status: 'CONFIRMED',
-            });
+            born_at: ISODate,
         });
 
         cy.intercept('/api/user').as('user');
@@ -115,40 +99,22 @@ describe('Contacts tests', () => {
     });
 
     it('see that more than two users has birthday, redirect to their profiles by click on names', () => {
-        cy.create('User', {
+        cy.createUser(1, true, {
             first_name: 'John',
             last_name: 'Doe',
-            born_at: new Date().toISOString(),
-        }).then((user) => {
-            cy.create('Friendship', {
-                user_id: 1,
-                friend_id: user.id,
-                status: 'CONFIRMED',
-            });
+            born_at: ISODate,
         });
 
-        cy.create('User', {
+        cy.createUser(1, true, {
             first_name: 'Adam',
             last_name: 'Walker',
-            born_at: new Date().toISOString(),
-        }).then((user) => {
-            cy.create('Friendship', {
-                user_id: 1,
-                friend_id: user.id,
-                status: 'CONFIRMED',
-            });
+            born_at: ISODate,
         });
 
-        cy.create('User', {
+        cy.createUser(1, true, {
             first_name: 'Will',
             last_name: 'Taylor',
-            born_at: new Date().toISOString(),
-        }).then((user) => {
-            cy.create('Friendship', {
-                user_id: 1,
-                friend_id: user.id,
-                status: 'CONFIRMED',
-            });
+            born_at: ISODate,
         });
 
         cy.intercept('/api/user').as('user');

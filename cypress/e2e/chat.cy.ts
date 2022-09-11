@@ -2,8 +2,9 @@ import { useDatabaseMigrations } from 'cypress-laravel';
 
 describe('Chat tests', () => {
     useDatabaseMigrations();
-    let friend = {
-        id: 2,
+
+    const friend = {
+        id: 999,
         first_name: 'John',
         last_name: 'Doe',
     };
@@ -14,16 +15,11 @@ describe('Chat tests', () => {
         cy.intercept('/api/user').as('user');
         cy.intercept('/api/contacts?page=1').as('contacts_page_1');
 
-        cy.create('User', friend);
-        cy.create('Friendship', {
-            user_id: 1,
-            friend_id: friend.id,
-            status: 'CONFIRMED',
-        });
+        cy.createUser(1, true, friend);
     });
 
     it('open chat by contacts, conversation should be empty, send new message (by press enter) and wait for it will be loaded on list, send second message (by click on submit button), close chat by close button', () => {
-        cy.intercept('/api/messages/2?page=1').as('messages_page_1');
+        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
 
         cy.visit('/');
 
@@ -42,7 +38,7 @@ describe('Chat tests', () => {
 
         // Creating first message
         cy.intercept('/api/messages').as('messages');
-        cy.intercept('/api/messages/2?page=1').as('messages_page_1');
+        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
 
         cy.get('input[aria-label="Message input"]').type('Hello World!{enter}');
 
@@ -55,7 +51,7 @@ describe('Chat tests', () => {
 
         // Creating second message
         cy.intercept('/api/messages').as('messages');
-        cy.intercept('/api/messages/2?page=1').as('messages_page_1');
+        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
 
         cy.get('input[aria-label="Message input"]').type('Hello World second time');
         cy.get('[aria-label="Send message"]').click();
@@ -72,7 +68,7 @@ describe('Chat tests', () => {
     });
 
     it('open chat, send new message, response return error, message should not exist on list, chat show Internal Server Error, second message with success response remove Internal Server Error from chat', () => {
-        cy.intercept('/api/messages/2?page=1').as('messages_page_1');
+        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
 
         cy.visit('/');
 
@@ -89,7 +85,7 @@ describe('Chat tests', () => {
 
         // Creating first message
         cy.intercept('/api/messages', { statusCode: 500 }).as('messages');
-        cy.intercept('/api/messages/2?page=1').as('messages_page_1');
+        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
 
         cy.get('input[aria-label="Message input"]').type('Hello World!{enter}');
 
@@ -101,7 +97,7 @@ describe('Chat tests', () => {
 
         // Creating second message
         cy.intercept('/api/messages', { statusCode: 201 }).as('messages');
-        cy.intercept('/api/messages/2?page=1').as('messages_page_1');
+        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
 
         cy.get('input[aria-label="Message input"]').type('Second approach{enter}');
 
@@ -113,7 +109,7 @@ describe('Chat tests', () => {
     });
 
     it('open chat, generate Internal Server Error, close chat, open same chat, Internal Server Error is not showing', () => {
-        cy.intercept('/api/messages/2?page=1').as('messages_page_1');
+        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
 
         cy.visit('/');
 
@@ -130,7 +126,7 @@ describe('Chat tests', () => {
 
         // Creating first message
         cy.intercept('/api/messages', { statusCode: 500 }).as('messages');
-        cy.intercept('/api/messages/2?page=1').as('messages_page_1');
+        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
 
         cy.get('input[aria-label="Message input"]').type('Hello World!{enter}');
 
@@ -155,7 +151,7 @@ describe('Chat tests', () => {
     });
 
     it('create and send message with emoji', () => {
-        cy.intercept('/api/messages/2?page=1').as('messages_page_1');
+        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
 
         cy.visit('/');
 
@@ -171,7 +167,7 @@ describe('Chat tests', () => {
         cy.get('[data-testid="chat"]').should('be.visible');
 
         cy.intercept('/api/messages').as('messages');
-        cy.intercept('/api/messages/2?page=1').as('messages_page_1');
+        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
 
         cy.get('input[aria-label="Message input"]').type('Hello ');
 
@@ -194,7 +190,7 @@ describe('Chat tests', () => {
     });
 
     it('emojis list can be closed by pressing esc', () => {
-        cy.intercept('/api/messages/2?page=1').as('messages_page_1');
+        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
 
         cy.visit('/');
 
@@ -210,7 +206,7 @@ describe('Chat tests', () => {
         cy.get('[data-testid="chat"]').should('be.visible');
 
         cy.intercept('/api/messages').as('messages');
-        cy.intercept('/api/messages/2?page=1').as('messages_page_1');
+        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
 
         cy.get('[aria-label="Choose an emoji"]').click();
 
@@ -222,7 +218,7 @@ describe('Chat tests', () => {
     });
 
     it('emojis list can be closed by click on outside element', () => {
-        cy.intercept('/api/messages/2?page=1').as('messages_page_1');
+        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
 
         cy.visit('/');
 
@@ -238,7 +234,7 @@ describe('Chat tests', () => {
         cy.get('[data-testid="chat"]').should('be.visible');
 
         cy.intercept('/api/messages').as('messages');
-        cy.intercept('/api/messages/2?page=1').as('messages_page_1');
+        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
 
         cy.get('[aria-label="Choose an emoji"]').click();
 
@@ -250,7 +246,7 @@ describe('Chat tests', () => {
     });
 
     it('send like by click on like button', () => {
-        cy.intercept('/api/messages/2?page=1').as('messages_page_1');
+        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
 
         cy.visit('/');
 
@@ -266,7 +262,7 @@ describe('Chat tests', () => {
         cy.get('[data-testid="chat"]').should('be.visible');
 
         cy.intercept('/api/messages').as('messages');
-        cy.intercept('/api/messages/2?page=1').as('messages_page_1');
+        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
 
         cy.get('[aria-label="Send like"]').click();
 
@@ -276,7 +272,7 @@ describe('Chat tests', () => {
     });
 
     it('send message which contain only emojis', () => {
-        cy.intercept('/api/messages/2?page=1').as('messages_page_1');
+        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
 
         cy.visit('/');
 
@@ -292,7 +288,7 @@ describe('Chat tests', () => {
         cy.get('[data-testid="chat"]').should('be.visible');
 
         cy.intercept('/api/messages').as('messages');
-        cy.intercept('/api/messages/2?page=1').as('messages_page_1');
+        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
 
         cy.get('[aria-label="Choose an emoji"]').click();
 
@@ -324,7 +320,7 @@ describe('Chat tests', () => {
     //         receiver_id: friend.id,
     //     });
 
-    //     cy.intercept('/api/messages/2?page=1').as('messages_page_1');
+    //     cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
 
     //     cy.visit('/');
 
@@ -342,7 +338,7 @@ describe('Chat tests', () => {
     //         cy.get('[aria-label$=" message"]').should('have.length', 15);
     //     });
 
-    //     cy.intercept('/api/messages/2?page=1').as('messages_page_1');
+    //     cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
     //     cy.intercept('/api/messages/2?page=2').as('messages_page_2');
 
     //     cy.get('[id="list-of-messages"]').scrollTo('top', { ensureScrollable: false });

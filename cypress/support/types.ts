@@ -1,3 +1,5 @@
+import type { IMaritalStatus } from '@utils/types';
+
 export type IUser = {
     id: number;
     first_name: string;
@@ -15,4 +17,15 @@ export type IPost = {
     author_id: number;
     created_at: string;
     updated_at: string;
+    commenting: boolean;
 };
+
+export type IUserExtended = {
+    works_at: string;
+    went_to: string;
+    lives_in: string;
+    from: string;
+    marital_status: IMaritalStatus;
+    created_at: string;
+    born_at: string;
+} & IUser;

@@ -1,16 +1,7 @@
 import 'cypress-file-upload';
-import type { IMaritalStatus } from '@utils/types';
+import type { IComment, IHiddenPost, IPost, ISavedPost, IUser, IUserExtended } from './types';
 
-type IUserDataParam = {
-    works_at: string;
-    went_to: string;
-    lives_in: string;
-    from: string;
-    marital_status: IMaritalStatus;
-    created_at: string;
-};
-
-Cypress.Commands.add('loginRequest', (data: Partial<IUserDataParam>) => {
+Cypress.Commands.add('loginRequest', (data: Partial<IUserExtended>) => {
     const id = 1;
     const email = Cypress.env('USER_EMAIL');
     const first_name = Cypress.env('USER_FIRST_NAME');
@@ -102,16 +93,39 @@ Cypress.Commands.add('openUpdatePostModal', () => {
     cy.get('[aria-label="Update"]').click();
 });
 
+Cypress.Commands.add('createUser', (amount = 1, asFriend = true, params?: Partial<IUserExtended>) => {
+    cy.create('User', amount, params).then((users: IUserExtended[]) => {
+        if (!asFriend) return;
+
+        users.forEach((user) => {
+            cy.create('Friendship', {
+                user_id: 1,
+                friend_id: user.id,
+                status: 'CONFIRMED',
+            });
+        });
+    });
+});
+
+Cypress.Commands.add('createFriendship', (amount = 1, forUser = 1) => {
+    cy.create('Friendship', amount, {
+        user_id: forUser,
+        status: 'CONFIRMED',
+    });
+});
+
 declare global {
     namespace Cypress {
         interface Chainable {
-            loginRequest(data?: Partial<IUserDataParam>): Chainable<void>;
+            loginRequest(data?: Partial<IUserExtended>): Chainable<void>;
             checkNotification(title: string, label: string, click?: boolean): Chainable<void>;
             relogin(id: number, path?: string): Chainable<void>;
             friendsListItems(): Chainable<void>;
             showAlertModal(): Chainable<void>;
             expectAlert(message: string): Chainable<void>;
             openUpdatePostModal(): Chainable<void>;
+            createUser(amount?: number, asFriend?: boolean, params?: Partial<IUserExtended>): Chainable<void>;
+            createFriendship(amount?: number, forUser?: number): Chainable<void>;
         }
     }
 }

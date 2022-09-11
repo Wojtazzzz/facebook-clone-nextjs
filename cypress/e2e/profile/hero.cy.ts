@@ -12,10 +12,7 @@ describe('Profile hero tests', () => {
     });
 
     it('visit self profile, cannot edit profile because button is disabled, see all friends count and five friends images, redirect to friend profile by click on his image', () => {
-        cy.create('Friendship', 13, {
-            user_id: 1,
-            status: 'CONFIRMED',
-        });
+        cy.createFriendship(13);
 
         cy.visit('/profile/1');
 
@@ -36,10 +33,7 @@ describe('Profile hero tests', () => {
     });
 
     it('visit friend\'s profile, see his friends (only one), open chat with him by click on "Send message" button', () => {
-        cy.create('Friendship', 1, {
-            user_id: 1,
-            status: 'CONFIRMED',
-        });
+        cy.createFriendship(1);
 
         cy.visit('/profile/2');
 
@@ -60,10 +54,7 @@ describe('Profile hero tests', () => {
     });
 
     it('visit friend\'s profile, click "Poke" button, relogin to friend\'s account, see poke in notifications and in pokes list', () => {
-        cy.create('Friendship', 1, {
-            user_id: 1,
-            status: 'CONFIRMED',
-        });
+        cy.createFriendship(1);
 
         cy.visit('/profile/2');
 
