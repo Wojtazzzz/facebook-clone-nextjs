@@ -12,7 +12,7 @@ export const Images = ({ images }: ImagesProps) => {
 
     const handleToggleGallery = () => setIsGalleryActive((prevState) => !prevState);
 
-    if (!!!images.length) return null;
+    if (!images.length) return null;
 
     return (
         <>

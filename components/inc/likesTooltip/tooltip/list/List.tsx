@@ -13,7 +13,7 @@ interface ListProps {
 export const List = ({ data, isLoading, isError }: ListProps) => {
     if (isLoading) return <SpinnerLoader testId="tooltip-spinner" spinnerStyles="w-4 mx-auto" />;
     if (isError) return <ApiError />;
-    if (!!!data?.length) return <EmptyList />;
+    if (!data?.length) return <EmptyList />;
 
     const LikeComponents = data.map((like, i) => {
         if (i >= maxCount) return;

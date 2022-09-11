@@ -8,7 +8,7 @@ export const FilesList = () => {
         values: { images },
     } = useFormikContext<IPostCreatePayload>();
 
-    if (!!!images.length) return null;
+    if (!images.length) return null;
 
     const ImagesComponents = images.map((file) => <File key={uuidv4()} file={file} />);
 

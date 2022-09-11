@@ -1,6 +1,6 @@
 import { axios } from '@libs/axios';
 import { useQuery } from '@tanstack/react-query';
-import { IBirthday } from '@utils/types';
+import type { IBirthday } from '@utils/types';
 
 export const useBirthdays = () => {
     return useQuery<IBirthday[]>(['birthdays'], queryFn);

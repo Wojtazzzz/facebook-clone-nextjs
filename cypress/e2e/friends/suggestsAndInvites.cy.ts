@@ -15,7 +15,7 @@ describe('Suggests and invites lists tests', () => {
 
         cy.visit('/');
 
-        cy.get('[data-testid="sidebar"]').within(() => {
+        cy.get('[data-testid="menu"]').within(() => {
             cy.contains('Friends').click();
         });
 
@@ -66,7 +66,7 @@ describe('Suggests and invites lists tests', () => {
 
         cy.visit('/');
 
-        cy.get('[data-testid="sidebar"]').within(() => {
+        cy.get('[data-testid="menu"]').within(() => {
             cy.contains('Friends').click();
         });
 

@@ -31,7 +31,7 @@ describe('Posts settings tests', () => {
 
         cy.get('[aria-label="Settings"]').should('be.visible');
 
-        cy.get('[data-testid="sidebar"]').click();
+        cy.get('[data-testid="menu"]').click();
 
         cy.get('[aria-label="Settings"]').should('not.exist');
     });

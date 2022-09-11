@@ -9,7 +9,7 @@ interface UploadedFilesProps {
 export const UploadedFiles = ({ images }: UploadedFilesProps) => {
     const { currentImages, remove } = useImages(images);
 
-    if (!!!images.length) return null;
+    if (!images.length) return null;
 
     const ImagesComponents = currentImages.map((img) => <File key={uuidv4()} remove={remove} path={img} />);
 

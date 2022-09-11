@@ -20,18 +20,14 @@ export const List = memo(() => {
     const ContactsComponents = data.map((contact) => <Contact key={contact.id} {...contact} />);
 
     return (
-        <div
-            data-testid="contacts-list"
-            id="list-of-contacts"
-            className="w-full overflow-y-scroll scrollbar-thin scrollbar-thumb-dark-200 max-h-full flex flex-col"
-        >
+        <div data-testid="contacts-list" className="w-full flex flex-col">
             <InfiniteScroll
                 dataLength={ContactsComponents.length}
                 next={fetchNextPage}
                 className="flex flex-col gap-1"
                 hasMore={!!hasNextPage}
                 loader={<Loader />}
-                scrollableTarget="list-of-contacts"
+                scrollableTarget="sidebar"
             >
                 {ContactsComponents}
             </InfiniteScroll>

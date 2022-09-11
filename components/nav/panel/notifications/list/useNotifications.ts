@@ -24,7 +24,7 @@ export const useNotifications = () => {
                     })
                 );
 
-                if (!!!ids.length) return;
+                if (!ids.length) return;
 
                 mutation.mutate({
                     ids,

@@ -264,7 +264,7 @@ describe('Update post tests', () => {
 
         cy.get('button[aria-label="Update post"]').click();
 
-        cy.get('img[alt="Server error"]').should('be.visible');
+        cy.get('img[alt="Server error"]').should('exist');
     });
 
     it('can add new and remove old images from post', () => {

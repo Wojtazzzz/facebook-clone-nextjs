@@ -27,8 +27,8 @@ export const useInfiniteData = <T>({ queryKey, endpoint, params, options }: IUse
         }
     );
 
-    const isEmpty = (data?.pages[0].data.length ?? 0) <= 0;
     const flatData = data?.pages.flatMap((page) => page.data);
+    const isEmpty = !flatData?.length;
 
     return {
         data: flatData,

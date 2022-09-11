@@ -17,7 +17,7 @@ describe('Friends list tests', () => {
 
         cy.intercept('/api/friends?page=1').as('friends_page_1');
 
-        cy.get('[data-testid="sidebar"]').within(() => {
+        cy.get('[data-testid="menu"]').within(() => {
             cy.contains('Friends').click();
         });
 

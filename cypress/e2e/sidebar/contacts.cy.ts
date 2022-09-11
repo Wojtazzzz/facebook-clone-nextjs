@@ -54,7 +54,7 @@ describe('Contacts tests', () => {
             cy.get('button[aria-label*="Open chat with"]').should('have.length', 20);
         });
 
-        cy.get('[id="list-of-contacts"]').scrollTo('bottom', { ensureScrollable: false });
+        cy.get('[id="sidebar"]').scrollTo('bottom', { ensureScrollable: false });
 
         cy.get('[data-testid="contacts-list"]').within(() => {
             cy.get('button[aria-label*="Open chat with"]').should('have.length', 23);

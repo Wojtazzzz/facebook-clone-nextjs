@@ -14,7 +14,7 @@ interface PostsProps {
 export const Posts = ({ postsList, userId }: PostsProps) => {
     const { data, isLoading, isError, isEmpty, hasNextPage, fetchNextPage, queryKey } = useGetPosts(postsList, userId);
 
-    if (isLoading || !!!userId) return <Loader />;
+    if (isLoading || !userId) return <Loader />;
     if (!data || isError) return <ApiError size="xl" styles="mt-8" />;
     if (isEmpty) return <EmptyList title="No posts, add some friends!" />;
 

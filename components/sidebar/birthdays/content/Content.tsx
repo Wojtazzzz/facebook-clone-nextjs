@@ -10,8 +10,8 @@ export const Content = () => {
     const { data, isLoading, isError } = useBirthdays();
 
     if (isLoading) return <SpinnerLoader testId="birthdays-loader" spinnerStyles="w-5" />;
-    if (!data || isError) return <ApiError />;
-    if (!!!data.length) return <Empty />;
+    if (isError) return <ApiError />;
+    if (!data.length) return <Empty />;
 
     return (
         <div className="w-full flex items-center text-light-200 font-medium px-2">

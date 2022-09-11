@@ -4,9 +4,7 @@ interface CommentsProps {
 }
 
 export const Comments = ({ count, toggleCommentsActive }: CommentsProps) => {
-    if (!!!count) {
-        return null;
-    }
+    if (!count) return null;
 
     return (
         <button

@@ -25,7 +25,7 @@ describe('Pokes list tests', () => {
 
         cy.intercept('/api/pokes?page=1').as('pokes_page_1');
 
-        cy.get('[data-testid="sidebar"]').within(() => {
+        cy.get('[data-testid="menu"]').within(() => {
             cy.contains('Pokes').click();
         });
 
