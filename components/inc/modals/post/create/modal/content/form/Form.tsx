@@ -5,9 +5,13 @@ import { useCreatePost } from './useCreatePost';
 import { useCreatePostModal } from '../../../useCreatePostModal';
 import { FormContent } from './formContent/FormContent';
 
-export const Form = () => {
+interface FormProps {
+    queryKey: unknown[];
+}
+
+export const Form = ({ queryKey }: FormProps) => {
     const { close } = useCreatePostModal();
-    const { create, isLoading, error } = useCreatePost();
+    const { create, isLoading, error } = useCreatePost(queryKey);
 
     const handleSubmit = (values: IPostCreatePayload) => {
         create(values, close);

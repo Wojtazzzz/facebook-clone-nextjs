@@ -25,7 +25,7 @@ describe('Form component', () => {
     it('render too short text validation message', async () => {
         const user = userEvent.setup();
 
-        renderWithDefaultData(<Form />);
+        renderWithDefaultData(<Form queryKey={['posts', 'all']} />);
 
         const input = screen.getByLabelText('Post content');
         const submitButton = screen.getByLabelText('Create post');
@@ -41,7 +41,7 @@ describe('Form component', () => {
     it('render too long text validation message', async () => {
         const user = userEvent.setup();
 
-        renderWithDefaultData(<Form />);
+        renderWithDefaultData(<Form queryKey={['posts', 'all']} />);
 
         const submitButton = screen.getByLabelText('Create post');
         const input = screen.getByLabelText('Post content');
@@ -57,7 +57,7 @@ describe('Form component', () => {
     it('render empty post validation message', async () => {
         const user = userEvent.setup();
 
-        renderWithDefaultData(<Form />);
+        renderWithDefaultData(<Form queryKey={['posts', 'all']} />);
 
         const submitButton = screen.getByLabelText('Create post');
         await user.click(submitButton);
@@ -70,7 +70,7 @@ describe('Form component', () => {
     it('render input file when click on render button', async () => {
         const user = userEvent.setup();
 
-        renderWithDefaultData(<Form />);
+        renderWithDefaultData(<Form queryKey={['posts', 'all']} />);
 
         const renderButton = screen.getByLabelText('Show files uploader');
 
@@ -85,7 +85,7 @@ describe('Form component', () => {
         const user = userEvent.setup();
         const file = generateFile('testImage.png', 'image/png');
 
-        renderWithDefaultData(<Form />);
+        renderWithDefaultData(<Form queryKey={['posts', 'all']} />);
 
         const renderButton = screen.getByLabelText('Show files uploader');
         await user.click(renderButton);
@@ -102,7 +102,7 @@ describe('Form component', () => {
         const user = userEvent.setup();
         const file = generateFile('testFile.pdf', 'application/pdf');
 
-        renderWithDefaultData(<Form />);
+        renderWithDefaultData(<Form queryKey={['posts', 'all']} />);
 
         const renderButton = screen.getByLabelText('Show files uploader');
         await user.click(renderButton);
@@ -124,7 +124,7 @@ describe('Form component', () => {
             generateFile('thirdFile.jpeg', 'image/jpeg'),
         ];
 
-        renderWithDefaultData(<Form />);
+        renderWithDefaultData(<Form queryKey={['posts', 'all']} />);
 
         const renderButton = screen.getByLabelText('Show files uploader');
         await user.click(renderButton);
@@ -149,7 +149,7 @@ describe('Form component', () => {
             generateFile('thirdFile.jpeg', 'image/jpeg'),
         ];
 
-        renderWithDefaultData(<Form />);
+        renderWithDefaultData(<Form queryKey={['posts', 'all']} />);
 
         const renderButton = screen.getByLabelText('Show files uploader');
         await user.click(renderButton);
@@ -177,7 +177,7 @@ describe('Form component', () => {
             generateFile('thirdFile.jpeg', 'image/jpeg'),
         ];
 
-        renderWithDefaultData(<Form />);
+        renderWithDefaultData(<Form queryKey={['posts', 'all']} />);
 
         const renderButton = screen.getByLabelText('Show files uploader');
         await user.click(renderButton);
@@ -216,7 +216,7 @@ describe('Form component', () => {
             generateFile('fivethFile.jpeg', 'image/webp'),
         ];
 
-        renderWithDefaultData(<Form />);
+        renderWithDefaultData(<Form queryKey={['posts', 'all']} />);
 
         const renderButton = screen.getByLabelText('Show files uploader');
         await user.click(renderButton);

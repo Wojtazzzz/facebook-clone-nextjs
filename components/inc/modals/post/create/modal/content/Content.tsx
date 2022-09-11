@@ -1,9 +1,13 @@
 import { Form } from './form/Form';
 
-export const Content = () => {
+interface ContentProps {
+    queryKey: unknown[];
+}
+
+export const Content = ({ queryKey }: ContentProps) => {
     return (
         <div className="p-4">
-            <Form />
+            <Form queryKey={queryKey} />
         </div>
     );
 };
