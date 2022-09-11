@@ -3,13 +3,9 @@ import { useState, useEffect } from 'react';
 import { SkeletonLoading } from '@components/inc/SkeletonLoading';
 import { getRandomInt } from '@utils/getRandomInt';
 
-interface LoaderProps {
-    testId?: string;
-}
-
-export const Loader = ({ testId }: LoaderProps) => {
+export const Loader = () => {
     return (
-        <ListLoader testId={testId} count={20}>
+        <ListLoader testId="contacts-loading_loader" count={20}>
             <SingleLoading />
         </ListLoader>
     );

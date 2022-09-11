@@ -1,8 +1,7 @@
-import { useRouter } from 'next/router';
 import { Nav } from '@components/nav/Nav';
 import { NavToggler } from '@components/nav/mobile/NavToggler';
 import { Menu } from '@components/menu/Menu';
-import { Contacts } from '@components/contacts/Contacts';
+import { Sidebar } from '@components/sidebar/Sidebar';
 import { Chat } from '@components/chat/Chat';
 import { Modal as CreatePostModal } from '@components/inc/modals/post/create/modal/Modal';
 import type { ReactNode } from 'react';
@@ -16,7 +15,6 @@ interface AuthLayoutProps {
 
 export const AuthLayout = ({ children }: AuthLayoutProps) => {
     useAuthMiddleware('AUTH');
-    const { route } = useRouter();
     const friend = useAppSelector((store) => store.chat.friend);
 
     return (
@@ -28,7 +26,7 @@ export const AuthLayout = ({ children }: AuthLayoutProps) => {
 
                 <main className="w-full max-w-[1024px] h-screen overflow-y-scroll mx-auto pb-14">{children}</main>
 
-                {route === '/' && <Contacts />}
+                <Sidebar />
             </div>
 
             <NavToggler />

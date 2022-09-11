@@ -143,6 +143,11 @@ export type IContact = {
     profile_image: string;
 };
 
+export type IBirthday = {
+    id: number;
+    name: string;
+};
+
 export type IProfileFriendsData = {
     amount: number;
     list: IUser[];

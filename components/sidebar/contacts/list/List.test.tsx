@@ -2,9 +2,9 @@ import { screen } from '@testing-library/react';
 import RootUserJson from '@mocks/user/root.json';
 import ContactsFirstPageJson from '@mocks/contacts/firstPage.json';
 import ContactsEmptyPageJson from '@mocks/contacts/empty.json';
-import { List } from '@components/contacts/list/List';
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { mock } from '@libs/nock';
+import { List } from './List';
 
 describe('Contacts list component', () => {
     const contacts = ContactsFirstPageJson.data;

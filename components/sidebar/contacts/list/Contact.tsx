@@ -20,7 +20,7 @@ export const Contact = (contact: ContactProps) => {
             onClick={handleOpenChat}
         >
             <Avatar size={36} src={profile_image} alt="" />
-            <span className="text-light-200 font-medium leading-5 m-0">{name}</span>
+            <span className="text-light-200 font-medium leading-5">{name}</span>
         </button>
     );
 };

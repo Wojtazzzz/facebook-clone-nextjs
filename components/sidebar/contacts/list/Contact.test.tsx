@@ -1,7 +1,7 @@
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
-import { Contact } from '@components/contacts/list/Contact';
 import ContactsFirstPageJson from '@mocks/contacts/firstPage.json';
 import { screen } from '@testing-library/react';
+import { Contact } from './Contact';
 
 describe('Contact component', () => {
     it('render user name properly', () => {
