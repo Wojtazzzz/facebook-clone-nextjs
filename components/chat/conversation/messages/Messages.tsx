@@ -1,11 +1,11 @@
 import { memo } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { Loader } from '@components/chat/conversation/messages/Loader';
 import { Message } from '@components/chat/conversation/messages/message/Message';
 import { EmptyChat } from '@components/chat/conversation/messages/EmptyChat';
 import { ApiError } from '@components/inc/ApiError';
 import type { IChatFriend, IChatMessage } from '@utils/types';
 import { useInfiniteData } from '@hooks/useInfiniteData';
+import { Loader } from './Loader';
 
 interface MessagesProps {
     friend: IChatFriend;
@@ -31,7 +31,7 @@ export const Messages = memo<MessagesProps>(({ friend }) => {
         <div
             data-testid="chat-messages"
             id="list-of-messages"
-            className="w-full h-full max-h-[312px] flex flex-col-reverse relative overflow-y-scroll scrollbar-thin scrollbar-thumb-dark-100 scrollbar-track-dark-200 pb-2"
+            className="w-full h-full max-h-[312px] flex flex-col-reverse relative overflow-y-scroll scrollbar-thin scrollbar-thumb-dark-100 scrollbar-track-dark-200 py-2 pb-2"
         >
             <InfiniteScroll
                 dataLength={MessagesComponents.length}
