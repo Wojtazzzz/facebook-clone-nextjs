@@ -1,15 +1,13 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { axios } from '@libs/axios';
 import type { IPostUpdatePayload } from '@utils/types';
-import { useAuth } from '@hooks/useAuth';
 
-export const useUpdatePost = () => {
+export const useUpdatePost = (queryKey: unknown[]) => {
     const queryClient = useQueryClient();
-    const { user } = useAuth();
     const mutation = useMutation(mutationFn);
 
     const update = (postId: number, data: IPostUpdatePayload, onSuccess: () => void) => {
-        if (mutation.isLoading || !user) return;
+        if (mutation.isLoading) return;
 
         const formData = new FormData();
 
@@ -21,8 +19,7 @@ export const useUpdatePost = () => {
             { postId, values: formData },
             {
                 onSuccess: () => {
-                    queryClient.invalidateQueries(['posts', 'all']);
-                    queryClient.invalidateQueries(['posts', 'own', user.id]);
+                    queryClient.invalidateQueries(queryKey);
                     onSuccess();
                 },
             }

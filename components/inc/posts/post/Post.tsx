@@ -60,6 +60,7 @@ export const Post = ({
 
             {isActive && (
                 <UpdateModal
+                    queryKey={queryKey}
                     isActive={isActive}
                     postId={id}
                     content={content}

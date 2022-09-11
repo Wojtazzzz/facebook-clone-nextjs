@@ -5,14 +5,15 @@ import { useUpdatePost } from './useUpdatePost';
 import { FormContent } from './formContent/FormContent';
 
 interface FormProps {
+    queryKey: unknown[];
     postId: number;
     content: string;
     images: string[];
     closeModal: () => void;
 }
 
-export const Form = ({ postId, content, images, closeModal }: FormProps) => {
-    const { update, isLoading, error } = useUpdatePost();
+export const Form = ({ queryKey, postId, content, images, closeModal }: FormProps) => {
+    const { update, isLoading, error } = useUpdatePost(queryKey);
 
     const handleSubmit: IHandleSubmit = (values, { setValues }) => {
         setValues((prevValue) => ({
