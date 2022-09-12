@@ -22,7 +22,7 @@ describe('Posts component', () => {
             data: PostsFirstPageJson,
         });
 
-        renderWithDefaultData(<Posts postsList="all" userId={1} />);
+        renderWithDefaultData(<Posts queryKey={['posts', 'all']} endpoint="/api/posts" />);
 
         const loaders = screen.getByTestId('posts-loadingLoader');
         expect(loaders).toBeInTheDocument();
@@ -34,7 +34,7 @@ describe('Posts component', () => {
             data: PostsFirstPageJson,
         });
 
-        renderWithDefaultData(<Posts postsList="all" userId={1} />);
+        renderWithDefaultData(<Posts queryKey={['posts', 'all']} endpoint="/api/posts" />);
 
         const firstPost = await screen.findByText(posts[0].content);
         expect(firstPost).toBeInTheDocument();
@@ -49,7 +49,7 @@ describe('Posts component', () => {
             data: PostsEmptyPageJson,
         });
 
-        renderWithDefaultData(<Posts postsList="all" userId={1} />);
+        renderWithDefaultData(<Posts queryKey={['posts', 'all']} endpoint="/api/posts" />);
 
         const emptyComponent = await screen.findByText('No posts, add some friends!');
         expect(emptyComponent).toBeInTheDocument();
@@ -61,7 +61,7 @@ describe('Posts component', () => {
             status: 500,
         });
 
-        renderWithDefaultData(<Posts postsList="all" userId={1} />);
+        renderWithDefaultData(<Posts queryKey={['posts', 'all']} endpoint="/api/posts" />);
 
         const errorImage = await screen.findByAltText('Server error');
         expect(errorImage).toBeInTheDocument();

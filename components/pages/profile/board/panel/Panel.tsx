@@ -1,16 +1,15 @@
 import { CreatePost } from '@components/inc/modals/post/create/createPost/CreatePost';
 import { useAuth } from '@hooks/useAuth';
-import type { IPostList } from '@utils/types';
 import type { ChangeEvent } from 'react';
 import { ListSwitcher } from './ListSwitcher';
 
 interface PanelProps {
     userId: number;
-    postsList: IPostList;
+    queryKey: unknown[];
     changeList: (event: ChangeEvent<HTMLSelectElement>) => void;
 }
 
-export const Panel = ({ userId, postsList, changeList }: PanelProps) => {
+export const Panel = ({ userId, queryKey, changeList }: PanelProps) => {
     const { user } = useAuth();
 
     const isSelfProfile = user?.id === userId;
@@ -19,7 +18,7 @@ export const Panel = ({ userId, postsList, changeList }: PanelProps) => {
 
     return (
         <>
-            <CreatePost postList={postsList} />
+            <CreatePost queryKey={queryKey} />
             <ListSwitcher changeList={changeList} />
         </>
     );
