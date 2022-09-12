@@ -1,5 +1,5 @@
 import { ModalRoot } from '@components/inc/ModalRoot';
-import { Content } from './content/Content';
+import { Form } from './form/Form';
 
 interface UpdateModalProps {
     queryKey: unknown[];
@@ -10,10 +10,10 @@ interface UpdateModalProps {
     close: () => void;
 }
 
-export const UpdateModal = ({ queryKey, isActive, postId, content, images, close }: UpdateModalProps) => {
+export const UpdateModal = ({ isActive, close, ...rest }: UpdateModalProps) => {
     return (
         <ModalRoot label="Update post modal" isOpen={isActive} title="Update post" closeModal={close}>
-            <Content queryKey={queryKey} postId={postId} content={content} images={images} closeModal={close} />
+            <Form {...rest} closeModal={close} />
         </ModalRoot>
     );
 };
