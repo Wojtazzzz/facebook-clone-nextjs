@@ -3,18 +3,22 @@ import { Loader } from './Loader';
 import { Avatar } from '@components/inc/Avatar';
 import { useCreatePostModal } from '../useCreatePostModal';
 import { Modal } from '../modal/Modal';
+import type { IPostList } from '@utils/types';
+import { getPostsQueryKey } from '@utils/getPostsQueryKey';
 
 interface CreatePostProps {
-    queryKey: unknown[];
+    postList: IPostList;
 }
 
-export const CreatePost = ({ queryKey }: CreatePostProps) => {
+export const CreatePost = ({ postList }: CreatePostProps) => {
     const { user } = useAuth();
     const { open } = useCreatePostModal();
 
     if (!user) return <Loader />;
 
-    const { name, first_name, profile_image } = user;
+    const { id, name, first_name, profile_image } = user;
+
+    const queryKey = getPostsQueryKey(postList, id);
 
     return (
         <>

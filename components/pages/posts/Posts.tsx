@@ -14,7 +14,7 @@ export const Posts = () => {
             id="posts-list"
             className="max-w-[700px] h-screen flex flex-col gap-4 overflow-auto scroll-smooth scrollbar-none text-black mx-auto p-5"
         >
-            <CreatePost />
+            <CreatePost postList="all" />
             <PostsList postsList="all" userId={user?.id} />
             <ScrollToTop {...rest} />
         </div>

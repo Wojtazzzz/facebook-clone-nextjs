@@ -3,7 +3,6 @@ import { NavToggler } from '@components/nav/mobile/NavToggler';
 import { Menu } from '@components/menu/Menu';
 import { Sidebar } from '@components/sidebar/Sidebar';
 import { Chat } from '@components/chat/Chat';
-import { Modal as CreatePostModal } from '@components/inc/modals/post/create/modal/Modal';
 import type { ReactNode } from 'react';
 import { useAppSelector } from '@hooks/redux';
 import { useAuthMiddleware } from './useAuthMiddleware';
@@ -30,7 +29,6 @@ export const AuthLayout = ({ children }: AuthLayoutProps) => {
             </div>
 
             <NavToggler />
-            <CreatePostModal />
             <AlertModal />
 
             {!!friend && <Chat friend={friend} />}

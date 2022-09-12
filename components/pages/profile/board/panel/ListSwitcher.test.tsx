@@ -1,5 +1,5 @@
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
-import { ListSwitcher } from '@components/pages/profile/board/ListSwitcher';
+import { ListSwitcher } from '@components/pages/profile/board/panel/ListSwitcher';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 

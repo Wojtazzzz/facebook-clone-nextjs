@@ -1,8 +1,9 @@
 import { useInfiniteData } from '@hooks/useInfiniteData';
+import { getPostsQueryKey } from '@utils/getPostsQueryKey';
 import type { IPost, IPostList } from '@utils/types';
 
 export const useGetPosts = (postsList: IPostList, userId: number | undefined) => {
-    const queryKey = getQueryKey(postsList, userId);
+    const queryKey = getPostsQueryKey(postsList, userId);
     const endpoint = getEndpoint(postsList, userId);
 
     const data = useInfiniteData<IPost>({
@@ -33,22 +34,5 @@ const getEndpoint = (type: IPostList, userId: number | undefined) => {
         default:
         case 'all':
             return '/api/posts';
-    }
-};
-
-const getQueryKey = (type: IPostList, userId: number | undefined) => {
-    switch (type) {
-        case 'hidden':
-            return ['posts', 'hidden'];
-
-        case 'saved':
-            return ['posts', 'saved'];
-
-        case 'own':
-            return ['posts', 'own', userId];
-
-        default:
-        case 'all':
-            return ['posts', 'all'];
     }
 };
