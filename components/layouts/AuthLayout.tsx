@@ -1,5 +1,5 @@
 import { Nav } from '@components/nav/Nav';
-import { NavToggler } from '@components/nav/mobile/NavToggler';
+import { NavToggler } from '@components/nav/mobileNavbar/NavToggler';
 import { Menu } from '@components/menu/Menu';
 import { Sidebar } from '@components/sidebar/Sidebar';
 import { Chat } from '@components/chat/Chat';
@@ -28,7 +28,6 @@ export const AuthLayout = ({ children }: AuthLayoutProps) => {
                 <Sidebar />
             </div>
 
-            <NavToggler />
             <AlertModal />
 
             {!!friend && <Chat friend={friend} />}
