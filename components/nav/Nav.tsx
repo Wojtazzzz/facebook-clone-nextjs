@@ -2,7 +2,7 @@ import { Logo } from '@components/nav/Logo';
 import { Search } from '@components/nav/search/Search';
 import { Navbar } from '@components/nav/navbar/Navbar';
 import { Panel } from '@components/nav/panel/Panel';
-import { MobileNavbar } from '@components/nav/mobile/MobileNavbar';
+import { MobileNavbar } from '@components/nav/mobileNavbar/MobileNavbar';
 
 export const Nav = () => {
     return (
