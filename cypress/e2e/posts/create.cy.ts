@@ -40,7 +40,7 @@ describe('Create post tests', () => {
 
         cy.get('article[aria-label="Post"]').first().contains(newPostContent).should('be.visible');
         cy.get('article[aria-label="Post"]').first().contains(`${USER_FIRST_NAME} ${USER_LAST_NAME}`);
-        cy.get('section[aria-label="Images"] img').should('have.length', 1);
+        cy.get('button[aria-label="Show gallery"] img').should('have.length', 1);
     });
 
     it('see validation error when try to create post without any content, on refreshed page can see empty list', () => {
@@ -88,9 +88,8 @@ describe('Create post tests', () => {
 
         cy.wait('@create');
 
-        cy.get('[aria-label="Create post modal"]').should('be.visible');
         cy.get('[aria-label="Create post modal"]').within(() => {
-            cy.get('[data-testid="server-error"]').should('be.visible');
+            cy.contains('Something went wrong, please try again later');
         });
     });
 
@@ -152,8 +151,8 @@ describe('Create post tests', () => {
             .first()
             .within(() => {
                 cy.contains(`${USER_FIRST_NAME} ${USER_LAST_NAME}`);
-                cy.get('section[aria-label="Images"] img').should('have.length', 2);
-                cy.get('section[aria-label="Images"]').contains('+2');
+                cy.get('button[aria-label="Show gallery"] img').should('have.length', 2);
+                cy.get('button[aria-label="Show gallery"]').contains('+2');
                 cy.get('section[aria-label="Content"]').should('not.exist');
             });
     });
@@ -187,8 +186,8 @@ describe('Create post tests', () => {
             cy.contains('postImage5.jpg').should('be.visible');
         });
 
-        cy.get(`button[aria-label="Remove postImage3.jpg from updated files list"]`).click();
-        cy.get(`button[aria-label="Remove postImage5.jpg from updated files list"]`).click();
+        cy.get(`button[aria-label="Remove postImage3.jpg from updated files list"]`).click({ force: true });
+        cy.get(`button[aria-label="Remove postImage5.jpg from updated files list"]`).click({ force: true });
 
         cy.get('[data-testid="uploaded-files"]').within(() => {
             cy.contains('Uploaded files: 3');
@@ -208,8 +207,8 @@ describe('Create post tests', () => {
             .first()
             .within(() => {
                 cy.contains(`${USER_FIRST_NAME} ${USER_LAST_NAME}`);
-                cy.get('section[aria-label="Images"] img').should('have.length', 2);
-                cy.get('section[aria-label="Images"]').contains('+1');
+                cy.get('button[aria-label="Show gallery"] img').should('have.length', 2);
+                cy.get('button[aria-label="Show gallery"]').contains('+1');
                 cy.get('section[aria-label="Content"]').should('not.exist');
             });
     });

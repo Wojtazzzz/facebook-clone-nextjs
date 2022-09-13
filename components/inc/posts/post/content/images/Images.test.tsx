@@ -10,8 +10,8 @@ describe('Images component', () => {
     it('open gallery on click', async () => {
         renderWithDefaultData(<Images images={PostWithFiveImages.images} />);
 
-        const container = screen.getByLabelText('Images', { selector: 'section' });
-        await user.click(container);
+        const showGalleryButton = screen.getByLabelText('Show gallery');
+        await user.click(showGalleryButton);
 
         const gallery = await screen.findByLabelText('Post gallery', { selector: 'section' });
 

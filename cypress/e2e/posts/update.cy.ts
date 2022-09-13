@@ -112,7 +112,7 @@ describe('Update post tests', () => {
         cy.visit('/');
         cy.wait('@user');
 
-        cy.get('section[aria-label="Images"]').within(() => {
+        cy.get('button[aria-label="Show gallery"]').within(() => {
             cy.get('img').should('have.length', 1);
         });
 
@@ -126,7 +126,7 @@ describe('Update post tests', () => {
 
         cy.get('[aria-label="Update post modal"]').should('not.exist');
 
-        cy.get('section[aria-label="Images"]').within(() => {
+        cy.get('button[aria-label="Show gallery"]').within(() => {
             cy.get('img').should('have.length', 2);
         });
     });
@@ -143,7 +143,7 @@ describe('Update post tests', () => {
         cy.visit('/');
         cy.wait('@user');
 
-        cy.get('section[aria-label="Images"]').should('not.exist');
+        cy.get('button[aria-label="Show gallery"]').should('not.exist');
 
         cy.openUpdatePostModal();
 
@@ -155,7 +155,7 @@ describe('Update post tests', () => {
 
         cy.get('[aria-label="Update post modal"]').should('not.exist');
 
-        cy.get('section[aria-label="Images"]').within(() => {
+        cy.get('button[aria-label="Show gallery"]').within(() => {
             cy.get('img').should('have.length', 1);
         });
     });
@@ -172,7 +172,7 @@ describe('Update post tests', () => {
         cy.visit('/');
         cy.wait('@user');
 
-        cy.get('section[aria-label="Images"]').within(() => {
+        cy.get('button[aria-label="Show gallery"]').within(() => {
             cy.get('img').should('have.length', 1);
         });
 
@@ -189,7 +189,7 @@ describe('Update post tests', () => {
 
         cy.get('[aria-label="Update post modal"]').should('not.exist');
 
-        cy.get('section[aria-label="Images"]').within(() => {
+        cy.get('button[aria-label="Show gallery"]').within(() => {
             cy.get('img').should('not.exist');
         });
     });
@@ -213,7 +213,7 @@ describe('Update post tests', () => {
 
         cy.get('button[aria-label="Update post"]').click();
 
-        cy.get('section[aria-label="Images"]').should('not.exist');
+        cy.get('button[aria-label="Show gallery"]').should('not.exist');
     });
 
     it("delete file when removed post's content and images", () => {
@@ -264,7 +264,7 @@ describe('Update post tests', () => {
 
         cy.get('button[aria-label="Update post"]').click();
 
-        cy.get('img[alt="Server error"]').should('exist');
+        cy.contains('Something went wrong, please try again later');
     });
 
     it('can add new and remove old images from post', () => {
@@ -279,7 +279,7 @@ describe('Update post tests', () => {
         cy.visit('/');
         cy.wait('@user');
 
-        cy.get('section[aria-label="Images"]').within(() => {
+        cy.get('button[aria-label="Show gallery"]').within(() => {
             cy.get('img').should('have.length', 1);
         });
 
@@ -301,14 +301,14 @@ describe('Update post tests', () => {
 
         cy.get('[aria-label="Update post modal"]').should('not.exist');
 
-        cy.get('section[aria-label="Images"]').within(() => {
+        cy.get('button[aria-label="Show gallery"]').within(() => {
             cy.get('img').should('have.length', 2); //
         });
 
-        cy.get('section[aria-label="Images"]').should('not.contain.text', '+1');
-        cy.get('section[aria-label="Images"]').should('not.contain.text', '+2');
-        cy.get('section[aria-label="Images"]').should('not.contain.text', '+3');
-        cy.get('section[aria-label="Images"]').within(() => {
+        cy.get('button[aria-label="Show gallery"]').should('not.contain.text', '+1');
+        cy.get('button[aria-label="Show gallery"]').should('not.contain.text', '+2');
+        cy.get('button[aria-label="Show gallery"]').should('not.contain.text', '+3');
+        cy.get('button[aria-label="Show gallery"]').within(() => {
             cy.get('img').should('have.length', 2);
         });
     });

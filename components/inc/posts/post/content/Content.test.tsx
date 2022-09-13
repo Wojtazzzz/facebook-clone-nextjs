@@ -10,7 +10,7 @@ describe('Content component', () => {
         renderWithDefaultData(<Content content={content} images={images} />);
 
         const textComponent = screen.getByLabelText('Content', { selector: 'section' });
-        const imagesComponent = screen.getByLabelText('Images', { selector: 'section' });
+        const imagesComponent = screen.getByLabelText('Show gallery');
 
         expect(textComponent).toBeInTheDocument();
         expect(imagesComponent).toBeInTheDocument();
@@ -20,7 +20,7 @@ describe('Content component', () => {
         renderWithDefaultData(<Content images={[]} content={content} />);
 
         const textComponent = screen.getByLabelText('Content', { selector: 'section' });
-        const imagesComponent = screen.queryByLabelText('Images', { selector: 'section' });
+        const imagesComponent = screen.queryByLabelText('Show gallery');
 
         expect(textComponent).toBeInTheDocument();
         expect(textComponent).toHaveTextContent(content);
@@ -32,7 +32,7 @@ describe('Content component', () => {
         renderWithDefaultData(<Content images={images} content="" />);
 
         const textComponent = screen.queryByLabelText('Content', { selector: 'section' });
-        const imagesComponent = screen.getByLabelText('Images', { selector: 'section' });
+        const imagesComponent = screen.getByLabelText('Show gallery');
 
         expect(textComponent).not.toBeInTheDocument();
         expect(imagesComponent).toBeInTheDocument();

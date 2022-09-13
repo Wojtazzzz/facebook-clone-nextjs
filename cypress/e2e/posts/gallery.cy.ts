@@ -27,7 +27,7 @@ describe('Post tests', () => {
         cy.get('[id="posts-list"] article[aria-label="Post"]')
             .first()
             .within(() => {
-                cy.get('section[aria-label="Images"]').click();
+                cy.get('button[aria-label="Show gallery"]').click();
                 cy.get('section[aria-label="Post gallery"]').should('be.visible');
 
                 cy.get('[class*="swiper-button-prev"]').should('have.class', 'swiper-button-disabled');
@@ -102,7 +102,7 @@ describe('Post tests', () => {
         cy.get('[id="posts-list"] article[aria-label="Post"]')
             .first()
             .within(() => {
-                cy.get('section[aria-label="Images"]').click();
+                cy.get('button[aria-label="Show gallery"]').click();
                 cy.get('section[aria-label="Post gallery"]').should('be.visible');
 
                 cy.get('[class*="swiper-button-prev"]').should('have.class', 'swiper-button-disabled');
@@ -185,7 +185,7 @@ describe('Post tests', () => {
         cy.get('[id="posts-list"] article[aria-label="Post"]')
             .first()
             .within(() => {
-                cy.get('section[aria-label="Images"]').click();
+                cy.get('button[aria-label="Show gallery"]').click();
                 cy.get('section[aria-label="Post gallery"]').should('be.visible');
 
                 cy.get('[class*="swiper-button-prev"]').should('have.class', 'swiper-button-disabled');
@@ -231,7 +231,7 @@ describe('Post tests', () => {
         cy.get('[id="posts-list"] article[aria-label="Post"]')
             .first()
             .within(() => {
-                cy.get('section[aria-label="Images"]').click();
+                cy.get('button[aria-label="Show gallery"]').click();
                 cy.get('section[aria-label="Post gallery"]').should('be.visible');
             });
 
