@@ -17,7 +17,7 @@ describe('Register tests', () => {
         cy.wait('@user');
 
         cy.contains("Don't have an account?").click();
-        cy.get('button').contains('Create Random User').click();
+        cy.get('button').contains('Create random user').click();
 
         cy.intercept('/api/user').as('secondUser');
 
@@ -35,7 +35,7 @@ describe('Register tests', () => {
         cy.wait('@user');
 
         cy.contains("Don't have an account?").click();
-        cy.get('button').contains('Create Random User').click();
+        cy.get('button').contains('Create random user').click();
 
         cy.intercept('/api/user').as('secondUser');
 

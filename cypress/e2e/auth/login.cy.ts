@@ -22,7 +22,7 @@ describe('Login tests', () => {
 
         cy.wait('@user');
 
-        cy.get('input[aria-label="Address e-mail"]').type(USER_EMAIL);
+        cy.get('input[aria-label="Email"]').type(USER_EMAIL);
         cy.get('input[aria-label="Password"]').type(USER_PASSWORD);
         cy.get('button[aria-label="Login"]').click();
 
@@ -41,7 +41,7 @@ describe('Login tests', () => {
 
         cy.visit('/');
 
-        cy.get('input[aria-label="Address e-mail"]').type(`WRONG_EMAIL@GMAIL.COM`);
+        cy.get('input[aria-label="Email"]').type(`WRONG_EMAIL@GMAIL.COM`);
         cy.get('input[aria-label="Password"]').type('WRONG_PASSWORD');
         cy.get('button[aria-label="Login"]').click();
 
@@ -55,7 +55,7 @@ describe('Login tests', () => {
 
         cy.visit('/');
 
-        cy.get('input[aria-label="Address e-mail"]').type(`email@gmail.com`);
+        cy.get('input[aria-label="Email"]').type(`email@gmail.com`);
         cy.get('input[aria-label="Password"]').type('password');
         cy.get('button[aria-label="Login"]').click();
 

@@ -18,7 +18,7 @@ describe('Login component', () => {
     it('render email, password and button input', () => {
         renderWithDefaultData(<Login />);
 
-        const emailInput = screen.getByLabelText('Address e-mail');
+        const emailInput = screen.getByLabelText('Email');
         const passwordInput = screen.getByLabelText('Password');
         const submitButton = screen.getByRole('button');
 
@@ -30,7 +30,7 @@ describe('Login component', () => {
     it('display "required" validation message when input values are empty', async () => {
         renderWithDefaultData(<Login />);
 
-        const emailInput = screen.getByLabelText('Address e-mail');
+        const emailInput = screen.getByLabelText('Email');
         const passwordInput = screen.getByLabelText('Password');
 
         expect(emailInput).toHaveValue('');
@@ -49,7 +49,7 @@ describe('Login component', () => {
     it('display "incorrect email" validation message when email is invalid', async () => {
         renderWithDefaultData(<Login />);
 
-        const emailInput = screen.getByLabelText('Address e-mail');
+        const emailInput = screen.getByLabelText('Email');
         const submitButton = screen.getByRole('button');
 
         await user.type(emailInput, 'incorrect_email');
@@ -75,7 +75,7 @@ describe('Login component', () => {
 
         renderWithDefaultData(<Login />);
 
-        const emailInput = screen.getByLabelText('Address e-mail');
+        const emailInput = screen.getByLabelText('Email');
         const passwordInput = screen.getByLabelText('Password');
         const submitButton = screen.getByRole('button');
 

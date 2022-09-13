@@ -1,50 +1,31 @@
 import { Form, Formik } from 'formik';
-import { Input } from '@components/pages/auth/authorization/inc/Input';
-import { ErrorMessage } from '@components/pages/auth/authorization/inc/ErrorMessage';
-import { Button } from '@components/inc/Button';
+import { Input } from './Input';
+import { ResponseError } from '@components/pages/auth/authorization/inc/ResponseError';
 import { LoginSchema } from '@validation/LoginSchema';
-import type { ILoginPayload } from '@utils/types';
 import { useLogin } from './useLogin';
+import { SubmitButton } from './SubmitButton';
+import type { ILoginPayload } from '@utils/types';
 
 export const Login = () => {
-    const { login, isLoading, isError, errorMessage } = useLogin();
-    const handleSubmit = (data: ILoginPayload) => login(data);
+    const { login, isLoading, error } = useLogin();
 
     return (
-        <Formik initialValues={{ email: '', password: '' }} validationSchema={LoginSchema} onSubmit={handleSubmit}>
-            {({ values, handleChange, handleBlur, handleSubmit }) => (
-                <Form className="w-full flex flex-col gap-6" onSubmit={handleSubmit}>
-                    <span className="text-xl text-light-100 font-bold">LOGIN</span>
+        <Formik initialValues={initialValues} validationSchema={LoginSchema} onSubmit={login}>
+            <Form className="w-full flex flex-col gap-6">
+                <span className="text-xl text-light-100 font-bold">LOGIN</span>
 
-                    <Input
-                        type="email"
-                        name="email"
-                        value={values.email}
-                        placeholder="Address e-mail"
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                    />
+                <Input type="email" name="email" label="Email" isDisabled={isLoading} />
+                <Input type="password" name="password" label="Password" isDisabled={isLoading} />
 
-                    <Input
-                        type="password"
-                        name="password"
-                        value={values.password}
-                        placeholder="Password"
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                    />
+                <SubmitButton isDisabled={isLoading} />
 
-                    <Button
-                        type="submit"
-                        title="Login"
-                        isDisabled={isLoading}
-                        callback={handleSubmit}
-                        styles="w-full mt-4"
-                    />
-
-                    <ErrorMessage isError={isError} message={errorMessage} />
-                </Form>
-            )}
+                <ResponseError error={error} />
+            </Form>
         </Formik>
     );
+};
+
+const initialValues: ILoginPayload = {
+    email: '',
+    password: '',
 };

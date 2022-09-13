@@ -1,28 +1,26 @@
-import { ErrorMessage } from 'formik';
-
+import { ErrorMessage, useFormikContext } from 'formik';
 import { clsx } from 'clsx';
-
-import type { ChangeEvent, FocusEvent, HTMLInputTypeAttribute } from 'react';
+import type { ILoginPayload } from '@utils/types';
 
 interface InputProps {
-    type: HTMLInputTypeAttribute;
-    name: string;
-    value?: string;
-    placeholder: string;
-    isDisabled?: boolean;
-    onChange?: (event: ChangeEvent) => void;
-    onBlur?: (event: FocusEvent) => void;
+    label: string;
+    type: 'email' | 'password';
+    name: 'email' | 'password';
+    placeholder?: string;
+    isDisabled: boolean;
 }
 
-export const Input = ({ type, name, value = '', placeholder, isDisabled = false, onChange, onBlur }: InputProps) => {
+export const Input = ({ label, type, name, placeholder, isDisabled }: InputProps) => {
+    const { values, handleChange, handleBlur } = useFormikContext<ILoginPayload>();
+
     return (
         <div className="flex flex-col gap-2">
             <input
                 type={type}
                 name={name}
-                value={value}
-                placeholder={placeholder}
-                aria-label={placeholder}
+                value={values[name]}
+                placeholder={placeholder ?? label}
+                aria-label={label}
                 required
                 disabled={isDisabled}
                 className={clsx(
@@ -30,8 +28,8 @@ export const Input = ({ type, name, value = '', placeholder, isDisabled = false,
                     isDisabled && 'cursor-not-allowed text-dark-100 placeholder-light-100',
                     !isDisabled && 'text-light-50 placeholder-light-50'
                 )}
-                onChange={onChange ? (event) => onChange(event) : undefined}
-                onBlur={onBlur ? (event) => onBlur(event) : undefined}
+                onChange={handleChange}
+                onBlur={handleBlur}
             />
 
             {isDisabled || <ErrorMessage name={name} component="small" className="text-xs text-red-400 font-medium" />}

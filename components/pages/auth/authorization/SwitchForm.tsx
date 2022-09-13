@@ -1,9 +1,9 @@
-interface SwitchFormButtonProps {
+interface SwitchFormProps {
     isLoginFormActive: boolean;
     toggleForm: () => void;
 }
 
-export const SwitchFormButton = ({ isLoginFormActive, toggleForm }: SwitchFormButtonProps) => {
+export const SwitchForm = ({ isLoginFormActive, toggleForm }: SwitchFormProps) => {
     const label = isLoginFormActive ? 'Switch form to register' : 'Switch form to login';
 
     return (

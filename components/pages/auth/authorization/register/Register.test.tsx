@@ -2,34 +2,34 @@ import { Register } from '@components/pages/auth/authorization/register/Register
 import { mock } from '@libs/nock';
 import { screen } from '@testing-library/react';
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
-import nock from 'nock';
 
 describe('Register component', () => {
     beforeEach(() => {
-        nock.disableNetConnect();
-
-        mock('/api/user', 401);
+        mock({
+            path: '/api/user',
+            status: 401,
+        });
     });
 
     it('check all inputs are disabled', () => {
         renderWithDefaultData(<Register />);
 
-        const firstNameInput = screen.getByLabelText('First name');
-        const lastNameInput = screen.getByLabelText('Last name');
-        const emailInput = screen.getByLabelText('Address e-mail');
-        const passwordInput = screen.getByLabelText('Password');
-        const passwordConfirmationInput = screen.getByLabelText('Password confirmation');
-        const submitButton = screen.getByRole('button', { name: 'Register' });
+        const inputs = [
+            screen.getByLabelText('First name'),
+            screen.getByLabelText('Last name'),
+            screen.getByLabelText('Email'),
+            screen.getByLabelText('Password'),
+            screen.getByLabelText('Confirm password'),
+            screen.getByLabelText('Register'),
+        ];
 
-        [firstNameInput, lastNameInput, emailInput, passwordInput, passwordConfirmationInput, submitButton].forEach(
-            (element) => expect(element).toBeDisabled()
-        );
+        inputs.forEach((input) => expect(input).toBeDisabled());
     });
 
     it('check for create random user button is not disabled', () => {
         renderWithDefaultData(<Register />);
 
-        const createRandomUserButton = screen.getByRole('button', { name: 'Create Random User' });
+        const createRandomUserButton = screen.getByLabelText('Create random user');
 
         expect(createRandomUserButton).not.toBeDisabled();
     });
