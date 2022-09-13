@@ -9,8 +9,8 @@ export const About = () => {
             >
                 Facebook
             </a>
-            similar social app. For safety you cannot create account with own credentials. Instead of you can create
-            free account with random data. Enjoy!
+            social app. For safety you cannot create account with own credentials. Instead of you can create free
+            account with random data. Enjoy!
         </span>
     );
 };

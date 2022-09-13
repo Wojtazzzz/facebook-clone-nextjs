@@ -4,7 +4,7 @@ interface SwitchFormProps {
 }
 
 export const SwitchForm = ({ isLoginFormActive, toggleForm }: SwitchFormProps) => {
-    const label = isLoginFormActive ? 'Switch form to register' : 'Switch form to login';
+    const label = isLoginFormActive ? 'Show register form' : 'Show login form';
 
     return (
         <button aria-label={label} className="w-full text-center" onClick={toggleForm}>

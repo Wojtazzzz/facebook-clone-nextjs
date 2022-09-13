@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { FacebookLogo } from '@components/inc/FacebookLogo';
+import { Logo as FacebookLogo } from '@components/inc/Logo';
 
 export const Logo = () => {
     return (

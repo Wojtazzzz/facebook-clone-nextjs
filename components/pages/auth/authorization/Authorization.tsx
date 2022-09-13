@@ -9,7 +9,7 @@ export const Authorization = () => {
 
     return (
         <div className="w-full md:w-1/2 max-w-[400px] bg-dark-200 rounded-lg shadow-md p-4 md:p-5 lg:p-7">
-            <div className="lg:hidden">
+            <div className="md:hidden">
                 <Header />
             </div>
 

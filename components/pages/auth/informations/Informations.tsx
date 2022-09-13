@@ -1,13 +1,18 @@
 import { Github } from './Github';
-import { Header } from './Header';
+import { Header } from '../inc/Header';
 import { About } from './About';
 
 export const Informations = () => {
     return (
-        <div className="w-full md:w-1/2 md:pt-8">
-            <Header />
-            <About />
-            <Github />
-        </div>
+        <section className="w-full md:w-1/2 md:pt-8">
+            <div className="hidden md:block">
+                <Header />
+            </div>
+
+            <aside>
+                <About />
+                <Github />
+            </aside>
+        </section>
     );
 };

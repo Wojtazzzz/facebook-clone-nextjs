@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
@@ -5,7 +6,7 @@ import Link from 'next/link';
 export const Github = () => {
     return (
         <div className="mt-10">
-            <Link href="https://github.com/CubeStorm">
+            <Link href="https://github.com/CubeStorm" passHref>
                 <a
                     data-testid="informations-github_link"
                     target="_blank"

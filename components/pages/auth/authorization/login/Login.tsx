@@ -11,13 +11,15 @@ export const Login = () => {
 
     return (
         <Formik initialValues={initialValues} validationSchema={LoginSchema} onSubmit={login}>
-            <Form className="w-full flex flex-col gap-6">
-                <span className="text-xl text-light-100 font-bold">LOGIN</span>
+            <Form className="w-full flex flex-col gap-3">
+                <p className="text-light-100 font-bold">LOGIN</p>
 
-                <Input type="email" name="email" label="Email" isDisabled={isLoading} />
-                <Input type="password" name="password" label="Password" isDisabled={isLoading} />
+                <div className="flex flex-col gap-4">
+                    <Input type="email" name="email" label="Email" isDisabled={isLoading} />
+                    <Input type="password" name="password" label="Password" isDisabled={isLoading} />
 
-                <SubmitButton isDisabled={isLoading} />
+                    <SubmitButton isDisabled={isLoading} />
+                </div>
 
                 <ResponseError error={error} />
             </Form>

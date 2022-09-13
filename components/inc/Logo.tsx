@@ -1,4 +1,4 @@
-export const FacebookLogo = () => {
+export const Logo = () => {
     return (
         <svg className="relative z-10" viewBox="0 0 36 36" fill="url(#facebook-icon-svg-logo)" height="40" width="40">
             <defs>

@@ -3,9 +3,9 @@ import { Authorization } from '@components/pages/auth/authorization/Authorizatio
 
 export const Auth = () => {
     return (
-        <div className="flex flex-col md:flex-row justify-center gap-16">
-            <Informations />
+        <div className="flex flex-col md:flex-row-reverse items-center justify-center gap-16">
             <Authorization />
+            <Informations />
         </div>
     );
 };
