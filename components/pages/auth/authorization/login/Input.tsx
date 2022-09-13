@@ -21,18 +21,21 @@ export const Input = ({ label, type, name, placeholder, isDisabled }: InputProps
                 value={values[name]}
                 placeholder={placeholder ?? label}
                 aria-label={label}
+                aria-describedby={`validationError-${name}`}
                 required
                 disabled={isDisabled}
                 className={clsx(
-                    'tracking-wide bg-dark-200 focus:outline-none ring-2 ring-dark-100 focus:ring-primary rounded-md py-2 px-4',
+                    'tracking-wide bg-dark-200 focus:outline-none ring-2 ring-dark-100 focus:ring-primary placeholder-opacity-60 rounded-md py-2 px-4',
                     isDisabled && 'cursor-not-allowed text-dark-100 placeholder-light-100',
-                    !isDisabled && 'text-light-50 placeholder-light-50'
+                    !isDisabled && 'text-white placeholder-light-50'
                 )}
                 onChange={handleChange}
                 onBlur={handleBlur}
             />
 
-            {isDisabled || <ErrorMessage name={name} component="small" className="text-xs text-red-400 font-medium" />}
+            <div id={`validationError-${name}`}>
+                <ErrorMessage name={name} component="small" className="text-xs text-red-400 font-medium" />
+            </div>
         </div>
     );
 };

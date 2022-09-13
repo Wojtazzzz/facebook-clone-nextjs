@@ -6,8 +6,9 @@ import Link from 'next/link';
 export const Github = () => {
     return (
         <div className="mt-10">
-            <Link href="https://github.com/CubeStorm" passHref>
+            <Link href="https://github.com/CubeStorm">
                 <a
+                    aria-label="Github repository"
                     data-testid="informations-github_link"
                     target="_blank"
                     rel="noopener noreferrer"
