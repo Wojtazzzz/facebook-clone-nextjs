@@ -1,21 +1,15 @@
-import { ApiError } from '@components/inc/ApiError';
 import { ValidationError } from '@components/inc/ValidationError';
-
-import Axios from 'axios';
+import { getErrorMessage } from '@utils/getErrorMessage/getErrorMessage';
 
 interface ErrorMessageProps {
     error: unknown;
 }
 
 export const ErrorMessage = ({ error }: ErrorMessageProps) => {
-    if (Axios.isAxiosError(error)) {
-        const contentTooLarge = error.message.includes('413');
+    if (error) {
+        const message = getErrorMessage(error);
 
-        return contentTooLarge ? (
-            <span className="text-sm text-red-400 font-medium">Your content is too large</span>
-        ) : (
-            <ApiError />
-        );
+        return <div className="text-sm text-red-400 font-medium p-2">{message}</div>;
     }
 
     return (
