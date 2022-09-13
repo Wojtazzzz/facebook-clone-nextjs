@@ -1,22 +1,20 @@
-import { useState } from 'react';
 import Image from 'next/image';
 import { getStoredImagePath } from '@utils/getStoredImagePath';
 import { Gallery } from './gallery/Gallery';
+import { useGallery } from './useGallery';
 
 interface ImagesProps {
     images: string[];
 }
 
 export const Images = ({ images }: ImagesProps) => {
-    const [isGalleryActive, setIsGalleryActive] = useState(false);
-
-    const handleToggleGallery = () => setIsGalleryActive((prevState) => !prevState);
+    const { isActive, open, close } = useGallery();
 
     if (!images.length) return null;
 
     return (
         <>
-            <button aria-label="Show gallery" className="w-full flex gap-1 mt-3" onClick={handleToggleGallery}>
+            <button aria-label="Show gallery" className="w-full flex gap-1 mt-3" onClick={open}>
                 {images.length === 1 ? (
                     <div className="w-full min-h-[300px] relative transition hover:brightness-110 cursor-pointer">
                         <Image layout="fill" src={getStoredImagePath(images[0])} alt="" objectFit="cover" />
@@ -40,7 +38,7 @@ export const Images = ({ images }: ImagesProps) => {
                 )}
             </button>
 
-            {isGalleryActive && <Gallery images={images} closeGallery={handleToggleGallery} />}
+            {isActive && <Gallery images={images} closeGallery={close} />}
         </>
     );
 };
