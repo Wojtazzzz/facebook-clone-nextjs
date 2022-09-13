@@ -20,12 +20,7 @@ export const File = ({ path, remove }: FileProps) => {
         >
             <Image layout="fill" src={getStoredImagePath(path)} alt="" objectFit="cover" />
 
-            <RoundedButton
-                label="Remove file"
-                icon={faTimes}
-                containerStyles="absolute top-2 right-2"
-                callback={handleRemove}
-            />
+            <RoundedButton label="Remove file" icon={faTimes} styles="absolute top-2 right-2" callback={handleRemove} />
         </div>
     );
 };

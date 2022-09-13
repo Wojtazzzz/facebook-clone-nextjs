@@ -1,5 +1,4 @@
 import { useAuth } from '@hooks/useAuth';
-
 import { faHome, faShop, faUser } from '@fortawesome/free-solid-svg-icons';
 import { NavItem } from '@components/nav/navbar/NavItem';
 

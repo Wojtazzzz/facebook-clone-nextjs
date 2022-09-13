@@ -1,5 +1,5 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { RoundedButton } from '@components/inc/RoundedButton';
 
 interface NavTogglerProps {
     isActive: boolean;
@@ -7,12 +7,15 @@ interface NavTogglerProps {
 }
 
 export const NavToggler = ({ isActive, toggleActive }: NavTogglerProps) => {
+    const label = isActive ? 'Close navigation' : 'Open navigation';
+    const icon = isActive ? faTimes : faBars;
+
     return (
-        <button
-            className="w-[50px] h-[50px] flex md:hidden justify-center items-center fixed bottom-3 right-3 z-40 bg-dark-100 rounded-full"
-            onClick={toggleActive}
-        >
-            <FontAwesomeIcon className="text-xl text-light-100" icon={isActive ? faTimes : faBars} />
-        </button>
+        <RoundedButton
+            label={label}
+            icon={icon}
+            styles="w-[45px] h-[45px] md:hidden fixed bottom-3 right-3 z-40 bg-dark-100"
+            callback={toggleActive}
+        />
     );
 };

@@ -13,7 +13,7 @@ export const MobileNavbar = () => {
         <>
             <div
                 className={clsx(
-                    'w-[280px] h-screen lg:hidden fixed top-0 left-0 z-30 bg-dark-200 transition-transform shadow-md',
+                    'w-[280px] h-screen lg:hidden fixed top-0 left-0 z-30 bg-dark-200 transition-transform ease-out shadow-md',
                     isActive && 'translate-x-0',
                     !isActive && '-translate-x-[280px]'
                 )}
@@ -26,7 +26,10 @@ export const MobileNavbar = () => {
                     <NavItem name="User profile" path="/profile" icon={faUser} />
                 </div>
 
-                <div data-testid="nav-search-mobile" className="w-full flex justify-center absolute bottom-[70px]">
+                <div
+                    data-testid="nav-search-mobile"
+                    className="w-full flex justify-center sm:hidden absolute bottom-[70px]"
+                >
                     <Search />
                 </div>
             </div>
