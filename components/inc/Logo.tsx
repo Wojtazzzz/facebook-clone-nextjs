@@ -1,8 +1,8 @@
 export const Logo = () => {
     return (
-        <svg className="relative z-10" viewBox="0 0 36 36" fill="url(#facebook-icon-svg-logo)" height="40" width="40">
+        <svg className="relative z-10" viewBox="0 0 36 36" fill="url(.facebook-icon-svg-logo)" height="40" width="40">
             <defs>
-                <linearGradient x1="50%" x2="50%" y1="97.0782153%" y2="0%" id="facebook-icon-svg-logo">
+                <linearGradient x1="50%" x2="50%" y1="97.0782153%" y2="0%" className="facebook-icon-svg-logo">
                     <stop offset="0%" stopColor="#0062E0"></stop>
                     <stop offset="100%" stopColor="#19AFFF"></stop>
                 </linearGradient>
