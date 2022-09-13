@@ -9,5 +9,5 @@ export const ResponseError = ({ error }: ResponseErrorProps) => {
 
     const message = getErrorMessage(error);
 
-    return <span className="text-red-400 font-medium">{message}</span>;
+    return <span className="text-red-400 font-medium mt-4">{message}</span>;
 };
