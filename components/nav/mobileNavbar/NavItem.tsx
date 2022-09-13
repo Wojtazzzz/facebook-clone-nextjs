@@ -16,13 +16,13 @@ export const NavItem = ({ name, path, icon }: NavItemProps) => {
             <a
                 aria-label={`${name} redirect`}
                 title={name}
-                className="w-full h-[50px] flex items-center gap-3 border-b-dark-100 border-b-2 px-4"
+                className="w-full h-[50px] flex items-center gap-3 border-b-dark-200 border-b-2 px-4"
             >
                 <div className="w-[26px]">
                     <FontAwesomeIcon className="text-xl text-light-100" icon={icon} />
                 </div>
 
-                <span className="text-lg text-light-100 font-bold">{name}</span>
+                <span className="text-lg text-light-100">{name}</span>
             </a>
         </Link>
     );
