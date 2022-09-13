@@ -4,15 +4,16 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export const useLogout = () => {
     const queryClient = useQueryClient();
-    const mutation = useMutation(mutationFn);
+
+    const mutation = useMutation(mutationFn, {
+        onSuccess: () => queryClient.invalidateQueries(['user']),
+    });
 
     const logout = useCallback(async () => {
         if (mutation.isLoading) return;
 
-        mutation.mutate(undefined, {
-            onSuccess: () => queryClient.invalidateQueries(['user']),
-        });
-    }, [mutation, queryClient]);
+        mutation.mutate();
+    }, [mutation]);
 
     return {
         logout,

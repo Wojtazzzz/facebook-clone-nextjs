@@ -3,14 +3,15 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export const usePokes = () => {
     const queryClient = useQueryClient();
-    const mutation = useMutation(mutationFn);
+
+    const mutation = useMutation(mutationFn, {
+        onSuccess: () => queryClient.invalidateQueries(['friends']),
+    });
 
     const poke = (friendId: number) => {
         if (mutation.isLoading) return;
 
-        mutation.mutate(friendId, {
-            onSuccess: () => queryClient.invalidateQueries(['friends']),
-        });
+        mutation.mutate(friendId);
     };
 
     return {

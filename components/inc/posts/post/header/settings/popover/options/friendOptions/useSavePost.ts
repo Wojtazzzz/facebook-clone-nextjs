@@ -2,17 +2,17 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { axios } from '@libs/axios';
 
 export const useSavePost = (queryKey: unknown[]) => {
-    const mutation = useMutation(mutationFn);
     const queryClient = useQueryClient();
+
+    const mutation = useMutation(mutationFn, {
+        onSuccess: () => queryClient.invalidateQueries(queryKey),
+    });
 
     const save = (id: number, onSuccess: () => void) => {
         if (mutation.isLoading) return;
 
         mutation.mutate(id, {
-            onSuccess: () => {
-                queryClient.invalidateQueries(queryKey);
-                onSuccess();
-            },
+            onSuccess,
         });
     };
 

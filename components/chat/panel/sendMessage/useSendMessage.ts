@@ -38,9 +38,7 @@ export const useSendMessage = () => {
         },
 
         // Chat component is listening for new messages, so invalidate is needless
-        onSuccess: () => {
-            clearError();
-        },
+        onSuccess: () => clearError(),
 
         onError: (error, newTodo, context) => {
             if (!friend || !context) return;

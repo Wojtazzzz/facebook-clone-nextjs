@@ -4,7 +4,10 @@ import type { IPostUpdatePayload } from '@utils/types';
 
 export const useUpdatePost = (queryKey: unknown[]) => {
     const queryClient = useQueryClient();
-    const mutation = useMutation(mutationFn);
+
+    const mutation = useMutation(mutationFn, {
+        onSuccess: () => queryClient.invalidateQueries(queryKey),
+    });
 
     const update = (postId: number, data: IPostUpdatePayload, onSuccess: () => void) => {
         if (mutation.isLoading) return;
@@ -15,15 +18,7 @@ export const useUpdatePost = (queryKey: unknown[]) => {
         data.imagesToDelete.forEach((img) => formData.append('imagesToDelete[]', img.toString()));
         data.images.forEach((img) => formData.append('images[]', img));
 
-        mutation.mutate(
-            { postId, values: formData },
-            {
-                onSuccess: () => {
-                    queryClient.invalidateQueries(queryKey);
-                    onSuccess();
-                },
-            }
-        );
+        mutation.mutate({ postId, values: formData }, { onSuccess });
     };
 
     return {

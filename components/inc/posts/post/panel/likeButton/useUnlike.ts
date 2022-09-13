@@ -42,9 +42,7 @@ export const useUnlike = (queryKey: unknown[]) => {
             return { previousPosts };
         },
 
-        onSettled: () => {
-            queryClient.invalidateQueries(queryKey);
-        },
+        onSettled: () => queryClient.invalidateQueries(queryKey),
     });
 
     const unlike = (id: number) => {

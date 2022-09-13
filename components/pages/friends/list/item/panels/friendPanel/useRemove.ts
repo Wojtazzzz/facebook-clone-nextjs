@@ -3,14 +3,15 @@ import { axios } from '@libs/axios';
 
 export const useRemove = () => {
     const queryClient = useQueryClient();
-    const mutation = useMutation(mutationFn);
+
+    const mutation = useMutation(mutationFn, {
+        onSuccess: () => queryClient.invalidateQueries(['Friends']),
+    });
 
     const remove = (friendId: number) => {
         if (mutation.isLoading) return;
 
-        mutation.mutate(friendId, {
-            onSuccess: () => queryClient.invalidateQueries(['Friends']),
-        });
+        mutation.mutate(friendId);
     };
 
     return {

@@ -4,7 +4,10 @@ import type { IPostCreatePayload } from '@utils/types';
 
 export const useCreatePost = (queryKey: unknown[]) => {
     const queryClient = useQueryClient();
-    const mutation = useMutation(mutationFn);
+
+    const mutation = useMutation(mutationFn, {
+        onSuccess: () => queryClient.invalidateQueries(queryKey),
+    });
 
     const create = (data: IPostCreatePayload, onSuccess: () => void) => {
         if (mutation.isLoading) return;
@@ -15,10 +18,7 @@ export const useCreatePost = (queryKey: unknown[]) => {
         data.images.forEach((img) => formData.append('images[]', img));
 
         mutation.mutate(formData, {
-            onSuccess: () => {
-                queryClient.invalidateQueries(queryKey);
-                onSuccess();
-            },
+            onSuccess,
         });
     };
 

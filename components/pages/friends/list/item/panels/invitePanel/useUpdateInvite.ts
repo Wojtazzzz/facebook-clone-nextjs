@@ -8,14 +8,15 @@ type IUpdateInviteResponse = {
 
 export const useUpdateInvite = () => {
     const queryClient = useQueryClient();
-    const mutation = useMutation(mutationFn);
+
+    const mutation = useMutation(mutationFn, {
+        onSuccess: () => queryClient.invalidateQueries(['Invites']),
+    });
 
     const updateInvite = (data: IUpdateInviteData) => {
         if (mutation.isLoading) return;
 
-        mutation.mutate(data, {
-            onSuccess: () => queryClient.invalidateQueries(['Invites']),
-        });
+        mutation.mutate(data);
     };
 
     return {

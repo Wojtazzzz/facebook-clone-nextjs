@@ -6,8 +6,9 @@ import { useAlertModal } from '@hooks/useAlertModal';
 
 export const useLikeComment = (postId: number) => {
     const queryClient = useQueryClient();
-    const queryKey = ['comments', postId];
     const { alert } = useAlertModal();
+
+    const queryKey = ['comments', postId];
 
     const mutation = useMutation(mutationFn, {
         onMutate: async (id) => {
@@ -46,10 +47,7 @@ export const useLikeComment = (postId: number) => {
         },
 
         onError: () => alert('Something went wrong, please try again later.'),
-
-        onSettled: () => {
-            queryClient.invalidateQueries(queryKey);
-        },
+        onSettled: () => queryClient.invalidateQueries(queryKey),
     });
 
     const like = (id: number) => {
