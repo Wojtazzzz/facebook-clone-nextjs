@@ -26,7 +26,7 @@ describe('Search component', () => {
 
         renderWithDefaultData(<Search />);
 
-        const input = screen.getByLabelText('User search input');
+        const input = screen.getByLabelText('Search user');
         await user.type(input, 'Joh');
 
         const hits = await screen.findByTestId('search-hits');
@@ -47,7 +47,7 @@ describe('Search component', () => {
 
         renderWithDefaultData(<Search />);
 
-        const input = screen.getByLabelText('User search input');
+        const input = screen.getByLabelText('Search user');
         await user.type(input, 'Joh');
 
         const hits = await screen.findByTestId('search-hits');
@@ -65,7 +65,7 @@ describe('Search component', () => {
 
         renderWithDefaultData(<Search />);
 
-        const input = screen.getByLabelText('User search input');
+        const input = screen.getByLabelText('Search user');
         await user.type(input, 'Joh');
 
         const apiError = await screen.findByTestId('search-apiError');
@@ -76,18 +76,18 @@ describe('Search component', () => {
     it('render SearchButton when no query text provided', async () => {
         renderWithDefaultData(<Search />);
 
-        const searchButton = screen.queryByLabelText('Focus input');
+        const searchButton = screen.queryByLabelText('Submit search');
 
         expect(searchButton).toBeInTheDocument();
 
-        const input = screen.getByLabelText('User search input');
+        const input = screen.getByLabelText('Search user');
         await user.type(input, 'test');
 
         expect(searchButton).not.toBeInTheDocument();
 
         await user.clear(input);
 
-        expect(screen.getByLabelText('Focus input')).toBeInTheDocument();
+        expect(screen.getByLabelText('Submit search')).toBeInTheDocument();
     });
 
     it('render ClearButton when query text provided', async () => {
@@ -95,7 +95,7 @@ describe('Search component', () => {
 
         expect(screen.queryByLabelText('Clear input')).not.toBeInTheDocument();
 
-        const input = screen.getByLabelText('User search input');
+        const input = screen.getByLabelText('Search user');
         await user.type(input, 'test');
 
         expect(screen.getByLabelText('Clear input')).toBeInTheDocument();
@@ -108,7 +108,7 @@ describe('Search component', () => {
     it('clear input by click on ClearButton', async () => {
         renderWithDefaultData(<Search />);
 
-        const input = screen.getByLabelText('User search input');
+        const input = screen.getByLabelText('Search user');
         await user.type(input, 'test');
 
         expect(input).toHaveValue('test');
@@ -117,18 +117,5 @@ describe('Search component', () => {
         await user.click(clearButton);
 
         expect(input).toHaveValue('');
-    });
-
-    it('focus input by click on SearchButton', async () => {
-        renderWithDefaultData(<Search />);
-
-        const input = screen.getByLabelText('User search input');
-
-        expect(input).not.toHaveFocus();
-
-        const searchButton = screen.getByLabelText('Focus input');
-        await user.click(searchButton);
-
-        expect(input).toHaveFocus();
     });
 });

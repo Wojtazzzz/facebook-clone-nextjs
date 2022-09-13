@@ -14,6 +14,7 @@ export const useInfiniteData = <T>({ queryKey, endpoint, params, options }: IUse
         fetchPreviousPage,
         hasNextPage,
         hasPreviousPage,
+        refetch,
     } = useInfiniteQuery(
         queryKey,
         async ({ pageParam = 1 }) =>
@@ -42,6 +43,7 @@ export const useInfiniteData = <T>({ queryKey, endpoint, params, options }: IUse
         hasPreviousPage,
         fetchNextPage,
         fetchPreviousPage,
+        refetch,
     };
 };
 

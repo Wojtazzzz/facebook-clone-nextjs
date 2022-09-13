@@ -1,6 +1,5 @@
 import type { ChangeEvent } from 'react';
 import { useKey } from '@hooks/useKey';
-import { useInputFocus } from '@hooks/useInputFocus';
 import { Button } from './button/Button';
 
 interface SearchBoxProps {
@@ -8,19 +7,21 @@ interface SearchBoxProps {
     isError: boolean;
     changeQuery: (event: ChangeEvent<HTMLInputElement>) => void;
     clearQuery: () => void;
+    refetch: () => void;
 }
 
-export const SearchBox = ({ query, isError, changeQuery, clearQuery }: SearchBoxProps) => {
-    const { inputRef, focus } = useInputFocus();
+export const SearchBox = ({ query, isError, changeQuery, clearQuery, refetch }: SearchBoxProps) => {
     useKey('Escape', clearQuery);
 
     return (
-        <div className="w-[200px] lg:w-[220px] h-10 flex justify-center items-center gap-3 text-dark-50 bg-dark-100 rounded-[50px] focus:outline-none">
+        <form
+            role="search"
+            className="w-[200px] lg:w-[220px] h-10 flex justify-center items-center gap-3 text-dark-50 bg-dark-100 rounded-[50px] focus:outline-none"
+        >
             <input
-                ref={inputRef}
-                aria-label="User search input"
+                aria-label="Search user"
                 name="text"
-                type="text"
+                type="search"
                 autoComplete="off"
                 value={query}
                 placeholder="Search User"
@@ -28,7 +29,7 @@ export const SearchBox = ({ query, isError, changeQuery, clearQuery }: SearchBox
                 onChange={changeQuery}
             />
 
-            <Button isError={isError} query={query} clear={clearQuery} focus={focus} />
-        </div>
+            <Button isError={isError} query={query} clear={clearQuery} refetch={refetch} />
+        </form>
     );
 };

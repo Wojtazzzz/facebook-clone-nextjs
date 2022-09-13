@@ -2,12 +2,12 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface SearchButtonProps {
-    focus: () => void;
+    refetch: () => void;
 }
 
-export const SearchButton = ({ focus }: SearchButtonProps) => {
+export const SearchButton = ({ refetch }: SearchButtonProps) => {
     return (
-        <button aria-label="Focus input" onClick={focus}>
+        <button type="submit" aria-label="Submit search" onClick={refetch}>
             <FontAwesomeIcon icon={faSearch} className="text-md" />
         </button>
     );
