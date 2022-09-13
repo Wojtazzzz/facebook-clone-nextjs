@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import Link from 'next/link';
 import { Logo as FacebookLogo } from '@components/inc/Logo';
 

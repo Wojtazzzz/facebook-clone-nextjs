@@ -1,4 +1,4 @@
-import { ICommentPayload } from '@utils/types';
+import type { ICommentPayload } from '@utils/types';
 import clsx from 'clsx';
 import { useFormikContext } from 'formik';
 
@@ -11,7 +11,6 @@ export const Input = ({ isLoading }: InputProps) => {
 
     return (
         <input
-            autoFocus
             type="text"
             aria-label="Write a comment"
             name="content"

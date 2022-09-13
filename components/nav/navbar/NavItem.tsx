@@ -1,10 +1,8 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { useRouter } from 'next/router';
-
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 import { clsx } from 'clsx';
-
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 
 interface NavItemProps {

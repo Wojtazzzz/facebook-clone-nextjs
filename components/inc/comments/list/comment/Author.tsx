@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { Avatar } from '@components/inc/Avatar';
 import Link from 'next/link';
 

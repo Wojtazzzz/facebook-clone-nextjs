@@ -16,7 +16,7 @@ export const Images = ({ images }: ImagesProps) => {
 
     return (
         <>
-            <section aria-label="Images" className="w-full flex gap-1 mt-3" onClick={handleToggleGallery}>
+            <button aria-label="Show gallery" className="w-full flex gap-1 mt-3" onClick={handleToggleGallery}>
                 {images.length === 1 ? (
                     <div className="w-full min-h-[300px] relative transition hover:brightness-110 cursor-pointer">
                         <Image layout="fill" src={getStoredImagePath(images[0])} alt="" objectFit="cover" />
@@ -38,7 +38,7 @@ export const Images = ({ images }: ImagesProps) => {
                         </div>
                     </>
                 )}
-            </section>
+            </button>
 
             {isGalleryActive && <Gallery images={images} closeGallery={handleToggleGallery} />}
         </>

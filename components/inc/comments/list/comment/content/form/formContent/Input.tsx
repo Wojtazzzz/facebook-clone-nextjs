@@ -11,7 +11,6 @@ export const Input = ({ isLoading }: InputProps) => {
 
     return (
         <input
-            autoFocus
             type="text"
             aria-label="Update a comment"
             name="content"

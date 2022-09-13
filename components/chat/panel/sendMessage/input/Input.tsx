@@ -10,11 +10,10 @@ export const Input = () => {
             data-testid="message-input-container"
             className={clsx(
                 'h-9 flex justify-between items-center rounded-[20px] bg-dark-100 transition-width px-2',
-                !!content.length ? 'w-52' : 'w-36'
+                content.length > 0 ? 'w-52' : 'w-36'
             )}
         >
             <input
-                autoFocus
                 aria-label="Message input"
                 type="text"
                 name="content"

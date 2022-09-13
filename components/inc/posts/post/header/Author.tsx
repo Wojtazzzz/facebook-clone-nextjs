@@ -1,6 +1,6 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import Link from 'next/link';
 import { Avatar } from '@components/inc/Avatar';
-
 import type { IUser } from '@utils/types';
 
 interface AuthorProps {

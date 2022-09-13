@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import NextLink from 'next/link';
 import type { ReactFragment } from 'react';
 
