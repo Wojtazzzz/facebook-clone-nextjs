@@ -6,7 +6,7 @@ export const Logo = () => {
     return (
         <Link href="/">
             <a data-testid="nav-logo" className="relative z-10">
-                <FacebookLogo />
+                <FacebookLogo size={40} />
             </a>
         </Link>
     );
