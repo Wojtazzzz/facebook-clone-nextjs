@@ -2,7 +2,7 @@ import { useAppDispatch, useAppSelector } from '@hooks/redux';
 import { clearChatError, closeChat, openChat, setChatError } from '@redux/slices/ChatSlice';
 import type { IChatFriend } from '@utils/types';
 import { useQueryClient } from '@tanstack/react-query';
-import type { AxiosError } from 'axios';
+import { getErrorMessage } from '@utils/getErrorMessage/getErrorMessage';
 
 export const useChat = () => {
     const dispatch = useAppDispatch();
@@ -23,8 +23,10 @@ export const useChat = () => {
         queryClient.invalidateQueries(['chat', friend.id]);
     };
 
-    const setError = (error: AxiosError) => {
-        dispatch(setChatError(error.response?.statusText ?? 'Something went wrong'));
+    const setError = (error: unknown) => {
+        const message = getErrorMessage(error);
+
+        dispatch(setChatError(message));
     };
 
     const clearError = () => {

@@ -1,15 +1,17 @@
 import { memo } from 'react';
 import { useInfiniteData } from '@hooks/useInfiniteData';
-
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Conversation } from '@components/nav/panel/messenger/list/Conversation';
 import { Loader } from '@components/nav/panel/inc/Loader';
 import { ApiError } from '@components/inc/ApiError';
 import { EmptyList } from '@components/inc/EmptyList';
-
 import type { IUser } from '@utils/types';
 
-export const List = memo(() => {
+interface ListProps {
+    close: () => void;
+}
+
+export const List = memo<ListProps>(({ close }) => {
     const { data, isLoading, isError, isEmpty, hasNextPage, fetchNextPage } = useInfiniteData<IUser>({
         queryKey: ['messages'],
         endpoint: '/api/messages',
@@ -17,9 +19,11 @@ export const List = memo(() => {
 
     if (isLoading) return <Loader testId="messenger-fetching_loader" />;
     if (!data || isError) return <ApiError />;
-    if (isEmpty) return <EmptyList title="Your Messenger is empty" />;
+    if (isEmpty) return <EmptyList title="Messenger is empty" styles="my-5" />;
 
-    const ConversationsComponents = data.map((friend) => <Conversation key={friend.id} friend={friend} />);
+    const ConversationsComponents = data.map((friend) => (
+        <Conversation key={friend.id} friend={friend} close={close} />
+    ));
 
     return (
         <div

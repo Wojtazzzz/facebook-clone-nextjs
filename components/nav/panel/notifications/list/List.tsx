@@ -6,15 +6,19 @@ import { EmptyList } from '@components/inc/EmptyList';
 import { ApiError } from '@components/inc/ApiError';
 import { useNotifications } from './useNotifications';
 
-export const List = memo(() => {
+interface ListProps {
+    close: () => void;
+}
+
+export const List = memo<ListProps>(({ close }) => {
     const { data, isLoading, isError, isEmpty, hasNextPage, fetchNextPage } = useNotifications();
 
     if (isLoading) return <Loader testId="notifications-fetching_loader" />;
     if (!data || isError) return <ApiError />;
-    if (isEmpty) return <EmptyList title="Your Notifications list is empty" />;
+    if (isEmpty) return <EmptyList title="Notifications list is empty" styles="my-5" />;
 
     const NotificationsComponents = data.map((notification) => (
-        <Notification key={notification.id} {...notification} />
+        <Notification key={notification.id} {...notification} close={close} />
     ));
 
     return (

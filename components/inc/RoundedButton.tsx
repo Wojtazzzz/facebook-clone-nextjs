@@ -5,7 +5,7 @@ import type { IconProp } from '@fortawesome/fontawesome-svg-core';
 interface RoundedButtonProps {
     name: string;
     icon: IconProp;
-    size?: number;
+    size?: number | string;
     type?: 'button' | 'submit';
     isDisabled?: boolean;
     bgColor?: string;
@@ -32,7 +32,7 @@ export const RoundedButton = ({
             title={name}
             disabled={isDisabled}
             className={clsx(
-                `w-${size} h-${size} flex justify-center items-center bg-${bgColor} hover:${onHover} transition-all rounded-full p-3 ${styles}`,
+                `w-${size} h-${size} flex justify-center items-center bg-${bgColor} hover:${onHover} transition-all rounded-full p-0 ${styles}`,
                 isDisabled && `${onHover}`
             )}
             onClick={callback}

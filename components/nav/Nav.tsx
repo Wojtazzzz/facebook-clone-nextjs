@@ -14,7 +14,7 @@ export const Nav = ({ toggleMenu }: NavProps) => {
             data-testid="nav"
             className="w-full h-14 flex justify-between md:justify-center fixed top-0 left-0 z-40 bg-dark-200 shadow-sm px-4"
         >
-            <div className="w-1/3 flex items-center gap-2 my-1">
+            <div className="w-1/5 flex items-center gap-2 my-1">
                 <Logo />
 
                 <div data-testid="nav-search-desktop" className="hidden md:block">
@@ -26,7 +26,7 @@ export const Nav = ({ toggleMenu }: NavProps) => {
                 <Navbar />
             </div>
 
-            <div className="w-1/3 my-1">
+            <div className="w-4/5 my-1">
                 <Panel toggleMenu={toggleMenu} />
             </div>
 

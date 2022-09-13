@@ -1,7 +1,7 @@
 import { useKey } from '@hooks/useKey';
 import { useOutsideClick } from '@hooks/useOutsideClick';
 import { List as MessengerList } from '../messenger/list/List';
-import { List as NotificationsLsit } from '../notifications/list/List';
+import { List as NotificationsList } from '../notifications/list/List';
 import { Header } from './Header';
 
 interface DropdownProps {
@@ -17,11 +17,11 @@ export const Dropdown = ({ type, close }: DropdownProps) => {
         <div
             data-testid="dropdown"
             ref={ref}
-            className="min-w-[300px] md:min-w-[360px] flex flex-col bg-dark-200 absolute top-full -right-12 z-20 shadow-md rounded-md p-3"
+            className="w-[300px] md:w-[360px] flex flex-col gap-3 bg-dark-200 absolute top-full -right-12 z-20 shadow-md rounded-md p-3"
         >
             <Header title={type} />
 
-            {type === 'Messenger' ? <MessengerList /> : <NotificationsLsit />}
+            {type === 'Messenger' ? <MessengerList close={close} /> : <NotificationsList close={close} />}
         </div>
     );
 };

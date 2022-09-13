@@ -1,21 +1,18 @@
 import { Avatar } from '@components/inc/Avatar';
-import { useAppDispatch } from '@hooks/redux';
-
-import { openChat } from '@redux/slices/ChatSlice';
-import { toggleActive as toggleActiveMessenger } from '@redux/slices/MessengerSlice';
-
+import { useChat } from '@hooks/useChat';
 import type { IUser } from '@utils/types';
 
 interface ConversationProps {
     friend: IUser;
+    close: () => void;
 }
 
-export const Conversation = ({ friend }: ConversationProps) => {
-    const dispatch = useAppDispatch();
+export const Conversation = ({ friend, close }: ConversationProps) => {
+    const { openChat } = useChat();
 
     const handleOpenChat = () => {
-        dispatch(toggleActiveMessenger(false));
-        dispatch(openChat(friend));
+        close();
+        openChat(friend);
     };
 
     return (
