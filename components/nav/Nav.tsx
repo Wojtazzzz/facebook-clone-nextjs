@@ -4,7 +4,11 @@ import { Navbar } from '@components/nav/navbar/Navbar';
 import { Panel } from '@components/nav/panel/Panel';
 import { MobileNavbar } from '@components/nav/mobileNavbar/MobileNavbar';
 
-export const Nav = () => {
+interface NavProps {
+    toggleMenu: () => void;
+}
+
+export const Nav = ({ toggleMenu }: NavProps) => {
     return (
         <nav
             data-testid="nav"
@@ -23,7 +27,7 @@ export const Nav = () => {
             </div>
 
             <div className="w-1/3 my-1">
-                <Panel />
+                <Panel toggleMenu={toggleMenu} />
             </div>
 
             <MobileNavbar />

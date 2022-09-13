@@ -1,4 +1,4 @@
-import { AuthLayout } from '@components/layouts/AuthLayout';
+import { AuthLayout } from '@components/layouts/authLayout/AuthLayout';
 import { NotLoaded } from '@components/pages/profile/NotLoaded';
 
 export default function ProfileNotLoaded() {
