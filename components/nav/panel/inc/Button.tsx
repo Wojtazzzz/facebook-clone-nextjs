@@ -1,5 +1,6 @@
 import { RoundedButton } from '@components/inc/RoundedButton';
 import type { IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import clsx from 'clsx';
 
 interface ButtonProps {
     label: string;
@@ -9,15 +10,13 @@ interface ButtonProps {
     callback: () => void;
 }
 
-export const Button = ({ label, icon, styles = '', isDisabled = false, callback }: ButtonProps) => {
+export const Button = ({ label, icon, styles, isDisabled = false, callback }: ButtonProps) => {
     return (
         <RoundedButton
-            size="[40px]"
-            name={label}
+            label={label}
             icon={icon}
+            styles={clsx(`bg-dark-100 hover:opacity-60 ${styles}`, isDisabled && 'opacity-60')}
             isDisabled={isDisabled}
-            onHover="opacity-70"
-            styles={styles}
             callback={callback}
         />
     );

@@ -21,12 +21,9 @@ export const File = ({ path, remove }: FileProps) => {
             <Image layout="fill" src={getStoredImagePath(path)} alt="" objectFit="cover" />
 
             <RoundedButton
-                name="Remove file"
+                label="Remove file"
                 icon={faTimes}
-                size={8}
-                bgColor="dark-200"
-                onHover="bg-dark-100"
-                styles="absolute top-2 right-2"
+                containerStyles="absolute top-2 right-2"
                 callback={handleRemove}
             />
         </div>

@@ -8,7 +8,7 @@ interface CloseButtonProps {
 export const CloseButton = ({ closeGallery }: CloseButtonProps) => {
     return (
         <div className="w-full flex justify-end absolute top-0 left-0 z-20 p-3">
-            <RoundedButton name="Close gallery" icon={faTimes} size={10} callback={closeGallery} />
+            <RoundedButton label="Close gallery" icon={faTimes} callback={closeGallery} />
         </div>
     );
 };

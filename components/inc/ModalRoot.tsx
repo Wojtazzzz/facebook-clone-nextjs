@@ -31,14 +31,7 @@ export const ModalRoot = ({ label, isOpen, title, closeModal, children }: ModalR
 
                     <h3 className="text-2xl text-center font-bold">{title}</h3>
 
-                    <RoundedButton
-                        name="Close modal"
-                        icon={faTimes}
-                        size={8}
-                        bgColor="dark-200"
-                        onHover="bg-dark-100"
-                        callback={closeModal}
-                    />
+                    <RoundedButton label="Close modal" icon={faTimes} callback={closeModal} />
                 </div>
 
                 <div className="overflow-y-scroll scrollbar-thin scrollbar-thumb-dark-100 scrollbar-track-dark-200">

@@ -1,43 +1,38 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { clsx } from 'clsx';
-import type { IconProp } from '@fortawesome/fontawesome-svg-core';
+import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 
 interface RoundedButtonProps {
-    name: string;
-    icon: IconProp;
-    size?: number | string;
+    label: string;
+    icon: IconDefinition;
     type?: 'button' | 'submit';
     isDisabled?: boolean;
-    bgColor?: string;
-    onHover?: string;
     styles?: string;
-    callback: (arg: any) => void;
+    iconStyles?: string;
+    callback: () => void;
 }
 
 export const RoundedButton = ({
-    name,
+    label,
     icon,
-    size = 10,
     type = 'button',
     isDisabled = false,
-    bgColor = 'dark-100',
-    onHover = 'bg-dark-200',
     styles = '',
+    iconStyles = '',
     callback,
 }: RoundedButtonProps) => {
     return (
         <button
             type={type}
-            aria-label={name}
-            title={name}
+            aria-label={label}
             disabled={isDisabled}
             className={clsx(
-                `w-${size} h-${size} flex justify-center items-center bg-${bgColor} hover:${onHover} transition-all rounded-full p-0 ${styles}`,
-                isDisabled && `${onHover}`
+                `w-[40px] h-[40px] flex justify-center items-center  transition-all rounded-full p-0 ${styles}`,
+                isDisabled && 'cursor-not-allowed'
             )}
             onClick={callback}
         >
-            <FontAwesomeIcon icon={icon} className="text-lg text-light-50" />
+            <FontAwesomeIcon icon={icon} className={`text-lg text-light-50 ${iconStyles}`} />
         </button>
     );
 };

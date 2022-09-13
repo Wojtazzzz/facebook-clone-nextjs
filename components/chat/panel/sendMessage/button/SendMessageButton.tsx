@@ -6,15 +6,5 @@ import type { IChatMessagePayload } from '@utils/types';
 export const SendMessageButton = () => {
     const { handleSubmit } = useFormikContext<IChatMessagePayload>();
 
-    return (
-        <RoundedButton
-            type="submit"
-            name="Send message"
-            icon={faCircleCheck}
-            size={8}
-            bgColor="dark-200"
-            onHover="bg-dark-100"
-            callback={handleSubmit}
-        />
-    );
+    return <RoundedButton type="submit" label="Send message" icon={faCircleCheck} callback={handleSubmit} />;
 };
