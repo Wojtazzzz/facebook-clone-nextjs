@@ -5,11 +5,7 @@ export const About = () => {
             <a
                 data-testid="informations-facebook_link"
                 href="https://facebook.com/"
-<<<<<<< HEAD
                 className="text-white underline mx-1"
-=======
-                className="text-white hover:underline mx-1"
->>>>>>> 4b56f6eac7c835eb2226b05d554e2340b53da3fd
             >
                 Facebook
             </a>

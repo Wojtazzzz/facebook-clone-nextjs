@@ -1,4 +1,4 @@
-import { AuthLayout } from '@components/layouts/AuthLayout';
+import { AuthLayout } from '@components/layouts/authLayout/AuthLayout';
 import { Profile as ProfileComponent } from '@components/pages/profile/Profile';
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import type { ParsedUrlQuery } from 'querystring';

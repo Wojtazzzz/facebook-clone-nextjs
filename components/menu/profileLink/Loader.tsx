@@ -1,6 +1,6 @@
 import SkeletonLoader from 'tiny-skeleton-loader-react';
 
-export const LinkLoader = () => {
+export const Loader = () => {
     return (
         <div className="h-12 flex items-center gap-2 hover:bg-dark-100 transition-colors rounded-md p-1">
             <div className="w-12 flex justify-center items-center text-light-200 text-xl">
