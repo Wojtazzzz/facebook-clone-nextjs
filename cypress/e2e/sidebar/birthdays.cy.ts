@@ -83,7 +83,7 @@ describe('Birthdays tests', () => {
         cy.wait('@birthdays');
 
         cy.get('[data-testid="birthdays"]').within(() => {
-            cy.contains("John Doe and Adam Walker's birthday is today.");
+            cy.contains('John Doe and Adam Walker have their birthdays today.');
             cy.contains('John Doe').click();
         });
 
@@ -126,7 +126,7 @@ describe('Birthdays tests', () => {
         cy.wait('@birthdays');
 
         cy.get('[data-testid="birthdays"]').within(() => {
-            cy.contains("John Doe, Adam Walker and 1 more's birthday is today.");
+            cy.contains('John Doe, Adam Walker and 1 more have their birthdays today.');
             cy.contains('John Doe').click();
         });
 

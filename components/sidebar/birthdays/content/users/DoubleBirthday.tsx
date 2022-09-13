@@ -13,7 +13,7 @@ export const DouleBirthday = ({ birthdays }: DouleBirthdayProps) => {
             <UserLink id={first.id} name={first.name} />
             &nbsp;and&nbsp;
             <UserLink id={second.id} name={second.name} />
-            &apos;s birthday is today.
+            &nbsp;have their birthdays today.
         </span>
     );
 };

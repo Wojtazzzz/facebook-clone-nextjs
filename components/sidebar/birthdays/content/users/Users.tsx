@@ -26,7 +26,7 @@ export const Users = ({ birthdays }: UsersProps) => {
             <UserLink id={birthdays[1].id} name={birthdays[1].name} />
             &nbsp;and&nbsp;
             <Tooltip birthdays={restBirthdays} />
-            &apos;s birthday is today.
+            &nbsp;have their birthdays today.
         </span>
     );
 };

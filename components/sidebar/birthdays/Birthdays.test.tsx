@@ -90,7 +90,7 @@ describe('Birthdays component', () => {
         const firstUser = await screen.findByText(DoubleBirthday[0].name);
         const and = await screen.findByText(/and/);
         const secondUser = await screen.findByText(DoubleBirthday[1].name);
-        const text = await screen.findByText(/'s birthday is today./);
+        const text = await screen.findByText(/have their birthdays today./);
 
         expect(firstUser).toBeInTheDocument();
         expect(and).toBeInTheDocument();
@@ -111,7 +111,7 @@ describe('Birthdays component', () => {
         const secondUser = await screen.findByText(MoreBirthdays[1].name);
         const and = await screen.findByText(/and/);
         const more = await screen.findByText(`${MoreBirthdays.length - 2} more`);
-        const text = await screen.findByText(/'s birthday is today./);
+        const text = await screen.findByText(/have their birthdays today./);
 
         expect(firstUser).toBeInTheDocument();
         expect(comma).toBeInTheDocument();
