@@ -9,7 +9,7 @@ interface LoaderProps {
 
 export const Loader = ({ testId = '' }: LoaderProps) => {
     return (
-        <ListLoader testId={testId} count={15}>
+        <ListLoader testId={testId} count={6}>
             <SingleLoading />
         </ListLoader>
     );
