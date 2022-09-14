@@ -1,4 +1,3 @@
-import { useCallback } from 'react';
 import { axios } from '@libs/axios';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
@@ -9,11 +8,11 @@ export const useLogout = () => {
         onSuccess: () => queryClient.invalidateQueries(['user']),
     });
 
-    const logout = useCallback(async () => {
+    const logout = () => {
         if (mutation.isLoading) return;
 
         mutation.mutate();
-    }, [mutation]);
+    };
 
     return {
         logout,
