@@ -1,4 +1,4 @@
-import type { ChangeEvent } from 'react';
+import type { ChangeEvent, FormEvent } from 'react';
 import { useKey } from '@hooks/useKey';
 import { Button } from './button/Button';
 
@@ -13,8 +13,15 @@ interface SearchBoxProps {
 export const SearchBox = ({ query, isError, changeQuery, clearQuery, refetch }: SearchBoxProps) => {
     useKey('Escape', clearQuery);
 
+    const handleSubmit = (event: FormEvent) => {
+        event.preventDefault();
+
+        refetch();
+    };
+
     return (
         <form
+            onSubmit={handleSubmit}
             role="search"
             className="w-[200px] lg:w-[220px] h-10 flex justify-center items-center gap-3 text-dark-50 bg-dark-100 rounded-[50px] focus:outline-none"
         >
@@ -29,7 +36,7 @@ export const SearchBox = ({ query, isError, changeQuery, clearQuery, refetch }: 
                 onChange={changeQuery}
             />
 
-            <Button isError={isError} query={query} clear={clearQuery} refetch={refetch} />
+            <Button isError={isError} query={query} clear={clearQuery} />
         </form>
     );
 };

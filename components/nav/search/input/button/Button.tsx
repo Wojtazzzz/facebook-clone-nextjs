@@ -6,12 +6,11 @@ interface ButtonProps {
     isError: boolean;
     query: string;
     clear: () => void;
-    refetch: () => void;
 }
 
-export const Button = ({ isError, query, clear, refetch }: ButtonProps) => {
+export const Button = ({ isError, query, clear }: ButtonProps) => {
     if (isError) return <SadSmileError testId="search-apiError" size="xl" />;
     if (!!query) return <ClearButton clear={clear} />;
 
-    return <SearchButton refetch={refetch} />;
+    return <SearchButton />;
 };

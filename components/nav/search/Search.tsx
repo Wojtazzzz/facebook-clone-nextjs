@@ -4,13 +4,14 @@ import { useSearch } from '@hooks/useSearch';
 import { Hits } from './hits/Hits';
 
 export const Search = () => {
-    const { data, hasNextPage, fetchNextPage, clearQuery, ...rest } = useSearch();
+    const { data, hasNextPage, fetchNextPage, clearQuery, query, ...rest } = useSearch();
     const ref = useOutsideClick(clearQuery);
 
     return (
         <div ref={ref} className="w-[220px] relative">
-            <SearchBox clearQuery={clearQuery} {...rest} />
-            <Hits data={data} hasNextPage={hasNextPage} fetchNextPage={fetchNextPage} />
+            <SearchBox clearQuery={clearQuery} query={query} {...rest} />
+
+            {query && <Hits data={data} hasNextPage={hasNextPage} fetchNextPage={fetchNextPage} />}
         </div>
     );
 };
