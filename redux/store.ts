@@ -1,15 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import ChatReducer from '@redux/slices/ChatSlice';
-import CreatePostModalReducer from '@redux/slices/CreatePostModalSlice';
-import UpdatePostModalReducer from '@redux/slices/UpdatePostModalSlice';
 import AlertModalReducer from '@redux/slices/AlertModalSlice';
 
 export const generateStore = () =>
     configureStore({
         reducer: {
             chat: ChatReducer,
-            createPostModal: CreatePostModalReducer,
-            updatePostModal: UpdatePostModalReducer,
             alertModal: AlertModalReducer,
         },
     });

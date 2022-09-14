@@ -1,17 +1,10 @@
-import { useAppDispatch, useAppSelector } from '@hooks/redux';
-import { closeModal, openModal } from '@redux/slices/CreatePostModalSlice';
+import { useState } from 'react';
 
 export const useCreatePostModal = () => {
-    const dispatch = useAppDispatch();
-    const { isActive } = useAppSelector((store) => store.createPostModal);
+    const [isActive, setIsActive] = useState(false);
 
-    const open = () => {
-        dispatch(openModal());
-    };
-
-    const close = () => {
-        dispatch(closeModal());
-    };
+    const open = () => setIsActive(true);
+    const close = () => setIsActive(false);
 
     return {
         isActive,
