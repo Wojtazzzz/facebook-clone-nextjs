@@ -8,9 +8,17 @@ import { useAuth } from '@hooks/useAuth';
 import { useOutsideClick } from '@hooks/useOutsideClick';
 
 export const MobileNavbar = () => {
-    const { isActive, toggleActive } = useMobileNavbar();
+    const { isActive, close, toggleActive } = useMobileNavbar();
     const { user } = useAuth();
-    const ref = useOutsideClick(toggleActive);
+
+    const handleClose = () => {
+        if (!screen) return;
+        if (screen.width > 1024) return;
+
+        close();
+    };
+
+    const ref = useOutsideClick(handleClose);
 
     const profilePageLink = user ? `/profile/${user.id}` : '/profile/not-loaded';
 

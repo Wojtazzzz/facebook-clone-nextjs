@@ -8,8 +8,6 @@ export const useOutsideClick = (callback: () => void) => {
             if (!ref.current) return;
             if (ref.current.contains(<Node>event.target)) return;
 
-            event.preventDefault();
-
             callback();
         };
 

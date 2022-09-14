@@ -4,9 +4,11 @@ export const useMobileNavbar = () => {
     const [isActive, setIsActive] = useState(false);
 
     const toggleActive = () => setIsActive((prevState) => !prevState);
+    const close = () => setIsActive(false);
 
     return {
         isActive,
+        close,
         toggleActive,
     };
 };
