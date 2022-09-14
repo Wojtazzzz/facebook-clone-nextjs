@@ -17,12 +17,14 @@ describe('List component', () => {
     });
 
     it('render loaders on initial fetching users to text', () => {
+        const mockClose = jest.fn();
+
         mock({
             path: '/api/messages?page=1',
             data: MessengerFirstPageJson,
         });
 
-        renderWithDefaultData(<List />);
+        renderWithDefaultData(<List close={mockClose} />);
 
         const loader = screen.getByTestId('messenger-fetching_loader');
 
@@ -30,12 +32,14 @@ describe('List component', () => {
     });
 
     it('render properly first list of users to text', async () => {
+        const mockClose = jest.fn();
+
         mock({
             path: '/api/messages?page=1',
             data: MessengerFirstPageJson,
         });
 
-        renderWithDefaultData(<List />);
+        renderWithDefaultData(<List close={mockClose} />);
 
         const firstElement = await screen.findByText(messages[0].name);
         expect(firstElement).toBeInTheDocument();
@@ -45,24 +49,28 @@ describe('List component', () => {
     });
 
     it('render properly empty component when response return empty array', async () => {
+        const mockClose = jest.fn();
+
         mock({
             path: '/api/messages?page=1',
             data: MessengerEmptyPageJson,
         });
 
-        renderWithDefaultData(<List />);
+        renderWithDefaultData(<List close={mockClose} />);
 
-        const emptyComponent = await screen.findByText('Your Messenger is empty');
+        const emptyComponent = await screen.findByText('Messenger is empty');
         expect(emptyComponent).toBeInTheDocument();
     });
 
     it('render properly error component when api return error', async () => {
+        const mockClose = jest.fn();
+
         mock({
             path: '/api/messages?page=1',
             status: 500,
         });
 
-        renderWithDefaultData(<List />);
+        renderWithDefaultData(<List close={mockClose} />);
 
         const errorComponent = await screen.findByText('Something went wrong');
         expect(errorComponent).toBeInTheDocument();

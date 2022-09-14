@@ -1,5 +1,4 @@
 import { screen } from '@testing-library/react';
-import RootUserJson from '@mocks/user/root.json';
 import NotificationsFirstPageJson from '@mocks/notifications/firstPage.json';
 import NotificationsEmptyPageJson from '@mocks/notifications/empty.json';
 import { List } from '@components/nav/panel/notifications/list/List';
@@ -10,6 +9,8 @@ describe('List component', () => {
     const notifications = NotificationsFirstPageJson.data;
 
     it('render loaders on initial fetching notifications', () => {
+        const mockClose = jest.fn();
+
         mock({
             path: '/api/notifications?page=1',
             data: NotificationsFirstPageJson,
@@ -20,7 +21,7 @@ describe('List component', () => {
             method: 'put',
         });
 
-        renderWithDefaultData(<List />);
+        renderWithDefaultData(<List close={mockClose} />);
 
         const loader = screen.getByTestId('notifications-fetching_loader');
 
@@ -28,6 +29,8 @@ describe('List component', () => {
     });
 
     it('render properly first list of notifications', async () => {
+        const mockClose = jest.fn();
+
         mock({
             path: '/api/notifications?page=1',
             data: NotificationsFirstPageJson,
@@ -38,7 +41,7 @@ describe('List component', () => {
             method: 'put',
         });
 
-        renderWithDefaultData(<List />);
+        renderWithDefaultData(<List close={mockClose} />);
 
         const firstElement = await screen.findByText(notifications[0].friend.name);
         expect(firstElement).toBeInTheDocument();
@@ -48,30 +51,36 @@ describe('List component', () => {
     });
 
     it('render properly empty component when response return empty array', async () => {
+        const mockClose = jest.fn();
+
         mock({
             path: '/api/notifications?page=1',
             data: NotificationsEmptyPageJson,
         });
 
-        renderWithDefaultData(<List />);
+        renderWithDefaultData(<List close={mockClose} />);
 
-        const emptyComponent = await screen.findByText('Your Notifications list is empty');
+        const emptyComponent = await screen.findByText('Notifications list is empty');
         expect(emptyComponent).toBeInTheDocument();
     });
 
     it('render properly error component when api return error', async () => {
+        const mockClose = jest.fn();
+
         mock({
             path: '/api/notifications?page=1',
             status: 500,
         });
 
-        renderWithDefaultData(<List />);
+        renderWithDefaultData(<List close={mockClose} />);
 
         const errorComponent = await screen.findByText('Something went wrong');
         expect(errorComponent).toBeInTheDocument();
     });
 
     it('renders properly notifications labels', () => {
+        const mockClose = jest.fn();
+
         mock({
             path: '/api/notifications?page=1',
             data: NotificationsFirstPageJson,
@@ -82,7 +91,7 @@ describe('List component', () => {
             method: 'put',
         });
 
-        renderWithDefaultData(<List />);
+        renderWithDefaultData(<List close={mockClose} />);
 
         notifications.forEach(async (notification) => {
             const label = await screen.findByText(notification.message);
