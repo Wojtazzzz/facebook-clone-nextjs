@@ -188,10 +188,7 @@ describe('Update post tests', () => {
         cy.get('button[aria-label="Update post"]').click();
 
         cy.get('[aria-label="Update post modal"]').should('not.exist');
-
-        cy.get('button[aria-label="Show gallery"]').within(() => {
-            cy.get('img').should('not.exist');
-        });
+        cy.get('button[aria-label="Show gallery"]').should('not.exist');
     });
 
     it('cannot add to post image with illegal extension', () => {

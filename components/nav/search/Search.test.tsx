@@ -76,7 +76,7 @@ describe('Search component', () => {
     it('render SearchButton when no query text provided', async () => {
         renderWithDefaultData(<Search />);
 
-        const searchButton = screen.queryByLabelText('Submit search');
+        const searchButton = screen.queryByLabelText('Focus input');
 
         expect(searchButton).toBeInTheDocument();
 
@@ -87,7 +87,7 @@ describe('Search component', () => {
 
         await user.clear(input);
 
-        expect(screen.getByLabelText('Submit search')).toBeInTheDocument();
+        expect(screen.getByLabelText('Focus input')).toBeInTheDocument();
     });
 
     it('render ClearButton when query text provided', async () => {

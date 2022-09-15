@@ -67,7 +67,7 @@ describe('Chat tests', () => {
         cy.get('[data-testid="chat"]').should('not.exist');
     });
 
-    it('open chat, send new message, response return error, message should not exist on list, chat show Internal Server Error, second message with success response remove Internal Server Error from chat', () => {
+    it('open chat, send new message, response return error, message should not exist on list, chat show api error, second message with success response remove api error from chat', () => {
         cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
 
         cy.visit('/');
@@ -93,7 +93,7 @@ describe('Chat tests', () => {
         cy.wait('@messages_page_1');
 
         cy.get('[data-testid="chat"]').should('not.contain.text', 'Hello World!');
-        cy.get('[data-testid="chat"]').should('contain.text', 'Internal Server Error');
+        cy.get('[data-testid="chat"]').should('contain.text', 'Something went wrong, please try again later');
 
         // Creating second message
         cy.intercept('/api/messages', { statusCode: 201 }).as('messages');
@@ -105,10 +105,10 @@ describe('Chat tests', () => {
         cy.wait('@messages_page_1');
 
         cy.get('[data-testid="chat"]').should('contain.text', 'Second approach');
-        cy.get('[data-testid="chat"]').should('not.contain.text', 'Internal Server Error');
+        cy.get('[data-testid="chat"]').should('not.contain.text', 'Something went wrong, please try again later');
     });
 
-    it('open chat, generate Internal Server Error, close chat, open same chat, Internal Server Error is not showing', () => {
+    it('open chat, generate api error, close chat, open same chat, api error is not showing', () => {
         cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
 
         cy.visit('/');
@@ -134,7 +134,7 @@ describe('Chat tests', () => {
         cy.wait('@messages_page_1');
 
         cy.get('[data-testid="chat"]').should('not.contain.text', 'Hello World!');
-        cy.get('[data-testid="chat"]').should('contain.text', 'Internal Server Error');
+        cy.get('[data-testid="chat"]').should('contain.text', 'Something went wrong, please try again later');
 
         cy.get('[aria-label="Close chat"]').click();
         cy.get('[data-testid="chat"]').should('not.exist');
@@ -147,7 +147,7 @@ describe('Chat tests', () => {
 
         cy.get('[data-testid="chat"]').should('be.visible');
 
-        cy.get('[data-testid="chat"]').should('not.contain.text', 'Internal Server Error');
+        cy.get('[data-testid="chat"]').should('not.contain.text', 'Something went wrong, please try again later');
     });
 
     it('create and send message with emoji', () => {
