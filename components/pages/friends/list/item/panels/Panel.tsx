@@ -2,7 +2,6 @@ import { FriendPanel } from '@components/pages/friends/list/item/panels/friendPa
 import { InvitePanel } from '@components/pages/friends/list/item/panels/invitePanel/InvitePanel';
 import { SuggestPanel } from '@components/pages/friends/list/item/panels/suggestPanel/SuggestPanel';
 import { PokePanel } from '@components/pages/friends/list/item/panels/PokePanel';
-
 import type { IFriendsListItem, IFriendsList, IPoke } from '@utils/types';
 
 interface PanelProps {

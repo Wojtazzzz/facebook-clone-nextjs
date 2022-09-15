@@ -67,9 +67,9 @@ describe('Friends list tests', () => {
             .first()
             .within(() => {
                 cy.contains('Remove').click();
-
-                cy.contains('Friendship destroyed').should('be.visible');
             });
+
+        cy.friendsListItems().first().should('not.exist');
 
         cy.intercept('/api/suggests?page=1').as('suggests_page_1');
 

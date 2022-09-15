@@ -1,7 +1,5 @@
 import { usePokes } from '@hooks/usePokes';
-
-import { ErrorMessage } from '@components/pages/friends/list/item/panels/messages/ErrorMessage';
-import { SuccessMessage } from '@components/pages/friends/list/item/panels/messages/SuccessMessage';
+import { ErrorMessage } from '@components/pages/friends/list/item/panels/ErrorMessage';
 import { Button } from '@components/inc/Button';
 
 import type { MouseEvent } from 'react';
@@ -17,7 +15,6 @@ export const PokePanel = ({ friend, data }: PokePanelProps) => {
         poke(friend.id);
     };
 
-    if (isSuccess) return <SuccessMessage message="Friend poked back" />;
     if (isError) return <ErrorMessage message="Something went wrong" />;
 
     return (

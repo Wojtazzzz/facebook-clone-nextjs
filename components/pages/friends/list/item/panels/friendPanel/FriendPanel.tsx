@@ -1,6 +1,5 @@
 import { useAppDispatch } from '@hooks/redux';
-import { ErrorMessage } from '@components/pages/friends/list/item/panels/messages/ErrorMessage';
-import { SuccessMessage } from '@components/pages/friends/list/item/panels/messages/SuccessMessage';
+import { ErrorMessage } from '@components/pages/friends/list/item/panels/ErrorMessage';
 import { Button } from '@components/inc/Button';
 import { openChat } from '@redux/slices/ChatSlice';
 import type { IUser } from '@utils/types';
@@ -10,7 +9,7 @@ interface FriendPanelProps extends IUser {}
 
 export const FriendPanel = (friend: FriendPanelProps) => {
     const dispatch = useAppDispatch();
-    const { remove, isSuccess, isError, isLoading } = useRemove();
+    const { remove, isError, isLoading } = useRemove();
 
     const handleOpenChat = (event: FocusEvent) => {
         event.preventDefault();
@@ -22,7 +21,6 @@ export const FriendPanel = (friend: FriendPanelProps) => {
         remove(friend.id);
     };
 
-    if (isSuccess) return <SuccessMessage message="Friendship destroyed" />;
     if (isError) return <ErrorMessage message="Something went wrong, try again later" />;
 
     return (

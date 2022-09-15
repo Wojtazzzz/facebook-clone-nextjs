@@ -130,9 +130,9 @@ describe('Suggests and invites lists tests', () => {
                 cy.contains('Invite').click();
 
                 cy.wait('@invite');
-
-                cy.contains('Request sent successfully').should('be.visible');
             });
+
+        cy.friendsListItems().first().should('not.exist');
 
         cy.relogin(2);
 
@@ -148,9 +148,9 @@ describe('Suggests and invites lists tests', () => {
                 cy.contains('Accept').click();
 
                 cy.wait('@accept');
-
-                cy.contains('Request accepted successfully').should('be.visible');
             });
+
+        cy.friendsListItems().first().should('not.exist');
 
         cy.intercept('/api/friends?page=1').as('friends_page_1');
 
@@ -187,9 +187,9 @@ describe('Suggests and invites lists tests', () => {
                 cy.contains('Invite').click();
 
                 cy.wait('@invite');
-
-                cy.contains('Request sent successfully').should('be.visible');
             });
+
+        cy.friendsListItems().first().should('not.exist');
 
         cy.relogin(2);
 
@@ -205,9 +205,9 @@ describe('Suggests and invites lists tests', () => {
                 cy.contains('Reject').click();
 
                 cy.wait('@reject');
-
-                cy.contains('Request rejected successfully').should('be.visible');
             });
+
+        cy.friendsListItems().first().should('not.exist');
 
         cy.intercept('/api/friends?page=1').as('friends_page_1');
 

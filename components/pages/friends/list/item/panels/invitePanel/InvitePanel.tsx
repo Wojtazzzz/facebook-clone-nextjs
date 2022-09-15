@@ -1,5 +1,4 @@
-import { ErrorMessage } from '@components/pages/friends/list/item/panels/messages/ErrorMessage';
-import { SuccessMessage } from '@components/pages/friends/list/item/panels/messages/SuccessMessage';
+import { ErrorMessage } from '@components/pages/friends/list/item/panels/ErrorMessage';
 import { Button } from '@components/inc/Button';
 import type { IUser } from '@utils/types';
 import { useUpdateInvite } from './useUpdateInvite';
@@ -7,7 +6,7 @@ import { useUpdateInvite } from './useUpdateInvite';
 interface InvitePanelProps extends IUser {}
 
 export const InvitePanel = ({ id }: InvitePanelProps) => {
-    const { updateInvite, isSuccess, isError, isLoading, data } = useUpdateInvite();
+    const { updateInvite, isError, isLoading } = useUpdateInvite();
 
     const handleAccept = (event: FocusEvent) => {
         event.preventDefault();
@@ -27,7 +26,6 @@ export const InvitePanel = ({ id }: InvitePanelProps) => {
         });
     };
 
-    if (isSuccess) return <SuccessMessage message={data?.data.message} />;
     if (isError) return <ErrorMessage message="Something went wrong, try again later" />;
 
     return (
