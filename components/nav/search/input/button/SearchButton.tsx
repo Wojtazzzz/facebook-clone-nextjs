@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const SearchButton = () => {
     return (
-        <button type="submit" aria-label="Submit search">
+        <button type="submit" aria-label="Focus input">
             <FontAwesomeIcon icon={faSearch} className="text-md" />
         </button>
     );

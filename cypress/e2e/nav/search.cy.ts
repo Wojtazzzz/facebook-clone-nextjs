@@ -1,4 +1,3 @@
-import { IUser } from '@cypress/support/types';
 import { useDatabaseMigrations } from 'cypress-laravel';
 
 describe('Searching users tests', () => {
@@ -16,14 +15,14 @@ describe('Searching users tests', () => {
         cy.wait('@user');
 
         cy.get('[data-testid="nav-search-desktop"]').within(() => {
-            cy.get('input[aria-label="User search input"]').type('Joh');
+            cy.get('input[aria-label="Search user"]').type('Joh');
             cy.wait('@searching');
 
             cy.contains('No Results');
 
             cy.get('[aria-label="Clear input"]').click();
 
-            cy.get('input[aria-label="User search input"]').should('have.value', '');
+            cy.get('input[aria-label="Search user"]').should('have.value', '');
         });
     });
 
@@ -40,7 +39,7 @@ describe('Searching users tests', () => {
         cy.wait('@user');
 
         cy.get('[data-testid="nav-search-desktop"]').within(() => {
-            cy.get('input[aria-label="User search input"]').type('John');
+            cy.get('input[aria-label="Search user"]').type('John');
             cy.wait('@searching');
 
             cy.contains('John Doe').click();
@@ -49,7 +48,7 @@ describe('Searching users tests', () => {
         });
     });
 
-    it('type "a", see 10 users, fetch second page of users by scrolling list to bottom', () => {
+    it('type "a", see 10 users, fetch second page of users by scrolling list to bottom, close hits by click on another element', () => {
         cy.create('User', { first_name: 'Adam' });
         cy.create('User', { first_name: 'Adrian' });
         cy.create('User', { first_name: 'Agapetus' });
@@ -71,7 +70,7 @@ describe('Searching users tests', () => {
         cy.wait('@user');
 
         cy.get('[data-testid="nav-search-desktop"]').within(() => {
-            cy.get('input[aria-label="User search input"]').type('a');
+            cy.get('input[aria-label="Search user"]').type('a');
             cy.wait('@searching');
 
             cy.get('[data-testid="search-hits"] a').should('have.length', 10);
@@ -80,31 +79,26 @@ describe('Searching users tests', () => {
 
             cy.get('[data-testid="search-hits"] a').should('have.length', 13);
         });
-    });
-
-    it('focus input by click on SearchButton, search friend, hits dissapear when click on outside page element', () => {
-        cy.create('User', { first_name: 'Adam' });
-
-        cy.intercept('/api/user').as('user');
-        cy.intercept(`/api/users?search=a&page=1`).as('searching');
-
-        cy.visit('/');
-        cy.wait('@user');
-
-        cy.get('[data-testid="nav-search-desktop"]').within(() => {
-            cy.get('[aria-label="Focus input"]').click();
-
-            cy.get('input[aria-label="User search input"]').should('be.focused');
-            cy.get('input[aria-label="User search input"]').type('a');
-            cy.wait('@searching');
-
-            cy.get('[data-testid="search-hits"] a').should('have.length', 1);
-        });
 
         cy.get('main').click();
 
         cy.get('[data-testid="nav-search-desktop"]').within(() => {
             cy.get('[data-testid="search-hits"]').should('not.exist');
+        });
+    });
+
+    it('focus input by click on SearchButton', () => {
+        cy.intercept('/api/user').as('user');
+
+        cy.visit('/');
+        cy.wait('@user');
+
+        cy.get('[data-testid="nav-search-desktop"]').within(() => {
+            cy.get('input[aria-label="Search user"]').should('not.be.focused');
+
+            cy.get('[aria-label="Focus input"]').click();
+
+            cy.get('input[aria-label="Search user"]').should('be.focused');
         });
     });
 
@@ -118,7 +112,7 @@ describe('Searching users tests', () => {
         cy.wait('@user');
 
         cy.get('[data-testid="nav-search-desktop"]').within(() => {
-            cy.get('input[aria-label="User search input"]').type('a');
+            cy.get('input[aria-label="Search user"]').type('a');
             cy.wait('@searching');
 
             cy.get('[data-testid="search-hits"] a').should('have.length', 1);
@@ -139,7 +133,7 @@ describe('Searching users tests', () => {
         cy.wait('@user');
 
         cy.get('[data-testid="nav-search-desktop"]').within(() => {
-            cy.get('input[aria-label="User search input"]').type('a');
+            cy.get('input[aria-label="Search user"]').type('a');
             cy.wait('@searching');
 
             cy.get('[data-testid="search-apiError"]').should('be.visible');

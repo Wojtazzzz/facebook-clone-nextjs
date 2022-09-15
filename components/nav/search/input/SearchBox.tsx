@@ -1,6 +1,7 @@
 import type { ChangeEvent, FormEvent } from 'react';
 import { useKey } from '@hooks/useKey';
 import { Button } from './button/Button';
+import { useInputFocus } from '@hooks/useInputFocus';
 
 interface SearchBoxProps {
     query: string;
@@ -12,11 +13,12 @@ interface SearchBoxProps {
 
 export const SearchBox = ({ query, isError, changeQuery, clearQuery, refetch }: SearchBoxProps) => {
     useKey('Escape', clearQuery);
+    const { inputRef, focus } = useInputFocus();
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
 
-        refetch();
+        focus();
     };
 
     return (
@@ -26,6 +28,7 @@ export const SearchBox = ({ query, isError, changeQuery, clearQuery, refetch }: 
             className="w-[200px] lg:w-[220px] h-10 flex justify-center items-center gap-3 text-dark-50 bg-dark-100 rounded-[50px] focus:outline-none"
         >
             <input
+                ref={inputRef}
                 aria-label="Search user"
                 name="text"
                 type="search"
