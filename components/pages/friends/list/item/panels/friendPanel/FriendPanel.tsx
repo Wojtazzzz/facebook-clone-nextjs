@@ -1,19 +1,18 @@
-import { useAppDispatch } from '@hooks/redux';
 import { ErrorMessage } from '@components/pages/friends/list/item/panels/ErrorMessage';
 import { Button } from '@components/inc/Button';
-import { openChat } from '@redux/slices/ChatSlice';
 import type { IUser } from '@utils/types';
 import { useRemove } from './useRemove';
+import { useChat } from '@hooks/useChat';
 
 interface FriendPanelProps extends IUser {}
 
 export const FriendPanel = (friend: FriendPanelProps) => {
-    const dispatch = useAppDispatch();
+    const { openChat } = useChat();
     const { remove, isError, isLoading } = useRemove();
 
     const handleOpenChat = (event: FocusEvent) => {
         event.preventDefault();
-        dispatch(openChat(friend));
+        openChat(friend);
     };
 
     const handleRemove = (event: FocusEvent) => {
