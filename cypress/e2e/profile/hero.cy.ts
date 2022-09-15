@@ -87,7 +87,6 @@ describe('Profile hero tests', () => {
             });
     });
 
-<<<<<<< HEAD
     it('visit friend\'s profile, click "Poke" button, see server error', () => {
         cy.createFriendship(1);
 
@@ -106,8 +105,6 @@ describe('Profile hero tests', () => {
         cy.expectAlert('Something went wrong, please try again later');
     });
 
-=======
->>>>>>> dbf659da594ade60ca11f36aff2b12da96532b98
     it('visit friend\'s profile, click "Poke" button, see error with message "Cannot poke friend two times in a row."', () => {
         cy.createFriendship(1);
 
