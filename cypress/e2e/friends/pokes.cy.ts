@@ -65,9 +65,11 @@ describe('Pokes list tests', () => {
             .within(() => {
                 cy.contains(`${friend.first_name} ${friend.last_name}`);
                 cy.contains('Poke back').click();
+
                 cy.wait('@poke');
-                cy.contains('Friend poked back').should('be.visible');
             });
+
+        cy.friendsListItems().first().should('not.exist');
 
         cy.intercept('/api/friends?page=1').as('friends_page_1');
 
@@ -98,9 +100,11 @@ describe('Pokes list tests', () => {
             .within(() => {
                 cy.contains(`${USER_FIRST_NAME} ${USER_LAST_NAME}`);
                 cy.contains('Poke back').click();
+
                 cy.wait('@poke');
-                cy.contains('Friend poked back').should('be.visible');
             });
+
+        cy.friendsListItems().first().should('not.exist');
 
         cy.relogin(1);
 

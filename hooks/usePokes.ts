@@ -5,7 +5,7 @@ export const usePokes = () => {
     const queryClient = useQueryClient();
 
     const mutation = useMutation(mutationFn, {
-        onSuccess: () => queryClient.invalidateQueries(['friends']),
+        onSuccess: () => queryClient.invalidateQueries(['Pokes']),
     });
 
     const poke = (friendId: number) => {
