@@ -10,7 +10,7 @@ interface CreatePostProps {
 
 export const CreatePost = ({ queryKey }: CreatePostProps) => {
     const { user } = useAuth();
-    const { open } = useCreatePostModal();
+    const { isActive, open, close } = useCreatePostModal();
 
     if (!user) return <Loader />;
 
@@ -30,7 +30,7 @@ export const CreatePost = ({ queryKey }: CreatePostProps) => {
                 </button>
             </div>
 
-            <Modal queryKey={queryKey} />
+            <Modal isActive={isActive} queryKey={queryKey} close={close} />
         </>
     );
 };

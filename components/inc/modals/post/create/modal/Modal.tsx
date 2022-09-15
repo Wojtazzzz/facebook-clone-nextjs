@@ -1,17 +1,16 @@
 import { ModalRoot } from '@components/inc/ModalRoot';
-import { useCreatePostModal } from '../useCreatePostModal';
 import { Form } from './form/Form';
 
 interface ModalProps {
+    isActive: boolean;
     queryKey: unknown[];
+    close: () => void;
 }
 
-export const Modal = ({ queryKey }: ModalProps) => {
-    const { isActive, close } = useCreatePostModal();
-
+export const Modal = ({ isActive, queryKey, close }: ModalProps) => {
     return (
         <ModalRoot label="Create post modal" isOpen={isActive} title="Create post" closeModal={close}>
-            <Form queryKey={queryKey} />
+            <Form queryKey={queryKey} close={close} />
         </ModalRoot>
     );
 };
