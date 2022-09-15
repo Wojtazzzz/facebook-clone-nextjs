@@ -1,11 +1,19 @@
 import { axios } from '@libs/axios';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { getErrorMessage } from '@utils/getErrorMessage/getErrorMessage';
+import { useAlertModal } from './useAlertModal';
 
 export const usePokes = () => {
     const queryClient = useQueryClient();
+    const { alert } = useAlertModal();
 
     const mutation = useMutation(mutationFn, {
         onSuccess: () => queryClient.invalidateQueries(['Pokes']),
+        onError: (error) => {
+            const message = getErrorMessage(error);
+
+            alert(message);
+        },
     });
 
     const poke = (friendId: number) => {

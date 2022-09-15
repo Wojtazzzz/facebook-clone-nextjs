@@ -86,4 +86,72 @@ describe('Profile hero tests', () => {
                 cy.contains('Poke back');
             });
     });
+
+    it('visit friend\'s profile, click "Poke" button, see error with message "Cannot poke friend two times in a row."', () => {
+        cy.createFriendship(1);
+
+        cy.create('Poke', {
+            user_id: 1,
+            friend_id: 2,
+            latest_initiator_id: 1,
+            count: 1,
+        });
+
+        cy.visit('/profile/2');
+
+        cy.intercept('/api/user').as('user');
+        cy.reload();
+        cy.wait('@user');
+
+        cy.intercept('/api/pokes').as('poke');
+
+        cy.get('button[aria-label="Poke"]').click();
+
+        cy.wait('@poke');
+
+        cy.expectAlert('Cannot poke friend two times in a row.');
+    });
+
+    it('visit random user\'s profile, click "Poke" button, see error with message "This user is not your friend."', () => {
+        cy.createUser(1, false);
+
+        cy.visit('/profile/2');
+
+        cy.intercept('/api/user').as('user');
+        cy.reload();
+        cy.wait('@user');
+
+        cy.intercept('/api/pokes').as('poke');
+
+        cy.get('button[aria-label="Poke"]').click();
+
+        cy.wait('@poke');
+
+        cy.expectAlert('This user is not your friend.');
+    });
+
+    it('visit random user\'s profile which already poke you, click "Poke" button, see error with message "This user is not your friend."', () => {
+        cy.createUser(1, false);
+
+        cy.create('Poke', {
+            user_id: 1,
+            friend_id: 2,
+            latest_initiator_id: 2,
+            count: 1,
+        });
+
+        cy.visit('/profile/2');
+
+        cy.intercept('/api/user').as('user');
+        cy.reload();
+        cy.wait('@user');
+
+        cy.intercept('/api/pokes').as('poke');
+
+        cy.get('button[aria-label="Poke"]').click();
+
+        cy.wait('@poke');
+
+        cy.expectAlert('This user is not your friend.');
+    });
 });
