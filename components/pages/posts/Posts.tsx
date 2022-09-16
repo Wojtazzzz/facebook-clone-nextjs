@@ -17,11 +17,13 @@ export const Posts = () => {
         <div
             ref={ref}
             id="posts-list"
-            className="max-w-[700px] h-screen flex flex-col gap-4 overflow-auto scroll-smooth scrollbar-none text-black mx-auto p-3 md:p-5"
+            className="w-full h-screen overflow-auto scroll-smooth scrollbar-none text-black"
         >
-            <CreatePost queryKey={queryKey} />
-            <PostsList queryKey={queryKey} endpoint={endpoint} />
-            <ScrollToTop scroll={scroll} scrollDistance={scrollDistance} />
+            <div className="max-w-[700px] flex flex-col gap-4 mx-auto p-3 md:p-5">
+                <CreatePost queryKey={queryKey} />
+                <PostsList queryKey={queryKey} endpoint={endpoint} />
+                <ScrollToTop scroll={scroll} scrollDistance={scrollDistance} />
+            </div>
         </div>
     );
 };

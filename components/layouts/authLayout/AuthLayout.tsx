@@ -1,5 +1,4 @@
 import { Nav } from '@components/nav/Nav';
-import { NavToggler } from '@components/nav/mobileNavbar/NavToggler';
 import { Menu } from '@components/menu/Menu';
 import { Sidebar } from '@components/sidebar/Sidebar';
 import { Chat } from '@components/chat/Chat';
@@ -25,7 +24,7 @@ export const AuthLayout = ({ children }: AuthLayoutProps) => {
             <div className="flex justify-between relative translate-y-14">
                 <Menu isActive={isActive} close={close} />
 
-                <main className="w-full max-w-[1024px] h-screen overflow-y-scroll mx-auto pb-14">{children}</main>
+                <main className="w-full h-screen overflow-y-scroll pb-14">{children}</main>
 
                 <Sidebar />
             </div>

@@ -1,6 +1,5 @@
 import { Header } from '@components/pages/friends/header/Header';
 import { List } from '@components/pages/friends/list/List';
-
 import type { IFriendsList } from '@utils/types';
 
 interface FriendsProps {
@@ -11,7 +10,7 @@ export const Friends = ({ type }: FriendsProps) => {
     const path = getApiPath(type);
 
     return (
-        <div className="relative py-5 px-2">
+        <div className="w-full max-w-[1024px] relative mx-auto py-5 px-2">
             <Header title={type} />
             <List path={path} type={type} />
         </div>
