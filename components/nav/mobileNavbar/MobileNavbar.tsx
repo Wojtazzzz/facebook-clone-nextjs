@@ -23,7 +23,7 @@ export const MobileNavbar = () => {
     const profilePageLink = user ? `/profile/${user.id}` : '/profile/not-loaded';
 
     return (
-        <div ref={ref}>
+        <div ref={ref} className="lg:hidden">
             <div
                 className={clsx(
                     'w-[260px] h-screen lg:hidden fixed top-0 left-0 z-30 bg-dark-300 transition-transform ease-out shadow-md',

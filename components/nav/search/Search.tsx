@@ -8,7 +8,7 @@ export const Search = () => {
     const ref = useOutsideClick(clearQuery);
 
     return (
-        <div ref={ref} className="w-[220px] relative">
+        <div ref={ref} className="w-[180px] lg:w-[220px] relative">
             <SearchBox clearQuery={clearQuery} query={query} {...rest} />
 
             {query && <Hits data={data} hasNextPage={hasNextPage} fetchNextPage={fetchNextPage} />}
