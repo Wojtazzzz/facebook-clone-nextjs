@@ -1,8 +1,6 @@
 import { useDispatch } from 'react-redux';
-
 import { Avatar } from '@components/inc/Avatar';
 import { openChat } from '@redux/slices/ChatSlice';
-
 import type { IContact } from '@utils/types';
 
 interface ContactProps extends IContact {}

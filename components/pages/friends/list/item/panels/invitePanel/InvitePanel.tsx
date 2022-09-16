@@ -1,7 +1,7 @@
 import { ErrorMessage } from '@components/pages/friends/list/item/panels/ErrorMessage';
-import { Button } from '@components/inc/Button';
 import type { IUser } from '@utils/types';
 import { useUpdateInvite } from './useUpdateInvite';
+import { PanelButton } from '../PanelButton';
 
 interface InvitePanelProps extends IUser {}
 
@@ -30,8 +30,8 @@ export const InvitePanel = ({ id }: InvitePanelProps) => {
 
     return (
         <div className="flex gap-3">
-            <Button title="Reject" styles="w-[100px]" isDisabled={isLoading} callback={handleReject} />
-            <Button title="Accept" styles="w-[100px]" isDisabled={isLoading} callback={handleAccept} />
+            <PanelButton title="Reject" isDisabled={isLoading} callback={handleReject} />
+            <PanelButton title="Accept" isDisabled={isLoading} callback={handleAccept} />
         </div>
     );
 };

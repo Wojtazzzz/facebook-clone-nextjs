@@ -25,18 +25,15 @@ export const List = memo<ListProps>(({ path, type }) => {
     const ItemsComponents = data.map((item) => <Item key={item.friend.id} item={item} type={type} />);
 
     return (
-        <div id="friends-list" className="h-screen overflow-auto scrollbar-none">
-            <InfiniteScroll
-                dataLength={ItemsComponents.length}
-                hasMore={!!hasNextPage}
-                loader={<Loader testId="friendsList-fetching_loader" />}
-                className="w-full flex flex-col gap-2"
-                next={fetchNextPage}
-                scrollableTarget="friends-list"
-            >
-                {ItemsComponents}
-            </InfiniteScroll>
-        </div>
+        <InfiniteScroll
+            dataLength={ItemsComponents.length}
+            hasMore={!!hasNextPage}
+            loader={<Loader testId="friendsList-fetching_loader" />}
+            className="w-full flex flex-col gap-2"
+            next={fetchNextPage}
+        >
+            {ItemsComponents}
+        </InfiniteScroll>
     );
 });
 

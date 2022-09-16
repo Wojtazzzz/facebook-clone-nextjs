@@ -1,7 +1,7 @@
 import { ErrorMessage } from '@components/pages/friends/list/item/panels/ErrorMessage';
-import { Button } from '@components/inc/Button';
 import type { IUser } from '@utils/types';
 import { useInvite } from './useInvite';
+import { PanelButton } from '../PanelButton';
 
 interface SuggestPanelProps extends IUser {}
 
@@ -15,5 +15,5 @@ export const SuggestPanel = ({ id }: SuggestPanelProps) => {
 
     if (isError) return <ErrorMessage message="Something went wrong, try again later" />;
 
-    return <Button title="Invite" styles="w-[150px]" isDisabled={isLoading} callback={handleInvite} />;
+    return <PanelButton title="Invite" isDisabled={isLoading} callback={handleInvite} />;
 };
