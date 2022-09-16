@@ -9,13 +9,11 @@ interface ProfileProps {
 }
 
 export const Profile = ({ user, friends }: ProfileProps) => {
-    const { id, name, profile_image, born_at } = user;
-
     return (
-        <div className="w-full flex flex-col gap-5">
+        <div className="w-full max-w-[1200px] flex flex-col gap-5 mx-auto lg:pl-[250px] xl:pl-[300px] box-content">
             <Hero user={user} friends={friends} />
 
-            <div className="w-full flex gap-4 px-1">
+            <div className="w-full flex flex-wrap lg:flex-nowrap justify-center gap-4 p-2">
                 <Intro {...user} />
                 <Board user={user} />
             </div>

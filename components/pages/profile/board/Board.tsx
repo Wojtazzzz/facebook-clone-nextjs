@@ -19,8 +19,7 @@ export const Board = ({ user }: BoardProps) => {
     return (
         <div
             data-testid="posts-list"
-            id="posts-list"
-            className="w-4/6 h-screen flex flex-col gap-4 overflow-auto scroll-smooth scrollbar-none"
+            className="w-full max-w-[650px] md:max-w-[800px] xl:max-w-[1000px] flex flex-col gap-4 px-1 sm:px-3 md:px-5"
         >
             <Panel userId={user.id} queryKey={queryKey} changeList={changeList} />
             <Posts queryKey={queryKey} endpoint={endpoint} />

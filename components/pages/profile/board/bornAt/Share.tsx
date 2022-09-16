@@ -7,7 +7,7 @@ export const Share = ({}: ShareProps) => {
     const handleShare = () => alert('Action to implement...');
 
     return (
-        <div className="border-t-2 border-t-dark-100 mt-5 px-3">
+        <div className="border-t-2 border-t-dark-100 px-2 md:px-3">
             <button
                 aria-label="Share born"
                 className="w-full flex justify-center items-center gap-1.5 text-light-100 font-medium hover:bg-dark-100 rounded-lg mt-2 py-2"
@@ -15,7 +15,7 @@ export const Share = ({}: ShareProps) => {
             >
                 <FontAwesomeIcon icon={faShare} />
 
-                <span>Share</span>
+                <span className="text-sm md:text-base">Share</span>
             </button>
         </div>
     );

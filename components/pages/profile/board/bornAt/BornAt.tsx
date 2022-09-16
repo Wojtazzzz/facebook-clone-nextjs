@@ -9,7 +9,7 @@ interface BornAtProps {
 
 export const BornAt = ({ user }: BornAtProps) => {
     return (
-        <article aria-label="Born at" className="w-full bg-dark-200 rounded-lg py-3">
+        <article aria-label="Born at" className="w-full bg-dark-200 rounded-lg pt-3 pb-2">
             <Author author={user} createdAt={user.born_at} isEdited={false} />
             <Date date={user.born_at} />
             <Share />

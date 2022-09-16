@@ -25,9 +25,7 @@ export const Posts = ({ queryKey, endpoint }: PostsProps) => {
             next={fetchNextPage}
             hasMore={!!hasNextPage}
             loader={<Loader />}
-            scrollableTarget="posts-list"
-            className="flex flex-col gap-3 md:gap-4 mb-12"
-            style={{ height: '100%' }}
+            className="flex flex-col gap-3 md:gap-4"
         >
             {PostsComponents}
         </InfiniteScroll>
