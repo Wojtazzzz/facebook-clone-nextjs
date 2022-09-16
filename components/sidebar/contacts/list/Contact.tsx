@@ -15,11 +15,12 @@ export const Contact = (contact: ContactProps) => {
 
     return (
         <button
-            aria-label={`Open chat with ${contact.name}`}
+            aria-label={`Open chat with ${name}`}
             className="w-full flex items-center gap-3 hover:bg-dark-100 rounded-lg transition-colors cursor-pointer p-2"
             onClick={handleOpenChat}
         >
-            <Avatar size={36} src={profile_image} alt="" />
+            <Avatar src={profile_image} alt="" styles="w-[36px] h-[36px]" />
+
             <span className="text-light-200 font-medium leading-5">{name}</span>
         </button>
     );

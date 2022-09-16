@@ -19,7 +19,7 @@ export const ProfileLink = () => {
                     className="h-12 flex items-center gap-2 hover:bg-dark-100 transition-colors rounded-md p-1"
                 >
                     <div className="w-12 flex justify-center items-center text-light-200 text-xl">
-                        <Avatar size={36} src={profile_image} alt={name} />
+                        <Avatar src={profile_image} alt={name} styles="w-[36px] h-[36px]" />
                     </div>
 
                     <div className="w-full text-light-200 font-medium">{name}</div>

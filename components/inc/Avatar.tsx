@@ -2,16 +2,15 @@ import Image from 'next/image';
 
 interface AvatarProps {
     src: string;
-    size: string | number;
     alt: string;
     styles?: string;
     title?: string;
 }
 
-export const Avatar = ({ src, size, alt, title, styles }: AvatarProps) => {
+export const Avatar = ({ src, alt, title, styles }: AvatarProps) => {
     return (
-        <div className={`flex justify-center items-center ${styles}`}>
-            <Image src={src} width={size} height={size} alt={alt} title={title} className="rounded-full" />
+        <div className={`flex justify-center relative items-center ${styles}`}>
+            <Image src={src} layout="fill" alt={alt} title={title} className="rounded-full" />
         </div>
     );
 };

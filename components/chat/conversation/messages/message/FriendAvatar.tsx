@@ -7,7 +7,7 @@ interface FriendAvatarProps {
 export const FriendAvatar = ({ profileImage }: FriendAvatarProps) => {
     return (
         <div className="flex items-end px-1.5">
-            <Avatar size={28} src={profileImage} alt="" />
+            <Avatar src={profileImage} alt="" styles="w-[28px] h-[28px]" />
         </div>
     );
 };

@@ -11,7 +11,7 @@ export const Author = ({ id, profileImage }: AuthorProps) => {
     return (
         <Link href={`/profile/${id}`}>
             <a>
-                <Avatar src={profileImage} size={36} alt="" />
+                <Avatar src={profileImage} alt="" styles="w-[36px] h-[36px]" />
             </a>
         </Link>
     );

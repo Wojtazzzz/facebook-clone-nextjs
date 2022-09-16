@@ -25,7 +25,7 @@ export const Notification = ({ message, friend, read_at, link, close }: Notifica
             )}
             onClick={handleRedirect}
         >
-            <Avatar src={profile_image} size={56} alt="" />
+            <Avatar src={profile_image} alt="" styles="w-[56px] h-[56px]" />
 
             <div className="flex flex-col text-left">
                 <span className="text-light-200">{name}</span>

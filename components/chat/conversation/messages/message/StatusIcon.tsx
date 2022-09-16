@@ -13,7 +13,7 @@ interface StatusIconProps {
 
 export const StatusIcon = ({ icon, friendAvatar, readAt }: StatusIconProps) => {
     if (icon === 'AVATAR') {
-        return <Avatar size={14} src={friendAvatar} alt="" title={`Seen at ${readAt}`} styles="w-[20px]" />;
+        return <Avatar src={friendAvatar} alt="" title={`Seen at ${readAt}`} styles="w-[14px]" />;
     }
 
     if (!icon) {

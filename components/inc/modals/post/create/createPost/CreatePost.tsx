@@ -18,17 +18,19 @@ export const CreatePost = ({ queryKey }: CreatePostProps) => {
 
     return (
         <>
-            <div className="w-full flex gap-3 bg-dark-200 rounded-lg p-3">
-                <Avatar size={58} src={profile_image} alt={name} />
+            <button
+                aria-label="Create a post"
+                className="w-full flex justify-between items-center gap-3 bg-dark-200 rounded-lg p-3"
+                onClick={open}
+            >
+                <div>
+                    <Avatar src={profile_image} alt={name} styles="w-[45px] h-[45px] md:w-[58px] md:h-[58px]" />
+                </div>
 
-                <button
-                    aria-label="Create a post"
-                    className="w-full bg-dark-100 text-sm md:text-base text-light-100 text-left hover:opacity-70 rounded-3xl cursor-pointer px-3"
-                    onClick={open}
-                >
+                <div className="w-full h-full bg-dark-100 text-sm md:text-base text-light-100 text-left hover:opacity-70 rounded-3xl cursor-pointer px-3 py-4">
                     What&apos;s on your mind, {first_name}?
-                </button>
-            </div>
+                </div>
+            </button>
 
             <Modal isActive={isActive} queryKey={queryKey} close={close} />
         </>

@@ -14,8 +14,8 @@ export const Author = ({ author, createdAt, isEdited }: AuthorProps) => {
 
     return (
         <Link href={`/profile/${id}`}>
-            <a aria-label={`${first_name} profile`} className="flex gap-2 md:gap-3 px-2 md:px-3">
-                <Avatar size={40} src={profile_image} alt={`${name} profile image`} />
+            <a aria-label={`${first_name} profile`} className="flex gap-2 md:gap-3 pr-2 md:pr-3">
+                <Avatar src={profile_image} alt={`${name} profile image`} styles="w-[40px] h-[40px]" />
 
                 <div className="flex flex-col gap-px">
                     <span className="text-sm text-light-50 font-medium">{name}</span>
