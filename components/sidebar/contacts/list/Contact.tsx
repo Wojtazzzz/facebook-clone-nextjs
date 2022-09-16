@@ -1,13 +1,13 @@
-import { useDispatch } from 'react-redux';
 import { Avatar } from '@components/inc/Avatar';
-import { openChat } from '@redux/slices/ChatSlice';
 import type { IContact } from '@utils/types';
+import { useChat } from '@hooks/useChat';
 
 interface ContactProps extends IContact {}
 
 export const Contact = (contact: ContactProps) => {
-    const dispatch = useDispatch();
-    const handleOpenChat = () => dispatch(openChat(contact));
+    const { openChat } = useChat();
+
+    const handleOpenChat = () => openChat(contact);
 
     const { name, profile_image } = contact;
 
