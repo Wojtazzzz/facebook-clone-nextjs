@@ -15,7 +15,7 @@ export const AlertModal = () => {
                 />
 
                 <AlertDialog.Content
-                    className="w-8/12 max-w-[500px] fixed top-1/2 left-1/2 bg-dark-200 shadow-lg rounded-lg -translate-x-1/2 -translate-y-1/2 p-6"
+                    className="w-10/12 md:w-8/12 max-w-[500px] fixed top-1/2 left-1/2 bg-dark-200 shadow-lg rounded-lg -translate-x-1/2 -translate-y-1/2 p-6"
                     onEscapeKeyDown={closeAlert}
                 >
                     <AlertDialog.Title className="text-xl text-light-200 font-semibold tracking-wide">

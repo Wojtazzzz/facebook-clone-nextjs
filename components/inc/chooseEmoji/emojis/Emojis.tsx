@@ -20,8 +20,8 @@ export const Emojis = ({ addToContent, close }: EmojisProps) => {
                 alignOffset={-32}
                 asChild
             >
-                <div className="w-[350px] z-40 shadow-lg bg-dark-200 rounded-lg p-3">
-                    <div aria-label="Emojis list" className="w-full h-full flex flex-wrap justify-start gap-1.5">
+                <div className="w-[250px] md:w-[350px] z-40 shadow-lg bg-dark-200 rounded-lg p-3">
+                    <div aria-label="Emojis list" className="w-full h-full flex flex-wrap justify-center gap-1.5">
                         {EmojisComponents}
                     </div>
 
