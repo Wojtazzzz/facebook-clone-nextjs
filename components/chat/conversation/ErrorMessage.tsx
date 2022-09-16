@@ -1,7 +1,7 @@
-import { useAppSelector } from '@hooks/redux';
+import { useChat } from '@hooks/useChat';
 
 export const ErrorMessage = () => {
-    const error = useAppSelector((store) => store.chat.error);
+    const { error } = useChat();
 
     if (!error) {
         return null;

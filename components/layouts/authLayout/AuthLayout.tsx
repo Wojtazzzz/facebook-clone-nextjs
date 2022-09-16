@@ -3,10 +3,10 @@ import { Menu } from '@components/menu/Menu';
 import { Sidebar } from '@components/sidebar/Sidebar';
 import { Chat } from '@components/chat/Chat';
 import type { ReactNode } from 'react';
-import { useAppSelector } from '@hooks/redux';
 import { useAuthMiddleware } from '../useAuthMiddleware';
 import { AlertModal } from '@components/inc/AlertModal';
 import { useMenu } from './useMenu';
+import { useChat } from '@hooks/useChat';
 
 interface AuthLayoutProps {
     children: ReactNode;
@@ -14,7 +14,7 @@ interface AuthLayoutProps {
 
 export const AuthLayout = ({ children }: AuthLayoutProps) => {
     useAuthMiddleware('AUTH');
-    const friend = useAppSelector((store) => store.chat.friend);
+    const { friend } = useChat();
     const { isActive, toggle, close } = useMenu();
 
     return (
