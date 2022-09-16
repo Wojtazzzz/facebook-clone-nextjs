@@ -1,9 +1,9 @@
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { ApiError } from '@components/inc/ApiError';
-import { EmptyList } from '@components/inc/EmptyList';
 import { Loader } from './Loader';
 import { Post } from './post/Post';
 import { useGetPosts } from './useGetPosts';
+import { NoPosts } from './NoPosts';
 
 interface PostsProps {
     queryKey: unknown[];
@@ -15,7 +15,7 @@ export const Posts = ({ queryKey, endpoint }: PostsProps) => {
 
     if (isLoading) return <Loader />;
     if (!data || isError) return <ApiError size="xl" styles="mt-8" />;
-    if (isEmpty) return <EmptyList title="No posts, add some friends!" />;
+    if (isEmpty) return <NoPosts queryKey={queryKey} />;
 
     const PostsComponents = data.map((post) => <Post key={post.id} queryKey={queryKey} {...post} />);
 

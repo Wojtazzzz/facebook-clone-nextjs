@@ -1,5 +1,5 @@
 import 'cypress-file-upload';
-import type { IComment, IHiddenPost, IPost, ISavedPost, IUser, IUserExtended } from './types';
+import type { IUserExtended } from './types';
 
 Cypress.Commands.add('loginRequest', (data: Partial<IUserExtended>) => {
     const id = 1;
