@@ -3,5 +3,12 @@
     "name": "John Doe",
     "first_name": "John",
     "profile_image": "https://picsum.photos/seed/62dd49103339c/168/168",
-    "background_image": "https://picsum.photos/seed/62dd4910333a9/850/350"
+    "background_image": "https://picsum.photos/seed/62dd4910333a9/850/350",
+    "created_at": "September 2022",
+    "born_at": "20 October 1971",
+    "works_at": "Bluemeadow High School",
+    "went_to": "Bluemeadow High School",
+    "lives_in": "Considineside, Jersey",
+    "from": "Lake Alvina, Sri Lanka",
+    "marital_status": "Its complicated"
 }
