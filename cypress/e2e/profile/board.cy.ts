@@ -1,6 +1,6 @@
 import { useDatabaseMigrations } from 'cypress-laravel';
 
-const monthNames = [
+const months = [
     'January',
     'February',
     'March',
@@ -16,13 +16,15 @@ const monthNames = [
 ];
 
 const bornDate = new Date();
+const formatedDate = `${bornDate.getDate()} ${months[bornDate.getMonth()]} ${bornDate.getFullYear()}`;
+const isoDate = bornDate.toISOString();
 
 describe('Profile board tests', () => {
     useDatabaseMigrations();
 
     beforeEach(() => {
         cy.loginRequest({
-            born_at: bornDate.toISOString(),
+            born_at: isoDate,
         });
     });
 
@@ -456,7 +458,7 @@ describe('Profile board tests', () => {
         cy.get('[data-testid="empty-list"]').should('not.exist');
         cy.get('[data-testid="posts-list"] article[aria-label="Born at"]').within(() => {
             cy.get('[data-testid="born-img"]').should('exist');
-            cy.contains(`Born on ${bornDate.getDate()} ${monthNames[bornDate.getMonth()]} ${bornDate.getFullYear()}`);
+            cy.contains(`Born on ${formatedDate}`);
         });
 
         cy.get('[aria-label="Change list of posts"]').select('Hidden posts');
