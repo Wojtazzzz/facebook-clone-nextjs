@@ -25,7 +25,7 @@ export const Menu = ({ isActive, close }: MenuProps) => {
             ref={ref}
             data-testid="menu"
             className={clsx(
-                'w-full max-w-[250px] xl:max-w-[300px] h-screen flex flex-col fixed lg:relative top-0 left-0 bg-dark-300 transition-transform z-30 py-5 px-2',
+                'w-full max-w-[250px] xl:max-w-[300px] h-screen flex flex-col fixed top-0 left-0 bg-dark-300 transition-transform z-30 mt-14 py-5 px-2',
                 !isActive && '-translate-x-[300px] lg:translate-x-[0px]'
             )}
         >

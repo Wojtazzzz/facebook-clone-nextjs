@@ -10,7 +10,7 @@ export const Friends = ({ type }: FriendsProps) => {
     const path = getApiPath(type);
 
     return (
-        <div className="w-full max-w-[1024px] relative mx-auto py-5 px-2">
+        <div className="w-full max-w-[1200px] relative mx-auto py-5 px-2">
             <Header title={type} />
             <List path={path} type={type} />
         </div>

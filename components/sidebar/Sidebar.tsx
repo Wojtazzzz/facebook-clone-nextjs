@@ -10,7 +10,7 @@ export const Sidebar = () => {
     return (
         <aside
             id="sidebar"
-            className="w-full max-w-[250px] xl:max-w-[300px] h-screen overflow-y-scroll hidden md:flex flex-col px-2 pr-4 py-5 pb-16"
+            className="w-full max-w-[250px] xl:max-w-[300px] h-screen overflow-y-auto scrollbar-thin scrollbar-thumb-dark-200 hidden fixed top-0 right-0 md:flex flex-col mt-14 px-2 pr-4 py-5 pb-16"
         >
             <Birthdays />
             <Contacts />

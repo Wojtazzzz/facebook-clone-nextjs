@@ -21,13 +21,11 @@ export const AuthLayout = ({ children }: AuthLayoutProps) => {
         <>
             <Nav toggleMenu={toggle} />
 
-            <div className="flex justify-between relative translate-y-14">
-                <Menu isActive={isActive} close={close} />
+            <Menu isActive={isActive} close={close} />
 
-                <main className="w-full h-screen overflow-y-scroll pb-14">{children}</main>
+            <main className="w-full pb-4 mt-14">{children}</main>
 
-                <Sidebar />
-            </div>
+            <Sidebar />
 
             <AlertModal />
 
