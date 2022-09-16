@@ -8,7 +8,7 @@ interface ContentProps {
 
 export const Content = ({ content, images }: ContentProps) => {
     return (
-        <div className="w-full pt-3">
+        <div className="w-full pt-2 md:pt-3">
             <Text content={content} />
             <Images images={images} />
         </div>

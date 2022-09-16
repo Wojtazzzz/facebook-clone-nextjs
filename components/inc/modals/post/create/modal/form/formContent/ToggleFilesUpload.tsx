@@ -12,7 +12,7 @@ export const ToggleFilesUpload = ({ toggle }: ToggleFilesUploadProps) => {
 
             <div className="flex gap-2">
                 <button type="button" aria-label="Show files uploader" className="focus:outline-none" onClick={toggle}>
-                    <FontAwesomeIcon icon={faImages} className="text-2xl text-green-400" />
+                    <FontAwesomeIcon icon={faImages} className="text-xl md:text-2xl text-green-400" />
                 </button>
             </div>
         </div>

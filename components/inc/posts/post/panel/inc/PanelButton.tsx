@@ -1,7 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 import { clsx } from 'clsx';
-
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 
 interface PanelButtonProps {
@@ -17,7 +15,7 @@ export const PanelButton = ({ title, icon, isActive = false, callback }: PanelBu
             aria-label={title}
             title={title}
             className={clsx(
-                'w-1/3 flex justify-center items-center gap-1.5 font-medium hover:bg-dark-100 rounded-lg py-2',
+                'w-1/3 flex justify-center items-center gap-1.5 text-sm md:text-base font-medium hover:bg-dark-100 rounded-lg py-2',
                 isActive && 'text-primary',
                 !isActive && 'text-light-100'
             )}

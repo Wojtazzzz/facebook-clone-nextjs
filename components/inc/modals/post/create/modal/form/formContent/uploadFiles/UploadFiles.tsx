@@ -7,9 +7,9 @@ interface UploadFilesProps {
 
 export const UploadFiles = ({ close }: UploadFilesProps) => {
     return (
-        <>
+        <div className="mb-4">
             <FileDrop close={close} />
             <FilesList />
-        </>
+        </div>
     );
 };

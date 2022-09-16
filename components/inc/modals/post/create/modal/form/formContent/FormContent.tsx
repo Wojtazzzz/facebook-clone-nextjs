@@ -16,17 +16,18 @@ export const FormContent = ({ isLoading, error }: FormContentProps) => {
 
     // Not move to parent component
     // It will remove all values from Formik when submit
-    if (isLoading) return <SpinnerLoader testId="createPost-loader" containerStyles="w-[100px] my-10 mx-auto" />;
+    if (isLoading)
+        return <SpinnerLoader testId="createPost-loader" containerStyles="w-[64px] md:w-[80px] my-10 mx-auto" />;
 
     return (
-        <div className="m-3">
+        <div className="m-1 md:m-3">
             <Textarea />
 
             {isUploadActive && <UploadFiles close={closeUpload} />}
 
-            <ErrorMessage error={error} />
-
             <ToggleFilesUpload toggle={toggleUpload} />
+
+            <ErrorMessage error={error} />
 
             <Button type="submit" title="Create post" isDisabled={isLoading} styles="w-full mt-5" />
         </div>

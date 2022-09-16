@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 
 interface NavItemProps {
@@ -14,7 +13,7 @@ export const NavItem = ({ name, path, icon }: NavItemProps) => {
     return (
         <Link href={path}>
             <a
-                aria-label={`${name} redirect`}
+                aria-label={name}
                 title={name}
                 className="w-full h-[50px] flex items-center gap-3 border-b-dark-200 border-b-2 px-4"
             >

@@ -23,10 +23,10 @@ export const ModalRoot = ({ label, isOpen, title, closeModal, children }: ModalR
         <ReactModal isOpen={isOpen} style={modalStyles} onRequestClose={closeModal}>
             <div
                 aria-label={label}
-                className="h-full flex flex-col bg-dark-200 rounded-lg mx-auto px-1"
+                className="h-full flex flex-col bg-dark-200 rounded-lg relative z-50 mx-2 md:mx-auto"
                 style={{ maxHeight: '75vh' }}
             >
-                <div className="w-full flex justify-between text-light-200 border-zinc-600 border-b-[1.5px] p-3">
+                <div className="w-full flex justify-between items-center text-light-200 border-zinc-600 border-b-[1.5px] p-3">
                     <FontAwesomeIcon className="w-8 text-lg invisible pointer-events-none" icon={faTimes} />
 
                     <h3 className="text-2xl text-center font-bold">{title}</h3>

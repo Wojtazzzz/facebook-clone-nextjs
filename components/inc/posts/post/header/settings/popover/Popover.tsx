@@ -18,7 +18,7 @@ export const Popover = ({ close, ...rest }: PopoverProps) => {
             <RadixPopover.Content onEscapeKeyDown={close} onInteractOutside={close}>
                 <div
                     aria-label="Settings"
-                    className="min-w-[240px] absolute right-0 z-20 bg-dark-300 shadow-md rounded-xl py-3 px-4"
+                    className="min-w-[180px] md:min-w-[240px] absolute right-0 z-20 bg-dark-300 shadow-md rounded-xl py-1 md:py-3 px-2 md:px-4"
                 >
                     <Options {...rest} close={close} />
 

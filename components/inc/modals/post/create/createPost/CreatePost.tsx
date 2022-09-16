@@ -23,7 +23,7 @@ export const CreatePost = ({ queryKey }: CreatePostProps) => {
 
                 <button
                     aria-label="Create a post"
-                    className="w-full bg-dark-100 text-light-100 text-left hover:opacity-70 rounded-3xl cursor-pointer px-3"
+                    className="w-full bg-dark-100 text-sm md:text-base text-light-100 text-left hover:opacity-70 rounded-3xl cursor-pointer px-3"
                     onClick={open}
                 >
                     What&apos;s on your mind, {first_name}?
