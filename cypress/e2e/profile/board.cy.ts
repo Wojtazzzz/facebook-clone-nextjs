@@ -55,7 +55,6 @@ describe('Profile board tests', () => {
         cy.wait('@posts');
 
         cy.get('[data-testid="posts-list"] article[aria-label="Post"]').should('not.exist');
-        cy.get('img[alt="List is empty"]').should('exist');
 
         cy.get('[aria-label="Change list of posts"]').select('Hidden posts');
         cy.wait('@hiddenPosts');
@@ -82,7 +81,6 @@ describe('Profile board tests', () => {
         cy.wait('@posts');
 
         cy.get('[data-testid="posts-list"] article[aria-label="Post"]').should('not.exist');
-        cy.get('img[alt="List is empty"]').should('exist');
 
         cy.get('button[aria-label="Create a post"]').click();
         cy.get('[aria-label="Create post modal"]').should('be.visible');
@@ -223,7 +221,6 @@ describe('Profile board tests', () => {
         cy.wait('@posts_page_1');
 
         cy.get('[data-testid="posts-list"] article[aria-label="Post"]').should('not.exist');
-        cy.get('img[alt="List is empty"]').should('exist');
     });
 
     it("visit friend's profile, save post, check that post displays on list of saved posts, unsave post, check that post dissapear from list of saved posts", () => {
@@ -365,7 +362,6 @@ describe('Profile board tests', () => {
         cy.wait('@posts');
 
         cy.get('[data-testid="posts-list"] article[aria-label="Post"]').should('not.exist');
-        cy.get('img[alt="List is empty"]').should('exist');
 
         cy.get('[aria-label="Change list of posts"]').select('Hidden posts');
         cy.wait('@hiddenPosts');
@@ -424,5 +420,35 @@ describe('Profile board tests', () => {
 
             cy.get('[data-testid="post-comments_list"]').children().should('have.length', 1);
         });
+    });
+
+    it('see born at info instead of empty list within own posts, change list to hidden posts and see empty list instead of born at, change list to saved posts and see empty list instead of born at', () => {
+        cy.intercept('/api/user').as('user');
+        cy.intercept('/api/users/1/posts?page=1').as('posts');
+        cy.intercept('/api/hidden/posts?page=1').as('hiddenPosts');
+        cy.intercept('/api/saved/posts?page=1').as('savedPosts');
+
+        cy.visit('/profile/1');
+
+        cy.wait('@user');
+        cy.wait('@posts');
+
+        cy.get('[data-testid="posts-list"] article[aria-label="Post"]').should('not.exist');
+        cy.get('[data-testid="posts-list"] article[aria-label="Born at"]').should('be.visible');
+        cy.get('[data-testid="empty-list"]').should('not.exist');
+
+        cy.get('[aria-label="Change list of posts"]').select('Hidden posts');
+        cy.wait('@hiddenPosts');
+
+        cy.get('[data-testid="posts-list"] article[aria-label="Post"]').should('not.exist');
+        cy.get('[data-testid="posts-list"] article[aria-label="Born at"]').should('not.exist');
+        cy.get('[data-testid="empty-list"]').should('be.visible');
+
+        cy.get('[aria-label="Change list of posts"]').select('Saved posts');
+        cy.wait('@savedPosts');
+
+        cy.get('[data-testid="posts-list"] article[aria-label="Post"]').should('not.exist');
+        cy.get('[data-testid="posts-list"] article[aria-label="Born at"]').should('not.exist');
+        cy.get('[data-testid="empty-list"]').should('be.visible');
     });
 });

@@ -25,11 +25,12 @@ export type IUserProfile = {
     profile_image: string;
     background_image: string;
     created_at: string;
-    works_at: string;
-    went_to: string;
-    lives_in: string;
-    from: string;
-    marital_status: IMaritalStatus;
+    born_at: string;
+    works_at?: string;
+    went_to?: string;
+    lives_in?: string;
+    from?: string;
+    marital_status?: string;
 };
 
 export type IUserHit = {

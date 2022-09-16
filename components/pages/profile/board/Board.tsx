@@ -3,16 +3,18 @@ import { usePostsListSwitcher } from './usePostsListSwitcher';
 import { Panel } from './panel/Panel';
 import { getPostsQueryKey } from '@utils/getPostsQueryKey';
 import { getPostsEndpoint } from '@utils/getPostsEndpoint';
+import { BornAt } from './bornAt/BornAt';
+import type { IUserProfile } from '@utils/types';
 
 interface BoardProps {
-    userId: number;
+    user: IUserProfile;
 }
 
-export const Board = ({ userId }: BoardProps) => {
+export const Board = ({ user }: BoardProps) => {
     const { postsList, changeList } = usePostsListSwitcher();
 
-    const queryKey = getPostsQueryKey(postsList, userId);
-    const endpoint = getPostsEndpoint(postsList, userId);
+    const queryKey = getPostsQueryKey(postsList, user.id);
+    const endpoint = getPostsEndpoint(postsList, user.id);
 
     return (
         <div
@@ -20,8 +22,9 @@ export const Board = ({ userId }: BoardProps) => {
             id="posts-list"
             className="w-4/6 h-screen flex flex-col gap-4 overflow-auto scroll-smooth scrollbar-none"
         >
-            <Panel userId={userId} queryKey={queryKey} changeList={changeList} />
+            <Panel userId={user.id} queryKey={queryKey} changeList={changeList} />
             <Posts queryKey={queryKey} endpoint={endpoint} />
+            {postsList === 'own' && <BornAt user={user} />}
         </div>
     );
 };

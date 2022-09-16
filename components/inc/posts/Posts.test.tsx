@@ -43,18 +43,6 @@ describe('Posts component', () => {
         expect(tenthPost).toBeInTheDocument();
     });
 
-    it('render empty component when fetched no posts', async () => {
-        mock({
-            path: '/api/posts?page=1',
-            data: PostsEmptyPageJson,
-        });
-
-        renderWithDefaultData(<Posts queryKey={['posts', 'all']} endpoint="/api/posts" />);
-
-        const emptyComponent = await screen.findByText('No posts, add some friends!');
-        expect(emptyComponent).toBeInTheDocument();
-    });
-
     it('render error component when api returns error', async () => {
         mock({
             path: '/api/posts?page=1',
@@ -68,5 +56,53 @@ describe('Posts component', () => {
 
         const emptyComponent = await screen.findByText('Something went wrong');
         expect(emptyComponent).toBeInTheDocument();
+    });
+
+    it('render empty component when fetched no posts from all posts', async () => {
+        mock({
+            path: '/api/posts?page=1',
+            data: PostsEmptyPageJson,
+        });
+
+        renderWithDefaultData(<Posts queryKey={['posts', 'all']} endpoint="/api/posts" />);
+
+        const emptyComponent = await screen.findByText('No posts, add some friends!');
+        expect(emptyComponent).toBeInTheDocument();
+    });
+
+    it('render empty component when fetched no posts from hidden posts', async () => {
+        mock({
+            path: '/api/hidden/posts?page=1',
+            data: PostsEmptyPageJson,
+        });
+
+        renderWithDefaultData(<Posts queryKey={['posts', 'hidden']} endpoint="/api/hidden/posts" />);
+
+        const emptyComponent = await screen.findByText('No posts, add some friends!');
+        expect(emptyComponent).toBeInTheDocument();
+    });
+
+    it('render empty component when fetched no posts from saved posts', async () => {
+        mock({
+            path: '/api/saved/posts?page=1',
+            data: PostsEmptyPageJson,
+        });
+
+        renderWithDefaultData(<Posts queryKey={['posts', 'saved']} endpoint="/api/saved/posts" />);
+
+        const emptyComponent = await screen.findByText('No posts, add some friends!');
+        expect(emptyComponent).toBeInTheDocument();
+    });
+
+    it('not render empty component when fetched no posts from own posts', async () => {
+        mock({
+            path: '/api/users/1/posts?page=1',
+            data: PostsEmptyPageJson,
+        });
+
+        renderWithDefaultData(<Posts queryKey={['posts', 'own', 1]} endpoint="/api/users/1/posts" />);
+
+        const emptyComponent = screen.queryByText('No posts, add some friends!');
+        expect(emptyComponent).not.toBeInTheDocument();
     });
 });
