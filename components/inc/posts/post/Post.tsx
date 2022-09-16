@@ -5,8 +5,8 @@ import { Header } from './header/Header';
 import { Stats } from './stats/Stats';
 import { Comments } from '@components/inc/comments/Comments';
 import { useCommentsActive } from './useCommentsActive';
-import { useState } from 'react';
 import { UpdateModal } from './updateModal/UpdateModal';
+import { useUpdateModalActive } from './useUpdateModalActive';
 
 interface PostProps extends IPost {
     queryKey: unknown[];
@@ -26,11 +26,8 @@ export const Post = ({
     type,
     queryKey,
 }: PostProps) => {
-    const { commentsActive, toggleCommentsActive } = useCommentsActive();
-    const [isActive, setIsActive] = useState(false);
-
-    const openUpdateModal = () => setIsActive(true);
-    const closeUpdateModal = () => setIsActive(false);
+    const { areCommentsActive, toggleCommentsActive } = useCommentsActive();
+    const { isModalActive, openUpdateModal, closeUpdateModal } = useUpdateModalActive();
 
     return (
         <article aria-label="Post" className="w-full bg-dark-200 rounded-lg">
@@ -56,18 +53,16 @@ export const Post = ({
 
             <Panel postId={id} isPostLiked={is_liked} queryKey={queryKey} toggleCommentsActive={toggleCommentsActive} />
 
-            {commentsActive && <Comments authorName={author.name} commenting={commenting} postId={id} />}
+            {areCommentsActive && <Comments authorName={author.name} commenting={commenting} postId={id} />}
 
-            {isActive && (
-                <UpdateModal
-                    queryKey={queryKey}
-                    isActive={isActive}
-                    postId={id}
-                    content={content}
-                    images={images}
-                    close={closeUpdateModal}
-                />
-            )}
+            <UpdateModal
+                queryKey={queryKey}
+                isActive={isModalActive}
+                postId={id}
+                content={content}
+                images={images}
+                close={closeUpdateModal}
+            />
         </article>
     );
 };

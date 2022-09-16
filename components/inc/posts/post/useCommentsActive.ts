@@ -1,12 +1,12 @@
 import { useState } from 'react';
 
 export const useCommentsActive = () => {
-    const [commentsActive, setCommentsActive] = useState(false);
+    const [areCommentsActive, setAreCommentsActive] = useState(false);
 
-    const toggleCommentsActive = () => setCommentsActive((prevState) => !prevState);
+    const toggleCommentsActive = () => setAreCommentsActive((prevState) => !prevState);
 
     return {
-        commentsActive,
+        areCommentsActive,
         toggleCommentsActive,
     };
 };
