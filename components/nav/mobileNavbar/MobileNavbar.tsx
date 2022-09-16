@@ -23,13 +23,12 @@ export const MobileNavbar = () => {
     const profilePageLink = user ? `/profile/${user.id}` : '/profile/not-loaded';
 
     return (
-        <>
+        <div ref={ref}>
             <div
-                ref={ref}
                 className={clsx(
-                    'w-[280px] h-screen lg:hidden fixed top-0 left-0 z-30 bg-dark-300 transition-transform ease-out shadow-md',
+                    'w-[260px] h-screen lg:hidden fixed top-0 left-0 z-30 bg-dark-300 transition-transform ease-out shadow-md',
                     isActive && 'translate-x-0',
-                    !isActive && '-translate-x-[280px]'
+                    !isActive && '-translate-x-[260px]'
                 )}
             >
                 <Logo />
@@ -43,6 +42,6 @@ export const MobileNavbar = () => {
             </div>
 
             <NavToggler isActive={isActive} toggleActive={toggleActive} />
-        </>
+        </div>
     );
 };
