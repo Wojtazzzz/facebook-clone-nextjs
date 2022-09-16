@@ -39,7 +39,7 @@ export const Gallery = ({ images, closeGallery }: GalleryProps) => {
                     prevEl: '.swiper-button-prev',
                     nextEl: '.swiper-button-next',
                 }}
-                className="mySwiper w-full h-full"
+                className="w-full h-full"
             >
                 {SlidesComponents}
 
