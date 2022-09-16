@@ -18,7 +18,7 @@ export const List = ({ data, isLoading, isEmpty, isError }: ListProps) => {
     const CommentsComponents = data.map((comment) => <Comment key={comment.id} {...comment} />);
 
     return (
-        <div data-testid="post-comments_list" className="flex flex-col items-start gap-1 mt-2">
+        <div data-testid="post-comments_list" className="flex flex-col items-start gap-1 mt-1 md:mt-2">
             {CommentsComponents}
         </div>
     );
