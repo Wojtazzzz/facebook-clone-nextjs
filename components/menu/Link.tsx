@@ -23,6 +23,7 @@ export const Link = ({ title, link, icon, target = '_self' }: LinkProps) => {
                     <div className="w-12 flex justify-center items-center text-light-200 text-xl">
                         <FontAwesomeIcon icon={icon} />
                     </div>
+
                     <div className="w-full text-light-200 font-medium">{title}</div>
                 </a>
             </NextLink>

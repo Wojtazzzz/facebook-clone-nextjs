@@ -142,7 +142,7 @@ describe('Item component', () => {
 
             const userName = await screen.findByText(item.friend.name);
             const userProfileImage = await screen.findByAltText(item.friend.name);
-            const sendMessageButton = await screen.findByTitle('Send message');
+            const sendMessageButton = await screen.findByTitle('Message');
             const removeButton = await screen.findByTitle('Remove');
 
             expect(userProfileImage).toBeInTheDocument();

@@ -4,6 +4,7 @@ import { ProfileLink } from '@components/menu/profileLink/ProfileLink';
 import { Link } from '@components/menu/Link';
 import { clsx } from 'clsx';
 import { useOutsideClick } from '@hooks/useOutsideClick';
+import { Footer } from './Footer';
 
 interface MenuProps {
     isActive: boolean;
@@ -25,17 +26,18 @@ export const Menu = ({ isActive, close }: MenuProps) => {
             ref={ref}
             data-testid="menu"
             className={clsx(
-                'w-full max-w-[250px] lg:max-w-[220px] xl:max-w-[300px] h-screen flex flex-col fixed top-0 left-0 bg-dark-300 transition-transform z-30 mt-14 py-5 px-2',
+                'w-full max-w-[250px] lg:max-w-[220px] xl:max-w-[300px] h-screen flex flex-col fixed top-0 left-0 bg-dark-300 transition-transform z-30 pt-16 px-2',
                 !isActive && '-translate-x-[300px] lg:translate-x-[0px]'
             )}
         >
             <ul>
                 <ProfileLink />
-
                 <Link title="Friends" link="/friends" icon={faUsers} />
                 <Link title="Pokes" link="/friends/pokes" icon={faHandLizard} />
                 <Link title="GitHub" link="https://github.com/CubeStorm/" icon={faGithub} target="_blank" />
             </ul>
+
+            <Footer />
         </nav>
     );
 };
