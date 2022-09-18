@@ -23,15 +23,7 @@ export const SearchBox = ({ isActive, query, isError, changeQuery, clearQuery, o
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
 
-        isActive
-            ? (() => {
-                  focus();
-                  console.log('foc');
-              })()
-            : (() => {
-                  open();
-                  console.log('opn');
-              })();
+        isActive ? focus() : open();
     };
 
     return (

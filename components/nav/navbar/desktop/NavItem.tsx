@@ -31,7 +31,7 @@ export const NavItem = ({ name, path, icon }: NavItemProps) => {
                 >
                     <FontAwesomeIcon
                         icon={icon}
-                        className={clsx('text-xl', isActive && 'text-primary', !isActive && 'text-light-100')}
+                        className={clsx('text-xl', isActive ? 'text-primary' : 'text-light-100')}
                     />
                 </div>
 
