@@ -29,7 +29,7 @@ export const List = memo<ListProps>(({ close }) => {
         <div
             data-testid="messenger-list"
             id="list-of-messenger-contacts"
-            className="w-full min-h-[350px] sm:min-h-[400px] overflow-y-auto scrollbar-thin scrollbar-thumb-dark-100"
+            className="w-full h-full max-h-[350px] sm:max-h-[400px] overflow-y-auto scrollbar-thin scrollbar-thumb-dark-100"
         >
             <InfiniteScroll
                 dataLength={ConversationsComponents.length}

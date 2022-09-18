@@ -25,7 +25,7 @@ export const List = memo<ListProps>(({ close }) => {
         <div
             data-testid="notifications-list"
             id="list-of-notifications"
-            className="w-full min-h-[350px] sm:min-h-[400px] overflow-y-scroll scrollbar-thin scrollbar-thumb-dark-100"
+            className="w-full h-full max-h-[350px] sm:max-h-[400px] overflow-y-scroll scrollbar-thin scrollbar-thumb-dark-100"
         >
             <InfiniteScroll
                 dataLength={NotificationsComponents.length}
