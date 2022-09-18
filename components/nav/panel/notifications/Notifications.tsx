@@ -1,18 +1,18 @@
 import { memo } from 'react';
-import { faBell } from '@fortawesome/free-solid-svg-icons';
 import { Dropdown } from '../inc/Dropdown';
 import { useNotifications } from './useNotifications';
-import { Button } from '../inc/Button';
+import * as Popover from '@radix-ui/react-popover';
+import { Trigger } from './Trigger';
 
 export const Notifications = memo(() => {
     const { isActive, open, close } = useNotifications();
 
     return (
-        <div className="relative">
-            <Button label="Notifications" icon={faBell} callback={open} />
+        <Popover.Root open={isActive}>
+            <Trigger open={open} />
 
-            {isActive && <Dropdown type="Notifications" close={close} />}
-        </div>
+            <Dropdown type="Notifications" close={close} />
+        </Popover.Root>
     );
 });
 

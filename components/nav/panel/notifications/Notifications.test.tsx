@@ -4,11 +4,14 @@ import userEvent from '@testing-library/user-event';
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { Notifications } from './Notifications';
 import NotificationsFirstPageJson from '@mocks/notifications/firstPage.json';
+import { mockResizeObserver } from '@utils/tests/mockResizeObserver';
 
 describe('Notifications component', () => {
     const user = userEvent.setup();
 
     beforeEach(() => {
+        mockResizeObserver();
+
         mock({
             path: '/api/notifications?page=1',
             data: NotificationsFirstPageJson,
@@ -48,5 +51,16 @@ describe('Notifications component', () => {
         const list = await screen.findByTestId('notifications-list');
 
         expect(list).toBeInTheDocument();
+    });
+
+    it('render properly header for notifications', async () => {
+        renderWithDefaultData(<Notifications />);
+
+        const button = screen.getByLabelText('Notifications');
+        await user.click(button);
+
+        const header = screen.getByText('Notifications');
+
+        expect(header).toBeInTheDocument();
     });
 });

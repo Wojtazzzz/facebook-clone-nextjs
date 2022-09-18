@@ -4,11 +4,14 @@ import userEvent from '@testing-library/user-event';
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { Messenger } from './Messenger';
 import MessengerFirstPageJson from '@mocks/messenger/firstPage.json';
+import { mockResizeObserver } from '@utils/tests/mockResizeObserver';
 
 describe('Messenger component', () => {
     const user = userEvent.setup();
 
     beforeEach(() => {
+        mockResizeObserver();
+
         mock({
             path: '/api/messages?page=1',
             data: MessengerFirstPageJson,
@@ -43,5 +46,21 @@ describe('Messenger component', () => {
         const list = await screen.findByTestId('messenger-list');
 
         expect(list).toBeInTheDocument();
+    });
+
+    it('render properly header', async () => {
+        mock({
+            path: '/api/messages?page=1',
+            data: MessengerFirstPageJson,
+        });
+
+        renderWithDefaultData(<Messenger />);
+
+        const button = screen.getByLabelText('Messenger');
+        await user.click(button);
+
+        const header = screen.getByText('Messenger');
+
+        expect(header).toBeInTheDocument();
     });
 });

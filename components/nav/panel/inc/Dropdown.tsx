@@ -1,8 +1,7 @@
-import { useKey } from '@hooks/useKey';
-import { useOutsideClick } from '@hooks/useOutsideClick';
 import { List as MessengerList } from '../messenger/list/List';
 import { List as NotificationsList } from '../notifications/list/List';
 import { Header } from './Header';
+import * as Popover from '@radix-ui/react-popover';
 
 interface DropdownProps {
     type: 'Messenger' | 'Notifications';
@@ -10,18 +9,25 @@ interface DropdownProps {
 }
 
 export const Dropdown = ({ type, close }: DropdownProps) => {
-    useKey('Escape', close);
-    const ref = useOutsideClick(close);
-
     return (
-        <div
-            data-testid="dropdown"
-            ref={ref}
-            className="w-[300px] md:w-[360px] flex flex-col gap-3 bg-dark-200 absolute top-full -right-12 z-20 shadow-md rounded-md p-3"
-        >
-            <Header title={type} />
+        <Popover.Portal>
+            <Popover.Content
+                align="end"
+                className="z-50"
+                onEscapeKeyDown={close}
+                onPointerDownOutside={close}
+                onFocusOutside={close}
+                collisionPadding={30}
+            >
+                <div
+                    data-testid="dropdown"
+                    className="w-[260px] sm:w-[300px] md:w-[360px] flex flex-col gap-3 bg-dark-200 shadow-lg rounded-xl p-3"
+                >
+                    <Header title={type} />
 
-            {type === 'Messenger' ? <MessengerList close={close} /> : <NotificationsList close={close} />}
-        </div>
+                    {type === 'Messenger' ? <MessengerList close={close} /> : <NotificationsList close={close} />}
+                </div>
+            </Popover.Content>
+        </Popover.Portal>
     );
 };
