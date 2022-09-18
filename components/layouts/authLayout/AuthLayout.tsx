@@ -4,7 +4,7 @@ import { Sidebar } from '@components/sidebar/Sidebar';
 import { Chat } from '@components/chat/Chat';
 import type { ReactNode } from 'react';
 import { useAuthMiddleware } from '../useAuthMiddleware';
-import { AlertModal } from '@components/inc/AlertModal';
+import { AlertModal } from '@components/inc/alertModal/AlertModal';
 import { useMenu } from './useMenu';
 import { useChat } from '@hooks/useChat';
 

@@ -14,7 +14,7 @@ export const useAlertModal = () => {
     };
 
     return {
-        isOpen: !!message,
+        isOpen: Boolean(message),
         message,
         alert: handleAlert,
         closeAlert: handleCloseAlert,
