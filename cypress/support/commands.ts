@@ -38,7 +38,11 @@ Cypress.Commands.add('relogin', (id: number, path: string = '/') => {
     cy.visit(path);
 });
 
-Cypress.Commands.add('friendsListItems', () => cy.get('[id="friends-list"] a[href*="/profile"]'));
+Cypress.Commands.add('friendsListItems', () =>
+    cy.get('a[href*="/profile"][aria-label^="See "][aria-label$=" profile"]')
+);
+
+Cypress.Commands.add('getPosts', () => cy.get('article[aria-label="Post"]'));
 
 Cypress.Commands.add('showAlertModal', () => {
     cy.create('Post', {
@@ -58,7 +62,7 @@ Cypress.Commands.add('showAlertModal', () => {
     cy.wait('@user');
     cy.wait('@posts_page_1');
 
-    cy.get('[id="posts-list"] article[aria-label="Post"]')
+    cy.get('article[aria-label="Post"]')
         .first()
         .within(() => {
             cy.intercept('/api/posts/1/comments?page=1').as('comments_page_1');
@@ -121,6 +125,7 @@ declare global {
             checkNotification(title: string, label: string, click?: boolean): Chainable<void>;
             relogin(id: number, path?: string): Chainable<void>;
             friendsListItems(): Chainable<void>;
+            getPosts(): Chainable<void>;
             showAlertModal(): Chainable<void>;
             expectAlert(message: string): Chainable<void>;
             openUpdatePostModal(): Chainable<void>;

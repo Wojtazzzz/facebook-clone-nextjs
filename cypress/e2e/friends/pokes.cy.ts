@@ -35,7 +35,7 @@ describe('Pokes list tests', () => {
 
         cy.friendsListItems().should('have.length', 10);
 
-        cy.get('[id="friends-list"]').scrollTo('bottom');
+        cy.window().scrollTo('bottom');
         cy.friendsListItems().should('have.length', 17);
     });
 

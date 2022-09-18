@@ -24,7 +24,7 @@ describe('Post tests', () => {
         cy.wait('@user');
         cy.wait('@posts_page_1');
 
-        cy.get('[id="posts-list"] article[aria-label="Post"]')
+        cy.getPosts()
             .first()
             .within(() => {
                 cy.get('button[aria-label="Show gallery"]').click();
@@ -99,7 +99,7 @@ describe('Post tests', () => {
         cy.wait('@user');
         cy.wait('@posts_page_1');
 
-        cy.get('[id="posts-list"] article[aria-label="Post"]')
+        cy.getPosts()
             .first()
             .within(() => {
                 cy.get('button[aria-label="Show gallery"]').click();
@@ -182,7 +182,7 @@ describe('Post tests', () => {
         cy.wait('@user');
         cy.wait('@posts_page_1');
 
-        cy.get('[id="posts-list"] article[aria-label="Post"]')
+        cy.getPosts()
             .first()
             .within(() => {
                 cy.get('button[aria-label="Show gallery"]').click();
@@ -213,30 +213,5 @@ describe('Post tests', () => {
                     cy.get('img[src*="62caeb2286cc3"]').should('be.visible');
                 });
             });
-    });
-
-    it('close gallery when click on outside element', () => {
-        cy.create('Post', {
-            author_id: 1,
-            images: ['https://picsum.photos/seed/62caeb2286cc3/850/350'],
-        });
-
-        cy.intercept('/api/user').as('user');
-        cy.intercept('/api/posts?page=1').as('posts_page_1');
-
-        cy.visit('/');
-        cy.wait('@user');
-        cy.wait('@posts_page_1');
-
-        cy.get('[id="posts-list"] article[aria-label="Post"]')
-            .first()
-            .within(() => {
-                cy.get('button[aria-label="Show gallery"]').click();
-                cy.get('section[aria-label="Post gallery"]').should('be.visible');
-            });
-
-        cy.get('nav[data-testid="nav"]').click();
-
-        cy.get('section[aria-label="Post gallery"]').should('not.exist');
     });
 });

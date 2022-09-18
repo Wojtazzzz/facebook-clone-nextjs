@@ -38,8 +38,8 @@ describe('Create post tests', () => {
 
         cy.get('[aria-label="Create post modal"]').should('not.exist');
 
-        cy.get('article[aria-label="Post"]').first().contains(newPostContent).should('be.visible');
-        cy.get('article[aria-label="Post"]').first().contains(`${USER_FIRST_NAME} ${USER_LAST_NAME}`);
+        cy.getPosts().first().contains(newPostContent).should('be.visible');
+        cy.getPosts().first().contains(`${USER_FIRST_NAME} ${USER_LAST_NAME}`);
         cy.get('button[aria-label="Show gallery"] img').should('have.length', 1);
     });
 
@@ -112,7 +112,7 @@ describe('Create post tests', () => {
 
         cy.get('[aria-label="Create post modal"]').should('not.exist');
 
-        cy.get('article[aria-label="Post"]')
+        cy.getPosts()
             .first()
             .within(() => {
                 cy.get('section[aria-label="Content"]').contains(newPostContent);
@@ -147,7 +147,7 @@ describe('Create post tests', () => {
 
         cy.get('button[aria-label="Create post modal"]').should('not.exist');
 
-        cy.get('article[aria-label="Post"]')
+        cy.getPosts()
             .first()
             .within(() => {
                 cy.contains(`${USER_FIRST_NAME} ${USER_LAST_NAME}`);
@@ -203,7 +203,7 @@ describe('Create post tests', () => {
         cy.wait('@create');
         cy.wait('@posts_page_1');
 
-        cy.get('article[aria-label="Post"]')
+        cy.getPosts()
             .first()
             .within(() => {
                 cy.contains(`${USER_FIRST_NAME} ${USER_LAST_NAME}`);

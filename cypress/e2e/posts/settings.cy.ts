@@ -23,7 +23,7 @@ describe('Posts settings tests', () => {
         cy.wait('@user');
         cy.wait('@posts_page_1');
 
-        cy.get('[id="posts-list"] article[aria-label="Post"]')
+        cy.getPosts()
             .first()
             .within(() => {
                 cy.get('button[aria-label="Show post settings"]').click();
@@ -48,8 +48,8 @@ describe('Posts settings tests', () => {
         cy.wait('@user');
         cy.wait('@posts_page_1');
 
-        cy.get('[id="posts-list"] article[aria-label="Post"]').should('have.length', 2);
-        cy.get('[id="posts-list"] article[aria-label="Post"]')
+        cy.getPosts().should('have.length', 2);
+        cy.getPosts()
             .first()
             .within(() => {
                 cy.get('button[aria-label="Show post settings"]').click();
@@ -65,7 +65,7 @@ describe('Posts settings tests', () => {
         cy.wait('@delete');
         cy.wait('@posts_page_1');
 
-        cy.get('[id="posts-list"] article[aria-label="Post"]').should('have.length', 1);
+        cy.getPosts().should('have.length', 1);
     });
 
     it('open post settings on own post, turn off comments, check that comments are off, turn on comments, try to create new comment', () => {
@@ -80,8 +80,8 @@ describe('Posts settings tests', () => {
         cy.wait('@user');
         cy.wait('@posts_page_1');
 
-        cy.get('[id="posts-list"] article[aria-label="Post"]').should('have.length', 1);
-        cy.get('[id="posts-list"] article[aria-label="Post"]')
+        cy.getPosts().should('have.length', 1);
+        cy.getPosts()
             .first()
             .within(() => {
                 cy.get('button[aria-label="Show post settings"]').click();
@@ -99,8 +99,8 @@ describe('Posts settings tests', () => {
         cy.wait('@turnOffComments');
         cy.wait('@posts_page_1');
 
-        cy.get('[id="posts-list"] article[aria-label="Post"]').should('have.length', 1);
-        cy.get('[id="posts-list"] article[aria-label="Post"]')
+        cy.getPosts().should('have.length', 1);
+        cy.getPosts()
             .first()
             .within(() => {
                 cy.get('button[aria-label="Comment"]').click();
@@ -121,8 +121,8 @@ describe('Posts settings tests', () => {
         cy.wait('@turnOnComments');
         cy.wait('@posts_page_1');
 
-        cy.get('[id="posts-list"] article[aria-label="Post"]').should('have.length', 1);
-        cy.get('[id="posts-list"] article[aria-label="Post"]')
+        cy.getPosts().should('have.length', 1);
+        cy.getPosts()
             .first()
             .within(() => {
                 cy.contains(`${USER_FIRST_NAME} ${USER_LAST_NAME} turned off commenting for this post.`).should(
@@ -151,8 +151,8 @@ describe('Posts settings tests', () => {
         cy.wait('@user');
         cy.wait('@posts_page_1');
 
-        cy.get('[id="posts-list"] article[aria-label="Post"]').should('have.length', 2);
-        cy.get('[id="posts-list"] article[aria-label="Post"]')
+        cy.getPosts().should('have.length', 2);
+        cy.getPosts()
             .first()
             .within(() => {
                 cy.get('button[aria-label="Show post settings"]').click();
@@ -168,7 +168,7 @@ describe('Posts settings tests', () => {
         cy.wait('@hide');
         cy.wait('@posts_page_1');
 
-        cy.get('[id="posts-list"] article[aria-label="Post"]').should('have.length', 1);
+        cy.getPosts().should('have.length', 1);
 
         cy.visit('/profile/1');
 
@@ -177,8 +177,8 @@ describe('Posts settings tests', () => {
         cy.get('[aria-label="Change list of posts"]').select('Hidden posts');
         cy.wait('@hiddenPosts');
 
-        cy.get('[data-testid="posts-list"] article[aria-label="Post"]').should('have.length', 1);
-        cy.get('[data-testid="posts-list"] article[aria-label="Post"]')
+        cy.getPosts().should('have.length', 1);
+        cy.getPosts()
             .first()
             .within(() => {
                 cy.get('button[aria-label="Show post settings"]').click();
@@ -194,14 +194,14 @@ describe('Posts settings tests', () => {
         cy.wait('@unhide');
         cy.wait('@posts_page_1');
 
-        cy.get('[data-testid="posts-list"] article[aria-label="Post"]').should('not.exist');
+        cy.getPosts().should('not.exist');
 
         cy.intercept('/api/posts?page=1').as('posts_page_1');
 
         cy.visit('/');
         cy.wait('@posts_page_1');
 
-        cy.get('[id="posts-list"] article[aria-label="Post"]').should('have.length', 2);
+        cy.getPosts().should('have.length', 2);
     });
 
     it("open settings on someone's post, save post, post settings dissapears, post not dissapears from list, post displays on user's list of saved posts", () => {
@@ -222,8 +222,8 @@ describe('Posts settings tests', () => {
         cy.wait('@user');
         cy.wait('@posts_page_1');
 
-        cy.get('[id="posts-list"] article[aria-label="Post"]').should('have.length', 2);
-        cy.get('[id="posts-list"] article[aria-label="Post"]')
+        cy.getPosts().should('have.length', 2);
+        cy.getPosts()
             .first()
             .within(() => {
                 cy.get('button[aria-label="Show post settings"]').click();
@@ -240,7 +240,7 @@ describe('Posts settings tests', () => {
 
         cy.get('[aria-label="Settings"]').should('not.exist');
 
-        cy.get('[id="posts-list"] article[aria-label="Post"]').should('have.length', 2);
+        cy.getPosts().should('have.length', 2);
 
         cy.visit('/profile/1');
 
@@ -249,6 +249,6 @@ describe('Posts settings tests', () => {
         cy.get('[aria-label="Change list of posts"]').select('Saved posts');
         cy.wait('@savedPosts');
 
-        cy.get('[data-testid="posts-list"] article[aria-label="Post"]').should('have.length', 1);
+        cy.getPosts().should('have.length', 1);
     });
 });

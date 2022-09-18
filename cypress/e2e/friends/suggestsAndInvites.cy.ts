@@ -27,7 +27,7 @@ describe('Suggests and invites lists tests', () => {
 
         cy.url().should('include', '/friends/suggests');
 
-        cy.get('[id="friends-list"]').scrollTo('bottom');
+        cy.window().scrollTo('bottom');
 
         cy.friendsListItems().should('have.length', 17);
     });
@@ -80,7 +80,7 @@ describe('Suggests and invites lists tests', () => {
 
         cy.friendsListItems().should('have.length', 10);
 
-        cy.get('[id="friends-list"]').scrollTo('bottom');
+        cy.window().scrollTo('bottom');
 
         cy.friendsListItems().should('have.length', 13);
     });

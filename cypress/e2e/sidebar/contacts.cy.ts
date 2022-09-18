@@ -40,7 +40,6 @@ describe('Contacts tests', () => {
         cy.wait('@user');
         cy.wait('@contacts_page_1');
 
-        cy.get('[data-testid="contacts-list"]').should('be.visible');
         cy.get('[data-testid="contacts-list"]').within(() => {
             cy.get('button[aria-label*="Open chat with"]').should('have.length', 20);
         });

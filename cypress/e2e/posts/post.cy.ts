@@ -26,7 +26,7 @@ describe('Post tests', () => {
         cy.wait('@user');
         cy.wait('@posts_page_1');
 
-        cy.get('[id="posts-list"] article[aria-label="Post"]')
+        cy.getPosts()
             .first()
             .within(() => {
                 cy.intercept('/api/posts/1/likes').as('like');
@@ -63,7 +63,7 @@ describe('Post tests', () => {
         cy.wait('@user');
         cy.wait('@posts_page_1');
 
-        cy.get('[id="posts-list"] article[aria-label="Post"]')
+        cy.getPosts()
             .first()
             .within(() => {
                 cy.intercept('/api/posts/1/likes', { statusCode: 500 }).as('like');
@@ -87,7 +87,7 @@ describe('Post tests', () => {
         cy.wait('@user');
         cy.wait('@posts_page_1');
 
-        cy.get('[id="posts-list"] article[aria-label="Post"]')
+        cy.getPosts()
             .first()
             .within(() => {
                 cy.intercept('/api/posts/1/likes').as('like');
@@ -116,7 +116,7 @@ describe('Post tests', () => {
         cy.wait('@user');
         cy.wait('@posts_page_1');
 
-        cy.get('[id="posts-list"] article[aria-label="Post"]')
+        cy.getPosts()
             .should('have.length', 1)
             .within(() => {
                 cy.intercept('/api/posts/1/likes').as('like');
@@ -159,7 +159,7 @@ describe('Post tests', () => {
         cy.wait('@user');
         cy.wait('@posts_page_1');
 
-        cy.get('[id="posts-list"] article[aria-label="Post"]')
+        cy.getPosts()
             .should('have.length', 1)
             .within(() => {
                 cy.intercept('/api/posts/1/likes').as('like');

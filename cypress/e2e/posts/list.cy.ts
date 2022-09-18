@@ -9,21 +9,16 @@ describe('Posts list tests', () => {
     });
 
     it("user see own post and friend's post but can't see stranger's post", () => {
-        const posts = {
-            user: {} as IPost,
-            friend: {} as IPost,
-            stranger: {} as IPost,
-        };
-
         // User's post
         cy.create('Post', {
             author_id: 1,
-        }).then((post) => (posts.user = post));
+            content: 'Users post',
+        });
 
         // Friend's post
-        cy.create('Post').then((post) => {
-            posts.friend = post;
-
+        cy.create('Post', {
+            content: 'Friends post',
+        }).then((post) => {
             cy.create('Friendship', {
                 user_id: 1,
                 friend_id: post.author_id,
@@ -32,7 +27,9 @@ describe('Posts list tests', () => {
         });
 
         // Stranger's post
-        cy.create('Post').then((post) => (posts.stranger = post));
+        cy.create('Post', {
+            content: 'Strangers post',
+        });
 
         cy.intercept('/api/user').as('user');
         cy.intercept('/api/posts?page=1').as('posts_page_1');
@@ -41,16 +38,9 @@ describe('Posts list tests', () => {
         cy.wait('@user');
         cy.wait('@posts_page_1');
 
-        cy.get('[id="posts-list"]').within(() => {
-            // User's post
-            cy.contains(posts.user.content).should('be.visible');
-
-            // Friend's post
-            cy.contains(posts.friend.content).should('be.visible');
-
-            // Stranger's post
-            cy.contains(posts.stranger.content).should('not.exist');
-        });
+        cy.getPosts().filter(`:contains("Users post")`).should('be.visible');
+        cy.getPosts().filter(`:contains("Friends post")`).should('be.visible');
+        cy.getPosts().filter(`:contains("Stranges post")`).should('not.exist');
     });
 
     it('hidden posts are not displayed on list', () => {
@@ -80,7 +70,7 @@ describe('Posts list tests', () => {
         cy.wait('@user');
         cy.wait('@posts_page_1');
 
-        cy.get('[id="posts-list"] article[aria-label="Post"]').should('have.length', 1);
+        cy.getPosts().should('have.length', 1);
     });
 
     it("friend's hidden posts are visible for logged user", () => {
@@ -110,7 +100,7 @@ describe('Posts list tests', () => {
         cy.wait('@user');
         cy.wait('@posts_page_1');
 
-        cy.get('[id="posts-list"] article[aria-label="Post"]').should('have.length', 3);
+        cy.getPosts().should('have.length', 3);
     });
 
     it('list render empty component when api return empty data', () => {
@@ -122,7 +112,7 @@ describe('Posts list tests', () => {
         cy.wait('@user');
         cy.wait('@posts_page_1');
 
-        cy.get('[id="posts-list"] article[aria-label="Post"]').should('not.exist');
+        cy.getPosts().should('not.exist');
         cy.get('[data-testid="empty-list"]').should('be.visible');
     });
 
@@ -135,7 +125,7 @@ describe('Posts list tests', () => {
         cy.wait('@user');
         cy.wait('@posts_page_1');
 
-        cy.get('[id="posts-list"] article[aria-label="Post"]').should('not.exist');
+        cy.getPosts().should('not.exist');
         cy.get('[data-testid="server-error"]').should('be.visible');
     });
 
@@ -151,36 +141,16 @@ describe('Posts list tests', () => {
         cy.wait('@user');
         cy.wait('@posts_page_1');
 
-        cy.get('[id="posts-list"] article[aria-label="Post"]').should('have.length', 10);
+        cy.getPosts().should('have.length', 10);
 
-        cy.get('[id="posts-list"]')
-            .children()
+        cy.getPosts()
             .first()
-            .then((element) => {
+            .then((element: any) => {
                 expect(element.position().top).greaterThan(0);
             });
 
-        cy.get('[id="posts-list"]').scrollTo('bottom', { ensureScrollable: false });
+        cy.window().scrollTo('bottom');
 
-        cy.get('[id="posts-list"] article[aria-label="Post"]').should('have.length', 18);
-
-        cy.get('[id="posts-list"]')
-            .children()
-            .first()
-            .then((element) => {
-                expect(element.position().top).lessThan(0);
-            });
-
-        cy.get('button[aria-label="Scroll page to top"]').click();
-
-        // wait for smooth scrolling
-        cy.wait(2500);
-
-        cy.get('[id="posts-list"]')
-            .children()
-            .first()
-            .then((element) => {
-                expect(element.position().top).greaterThan(0);
-            });
+        cy.getPosts().should('have.length', 18);
     });
 });

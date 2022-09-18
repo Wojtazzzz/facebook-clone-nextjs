@@ -29,7 +29,7 @@ describe('Posts comments create tests', () => {
         cy.wait('@user');
         cy.wait('@posts_page_1');
 
-        cy.get('[id="posts-list"] article[aria-label="Post"]')
+        cy.getPosts()
             .first()
             .within(() => {
                 cy.intercept('/api/posts/1/comments?page=1').as('comments_page_1');
@@ -70,7 +70,7 @@ describe('Posts comments create tests', () => {
         cy.wait('@user');
         cy.wait('@posts_page_1');
 
-        cy.get('[id="posts-list"] article[aria-label="Post"]')
+        cy.getPosts()
             .first()
             .within(() => {
                 cy.intercept('/api/posts/1/comments?page=1').as('comments_page_1');
@@ -107,7 +107,7 @@ describe('Posts comments create tests', () => {
         cy.wait('@user');
         cy.wait('@posts_page_1');
 
-        cy.get('[id="posts-list"] article[aria-label="Post"]')
+        cy.getPosts()
             .first()
             .within(() => {
                 cy.intercept('/api/posts/1/comments?page=1').as('comments_page_1');
@@ -129,7 +129,7 @@ describe('Posts comments create tests', () => {
             cy.get('button').contains('👋').click();
         });
 
-        cy.get('[id="posts-list"] article[aria-label="Post"]')
+        cy.getPosts()
             .first()
             .within(() => {
                 cy.get('input[aria-label="Write a comment"]').should('have.value', 'Hello 👋');
@@ -161,7 +161,7 @@ describe('Posts comments create tests', () => {
         cy.wait('@user');
         cy.wait('@posts_page_1');
 
-        cy.get('[id="posts-list"] article[aria-label="Post"]')
+        cy.getPosts()
             .first()
             .within(() => {
                 cy.intercept('/api/posts/1/comments?page=1').as('comments_page_1');
@@ -190,7 +190,7 @@ describe('Posts comments create tests', () => {
             cy.get('button').contains('❤️').click();
         });
 
-        cy.get('[id="posts-list"] article[aria-label="Post"]')
+        cy.getPosts()
             .first()
             .within(() => {
                 cy.get('input[aria-label="Write a comment"]').should('have.value', '😃😅🤣🙂🥰😝😏😭👍❤️');

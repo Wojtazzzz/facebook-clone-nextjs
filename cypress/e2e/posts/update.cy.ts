@@ -65,7 +65,7 @@ describe('Update post tests', () => {
         cy.visit('/');
         cy.wait('@user');
 
-        cy.get('article[aria-label="Post"]').should('contain.text', 'Test content');
+        cy.getPosts().should('contain.text', 'Test content');
 
         cy.openUpdatePostModal();
 
@@ -74,7 +74,7 @@ describe('Update post tests', () => {
 
         cy.get('[aria-label="Update post modal"]').should('not.exist');
 
-        cy.get('article[aria-label="Post"]').should('not.contain.text', 'Test content');
+        cy.getPosts().should('not.contain.text', 'Test content');
     });
 
     it('can add content to post which has not content', () => {
@@ -88,7 +88,7 @@ describe('Update post tests', () => {
         cy.visit('/');
         cy.wait('@user');
 
-        cy.get('article[aria-label="Post"]').should('not.contain.text', 'New post content');
+        cy.getPosts().should('not.contain.text', 'New post content');
 
         cy.openUpdatePostModal();
 
@@ -97,7 +97,7 @@ describe('Update post tests', () => {
 
         cy.get('[aria-label="Update post modal"]').should('not.exist');
 
-        cy.get('article[aria-label="Post"]').should('contain.text', 'New post content');
+        cy.getPosts().should('contain.text', 'New post content');
     });
 
     it('can add images to post which has images', () => {
@@ -238,7 +238,7 @@ describe('Update post tests', () => {
         cy.get('button[aria-label="Update post"]').click();
 
         cy.get('[aria-label="Update post modal"]').should('not.exist');
-        cy.get('article[aria-label="Post"]').should('not.exist');
+        cy.getPosts().should('not.exist');
     });
 
     it('update content, see server error', () => {

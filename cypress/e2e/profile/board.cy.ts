@@ -53,7 +53,7 @@ describe('Profile board tests', () => {
 
         cy.get('button[aria-label="Create a post"]').should('be.visible');
         cy.get('[aria-label="Change list of posts"]').should('be.visible');
-        cy.get('[data-testid="posts-list"] article[aria-label="Post"]').should('have.length', 2);
+        cy.getPosts().should('have.length', 2);
     });
 
     it('see empty list of own posts, change list to hidden posts and see 3 hidden post, change list to saved posts and see 4 saved posts, change list to own posts and again see 0 posts', () => {
@@ -75,21 +75,21 @@ describe('Profile board tests', () => {
         cy.wait('@user');
         cy.wait('@posts');
 
-        cy.get('[data-testid="posts-list"] article[aria-label="Post"]').should('not.exist');
+        cy.getPosts().should('not.exist');
 
         cy.get('[aria-label="Change list of posts"]').select('Hidden posts');
         cy.wait('@hiddenPosts');
 
-        cy.get('[data-testid="posts-list"] article[aria-label="Post"]').should('have.length', 3);
+        cy.getPosts().should('have.length', 3);
 
         cy.get('[aria-label="Change list of posts"]').select('Saved posts');
         cy.wait('@savedPosts');
 
-        cy.get('[data-testid="posts-list"] article[aria-label="Post"]').should('have.length', 4);
+        cy.getPosts().should('have.length', 4);
 
         cy.get('[aria-label="Change list of posts"]').select('Own posts');
 
-        cy.get('[data-testid="posts-list"] article[aria-label="Post"]').should('not.exist');
+        cy.getPosts().should('not.exist');
     });
 
     it('click on fake create post form, create post modal show, create post, new post show on list', () => {
@@ -101,7 +101,7 @@ describe('Profile board tests', () => {
         cy.wait('@user');
         cy.wait('@posts');
 
-        cy.get('[data-testid="posts-list"] article[aria-label="Post"]').should('not.exist');
+        cy.getPosts().should('not.exist');
 
         cy.get('button[aria-label="Create a post"]').click();
         cy.get('[aria-label="Create post modal"]').should('be.visible');
@@ -117,8 +117,8 @@ describe('Profile board tests', () => {
 
         cy.get('[aria-label="Create post modal"]').should('not.exist');
 
-        cy.get('[data-testid="posts-list"]').should('have.length', 1);
-        cy.get('article[aria-label="Post"]').first().should('contain.text', 'New post');
+        cy.getPosts().should('have.length', 1);
+        cy.getPosts().first().should('contain.text', 'New post');
     });
 
     it('see 10 own posts on list, fetch more by scrolling to bottom', () => {
@@ -134,11 +134,11 @@ describe('Profile board tests', () => {
         cy.wait('@user');
         cy.wait('@posts_page_1');
 
-        cy.get('[data-testid="posts-list"] article[aria-label="Post"]').should('have.length', 10);
+        cy.getPosts().should('have.length', 10);
 
-        cy.get('[id="posts-list"]').scrollTo('bottom', { ensureScrollable: false });
+        cy.window().scrollTo('bottom');
 
-        cy.get('[data-testid="posts-list"] article[aria-label="Post"]').should('have.length', 14);
+        cy.getPosts().should('have.length', 14);
     });
 
     it("visit friends's profile, cannot see Create post and list switcher components, scroll list to bottom, see new fetched posts but cannot see his hidden and saved posts", () => {
@@ -165,11 +165,11 @@ describe('Profile board tests', () => {
 
         cy.get('button[aria-label="Create a post"]').should('not.exist');
         cy.get('[aria-label="Change list of posts"]').should('not.exist');
-        cy.get('[data-testid="posts-list"] article[aria-label="Post"]').should('have.length', 10);
+        cy.getPosts().should('have.length', 10);
 
-        cy.get('[id="posts-list"]').scrollTo('bottom', { ensureScrollable: false });
+        cy.window().scrollTo('bottom');
 
-        cy.get('[data-testid="posts-list"] article[aria-label="Post"]').should('have.length', 12);
+        cy.getPosts().should('have.length', 12);
     });
 
     it("visit friends's profile, like and comment his post", () => {
@@ -186,8 +186,8 @@ describe('Profile board tests', () => {
         cy.wait('@user');
         cy.wait('@posts_page_1');
 
-        cy.get('[data-testid="posts-list"] article[aria-label="Post"]').should('have.length', 1);
-        cy.get('[data-testid="posts-list"] article[aria-label="Post"]').within(() => {
+        cy.getPosts().should('have.length', 1);
+        cy.getPosts().within(() => {
             cy.intercept('/api/posts/1/likes').as('like');
             cy.intercept('/api/posts/?page=1').as('posts_page_1');
 
@@ -229,8 +229,8 @@ describe('Profile board tests', () => {
         cy.intercept('/api/posts/1').as('delete');
         cy.intercept('/api/users/1/posts?page=1').as('posts_page_1');
 
-        cy.get('[data-testid="posts-list"] article[aria-label="Post"]').should('have.length', 1);
-        cy.get('[data-testid="posts-list"] article[aria-label="Post"]').within(() => {
+        cy.getPosts().should('have.length', 1);
+        cy.getPosts().within(() => {
             cy.get('[aria-label="Show post settings"]').click();
         });
 
@@ -241,7 +241,7 @@ describe('Profile board tests', () => {
         cy.wait('@delete');
         cy.wait('@posts_page_1');
 
-        cy.get('[data-testid="posts-list"] article[aria-label="Post"]').should('not.exist');
+        cy.getPosts().should('not.exist');
     });
 
     it("visit friend's profile, save post, check that post displays on list of saved posts, unsave post, check that post dissapear from list of saved posts", () => {
@@ -261,8 +261,8 @@ describe('Profile board tests', () => {
 
         cy.intercept('/api/saved/posts').as('save');
 
-        cy.get('[data-testid="posts-list"] article[aria-label="Post"]').should('have.length', 1);
-        cy.get('[data-testid="posts-list"] article[aria-label="Post"]').within(() => {
+        cy.getPosts().should('have.length', 1);
+        cy.getPosts().within(() => {
             cy.get('[aria-label="Show post settings"]').click();
         });
 
@@ -282,8 +282,8 @@ describe('Profile board tests', () => {
         cy.intercept('/api/saved/posts/1').as('unsave');
         cy.intercept('/api/saved/posts?page=1').as('posts_page_1');
 
-        cy.get('[data-testid="posts-list"] article[aria-label="Post"]').should('have.length', 1);
-        cy.get('[data-testid="posts-list"] article[aria-label="Post"]').within(() => {
+        cy.getPosts().should('have.length', 1);
+        cy.getPosts().within(() => {
             cy.get('[aria-label="Show post settings"]').click();
         });
 
@@ -294,7 +294,7 @@ describe('Profile board tests', () => {
         cy.wait('@unsave');
         cy.wait('@posts_page_1');
 
-        cy.get('[data-testid="posts-list"] article[aria-label="Post"]').should('have.length', 0);
+        cy.getPosts().should('have.length', 0);
     });
 
     it("visit friend's profile, hide post, wait for post dissapear from list, check that post displays on list of hidden posts, unhide post, check for post dissapear from list, check post displays on friends profile", () => {
@@ -315,8 +315,8 @@ describe('Profile board tests', () => {
         cy.intercept('/api/hidden/posts').as('hide');
         cy.intercept('/api/users/2/posts?page=1').as('posts_page_1');
 
-        cy.get('[data-testid="posts-list"] article[aria-label="Post"]').should('have.length', 1);
-        cy.get('[data-testid="posts-list"] article[aria-label="Post"]').within(() => {
+        cy.getPosts().should('have.length', 1);
+        cy.getPosts().within(() => {
             cy.get('[aria-label="Show post settings"]').click();
         });
 
@@ -327,7 +327,7 @@ describe('Profile board tests', () => {
         cy.wait('@hide');
         cy.wait('@posts_page_1');
 
-        cy.get('[data-testid="posts-list"] article[aria-label="Post"]').should('have.length', 0);
+        cy.getPosts().should('have.length', 0);
 
         cy.visit('/profile/1');
 
@@ -339,8 +339,8 @@ describe('Profile board tests', () => {
         cy.intercept('/api/hidden/posts/1').as('unhide');
         cy.intercept('/api/hidden/posts?page=1').as('posts_page_1');
 
-        cy.get('[data-testid="posts-list"] article[aria-label="Post"]').should('have.length', 1);
-        cy.get('[data-testid="posts-list"] article[aria-label="Post"]').within(() => {
+        cy.getPosts().should('have.length', 1);
+        cy.getPosts().within(() => {
             cy.get('[aria-label="Show post settings"]').click();
         });
 
@@ -351,7 +351,7 @@ describe('Profile board tests', () => {
         cy.wait('@unhide');
         cy.wait('@posts_page_1');
 
-        cy.get('[data-testid="posts-list"] article[aria-label="Post"]').should('have.length', 0);
+        cy.getPosts().should('have.length', 0);
 
         cy.intercept('/api/users/2/posts?page=1').as('posts_page_1');
 
@@ -360,7 +360,7 @@ describe('Profile board tests', () => {
         cy.wait('@user');
         cy.wait('@posts_page_1');
 
-        cy.get('[data-testid="posts-list"] article[aria-label="Post"]').should('have.length', 1);
+        cy.getPosts().should('have.length', 1);
     });
 
     it('change list to hidden posts, like hidden post, comment hidden post, change list to saved posts, like saved post, comment saved post', () => {
@@ -382,13 +382,13 @@ describe('Profile board tests', () => {
         cy.wait('@user');
         cy.wait('@posts');
 
-        cy.get('[data-testid="posts-list"] article[aria-label="Post"]').should('not.exist');
+        cy.getPosts().should('not.exist');
 
         cy.get('[aria-label="Change list of posts"]').select('Hidden posts');
         cy.wait('@hiddenPosts');
 
-        cy.get('[data-testid="posts-list"] article[aria-label="Post"]').should('have.length', 1);
-        cy.get('[data-testid="posts-list"] article[aria-label="Post"]').within(() => {
+        cy.getPosts().should('have.length', 1);
+        cy.getPosts().within(() => {
             cy.intercept('/api/posts/1/likes').as('like');
             cy.intercept('/api/hidden/posts?page=1').as('posts_page_1');
 
@@ -416,8 +416,8 @@ describe('Profile board tests', () => {
         cy.get('[aria-label="Change list of posts"]').select('Saved posts');
         cy.wait('@savedPosts');
 
-        cy.get('[data-testid="posts-list"] article[aria-label="Post"]').should('have.length', 1);
-        cy.get('[data-testid="posts-list"] article[aria-label="Post"]').within(() => {
+        cy.getPosts().should('have.length', 1);
+        cy.getPosts().within(() => {
             cy.intercept('/api/posts/2/likes').as('like');
             cy.intercept('/api/saved/posts?page=1').as('posts_page_1');
 
@@ -454,9 +454,9 @@ describe('Profile board tests', () => {
         cy.wait('@user');
         cy.wait('@posts');
 
-        cy.get('[data-testid="posts-list"] article[aria-label="Post"]').should('not.exist');
+        cy.getPosts().should('not.exist');
         cy.get('[data-testid="empty-list"]').should('not.exist');
-        cy.get('[data-testid="posts-list"] article[aria-label="Born at"]').within(() => {
+        cy.get('article[aria-label="Born at"]').within(() => {
             cy.get('[data-testid="born-img"]').should('exist');
             cy.contains(`Born on ${formatedDate}`);
         });
@@ -464,15 +464,15 @@ describe('Profile board tests', () => {
         cy.get('[aria-label="Change list of posts"]').select('Hidden posts');
         cy.wait('@hiddenPosts');
 
-        cy.get('[data-testid="posts-list"] article[aria-label="Post"]').should('not.exist');
-        cy.get('[data-testid="posts-list"] article[aria-label="Born at"]').should('not.exist');
+        cy.getPosts().should('not.exist');
+        cy.get('article[aria-label="Born at"]').should('not.exist');
         cy.get('[data-testid="empty-list"]').should('be.visible');
 
         cy.get('[aria-label="Change list of posts"]').select('Saved posts');
         cy.wait('@savedPosts');
 
-        cy.get('[data-testid="posts-list"] article[aria-label="Post"]').should('not.exist');
-        cy.get('[data-testid="posts-list"] article[aria-label="Born at"]').should('not.exist');
+        cy.getPosts().should('not.exist');
+        cy.get('article[aria-label="Born at"]').should('not.exist');
         cy.get('[data-testid="empty-list"]').should('be.visible');
     });
 });

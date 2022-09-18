@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 
 export const useScroll = () => {
     const [scrollDistance, setScrollDistance] = useState(0);
-    const ref = useRef<HTMLDivElement>(null);
+    const ref = useRef<any>(null);
 
     useEffect(() => {
         if (!ref.current) return;

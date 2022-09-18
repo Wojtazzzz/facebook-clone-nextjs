@@ -25,7 +25,8 @@ describe('Friends list tests', () => {
 
         cy.wait('@friends_page_1');
 
-        cy.get('[id="friends-list"]').scrollTo('bottom');
+        cy.window().scrollTo('bottom');
+
         cy.friendsListItems().should('have.length', 15);
     });
 
@@ -44,7 +45,7 @@ describe('Friends list tests', () => {
         cy.friendsListItems()
             .first()
             .within(() => {
-                cy.contains('Send message').click();
+                cy.contains('Message').click();
             });
 
         cy.get('[data-testid="chat"]').should('be.visible');

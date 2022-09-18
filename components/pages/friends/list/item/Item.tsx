@@ -14,7 +14,10 @@ export const Item = ({ item, type }: ItemProps) => {
 
     return (
         <Link href={`/profile/${id}`}>
-            <a className="flex items-center gap-2 md:gap-5 hover:bg-dark-100 rounded-lg transition-colors py-1 md:py-3 px-2 sm:px-3 md:px-4 lg:px-5 xl:px-6">
+            <a
+                aria-label={`See ${name} profile`}
+                className="flex items-center gap-2 md:gap-5 hover:bg-dark-100 rounded-lg transition-colors py-1 md:py-3 px-2 sm:px-3 md:px-4 lg:px-5 xl:px-6"
+            >
                 <Avatar
                     src={profile_image}
                     alt={name}
