@@ -24,7 +24,7 @@ export const Header = ({
     openUpdateModal,
 }: HeaderProps) => {
     return (
-        <div className="w-full flex justify-between p-2 md:p-3 pb-0">
+        <div className="w-full flex justify-between pt-2 md:pt-3 pb-0">
             <Author author={author} createdAt={createdAt} isEdited={isEdited} />
 
             <Settings
