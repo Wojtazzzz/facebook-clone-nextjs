@@ -17,5 +17,6 @@ export const modalStyles = {
     overlay: {
         backgroundColor: 'rgba(58, 59, 60, 0.6)',
         padding: '0 20px',
+        zIndex: '31',
     },
 };
