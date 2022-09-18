@@ -9,7 +9,7 @@ import { UserNavItem } from './userNavItem/UserNavItem';
 
 export const Mobile = () => {
     const { isActive, close, toggleActive } = useMobileNavbar();
-    const ref = useOutsideClick(close);
+    const ref = useOutsideClick<HTMLDivElement>(close);
 
     return (
         <div data-testid="mobile-navbar" ref={ref} className="lg:hidden">
