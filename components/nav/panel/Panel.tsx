@@ -9,7 +9,7 @@ interface PanelProps {
 
 export const Panel = ({ toggleMenu }: PanelProps) => {
     return (
-        <div className="h-full flex justify-end items-center gap-2">
+        <div className="w-3/5 lg:w-1/3 flex justify-end items-center gap-2 my-1">
             <ToggleMenu toggle={toggleMenu} />
 
             <Messenger />

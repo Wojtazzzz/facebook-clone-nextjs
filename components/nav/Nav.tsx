@@ -1,8 +1,7 @@
 import { Logo } from '@components/nav/Logo';
 import { Search } from '@components/nav/search/Search';
-import { Navbar } from '@components/nav/navbar/Navbar';
+import { Navbar } from '@components/nav/navbar/desktop/Navbar';
 import { Panel } from '@components/nav/panel/Panel';
-import { MobileNavbar } from '@components/nav/mobileNavbar/MobileNavbar';
 
 interface NavProps {
     toggleMenu: () => void;
@@ -22,15 +21,8 @@ export const Nav = ({ toggleMenu }: NavProps) => {
                 </div>
             </div>
 
-            <div className="w-1/3 hidden lg:block">
-                <Navbar />
-            </div>
-
-            <div className="w-3/5 lg:w-1/3 flex justify-end my-1">
-                <Panel toggleMenu={toggleMenu} />
-            </div>
-
-            <MobileNavbar />
+            <Navbar />
+            <Panel toggleMenu={toggleMenu} />
         </nav>
     );
 };

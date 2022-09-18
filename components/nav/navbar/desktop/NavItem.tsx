@@ -19,7 +19,7 @@ export const NavItem = ({ name, path, icon }: NavItemProps) => {
     return (
         <Link href={path}>
             <a
-                aria-label={`${name} page`}
+                aria-label={name}
                 title={name}
                 className="w-[112px] h-full flex flex-col justify-center items-center gap-2 relative"
             >

@@ -1,12 +1,12 @@
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { screen } from '@testing-library/react';
-import { NavItem } from '@components/nav/navbar/NavItem';
+import { NavItem } from './NavItem';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
 describe('NavItem component', () => {
     const useRouter = jest.spyOn(require('next/router'), 'useRouter');
 
-    it('renders aria-label, title, href attributes properly', () => {
+    it('renders aria-label, title, href attributes and text properly', () => {
         useRouter.mockImplementation(() => ({
             route: '/',
             pathname: '/',
@@ -17,12 +17,15 @@ describe('NavItem component', () => {
             }),
         }));
 
-        renderWithDefaultData(<NavItem name="Custom NavItem name" path="/custom/navitem/path" icon={faGithub} />);
+        const name = 'Custom NavItem name';
+        const path = '/custom/navitem/path';
 
-        const navItem = screen.getByLabelText('Custom NavItem name page');
+        renderWithDefaultData(<NavItem name={name} path={path} icon={faGithub} />);
 
-        expect(navItem).toHaveAttribute('aria-label', 'Custom NavItem name page');
-        expect(navItem).toHaveAttribute('title', 'Custom NavItem name');
-        expect(navItem).toHaveAttribute('href', '/custom/navitem/path');
+        const navItem = screen.getByLabelText(name);
+
+        expect(navItem).toHaveAttribute('aria-label', name);
+        expect(navItem).toHaveAttribute('title', name);
+        expect(navItem).toHaveAttribute('href', path);
     });
 });
