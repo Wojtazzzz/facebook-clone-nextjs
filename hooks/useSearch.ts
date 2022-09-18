@@ -8,7 +8,7 @@ export const useSearch = () => {
     const [query, setQuery] = useState('');
     const debounceQuery = useDebounce(query);
 
-    const { data, isError, hasNextPage, fetchNextPage, refetch } = useInfiniteData<IUserHit>({
+    const { data, isError, hasNextPage, fetchNextPage } = useInfiniteData<IUserHit>({
         queryKey: ['searching', debounceQuery],
         endpoint: '/api/users',
         params: {
@@ -22,6 +22,8 @@ export const useSearch = () => {
     };
 
     const clearQuery = () => {
+        if (!query) return;
+
         setQuery('');
     };
 
@@ -31,7 +33,6 @@ export const useSearch = () => {
         query,
         hasNextPage,
         fetchNextPage,
-        refetch,
         changeQuery,
         clearQuery,
     };
