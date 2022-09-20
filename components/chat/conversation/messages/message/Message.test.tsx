@@ -4,17 +4,21 @@ import { screen } from '@testing-library/react';
 import MessagesFirstPageJson from '@mocks/chat/firstPage.json';
 import FriendJson from '@mocks/user/johnDoe.json';
 import { IChatMessage } from '@utils/types';
+import userEvent from '@testing-library/user-event';
 
-describe('Message component', () => {
-    const { id, content, status, read_at, created_at } = MessagesFirstPageJson.data[0] as IChatMessage;
+describe('Message and Zoom component', () => {
+    const { id, status, read_at, created_at } = MessagesFirstPageJson.data[0] as IChatMessage;
     const friend = FriendJson;
+
+    const user = userEvent.setup();
 
     it('Sent message has properly aria-label', () => {
         renderWithDefaultData(
             <Message
                 isLastRead={false}
                 id={id}
-                content={content}
+                content="Test content"
+                images={[]}
                 is_received={false}
                 status={status}
                 read_at={read_at}
@@ -33,7 +37,8 @@ describe('Message component', () => {
             <Message
                 isLastRead={false}
                 id={id}
-                content={content}
+                content="Test content"
+                images={[]}
                 is_received={true}
                 status={status}
                 read_at={read_at}
@@ -52,7 +57,8 @@ describe('Message component', () => {
             <Message
                 isLastRead={false}
                 id={id}
-                content={content}
+                content="Test content"
+                images={[]}
                 is_received={false}
                 status={status}
                 read_at={read_at}
@@ -61,7 +67,7 @@ describe('Message component', () => {
             />
         );
 
-        const message = screen.getByText(content);
+        const message = screen.getByText('Test content');
 
         expect(message).toHaveClass('ml-auto');
         expect(message).toHaveClass('bg-primary');
@@ -72,7 +78,8 @@ describe('Message component', () => {
             <Message
                 isLastRead={false}
                 id={id}
-                content={content}
+                content="Test content"
+                images={[]}
                 is_received={true}
                 status={status}
                 read_at={read_at}
@@ -81,7 +88,7 @@ describe('Message component', () => {
             />
         );
 
-        const message = screen.getByText(content);
+        const message = screen.getByText('Test content');
 
         expect(message).not.toHaveClass('ml-auto');
         expect(message).toHaveClass('bg-dark-100');
@@ -92,7 +99,8 @@ describe('Message component', () => {
             <Message
                 isLastRead={true}
                 id={id}
-                content={content}
+                content="Test content"
+                images={[]}
                 is_received={false}
                 status={status}
                 read_at={read_at}
@@ -111,7 +119,8 @@ describe('Message component', () => {
             <Message
                 isLastRead={true}
                 id={id}
-                content={content}
+                content="Test content"
+                images={[]}
                 is_received={false}
                 status={status}
                 read_at={read_at}
@@ -130,7 +139,8 @@ describe('Message component', () => {
             <Message
                 isLastRead={false}
                 id={id}
-                content={content}
+                content="Test content"
+                images={[]}
                 is_received={false}
                 status={status}
                 read_at={read_at}
@@ -149,7 +159,8 @@ describe('Message component', () => {
             <Message
                 isLastRead={false}
                 id={id}
-                content={content}
+                content="Test content"
+                images={[]}
                 is_received={false}
                 status="DELIVERED"
                 read_at={read_at}
@@ -168,7 +179,8 @@ describe('Message component', () => {
             <Message
                 isLastRead={false}
                 id={id}
-                content={content}
+                content="Test content"
+                images={[]}
                 is_received={false}
                 status="SENDING"
                 read_at={read_at}
@@ -180,5 +192,117 @@ describe('Message component', () => {
         const sendingStatusIcon = screen.getByTitle('Sending');
 
         expect(sendingStatusIcon).toBeInTheDocument();
+    });
+
+    it('not render text when message has only image', () => {
+        renderWithDefaultData(
+            <Message
+                isLastRead={false}
+                id={id}
+                images={['https://picsum.photos/seed/62e9858f09a5c/850/350']}
+                is_received={false}
+                status="SENDING"
+                read_at={read_at}
+                created_at={created_at}
+                senderAvatar={friend.profile_image}
+            />
+        );
+
+        const text = screen.queryByTestId('message-text');
+
+        expect(text).not.toBeInTheDocument();
+    });
+
+    it('message may contain only images', () => {
+        renderWithDefaultData(
+            <Message
+                isLastRead={false}
+                id={id}
+                images={[
+                    'https://picsum.photos/seed/62e9858d59b19/850/350',
+                    'https://picsum.photos/seed/62e9858f09a5c/850/350',
+                ]}
+                is_received={false}
+                status="SENDING"
+                read_at={read_at}
+                created_at={created_at}
+                senderAvatar={friend.profile_image}
+            />
+        );
+
+        const images = screen.getAllByLabelText('Zoom image');
+
+        expect(images).toHaveLength(2);
+    });
+
+    it('zoom is hidden by default', async () => {
+        renderWithDefaultData(
+            <Message
+                isLastRead={false}
+                id={id}
+                images={['https://picsum.photos/seed/62e9858d59b19/850/350']}
+                is_received={false}
+                status="SENDING"
+                read_at={read_at}
+                created_at={created_at}
+                senderAvatar={friend.profile_image}
+            />
+        );
+
+        const zoom = screen.queryByLabelText('Zoom');
+
+        expect(zoom).not.toBeInTheDocument();
+    });
+
+    it('open zoom by click on image', async () => {
+        renderWithDefaultData(
+            <Message
+                isLastRead={false}
+                id={id}
+                images={['https://picsum.photos/seed/62e9858d59b19/850/350']}
+                is_received={false}
+                status="SENDING"
+                read_at={read_at}
+                created_at={created_at}
+                senderAvatar={friend.profile_image}
+            />
+        );
+
+        const image = screen.getByLabelText('Zoom image');
+
+        await user.click(image);
+
+        const zoom = screen.getByLabelText('Zoom');
+
+        expect(zoom).toBeInTheDocument();
+    });
+
+    it('close zoom by click on close button', async () => {
+        renderWithDefaultData(
+            <Message
+                isLastRead={false}
+                id={id}
+                images={['https://picsum.photos/seed/62e9858d59b19/850/350']}
+                is_received={false}
+                status="SENDING"
+                read_at={read_at}
+                created_at={created_at}
+                senderAvatar={friend.profile_image}
+            />
+        );
+
+        const image = screen.getByLabelText('Zoom image');
+
+        await user.click(image);
+
+        const zoom = screen.getByLabelText('Zoom');
+
+        expect(zoom).toBeInTheDocument();
+
+        const closeZoom = screen.getByLabelText('Close zoom');
+
+        await user.click(closeZoom);
+
+        expect(zoom).not.toBeInTheDocument();
     });
 });

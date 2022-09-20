@@ -1,5 +1,5 @@
 import { axios } from '@libs/axios';
-import type { IChatMessage, IPaginatedResponse } from '@utils/types';
+import type { IChatMessage, IChatMessagePayload, IPaginatedResponse } from '@utils/types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import type { UseMutationResult } from '@tanstack/react-query';
 import type { InfiniteData } from '@tanstack/react-query';
@@ -12,10 +12,10 @@ export const useSendMessage = () => {
     const { friend, setError, clearError } = useChat();
 
     const mutation: IMutation = useMutation(mutationFn, {
-        onMutate: async ({ content }) => {
+        onMutate: async (data) => {
             if (!friend) return;
 
-            const message = createMessage(content);
+            const message = createMessage(data);
 
             const previousMessages = queryClient.getQueryData(['chat', friend.id]);
             await queryClient.cancelQueries(['chat', friend.id]);
@@ -55,17 +55,30 @@ export const useSendMessage = () => {
         },
     });
 
-    const sendMessage = (content: string) => {
+    const sendMessage = (data: IChatMessagePayload) => {
         if (!friend) return;
 
-        mutation.mutate({
-            content,
-            receiver_id: friend.id,
-        });
+        const formData = new FormData();
+        formData.append('content', data.content);
+        formData.append('receiver_id', String(friend.id));
+        data.images.forEach((img) => formData.append('images[]', img));
+
+        mutation.mutate(formData);
+    };
+
+    const sendLike = () => {
+        if (!friend) return;
+
+        const formData = new FormData();
+        formData.append('content', '👍');
+        formData.append('receiver_id', String(friend.id));
+
+        mutation.mutate(formData);
     };
 
     return {
         sendMessage,
+        sendLike,
         ...mutation,
     };
 };
@@ -73,10 +86,7 @@ export const useSendMessage = () => {
 type IMutation = UseMutationResult<
     AxiosResponse<any, any>,
     AxiosError<any, any>,
-    {
-        content: string;
-        receiver_id: number;
-    },
+    FormData,
     {
         previousMessages: unknown;
     }
@@ -84,14 +94,38 @@ type IMutation = UseMutationResult<
 
 type IQueryData = InfiniteData<IPaginatedResponse<IChatMessage>>;
 
-const mutationFn = (data: { content: string; receiver_id: number }) => axios.post('/api/messages', data);
-const createMessage = (content: string): IChatMessage => {
+const mutationFn = (data: FormData) => axios.post('/api/messages', data);
+const createMessage = (data: FormData): IChatMessage => {
+    const content = getContent(data);
+    const images = getImages(data);
+
     return {
         id: uuid(),
         content,
+        images,
         is_received: false,
         status: 'SENDING',
         read_at: undefined,
         created_at: 'Just now',
     };
+};
+
+const getContent = (data: FormData) => {
+    const content = data.get('content');
+
+    if (!content) {
+        return '';
+    }
+
+    if (typeof content !== 'string') {
+        return '';
+    }
+
+    return content;
+};
+
+const getImages = (data: FormData) => {
+    const images = data.getAll('images[]');
+
+    return (images as Blob[]).map((image) => URL.createObjectURL(image));
 };

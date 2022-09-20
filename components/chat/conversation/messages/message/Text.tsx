@@ -1,14 +1,16 @@
 import clsx from 'clsx';
 
 interface TextProps {
-    text: string;
+    text?: string;
     createdAt: string;
     isReceived: boolean;
 }
 
 export const Text = ({ text, createdAt, isReceived }: TextProps) => {
+    if (!text) return null;
+
     return (
-        <div className="w-full">
+        <div data-testid="message-text" className="w-full">
             <div
                 title={createdAt}
                 className={clsx(

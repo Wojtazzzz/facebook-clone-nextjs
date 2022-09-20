@@ -1,9 +1,12 @@
 import { useCallback, useMemo } from 'react';
-
 import Echo from 'laravel-echo';
 import { axios } from '@libs/axios';
+import Pusher from 'pusher-js';
 
-require('pusher-js');
+//@todo to refactor
+if (typeof window !== 'undefined') {
+    (window as any).Pusher = Pusher;
+}
 
 export const useBroadcast = () => {
     const LaravelEcho = useMemo(

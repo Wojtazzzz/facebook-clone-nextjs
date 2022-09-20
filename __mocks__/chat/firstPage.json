@@ -3,6 +3,7 @@
         {
             "id": 25,
             "content": "Deserunt sunt non omnis. Voluptatibus consequuntur explicabo doloribus quidem sapiente aut. Ab consectetur inventore animi quibusdam qui. Placeat quo reiciendis facere deserunt corporis rerum est.",
+            "images": [],
             "is_received": true,
             "status": "READ",
             "read_at": "03:51",
@@ -11,6 +12,7 @@
         {
             "id": 26,
             "content": "Dignissimos qui ex corporis est. Culpa aut sed animi neque. Sit qui eligendi natus aut dolorum. Autem libero beatae hic perferendis sint deserunt et quam.",
+            "images": [],
             "is_received": true,
             "status": "READ",
             "read_at": "03:51",
@@ -19,6 +21,7 @@
         {
             "id": 27,
             "content": "Nam in praesentium eos tenetur. Repudiandae voluptates magni numquam voluptatum enim corrupti quisquam. Itaque et quia suscipit vel et inventore.",
+            "images": [],
             "is_received": true,
             "status": "READ",
             "read_at": "03:51",
@@ -27,6 +30,7 @@
         {
             "id": 28,
             "content": "Deleniti quo consectetur qui suscipit. Assumenda occaecati dolorem unde animi. Odio occaecati voluptas sapiente pariatur alias nobis illo sint. Commodi aut non dolorem autem est quis.",
+            "images": [],
             "is_received": true,
             "status": "READ",
             "read_at": "03:51",
@@ -35,6 +39,7 @@
         {
             "id": 29,
             "content": "Aut quia ea atque molestiae facilis et sunt incidunt. Atque quibusdam quam suscipit doloribus velit nesciunt et beatae. Labore ea eum dolores magni.",
+            "images": [],
             "is_received": true,
             "status": "READ",
             "read_at": "03:51",
@@ -43,6 +48,7 @@
         {
             "id": 30,
             "content": "Ut aliquid sunt aut laboriosam. A enim sed alias velit quas. Iure animi voluptatem est eos non quasi. Hic qui minus laboriosam tempora est.",
+            "images": [],
             "is_received": true,
             "status": "READ",
             "read_at": "03:51",
@@ -51,6 +57,7 @@
         {
             "id": 31,
             "content": "Reiciendis exercitationem optio doloremque modi. Rerum ut placeat aspernatur sequi voluptates enim similique. Sint iure et velit sint ullam at adipisci error. Facilis non consequatur nisi sit.",
+            "images": [],
             "is_received": true,
             "status": "READ",
             "read_at": "03:51",
@@ -59,6 +66,7 @@
         {
             "id": 32,
             "content": "Ipsum veritatis rerum quisquam aut velit. Autem veniam voluptatem esse quis. Perferendis et magnam quis omnis. Aliquam et et asperiores aspernatur rem sequi saepe iste.",
+            "images": [],
             "is_received": true,
             "status": "READ",
             "read_at": "03:51",
@@ -67,6 +75,7 @@
         {
             "id": 17,
             "content": "Enim atque accusamus in. Exercitationem sapiente quaerat praesentium fuga culpa neque ullam. Nihil minus excepturi doloribus incidunt sint.",
+            "images": [],
             "is_received": false,
             "status": "READ",
             "read_at": "03:50",
@@ -75,6 +84,7 @@
         {
             "id": 18,
             "content": "Ipsam ut eos doloribus aut. Modi voluptas qui pariatur dolorum. Rerum quis aut velit voluptatem.",
+            "images": [],
             "is_received": false,
             "status": "READ",
             "read_at": "03:50",
@@ -83,6 +93,7 @@
         {
             "id": 19,
             "content": "Assumenda beatae sit deserunt omnis ducimus qui. Est sed libero odit. Alias molestiae eum cum eum velit quia. Eos nobis perspiciatis delectus sapiente autem laudantium.",
+            "images": [],
             "is_received": false,
             "status": "READ",
             "read_at": "03:50",
@@ -91,6 +102,7 @@
         {
             "id": 20,
             "content": "Sequi error laborum occaecati soluta corrupti porro eveniet. Sit corporis eum perspiciatis quis aperiam ducimus. Aliquam quia maxime consequatur.",
+            "images": [],
             "is_received": false,
             "status": "READ",
             "read_at": "03:50",
@@ -99,6 +111,7 @@
         {
             "id": 21,
             "content": "Cupiditate ut nihil officiis cupiditate dolor tempora. Amet nulla nam nemo sed iure assumenda tempore. Omnis quas sunt illo quam et. Dolor velit ea necessitatibus asperiores eaque.",
+            "images": [],
             "is_received": false,
             "status": "READ",
             "read_at": "03:50",
@@ -107,6 +120,7 @@
         {
             "id": 22,
             "content": "Et illum et quidem quasi nostrum. Beatae ex ea unde perferendis doloribus eum. Et deserunt vero ut possimus atque labore autem. Est quaerat cum impedit perferendis totam sed accusamus.",
+            "images": [],
             "is_received": false,
             "status": "READ",
             "read_at": "03:50",
@@ -115,6 +129,7 @@
         {
             "id": 23,
             "content": "Quia esse est consectetur architecto sint dignissimos quia. Eum minima perferendis ad aut explicabo. Voluptatem ea dicta illum necessitatibus. Doloremque odio dolorem excepturi non est nemo eos.",
+            "images": [],
             "is_received": false,
             "status": "READ",
             "read_at": "03:50",

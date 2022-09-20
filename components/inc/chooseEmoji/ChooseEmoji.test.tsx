@@ -6,6 +6,8 @@ import { mockResizeObserver } from '@utils/tests/mockResizeObserver';
 import { mockFormikContext } from '@utils/tests/mockFormikContext';
 
 describe('ChooseEmoji component', () => {
+    const mockAddToContent = jest.fn();
+
     const user = userEvent.setup();
 
     beforeEach(() => {
@@ -14,7 +16,7 @@ describe('ChooseEmoji component', () => {
     });
 
     it('open tooltip when click on trigger button', async () => {
-        renderWithDefaultData(<ChooseEmoji />);
+        renderWithDefaultData(<ChooseEmoji addToContent={mockAddToContent} />);
 
         const trigger = screen.getByLabelText('Choose an emoji');
 

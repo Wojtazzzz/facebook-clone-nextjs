@@ -15,7 +15,7 @@ export const FormContent = ({ isLoading, error }: FormContentProps) => {
     const { isUploadActive, closeUpload, toggleUpload } = useUploadActive();
 
     // Not move to parent component
-    // It will remove all values from Formik when submit
+    // Because it will remove all values from Formik when submit
     if (isLoading)
         return <SpinnerLoader testId="createPost-loader" containerStyles="w-[64px] md:w-[80px] my-10 mx-auto" />;
 

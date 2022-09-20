@@ -54,7 +54,7 @@ describe('Chat tests', () => {
         cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
 
         cy.get('input[aria-label="Message input"]').type('Hello World second time');
-        cy.get('[aria-label="Send message"]').click();
+        cy.get('[aria-label="Submit message"]').click();
 
         cy.wait('@messages');
         cy.wait('@messages_page_1');
@@ -150,7 +150,7 @@ describe('Chat tests', () => {
         cy.get('[data-testid="chat"]').should('not.contain.text', 'Something went wrong, please try again later');
     });
 
-    it('create and send message with emoji', () => {
+    it('create message with emoji', () => {
         cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
 
         cy.visit('/');
@@ -179,7 +179,7 @@ describe('Chat tests', () => {
 
         cy.get('input[aria-label="Message input"]').should('have.value', 'Hello 👋');
 
-        cy.get('[aria-label="Send message"]').click();
+        cy.get('[aria-label="Submit message"]').click();
 
         cy.wait('@messages');
         cy.wait('@messages_page_1');
@@ -307,10 +307,161 @@ describe('Chat tests', () => {
 
         cy.get('input[aria-label="Message input"]').should('have.value', '😃😅🤣🙂🥰😝😏😭👍❤️');
 
-        cy.get('[aria-label="Send message"]').click();
+        cy.get('[aria-label="Submit message"]').click();
 
         cy.get('[data-testid="chat"]').within(() => {
             cy.contains('😃😅🤣🙂🥰😝😏😭👍❤️');
+        });
+    });
+
+    it('upload image to message, img show in input and in conversation after submit', () => {
+        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
+
+        cy.visit('/');
+
+        cy.wait('@user');
+        cy.wait('@contacts_page_1');
+
+        cy.get('[data-testid="contacts-list"]').within(() => {
+            cy.contains(`${friend.first_name} ${friend.last_name}`).click();
+        });
+
+        cy.wait('@messages_page_1');
+
+        cy.get('[data-testid="chat"]').should('be.visible');
+
+        cy.intercept('/api/messages').as('messages');
+        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
+
+        cy.get('input[type="file"]').attachFile(['/postImage1.jpg']);
+
+        cy.get('[data-testid="chat-uploadedImages"]').children().should('have.length', 1);
+
+        cy.get('button[aria-label="Submit message"]').click();
+
+        cy.wait('@messages');
+        cy.wait('@messages_page_1');
+
+        cy.get('[data-testid="chat"]').within(() => {
+            cy.get('[aria-label="Message sent"]').within(() => {
+                cy.get('img').should('exist');
+            });
+        });
+    });
+
+    it('upload 3 images, remove 1, submit, see image with 2 images in conversation', () => {
+        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
+
+        cy.visit('/');
+
+        cy.wait('@user');
+        cy.wait('@contacts_page_1');
+
+        cy.get('[data-testid="contacts-list"]').within(() => {
+            cy.contains(`${friend.first_name} ${friend.last_name}`).click();
+        });
+
+        cy.wait('@messages_page_1');
+
+        cy.get('[data-testid="chat"]').should('be.visible');
+
+        cy.intercept('/api/messages').as('messages');
+        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
+
+        cy.get('input[type="file"]').attachFile(['/postImage1.jpg', '/postImage2.jpg', '/postImage3.jpg']);
+
+        cy.get('[data-testid="chat-uploadedImages"]').children().should('have.length', 3);
+        cy.get('[data-testid="chat-uploadedImages"]')
+            .children()
+            .first()
+            .within(() => {
+                cy.get('[aria-label="Remove image"]').click();
+            });
+        cy.get('[data-testid="chat-uploadedImages"]').children().should('have.length', 2);
+
+        cy.get('button[aria-label="Submit message"]').click();
+
+        cy.wait('@messages');
+        cy.wait('@messages_page_1');
+
+        cy.get('[data-testid="chat"]').within(() => {
+            cy.get('[aria-label="Message sent"]').within(() => {
+                cy.get('img').should('have.length', 2);
+            });
+        });
+    });
+
+    it('create message with text and images', () => {
+        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
+
+        cy.visit('/');
+
+        cy.wait('@user');
+        cy.wait('@contacts_page_1');
+
+        cy.get('[data-testid="contacts-list"]').within(() => {
+            cy.contains(`${friend.first_name} ${friend.last_name}`).click();
+        });
+
+        cy.wait('@messages_page_1');
+
+        cy.get('[data-testid="chat"]').should('be.visible');
+
+        cy.intercept('/api/messages').as('messages');
+        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
+
+        cy.get('input[aria-label="Message input"]').type('Hello World!');
+
+        cy.get('input[type="file"]').attachFile(['/postImage1.jpg', '/postImage2.jpg']);
+        cy.get('[data-testid="chat-uploadedImages"]').children().should('have.length', 2);
+
+        cy.get('button[aria-label="Submit message"]').click();
+
+        cy.wait('@messages');
+        cy.wait('@messages_page_1');
+
+        cy.get('[data-testid="chat"]').within(() => {
+            cy.get('[aria-label="Message sent"]').within(() => {
+                cy.contains('Hello World!');
+                cy.get('img').should('have.length', 2);
+            });
+        });
+    });
+
+    it('cannot create message with invalid type of file', () => {
+        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
+
+        cy.visit('/');
+
+        cy.wait('@user');
+        cy.wait('@contacts_page_1');
+
+        cy.get('[data-testid="contacts-list"]').within(() => {
+            cy.contains(`${friend.first_name} ${friend.last_name}`).click();
+        });
+
+        cy.wait('@messages_page_1');
+
+        cy.get('[data-testid="chat"]').should('be.visible');
+
+        cy.intercept('/api/messages').as('messages');
+        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
+
+        cy.get('input[aria-label="Message input"]').type('Hello World!');
+
+        cy.get('input[type="file"]').attachFile(['/file.pdf']);
+        cy.get('[data-testid="chat-uploadedImages"]').should('not.exist');
+
+        cy.get('button[aria-label="Submit message"]').click();
+
+        cy.wait('@messages');
+        cy.wait('@messages_page_1');
+
+        cy.get('[data-testid="chat"]').within(() => {
+            cy.get('[aria-label="Message sent"]').within(() => {
+                cy.contains('Hello World!');
+                cy.get('img').should('not.exist');
+            });
         });
     });
 

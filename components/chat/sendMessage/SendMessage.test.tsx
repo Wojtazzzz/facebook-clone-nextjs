@@ -1,12 +1,12 @@
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
-import { Panel } from '@components/chat/panel/Panel';
+import { SendMessage } from '@components/chat/sendMessage/SendMessage';
 import { screen } from '@testing-library/react';
 
-describe('Panel component', () => {
-    it('renders send message and send image buttons', () => {
-        renderWithDefaultData(<Panel />);
+describe('SendMessage component', () => {
+    it('render send message and send image buttons', () => {
+        renderWithDefaultData(<SendMessage />);
 
-        const sendImageComponent = screen.getByLabelText('Send image');
+        const sendImageComponent = screen.getByLabelText('Add images');
         const sendMessageComponent = screen.getByTestId('sendMessage-form');
 
         expect(sendImageComponent).toBeInTheDocument();

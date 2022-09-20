@@ -9,5 +9,12 @@ export const mockFormikContext = () => {
             initialTouched: true,
             touched: false,
         },
+        values: {
+            content: 'xD',
+            images: [],
+        },
+        setValues: jest.fn(),
+        handleChange: jest.fn(),
+        handleBlur: jest.fn(),
     } as any);
 };
