@@ -1,10 +1,10 @@
 import Dropzone from 'react-dropzone';
 import { faImage } from '@fortawesome/free-solid-svg-icons';
-import { useUploadImage } from './useUploadImages';
+import { useAddImages } from './useAddImages';
 import { Button } from '@components/chat/inc/Button';
 
-export const Images = () => {
-    const { onDrop } = useUploadImage();
+export const AddImages = () => {
+    const { onDrop } = useAddImages();
 
     return (
         <Dropzone accept="image/*" onDrop={onDrop}>

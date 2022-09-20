@@ -7,7 +7,7 @@ import { v4 as uuid } from 'uuid';
 import type { AxiosError, AxiosResponse } from 'axios';
 import { useChat } from '@hooks/useChat';
 
-export const useSendMessage = () => {
+export const useCreateMessage = () => {
     const queryClient = useQueryClient();
     const { friend, setError, clearError } = useChat();
 

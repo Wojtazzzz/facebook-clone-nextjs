@@ -1,14 +1,20 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import Echo from 'laravel-echo';
 import { axios } from '@libs/axios';
 import Pusher from 'pusher-js';
+import { useAuth } from '@hooks/useAuth';
+import { useChat } from '@hooks/useChat';
+import type { IChatFriend } from '@utils/types';
 
 //@todo to refactor
 if (typeof window !== 'undefined') {
     (window as any).Pusher = Pusher;
 }
 
-export const useBroadcast = () => {
+export const useBroadcasting = (friend: IChatFriend) => {
+    const { user } = useAuth();
+    const { revalidateMessages } = useChat();
+
     const LaravelEcho = useMemo(
         () =>
             new Echo({
@@ -41,9 +47,20 @@ export const useBroadcast = () => {
         [LaravelEcho]
     );
 
-    const stopListen = (channel: string, event: string) => {
-        LaravelEcho.private(channel).stopListening(event);
-    };
+    const stopListen = useCallback(
+        (channel: string, event: string) => {
+            LaravelEcho.private(channel).stopListening(event);
+        },
+        [LaravelEcho]
+    );
+
+    useEffect(() => {
+        if (!user) return;
+
+        startListen(`messages.${user.id}.${friend.id}`, 'ChatMessageSent', revalidateMessages);
+
+        return () => stopListen(`messages.${user.id}.${friend.id}`, 'ChatMessageSent');
+    }, [friend.id, revalidateMessages, startListen, stopListen, user]);
 
     return {
         startListen,

@@ -1,28 +1,15 @@
-import { useEffect } from 'react';
-import { useAuth } from '@hooks/useAuth';
-import { useBroadcast } from '@hooks/useBroadcast';
-import { useChat } from '@hooks/useChat';
+import { useBroadcasting } from '@components/chat/useBroadcasting';
 import { Header } from '@components/chat/header/Header';
 import type { IChatFriend } from '@utils/types';
 import { Conversation } from './conversation/Conversation';
-import { SendMessage } from './sendMessage/SendMessage';
+import { CreateMessage } from './createMessage/CreateMessage';
 
 interface ChatProps {
     friend: IChatFriend;
 }
 
 export const Chat = ({ friend }: ChatProps) => {
-    const { user } = useAuth();
-    const { revalidateMessages } = useChat();
-    const { startListen, stopListen } = useBroadcast();
-
-    useEffect(() => {
-        if (!user) return;
-
-        startListen(`messages.${user.id}.${friend.id}`, 'ChatMessageSent', revalidateMessages);
-
-        return () => stopListen(`messages.${user.id}.${friend.id}`, 'ChatMessageSent');
-    }, [friend.id, revalidateMessages, startListen, stopListen, user]);
+    useBroadcasting(friend);
 
     return (
         <div
@@ -31,7 +18,7 @@ export const Chat = ({ friend }: ChatProps) => {
         >
             <Header name={friend.name} profileImage={friend.profile_image} />
             <Conversation friend={friend} />
-            <SendMessage />
+            <CreateMessage />
         </div>
     );
 };

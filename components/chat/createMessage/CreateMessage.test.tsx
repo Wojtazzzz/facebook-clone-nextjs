@@ -1,10 +1,10 @@
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
-import { SendMessage } from '@components/chat/sendMessage/SendMessage';
+import { CreateMessage } from '@components/chat/createMessage/CreateMessage';
 import { screen } from '@testing-library/react';
 
-describe('SendMessage component', () => {
+describe('CreateMessage component', () => {
     it('render send message and send image buttons', () => {
-        renderWithDefaultData(<SendMessage />);
+        renderWithDefaultData(<CreateMessage />);
 
         const sendImageComponent = screen.getByLabelText('Add images');
         const sendMessageComponent = screen.getByTestId('sendMessage-form');
