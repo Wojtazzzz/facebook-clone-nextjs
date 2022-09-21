@@ -10,14 +10,16 @@ interface SearchProps {
 }
 
 export const Search = ({ isActive, open, close }: SearchProps) => {
-    const { data, hasNextPage, fetchNextPage, clearQuery, query, ...rest } = useSearch();
+    const { data, hasNextPage, isLoading, fetchNextPage, clearQuery, query, ...rest } = useSearch();
     const ref = useOutsideClick<HTMLDivElement>(clearQuery);
 
     return (
         <div ref={ref} data-testid="nav-search-desktop" className="relative">
             <SearchBox isActive={isActive} clearQuery={clearQuery} query={query} open={open} close={close} {...rest} />
 
-            {query && <Hits data={data} hasNextPage={hasNextPage} fetchNextPage={fetchNextPage} />}
+            {query && (
+                <Hits data={data} isLoading={isLoading} hasNextPage={hasNextPage} fetchNextPage={fetchNextPage} />
+            )}
         </div>
     );
 };

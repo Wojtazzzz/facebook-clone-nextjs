@@ -7,11 +7,14 @@ import { NoResults } from './NoResults';
 interface HitsProps {
     data: IUserHit[] | undefined;
     hasNextPage: boolean | undefined;
+    isLoading: boolean;
     fetchNextPage: () => void;
 }
 
-export const Hits = ({ data, hasNextPage, fetchNextPage }: HitsProps) => {
+export const Hits = ({ data, isLoading, hasNextPage, fetchNextPage }: HitsProps) => {
     if (!data) return null;
+
+    if (isLoading) return <SpinnerLoader testId="hits-fetching_loader" spinnerStyles="w-5" />;
 
     const HitsComponents = data.map((hit) => <Hit key={hit.id} {...hit} />);
 
