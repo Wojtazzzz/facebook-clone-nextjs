@@ -53,7 +53,7 @@ export const Post = ({
 
             <Panel postId={id} isPostLiked={is_liked} queryKey={queryKey} toggleCommentsActive={toggleCommentsActive} />
 
-            {areCommentsActive && <Comments authorName={author.name} commenting={commenting} postId={id} />}
+            {areCommentsActive && <Comments authorName={author.name} postId={id} commenting={commenting} />}
 
             <UpdateModal
                 queryKey={queryKey}

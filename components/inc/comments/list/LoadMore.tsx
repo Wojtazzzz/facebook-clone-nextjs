@@ -1,28 +1,22 @@
-import type { FetchNextPageOptions, InfiniteQueryObserverResult } from '@tanstack/react-query';
-import type { IComment, IPaginatedResponse } from '@utils/types';
-import { Loader } from './list/Loader';
+import { Loader } from './Loader';
 
 interface LoadMoreProps {
     isEmpty: boolean;
     hasNextPage: boolean | undefined;
     isFetchingNextPage: boolean;
-    fetchNextPage: (
-        options?: FetchNextPageOptions | undefined
-    ) => Promise<InfiniteQueryObserverResult<IPaginatedResponse<IComment>, unknown>>;
+    fetchNextPage: () => void;
 }
 
 export const LoadMore = ({ isEmpty, hasNextPage, isFetchingNextPage, fetchNextPage }: LoadMoreProps) => {
     if (!hasNextPage || isEmpty) return null;
     if (isFetchingNextPage) return <Loader />;
 
-    const handleFetchNextPage = () => fetchNextPage();
-
     return (
         <button
             title="Load more comments"
             aria-label="Load more comments"
             className="text-sm text-light-100 font-bold hover:underline py-1 px-2"
-            onClick={handleFetchNextPage}
+            onClick={fetchNextPage}
         >
             View more comments
         </button>
