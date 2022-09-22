@@ -15,14 +15,14 @@ interface IntroProps extends IUserProfile {}
 export const Intro = ({ works_at, went_to, lives_in, from, created_at, marital_status }: IntroProps) => {
     return (
         <Container testId="asideInfo-intro" title="Intro">
-            <div className="flex flex-col gap-2">
+            <ul className="flex flex-col gap-2">
                 {works_at && <Info icon={faBriefcase} title="Works at" info={works_at} />}
                 {went_to && <Info icon={faGraduationCap} title="Went to" info={went_to} />}
                 {lives_in && <Info icon={faHome} title="Lives in" info={lives_in} />}
                 {from && <Info icon={faLocationPin} title="From" info={from} />}
                 <Info icon={faClock} title="Joined on" info={created_at} />
                 {marital_status && <Info icon={faHeart} title={marital_status} />}
-            </div>
+            </ul>
         </Container>
     );
 };

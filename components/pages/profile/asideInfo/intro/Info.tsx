@@ -9,7 +9,7 @@ interface InfoProps {
 
 export const Info = ({ icon, title, info }: InfoProps) => {
     return (
-        <article aria-label={info ? title : 'Marital status'} className="flex items-center">
+        <li aria-label={info ? title : 'Marital status'} className="flex items-center">
             <div className="w-[24px] flex justify-center mr-3">
                 <FontAwesomeIcon icon={icon} className="text-xl text-light-100" />
             </div>
@@ -17,6 +17,6 @@ export const Info = ({ icon, title, info }: InfoProps) => {
             <span className="text-light-100">
                 <span>{title}</span> {info && <span className="font-medium">{info}</span>}
             </span>
-        </article>
+        </li>
     );
 };
