@@ -3,24 +3,9 @@ import { axios } from '@libs/axios';
 import type { IPaginatedResponse } from '@utils/types';
 
 export const useInfiniteData = <T>({ queryKey, endpoint, params, options }: IUseInfiniteDataArgs) => {
-    const {
-        data,
-        isError,
-        error,
-        isLoading,
-        isFetchingNextPage,
-        isFetchingPreviousPage,
-        fetchNextPage,
-        fetchPreviousPage,
-        hasNextPage,
-        hasPreviousPage,
-        refetch,
-    } = useInfiniteQuery(
+    const { data, isSuccess, ...rest } = useInfiniteQuery(
         queryKey,
-        async ({ pageParam = 1 }) =>
-            await axios
-                .get<IPaginatedResponse<T>>(endpoint, { params: { ...params, page: pageParam } })
-                .then((response) => response.data),
+        ({ pageParam = 1 }) => queryFn<T>(endpoint, params, pageParam),
         {
             getPreviousPageParam: (_, pages) => pages[pages.length - 1].prev_page,
             getNextPageParam: (_, pages) => pages[pages.length - 1].next_page,
@@ -28,22 +13,18 @@ export const useInfiniteData = <T>({ queryKey, endpoint, params, options }: IUse
         }
     );
 
-    const flatData = data?.pages.flatMap((page) => page.data);
-    const isEmpty = !flatData?.length;
+    const flatData = [];
+
+    if (isSuccess) {
+        flatData.push(...data.pages.flatMap((page) => page.data));
+    }
+
+    const isEmpty = flatData.length < 1;
 
     return {
         data: flatData,
-        isLoading,
-        isError,
-        error,
         isEmpty,
-        isFetchingNextPage,
-        isFetchingPreviousPage,
-        hasNextPage,
-        hasPreviousPage,
-        fetchNextPage,
-        fetchPreviousPage,
-        refetch,
+        ...rest,
     };
 };
 
@@ -53,3 +34,8 @@ type IUseInfiniteDataArgs = {
     params?: {};
     options?: {};
 };
+
+const queryFn = <T>(endpoint: string, params = {}, pageParam: number) =>
+    axios
+        .get<IPaginatedResponse<T>>(endpoint, { params: { ...params, page: pageParam } })
+        .then((response) => response.data);
