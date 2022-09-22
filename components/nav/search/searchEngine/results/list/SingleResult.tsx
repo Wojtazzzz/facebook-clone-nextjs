@@ -1,11 +1,11 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import Link from 'next/link';
 import { Avatar } from '@components/inc/Avatar';
-import type { IUserHit } from '@utils/types';
+import type { IUserSearchResult } from '@utils/types';
 
-interface HitProps extends IUserHit {}
+interface SingleResultProps extends IUserSearchResult {}
 
-export const Hit = ({ id, name, profile_image }: HitProps) => {
+export const SingleResult = ({ id, name, profile_image }: SingleResultProps) => {
     return (
         <Link href={`/profile/${id}`}>
             <a className="w-full flex gap-3 hover:bg-dark-100 transition-colors rounded-md p-2">

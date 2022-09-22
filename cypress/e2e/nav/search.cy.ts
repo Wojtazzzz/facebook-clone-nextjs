@@ -14,7 +14,7 @@ describe('Searching users tests', () => {
         cy.visit('/');
         cy.wait('@user');
 
-        cy.get('[data-testid="nav-search-desktop"]').within(() => {
+        cy.getNavSearch().within(() => {
             cy.get('input[aria-label="Search user"]').type('Joh');
             cy.wait('@searching');
 
@@ -26,7 +26,7 @@ describe('Searching users tests', () => {
         });
     });
 
-    it('type friend firstname on input and see his firstname and username on results list, redirect to his profile by click on hit', () => {
+    it('type friend firstname on input and see his firstname and username on results list, redirect to his profile by click on single result', () => {
         cy.create('User', {
             first_name: 'John',
             last_name: 'Doe',
@@ -38,7 +38,7 @@ describe('Searching users tests', () => {
         cy.visit('/');
         cy.wait('@user');
 
-        cy.get('[data-testid="nav-search-desktop"]').within(() => {
+        cy.getNavSearch().within(() => {
             cy.get('input[aria-label="Search user"]').type('John');
             cy.wait('@searching');
 
@@ -48,7 +48,7 @@ describe('Searching users tests', () => {
         });
     });
 
-    it('type "a", see 10 users, fetch second page of users by scrolling list to bottom, close hits by click on another element', () => {
+    it('type "a", see 10 users, fetch second page of users by scrolling list to bottom, close results by click on another element', () => {
         cy.create('User', { first_name: 'Adam' });
         cy.create('User', { first_name: 'Adrian' });
         cy.create('User', { first_name: 'Agapetus' });
@@ -69,21 +69,21 @@ describe('Searching users tests', () => {
         cy.visit('/');
         cy.wait('@user');
 
-        cy.get('[data-testid="nav-search-desktop"]').within(() => {
+        cy.getNavSearch().within(() => {
             cy.get('input[aria-label="Search user"]').type('a');
             cy.wait('@searching');
 
-            cy.get('[data-testid="search-hits"] a').should('have.length', 10);
+            cy.get('[data-testid="navSearch-results"] a').should('have.length', 10);
 
-            cy.get('[id="hits-list"]').scrollTo('bottom', { ensureScrollable: false });
+            cy.get('[id="navSearch-results"]').scrollTo('bottom', { ensureScrollable: false });
 
-            cy.get('[data-testid="search-hits"] a').should('have.length', 13);
+            cy.get('[data-testid="navSearch-results"] a').should('have.length', 13);
         });
 
         cy.get('main').click();
 
-        cy.get('[data-testid="nav-search-desktop"]').within(() => {
-            cy.get('[data-testid="search-hits"]').should('not.exist');
+        cy.getNavSearch().within(() => {
+            cy.get('[data-testid="navSearch-results"]').should('not.exist');
         });
     });
 
@@ -93,7 +93,7 @@ describe('Searching users tests', () => {
         cy.visit('/');
         cy.wait('@user');
 
-        cy.get('[data-testid="nav-search-desktop"]').within(() => {
+        cy.getNavSearch().within(() => {
             cy.get('input[aria-label="Search user"]').should('not.be.focused');
 
             cy.get('[aria-label="Focus input"]').click();
@@ -102,7 +102,7 @@ describe('Searching users tests', () => {
         });
     });
 
-    it('search friend, hits dissapear when press esc', () => {
+    it('search friend, results dissapear when press esc', () => {
         cy.create('User', { first_name: 'Adam' });
 
         cy.intercept('/api/user').as('user');
@@ -111,17 +111,17 @@ describe('Searching users tests', () => {
         cy.visit('/');
         cy.wait('@user');
 
-        cy.get('[data-testid="nav-search-desktop"]').within(() => {
+        cy.getNavSearch().within(() => {
             cy.get('input[aria-label="Search user"]').type('a');
             cy.wait('@searching');
 
-            cy.get('[data-testid="search-hits"] a').should('have.length', 1);
+            cy.get('[data-testid="navSearch-results"] a').should('have.length', 1);
         });
 
         cy.get('body').type('{esc}');
 
-        cy.get('[data-testid="nav-search-desktop"]').within(() => {
-            cy.get('[data-testid="search-hits"]').should('not.exist');
+        cy.getNavSearch().within(() => {
+            cy.get('[data-testid="navSearch-results"]').should('not.exist');
         });
     });
 
@@ -132,11 +132,11 @@ describe('Searching users tests', () => {
         cy.visit('/');
         cy.wait('@user');
 
-        cy.get('[data-testid="nav-search-desktop"]').within(() => {
+        cy.getNavSearch().within(() => {
             cy.get('input[aria-label="Search user"]').type('a');
             cy.wait('@searching');
 
-            cy.get('[data-testid="search-apiError"]').should('be.visible');
+            cy.contains('Something went wrong, please try again later');
         });
     });
 });

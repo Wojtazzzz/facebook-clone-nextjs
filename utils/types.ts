@@ -33,7 +33,7 @@ export type IUserProfile = {
     marital_status?: string;
 };
 
-export type IUserHit = {
+export type IUserSearchResult = {
     id: number;
     name: string;
     profile_image: string;

@@ -7,7 +7,7 @@ interface ClearButtonProps {
 
 export const ClearButton = ({ clear }: ClearButtonProps) => {
     return (
-        <button type="button" aria-label="Clear input" onClick={clear}>
+        <button type="submit" aria-label="Clear input" onClick={clear}>
             <FontAwesomeIcon icon={faTimes} className="text-md" />
         </button>
     );

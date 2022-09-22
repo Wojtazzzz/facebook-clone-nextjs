@@ -43,6 +43,7 @@ Cypress.Commands.add('friendsListItems', () =>
 );
 
 Cypress.Commands.add('getPosts', () => cy.get('article[aria-label="Post"]'));
+Cypress.Commands.add('getNavSearch', () => cy.get('nav[data-testid="nav"] [data-testid="nav-search"]'));
 
 Cypress.Commands.add('showAlertModal', () => {
     cy.create('Post', {
@@ -126,6 +127,7 @@ declare global {
             relogin(id: number, path?: string): Chainable<void>;
             friendsListItems(): Chainable<void>;
             getPosts(): Chainable<void>;
+            getNavSearch(): Chainable<void>;
             showAlertModal(): Chainable<void>;
             expectAlert(message: string): Chainable<void>;
             openUpdatePostModal(): Chainable<void>;

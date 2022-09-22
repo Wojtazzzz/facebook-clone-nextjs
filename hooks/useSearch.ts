@@ -1,40 +1,21 @@
-import type { IUserHit } from '@utils/types';
-import { useState } from 'react';
-import type { ChangeEvent } from 'react';
-import { useDebounce } from './useDebounce';
+import type { IUserSearchResult } from '@utils/types';
 import { useInfiniteData } from './useInfiniteData';
 
-export const useSearch = () => {
-    const [query, setQuery] = useState('');
-    const debounceQuery = useDebounce(query);
-
-    const { data, isError, isLoading, hasNextPage, fetchNextPage } = useInfiniteData<IUserHit>({
-        queryKey: ['searching', debounceQuery],
-        endpoint: '/api/users',
+export const useSearch = (endpoint: string, query: string) => {
+    const { data, isError, isLoading, isEmpty, hasNextPage, fetchNextPage } = useInfiniteData<IUserSearchResult>({
+        queryKey: ['search', query],
+        endpoint: endpoint,
         params: {
-            search: debounceQuery,
+            search: query,
         },
-        options: { enabled: !!debounceQuery },
     });
-
-    const changeQuery = (event: ChangeEvent<HTMLInputElement>) => {
-        setQuery(event.target.value);
-    };
-
-    const clearQuery = () => {
-        if (!query) return;
-
-        setQuery('');
-    };
 
     return {
         data,
         isError,
         isLoading,
-        query,
+        isEmpty,
         hasNextPage,
         fetchNextPage,
-        changeQuery,
-        clearQuery,
     };
 };

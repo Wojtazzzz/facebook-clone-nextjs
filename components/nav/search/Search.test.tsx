@@ -1,5 +1,5 @@
 import { mock } from '@libs/nock';
-import { screen, waitFor } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { Search } from './Search';
@@ -10,31 +10,25 @@ describe('Search component', () => {
     const user = userEvent.setup();
 
     it('not render hits by default', () => {
-        const mockOpen = jest.fn();
-        const mockClose = jest.fn();
+        renderWithDefaultData(<Search />);
 
-        renderWithDefaultData(<Search isActive={true} open={mockOpen} close={mockClose} />);
-
-        const hits = screen.queryByTestId('search-hits');
+        const hits = screen.queryByTestId('navSearch-results');
 
         expect(hits).not.toBeInTheDocument();
     });
 
     it('render max 15 hits when query provided', async () => {
-        const mockOpen = jest.fn();
-        const mockClose = jest.fn();
-
         mock({
             path: '/api/users?search=Joh&page=1',
             data: UserHitsFirstPageJson,
         });
 
-        renderWithDefaultData(<Search isActive={true} open={mockOpen} close={mockClose} />);
+        renderWithDefaultData(<Search />);
 
         const input = screen.getByLabelText('Search user');
         await user.type(input, 'Joh');
 
-        const hits = await screen.findByTestId('search-hits');
+        const hits = await screen.findByTestId('navSearch-results');
 
         expect(hits).toBeInTheDocument();
 
@@ -44,20 +38,17 @@ describe('Search component', () => {
     });
 
     it('render NoResults when api return empty response', async () => {
-        const mockOpen = jest.fn();
-        const mockClose = jest.fn();
-
         mock({
             path: '/api/users?search=Joh&page=1',
             data: UserHitsEmptyPageJson,
         });
 
-        renderWithDefaultData(<Search isActive={true} open={mockOpen} close={mockClose} />);
+        renderWithDefaultData(<Search />);
 
         const input = screen.getByLabelText('Search user');
         await user.type(input, 'Joh');
 
-        const hits = await screen.findByTestId('search-hits');
+        const hits = await screen.findByTestId('navSearch-results');
         const noResults = await screen.findByText('No Results');
 
         expect(hits).toBeInTheDocument();
@@ -65,29 +56,23 @@ describe('Search component', () => {
     });
 
     it('render ApiError instead of button when api return error', async () => {
-        const mockOpen = jest.fn();
-        const mockClose = jest.fn();
-
         mock({
             path: '/api/users?search=Joh&page=1',
             status: 500,
         });
 
-        renderWithDefaultData(<Search isActive={true} open={mockOpen} close={mockClose} />);
+        renderWithDefaultData(<Search />);
 
         const input = screen.getByLabelText('Search user');
         await user.type(input, 'Joh');
 
-        const apiError = await screen.findByTestId('search-apiError');
+        const apiError = await screen.findByText('Something went wrong, please try again later');
 
         expect(apiError).toBeInTheDocument();
     });
 
     it('render SearchButton when no query text provided', async () => {
-        const mockOpen = jest.fn();
-        const mockClose = jest.fn();
-
-        renderWithDefaultData(<Search isActive={true} open={mockOpen} close={mockClose} />);
+        renderWithDefaultData(<Search />);
 
         const searchButton = screen.queryByLabelText('Focus input');
 
@@ -104,10 +89,7 @@ describe('Search component', () => {
     });
 
     it('render ClearButton when query text provided', async () => {
-        const mockOpen = jest.fn();
-        const mockClose = jest.fn();
-
-        renderWithDefaultData(<Search isActive={true} open={mockOpen} close={mockClose} />);
+        renderWithDefaultData(<Search />);
 
         expect(screen.queryByLabelText('Clear input')).not.toBeInTheDocument();
 
@@ -122,10 +104,7 @@ describe('Search component', () => {
     });
 
     it('clear input by click on ClearButton', async () => {
-        const mockOpen = jest.fn();
-        const mockClose = jest.fn();
-
-        renderWithDefaultData(<Search isActive={true} open={mockOpen} close={mockClose} />);
+        renderWithDefaultData(<Search />);
 
         const input = screen.getByLabelText('Search user');
         await user.type(input, 'test');
