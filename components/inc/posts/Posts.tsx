@@ -4,9 +4,10 @@ import { Loader } from './Loader';
 import { Post } from './post/Post';
 import { useGetPosts } from './useGetPosts';
 import { NoPosts } from './NoPosts';
+import type { QueryKey } from '@tanstack/react-query';
 
 interface PostsProps {
-    queryKey: unknown[];
+    queryKey: QueryKey;
     endpoint: string;
 }
 

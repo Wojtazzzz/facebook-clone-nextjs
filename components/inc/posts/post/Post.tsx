@@ -7,9 +7,10 @@ import { Comments } from '@components/inc/comments/Comments';
 import { useCommentsActive } from './useCommentsActive';
 import { UpdateModal } from './updateModal/UpdateModal';
 import { useUpdateModalActive } from './useUpdateModalActive';
+import type { QueryKey } from '@tanstack/react-query';
 
 interface PostProps extends IPost {
-    queryKey: unknown[];
+    queryKey: QueryKey;
 }
 
 export const Post = ({

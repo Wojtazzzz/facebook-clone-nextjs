@@ -1,10 +1,11 @@
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import type { QueryKey } from '@tanstack/react-query';
 import { Option } from '../Option';
 import { useUnsavePost } from './useUnsavePost';
 
 interface SavedOptionsProps {
     postId: number;
-    queryKey: unknown[];
+    queryKey: QueryKey;
 }
 
 export const SavedOptions = ({ postId, queryKey }: SavedOptionsProps) => {

@@ -1,7 +1,8 @@
+import { QueryKey } from '@tanstack/react-query';
 import { EmptyList } from '../EmptyList';
 
 interface NoPostsProps {
-    queryKey: unknown[];
+    queryKey: QueryKey;
 }
 
 export const NoPosts = ({ queryKey }: NoPostsProps) => {

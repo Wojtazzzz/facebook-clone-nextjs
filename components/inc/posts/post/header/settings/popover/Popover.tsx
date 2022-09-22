@@ -1,4 +1,5 @@
 import * as RadixPopover from '@radix-ui/react-popover';
+import type { QueryKey } from '@tanstack/react-query';
 import type { IPostType } from '@utils/types';
 import { GlobalOptions } from './options/globalOptions/GlobalOptions';
 import { Options } from './options/Options';
@@ -7,7 +8,7 @@ interface PopoverProps {
     postId: number;
     type: IPostType;
     commenting: boolean;
-    queryKey: unknown[];
+    queryKey: QueryKey;
     close: () => void;
     openUpdateModal: () => void;
 }

@@ -1,11 +1,12 @@
 import { CommentButton } from './CommentButton';
 import { LikeButton } from './likeButton/LikeButton';
 import { ShareButton } from './ShareButton';
+import type { QueryKey } from '@tanstack/react-query';
 
 interface PanelProps {
     postId: number;
     isPostLiked: boolean;
-    queryKey: unknown[];
+    queryKey: QueryKey;
     toggleCommentsActive: () => void;
 }
 

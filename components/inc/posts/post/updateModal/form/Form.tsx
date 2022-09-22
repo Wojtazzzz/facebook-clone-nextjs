@@ -3,9 +3,10 @@ import { UpdatePostSchema } from '@validation/UpdatePostSchema';
 import type { IPostUpdatePayload } from '@utils/types';
 import { useUpdatePost } from './useUpdatePost';
 import { FormContent } from './formContent/FormContent';
+import type { QueryKey } from '@tanstack/react-query';
 
 interface FormProps {
-    queryKey: unknown[];
+    queryKey: QueryKey;
     postId: number;
     content: string;
     images: string[];

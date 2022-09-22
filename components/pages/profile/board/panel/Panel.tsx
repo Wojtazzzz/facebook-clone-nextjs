@@ -2,10 +2,11 @@ import { CreatePost } from '@components/inc/modals/post/create/createPost/Create
 import { useAuth } from '@hooks/useAuth';
 import type { ChangeEvent } from 'react';
 import { ListSwitcher } from './ListSwitcher';
+import type { QueryKey } from '@tanstack/react-query';
 
 interface PanelProps {
     userId: number;
-    queryKey: unknown[];
+    queryKey: QueryKey;
     changeList: (event: ChangeEvent<HTMLSelectElement>) => void;
 }
 

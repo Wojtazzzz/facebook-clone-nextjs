@@ -1,8 +1,7 @@
 import { useInfiniteData } from '@hooks/useInfiniteData';
 import { axios } from '@libs/axios';
 import { useMutation } from '@tanstack/react-query';
-import type { InfiniteData } from '@tanstack/react-query';
-import type { INotification, IPaginatedResponse } from '@utils/types';
+import type { INotification } from '@utils/types';
 
 export const useNotifications = () => {
     const mutation = useMutation(mutationFn);
@@ -11,7 +10,7 @@ export const useNotifications = () => {
         queryKey: ['notifications'],
         endpoint: '/api/notifications',
         options: {
-            onSuccess: (data: InfiniteData<IPaginatedResponse<INotification>> | undefined) => {
+            onSuccess: (data) => {
                 if (!data) return;
 
                 const ids = data.pages.flatMap((page) =>

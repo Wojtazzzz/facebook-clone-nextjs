@@ -2,10 +2,11 @@ import { faBan, faSave } from '@fortawesome/free-solid-svg-icons';
 import { Option } from '../Option';
 import { useHidePost } from './useHidePost';
 import { useSavePost } from './useSavePost';
+import type { QueryKey } from '@tanstack/react-query';
 
 interface FriendOptionsProps {
     postId: number;
-    queryKey: unknown[];
+    queryKey: QueryKey;
     closeMenu: () => void;
 }
 

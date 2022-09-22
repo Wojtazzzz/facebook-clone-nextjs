@@ -3,9 +3,10 @@ import { Loader } from './Loader';
 import { Avatar } from '@components/inc/Avatar';
 import { useCreatePostModal } from '../useCreatePostModal';
 import { Modal } from '../modal/Modal';
+import type { QueryKey } from '@tanstack/react-query';
 
 interface CreatePostProps {
-    queryKey: unknown[];
+    queryKey: QueryKey;
 }
 
 export const CreatePost = ({ queryKey }: CreatePostProps) => {

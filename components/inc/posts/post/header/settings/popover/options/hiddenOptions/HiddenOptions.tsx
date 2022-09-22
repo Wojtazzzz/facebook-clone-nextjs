@@ -1,10 +1,11 @@
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Option } from '../Option';
 import { useUnhidePost } from './useUnhidePost';
+import type { QueryKey } from '@tanstack/react-query';
 
 interface HiddenOptionsProps {
     postId: number;
-    queryKey: unknown[];
+    queryKey: QueryKey;
 }
 
 export const HiddenOptions = ({ postId, queryKey }: HiddenOptionsProps) => {

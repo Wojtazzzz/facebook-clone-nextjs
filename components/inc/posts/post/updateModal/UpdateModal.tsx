@@ -1,8 +1,9 @@
 import { ModalRoot } from '@components/inc/ModalRoot';
 import { Form } from './form/Form';
+import type { QueryKey } from '@tanstack/react-query';
 
 interface UpdateModalProps {
-    queryKey: unknown[];
+    queryKey: QueryKey;
     isActive: boolean;
     postId: number;
     content: string;

@@ -1,3 +1,4 @@
+import type { QueryKey } from '@tanstack/react-query';
 import type { IPostType } from '@utils/types';
 import { FriendOptions } from './friendOptions/FriendOptions';
 import { HiddenOptions } from './hiddenOptions/HiddenOptions';
@@ -8,7 +9,7 @@ interface OptionsProps {
     postId: number;
     type: IPostType;
     commenting: boolean;
-    queryKey: unknown[];
+    queryKey: QueryKey;
     openUpdateModal: () => void;
     close: () => void;
 }

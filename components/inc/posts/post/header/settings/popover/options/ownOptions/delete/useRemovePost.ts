@@ -1,7 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { axios } from '@libs/axios';
+import type { QueryKey } from '@tanstack/react-query';
 
-export const useRemovePost = (queryKey: unknown[]) => {
+export const useRemovePost = (queryKey: QueryKey) => {
     const queryClient = useQueryClient();
 
     const mutation = useMutation(mutationFn, {

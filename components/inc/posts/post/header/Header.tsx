@@ -1,3 +1,4 @@
+import type { QueryKey } from '@tanstack/react-query';
 import type { IPostType, IUser } from '@utils/types';
 import { Author } from './Author';
 import { Settings } from './settings/Settings';
@@ -9,7 +10,7 @@ interface HeaderProps {
     createdAt: string;
     isEdited: boolean;
     type: IPostType;
-    queryKey: unknown[];
+    queryKey: QueryKey;
     openUpdateModal: () => void;
 }
 

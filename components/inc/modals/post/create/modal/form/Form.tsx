@@ -3,9 +3,10 @@ import { CreatePostSchema } from '@validation/CreatePostSchema';
 import type { IPostCreatePayload } from '@utils/types';
 import { useCreatePost } from './useCreatePost';
 import { FormContent } from './formContent/FormContent';
+import type { QueryKey } from '@tanstack/react-query';
 
 interface FormProps {
-    queryKey: unknown[];
+    queryKey: QueryKey;
     close: () => void;
 }
 

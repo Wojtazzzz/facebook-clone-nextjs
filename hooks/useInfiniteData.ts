@@ -1,11 +1,12 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
+import type { QueryKey, UseInfiniteQueryOptions } from '@tanstack/react-query';
 import { axios } from '@libs/axios';
 import type { IPaginatedResponse } from '@utils/types';
 
-export const useInfiniteData = <T>({ queryKey, endpoint, params, options }: IUseInfiniteDataArgs) => {
+export const useInfiniteData = <T>({ queryKey, endpoint, params, options }: IUseInfiniteDataArgs<T>) => {
     const { data, isSuccess, ...rest } = useInfiniteQuery(
         queryKey,
-        ({ pageParam = 1 }) => queryFn<T>(endpoint, params, pageParam),
+        ({ pageParam = 1 }) => queryFn(endpoint, params, pageParam),
         {
             getPreviousPageParam: (_, pages) => pages[pages.length - 1].prev_page,
             getNextPageParam: (_, pages) => pages[pages.length - 1].next_page,
@@ -28,14 +29,18 @@ export const useInfiniteData = <T>({ queryKey, endpoint, params, options }: IUse
     };
 };
 
-type IUseInfiniteDataArgs = {
-    queryKey: unknown[];
+type IUseInfiniteDataArgs<T> = {
+    queryKey: QueryKey;
     endpoint: string;
     params?: {};
-    options?: {};
+    options?: UseInfiniteQueryOptions<
+        IPaginatedResponse<T>,
+        unknown,
+        IPaginatedResponse<T>,
+        IPaginatedResponse<T>,
+        QueryKey
+    >;
 };
 
-const queryFn = <T>(endpoint: string, params = {}, pageParam: number) =>
-    axios
-        .get<IPaginatedResponse<T>>(endpoint, { params: { ...params, page: pageParam } })
-        .then((response) => response.data);
+const queryFn = (endpoint: string, params = {}, pageParam: number) =>
+    axios.get(endpoint, { params: { ...params, page: pageParam } }).then((response) => response.data);

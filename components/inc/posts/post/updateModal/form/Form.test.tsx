@@ -1,6 +1,5 @@
 import { mock } from '@libs/nock';
 import RootUserJson from '@mocks/user/root.json';
-import PostsFirstPageJson from '@mocks/posts/firstPage.json';
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { Form } from './Form';
 import { screen, waitFor } from '@testing-library/react';
@@ -44,21 +43,29 @@ describe('Form component', () => {
         expect(tooShortValidationMessage).toBeInTheDocument();
     });
 
-    // it('render too long text validation message', async () => {
-    //     const mockCloseModal = jest.fn();
+    it('render too long text validation message', async () => {
+        const mockCloseModal = jest.fn();
 
-    //     renderWithDefaultData(<Form queryKey={['posts', 'all']} postId={1} content="Test content" images={[]} closeModal={mockCloseModal} />);
+        renderWithDefaultData(
+            <Form
+                queryKey={['posts', 'all']}
+                postId={1}
+                content="Test content"
+                images={[]}
+                closeModal={mockCloseModal}
+            />
+        );
 
-    //     const submitButton = screen.getByLabelText('Update post');
-    //     const input = screen.getByLabelText('Post content');
+        const submitButton = screen.getByLabelText('Update post');
+        const input = screen.getByLabelText('Post content');
 
-    //     await user.type(input, LONG_TEXT);
-    //     await user.click(submitButton);
+        await user.type(input, LONG_TEXT);
+        await user.click(submitButton);
 
-    //     const emptyPostValidationMessage = await screen.findByText('Post must be at most 1000 characters');
+        const emptyPostValidationMessage = await screen.findByText('Post must be at most 1000 characters');
 
-    //     expect(emptyPostValidationMessage).toBeInTheDocument();
-    // });
+        expect(emptyPostValidationMessage).toBeInTheDocument();
+    });
 
     it('can pass empty content', async () => {
         mock({

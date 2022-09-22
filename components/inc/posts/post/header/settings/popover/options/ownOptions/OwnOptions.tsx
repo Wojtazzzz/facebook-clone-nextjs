@@ -2,11 +2,12 @@ import { TurnOffComments } from './turnOffComments/TurnOffComments';
 import { TurnOnComments } from './turnOnComments/TurnOnComments';
 import { Delete } from './delete/Delete';
 import { Update } from './update/Update';
+import type { QueryKey } from '@tanstack/react-query';
 
 interface OwnOptionsProps {
     postId: number;
     commenting: boolean;
-    queryKey: unknown[];
+    queryKey: QueryKey;
     openUpdateModal: () => void;
 }
 

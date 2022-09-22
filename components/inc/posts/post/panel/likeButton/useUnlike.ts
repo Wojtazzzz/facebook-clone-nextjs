@@ -2,8 +2,9 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import type { InfiniteData } from '@tanstack/react-query';
 import { axios } from '@libs/axios';
 import type { IPaginatedResponse, IPost } from '@utils/types';
+import type { QueryKey } from '@tanstack/react-query';
 
-export const useUnlike = (queryKey: unknown[]) => {
+export const useUnlike = (queryKey: QueryKey) => {
     const queryClient = useQueryClient();
 
     const mutation = useMutation(mutationFn, {

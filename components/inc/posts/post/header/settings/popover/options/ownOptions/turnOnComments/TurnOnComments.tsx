@@ -1,10 +1,11 @@
 import { faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import { Option } from '../../Option';
 import { useTurnOnComments } from './useTurnOnComments';
+import type { QueryKey } from '@tanstack/react-query';
 
 interface TurnOnCommentsProps {
     postId: number;
-    queryKey: unknown[];
+    queryKey: QueryKey;
 }
 
 export const TurnOnComments = ({ postId, queryKey }: TurnOnCommentsProps) => {

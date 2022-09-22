@@ -1,6 +1,7 @@
 import type { IPostList } from './types';
+import type { QueryKey } from '@tanstack/react-query';
 
-export const getPostsQueryKey = (type: IPostList, userId: number | undefined) => {
+export const getPostsQueryKey = (type: IPostList, userId: number | undefined): QueryKey => {
     switch (type) {
         case 'hidden':
             return ['posts', 'hidden'];
