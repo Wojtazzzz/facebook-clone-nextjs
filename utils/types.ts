@@ -39,6 +39,12 @@ export type IUserSearchResult = {
     profile_image: string;
 };
 
+export type IFriend = {
+    id: number;
+    name: string;
+    profile_image: string;
+};
+
 export type IUsePaginatedDataState = 'LOADING' | 'FETCHING' | 'ERROR' | 'SUCCESS';
 
 export type IFriendsList = 'Friends' | 'Invites' | 'Suggests' | 'Pokes';

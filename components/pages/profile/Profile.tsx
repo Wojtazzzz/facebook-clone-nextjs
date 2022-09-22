@@ -1,7 +1,7 @@
 import { Hero } from '@components/pages/profile/hero/Hero';
-import { Intro } from '@components/pages/profile/intro/Intro';
 import { Board } from '@components/pages/profile/board/Board';
 import type { IUserProfile, IProfileFriendsData } from '@utils/types';
+import { AsideInfo } from './asideInfo/AsideInfo';
 
 interface ProfileProps {
     user: IUserProfile;
@@ -14,7 +14,7 @@ export const Profile = ({ user, friends }: ProfileProps) => {
             <Hero user={user} friends={friends} />
 
             <div className="w-full flex flex-wrap lg:flex-nowrap justify-center gap-3 p-2">
-                <Intro {...user} />
+                <AsideInfo user={user} />
                 <Board user={user} />
             </div>
         </div>

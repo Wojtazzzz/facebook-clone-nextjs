@@ -1,5 +1,5 @@
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
-import { Intro } from '@components/pages/profile/intro/Intro';
+import { Intro } from '@components/pages/profile/asideInfo/intro/Intro';
 import { screen } from '@testing-library/react';
 
 describe('Intro tests', () => {

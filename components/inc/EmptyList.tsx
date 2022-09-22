@@ -9,7 +9,7 @@ interface EmptyListProps {
 
 export const EmptyList = ({ title, size = 'base', styles = '' }: EmptyListProps) => {
     return (
-        <div data-testid="empty-list" className={`w-full flex flex-col justify-center items-center gap-3 ${styles}`}>
+        <div data-testid="empty-list" className={`w-full flex flex-col justify-center items-center gap-2 ${styles}`}>
             <Image
                 width={clsx(size === 'sm' && '90', size === 'base' && '120', size === 'lg' && '150')}
                 height={clsx(size === 'sm' && '90', size === 'base' && '120', size === 'lg' && '150')}
