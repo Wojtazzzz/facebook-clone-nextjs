@@ -16,9 +16,6 @@ module.exports = {
                 'light-100': '#B0B3B8',
                 'light-200': '#E1E3E8',
             },
-            transitionProperty: {
-                width: 'width',
-            },
             screens: {
                 xs: '425px',
                 ...defaultTheme.screens,

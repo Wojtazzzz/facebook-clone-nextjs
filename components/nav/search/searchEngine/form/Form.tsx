@@ -19,7 +19,7 @@ export const Form = ({ query, changeQuery, clearQuery }: FormProps) => {
         <form
             onSubmit={handleSubmit}
             role="search"
-            className="w-full sm:w-[200px] lg:w-[220px] h-10 flex justify-center items-center gap-3 relative overflow-hidden transition-width text-dark-50 bg-dark-100 rounded-[50px] focus:outline-none px-4"
+            className="w-full sm:w-[200px] lg:w-[220px] h-10 flex justify-center items-center gap-3 relative overflow-hidden transition-[width] text-dark-50 bg-dark-100 rounded-[50px] focus:outline-none px-4"
         >
             <Button query={query} clear={clearQuery} focus={focus} />
 
