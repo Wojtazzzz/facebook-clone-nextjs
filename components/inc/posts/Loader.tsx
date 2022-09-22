@@ -5,7 +5,7 @@ import { ListLoader } from '@components/inc/ListLoader';
 
 export const Loader = () => {
     return (
-        <ListLoader testId="posts-loadingLoader" count={15} styles="flex flex-col gap-4">
+        <ListLoader testId="posts-loadingLoader" count={15} styles="flex flex-col gap-2 md:gap-3">
             <SingleLoading />
         </ListLoader>
     );

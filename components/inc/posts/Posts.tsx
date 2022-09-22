@@ -26,7 +26,7 @@ export const Posts = ({ queryKey, endpoint }: PostsProps) => {
             next={fetchNextPage}
             hasMore={!!hasNextPage}
             loader={<Loader />}
-            className="flex flex-col gap-3 md:gap-4"
+            className="flex flex-col gap-2 md:gap-3"
         >
             {PostsComponents}
         </InfiniteScroll>
