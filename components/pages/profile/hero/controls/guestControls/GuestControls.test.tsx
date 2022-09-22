@@ -4,8 +4,7 @@ import PokesFirstPageJson from '@mocks/friendsList/pokes/firstPage.json';
 import { mock } from '@libs/nock';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { GuestPanel } from './GuestPanel';
-import nock from 'nock';
+import { GuestControls } from './GuestControls';
 
 describe('Profile GuestPanel tests', () => {
     beforeEach(() => {
@@ -16,7 +15,7 @@ describe('Profile GuestPanel tests', () => {
     });
 
     it('render send message and poke buttons button which are enabled', async () => {
-        renderWithDefaultData(<GuestPanel user={RootUserJson} />);
+        renderWithDefaultData(<GuestControls user={RootUserJson} />);
 
         const sendMessageButton = await screen.findByLabelText('Send message');
         const pokeButton = await screen.findByLabelText('Poke');
@@ -36,7 +35,7 @@ describe('Profile GuestPanel tests', () => {
             method: 'post',
         });
 
-        renderWithDefaultData(<GuestPanel user={RootUserJson} />);
+        renderWithDefaultData(<GuestControls user={RootUserJson} />);
 
         const pokeButton = await screen.findByLabelText('Poke');
         expect(pokeButton).toBeEnabled();

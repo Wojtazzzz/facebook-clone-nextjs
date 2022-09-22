@@ -9,9 +9,9 @@ describe('Profile User info tests', () => {
         renderWithDefaultData(
             <User
                 id={RootUserJson.id}
-                first_name={RootUserJson.first_name}
+                firstName={RootUserJson.first_name}
                 name={RootUserJson.name}
-                profile_image={RootUserJson.profile_image}
+                profileImage={RootUserJson.profile_image}
                 friends={ProfileFriendsJson}
             />
         );
@@ -27,9 +27,9 @@ describe('Profile User info tests', () => {
         renderWithDefaultData(
             <User
                 id={RootUserJson.id}
-                first_name={RootUserJson.first_name}
+                firstName={RootUserJson.first_name}
                 name={RootUserJson.name}
-                profile_image={RootUserJson.profile_image}
+                profileImage={RootUserJson.profile_image}
                 friends={ProfileFriendsJson}
             />
         );

@@ -1,11 +1,11 @@
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
-import { Panel } from '@components/pages/profile/hero/panel/Panel';
+import { Controls } from '@components/pages/profile/hero/controls/Controls';
 import RootUserJson from '@mocks/user/root.json';
+import JohnDoeUserJson from '@mocks/user/johnDoe.json';
 import { mock } from '@libs/nock';
 import { screen } from '@testing-library/react';
-import nock from 'nock';
 
-describe('Profile Panel tests', () => {
+describe('Controls component', () => {
     beforeEach(() => {
         mock({
             path: '/api/user',
@@ -13,8 +13,8 @@ describe('Profile Panel tests', () => {
         });
     });
 
-    it("render AuthPanel when profile is logged user's, GuestPanel not showed", async () => {
-        renderWithDefaultData(<Panel pageUser={RootUserJson} />);
+    it("render AuthControls when profile is logged user's, GuestControls not showed", async () => {
+        renderWithDefaultData(<Controls pageUser={RootUserJson} />);
 
         const editButton = await screen.findByLabelText('Edit profile');
         const sendMessageButton = screen.queryByLabelText('Send message');
@@ -25,8 +25,8 @@ describe('Profile Panel tests', () => {
         expect(pokeButton).not.toBeInTheDocument();
     });
 
-    it("render GuestPanel when profile is not logged user's, AuthPanel not showed", async () => {
-        renderWithDefaultData(<Panel pageUser={RootUserJson} />);
+    it("render GuestControls when profile is not logged user's, AuthControls not showed", async () => {
+        renderWithDefaultData(<Controls pageUser={JohnDoeUserJson} />);
 
         const editButton = screen.queryByLabelText('Edit profile');
         const sendMessageButton = await screen.findByLabelText('Send message');
