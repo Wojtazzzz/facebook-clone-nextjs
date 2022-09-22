@@ -42,6 +42,22 @@ describe('Notifications component', () => {
         expect(dropdown).toBeInTheDocument();
     });
 
+    it('close dropdown by click on close button', async () => {
+        renderWithDefaultData(<Notifications />);
+
+        const button = screen.getByLabelText('Notifications');
+        await user.click(button);
+
+        const dropdown = screen.getByTestId('dropdown');
+
+        expect(dropdown).toBeInTheDocument();
+
+        const closeButton = screen.getByLabelText('Close dropdown');
+        await user.click(closeButton);
+
+        expect(dropdown).not.toBeInTheDocument();
+    });
+
     it('dropdown render properly list', async () => {
         renderWithDefaultData(<Notifications />);
 

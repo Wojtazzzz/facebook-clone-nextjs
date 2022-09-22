@@ -1,6 +1,6 @@
 import { List as MessengerList } from '../messenger/list/List';
 import { List as NotificationsList } from '../notifications/list/List';
-import { Header } from './Header';
+import { Header } from './header/Header';
 import * as Popover from '@radix-ui/react-popover';
 
 interface DropdownProps {
@@ -23,7 +23,7 @@ export const Dropdown = ({ type, close }: DropdownProps) => {
                     data-testid="dropdown"
                     className="w-[260px] sm:w-[300px] md:w-[360px] flex flex-col gap-3 bg-dark-200 shadow-lg rounded-xl p-3"
                 >
-                    <Header title={type} />
+                    <Header title={type} close={close} />
 
                     {type === 'Messenger' ? <MessengerList close={close} /> : <NotificationsList close={close} />}
                 </div>

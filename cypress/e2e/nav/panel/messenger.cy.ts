@@ -71,6 +71,21 @@ describe('Messenger tests', () => {
         cy.get('[data-testid="dropdown"]').should('not.exist');
     });
 
+    it('messenger dissapears when click on close button', () => {
+        cy.visit('/');
+        cy.wait('@user');
+
+        cy.get('[data-testid="nav"]').within(() => {
+            cy.get('[aria-label="Messenger"]').click();
+        });
+
+        cy.get('[data-testid="dropdown"]').within(() => {
+            cy.get('[aria-label="Close dropdown"]').click();
+        });
+
+        cy.get('[data-testid="dropdown"]').should('not.exist');
+    });
+
     it('open messenger, see 15 users, fetch more users by scrolling to bottom', () => {
         cy.create('Friendship', 22, {
             user_id: 1,

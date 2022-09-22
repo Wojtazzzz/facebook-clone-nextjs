@@ -62,6 +62,21 @@ describe('Notifications tests', () => {
         cy.get('[data-testid="dropdown"]').should('not.exist');
     });
 
+    it('notifications dissapears when click on close button', () => {
+        cy.visit('/');
+        cy.wait('@user');
+
+        cy.get('[data-testid="nav"]').within(() => {
+            cy.get('[aria-label="Notifications"]').click();
+        });
+
+        cy.get('[data-testid="dropdown"]').within(() => {
+            cy.get('[aria-label="Close dropdown"]').click();
+        });
+
+        cy.get('[data-testid="dropdown"]').should('not.exist');
+    });
+
     it('list render empty component when api return empty data', () => {
         cy.intercept('/api/notifications?page=1').as('notifications_page_1');
 
@@ -98,6 +113,7 @@ describe('Notifications tests', () => {
         cy.artisan('data:notification 1 3');
 
         cy.intercept('/api/notifications?page=1').as('notifications_page_1');
+        cy.intercept('/api/notifications').as('markAsRead');
 
         cy.visit('/');
 
@@ -108,6 +124,7 @@ describe('Notifications tests', () => {
         });
 
         cy.wait('@notifications_page_1');
+        cy.wait('@markAsRead');
 
         cy.get('[id="list-of-notifications"] button').should('have.length', 3);
         cy.get('[id="list-of-notifications"] button').should('not.have.class', 'opacity-60');
@@ -115,7 +132,7 @@ describe('Notifications tests', () => {
         cy.get('body').type('{esc}');
 
         // wait for TRQ will mark data as stale
-        cy.wait(3000);
+        cy.wait(5000);
 
         cy.get('[data-testid="nav"]').within(() => {
             cy.get('[aria-label="Notifications"]').click();
