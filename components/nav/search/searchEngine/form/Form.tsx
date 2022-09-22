@@ -21,6 +21,8 @@ export const Form = ({ query, changeQuery, clearQuery }: FormProps) => {
             role="search"
             className="w-full sm:w-[200px] lg:w-[220px] h-10 flex justify-center items-center gap-3 relative overflow-hidden transition-width text-dark-50 bg-dark-100 rounded-[50px] focus:outline-none px-4"
         >
+            <Button query={query} clear={clearQuery} focus={focus} />
+
             <input
                 ref={inputRef}
                 aria-label="Search user"
@@ -32,8 +34,6 @@ export const Form = ({ query, changeQuery, clearQuery }: FormProps) => {
                 className="w-full sm:w-[150px] lg:w-[170px] relative z-10 text-sm sm:text-base bg-transparent focus:outline-none"
                 onChange={changeQuery}
             />
-
-            <Button query={query} clear={clearQuery} focus={focus} />
         </form>
     );
 };
