@@ -16,6 +16,11 @@ describe('Messenger component', () => {
             path: '/api/messages?page=1',
             data: MessengerFirstPageJson,
         });
+
+        mock({
+            path: '/api/messages/checkUnread',
+            data: [false],
+        });
     });
 
     it('not render dropdown by default', () => {

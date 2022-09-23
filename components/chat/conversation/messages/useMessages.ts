@@ -1,15 +1,15 @@
 import { useInfiniteData } from '@hooks/useInfiniteData';
 import { axios } from '@libs/axios';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import type { INotification } from '@utils/types';
+import type { IChatMessage } from '@utils/types';
 
-export const useNotifications = () => {
+export const useMessages = (friendId: number) => {
     const queryClient = useQueryClient();
     const mutation = useMutation(mutationFn);
 
-    return useInfiniteData<INotification>({
-        queryKey: ['notifications'],
-        endpoint: '/api/notifications',
+    return useInfiniteData<IChatMessage>({
+        queryKey: ['chat', friendId],
+        endpoint: `/api/messages/${friendId}`,
         options: {
             onSuccess: (data) => {
                 if (!data) return;
@@ -26,17 +26,12 @@ export const useNotifications = () => {
 
                 if (!ids.length) return;
 
-                mutation.mutate(
-                    { ids },
-                    { onSuccess: () => queryClient.invalidateQueries(['notifications', 'checkUnread']) }
-                );
+                mutation.mutate(friendId, {
+                    onSuccess: () => queryClient.invalidateQueries(['messenger', 'checkUnread']),
+                });
             },
         },
     });
 };
 
-type IMutationData = {
-    ids: string[];
-};
-
-const mutationFn = (data: IMutationData) => axios.put('/api/notifications', data);
+const mutationFn = (friendId: number) => axios.put(`/api/messages/${friendId}/update`);

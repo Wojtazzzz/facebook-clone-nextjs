@@ -2,7 +2,7 @@ import { Dropdown } from '../inc/Dropdown';
 import { useMessenger } from './useMessenger';
 import { memo } from 'react';
 import * as Popover from '@radix-ui/react-popover';
-import { Trigger } from './Trigger';
+import { Trigger } from './trigger/Trigger';
 
 export const Messenger = memo(() => {
     const { isActive, open, close } = useMessenger();

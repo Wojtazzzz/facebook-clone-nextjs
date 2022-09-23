@@ -79,12 +79,20 @@ describe('Notifications tests', () => {
 
     it('list render empty component when api return empty data', () => {
         cy.intercept('/api/notifications?page=1').as('notifications_page_1');
+        cy.intercept('/api/notifications/checkUnread').as('checkUnread');
 
         cy.visit('/');
 
         cy.wait('@user');
+        cy.wait('@checkUnread');
 
         cy.get('[data-testid="nav"]').within(() => {
+            cy.get('[aria-label="Notifications"]')
+                .parent()
+                .within(() => {
+                    cy.get('[data-testid="alert"]').should('not.exist');
+                });
+
             cy.get('[aria-label="Notifications"]').click();
         });
 
@@ -140,5 +148,40 @@ describe('Notifications tests', () => {
 
         cy.get('[id="list-of-notifications"] button').should('have.length', 3);
         cy.get('[id="list-of-notifications"] button').should('have.class', 'opacity-60');
+    });
+
+    it('notifications button has alert icon when api return unread notifications, read that notifications, see that alert icon dissapear', () => {
+        cy.artisan('data:notification 1 3');
+
+        cy.intercept('/api/notifications/checkUnread').as('checkUnread');
+
+        cy.visit('/');
+
+        cy.wait('@user');
+        cy.wait('@checkUnread');
+
+        cy.get('[data-testid="nav"]').within(() => {
+            cy.get('[aria-label="Notifications"]')
+                .parent()
+                .within(() => {
+                    cy.get('[data-testid="alert"]').should('be.visible');
+                });
+
+            cy.intercept('/api/notifications?page=1').as('notifications_page_1');
+            cy.intercept('/api/notifications').as('markAsRead');
+            cy.intercept('/api/notifications/checkUnread').as('checkUnread');
+
+            cy.get('[aria-label="Notifications"]').click();
+
+            cy.wait('@notifications_page_1');
+            cy.wait('@markAsRead');
+            cy.wait('@checkUnread');
+
+            cy.get('[aria-label="Notifications"]')
+                .parent()
+                .within(() => {
+                    cy.get('[data-testid="alert"]').should('not.exist');
+                });
+        });
     });
 });

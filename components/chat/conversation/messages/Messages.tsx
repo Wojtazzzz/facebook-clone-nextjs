@@ -4,18 +4,15 @@ import { Message } from '@components/chat/conversation/messages/message/Message'
 import { EmptyChat } from '@components/chat/conversation/messages/EmptyChat';
 import { ApiError } from '@components/inc/ApiError';
 import type { IChatFriend, IChatMessage } from '@utils/types';
-import { useInfiniteData } from '@hooks/useInfiniteData';
 import { Loader } from './Loader';
+import { useMessages } from './useMessages';
 
 interface MessagesProps {
     friend: IChatFriend;
 }
 
 export const Messages = memo<MessagesProps>(({ friend }) => {
-    const { data, isLoading, isError, isEmpty, hasNextPage, fetchNextPage } = useInfiniteData<IChatMessage>({
-        queryKey: ['chat', friend.id],
-        endpoint: `/api/messages/${friend.id}`,
-    });
+    const { data, isLoading, isError, isEmpty, hasNextPage, fetchNextPage } = useMessages(friend.id);
 
     if (isLoading) return <Loader testId="messages-loader_loading" />;
     if (!data || isError) return <ApiError />;

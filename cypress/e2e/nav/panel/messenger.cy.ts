@@ -111,15 +111,25 @@ describe('Messenger tests', () => {
         cy.get('button[aria-label="Click to open conversation"]').should('have.length', 22);
     });
 
-    it('messenger render empty component because api return empty data', () => {
+    it("messenger doesn't have icon and render empty component when api return empty response", () => {
         cy.intercept('/api/messages?page=1').as('messages_page_1');
+        cy.intercept('/api/messages/checkUnread').as('checkUnread');
 
         cy.visit('/');
 
         cy.wait('@user');
+        cy.wait('@checkUnread');
 
         cy.get('[data-testid="nav"]').within(() => {
             cy.get('[aria-label="Messenger"]').click();
+        });
+
+        cy.get('[data-testid="nav"]').within(() => {
+            cy.get('[aria-label="Messenger"]')
+                .parent()
+                .within(() => {
+                    cy.get('[data-testid="alert"]').should('not.exist');
+                });
         });
 
         cy.wait('@messages_page_1');
@@ -141,5 +151,102 @@ describe('Messenger tests', () => {
         cy.wait('@messages_page_1');
 
         cy.get('[data-testid="server-error"]').should('be.visible');
+    });
+
+    it('messenger button has alert icon when api return unread messages from one user, read that messages, see that alert in messenger icon dissapear', () => {
+        cy.createUser(1, true, {
+            id: 999,
+        });
+
+        cy.create('Message', 3, {
+            receiver_id: 1,
+            sender_id: 999,
+        });
+
+        cy.intercept('/api/messages/checkUnread').as('checkUnread');
+
+        cy.visit('/');
+
+        cy.wait('@user');
+
+        cy.get('[data-testid="nav"]').within(() => {
+            cy.get('[aria-label="Messenger"]')
+                .parent()
+                .within(() => {
+                    cy.get('[data-testid="alert"]').should('be.visible');
+                });
+        });
+
+        cy.intercept('/api/messages/999/update').as('markAsRead');
+
+        cy.get('[data-testid="contacts-list"]').within(() => {
+            cy.get('button[aria-label*="Open chat with"]').click();
+        });
+
+        cy.get('[data-testid="chat"]').should('be.visible');
+
+        cy.wait('@markAsRead');
+
+        cy.get('[data-testid="nav"]').within(() => {
+            cy.get('[aria-label="Messenger"]')
+                .parent()
+                .within(() => {
+                    cy.get('[data-testid="alert"]').should('not.exist');
+                });
+        });
+    });
+
+    it("messenger button has alert icon when api return unread messages from many users, read messages from only one user, see that alert in messenger icon doesn't dissapear", () => {
+        cy.createUser(1, true, {
+            first_name: 'John',
+            last_name: 'Doe',
+            id: 999,
+        });
+
+        cy.createUser(1, true, {
+            id: 99999,
+        });
+
+        cy.create('Message', 3, {
+            receiver_id: 1,
+            sender_id: 999,
+        });
+
+        cy.create('Message', 3, {
+            receiver_id: 1,
+            sender_id: 99999,
+        });
+
+        cy.intercept('/api/messages/checkUnread').as('checkUnread');
+
+        cy.visit('/');
+
+        cy.wait('@user');
+
+        cy.get('[data-testid="nav"]').within(() => {
+            cy.get('[aria-label="Messenger"]')
+                .parent()
+                .within(() => {
+                    cy.get('[data-testid="alert"]').should('be.visible');
+                });
+        });
+
+        cy.intercept('/api/messages/999/update').as('markAsRead');
+
+        cy.get('[data-testid="contacts-list"]').within(() => {
+            cy.get('button[aria-label="Open chat with John Doe"]').click();
+        });
+
+        cy.get('[data-testid="chat"]').should('be.visible');
+
+        cy.wait('@markAsRead');
+
+        cy.get('[data-testid="nav"]').within(() => {
+            cy.get('[aria-label="Messenger"]')
+                .parent()
+                .within(() => {
+                    cy.get('[data-testid="alert"]').should('be.visible');
+                });
+        });
     });
 });

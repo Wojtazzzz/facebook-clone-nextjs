@@ -21,6 +21,11 @@ describe('Notifications component', () => {
             path: '/api/notifications',
             method: 'put',
         });
+
+        mock({
+            path: '/api/notifications/checkUnread',
+            data: [false],
+        });
     });
 
     it('not render dropdown by default', () => {

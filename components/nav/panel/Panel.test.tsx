@@ -12,12 +12,22 @@ describe('Panel component', () => {
     const user = userEvent.setup();
 
     beforeEach(() => {
+        mockResizeObserver();
+
         mock({
             path: '/api/user',
             data: RootUserJson,
         });
 
-        mockResizeObserver();
+        mock({
+            path: '/api/messages/checkUnread',
+            data: [false],
+        });
+
+        mock({
+            path: '/api/notifications/checkUnread',
+            data: [false],
+        });
     });
 
     it('open messenger dropdown when click on messenger button and close when click one more time', async () => {
