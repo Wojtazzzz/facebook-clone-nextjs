@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type { IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { clsx } from 'clsx';
 
 interface InfoProps {
     icon: IconDefinition;
@@ -15,7 +16,8 @@ export const Info = ({ icon, title, info }: InfoProps) => {
             </div>
 
             <span className="text-light-100">
-                <span>{title}</span> {info && <span className="font-medium">{info}</span>}
+                <span className={clsx(!info && 'font-medium')}>{title}</span>{' '}
+                {info && <span className="font-medium">{info}</span>}
             </span>
         </li>
     );
