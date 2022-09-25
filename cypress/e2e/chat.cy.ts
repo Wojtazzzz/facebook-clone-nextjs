@@ -1,5 +1,7 @@
 import { useDatabaseMigrations } from 'cypress-laravel';
 
+const USER_NAME = `${Cypress.env('USER_FIRST_NAME')} ${Cypress.env('USER_LAST_NAME')}`;
+
 describe('Chat tests', () => {
     useDatabaseMigrations();
 
@@ -463,6 +465,312 @@ describe('Chat tests', () => {
                 cy.get('img').should('not.exist');
             });
         });
+    });
+
+    it('cannot create message with invalid type of file', () => {
+        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
+
+        cy.visit('/');
+
+        cy.wait('@user');
+        cy.wait('@contacts_page_1');
+
+        cy.get('[data-testid="contacts-list"]').within(() => {
+            cy.contains(`${friend.first_name} ${friend.last_name}`).click();
+        });
+
+        cy.wait('@messages_page_1');
+
+        cy.get('[data-testid="chat"]').should('be.visible');
+
+        cy.intercept('/api/messages').as('messages');
+        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
+
+        cy.get('input[aria-label="Message input"]').type('Hello World!');
+
+        cy.get('input[type="file"]').attachFile(['/file.pdf']);
+        cy.get('[data-testid="chat-uploadedImages"]').should('not.exist');
+
+        cy.get('button[aria-label="Submit message"]').click();
+
+        cy.wait('@messages');
+        cy.wait('@messages_page_1');
+
+        cy.get('[data-testid="chat"]').within(() => {
+            cy.get('[aria-label="Message sent"]').within(() => {
+                cy.contains('Hello World!');
+                cy.get('img').should('not.exist');
+            });
+        });
+    });
+
+    it('users can messages to each other', () => {
+        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
+
+        cy.visit('/');
+
+        cy.wait('@user');
+        cy.wait('@contacts_page_1');
+
+        cy.get('[data-testid="contacts-list"]').within(() => {
+            cy.contains(`${friend.first_name} ${friend.last_name}`).click();
+        });
+
+        cy.wait('@messages_page_1');
+
+        cy.get('[data-testid="chat"]').should('be.visible');
+
+        cy.intercept('/api/messages').as('messages');
+
+        cy.get('input[aria-label="Message input"]').type('Hello');
+        cy.get('button[aria-label="Submit message"]').click();
+
+        cy.wait('@messages');
+
+        cy.get('[data-testid="chat-messages"]').within(() => {
+            cy.get('article[aria-label="Message sent"]').contains('Hello');
+        });
+
+        cy.relogin(999);
+
+        cy.intercept(`/api/messages/1?page=1`).as('messages_page_1');
+
+        cy.visit('/');
+
+        cy.wait('@user');
+        cy.wait('@contacts_page_1');
+
+        cy.get('[data-testid="contacts-list"]').within(() => {
+            cy.contains(USER_NAME).click();
+        });
+
+        cy.wait('@messages_page_1');
+
+        cy.get('[data-testid="chat"]').should('be.visible');
+
+        cy.get('[data-testid="chat-messages"]').within(() => {
+            cy.get('article[aria-label="Message received"]').contains('Hello');
+        });
+
+        cy.get('input[aria-label="Message input"]').type('Hi');
+        cy.get('button[aria-label="Submit message"]').click();
+
+        cy.wait('@messages');
+
+        cy.get('[data-testid="chat-messages"]').within(() => {
+            cy.get('article[aria-label="Message received"]').contains('Hello');
+            cy.get('article[aria-label="Message sent"]').contains('Hi');
+        });
+
+        cy.relogin(1);
+
+        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
+
+        cy.visit('/');
+
+        cy.wait('@user');
+        cy.wait('@contacts_page_1');
+
+        cy.get('[data-testid="contacts-list"]').within(() => {
+            cy.contains(`${friend.first_name} ${friend.last_name}`).click();
+        });
+
+        cy.wait('@messages_page_1');
+
+        cy.get('[data-testid="chat"]').should('be.visible');
+
+        cy.get('[data-testid="chat-messages"]').within(() => {
+            cy.get('article[aria-label="Message sent"]').contains('Hello');
+            cy.get('article[aria-label="Message received"]').contains('Hi');
+        });
+
+        cy.get('input[aria-label="Message input"]').type('How are you?');
+        cy.get('button[aria-label="Submit message"]').click();
+
+        cy.wait('@messages');
+
+        cy.get('[data-testid="chat-messages"]').within(() => {
+            cy.get('article[aria-label="Message sent"]').contains('Hello');
+            cy.get('article[aria-label="Message received"]').contains('Hi');
+            cy.get('article[aria-label="Message sent"]').contains('How are you?');
+        });
+
+        cy.relogin(999);
+
+        cy.intercept(`/api/messages/1?page=1`).as('messages_page_1');
+
+        cy.visit('/');
+
+        cy.wait('@user');
+        cy.wait('@contacts_page_1');
+
+        cy.get('[data-testid="contacts-list"]').within(() => {
+            cy.contains(USER_NAME).click();
+        });
+
+        cy.wait('@messages_page_1');
+
+        cy.get('[data-testid="chat"]').should('be.visible');
+
+        cy.get('[data-testid="chat-messages"]').within(() => {
+            cy.get('article[aria-label="Message received"]').contains('Hello');
+            cy.get('article[aria-label="Message sent"]').contains('Hi');
+            cy.get('article[aria-label="Message received"]').contains('How are you');
+        });
+
+        cy.get('input[aria-label="Message input"]').type('Nice thanks');
+        cy.get('button[aria-label="Submit message"]').click();
+
+        cy.wait('@messages');
+
+        cy.get('[data-testid="chat-messages"]').within(() => {
+            cy.get('article[aria-label="Message received"]').contains('Hello');
+            cy.get('article[aria-label="Message sent"]').contains('Hi');
+            cy.get('article[aria-label="Message received"]').contains('How are you?');
+            cy.get('article[aria-label="Message sent"]').contains('Nice thanks');
+        });
+
+        cy.relogin(1);
+
+        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
+
+        cy.visit('/');
+
+        cy.wait('@user');
+        cy.wait('@contacts_page_1');
+
+        cy.get('[data-testid="contacts-list"]').within(() => {
+            cy.contains(`${friend.first_name} ${friend.last_name}`).click();
+        });
+
+        cy.wait('@messages_page_1');
+
+        cy.get('[data-testid="chat"]').should('be.visible');
+
+        cy.get('[data-testid="chat-messages"]').within(() => {
+            cy.get('article[aria-label="Message sent"]').contains('Hello');
+            cy.get('article[aria-label="Message received"]').contains('Hi');
+            cy.get('article[aria-label="Message sent"]').contains('How are you');
+            cy.get('article[aria-label="Message received"]').contains('Nice thanks');
+        });
+    });
+
+    it('message has sent status icon after sent, received status icon after fetching and seen status icon after user read that message', () => {
+        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
+
+        cy.visit('/');
+
+        cy.wait('@user');
+        cy.wait('@contacts_page_1');
+
+        cy.get('[data-testid="contacts-list"]').within(() => {
+            cy.contains(`${friend.first_name} ${friend.last_name}`).click();
+        });
+
+        cy.wait('@messages_page_1');
+
+        cy.get('[data-testid="chat"]').should('be.visible');
+
+        cy.intercept('/api/messages').as('messages');
+
+        cy.get('input[aria-label="Message input"]').type('Hello');
+
+        cy.get('input[type="file"]').attachFile(['/file.pdf']);
+        cy.get('[data-testid="chat-uploadedImages"]').should('not.exist');
+
+        cy.get('button[aria-label="Submit message"]').click();
+
+        cy.get('[aria-label="Message sent"]')
+            .children()
+            .filter(':contains("Hello")')
+            .get('[data-testid="message-statusIcon"]')
+            .should('have.attr', 'title', 'Sending');
+
+        cy.wait('@messages');
+
+        cy.get('[aria-label="Message sent"]')
+            .children()
+            .filter(':contains("Hello")')
+            .get('[data-testid="message-statusIcon"]')
+            .should('have.attr', 'title', 'Delivered');
+
+        cy.intercept('/api/messages').as('messages');
+
+        cy.get('input[aria-label="Message input"]').type('World');
+
+        cy.get('button[aria-label="Submit message"]').click();
+
+        cy.get('[aria-label="Message sent"]')
+            .children()
+            .filter(':contains("World")')
+            .get('[data-testid="message-statusIcon"]')
+            .should('have.attr', 'title', 'Sending');
+
+        cy.wait('@messages');
+
+        cy.get('[aria-label="Message sent"]')
+            .children()
+            .filter(':contains("World")')
+            .get('[data-testid="message-statusIcon"]')
+            .should('have.attr', 'title', 'Delivered');
+
+        cy.relogin(999);
+
+        cy.intercept('/api/contacts?page=1').as('contacts_page_1');
+        cy.intercept('/api/messages/1?page=1').as('messages_page_1');
+        cy.intercept('/api/messages/1/update').as('read');
+
+        cy.get('[data-testid="contacts-list"]').within(() => {
+            cy.contains(USER_NAME).click();
+        });
+
+        cy.wait('@messages_page_1');
+        cy.wait('@read');
+
+        cy.get('[aria-label="Message received"]')
+            .children()
+            .filter(':contains("Hello")')
+            .get('[data-testid="message-statusIcon"]')
+            .within(() => {
+                cy.get('[data-testid="statusIcon-empty"]').should('exist');
+            });
+
+        cy.get('[aria-label="Message received"]')
+            .children()
+            .filter(':contains("World")')
+            .get('[data-testid="message-statusIcon"]')
+            .within(() => {
+                cy.get('img[title*="Seen at"]').should('be.visible');
+            });
+
+        cy.intercept('/api/contacts?page=1').as('contacts_page_1');
+        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
+
+        cy.relogin(1);
+
+        cy.wait('@contacts_page_1');
+
+        cy.get('[data-testid="contacts-list"]').within(() => {
+            cy.contains(`${friend.first_name} ${friend.last_name}`).click();
+        });
+
+        cy.wait('@messages_page_1');
+
+        cy.get('[aria-label="Message sent"]')
+            .children()
+            .filter(':contains("Hello")')
+            .get('[data-testid="message-statusIcon"]')
+            .within(() => {
+                cy.get('[data-testid="statusIcon-empty"]').should('exist');
+            });
+
+        cy.get('[aria-label="Message sent"]')
+            .children()
+            .filter(':contains("World")')
+            .get('[data-testid="message-statusIcon"]')
+            .within(() => {
+                cy.get('img[title*="Seen at"]').should('be.visible');
+            });
     });
 
     // it('open chat, conversation should has 15 messages, WIP', () => {

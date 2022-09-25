@@ -9,11 +9,13 @@ interface StatusIconProps {
 }
 
 export const StatusIcon = ({ icon, friendAvatar, readAt }: StatusIconProps) => {
+    const title = toPascalCase(icon);
+
     return (
         <div
             data-testid="message-statusIcon"
             className="w-[20px] flex justify-center text-sm text-dark-100 mt-auto"
-            title={toPascalCase(icon)}
+            title={title}
         >
             <Icon icon={icon} friendAvatar={friendAvatar} readAt={readAt} />
         </div>
