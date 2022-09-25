@@ -15,9 +15,9 @@ export const useMessages = (friendId: number) => {
                 if (!data) return;
 
                 const ids = data.pages.flatMap((page) =>
-                    page.data.flatMap((notification) => {
-                        if (!notification.read_at) {
-                            return notification.id;
+                    page.data.flatMap((message) => {
+                        if (!message.read_at && message.is_received) {
+                            return message.id;
                         }
 
                         return [];
