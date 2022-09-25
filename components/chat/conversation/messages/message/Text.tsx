@@ -15,7 +15,7 @@ export const Text = ({ text, createdAt, isReceived }: TextProps) => {
                 title={createdAt}
                 className={clsx(
                     'w-fit max-w-[205px] text-[0.9375rem] leading-5 text-light-50 break-words py-2 px-3',
-                    isReceived ? 'bg-dark-100 rounded-[18px]' : 'bg-primary rounded-[18px] ml-auto'
+                    isReceived ? 'bg-dark-100 rounded-[18px]' : 'bg-primary rounded-[18px]'
                 )}
             >
                 {text}

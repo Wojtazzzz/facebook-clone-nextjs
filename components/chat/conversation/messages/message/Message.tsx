@@ -1,7 +1,7 @@
 import type { IChatMessage, IChatMessageStatus, IMessageIconType } from '@utils/types';
 import { Content } from './content/Content';
 import { FriendAvatar } from './FriendAvatar';
-import { StatusIcon } from './StatusIcon';
+import { StatusIcon } from './statusIcon/StatusIcon';
 
 interface MessageProps extends IChatMessage {
     senderAvatar: string;
@@ -22,14 +22,12 @@ export const Message = ({
     const icon = getIcon(isLastRead, is_received, status);
 
     return (
-        <article aria-label={ariaLabel} className="w-full flex justify-end items-end gap-0.5">
+        <article aria-label={ariaLabel} className="w-full flex justify-between items-center gap-0.5">
             {is_received && <FriendAvatar profileImage={senderAvatar} />}
 
             <Content content={content} images={images} createdAt={created_at} isReceived={is_received} />
 
-            <div>
-                <StatusIcon icon={icon} friendAvatar={senderAvatar} readAt={read_at} />
-            </div>
+            <StatusIcon icon={icon} friendAvatar={senderAvatar} readAt={read_at} />
         </article>
     );
 };

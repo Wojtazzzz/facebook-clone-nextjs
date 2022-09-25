@@ -5,6 +5,8 @@ interface ImagesProps {
 }
 
 export const Images = ({ images }: ImagesProps) => {
+    if (images.length < 1) return null;
+
     // eslint-disable-next-line jsx-a11y/alt-text
     const ImagesComponents = images.map((image, i) => <Image key={i} image={image} />);
 
