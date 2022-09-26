@@ -12,7 +12,6 @@ describe('Profile User info tests', () => {
                 firstName={RootUserJson.first_name}
                 name={RootUserJson.name}
                 profileImage={RootUserJson.profile_image}
-                friends={ProfileFriendsJson}
             />
         );
 
@@ -30,7 +29,6 @@ describe('Profile User info tests', () => {
                 firstName={RootUserJson.first_name}
                 name={RootUserJson.name}
                 profileImage={RootUserJson.profile_image}
-                friends={ProfileFriendsJson}
             />
         );
 

@@ -1,18 +1,17 @@
 import { Profile as ProfileComponent } from '@components/pages/profile/Profile';
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import type { ParsedUrlQuery } from 'querystring';
-import type { IProfileFriendsData, IUserProfile, NextPageWithLayout } from '@utils/types';
+import type { IUserProfile, NextPageWithLayout } from '@utils/types';
 import { ProfileLayout } from '@components/layouts/authLayout/mainLayout/ProfileLayout';
 
 interface ProfileProps {
     user: IUserProfile;
-    friends: IProfileFriendsData;
 }
 
-const ProfilePage: NextPageWithLayout<ProfileProps> = ({ user, friends }) => {
+const ProfilePage: NextPageWithLayout<ProfileProps> = ({ user }) => {
     return (
-        <ProfileLayout user={user} friends={friends}>
-            <ProfileComponent user={user} friends={friends} />;
+        <ProfileLayout user={user}>
+            <ProfileComponent user={user} />;
         </ProfileLayout>
     );
 };
