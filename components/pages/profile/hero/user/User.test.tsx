@@ -1,10 +1,18 @@
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import RootUserJson from '@mocks/user/root.json';
-import ProfileFriendsJson from '@mocks/ssg/profileFriends.json';
+import NineFriends from '@mocks/profile/friends/nineFriends.json';
 import { screen, within } from '@testing-library/react';
 import { User } from '@components/pages/profile/hero/user/User';
+import { mock } from '@libs/nock';
 
 describe('Profile User info tests', () => {
+    beforeEach(() => {
+        mock({
+            path: `/api/users/${RootUserJson.id}/friends/getByCount?count=8`,
+            data: NineFriends,
+        });
+    });
+
     it('render properly username and profile image', async () => {
         renderWithDefaultData(
             <User
@@ -12,7 +20,6 @@ describe('Profile User info tests', () => {
                 firstName={RootUserJson.first_name}
                 name={RootUserJson.name}
                 profileImage={RootUserJson.profile_image}
-                friends={ProfileFriendsJson}
             />
         );
 
@@ -23,23 +30,22 @@ describe('Profile User info tests', () => {
         expect(image).toBeInTheDocument();
     });
 
-    it('render max 5 friends images, but text point on amount of all friends', () => {
+    it('render max 8 friends images, but text point on amount of all friends', async () => {
         renderWithDefaultData(
             <User
                 id={RootUserJson.id}
                 firstName={RootUserJson.first_name}
                 name={RootUserJson.name}
                 profileImage={RootUserJson.profile_image}
-                friends={ProfileFriendsJson}
             />
         );
 
-        const friendsAmount = screen.getByText(`${ProfileFriendsJson.amount} Friends`);
+        const friendsAmount = await screen.findByText(`${NineFriends.count} friends`);
 
         const friendsImagesContainer = screen.getByTestId('profile-friendsList');
         const friendsImages = within(friendsImagesContainer).getAllByRole('img');
 
         expect(friendsAmount).toBeInTheDocument();
-        expect(friendsImages).toHaveLength(5);
+        expect(friendsImages).toHaveLength(8);
     });
 });

@@ -159,11 +159,6 @@ export type IBirthday = {
     name: string;
 };
 
-export type IProfileFriendsData = {
-    amount: number;
-    list: IUser[];
-};
-
 export type ILike = {
     id: number;
     author: {

@@ -10,7 +10,7 @@ import { mock } from '@libs/nock';
 describe('Friends tests', () => {
     it('render properly header', () => {
         mock({
-            path: `/api/users/${RootUserJson.id}/friends?count=9`,
+            path: `/api/users/${RootUserJson.id}/friends/getByCount?count=9`,
             data: NineFriendsJson,
         });
 
@@ -21,9 +21,9 @@ describe('Friends tests', () => {
         expect(header).toBeInTheDocument();
     });
 
-    it('can render nine friends', async () => {
+    it('can render 9 friends', async () => {
         mock({
-            path: `/api/users/${RootUserJson.id}/friends?count=9`,
+            path: `/api/users/${RootUserJson.id}/friends/getByCount?count=9`,
             data: NineFriendsJson,
         });
 
@@ -36,9 +36,9 @@ describe('Friends tests', () => {
         expect(listElements).toHaveLength(9);
     });
 
-    it('can render one friend', async () => {
+    it('can render 1 friend', async () => {
         mock({
-            path: `/api/users/${RootUserJson.id}/friends?count=9`,
+            path: `/api/users/${RootUserJson.id}/friends/getByCount?count=9`,
             data: OneFriendJson,
         });
 
@@ -53,7 +53,7 @@ describe('Friends tests', () => {
 
     it('render friend name and image', async () => {
         mock({
-            path: `/api/users/${RootUserJson.id}/friends?count=9`,
+            path: `/api/users/${RootUserJson.id}/friends/getByCount?count=9`,
             data: OneFriendJson,
         });
 
@@ -62,15 +62,15 @@ describe('Friends tests', () => {
         const friend = await screen.findByRole('listitem');
 
         const image = within(friend).getByRole('img');
-        const name = within(friend).getByText(OneFriendJson[0].name);
+        const name = within(friend).getByText(OneFriendJson.friends[0].name);
 
         expect(image).toBeInTheDocument();
         expect(name).toBeInTheDocument();
     });
 
-    it('friend is link to his profile page', async () => {
+    it('friend element is link to his profile page', async () => {
         mock({
-            path: `/api/users/${RootUserJson.id}/friends?count=9`,
+            path: `/api/users/${RootUserJson.id}/friends/getByCount?count=9`,
             data: OneFriendJson,
         });
 
@@ -80,12 +80,12 @@ describe('Friends tests', () => {
 
         const link = within(friend).getByRole('link');
 
-        expect(link).toHaveAttribute('href', `/profile/${OneFriendJson[0].id}`);
+        expect(link).toHaveAttribute('href', `/profile/${OneFriendJson.friends[0].id}`);
     });
 
     it('render empty component when api return empty response', async () => {
         mock({
-            path: `/api/users/${RootUserJson.id}/friends?count=9`,
+            path: `/api/users/${RootUserJson.id}/friends/getByCount?count=9`,
             data: NoFriendsJson,
         });
 
@@ -100,7 +100,7 @@ describe('Friends tests', () => {
 
     it('render error component when api return server error', async () => {
         mock({
-            path: `/api/users/${RootUserJson.id}/friends?count=9`,
+            path: `/api/users/${RootUserJson.id}/friends/getByCount?count=9`,
             status: 500,
         });
 

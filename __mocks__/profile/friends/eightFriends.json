@@ -7,8 +7,7 @@
         { "id": 6, "name": "Sherman Schiller", "profile_image": "https://picsum.photos/seed/63318d29bf54f/168/168" },
         { "id": 7, "name": "Pansy Will", "profile_image": "https://picsum.photos/seed/63318d29cfbfd/168/168" },
         { "id": 8, "name": "Esta Kuhn", "profile_image": "https://picsum.photos/seed/63318d29e013d/168/168" },
-        { "id": 9, "name": "Kayley Hahn", "profile_image": "https://picsum.photos/seed/63318d29f02d5/168/168" },
-        { "id": 10, "name": "Delta Muller", "profile_image": "https://picsum.photos/seed/63318d558909a/168/168" }
+        { "id": 9, "name": "Kayley Hahn", "profile_image": "https://picsum.photos/seed/63318d29f02d5/168/168" }
     ],
-    "count": 9
+    "count": 8
 }
