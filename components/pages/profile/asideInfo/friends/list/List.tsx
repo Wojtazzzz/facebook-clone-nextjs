@@ -1,16 +1,15 @@
 import { ApiError } from '@components/inc/ApiError';
 import { EmptyList } from '@components/inc/EmptyList';
-import { Empty } from './Empty';
 import { Friend } from './Friend';
 import { Loader } from './Loader';
 import { useGetFriends } from './useGetFriends';
 
 interface ListProps {
-    id: number;
+    userId: number;
 }
 
-export const List = ({ id }: ListProps) => {
-    const { data, isError, isLoading } = useGetFriends(id);
+export const List = ({ userId }: ListProps) => {
+    const { data, isError, isLoading } = useGetFriends(userId);
 
     if (isLoading) return <Loader />;
     if (isError) return <ApiError />;

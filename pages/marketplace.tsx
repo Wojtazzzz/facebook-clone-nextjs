@@ -1,6 +1,9 @@
 import { AuthLayout } from '@components/layouts/authLayout/AuthLayout';
+import { MainLayout } from '@components/layouts/authLayout/mainLayout/MainLayout';
+import type { NextPageWithLayout } from '@utils/types';
+import type { ReactElement } from 'react';
 
-export default function Marketplace() {
+const MarketplacePage: NextPageWithLayout = () => {
     return (
         <AuthLayout>
             <div className="w-full text-center py-8">
@@ -8,4 +11,8 @@ export default function Marketplace() {
             </div>
         </AuthLayout>
     );
-}
+};
+
+export default MarketplacePage;
+
+MarketplacePage.getLayout = (page: ReactElement) => <MainLayout>{page}</MainLayout>;

@@ -1,21 +1,23 @@
-import { AuthLayout } from '@components/layouts/authLayout/AuthLayout';
 import { Profile as ProfileComponent } from '@components/pages/profile/Profile';
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import type { ParsedUrlQuery } from 'querystring';
-import type { IProfileFriendsData, IUserProfile } from '@utils/types';
+import type { IProfileFriendsData, IUserProfile, NextPageWithLayout } from '@utils/types';
+import { ProfileLayout } from '@components/layouts/authLayout/mainLayout/ProfileLayout';
 
 interface ProfileProps {
     user: IUserProfile;
     friends: IProfileFriendsData;
 }
 
-export default function Profile({ user, friends }: ProfileProps) {
+const ProfilePage: NextPageWithLayout<ProfileProps> = ({ user, friends }) => {
     return (
-        <AuthLayout>
-            <ProfileComponent user={user} friends={friends} />
-        </AuthLayout>
+        <ProfileLayout user={user} friends={friends}>
+            <ProfileComponent user={user} friends={friends} />;
+        </ProfileLayout>
     );
-}
+};
+
+export default ProfilePage;
 
 interface IParams extends ParsedUrlQuery {
     id: string;

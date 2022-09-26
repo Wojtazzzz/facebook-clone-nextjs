@@ -1,3 +1,6 @@
+import type { ReactElement, ReactNode } from 'react';
+import type { NextPage } from 'next';
+
 export type IUser = {
     id: number;
     name: string;
@@ -204,3 +207,7 @@ export type IValidationError = {
 export type IMessageIconType = 'AVATAR' | 'SENDING' | 'DELIVERED' | undefined;
 
 export type IChatFriend = IUser | IContact;
+
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+    getLayout?: (page: ReactElement) => ReactNode;
+};

@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router';
 import { useAuth } from '@hooks/useAuth';
-
 import Image from 'next/image';
 import { Button } from '@components/inc/Button';
 
@@ -15,12 +14,12 @@ export const NotLoaded = () => {
     };
 
     return (
-        <div className="w-full max-w-[500px] h-screen flex flex-col justify-center items-center mx-auto">
+        <div className="">
             <Image width={112} height={112} src="/img/not_available.svg" alt="Page is not available" />
 
             <span className="text-xl text-light-100 font-bold text-center mt-2">Ease down!</span>
             <span className="text-lg text-light-100 text-center">
-                You are too fast for our servers, wait for network requests ;)
+                You are too fast for our app, wait for network requests ;)
             </span>
 
             <Button

@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { useAuthMiddleware } from './useAuthMiddleware';
+import { useAuthMiddleware } from '../useAuthMiddleware';
 
 interface GuestLayoutProps {
     children: ReactNode;

@@ -1,10 +1,10 @@
 import { MainLayout } from '@components/layouts/authLayout/mainLayout/MainLayout';
-import { Friends } from '@components/pages/friends/Friends';
+import { Friends } from '@components/pages/profile/friends/Friends';
 import type { NextPageWithLayout } from '@utils/types';
 import type { ReactElement } from 'react';
 
 const FriendsPage: NextPageWithLayout = () => {
-    return <Friends type="Friends" />;
+    return <Friends />;
 };
 
 export default FriendsPage;

@@ -1,6 +1,5 @@
 import { Nav } from '@components/nav/Nav';
 import { Menu } from '@components/menu/Menu';
-import { Sidebar } from '@components/sidebar/Sidebar';
 import { Chat } from '@components/chat/Chat';
 import type { ReactNode } from 'react';
 import { useAuthMiddleware } from '../useAuthMiddleware';
@@ -23,13 +22,11 @@ export const AuthLayout = ({ children }: AuthLayoutProps) => {
 
             <Menu isActive={isActive} close={close} />
 
-            <main className="w-full pb-4 mt-14">{children}</main>
-
-            <Sidebar />
+            {children}
 
             <AlertModal />
 
-            {!!friend && <Chat friend={friend} />}
+            {friend && <Chat friend={friend} />}
         </>
     );
 };

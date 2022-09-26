@@ -1,12 +1,7 @@
-import { useRouter } from 'next/router';
 import { Birthdays } from './birthdays/Birthdays';
 import { Contacts } from './contacts/Contacts';
 
 export const Sidebar = () => {
-    const { route } = useRouter();
-
-    if (route !== '/') return null;
-
     return (
         <aside
             id="sidebar"

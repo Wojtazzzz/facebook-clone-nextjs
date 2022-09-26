@@ -52,7 +52,7 @@ describe('Message and Zoom component', () => {
         expect(message).toBeInTheDocument();
     });
 
-    it('Sent message has properly styles', () => {
+    it('Sent message has properly bg-color', () => {
         renderWithDefaultData(
             <Message
                 isLastRead={false}
@@ -69,11 +69,10 @@ describe('Message and Zoom component', () => {
 
         const message = screen.getByText('Test content');
 
-        expect(message).toHaveClass('ml-auto');
         expect(message).toHaveClass('bg-primary');
     });
 
-    it('Received message has properly styles', () => {
+    it('Received message has properly bg-color', () => {
         renderWithDefaultData(
             <Message
                 isLastRead={false}
@@ -90,7 +89,6 @@ describe('Message and Zoom component', () => {
 
         const message = screen.getByText('Test content');
 
-        expect(message).not.toHaveClass('ml-auto');
         expect(message).toHaveClass('bg-dark-100');
     });
 

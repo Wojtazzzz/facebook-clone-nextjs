@@ -1,10 +1,12 @@
-import { GuestLayout } from '@components/layouts/GuestLayout';
+import { GuestLayout } from '@components/layouts/guestLayout/GuestLayout';
 import { Auth } from '@components/pages/auth/Auth';
+import { NextPageWithLayout } from '@utils/types';
+import type { ReactElement } from 'react';
 
-export default function Login() {
-    return (
-        <GuestLayout>
-            <Auth />
-        </GuestLayout>
-    );
-}
+const LoginPage: NextPageWithLayout = () => {
+    return <Auth />;
+};
+
+export default LoginPage;
+
+LoginPage.getLayout = (page: ReactElement) => <GuestLayout>{page}</GuestLayout>;

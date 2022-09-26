@@ -14,12 +14,19 @@ import '@styles/input-autocomplete.css';
 import 'swiper/swiper.min.css';
 import 'swiper/components/navigation/navigation.min.css';
 import 'swiper/components/pagination/pagination.min.css';
+import type { NextPageWithLayout } from '@utils/types';
 
 config.autoAddCss = false;
 
 const queryClient = createQueryClient();
 
-export default function MyApp({ Component, pageProps }: AppProps) {
+type AppPropsWithLayout = AppProps & {
+    Component: NextPageWithLayout;
+};
+
+export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+    const getLayout = Component.getLayout || ((page) => page);
+
     return (
         <>
             <Head>
@@ -28,9 +35,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 
             <Provider store={store}>
                 <QueryClientProvider client={queryClient}>
-                    <Tooltip.Provider>
-                        <Component {...pageProps} />
-                    </Tooltip.Provider>
+                    <Tooltip.Provider>{getLayout(<Component {...pageProps} />)}</Tooltip.Provider>
                 </QueryClientProvider>
             </Provider>
         </>

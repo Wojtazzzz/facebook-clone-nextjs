@@ -1,10 +1,12 @@
-import { AuthLayout } from '@components/layouts/authLayout/AuthLayout';
+import { MainLayout } from '@components/layouts/authLayout/mainLayout/MainLayout';
 import { Friends } from '@components/pages/friends/Friends';
+import type { NextPageWithLayout } from '@utils/types';
+import type { ReactElement } from 'react';
 
-export default function SuggestsPage() {
-    return (
-        <AuthLayout>
-            <Friends type="Suggests" />
-        </AuthLayout>
-    );
-}
+const SuggestsPage: NextPageWithLayout = () => {
+    return <Friends type="Suggests" />;
+};
+
+export default SuggestsPage;
+
+SuggestsPage.getLayout = (page: ReactElement) => <MainLayout>{page}</MainLayout>;

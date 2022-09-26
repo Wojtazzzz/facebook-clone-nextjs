@@ -36,7 +36,7 @@ describe('NotLoaded component', () => {
         renderWithDefaultData(<NotLoaded />);
 
         const title = screen.getByText('Ease down!');
-        const description = screen.getByText('You are too fast for our servers, wait for network requests ;)');
+        const description = screen.getByText('You are too fast for our app, wait for network requests ;)');
 
         expect(title).toBeInTheDocument();
         expect(description).toBeInTheDocument();

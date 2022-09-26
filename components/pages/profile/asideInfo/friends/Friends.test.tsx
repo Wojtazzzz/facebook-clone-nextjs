@@ -14,7 +14,7 @@ describe('Friends tests', () => {
             data: NineFriendsJson,
         });
 
-        renderWithDefaultData(<Friends {...RootUserJson} />);
+        renderWithDefaultData(<Friends userId={RootUserJson.id} />);
 
         const header = screen.getByText('Friends');
 
@@ -27,7 +27,7 @@ describe('Friends tests', () => {
             data: NineFriendsJson,
         });
 
-        renderWithDefaultData(<Friends {...RootUserJson} />);
+        renderWithDefaultData(<Friends userId={RootUserJson.id} />);
 
         const list = await screen.findByRole('list');
 
@@ -42,7 +42,7 @@ describe('Friends tests', () => {
             data: OneFriendJson,
         });
 
-        renderWithDefaultData(<Friends {...RootUserJson} />);
+        renderWithDefaultData(<Friends userId={RootUserJson.id} />);
 
         const list = await screen.findByRole('list');
 
@@ -57,7 +57,7 @@ describe('Friends tests', () => {
             data: OneFriendJson,
         });
 
-        renderWithDefaultData(<Friends {...RootUserJson} />);
+        renderWithDefaultData(<Friends userId={RootUserJson.id} />);
 
         const friend = await screen.findByRole('listitem');
 
@@ -74,7 +74,7 @@ describe('Friends tests', () => {
             data: OneFriendJson,
         });
 
-        renderWithDefaultData(<Friends {...RootUserJson} />);
+        renderWithDefaultData(<Friends userId={RootUserJson.id} />);
 
         const friend = await screen.findByRole('listitem');
 
@@ -89,7 +89,7 @@ describe('Friends tests', () => {
             data: NoFriendsJson,
         });
 
-        renderWithDefaultData(<Friends {...RootUserJson} />);
+        renderWithDefaultData(<Friends userId={RootUserJson.id} />);
 
         const image = await screen.findByAltText('List is empty');
         const text = await screen.findByText('No friends to display');
@@ -104,7 +104,7 @@ describe('Friends tests', () => {
             status: 500,
         });
 
-        renderWithDefaultData(<Friends {...RootUserJson} />);
+        renderWithDefaultData(<Friends userId={RootUserJson.id} />);
 
         const image = await screen.findByAltText('Server error');
         const text = await screen.findByText('Something went wrong');

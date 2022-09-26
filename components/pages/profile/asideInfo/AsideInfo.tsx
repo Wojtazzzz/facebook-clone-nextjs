@@ -13,7 +13,7 @@ export const AsideInfo = ({ user }: AsideInfoProps) => {
             className="w-full min-w-[280px] max-w-[350px] xl:max-w-[400px] flex flex-col gap-3"
         >
             <Intro {...user} />
-            <Friends {...user} />
+            <Friends userId={user.id} />
         </aside>
     );
 };
