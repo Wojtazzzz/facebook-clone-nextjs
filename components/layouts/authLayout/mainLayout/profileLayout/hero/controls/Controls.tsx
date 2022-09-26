@@ -1,11 +1,11 @@
 import { useAuth } from '@hooks/useAuth';
 import { AuthControls } from './authControls/AuthControls';
 import { GuestControls } from './guestControls/GuestControls';
-import type { IUser } from '@utils/types';
+import type { IUserProfile } from '@utils/types';
 import { Loader } from './Loader';
 
 interface ControlsProps {
-    pageUser: IUser;
+    pageUser: IUserProfile;
 }
 
 export const Controls = ({ pageUser }: ControlsProps) => {

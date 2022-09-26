@@ -1,12 +1,56 @@
-import { MainLayout } from '@components/layouts/authLayout/mainLayout/MainLayout';
+import { ProfileLayout } from '@components/layouts/authLayout/mainLayout/profileLayout/ProfileLayout';
 import { Friends } from '@components/pages/profile/friends/Friends';
-import type { NextPageWithLayout } from '@utils/types';
-import type { ReactElement } from 'react';
+import type { IUserProfile } from '@utils/types';
+import type { GetStaticPaths, GetStaticProps } from 'next';
+import type { ParsedUrlQuery } from 'querystring';
 
-const FriendsPage: NextPageWithLayout = () => {
-    return <Friends />;
+const FriendsPage = (user: IUserProfile) => {
+    return (
+        <ProfileLayout user={user}>
+            <Friends />
+        </ProfileLayout>
+    );
 };
 
 export default FriendsPage;
 
-FriendsPage.getLayout = (page: ReactElement) => <MainLayout>{page}</MainLayout>;
+interface IParams extends ParsedUrlQuery {
+    id: string;
+}
+
+export const getStaticProps: GetStaticProps = async (context) => {
+    const { id } = context.params as IParams;
+
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/next/profiles/${id}`);
+
+    if (response.status === 404) {
+        return {
+            notFound: true,
+        };
+    }
+
+    const data = await response.json();
+
+    return {
+        props: data,
+        revalidate: 1,
+    };
+};
+
+type UserId = {
+    id: number;
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/next/profiles`);
+    const data = await response.json();
+
+    const paths = data.map(({ id }: UserId) => ({
+        params: { id: id.toString() },
+    }));
+
+    return {
+        paths,
+        fallback: 'blocking',
+    };
+};

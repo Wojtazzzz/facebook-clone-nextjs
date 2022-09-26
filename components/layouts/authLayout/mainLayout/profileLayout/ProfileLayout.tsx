@@ -1,7 +1,7 @@
-import { Hero } from '@components/pages/profile/hero/Hero';
+import { Hero } from './hero/Hero';
 import type { IUserProfile } from '@utils/types';
 import type { ReactNode } from 'react';
-import { MainLayout } from './MainLayout';
+import { MainLayout } from '../MainLayout';
 
 interface ProfileLayoutProps {
     user: IUserProfile;

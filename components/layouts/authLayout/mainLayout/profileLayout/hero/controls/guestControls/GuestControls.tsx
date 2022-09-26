@@ -1,10 +1,10 @@
 import { usePokes } from '@hooks/usePokes';
 import { Button } from '@components/inc/Button';
-import type { IUser } from '@utils/types';
+import type { IUserProfile } from '@utils/types';
 import { useChat } from '@hooks/useChat';
 
 interface GuestControlsProps {
-    user: IUser;
+    user: IUserProfile;
 }
 
 export const GuestControls = ({ user }: GuestControlsProps) => {

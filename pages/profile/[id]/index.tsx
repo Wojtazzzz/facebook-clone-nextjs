@@ -1,15 +1,15 @@
-import { Profile as ProfileComponent } from '@components/pages/profile/Profile';
+import { Profile } from '@components/pages/profile/Profile';
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import type { ParsedUrlQuery } from 'querystring';
-import type { IUserProfile, NextPageWithLayout } from '@utils/types';
-import { ProfileLayout } from '@components/layouts/authLayout/mainLayout/ProfileLayout';
+import type { IUserProfile } from '@utils/types';
+import { ProfileLayout } from '@components/layouts/authLayout/mainLayout/profileLayout/ProfileLayout';
 
 interface ProfileProps extends IUserProfile {}
 
-const ProfilePage: NextPageWithLayout<ProfileProps> = (user) => {
+const ProfilePage = (user: ProfileProps) => {
     return (
         <ProfileLayout user={user}>
-            <ProfileComponent user={user} />;
+            <Profile user={user} />;
         </ProfileLayout>
     );
 };

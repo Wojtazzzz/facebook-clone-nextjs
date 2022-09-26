@@ -1,11 +1,11 @@
 import { memo } from 'react';
-import { Background } from '@components/pages/profile/hero/Background';
-import { User } from '@components/pages/profile/hero/user/User';
-import { Controls } from '@components/pages/profile/hero/controls/Controls';
-import type { IUser } from '@utils/types';
+import type { IUserProfile } from '@utils/types';
+import { Background } from './Background';
+import { User } from './user/User';
+import { Controls } from './controls/Controls';
 
 interface HeroProps {
-    user: IUser;
+    user: IUserProfile;
 }
 
 export const Hero = memo<HeroProps>(({ user }) => {
