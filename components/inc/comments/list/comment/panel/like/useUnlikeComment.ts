@@ -3,12 +3,12 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import type { InfiniteData } from '@tanstack/react-query';
 import type { IComment, IPaginatedResponse } from '@utils/types';
 import { useAlertModal } from '@hooks/useAlertModal';
+import { getPostCommentsQK } from '@utils/queryKeys';
 
 export const useUnlikeComment = (postId: number) => {
     const queryClient = useQueryClient();
     const { alert } = useAlertModal();
-
-    const queryKey = ['comments', postId];
+    const queryKey = getPostCommentsQK(postId);
 
     const mutation = useMutation(mutationFn, {
         onMutate: async (id) => {

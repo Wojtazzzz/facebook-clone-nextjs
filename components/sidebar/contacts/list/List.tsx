@@ -6,10 +6,11 @@ import { useInfiniteData } from '@hooks/useInfiniteData';
 import type { IContact } from '@utils/types';
 import { Loader } from './Loader';
 import { Contact } from './Contact';
+import { getContactsQK } from '@utils/queryKeys';
 
 export const List = memo(() => {
     const { data, isLoading, isError, isEmpty, hasNextPage, fetchNextPage } = useInfiniteData<IContact>({
-        queryKey: ['contacts'],
+        queryKey: getContactsQK(),
         endpoint: '/api/contacts',
     });
 

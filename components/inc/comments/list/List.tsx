@@ -4,6 +4,7 @@ import { Loader } from './Loader';
 import { Comment } from './comment/Comment';
 import { useInfiniteData } from '@hooks/useInfiniteData';
 import { LoadMore } from './LoadMore';
+import { getPostCommentsQK } from '@utils/queryKeys';
 
 interface ListProps {
     postId: number;
@@ -12,7 +13,7 @@ interface ListProps {
 export const List = ({ postId }: ListProps) => {
     const { data, isLoading, isError, isEmpty, hasNextPage, isFetchingNextPage, fetchNextPage } =
         useInfiniteData<IComment>({
-            queryKey: ['comments', postId],
+            queryKey: getPostCommentsQK(postId),
             endpoint: `/api/posts/${postId}/comments`,
         });
 

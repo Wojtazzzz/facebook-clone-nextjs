@@ -1,10 +1,10 @@
 import { Posts } from '@components/inc/posts/Posts';
 import { usePostsListSwitcher } from './usePostsListSwitcher';
 import { Panel } from './panel/Panel';
-import { getPostsQueryKey } from '@utils/getPostsQueryKey';
 import { getPostsEndpoint } from '@utils/getPostsEndpoint';
 import { BornAt } from './bornAt/BornAt';
 import type { IUserProfile } from '@utils/types';
+import { getPostsQK } from '@utils/queryKeys';
 
 interface BoardProps {
     user: IUserProfile;
@@ -13,7 +13,7 @@ interface BoardProps {
 export const Board = ({ user }: BoardProps) => {
     const { postsList, changeList } = usePostsListSwitcher();
 
-    const queryKey = getPostsQueryKey(postsList, user.id);
+    const queryKey = getPostsQK({ type: postsList, userId: user.id });
     const endpoint = getPostsEndpoint(postsList, user.id);
 
     return (

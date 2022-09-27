@@ -5,6 +5,7 @@ import { Form } from './Form';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { generateFile } from '@utils/tests/generateFile';
+import { getPostsQK } from '@utils/queryKeys';
 
 describe('Form component', () => {
     const user = userEvent.setup();
@@ -23,7 +24,7 @@ describe('Form component', () => {
 
         renderWithDefaultData(
             <Form
-                queryKey={['posts', 'all']}
+                queryKey={getPostsQK({ type: 'all' })}
                 postId={1}
                 content="Test content"
                 images={[]}
@@ -48,7 +49,7 @@ describe('Form component', () => {
 
         renderWithDefaultData(
             <Form
-                queryKey={['posts', 'all']}
+                queryKey={getPostsQK({ type: 'all' })}
                 postId={1}
                 content="Test content"
                 images={[]}
@@ -78,7 +79,7 @@ describe('Form component', () => {
 
         renderWithDefaultData(
             <Form
-                queryKey={['posts', 'all']}
+                queryKey={getPostsQK({ type: 'all' })}
                 postId={1}
                 content="Test content"
                 images={[]}
@@ -102,7 +103,7 @@ describe('Form component', () => {
 
         renderWithDefaultData(
             <Form
-                queryKey={['posts', 'all']}
+                queryKey={getPostsQK({ type: 'all' })}
                 postId={1}
                 content="Test content"
                 images={[]}
@@ -126,7 +127,7 @@ describe('Form component', () => {
 
         renderWithDefaultData(
             <Form
-                queryKey={['posts', 'all']}
+                queryKey={getPostsQK({ type: 'all' })}
                 postId={1}
                 content="Test content"
                 images={[]}
@@ -152,7 +153,7 @@ describe('Form component', () => {
 
         renderWithDefaultData(
             <Form
-                queryKey={['posts', 'all']}
+                queryKey={getPostsQK({ type: 'all' })}
                 postId={1}
                 content="Test content"
                 images={[]}
@@ -183,7 +184,7 @@ describe('Form component', () => {
 
         renderWithDefaultData(
             <Form
-                queryKey={['posts', 'all']}
+                queryKey={getPostsQK({ type: 'all' })}
                 postId={1}
                 content="Test content"
                 images={[]}
@@ -217,7 +218,7 @@ describe('Form component', () => {
 
         renderWithDefaultData(
             <Form
-                queryKey={['posts', 'all']}
+                queryKey={getPostsQK({ type: 'all' })}
                 postId={1}
                 content="Test content"
                 images={[]}
@@ -254,7 +255,7 @@ describe('Form component', () => {
 
         renderWithDefaultData(
             <Form
-                queryKey={['posts', 'all']}
+                queryKey={getPostsQK({ type: 'all' })}
                 postId={1}
                 content="Test content"
                 images={[]}
@@ -302,7 +303,7 @@ describe('Form component', () => {
 
         renderWithDefaultData(
             <Form
-                queryKey={['posts', 'all']}
+                queryKey={getPostsQK({ type: 'all' })}
                 postId={1}
                 content="Test content"
                 images={[]}
@@ -327,7 +328,7 @@ describe('Form component', () => {
 
         renderWithDefaultData(
             <Form
-                queryKey={['posts', 'all']}
+                queryKey={getPostsQK({ type: 'all' })}
                 postId={1}
                 content="Test content"
                 images={['/posts/firstFile.png', '/posts/secondFile.jpg']}
@@ -345,7 +346,7 @@ describe('Form component', () => {
 
         renderWithDefaultData(
             <Form
-                queryKey={['posts', 'all']}
+                queryKey={getPostsQK({ type: 'all' })}
                 postId={1}
                 content="Test content"
                 images={['/posts/firstFile.png', '/posts/secondFile.jpg']}

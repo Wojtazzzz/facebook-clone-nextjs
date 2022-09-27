@@ -6,6 +6,7 @@ import { Form } from './Form';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { generateFile } from '@utils/tests/generateFile';
+import { getPostsQK } from '@utils/queryKeys';
 
 describe('Form component', () => {
     jest.setTimeout(30000);
@@ -23,9 +24,11 @@ describe('Form component', () => {
     });
 
     it('render too short text validation message', async () => {
+        const mockClose = jest.fn();
+
         const user = userEvent.setup();
 
-        renderWithDefaultData(<Form queryKey={['posts', 'all']} />);
+        renderWithDefaultData(<Form queryKey={getPostsQK({ type: 'all' })} close={mockClose} />);
 
         const input = screen.getByLabelText('Post content');
         const submitButton = screen.getByLabelText('Create post');
@@ -39,9 +42,11 @@ describe('Form component', () => {
     });
 
     it('render too long text validation message', async () => {
+        const mockClose = jest.fn();
+
         const user = userEvent.setup();
 
-        renderWithDefaultData(<Form queryKey={['posts', 'all']} />);
+        renderWithDefaultData(<Form queryKey={getPostsQK({ type: 'all' })} close={mockClose} />);
 
         const submitButton = screen.getByLabelText('Create post');
         const input = screen.getByLabelText('Post content');
@@ -55,9 +60,11 @@ describe('Form component', () => {
     });
 
     it('render empty post validation message', async () => {
+        const mockClose = jest.fn();
+
         const user = userEvent.setup();
 
-        renderWithDefaultData(<Form queryKey={['posts', 'all']} />);
+        renderWithDefaultData(<Form queryKey={getPostsQK({ type: 'all' })} close={mockClose} />);
 
         const submitButton = screen.getByLabelText('Create post');
         await user.click(submitButton);
@@ -68,9 +75,11 @@ describe('Form component', () => {
     });
 
     it('render input file when click on render button', async () => {
+        const mockClose = jest.fn();
+
         const user = userEvent.setup();
 
-        renderWithDefaultData(<Form queryKey={['posts', 'all']} />);
+        renderWithDefaultData(<Form queryKey={getPostsQK({ type: 'all' })} close={mockClose} />);
 
         const renderButton = screen.getByLabelText('Show files uploader');
 
@@ -83,9 +92,11 @@ describe('Form component', () => {
 
     it('render file name when file uploaded', async () => {
         const user = userEvent.setup();
+        const mockClose = jest.fn();
+
         const file = generateFile('testImage.png', 'image/png');
 
-        renderWithDefaultData(<Form queryKey={['posts', 'all']} />);
+        renderWithDefaultData(<Form queryKey={getPostsQK({ type: 'all' })} close={mockClose} />);
 
         const renderButton = screen.getByLabelText('Show files uploader');
         await user.click(renderButton);
@@ -100,9 +111,10 @@ describe('Form component', () => {
 
     it('cannot upload file which is illicit', async () => {
         const user = userEvent.setup();
+        const mockClose = jest.fn();
         const file = generateFile('testFile.pdf', 'application/pdf');
 
-        renderWithDefaultData(<Form queryKey={['posts', 'all']} />);
+        renderWithDefaultData(<Form queryKey={getPostsQK({ type: 'all' })} close={mockClose} />);
 
         const renderButton = screen.getByLabelText('Show files uploader');
         await user.click(renderButton);
@@ -118,13 +130,15 @@ describe('Form component', () => {
 
     it('can upload multiple files', async () => {
         const user = userEvent.setup();
+        const mockClose = jest.fn();
+
         const files = [
             generateFile('firstFile.png', 'image/png'),
             generateFile('secondFile.jpg', 'image/jpg'),
             generateFile('thirdFile.jpeg', 'image/jpeg'),
         ];
 
-        renderWithDefaultData(<Form queryKey={['posts', 'all']} />);
+        renderWithDefaultData(<Form queryKey={getPostsQK({ type: 'all' })} close={mockClose} />);
 
         const renderButton = screen.getByLabelText('Show files uploader');
         await user.click(renderButton);
@@ -143,13 +157,15 @@ describe('Form component', () => {
 
     it('can remove file from uploaded files list', async () => {
         const user = userEvent.setup();
+        const mockClose = jest.fn();
+
         const files = [
             generateFile('firstFile.png', 'image/png'),
             generateFile('secondFile.jpg', 'image/jpg'),
             generateFile('thirdFile.jpeg', 'image/jpeg'),
         ];
 
-        renderWithDefaultData(<Form queryKey={['posts', 'all']} />);
+        renderWithDefaultData(<Form queryKey={getPostsQK({ type: 'all' })} close={mockClose} />);
 
         const renderButton = screen.getByLabelText('Show files uploader');
         await user.click(renderButton);
@@ -171,13 +187,15 @@ describe('Form component', () => {
 
     it('removing one file cannot remove another file(s) from list', async () => {
         const user = userEvent.setup();
+        const mockClose = jest.fn();
+
         const files = [
             generateFile('firstFile.png', 'image/png'),
             generateFile('secondFile.jpg', 'image/jpg'),
             generateFile('thirdFile.jpeg', 'image/jpeg'),
         ];
 
-        renderWithDefaultData(<Form queryKey={['posts', 'all']} />);
+        renderWithDefaultData(<Form queryKey={getPostsQK({ type: 'all' })} close={mockClose} />);
 
         const renderButton = screen.getByLabelText('Show files uploader');
         await user.click(renderButton);
@@ -208,6 +226,8 @@ describe('Form component', () => {
 
     it('render properly count of uploaded files', async () => {
         const user = userEvent.setup();
+        const mockClose = jest.fn();
+
         const files = [
             generateFile('firstFile.png', 'image/png'),
             generateFile('secondFile.jpg', 'image/jpg'),
@@ -216,7 +236,7 @@ describe('Form component', () => {
             generateFile('fivethFile.jpeg', 'image/webp'),
         ];
 
-        renderWithDefaultData(<Form queryKey={['posts', 'all']} />);
+        renderWithDefaultData(<Form queryKey={getPostsQK({ type: 'all' })} close={mockClose} />);
 
         const renderButton = screen.getByLabelText('Show files uploader');
         await user.click(renderButton);

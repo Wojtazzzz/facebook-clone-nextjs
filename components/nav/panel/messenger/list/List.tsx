@@ -6,6 +6,7 @@ import { Loader } from '@components/nav/panel/inc/Loader';
 import { ApiError } from '@components/inc/ApiError';
 import { EmptyList } from '@components/inc/EmptyList';
 import type { IUser } from '@utils/types';
+import { getMessengerQK } from '@utils/queryKeys';
 
 interface ListProps {
     close: () => void;
@@ -13,7 +14,7 @@ interface ListProps {
 
 export const List = memo<ListProps>(({ close }) => {
     const { data, isLoading, isError, isEmpty, hasNextPage, fetchNextPage } = useInfiniteData<IUser>({
-        queryKey: ['messages'],
+        queryKey: getMessengerQK(),
         endpoint: '/api/messages',
     });
 

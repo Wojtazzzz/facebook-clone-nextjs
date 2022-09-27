@@ -5,6 +5,7 @@ import RootUserJson from '@mocks/user/root.json';
 import { screen } from '@testing-library/react';
 import { mock } from '@libs/nock';
 import { Posts } from './Posts';
+import { getPostsQK } from '@utils/queryKeys';
 
 describe('Posts component', () => {
     const posts = PostsFirstPageJson.data;
@@ -22,7 +23,7 @@ describe('Posts component', () => {
             data: PostsFirstPageJson,
         });
 
-        renderWithDefaultData(<Posts queryKey={['posts', 'all']} endpoint="/api/posts" />);
+        renderWithDefaultData(<Posts queryKey={getPostsQK({ type: 'all' })} endpoint="/api/posts" />);
 
         const loaders = screen.getByTestId('posts-loadingLoader');
         expect(loaders).toBeInTheDocument();
@@ -34,7 +35,7 @@ describe('Posts component', () => {
             data: PostsFirstPageJson,
         });
 
-        renderWithDefaultData(<Posts queryKey={['posts', 'all']} endpoint="/api/posts" />);
+        renderWithDefaultData(<Posts queryKey={getPostsQK({ type: 'all' })} endpoint="/api/posts" />);
 
         const firstPost = await screen.findByText(posts[0].content);
         expect(firstPost).toBeInTheDocument();
@@ -49,7 +50,7 @@ describe('Posts component', () => {
             status: 500,
         });
 
-        renderWithDefaultData(<Posts queryKey={['posts', 'all']} endpoint="/api/posts" />);
+        renderWithDefaultData(<Posts queryKey={getPostsQK({ type: 'all' })} endpoint="/api/posts" />);
 
         const errorImage = await screen.findByAltText('Server error');
         expect(errorImage).toBeInTheDocument();
@@ -64,7 +65,7 @@ describe('Posts component', () => {
             data: PostsEmptyPageJson,
         });
 
-        renderWithDefaultData(<Posts queryKey={['posts', 'all']} endpoint="/api/posts" />);
+        renderWithDefaultData(<Posts queryKey={getPostsQK({ type: 'all' })} endpoint="/api/posts" />);
 
         const emptyComponent = await screen.findByText('No posts, add some friends!');
         expect(emptyComponent).toBeInTheDocument();

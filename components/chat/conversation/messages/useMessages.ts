@@ -1,6 +1,7 @@
 import { useInfiniteData } from '@hooks/useInfiniteData';
 import { axios } from '@libs/axios';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { getChatQK } from '@utils/queryKeys';
 import type { IChatMessage } from '@utils/types';
 
 export const useMessages = (friendId: number) => {
@@ -8,7 +9,7 @@ export const useMessages = (friendId: number) => {
     const mutation = useMutation(mutationFn);
 
     return useInfiniteData<IChatMessage>({
-        queryKey: ['chat', friendId],
+        queryKey: getChatQK(friendId),
         endpoint: `/api/messages/${friendId}`,
         options: {
             onSuccess: (data) => {

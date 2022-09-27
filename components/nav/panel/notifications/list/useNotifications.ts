@@ -1,6 +1,7 @@
 import { useInfiniteData } from '@hooks/useInfiniteData';
 import { axios } from '@libs/axios';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { getNotificationsQK } from '@utils/queryKeys';
 import type { INotification } from '@utils/types';
 
 export const useNotifications = () => {
@@ -8,7 +9,7 @@ export const useNotifications = () => {
     const mutation = useMutation(mutationFn);
 
     return useInfiniteData<INotification>({
-        queryKey: ['notifications'],
+        queryKey: getNotificationsQK(),
         endpoint: '/api/notifications',
         options: {
             onSuccess: (data) => {

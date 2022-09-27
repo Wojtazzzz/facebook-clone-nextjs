@@ -1,13 +1,13 @@
 import { CreatePost } from '@components/inc/modals/post/create/createPost/CreatePost';
 import { Posts as PostsList } from '@components/inc/posts/Posts';
 import { useAuth } from '@hooks/useAuth';
-import { getPostsQueryKey } from '@utils/getPostsQueryKey';
 import { getPostsEndpoint } from '@utils/getPostsEndpoint';
+import { getPostsQK } from '@utils/queryKeys';
 
 export const Posts = () => {
     const { user } = useAuth();
 
-    const queryKey = getPostsQueryKey('all', user?.id);
+    const queryKey = getPostsQK({ type: 'hidden' });
     const endpoint = getPostsEndpoint('all', user?.id);
 
     return (
