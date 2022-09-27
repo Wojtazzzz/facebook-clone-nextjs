@@ -11,7 +11,7 @@ describe('Profile hero tests', () => {
         cy.loginRequest();
     });
 
-    it('visit self profile, cannot edit profile because button is disabled, see all friends count and five friends images, redirect to friend profile by click on his image', () => {
+    it('visit self profile, cannot edit profile because button is disabled, see all friends count and 8 friends images, redirect to friend profile by click on his image', () => {
         cy.createFriendship(13);
 
         cy.visit('/profile/1');
@@ -21,8 +21,8 @@ describe('Profile hero tests', () => {
         cy.wait('@user');
 
         cy.get('button[aria-label="Edit profile"]').should('be.disabled');
-        cy.contains('13 Friends').should('be.visible');
-        cy.get('[data-testid="profile-friendsList"] img').should('have.length', 5 * 2);
+        cy.contains('13 friends').should('be.visible');
+        cy.get('[data-testid="profile-friendsList"] img').should('have.length', 8 * 2);
 
         cy.get('[data-testid="profile-friendsList"] img').first().click({ force: true });
 
@@ -42,7 +42,7 @@ describe('Profile hero tests', () => {
         cy.wait('@user');
 
         cy.get('button[aria-label="Edit profile"]').should('not.exist');
-        cy.contains('1 Friends').should('be.visible');
+        cy.contains('1 friend').should('be.visible');
         cy.get('[data-testid="profile-friendsList"] img').should('have.length', 1 * 2);
 
         cy.get('button[aria-label="Send message"]').click();

@@ -23,10 +23,10 @@ describe('Profile friends tests', () => {
         });
         cy.createFriendship(5, 99999);
 
+        cy.intercept('/api/user').as('user');
+
         cy.visit('/profile/1');
 
-        cy.intercept('/api/user').as('user');
-        cy.reload();
         cy.wait('@user');
 
         cy.get('[data-testid="asideInfo-friends"]').within(() => {
@@ -35,10 +35,9 @@ describe('Profile friends tests', () => {
                 .should('have.length', 2 + 1);
         });
 
-        cy.visit('/profile/999');
-
         cy.intercept('/api/user').as('user');
-        cy.reload();
+
+        cy.visit('/profile/999');
 
         cy.wait('@user');
 
@@ -48,10 +47,9 @@ describe('Profile friends tests', () => {
                 .should('have.length', 3 + 1);
         });
 
-        cy.visit('/profile/99999');
-
         cy.intercept('/api/user').as('user');
-        cy.reload();
+
+        cy.visit('/profile/99999');
 
         cy.wait('@user');
 
@@ -60,15 +58,15 @@ describe('Profile friends tests', () => {
         });
     });
 
-    it("see one friends in friend's profile, redirect to his profile by click on him", () => {
+    it("see one friend in friend's profile, redirect to his profile by click on him", () => {
         cy.createUser(1, true, {
             id: 999,
         });
 
+        cy.intercept('/api/user').as('user');
+
         cy.visit('/profile/999');
 
-        cy.intercept('/api/user').as('user');
-        cy.reload();
         cy.wait('@user');
 
         cy.get('[data-testid="asideInfo-friends"]').within(() => {
@@ -80,15 +78,11 @@ describe('Profile friends tests', () => {
     });
 
     it('see empty component instead of list of friends when api return empty response', () => {
+        cy.intercept('/api/user').as('user');
+
         cy.visit('/profile/1');
 
-        cy.intercept('/api/user').as('user');
-        cy.intercept('/api/users/1/friends?count=9').as('friends');
-
-        cy.reload();
-
         cy.wait('@user');
-        cy.wait('@friends');
 
         cy.get('[data-testid="asideInfo-friends"]').within(() => {
             cy.get('img[alt="List is empty"]').should('be.visible');
@@ -97,14 +91,10 @@ describe('Profile friends tests', () => {
     });
 
     it('see error component instead of list of friends when api return server error', () => {
+        cy.intercept('/api/users/1/friends/getByCount?count=9', { statusCode: 500 }).as('friends');
+
         cy.visit('/profile/1');
 
-        cy.intercept('/api/user').as('user');
-        cy.intercept('/api/users/1/friends?count=9', { statusCode: 500 }).as('friends');
-
-        cy.reload();
-
-        cy.wait('@user');
         cy.wait('@friends');
 
         cy.get('[data-testid="asideInfo-friends"]').within(() => {
@@ -117,12 +107,10 @@ describe('Profile friends tests', () => {
     it('render max 9 friends', () => {
         cy.createFriendship(14);
 
-        cy.visit('/profile/1');
-
         cy.intercept('/api/user').as('user');
-        cy.intercept('/api/users/1/friends?count=9').as('friends');
+        cy.intercept('/api/users/1/friends/getByCount?count=9').as('friends');
 
-        cy.reload();
+        cy.visit('/profile/1');
 
         cy.wait('@user');
         cy.wait('@friends');

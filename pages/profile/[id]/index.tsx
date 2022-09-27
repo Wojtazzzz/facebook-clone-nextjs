@@ -1,8 +1,8 @@
-import { Profile } from '@components/pages/profile/Profile';
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import type { ParsedUrlQuery } from 'querystring';
 import type { IUserProfile } from '@utils/types';
 import { ProfileLayout } from '@components/layouts/authLayout/mainLayout/profileLayout/ProfileLayout';
+import { Profile } from '@components/pages/profile/index/Profile';
 
 interface ProfileProps extends IUserProfile {}
 

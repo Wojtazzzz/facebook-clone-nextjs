@@ -1,4 +1,6 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { useGetFriendsByCount } from '@hooks/useGetFriendsByCount';
+import Link from 'next/link';
 import { ApiError } from './ApiError';
 import { Friend } from './Friend';
 import { Loader } from './Loader';
@@ -20,9 +22,11 @@ export const Friends = ({ userId }: FriendsProps) => {
 
     return (
         <>
-            <span className="xl:text-lg text-light-100 font-medium -my-1.5">
-                {data.count} {data.count === 1 ? 'friend' : 'friends'}
-            </span>
+            <Link href={`/profile/${userId}/friends`}>
+                <a className="w-fit xl:text-lg text-light-100 font-medium hover:underline -mt-1.5 mb-1">
+                    {data.count} {data.count === 1 ? 'friend' : 'friends'}
+                </a>
+            </Link>
 
             <ul data-testid="profile-friendsList" className="flex">
                 {FriendsComponents}

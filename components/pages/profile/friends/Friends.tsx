@@ -1,5 +1,19 @@
-interface FriendsProps {}
+import { useSearchQuery } from '@components/nav/search/searchEngine/useSearchQuery';
+import type { IUserProfile } from '@utils/types';
+import { Header } from './header/Header';
+import { List } from './list/List';
 
-export const Friends = ({}: FriendsProps) => {
-    return <div className="w-full flex flex-wrap lg:flex-nowrap justify-center gap-3 p-2">Lol</div>;
+interface FriendsProps {
+    user: IUserProfile;
+}
+
+export const Friends = ({ user }: FriendsProps) => {
+    const { query, debounceQuery, changeQuery } = useSearchQuery();
+
+    return (
+        <section data-testid="profile-friends" className="w-full flex flex-col gap-5 p-2">
+            <Header query={query} changeQuery={changeQuery} />
+            <List userId={user.id} query={debounceQuery} />
+        </section>
+    );
 };

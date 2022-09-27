@@ -7,7 +7,7 @@ import type { ParsedUrlQuery } from 'querystring';
 const FriendsPage = (user: IUserProfile) => {
     return (
         <ProfileLayout user={user}>
-            <Friends />
+            <Friends user={user} />
         </ProfileLayout>
     );
 };

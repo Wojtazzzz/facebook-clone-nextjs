@@ -1,15 +1,13 @@
 import { mock } from '@libs/nock';
 import RootUserJson from '@mocks/user/root.json';
-import EightFriends from '@mocks/profile/friends/eightFriends.json';
-import OneFriend from '@mocks/profile/friends/oneFriend.json';
-import ZeroFriends from '@mocks/profile/friends/empty.json';
+import EightFriends from '@mocks/profile/friends/getByCount/eightFriends.json';
+import OneFriend from '@mocks/profile/friends/getByCount/oneFriend.json';
+import ZeroFriends from '@mocks/profile/friends/getByCount/empty.json';
 import { screen } from '@testing-library/react';
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { Friends } from './Friends';
 
 describe('Friends component', () => {
-    beforeEach(() => {});
-
     it('render loader when fetching friends', () => {
         mock({
             path: `/api/users/${RootUserJson.id}/friends/getByCount?count=8`,
