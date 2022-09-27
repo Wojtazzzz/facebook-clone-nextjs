@@ -14,7 +14,7 @@ export const Board = ({ user }: BoardProps) => {
     const { postsList, changeList } = usePostsListSwitcher();
 
     const queryKey = getPostsQK({ type: postsList, userId: user.id });
-    const endpoint = getPostsEndpoint(postsList, user.id);
+    const endpoint = getPostsEndpoint({ type: postsList, userId: user.id });
 
     return (
         <div

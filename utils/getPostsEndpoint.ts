@@ -1,7 +1,14 @@
-import type { IPostList } from './types';
+type IGetPostsEndpointArgs =
+    | {
+          type: 'all' | 'hidden' | 'saved';
+      }
+    | {
+          type: 'own';
+          userId: number;
+      };
 
-export const getPostsEndpoint = (type: IPostList, userId: number | undefined) => {
-    switch (type) {
+export const getPostsEndpoint = (args: IGetPostsEndpointArgs) => {
+    switch (args.type) {
         case 'hidden':
             return '/api/hidden/posts';
 
@@ -9,7 +16,7 @@ export const getPostsEndpoint = (type: IPostList, userId: number | undefined) =>
             return '/api/saved/posts';
 
         case 'own':
-            return `/api/users/${userId}/posts`;
+            return `/api/users/${args.userId}/posts`;
 
         default:
         case 'all':
