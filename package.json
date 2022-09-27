@@ -55,7 +55,7 @@
         "babel-jest": "^28.1.2",
         "cypress": "^10.2.0",
         "cypress-laravel": "^0.2.1",
-        "eslint": "8.9.0",
+        "eslint": "8.24.0",
         "eslint-config-next": "12.0.10",
         "eslint-plugin-jsx-a11y": "^6.6.1",
         "eslint-plugin-testing-library": "5.0.1",
