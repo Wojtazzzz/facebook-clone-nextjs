@@ -24,3 +24,6 @@ export const getPostCommentsQK = (postId: number) => ['post', postId, 'comments'
 export const getPostLikesQK = (postId: number) => ['post', postId, 'likes'];
 
 export const getCommentLikesQK = (commentId: number) => ['comment', commentId, 'likes'];
+
+export const getSearchUsersQK = (query: string) => ['search', 'users', query];
+export const getSearchFriendsQK = (userId: number, query: string) => ['search', 'friends', userId, query];

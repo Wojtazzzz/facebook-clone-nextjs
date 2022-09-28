@@ -3,7 +3,7 @@ import { EmptyList } from '@components/inc/EmptyList';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Friend } from './friend/Friend';
 import { Loader } from './Loader';
-import { useGetFriends } from './useGetFriends';
+import { useSearchFriends } from './useSearchFriends';
 
 interface ListProps {
     userId: number;
@@ -11,7 +11,7 @@ interface ListProps {
 }
 
 export const List = ({ userId, query }: ListProps) => {
-    const { data, isLoading, isEmpty, isError, hasNextPage, fetchNextPage } = useGetFriends(userId, query);
+    const { data, isLoading, isEmpty, isError, hasNextPage, fetchNextPage } = useSearchFriends(userId, query);
 
     if (isLoading) return <Loader />;
     if (isError) return <ApiError size="xl" />;

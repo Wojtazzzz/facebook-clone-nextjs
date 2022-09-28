@@ -1,9 +1,10 @@
 import { useInfiniteData } from '@hooks/useInfiniteData';
+import { getSearchFriendsQK } from '@utils/queryKeys';
 import type { IFriend } from '@utils/types';
 
-export const useGetFriends = (userId: number, query: string) => {
+export const useSearchFriends = (userId: number, query: string) => {
     return useInfiniteData<IFriend>({
-        queryKey: ['search', { userId, query }],
+        queryKey: getSearchFriendsQK(userId, query),
         endpoint: `/api/users/${userId}/friends`,
         params: {
             search: query,
