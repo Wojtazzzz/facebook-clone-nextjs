@@ -1,9 +1,10 @@
 import { axios } from '@libs/axios';
 import { useQuery } from '@tanstack/react-query';
+import { getBirthdaysQK } from '@utils/queryKeys';
 import type { IBirthday } from '@utils/types';
 
 export const useBirthdays = () => {
-    return useQuery<IBirthday[]>(['birthdays'], queryFn);
+    return useQuery<IBirthday[]>(getBirthdaysQK(), queryFn);
 };
 
 const queryFn = () => axios.get('/api/birthdays').then((response) => response.data);

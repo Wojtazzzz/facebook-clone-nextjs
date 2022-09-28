@@ -1,9 +1,10 @@
 import { axios } from '@libs/axios';
 import type { IUser } from '@utils/types';
 import { useQuery } from '@tanstack/react-query';
+import { getUserQK } from '@utils/queryKeys';
 
 export const useAuth = () => {
-    const { data: user, ...rest } = useQuery<IUser>(['user'], queryFn);
+    const { data: user, ...rest } = useQuery<IUser>(getUserQK(), queryFn);
 
     return {
         user,

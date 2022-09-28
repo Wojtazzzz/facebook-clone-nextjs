@@ -1,11 +1,12 @@
 import { axios } from '@libs/axios';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { getUserQK } from '@utils/queryKeys';
 
 export const useLogout = () => {
     const queryClient = useQueryClient();
 
     const mutation = useMutation(mutationFn, {
-        onSuccess: () => queryClient.invalidateQueries(['user']),
+        onSuccess: () => queryClient.invalidateQueries(getUserQK()),
     });
 
     const logout = () => {

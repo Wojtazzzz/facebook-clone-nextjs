@@ -1,7 +1,7 @@
 import { useInfiniteData } from '@hooks/useInfiniteData';
 import { axios } from '@libs/axios';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { getNotificationsQK } from '@utils/queryKeys';
+import { getCheckUnreadNotificationsQK, getNotificationsQK } from '@utils/queryKeys';
 import type { INotification } from '@utils/types';
 
 export const useNotifications = () => {
@@ -29,7 +29,7 @@ export const useNotifications = () => {
 
                 mutation.mutate(
                     { ids },
-                    { onSuccess: () => queryClient.invalidateQueries(['notifications', 'checkUnread']) }
+                    { onSuccess: () => queryClient.invalidateQueries(getCheckUnreadNotificationsQK()) }
                 );
             },
         },

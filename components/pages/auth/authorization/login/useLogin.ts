@@ -2,13 +2,14 @@ import { axios } from '@libs/axios';
 import type { ILoginPayload } from '@utils/types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { csrf } from '@utils/csrf';
+import { getUserQK } from '@utils/queryKeys';
 
 export const useLogin = () => {
     const queryClient = useQueryClient();
 
     const mutation = useMutation(mutationFn, {
         onMutate: async () => await csrf(),
-        onSuccess: () => queryClient.invalidateQueries(['user']),
+        onSuccess: () => queryClient.invalidateQueries(getUserQK()),
     });
 
     const login = async (data: ILoginPayload) => {

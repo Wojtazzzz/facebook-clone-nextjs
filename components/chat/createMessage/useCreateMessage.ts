@@ -6,6 +6,7 @@ import type { InfiniteData } from '@tanstack/react-query';
 import { v4 as uuid } from 'uuid';
 import type { AxiosError, AxiosResponse } from 'axios';
 import { useChat } from '@hooks/useChat';
+import { getChatQK } from '@utils/queryKeys';
 
 export const useCreateMessage = () => {
     const queryClient = useQueryClient();
@@ -17,10 +18,10 @@ export const useCreateMessage = () => {
 
             const message = createMessage(data);
 
-            const previousMessages = queryClient.getQueryData(['chat', friend.id]);
-            await queryClient.cancelQueries(['chat', friend.id]);
+            const previousMessages = queryClient.getQueryData(getChatQK(friend.id));
+            await queryClient.cancelQueries(getChatQK(friend.id));
 
-            queryClient.setQueryData<IQueryData>(['chat', friend.id], (data) => {
+            queryClient.setQueryData<IQueryData>(getChatQK(friend.id), (data) => {
                 if (!data) return;
 
                 const pages = data.pages.map((page) => ({
@@ -45,13 +46,13 @@ export const useCreateMessage = () => {
 
             setError(error);
 
-            queryClient.setQueryData(['chat', friend.id], context.previousMessages);
+            queryClient.setQueryData(getChatQK(friend.id), context.previousMessages);
         },
 
         onSettled: () => {
             if (!friend) return;
 
-            queryClient.invalidateQueries(['chat', friend.id]);
+            queryClient.invalidateQueries(getChatQK(friend.id));
         },
     });
 

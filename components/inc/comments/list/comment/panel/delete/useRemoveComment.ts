@@ -1,13 +1,14 @@
 import { useAlertModal } from '@hooks/useAlertModal';
 import { axios } from '@libs/axios';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { getPostCommentsQK } from '@utils/queryKeys';
 
 export const useRemove = () => {
     const queryClient = useQueryClient();
     const { alert } = useAlertModal();
 
     const mutation = useMutation(mutationFn, {
-        onSuccess: (response, data) => queryClient.invalidateQueries(['comments', data.resourceId]),
+        onSuccess: (response, data) => queryClient.invalidateQueries(getPostCommentsQK(data.resourceId)),
         onError: () => alert('Something went wrong, please try again later.'),
     });
 

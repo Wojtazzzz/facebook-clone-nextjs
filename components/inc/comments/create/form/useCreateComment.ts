@@ -3,6 +3,7 @@ import { axios } from '@libs/axios';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import type { InfiniteData } from '@tanstack/react-query';
 import type { IComment, ICommentPayload, IPaginatedResponse } from '@utils/types';
+import { getPostCommentsQK } from '@utils/queryKeys';
 
 export const useCreateComment = () => {
     const queryClient = useQueryClient();
@@ -10,7 +11,7 @@ export const useCreateComment = () => {
 
     const mutation = useMutation(mutationFn, {
         onSuccess: (response, data) => {
-            queryClient.setQueryData<IQueryData>(['comments', data.resourceId], (prevData) => {
+            queryClient.setQueryData<IQueryData>(getPostCommentsQK(data.resourceId), (prevData) => {
                 if (!prevData) return;
 
                 const pages = prevData.pages.map((page) => ({
@@ -24,7 +25,7 @@ export const useCreateComment = () => {
                 };
             });
 
-            queryClient.invalidateQueries(['comments', data.resourceId]);
+            queryClient.invalidateQueries(getPostCommentsQK(data.resourceId));
         },
 
         onError: () => alert('Something went wrong, please try again later.'),

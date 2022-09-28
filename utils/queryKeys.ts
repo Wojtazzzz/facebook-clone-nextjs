@@ -8,10 +8,14 @@ type IGetPostsQKArgs =
       };
 
 export const getContactsQK = () => ['contacts'];
-export const getMessengerQK = () => ['messenger'];
-export const getNotificationsQK = () => ['notifications'];
-
 export const getChatQK = (friendId: number) => ['chat', friendId];
+export const getBirthdaysQK = () => ['birthdays'];
+export const getUserQK = () => ['user'];
+
+export const getMessengerQK = () => ['messenger'];
+export const getCheckUnreadMessengerQK = () => ['messenger', 'checkUnread'];
+export const getNotificationsQK = () => ['notifications'];
+export const getCheckUnreadNotificationsQK = () => ['notifications', 'checkUnread'];
 
 export const getPostsQK = (args: IGetPostsQKArgs) => {
     if (args.type === 'own') return ['posts', 'own', args.userId];
@@ -27,3 +31,9 @@ export const getCommentLikesQK = (commentId: number) => ['comment', commentId, '
 
 export const getSearchUsersQK = (query: string) => ['search', 'users', query];
 export const getSearchFriendsQK = (userId: number, query: string) => ['search', 'friends', userId, query];
+
+export const getInvitesListQK = () => ['Invites'];
+export const getSuggestsListQK = () => ['Suggests'];
+export const getPokesListQK = () => ['Pokes'];
+export const getFriendsListQK = () => ['Friends'];
+export const getFriendsByCountQK = (userId: number, count: number) => ['friends', { userId, count }];

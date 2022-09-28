@@ -1,11 +1,12 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { axios } from '@libs/axios';
+import { getFriendsListQK } from '@utils/queryKeys';
 
 export const useRemove = () => {
     const queryClient = useQueryClient();
 
     const mutation = useMutation(mutationFn, {
-        onSuccess: () => queryClient.invalidateQueries(['Friends']),
+        onSuccess: () => queryClient.invalidateQueries(getFriendsListQK()),
     });
 
     const remove = (friendId: number) => {

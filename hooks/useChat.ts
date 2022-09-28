@@ -3,6 +3,7 @@ import { clearChatError, closeChat, openChat, setChatError } from '@redux/slices
 import type { IChatFriend } from '@utils/types';
 import { useQueryClient } from '@tanstack/react-query';
 import { getErrorMessage } from '@utils/getErrorMessage/getErrorMessage';
+import { getChatQK } from '@utils/queryKeys';
 
 export const useChat = () => {
     const dispatch = useAppDispatch();
@@ -20,7 +21,7 @@ export const useChat = () => {
     const revalidateMessages = () => {
         if (!friend) return;
 
-        queryClient.invalidateQueries(['chat', friend.id]);
+        queryClient.invalidateQueries(getChatQK(friend.id));
     };
 
     const setError = (error: unknown) => {

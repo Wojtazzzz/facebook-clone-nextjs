@@ -1,11 +1,12 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { axios } from '@libs/axios';
+import { getSuggestsListQK } from '@utils/queryKeys';
 
 export const useInvite = () => {
     const queryClient = useQueryClient();
 
     const mutation = useMutation(mutationFn, {
-        onSuccess: () => queryClient.invalidateQueries(['Suggests']),
+        onSuccess: () => queryClient.invalidateQueries(getSuggestsListQK()),
     });
 
     const invite = (friendId: number) => {

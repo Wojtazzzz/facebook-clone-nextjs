@@ -1,9 +1,10 @@
 import { axios } from '@libs/axios';
 import { useQuery } from '@tanstack/react-query';
+import { getFriendsByCountQK } from '@utils/queryKeys';
 import type { IFriend } from '@utils/types';
 
 export const useGetFriendsByCount = (userId: number, count: number) => {
-    return useQuery(['friendsByCount', { userId, count }], () => queryFn(userId, count));
+    return useQuery(getFriendsByCountQK(userId, count), () => queryFn(userId, count));
 };
 
 type IFriendsWithCount = {
