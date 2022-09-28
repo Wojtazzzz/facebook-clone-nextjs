@@ -10,7 +10,7 @@ export const AsideInfo = ({ user }: AsideInfoProps) => {
     return (
         <aside
             data-testid="profile-asideInfo"
-            className="w-full min-w-[280px] max-w-[350px] xl:max-w-[400px] flex flex-col gap-3"
+            className="w-full min-w-[300px] max-w-[380px] xl:max-w-[420px] flex flex-col gap-3"
         >
             <Intro {...user} />
             <Friends userId={user.id} />

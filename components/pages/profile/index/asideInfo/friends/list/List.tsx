@@ -17,5 +17,5 @@ export const List = ({ userId }: ListProps) => {
 
     const FriendsComponents = data.friends.map((friend) => <Friend key={friend.id} {...friend} />);
 
-    return <ul className="flex flex-wrap gap-x-2 gap-y-4">{FriendsComponents}</ul>;
+    return <ul className="flex flex-wrap">{FriendsComponents}</ul>;
 };
