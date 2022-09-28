@@ -1,30 +1,8 @@
-import { useEffect, useState } from 'react';
 import { SkeletonLoading } from '@components/inc/SkeletonLoading';
-import { getRandomInt } from '@utils/getRandomInt';
-import { ListLoader } from '@components/inc/ListLoader';
+import { useRandomWidth } from './useRandomWidth';
 
-export const Loader = () => {
-    return (
-        <ListLoader testId="posts-loadingLoader" count={15} styles="flex flex-col gap-2 md:gap-3">
-            <SingleLoading />
-        </ListLoader>
-    );
-};
-
-const SingleLoading = () => {
-    const [randomWidth, setRandomWidth] = useState({
-        name: 0,
-        date: 0,
-        content: 0,
-    });
-
-    useEffect(() => {
-        setRandomWidth({
-            name: getRandomInt(50, 140),
-            date: getRandomInt(60, 160),
-            content: getRandomInt(70, 100),
-        });
-    }, []);
+export const SingleLoading = () => {
+    const { width } = useRandomWidth();
 
     return (
         <div className="w-full bg-dark-200 rounded-lg">
@@ -35,17 +13,17 @@ const SingleLoading = () => {
                     </div>
 
                     <div className="flex flex-col gap-2 mt-1">
-                        <SkeletonLoading styles={{ width: randomWidth.name }} classNames="h-[12px]" />
+                        <SkeletonLoading styles={{ width: width.name }} classNames="h-[12px]" />
 
                         <span className="text-xs text-light-100">
-                            <SkeletonLoading styles={{ width: randomWidth.date }} classNames="h-[10px]" />
+                            <SkeletonLoading styles={{ width: width.date }} classNames="h-[10px]" />
                         </span>
                     </div>
                 </div>
             </div>
 
             <div className="w-full p-4">
-                <SkeletonLoading styles={{ width: `${randomWidth.content}%` }} classNames="h-[54px]" />
+                <SkeletonLoading styles={{ width: `${width.content}%` }} classNames="h-[54px]" />
             </div>
 
             <div className="w-full flex gap-4 justify-evenly border-t-2 border-t-dark-100 p-2">

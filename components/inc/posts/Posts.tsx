@@ -1,6 +1,6 @@
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { ApiError } from '@components/inc/ApiError';
-import { Loader } from './Loader';
+import { Loader } from './loader/Loader';
 import { Post } from './post/Post';
 import { useGetPosts } from './useGetPosts';
 import { NoPosts } from './NoPosts';

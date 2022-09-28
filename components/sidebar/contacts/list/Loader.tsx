@@ -1,7 +1,6 @@
 import { ListLoader } from '@components/inc/ListLoader';
-import { useState, useEffect } from 'react';
 import { SkeletonLoading } from '@components/inc/SkeletonLoading';
-import { getRandomInt } from '@utils/getRandomInt';
+import { useRandomWidth } from '@hooks/useRandomWidth';
 
 export const Loader = () => {
     return (
@@ -12,16 +11,12 @@ export const Loader = () => {
 };
 
 const SingleLoading = () => {
-    const [randomWidth, setRandomWidth] = useState(0);
-
-    useEffect(() => {
-        setRandomWidth(getRandomInt(50, 140));
-    }, []);
+    const { width } = useRandomWidth(50, 140);
 
     return (
         <div className="w-full flex items-center gap-3 hover:bg-dark-100 rounded-lg transition-colors cursor-pointer p-2">
             <SkeletonLoading classNames="w-[36px] h-[36px]" isCircle />
-            <SkeletonLoading styles={{ width: randomWidth }} classNames="h-[20px]" />
+            <SkeletonLoading styles={{ width }} classNames="h-[20px]" />
         </div>
     );
 };
