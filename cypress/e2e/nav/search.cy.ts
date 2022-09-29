@@ -26,7 +26,7 @@ describe('Searching users tests', () => {
         });
     });
 
-    it('type friend firstname on input and see his firstname and username on results list, redirect to his profile by click on single result', () => {
+    it('type friend firstname on input and see his name on results list, redirect to his profile by click on single result', () => {
         cy.create('User', {
             first_name: 'John',
             last_name: 'Doe',
@@ -40,6 +40,50 @@ describe('Searching users tests', () => {
 
         cy.getNavSearch().within(() => {
             cy.get('input[aria-label="Search user"]').type('John');
+            cy.wait('@searching');
+
+            cy.contains('John Doe').click();
+
+            cy.url().should('contain', '/profile/2');
+        });
+    });
+
+    it('type friend firstname and part of lastname on input and see his name on results list, redirect to his profile by click on single result', () => {
+        cy.create('User', {
+            first_name: 'John',
+            last_name: 'Doe',
+        });
+
+        cy.intercept('/api/user').as('user');
+        cy.intercept(`/api/users?search=John+Do&page=1`).as('searching');
+
+        cy.visit('/');
+        cy.wait('@user');
+
+        cy.getNavSearch().within(() => {
+            cy.get('input[aria-label="Search user"]').type('John Do');
+            cy.wait('@searching');
+
+            cy.contains('John Doe').click();
+
+            cy.url().should('contain', '/profile/2');
+        });
+    });
+
+    it('type friend full name on input and see his name on results list, redirect to his profile by click on single result', () => {
+        cy.create('User', {
+            first_name: 'John',
+            last_name: 'Doe',
+        });
+
+        cy.intercept('/api/user').as('user');
+        cy.intercept(`/api/users?search=John+Doe&page=1`).as('searching');
+
+        cy.visit('/');
+        cy.wait('@user');
+
+        cy.getNavSearch().within(() => {
+            cy.get('input[aria-label="Search user"]').type('John Doe');
             cy.wait('@searching');
 
             cy.contains('John Doe').click();
@@ -77,7 +121,7 @@ describe('Searching users tests', () => {
 
             cy.get('[id="navSearch-results"]').scrollTo('bottom', { ensureScrollable: false });
 
-            cy.get('[data-testid="navSearch-results"] a').should('have.length', 13);
+            cy.get('[data-testid="navSearch-results"] a').should('have.length', 13 + 1);
         });
 
         cy.get('main').click();
@@ -115,7 +159,7 @@ describe('Searching users tests', () => {
             cy.get('input[aria-label="Search user"]').type('a');
             cy.wait('@searching');
 
-            cy.get('[data-testid="navSearch-results"] a').should('have.length', 1);
+            cy.get('[data-testid="navSearch-results"] a').should('have.length', 1 + 1);
         });
 
         cy.get('body').type('{esc}');
