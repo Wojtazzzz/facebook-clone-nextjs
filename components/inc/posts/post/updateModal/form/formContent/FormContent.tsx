@@ -32,7 +32,7 @@ export const FormContent = ({ isLoading, images, error }: FormContentProps) => {
 
             <UploadedFiles images={images} />
 
-            <Button type="submit" title="Update post" isDisabled={isLoading} styles="w-full mt-5" />
+            <Button type="submit" title="Update post" isLoading={isLoading} styles="w-full mt-5" />
         </div>
     );
 };

@@ -29,7 +29,7 @@ export const FormContent = ({ isLoading, error }: FormContentProps) => {
 
             <ErrorMessage error={error} />
 
-            <Button type="submit" title="Create post" isDisabled={isLoading} styles="w-full mt-5" />
+            <Button type="submit" title="Create post" isLoading={isLoading} styles="w-full mt-5" />
         </div>
     );
 };

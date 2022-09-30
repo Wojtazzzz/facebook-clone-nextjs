@@ -14,6 +14,11 @@ export const TurnOffComments = ({ postId, queryKey }: TurnOffCommentsProps) => {
     const handleTurnOffComments = () => turnOffComments(postId);
 
     return (
-        <Option title="Turn off comments" icon={faCommentSlash} isActive={isLoading} callback={handleTurnOffComments} />
+        <Option
+            title="Turn off comments"
+            icon={faCommentSlash}
+            isLoading={isLoading}
+            callback={handleTurnOffComments}
+        />
     );
 };

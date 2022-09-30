@@ -24,8 +24,8 @@ export const FriendPanel = (friend: FriendPanelProps) => {
 
     return (
         <div className="flex flex-col xs:flex-row gap-1.5 md:gap-3">
-            <PanelButton title="Message" isDisabled={isLoading} callback={handleOpenChat} />
-            <PanelButton title="Remove" isDisabled={isLoading} callback={handleRemove} />
+            <PanelButton title="Message" isLoading={isLoading} callback={handleOpenChat} />
+            <PanelButton title="Remove" isLoading={isLoading} callback={handleRemove} />
         </div>
     );
 };

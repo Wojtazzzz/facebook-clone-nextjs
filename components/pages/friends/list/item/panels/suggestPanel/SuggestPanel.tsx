@@ -15,5 +15,5 @@ export const SuggestPanel = ({ id }: SuggestPanelProps) => {
 
     if (isError) return <ErrorMessage message="Something went wrong, try again later" />;
 
-    return <PanelButton title="Invite" isDisabled={isLoading} callback={handleInvite} />;
+    return <PanelButton title="Invite" isLoading={isLoading} callback={handleInvite} />;
 };

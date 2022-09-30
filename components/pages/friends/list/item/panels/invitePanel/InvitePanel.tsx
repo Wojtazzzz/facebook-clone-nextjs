@@ -30,8 +30,8 @@ export const InvitePanel = ({ id }: InvitePanelProps) => {
 
     return (
         <div className="flex gap-3">
-            <PanelButton title="Reject" isDisabled={isLoading} callback={handleReject} />
-            <PanelButton title="Accept" isDisabled={isLoading} callback={handleAccept} />
+            <PanelButton title="Reject" isLoading={isLoading} callback={handleReject} />
+            <PanelButton title="Accept" isLoading={isLoading} callback={handleAccept} />
         </div>
     );
 };

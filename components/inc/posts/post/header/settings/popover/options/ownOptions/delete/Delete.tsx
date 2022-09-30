@@ -13,5 +13,5 @@ export const Delete = ({ postId, queryKey }: DeleteProps) => {
 
     const handleRemovePost = () => remove(postId);
 
-    return <Option title="Delete" icon={faTrashCan} isActive={isRemoveLoading} callback={handleRemovePost} />;
+    return <Option title="Delete" icon={faTrashCan} isLoading={isRemoveLoading} callback={handleRemovePost} />;
 };

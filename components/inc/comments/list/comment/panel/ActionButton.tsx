@@ -2,19 +2,19 @@ import clsx from 'clsx';
 
 interface ActionButtonProps {
     title: string;
-    isDisabled?: boolean;
+    isLoading?: boolean;
     styles?: string;
     callback: () => void;
 }
 
-export const ActionButton = ({ title, isDisabled = false, styles = '', callback }: ActionButtonProps) => {
+export const ActionButton = ({ title, isLoading = false, styles = '', callback }: ActionButtonProps) => {
     return (
         <button
             aria-label={title}
-            disabled={isDisabled}
+            disabled={isLoading}
             className={clsx(
                 'text-xs transition-colors font-bold cursor-pointer',
-                isDisabled ? 'text-light-200' : 'text-light-100 hover:text-light-200',
+                isLoading ? 'text-light-200 cursor-wait' : 'text-light-100 hover:text-light-200',
                 styles
             )}
             onClick={callback}

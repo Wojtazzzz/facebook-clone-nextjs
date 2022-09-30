@@ -15,10 +15,10 @@ export const Login = () => {
                 <p className="text-light-100 font-bold">LOGIN</p>
 
                 <div className="flex flex-col gap-4">
-                    <Input type="email" name="email" label="Email" isDisabled={isLoading} />
-                    <Input type="password" name="password" label="Password" isDisabled={isLoading} />
+                    <Input type="email" name="email" label="Email" isLoading={isLoading} />
+                    <Input type="password" name="password" label="Password" isLoading={isLoading} />
 
-                    <SubmitButton isDisabled={isLoading} />
+                    <SubmitButton isLoading={isLoading} />
                 </div>
 
                 <ResponseError error={error} />

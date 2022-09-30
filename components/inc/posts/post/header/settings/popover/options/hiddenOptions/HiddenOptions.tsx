@@ -15,5 +15,5 @@ export const HiddenOptions = ({ postId, queryKey }: HiddenOptionsProps) => {
         unhide(postId);
     };
 
-    return <Option title="Unhide" icon={faTrash} isActive={isLoading} callback={handleUnhide} />;
+    return <Option title="Unhide" icon={faTrash} isLoading={isLoading} callback={handleUnhide} />;
 };

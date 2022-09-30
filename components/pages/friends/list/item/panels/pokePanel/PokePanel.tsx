@@ -18,7 +18,7 @@ export const PokePanel = ({ friend, data }: PokePanelProps) => {
 
     return (
         <div className="w-[220px] flex flex-col items-center gap-1">
-            <PanelButton title="Poke back" isDisabled={isLoading} callback={handlePoke} />
+            <PanelButton title="Poke back" isLoading={isLoading} callback={handlePoke} />
 
             <Info firstName={friend.first_name} count={data.count} updatedAt={data.updated_at} />
         </div>

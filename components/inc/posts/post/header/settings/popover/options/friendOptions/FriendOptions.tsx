@@ -19,15 +19,13 @@ export const FriendOptions = ({ postId, queryKey, closeMenu }: FriendOptionsProp
     };
 
     const handleSavePost = () => {
-        save(postId, () => {
-            closeMenu();
-        });
+        save(postId, closeMenu);
     };
 
     return (
         <>
-            <Option title="Hide" icon={faBan} isActive={isHideLoading} callback={handleHidePost} />
-            <Option title="Save" icon={faSave} isActive={isSaveLoading} callback={handleSavePost} />
+            <Option title="Hide" icon={faBan} isLoading={isHideLoading} callback={handleHidePost} />
+            <Option title="Save" icon={faSave} isLoading={isSaveLoading} callback={handleSavePost} />
         </>
     );
 };

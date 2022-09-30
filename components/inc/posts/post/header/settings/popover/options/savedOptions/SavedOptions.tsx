@@ -15,5 +15,5 @@ export const SavedOptions = ({ postId, queryKey }: SavedOptionsProps) => {
         unsave(postId);
     };
 
-    return <Option title="Unsave" icon={faTrash} isActive={isLoading} callback={handleUnsave} />;
+    return <Option title="Unsave" icon={faTrash} isLoading={isLoading} callback={handleUnsave} />;
 };

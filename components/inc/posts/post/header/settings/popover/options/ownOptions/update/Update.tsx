@@ -6,5 +6,5 @@ interface UpdateProps {
 }
 
 export const Update = ({ openUpdateModal }: UpdateProps) => {
-    return <Option title="Update" icon={faEdit} isActive={false} callback={openUpdateModal} />;
+    return <Option title="Update" icon={faEdit} isLoading={false} callback={openUpdateModal} />;
 };

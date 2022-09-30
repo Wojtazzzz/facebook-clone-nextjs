@@ -14,6 +14,6 @@ export const TurnOnComments = ({ postId, queryKey }: TurnOnCommentsProps) => {
     const handleTurnOnComments = () => turnOnComments(postId);
 
     return (
-        <Option title="Turn on comments" icon={faCircleCheck} isActive={isLoading} callback={handleTurnOnComments} />
+        <Option title="Turn on comments" icon={faCircleCheck} isLoading={isLoading} callback={handleTurnOnComments} />
     );
 };

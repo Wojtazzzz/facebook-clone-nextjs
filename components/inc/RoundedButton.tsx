@@ -7,6 +7,7 @@ interface RoundedButtonProps {
     icon: IconDefinition;
     type?: 'button' | 'submit';
     isDisabled?: boolean;
+    isLoading?: boolean;
     styles?: string;
     iconStyles?: string;
     callback: () => void;
@@ -17,6 +18,7 @@ export const RoundedButton = ({
     icon,
     type = 'button',
     isDisabled = false,
+    isLoading = false,
     styles = '',
     iconStyles = '',
     callback,
@@ -25,10 +27,11 @@ export const RoundedButton = ({
         <button
             type={type}
             aria-label={label}
-            disabled={isDisabled}
+            disabled={isDisabled || isLoading}
             className={clsx(
-                `w-[40px] h-[40px] flex justify-center items-center  transition-all rounded-full p-0 ${styles}`,
-                isDisabled && 'cursor-not-allowed'
+                `w-[40px] h-[40px] flex justify-center items-center transition-all rounded-full p-0 ${styles}`,
+                isDisabled && 'cursor-not-allowed',
+                isLoading && 'cursor-wait'
             )}
             onClick={callback}
         >

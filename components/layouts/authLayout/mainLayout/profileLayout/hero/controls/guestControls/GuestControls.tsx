@@ -17,7 +17,7 @@ export const GuestControls = ({ user }: GuestControlsProps) => {
     return (
         <>
             <Button title="Send message" styles="w-[130px] xl:w-[155px]" callback={handleOpenChat} />
-            <Button title="Poke" styles="w-[130px] xl:w-[155px]" isDisabled={isLoading} callback={handlePoke} />
+            <Button title="Poke" styles="w-[130px] xl:w-[155px]" isLoading={isLoading} callback={handlePoke} />
         </>
     );
 };

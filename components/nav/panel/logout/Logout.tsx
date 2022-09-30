@@ -5,5 +5,5 @@ import { useLogout } from './useLogout';
 export const Logout = () => {
     const { logout, isLoading } = useLogout();
 
-    return <Button label="Log out" icon={faRightFromBracket} isDisabled={isLoading} callback={logout} />;
+    return <Button label="Log out" icon={faRightFromBracket} isLoading={isLoading} callback={logout} />;
 };

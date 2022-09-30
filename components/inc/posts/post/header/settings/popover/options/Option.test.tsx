@@ -29,21 +29,21 @@ describe('Option component', () => {
         expect(mockCallback).toHaveBeenCalledTimes(1);
     });
 
-    it('isActive props show loading cursor', async () => {
+    it('option with isLoading show loading cursor', async () => {
         const mockCallback = jest.fn();
 
-        renderWithDefaultData(<Option icon={faBan} title="Test title" isActive callback={mockCallback} />);
+        renderWithDefaultData(<Option icon={faBan} title="Test title" isLoading callback={mockCallback} />);
 
         const button = screen.getByLabelText('Test title');
 
         expect(button).toHaveClass('cursor-wait');
     });
 
-    it('cannot execute callback when isActive passed', async () => {
+    it('cannot execute callback when isLoading passed', async () => {
         const mockCallback = jest.fn();
         const user = userEvent.setup();
 
-        renderWithDefaultData(<Option icon={faBan} title="Test title" isActive callback={mockCallback} />);
+        renderWithDefaultData(<Option icon={faBan} title="Test title" isLoading callback={mockCallback} />);
 
         const button = screen.getByLabelText('Test title');
         await user.click(button);
@@ -51,7 +51,7 @@ describe('Option component', () => {
         expect(mockCallback).toHaveBeenCalledTimes(0);
     });
 
-    it('isDisabled props show block cursor', async () => {
+    it('option with isDisabled prop show block cursor', async () => {
         const mockCallback = jest.fn();
 
         renderWithDefaultData(<Option icon={faBan} title="Test title" isDisabled callback={mockCallback} />);

@@ -20,7 +20,7 @@ export const Register = () => {
                 <Button type="button" title="Register" isDisabled={true} styles="w-full mt-2" />
             </div>
 
-            <Button title="Create random user" isDisabled={isLoading} callback={register} styles="w-full mt-2" />
+            <Button title="Create random user" isLoading={isLoading} callback={register} styles="w-full mt-2" />
 
             <ResponseError error={error} />
         </form>

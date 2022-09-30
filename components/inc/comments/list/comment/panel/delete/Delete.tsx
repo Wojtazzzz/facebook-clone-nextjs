@@ -16,5 +16,5 @@ export const Delete = ({ postId, commentId }: DeleteProps) => {
         });
     };
 
-    return <ActionButton title="Delete" isDisabled={isLoading} callback={handleRemove} />;
+    return <ActionButton title="Delete" isLoading={isLoading} callback={handleRemove} />;
 };
