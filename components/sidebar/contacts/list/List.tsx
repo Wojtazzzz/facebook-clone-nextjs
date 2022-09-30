@@ -3,13 +3,13 @@ import { ApiError } from '@components/inc/ApiError';
 import { EmptyList } from '@components/inc/EmptyList';
 import { memo } from 'react';
 import { useInfiniteData } from '@hooks/useInfiniteData';
-import type { IContact } from '@utils/types';
+import type { IFriend } from '@utils/types';
 import { Loader } from './Loader';
 import { Contact } from './Contact';
 import { getContactsQK } from '@utils/queryKeys';
 
 export const List = memo(() => {
-    const { data, isLoading, isError, isEmpty, hasNextPage, fetchNextPage } = useInfiniteData<IContact>({
+    const { data, isLoading, isError, isEmpty, hasNextPage, fetchNextPage } = useInfiniteData<IFriend>({
         queryKey: getContactsQK(),
         endpoint: '/api/contacts',
     });

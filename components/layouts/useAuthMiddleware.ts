@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import type { IAuthMiddleware } from '@utils/types';
 import { useAuth } from '@hooks/useAuth';
+
+type IAuthMiddleware = 'GUEST' | 'AUTH';
 
 export const useAuthMiddleware = (middleware: IAuthMiddleware) => {
     const router = useRouter();

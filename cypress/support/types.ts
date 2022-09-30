@@ -1,5 +1,3 @@
-import type { IMaritalStatus } from '@utils/types';
-
 export type IUser = {
     id: number;
     first_name: string;
@@ -19,6 +17,18 @@ export type IPost = {
     updated_at: string;
     commenting: boolean;
 };
+
+export type IMaritalStatus =
+    | 'Single'
+    | 'In a relationship'
+    | 'Engaged'
+    | 'Married'
+    | 'In a civil partnership'
+    | 'In a domestic partnership'
+    | 'In an open relationship'
+    | 'Its complicated'
+    | 'Separated'
+    | 'Widowed';
 
 export type IUserExtended = {
     works_at: string;

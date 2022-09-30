@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { ChangeEvent } from 'react';
-import type { IPostList } from '@utils/types';
+
+type IPostList = 'own' | 'all' | 'hidden' | 'saved';
 
 export const usePostsListSwitcher = () => {
     const [postsList, setPostsList] = useState<IPostList>('own');

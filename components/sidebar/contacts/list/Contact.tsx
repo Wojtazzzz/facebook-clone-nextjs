@@ -1,8 +1,8 @@
 import { Avatar } from '@components/inc/Avatar';
-import type { IContact } from '@utils/types';
+import type { IFriend } from '@utils/types';
 import { useChat } from '@hooks/useChat';
 
-interface ContactProps extends IContact {}
+interface ContactProps extends IFriend {}
 
 export const Contact = (contact: ContactProps) => {
     const { openChat } = useChat();

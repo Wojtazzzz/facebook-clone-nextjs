@@ -1,11 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import type { IUpdateInvite, IUpdateInviteStatus } from '@utils/types';
+import type { IUpdateInvite } from '@utils/types';
 import { axios } from '@libs/axios';
 import { getInvitesListQK } from '@utils/queryKeys';
-
-type IUpdateInviteResponse = {
-    message: string;
-};
 
 export const useUpdateInvite = () => {
     const queryClient = useQueryClient();
@@ -14,7 +10,7 @@ export const useUpdateInvite = () => {
         onSuccess: () => queryClient.invalidateQueries(getInvitesListQK()),
     });
 
-    const updateInvite = (data: IUpdateInviteData) => {
+    const updateInvite = (data: IUpdateInvite) => {
         if (mutation.isLoading) return;
 
         mutation.mutate(data);
@@ -26,9 +22,8 @@ export const useUpdateInvite = () => {
     };
 };
 
-type IUpdateInviteData = {
-    friendId: number;
-    status: IUpdateInviteStatus;
+type IUpdateInviteResponse = {
+    message: string;
 };
 
 const mutationFn = ({ friendId, status }: IUpdateInvite) =>

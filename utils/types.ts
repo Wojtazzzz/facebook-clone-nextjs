@@ -8,19 +8,6 @@ export type IUser = {
     profile_image: string;
     background_image: string;
 };
-
-export type IMaritalStatus =
-    | 'Single'
-    | 'In a relationship'
-    | 'Engaged'
-    | 'Married'
-    | 'In a civil partnership'
-    | 'In a domestic partnership'
-    | 'In an open relationship'
-    | 'Its complicated'
-    | 'Separated'
-    | 'Widowed';
-
 export type IUserProfile = {
     id: number;
     name: string;
@@ -36,19 +23,11 @@ export type IUserProfile = {
     marital_status?: string;
 };
 
-export type IUserSearchResult = {
-    id: number;
-    name: string;
-    profile_image: string;
-};
-
 export type IFriend = {
     id: number;
     name: string;
     profile_image: string;
 };
-
-export type IUsePaginatedDataState = 'LOADING' | 'FETCHING' | 'ERROR' | 'SUCCESS';
 
 export type IFriendsList = 'Friends' | 'Invites' | 'Suggests' | 'Pokes';
 
@@ -67,17 +46,6 @@ export type IPoke = {
     };
 };
 
-export type IAuthMiddleware = 'GUEST' | 'AUTH';
-
-export type ICreatePostResponse = {
-    data: IPost;
-    message: string;
-};
-
-export type ILikeResponse = {
-    likesCount: number;
-};
-
 export type ICommentPayload = { content: string };
 
 export type ILoginPayload = {
@@ -87,12 +55,6 @@ export type ILoginPayload = {
 
 export type IPostCreatePayload = { content: string; images: File[] };
 export type IPostUpdatePayload = { content: string; images: File[]; imagesToDelete: string[] };
-
-export type IPostToUpdate = {
-    id: number;
-    content: string;
-    images?: string[];
-};
 
 export type IComment = {
     id: number;
@@ -146,14 +108,6 @@ export type IPostType = {
     is_hidden: boolean;
 };
 
-export type IPostList = 'own' | 'all' | 'hidden' | 'saved';
-
-export type IContact = {
-    id: number;
-    name: string;
-    profile_image: string;
-};
-
 export type IBirthday = {
     id: number;
     name: string;
@@ -179,11 +133,9 @@ export type IPaginatedResponse<T> = {
     prev_page: number | undefined;
 };
 
-export type IUpdateInviteStatus = 'CONFIRMED' | 'BLOCKED';
-
 export type IUpdateInvite = {
     friendId: number;
-    status: IUpdateInviteStatus;
+    status: 'CONFIRMED' | 'BLOCKED';
 };
 
 export type IValidationError = {
@@ -201,7 +153,7 @@ export type IValidationError = {
 
 export type IMessageIconType = 'AVATAR' | 'SENDING' | 'DELIVERED' | undefined;
 
-export type IChatFriend = IUser | IContact;
+export type IChatFriend = IUser | IFriend;
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
     getLayout?: (page: ReactElement) => ReactNode;

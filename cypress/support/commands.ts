@@ -22,14 +22,16 @@ Cypress.Commands.add('checkNotification', (title: string, label: string, click: 
 
     cy.get('[id="list-of-notifications"] button').should('have.length', 1);
 
-    cy.get('[id="list-of-notifications"]').within(() => {
-        cy.get('button:first').contains(title).should('be.visible');
-        cy.get('button:first').contains(label).should('be.visible');
+    cy.get('[id="list-of-notifications"]')
+        .first()
+        .within(() => {
+            cy.get('button:first').contains(title).should('be.visible');
+            cy.get('button:first').contains(label).should('be.visible');
 
-        if (click) {
-            cy.get('button:first').click();
-        }
-    });
+            if (click) {
+                cy.get('button:first').click();
+            }
+        });
 });
 
 Cypress.Commands.add('relogin', (id: number, path: string = '/') => {

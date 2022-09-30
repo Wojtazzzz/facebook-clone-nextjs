@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import Link from 'next/link';
 import { Avatar } from '@components/inc/Avatar';
-import type { IUserSearchResult } from '@utils/types';
+import type { IFriend } from '@utils/types';
 
-interface SingleResultProps extends IUserSearchResult {}
+interface SingleResultProps extends IFriend {}
 
 export const SingleResult = ({ id, name, profile_image }: SingleResultProps) => {
     return (
