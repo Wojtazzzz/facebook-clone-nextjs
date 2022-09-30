@@ -467,43 +467,6 @@ describe('Chat tests', () => {
         });
     });
 
-    it('cannot create message with invalid type of file', () => {
-        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
-
-        cy.visit('/');
-
-        cy.wait('@user');
-        cy.wait('@contacts_page_1');
-
-        cy.get('[data-testid="contacts-list"]').within(() => {
-            cy.contains(`${friend.first_name} ${friend.last_name}`).click();
-        });
-
-        cy.wait('@messages_page_1');
-
-        cy.get('[data-testid="chat"]').should('be.visible');
-
-        cy.intercept('/api/messages').as('messages');
-        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
-
-        cy.get('input[aria-label="Message input"]').type('Hello World!');
-
-        cy.get('input[type="file"]').attachFile(['/file.pdf']);
-        cy.get('[data-testid="chat-uploadedImages"]').should('not.exist');
-
-        cy.get('button[aria-label="Submit message"]').click();
-
-        cy.wait('@messages');
-        cy.wait('@messages_page_1');
-
-        cy.get('[data-testid="chat"]').within(() => {
-            cy.get('[aria-label="Message sent"]').within(() => {
-                cy.contains('Hello World!');
-                cy.get('img').should('not.exist');
-            });
-        });
-    });
-
     it('users can messages to each other', () => {
         cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
 
