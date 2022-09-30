@@ -1,9 +1,9 @@
 import { Avatar } from '@components/inc/Avatar';
 import { useChat } from '@hooks/useChat';
-import type { IUser } from '@utils/types';
+import type { IFriend } from '@utils/types';
 
 interface ConversationProps {
-    friend: IUser;
+    friend: IFriend;
     close: () => void;
 }
 
