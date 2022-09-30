@@ -1,8 +1,8 @@
-import type { IPostUpdatePayload } from '@utils/types';
+import type { IPostCreatePayload } from '@utils/types';
 import { useFormikContext } from 'formik';
 
-export const useUpload = () => {
-    const { values, setFieldValue } = useFormikContext<IPostUpdatePayload>();
+export const useUploadImages = () => {
+    const { values, setFieldValue } = useFormikContext<IPostCreatePayload>();
 
     const cancelUpload = () => {
         setFieldValue('images', []);

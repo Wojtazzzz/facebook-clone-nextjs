@@ -1,11 +1,11 @@
 import { Button } from '@components/inc/Button';
 import { SpinnerLoader } from '@components/inc/SpinnerLoader';
-import { ToggleFilesUpload } from './ToggleFilesUpload';
+import { ToggleImagesUpload } from './ToggleImagesUpload';
 import { ErrorMessage } from './ErrorMessage';
 import { Textarea } from './Textarea';
-import { UploadFiles } from './uploadFiles/UploadFiles';
+import { UploadImages } from './uploadImages/UploadImages';
 import { useUploadActive } from './useUploadActive';
-import { UploadedFiles } from './uploadedFiles/UploadedFiles';
+import { UploadedImages } from './uploadedImages/UploadedImages';
 
 interface FormContentProps {
     isLoading: boolean;
@@ -24,13 +24,13 @@ export const FormContent = ({ isLoading, images, error }: FormContentProps) => {
         <div className="m-3">
             <Textarea />
 
-            {isUploadActive && <UploadFiles close={closeUpload} />}
+            {isUploadActive && <UploadImages close={closeUpload} />}
 
             <ErrorMessage error={error} />
 
-            <ToggleFilesUpload toggle={toggleUpload} />
+            <ToggleImagesUpload toggle={toggleUpload} />
 
-            <UploadedFiles images={images} />
+            <UploadedImages images={images} />
 
             <Button type="submit" title="Update post" isLoading={isLoading} styles="w-full mt-5" />
         </div>

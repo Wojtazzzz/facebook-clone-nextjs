@@ -1,21 +1,22 @@
-import { File } from './File';
+import { Image } from './Image';
 import { v4 as uuidv4 } from 'uuid';
 import { useImages } from './useImages';
 
-interface UploadedFilesProps {
+interface UploadedImagesProps {
     images: string[];
 }
 
-export const UploadedFiles = ({ images }: UploadedFilesProps) => {
+export const UploadedImages = ({ images }: UploadedImagesProps) => {
     const { currentImages, remove } = useImages(images);
 
     if (!images.length) return null;
 
-    const ImagesComponents = currentImages.map((img) => <File key={uuidv4()} remove={remove} path={img} />);
+    // eslint-disable-next-line jsx-a11y/alt-text
+    const ImagesComponents = currentImages.map((img) => <Image key={uuidv4()} remove={remove} path={img} />);
 
     return (
         <div
-            aria-label="List of already uploaded files"
+            aria-label="List of already uploaded images"
             className="flex flex-col gap-2 h-full border-1px border-light-100 rounded-xl overflow-y-auto p-3"
         >
             {ImagesComponents}

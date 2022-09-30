@@ -90,7 +90,7 @@ describe('Form component', () => {
         expect(inputFile).toBeInTheDocument();
     });
 
-    it('render file name when file uploaded', async () => {
+    it('render uploaded image name', async () => {
         const user = userEvent.setup();
         const mockClose = jest.fn();
 
@@ -104,12 +104,12 @@ describe('Form component', () => {
         const inputFile = screen.getByLabelText('Images input');
         await user.upload(inputFile, file);
 
-        const displayedFileName = screen.getByText(file.name);
+        const imageName = screen.getByText(file.name);
 
-        expect(displayedFileName).toBeInTheDocument();
+        expect(imageName).toBeInTheDocument();
     });
 
-    it('cannot upload file which is illicit', async () => {
+    it('cannot upload image which has illegal extension', async () => {
         const user = userEvent.setup();
         const mockClose = jest.fn();
         const file = generateFile('testFile.pdf', 'application/pdf');
@@ -123,16 +123,16 @@ describe('Form component', () => {
 
         await user.upload(inputFile, file);
 
-        const displayedFileName = screen.queryByText(file.name);
+        const imageName = screen.queryByText(file.name);
 
-        expect(displayedFileName).not.toBeInTheDocument();
+        expect(imageName).not.toBeInTheDocument();
     });
 
-    it('can upload multiple files', async () => {
+    it('can upload multiple images', async () => {
         const user = userEvent.setup();
         const mockClose = jest.fn();
 
-        const files = [
+        const images = [
             generateFile('firstFile.png', 'image/png'),
             generateFile('secondFile.jpg', 'image/jpg'),
             generateFile('thirdFile.jpeg', 'image/jpeg'),
@@ -144,22 +144,22 @@ describe('Form component', () => {
         await user.click(renderButton);
 
         const inputFile = screen.getByLabelText('Images input');
-        await user.upload(inputFile, files);
+        await user.upload(inputFile, images);
 
-        const displayedFirstFileName = screen.getByText(files[0].name);
-        const displayedSecondFileName = screen.getByText(files[1].name);
-        const displayedThirdFileName = screen.getByText(files[2].name);
+        const firstImageName = screen.getByText(images[0].name);
+        const secondImageName = screen.getByText(images[1].name);
+        const thirdImageName = screen.getByText(images[2].name);
 
-        expect(displayedFirstFileName).toBeInTheDocument();
-        expect(displayedSecondFileName).toBeInTheDocument();
-        expect(displayedThirdFileName).toBeInTheDocument();
+        expect(firstImageName).toBeInTheDocument();
+        expect(secondImageName).toBeInTheDocument();
+        expect(thirdImageName).toBeInTheDocument();
     });
 
-    it('can remove file from uploaded files list', async () => {
+    it('can remove image from uploaded images list', async () => {
         const user = userEvent.setup();
         const mockClose = jest.fn();
 
-        const files = [
+        const images = [
             generateFile('firstFile.png', 'image/png'),
             generateFile('secondFile.jpg', 'image/jpg'),
             generateFile('thirdFile.jpeg', 'image/jpeg'),
@@ -172,63 +172,61 @@ describe('Form component', () => {
 
         const inputFile = screen.getByLabelText('Images input');
 
-        await user.upload(inputFile, files);
+        await user.upload(inputFile, images);
 
-        const removeSecondFileButton = screen.getByLabelText(`Remove ${files[1].name} from updated files list`);
+        const removeSecondImageButton = screen.getByLabelText(`Remove ${images[1].name} from images list`);
 
-        const displayedSecondFileName = screen.getByText(files[1].name);
+        const secondImageName = screen.getByText(images[1].name);
 
-        expect(displayedSecondFileName).toBeInTheDocument();
+        expect(secondImageName).toBeInTheDocument();
 
+        await user.click(removeSecondImageButton);
+
+        expect(secondImageName).not.toBeInTheDocument();
+    });
+
+    it('removing one image cannot remove another image(s) from list', async () => {
+        const user = userEvent.setup();
+        const mockClose = jest.fn();
+
+        const images = [
+            generateFile('firstFile.png', 'image/png'),
+            generateFile('secondFile.jpg', 'image/jpg'),
+            generateFile('thirdFile.jpeg', 'image/jpeg'),
+        ];
+
+        renderWithDefaultData(<Form queryKey={getPostsQK({ type: 'all' })} close={mockClose} />);
+
+        const renderButton = screen.getByLabelText('Show files uploader');
+        await user.click(renderButton);
+
+        const inputFile = screen.getByLabelText('Images input');
+        await user.upload(inputFile, images);
+
+        const removeSecondFileButton = screen.getByLabelText(`Remove ${images[1].name} from images list`);
         await user.click(removeSecondFileButton);
 
-        expect(displayedSecondFileName).not.toBeInTheDocument();
-    });
-
-    it('removing one file cannot remove another file(s) from list', async () => {
-        const user = userEvent.setup();
-        const mockClose = jest.fn();
-
-        const files = [
-            generateFile('firstFile.png', 'image/png'),
-            generateFile('secondFile.jpg', 'image/jpg'),
-            generateFile('thirdFile.jpeg', 'image/jpeg'),
-        ];
-
-        renderWithDefaultData(<Form queryKey={getPostsQK({ type: 'all' })} close={mockClose} />);
-
-        const renderButton = screen.getByLabelText('Show files uploader');
-        await user.click(renderButton);
-
-        const inputFile = screen.getByLabelText('Images input');
-
-        await user.upload(inputFile, files);
-
-        const removeSecondFileButton = screen.getByLabelText(`Remove ${files[1].name} from updated files list`);
-
-        await user.click(removeSecondFileButton);
-
         await waitFor(() => {
-            const displayedFirstFileName = screen.queryByText(files[0].name);
-            expect(displayedFirstFileName).toBeInTheDocument();
+            const displayedFirstImageName = screen.queryByText(images[0].name);
+            expect(displayedFirstImageName).toBeInTheDocument();
         });
 
         await waitFor(() => {
-            const displayedSecondFileName = screen.queryByText(files[0].name);
-            expect(displayedSecondFileName).toBeInTheDocument();
+            const secondImageName = screen.queryByText(images[0].name);
+            expect(secondImageName).toBeInTheDocument();
         });
 
         await waitFor(() => {
-            const displayedThirdFileName = screen.queryByText(files[0].name);
-            expect(displayedThirdFileName).toBeInTheDocument();
+            const displayedThirdImageName = screen.queryByText(images[0].name);
+            expect(displayedThirdImageName).toBeInTheDocument();
         });
     });
 
-    it('render properly count of uploaded files', async () => {
+    it('render properly count of uploaded images', async () => {
         const user = userEvent.setup();
         const mockClose = jest.fn();
 
-        const files = [
+        const images = [
             generateFile('firstFile.png', 'image/png'),
             generateFile('secondFile.jpg', 'image/jpg'),
             generateFile('thirdFile.jpeg', 'image/jpeg'),
@@ -243,9 +241,9 @@ describe('Form component', () => {
 
         const inputFile = screen.getByLabelText('Images input');
 
-        await user.upload(inputFile, files);
+        await user.upload(inputFile, images);
 
-        const count = screen.getByText(`Uploaded files: ${files.length}`);
+        const count = screen.getByText(`Uploaded images: ${images.length}`);
 
         expect(count).toBeInTheDocument();
     });

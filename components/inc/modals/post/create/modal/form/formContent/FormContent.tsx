@@ -1,9 +1,9 @@
 import { Button } from '@components/inc/Button';
 import { SpinnerLoader } from '@components/inc/SpinnerLoader';
-import { ToggleFilesUpload } from './ToggleFilesUpload';
+import { ToggleImagesUpload } from './ToggleImagesUpload';
 import { ErrorMessage } from './ErrorMessage';
 import { Textarea } from './Textarea';
-import { UploadFiles } from './uploadFiles/UploadFiles';
+import { UploadImages } from './uploadImages/UploadImages';
 import { useUploadActive } from './useUploadActive';
 
 interface FormContentProps {
@@ -23,9 +23,9 @@ export const FormContent = ({ isLoading, error }: FormContentProps) => {
         <div className="m-1 md:m-3">
             <Textarea />
 
-            {isUploadActive && <UploadFiles close={closeUpload} />}
+            {isUploadActive && <UploadImages close={closeUpload} />}
 
-            <ToggleFilesUpload toggle={toggleUpload} />
+            <ToggleImagesUpload toggle={toggleUpload} />
 
             <ErrorMessage error={error} />
 

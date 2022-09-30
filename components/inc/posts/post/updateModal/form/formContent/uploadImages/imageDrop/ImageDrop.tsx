@@ -2,14 +2,14 @@ import Dropzone from 'react-dropzone';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImages } from '@fortawesome/free-solid-svg-icons';
 import { CloseButton } from './CloseButton';
-import { useUpload } from './useUpload';
+import { useUploadImages } from './useUploadImages';
 
-interface FileDropProps {
+interface ImageDropProps {
     close: () => void;
 }
 
-export const FileDrop = ({ close }: FileDropProps) => {
-    const { onDrop, cancelUpload } = useUpload();
+export const ImageDrop = ({ close }: ImageDropProps) => {
+    const { onDrop, cancelUpload } = useUploadImages();
 
     const handleClose = () => {
         cancelUpload();

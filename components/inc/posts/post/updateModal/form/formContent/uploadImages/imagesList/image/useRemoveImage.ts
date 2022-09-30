@@ -1,7 +1,7 @@
 import type { IPostCreatePayload } from '@utils/types';
 import { useFormikContext } from 'formik';
 
-export const useRemoveFile = () => {
+export const useRemoveImage = () => {
     const { values, setFieldValue } = useFormikContext<IPostCreatePayload>();
 
     const remove = (file: File) => {

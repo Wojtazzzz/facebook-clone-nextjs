@@ -25,7 +25,7 @@ describe('Update post tests', () => {
         cy.openUpdatePostModal();
 
         cy.get('[aria-label="Post content"]').should('have.value', 'Test content');
-        cy.get('[aria-label="List of already uploaded files"]').children().should('have.length', 2);
+        cy.get('[aria-label="List of already uploaded images"]').children().should('have.length', 2);
 
         cy.get('body').type('{esc}');
 
@@ -178,11 +178,11 @@ describe('Update post tests', () => {
 
         cy.openUpdatePostModal();
 
-        cy.get('[aria-label="List of already uploaded files"]')
+        cy.get('[aria-label="List of already uploaded images"]')
             .children()
             .first()
             .within(() => {
-                cy.get('[aria-label="Remove file"]').click();
+                cy.get('[aria-label="Remove image"]').click();
             });
 
         cy.get('button[aria-label="Update post"]').click();
@@ -227,11 +227,11 @@ describe('Update post tests', () => {
 
         cy.openUpdatePostModal();
 
-        cy.get('[aria-label="List of already uploaded files"]')
+        cy.get('[aria-label="List of already uploaded images"]')
             .children()
             .first()
             .within(() => {
-                cy.get('[aria-label="Remove file"]').click();
+                cy.get('[aria-label="Remove image"]').click();
             });
         cy.get('[aria-label="Post content"]').clear();
 
@@ -282,11 +282,11 @@ describe('Update post tests', () => {
 
         cy.openUpdatePostModal();
 
-        cy.get('[aria-label="List of already uploaded files"]')
+        cy.get('[aria-label="List of already uploaded images"]')
             .children()
             .first()
             .within(() => {
-                cy.get('[aria-label="Remove file"]').click();
+                cy.get('[aria-label="Remove image"]').click();
             });
 
         cy.get('button[aria-label="Show files uploader"]').click();
