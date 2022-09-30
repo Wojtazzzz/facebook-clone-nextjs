@@ -2,17 +2,12 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { ApiError } from '@components/inc/ApiError';
 import { EmptyList } from '@components/inc/EmptyList';
 import { memo } from 'react';
-import { useInfiniteData } from '@hooks/useInfiniteData';
-import type { IFriend } from '@utils/types';
 import { Loader } from './Loader';
 import { Contact } from './Contact';
-import { getContactsQK } from '@utils/queryKeys';
+import { useGetContacts } from './useGetContacts';
 
 export const List = memo(() => {
-    const { data, isLoading, isError, isEmpty, hasNextPage, fetchNextPage } = useInfiniteData<IFriend>({
-        queryKey: getContactsQK(),
-        endpoint: '/api/contacts',
-    });
+    const { data, isLoading, isError, isEmpty, hasNextPage, fetchNextPage } = useGetContacts();
 
     if (isLoading) return <Loader />;
     if (!data || isError) return <ApiError size="lg" styles="h-full" />;
