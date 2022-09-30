@@ -22,7 +22,7 @@ describe('Profile hero tests', () => {
 
         cy.get('button[aria-label="Edit profile"]').should('be.disabled');
         cy.contains('13 friends').should('be.visible');
-        cy.get('[data-testid="profile-friendsList"] img').should('have.length', 8 * 2);
+        cy.get('[data-testid="profile-friendsList"] img').should('have.length', 8);
 
         cy.get('[data-testid="profile-friendsList"] img').first().click({ force: true });
 
@@ -43,7 +43,7 @@ describe('Profile hero tests', () => {
 
         cy.get('button[aria-label="Edit profile"]').should('not.exist');
         cy.contains('1 friend').should('be.visible');
-        cy.get('[data-testid="profile-friendsList"] img').should('have.length', 1 * 2);
+        cy.get('[data-testid="profile-friendsList"] img').should('have.length', 1);
 
         cy.get('button[aria-label="Send message"]').click();
 
