@@ -12,6 +12,7 @@ export const useCreateMessage = () => {
     const queryClient = useQueryClient();
     const { friend, setError, clearError } = useChat();
 
+    /* Chat component is listening for new messages, so revalidation is needless */
     const mutation: IMutation = useMutation(mutationFn, {
         onMutate: async (data) => {
             if (!friend) return;
@@ -38,7 +39,6 @@ export const useCreateMessage = () => {
             return { previousMessages };
         },
 
-        // Chat component is listening for new messages, so invalidate is needless
         onSuccess: () => clearError(),
 
         onError: (error, newTodo, context) => {
@@ -47,12 +47,6 @@ export const useCreateMessage = () => {
             setError(error);
 
             queryClient.setQueryData(getChatQK(friend.id), context.previousMessages);
-        },
-
-        onSettled: () => {
-            if (!friend) return;
-
-            queryClient.invalidateQueries(getChatQK(friend.id));
         },
     });
 

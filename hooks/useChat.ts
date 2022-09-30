@@ -21,7 +21,9 @@ export const useChat = () => {
     const revalidateMessages = () => {
         if (!friend) return;
 
-        queryClient.invalidateQueries(getChatQK(friend.id));
+        if (!queryClient.isFetching(getChatQK(friend.id))) {
+            queryClient.invalidateQueries(getChatQK(friend.id));
+        }
     };
 
     const setError = (error: unknown) => {
