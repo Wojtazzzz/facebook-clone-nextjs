@@ -1,10 +1,8 @@
 import { ApiError } from '@components/inc/ApiError';
-import type { IComment } from '@utils/types';
 import { Loader } from './Loader';
 import { Comment } from './comment/Comment';
-import { useInfiniteData } from '@hooks/useInfiniteData';
 import { LoadMore } from './LoadMore';
-import { getPostCommentsQK } from '@utils/queryKeys';
+import { useGetComments } from './useGetComments';
 
 interface ListProps {
     postId: number;
@@ -12,10 +10,7 @@ interface ListProps {
 
 export const List = ({ postId }: ListProps) => {
     const { data, isLoading, isError, isEmpty, hasNextPage, isFetchingNextPage, fetchNextPage } =
-        useInfiniteData<IComment>({
-            queryKey: getPostCommentsQK(postId),
-            endpoint: `/api/posts/${postId}/comments`,
-        });
+        useGetComments(postId);
 
     if (isLoading) return <Loader />;
     if (!data || isError) return <ApiError styles="my-1" />;
