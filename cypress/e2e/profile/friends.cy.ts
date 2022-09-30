@@ -66,7 +66,7 @@ describe('Profile friends tests', () => {
         });
     });
 
-    it("go to friend's profile by searching, go to his friends list due to aside info, see 20 friends", () => {
+    it("go to friend's profile by searching, go to his friends list due to aside info, see 20 friends, fetch more friends by scroll page to bottom", () => {
         cy.createUser(1, true, {
             first_name: 'John',
             last_name: 'Doe',
@@ -148,5 +148,81 @@ describe('Profile friends tests', () => {
         });
 
         cy.url().should('contain', '/profile/1');
+    });
+
+    it("see 20 friends, focus input by click on search button, write something in input, clear input by click on clear button, write friend's name, see only friend on list", () => {
+        cy.createFriendship(20);
+
+        cy.createUser(1, true, {
+            first_name: 'John',
+            last_name: 'Doe',
+            id: 999,
+        });
+
+        cy.intercept('/api/user').as('user');
+        cy.intercept('/api/users/1/friends?search=&page=1').as('friends_page_1');
+
+        cy.visit('/profile/1/friends');
+
+        cy.wait('@user');
+        cy.wait('@friends_page_1');
+
+        cy.get('section[data-testid="profile-friends"]').within(() => {
+            cy.get('article[aria-label="Friend"]').should('have.length', 20);
+
+            cy.get('input[aria-label="Search friend"]').should('not.have.focus');
+
+            cy.get('button[aria-label="Focus input"]').click();
+
+            cy.get('input[aria-label="Search friend"]').should('have.focus');
+
+            cy.get('input[aria-label="Search friend"]').type('test');
+            cy.get('input[aria-label="Search friend"]').should('have.value', 'test');
+
+            cy.get('button[aria-label="Clear input"]').click();
+
+            cy.get('input[aria-label="Search friend"]').should('have.value', '');
+
+            cy.get('input[aria-label="Search friend"]').type('John Doe');
+            cy.get('input[aria-label="Search friend"]').should('have.value', 'John Doe');
+
+            cy.get('article[aria-label="Friend"]').should('have.length', 1);
+            cy.get('article[aria-label="Friend"]').first().contains('John Doe').click();
+
+            cy.url().should('contain', '/profile/999');
+        });
+    });
+
+    it("see 4 friends in list, type only part of friend's name in search, see friend in friends list", () => {
+        cy.createUser(3, true, {
+            first_name: 'Adam',
+            last_name: 'Smith',
+        });
+
+        cy.createUser(1, true, {
+            first_name: 'John',
+            last_name: 'Doe',
+            id: 999,
+        });
+
+        cy.intercept('/api/user').as('user');
+        cy.intercept('/api/users/1/friends?search=&page=1').as('friends_page_1');
+
+        cy.visit('/profile/1/friends');
+
+        cy.wait('@user');
+        cy.wait('@friends_page_1');
+
+        cy.get('section[data-testid="profile-friends"]').within(() => {
+            cy.get('article[aria-label="Friend"]').should('have.length', 4);
+
+            cy.get('input[aria-label="Search friend"]').type('John D');
+            cy.get('input[aria-label="Search friend"]').should('have.value', 'John D');
+
+            cy.get('article[aria-label="Friend"]').should('have.length', 1);
+            cy.get('article[aria-label="Friend"]').first().contains('John Doe').click();
+
+            cy.url().should('contain', '/profile/999');
+        });
     });
 });
