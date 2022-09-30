@@ -17,7 +17,7 @@ describe('Profile hero tests', () => {
         cy.visit('/profile/1');
 
         cy.intercept('/api/user').as('user');
-        cy.reload();
+
         cy.wait('@user');
 
         cy.get('button[aria-label="Edit profile"]').should('be.disabled');
@@ -38,7 +38,7 @@ describe('Profile hero tests', () => {
         cy.visit('/profile/2');
 
         cy.intercept('/api/user').as('user');
-        cy.reload();
+
         cy.wait('@user');
 
         cy.get('button[aria-label="Edit profile"]').should('not.exist');
@@ -59,7 +59,7 @@ describe('Profile hero tests', () => {
         cy.visit('/profile/2');
 
         cy.intercept('/api/user').as('user');
-        cy.reload();
+
         cy.wait('@user');
 
         cy.intercept('/api/pokes').as('poke');
@@ -93,7 +93,7 @@ describe('Profile hero tests', () => {
         cy.visit('/profile/2');
 
         cy.intercept('/api/user').as('user');
-        cy.reload();
+
         cy.wait('@user');
 
         cy.intercept('/api/pokes', { statusCode: 500 }).as('poke');
@@ -118,7 +118,7 @@ describe('Profile hero tests', () => {
         cy.visit('/profile/2');
 
         cy.intercept('/api/user').as('user');
-        cy.reload();
+
         cy.wait('@user');
 
         cy.intercept('/api/pokes').as('poke');
@@ -136,7 +136,7 @@ describe('Profile hero tests', () => {
         cy.visit('/profile/2');
 
         cy.intercept('/api/user').as('user');
-        cy.reload();
+
         cy.wait('@user');
 
         cy.intercept('/api/pokes').as('poke');
@@ -161,7 +161,7 @@ describe('Profile hero tests', () => {
         cy.visit('/profile/2');
 
         cy.intercept('/api/user').as('user');
-        cy.reload();
+
         cy.wait('@user');
 
         cy.intercept('/api/pokes').as('poke');

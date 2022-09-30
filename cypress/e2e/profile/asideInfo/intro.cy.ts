@@ -17,8 +17,6 @@ describe('Profile intro tests', () => {
 
         cy.intercept('/api/user').as('user');
 
-        cy.reload();
-
         cy.wait('@user');
 
         cy.get('[data-testid="asideInfo-intro"]').within(() => {
@@ -44,8 +42,6 @@ describe('Profile intro tests', () => {
         cy.visit('/profile/1');
 
         cy.intercept('/api/user').as('user');
-
-        cy.reload();
 
         cy.wait('@user');
 
