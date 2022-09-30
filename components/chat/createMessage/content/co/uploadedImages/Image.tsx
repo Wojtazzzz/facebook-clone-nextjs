@@ -1,4 +1,4 @@
-import NextImage from 'next/image';
+import NextImage from 'next/future/image';
 import { RemoveImage } from './RemoveImage';
 import { useRemoveImage } from './useRemoveImage';
 
@@ -15,7 +15,7 @@ export const Image = ({ image }: ImageProps) => {
 
     return (
         <div className="w-[48px] h-[48px] relative">
-            <NextImage layout="fill" src={src} className="rounded-xl" alt="" />
+            <NextImage fill src={src} className="w-full h-full rounded-xl" alt="" />
             <RemoveImage callback={handleRemoveImage} />
         </div>
     );

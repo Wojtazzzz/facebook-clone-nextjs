@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from 'next/future/image';
 import { Friends } from './friends/Friends';
 
 interface UserProps {
@@ -13,10 +13,10 @@ export const User = ({ id, firstName, name, profileImage }: UserProps) => {
         <div className="w-full flex items-center gap-5">
             <div className="w-[120px] sm:w-[140px] lg:w-[168px] h-[120px] sm:h-[140px] lg:h-[168px] relative">
                 <Image
-                    layout="fill"
+                    fill
                     src={profileImage}
                     alt={`${firstName} profile image`}
-                    className="rounded-full border-4 border-dark-200"
+                    className="w-full h-full rounded-full border-4 border-dark-200"
                 />
             </div>
 

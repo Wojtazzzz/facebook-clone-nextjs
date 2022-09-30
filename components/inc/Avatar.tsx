@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from 'next/future/image';
 
 interface AvatarProps {
     src: string;
@@ -10,7 +10,7 @@ interface AvatarProps {
 export const Avatar = ({ src, alt, title, styles }: AvatarProps) => {
     return (
         <div className={`flex justify-center relative items-center ${styles}`}>
-            <Image src={src} layout="fill" alt={alt} title={title} className="rounded-full" />
+            <Image src={src} fill alt={alt} title={title} className="w-full h-full rounded-full" />
         </div>
     );
 };

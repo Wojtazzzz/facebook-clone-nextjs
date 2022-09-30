@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import Image from 'next/image';
+import Image from 'next/future/image';
 import Link from 'next/link';
 
 interface FriendProps {

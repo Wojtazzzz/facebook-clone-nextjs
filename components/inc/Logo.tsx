@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from 'next/future/image';
 import FacebookLogo from '../../public/img/logo.webp';
 
 interface LogoProps {

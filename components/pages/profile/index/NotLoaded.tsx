@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { useAuth } from '@hooks/useAuth';
-import Image from 'next/image';
+import Image from 'next/future/image';
 import { Button } from '@components/inc/Button';
 
 export const NotLoaded = () => {

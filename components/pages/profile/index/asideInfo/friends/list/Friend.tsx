@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import Image from 'next/image';
+import Image from 'next/future/image';
 import Link from 'next/link';
 
 interface FriendProps {
@@ -15,7 +15,7 @@ export const Friend = ({ id, name, profile_image }: FriendProps) => {
                 <Link href={`/profile/${id}`}>
                     <a>
                         <div className="w-full aspect-square relative hover:brightness-110 transition-filter">
-                            <Image layout="fill" src={profile_image} alt="" className="rounded-lg" />
+                            <Image fill src={profile_image} alt="" className="w-full h-full rounded-lg" />
                         </div>
 
                         <span className="text-[11px] font-semibold leading-[0.5] truncate text-light-50 mt-1">

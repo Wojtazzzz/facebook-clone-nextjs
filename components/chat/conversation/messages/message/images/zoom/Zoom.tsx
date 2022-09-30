@@ -1,5 +1,5 @@
 import { getStoredImagePath } from '@utils/getStoredImagePath';
-import Image from 'next/image';
+import Image from 'next/future/image';
 import { Close } from './Close';
 
 interface ZoomProps {
@@ -16,7 +16,7 @@ export const Zoom = ({ image, close }: ZoomProps) => {
             <Close close={close} />
 
             <div className="w-4/5 md:w-2/3 h-full flex justify-center relative z-[51]">
-                <Image layout="fill" src={getStoredImagePath(image)} objectFit="fill" alt="" className="z-50" />
+                <Image fill src={getStoredImagePath(image)} alt="" className="w-full h-full z-50" />
             </div>
         </div>
     );

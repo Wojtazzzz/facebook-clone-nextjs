@@ -1,5 +1,5 @@
 import { getStoredImagePath } from '@utils/getStoredImagePath';
-import NextImage from 'next/image';
+import NextImage from 'next/future/image';
 import { useZoom } from './useZoom';
 import { Zoom } from './zoom/Zoom';
 
@@ -18,7 +18,7 @@ export const Image = ({ image }: ImageProps) => {
                 className="w-[200px] h-[150px] relative hover:opacity-80 cursor-pointer"
                 onClick={open}
             >
-                <NextImage layout="fill" src={getStoredImagePath(image)} alt="" className="rounded-xl" />
+                <NextImage fill src={getStoredImagePath(image)} alt="" className="w-full h-full rounded-xl" />
             </button>
 
             {isActive && <Zoom image={image} close={close} />}
