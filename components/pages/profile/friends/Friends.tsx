@@ -8,11 +8,11 @@ interface FriendsProps {
 }
 
 export const Friends = ({ user }: FriendsProps) => {
-    const { query, debounceQuery, changeQuery } = useSearchQuery();
+    const { query, debounceQuery, changeQuery, clearQuery } = useSearchQuery();
 
     return (
         <section data-testid="profile-friends" className="w-full flex flex-col gap-5 p-2">
-            <Header query={query} changeQuery={changeQuery} />
+            <Header query={query} changeQuery={changeQuery} clearQuery={clearQuery} />
             <List userId={user.id} query={debounceQuery} />
         </section>
     );

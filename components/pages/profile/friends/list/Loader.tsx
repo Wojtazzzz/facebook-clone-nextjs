@@ -6,7 +6,7 @@ export const Loader = () => {
     return (
         <ListLoader
             testId="friends-loader"
-            count={10}
+            count={6}
             styles="flex flex-col md:flex-row md:flex-wrap items-center justify-center md:justify-start"
             childStyles="w-[80%] md:w-[50%] max-w-[450px] md:max-w-none min-w-[300px] sm:min-w-[320px]"
         >

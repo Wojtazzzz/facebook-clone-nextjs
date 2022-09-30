@@ -4,9 +4,10 @@ import { Header } from './Header';
 
 describe('Header component', () => {
     const mockChangeQuery = jest.fn();
+    const mockClearQuery = jest.fn();
 
     it('render properly title', () => {
-        renderWithDefaultData(<Header query="" changeQuery={mockChangeQuery} />);
+        renderWithDefaultData(<Header query="" changeQuery={mockChangeQuery} clearQuery={mockClearQuery} />);
 
         const title = screen.getByText('Friends');
 
@@ -14,7 +15,7 @@ describe('Header component', () => {
     });
 
     it('render search with empty string as default value', () => {
-        renderWithDefaultData(<Header query="" changeQuery={mockChangeQuery} />);
+        renderWithDefaultData(<Header query="" changeQuery={mockChangeQuery} clearQuery={mockClearQuery} />);
 
         const search = screen.getByRole('search');
         const searchbox = screen.getByLabelText('Search friend');
