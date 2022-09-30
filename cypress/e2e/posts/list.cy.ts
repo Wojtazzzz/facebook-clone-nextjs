@@ -1,5 +1,4 @@
 import { useDatabaseMigrations } from 'cypress-laravel';
-import type { IPost } from '@cypress/support/types';
 
 describe('Posts list tests', () => {
     useDatabaseMigrations();
@@ -129,8 +128,8 @@ describe('Posts list tests', () => {
         cy.get('[data-testid="server-error"]').should('be.visible');
     });
 
-    it('see 10 posts, load more by scrolling to bottom, click on ScrollToTop component which scroll to top', () => {
-        cy.create('Post', 18, {
+    it('see 10 posts, load more by scrolling to bottom, click on ScrollToTop button', () => {
+        cy.create('Post', 30, {
             author_id: 1,
         });
 
@@ -138,19 +137,25 @@ describe('Posts list tests', () => {
         cy.intercept('/api/posts?page=1').as('posts_page_1');
 
         cy.visit('/');
+
         cy.wait('@user');
         cy.wait('@posts_page_1');
 
         cy.getPosts().should('have.length', 10);
 
-        cy.getPosts()
-            .first()
-            .then((element: any) => {
-                expect(element.position().top).greaterThan(0);
-            });
+        cy.window().scrollTo('bottom');
+
+        cy.getPosts().should('have.length', 20);
 
         cy.window().scrollTo('bottom');
 
-        cy.getPosts().should('have.length', 18);
+        cy.getPosts().should('have.length', 30);
+
+        cy.getScrollToTop().click();
+
+        /* wait for smooth scrolling */
+        cy.wait(3000);
+
+        cy.window().its('scrollY').should('eq', 0);
     });
 });

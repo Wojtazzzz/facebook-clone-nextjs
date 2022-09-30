@@ -66,7 +66,7 @@ describe('Profile friends tests', () => {
         });
     });
 
-    it("go to friend's profile by searching, go to his friends list due to aside info, see 20 friends, fetch more friends by scroll page to bottom", () => {
+    it("go to friend's profile by searching, go to his friends list due to aside info, see 20 friends, fetch more friends by scroll page to bottom, click on ScrollToTop button", () => {
         cy.createUser(1, true, {
             first_name: 'John',
             last_name: 'Doe',
@@ -107,6 +107,13 @@ describe('Profile friends tests', () => {
         cy.get('section[data-testid="profile-friends"]').within(() => {
             cy.get('article[aria-label="Friend"]').should('have.length', 28 + 1);
         });
+
+        cy.getScrollToTop().click();
+
+        /* wait for smooth scrolling */
+        cy.wait(3000);
+
+        cy.window().its('scrollY').should('eq', 0);
     });
 
     it('go to own friends list, see only 1 friend, go to his profile by click on his name, go to his list of friends by hero, see only self, redirect to own profile by click on self avatar', () => {

@@ -121,8 +121,8 @@ describe('Profile board tests', () => {
         cy.getPosts().first().should('contain.text', 'New post');
     });
 
-    it('see 10 own posts on list, fetch more by scrolling to bottom', () => {
-        cy.create('Post', 14, {
+    it('see 10 own posts on list, fetch more by scroll to bottom, click on ScrollToTop button', () => {
+        cy.create('Post', 19, {
             author_id: 1,
         });
 
@@ -138,7 +138,14 @@ describe('Profile board tests', () => {
 
         cy.window().scrollTo('bottom');
 
-        cy.getPosts().should('have.length', 14);
+        cy.getPosts().should('have.length', 19);
+
+        cy.getScrollToTop().click();
+
+        /* wait for smooth scrolling */
+        cy.wait(3000);
+
+        cy.window().its('scrollY').should('eq', 0);
     });
 
     it("visit friends's profile, cannot see Create post and list switcher components, scroll list to bottom, see new fetched posts but cannot see his hidden and saved posts", () => {

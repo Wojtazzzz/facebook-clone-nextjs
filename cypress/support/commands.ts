@@ -121,6 +121,10 @@ Cypress.Commands.add('createFriendship', (amount = 1, forUser = 1) => {
     });
 });
 
+Cypress.Commands.add('getScrollToTop', () => {
+    cy.get('button[aria-label="Scroll page to top"]');
+});
+
 declare global {
     namespace Cypress {
         interface Chainable {
@@ -135,6 +139,7 @@ declare global {
             openUpdatePostModal(): Chainable<void>;
             createUser(amount?: number, asFriend?: boolean, params?: Partial<IUserExtended>): Chainable<void>;
             createFriendship(amount?: number, forUser?: number): Chainable<void>;
+            getScrollToTop(): Chainable<void>;
         }
     }
 }

@@ -5,6 +5,7 @@ import { getPostsEndpoint } from '@utils/getPostsEndpoint';
 import { BornAt } from './bornAt/BornAt';
 import type { IUserProfile } from '@utils/types';
 import { getPostsQK } from '@utils/queryKeys';
+import { ScrollToTop } from '@components/inc/ScrollToTop';
 
 interface BoardProps {
     user: IUserProfile;
@@ -24,6 +25,8 @@ export const Board = ({ user }: BoardProps) => {
             <Panel userId={user.id} queryKey={queryKey} changeList={changeList} />
             <Posts queryKey={queryKey} endpoint={endpoint} />
             {postsList === 'own' && <BornAt user={user} />}
+
+            <ScrollToTop />
         </div>
     );
 };
