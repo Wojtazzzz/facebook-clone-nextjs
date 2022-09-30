@@ -12,7 +12,7 @@ export const Trigger = ({ open }: TriggerProps) => {
 
     return (
         <Popover.Trigger asChild>
-            <div>
+            <div data-testid="notifications-trigger">
                 <Button label="Notifications" icon={faBell} callback={open} withAlert={data} />
             </div>
         </Popover.Trigger>

@@ -1,5 +1,7 @@
 import { useDatabaseMigrations } from 'cypress-laravel';
 
+const USER_NAME = `${Cypress.env('USER_FIRST_NAME')} ${Cypress.env('USER_LAST_NAME')}`;
+
 describe('Posts comments like tests', () => {
     useDatabaseMigrations();
 
@@ -117,6 +119,73 @@ describe('Posts comments like tests', () => {
                         cy.get('[data-testid="comment-likesCount"]').should('not.exist');
                     });
             });
+    });
+
+    it("like friend's comment, unlike friend's comment, like friend's comment again, relogin to friend's account, see alert on notifications icon, see only one notification about comment likes, notification redirect to user profile", () => {
+        const FRIEND_ID = 999;
+
+        cy.createUser(1, true, {
+            id: FRIEND_ID,
+        });
+
+        cy.create('Comment', {
+            author_id: FRIEND_ID,
+            commentable_id: 1,
+            commentable_type: 'App\\Models\\Post',
+        });
+
+        cy.intercept('/api/user').as('user');
+        cy.intercept('/api/posts?page=1').as('posts_page_1');
+
+        cy.visit('/');
+        cy.wait('@user');
+        cy.wait('@posts_page_1');
+
+        cy.getPosts()
+            .first()
+            .within(() => {
+                cy.intercept('/api/posts/1/comments?page=1').as('comments_page_1');
+
+                cy.get('[aria-label="Comment"]').click();
+                cy.wait('@comments_page_1');
+
+                cy.get('[data-testid="post-comments_list"]').children().should('have.length', 1);
+
+                cy.get('article[aria-label="Comment"]')
+                    .first()
+                    .within(() => {
+                        cy.intercept('/api/comments/1/likes').as('like');
+                        cy.intercept('/api/posts/1/comments?page=1').as('comments_page_1');
+
+                        cy.get('button[aria-label="Like"]').click();
+                        cy.wait('@like');
+                        cy.wait('@comments_page_1');
+
+                        cy.intercept('/api/comments/1/likes').as('unlike');
+                        cy.intercept('/api/posts/1/comments?page=1').as('comments_page_1');
+
+                        cy.get('button[aria-label="Like"]').click();
+                        cy.wait('@unlike');
+                        cy.wait('@comments_page_1');
+
+                        cy.intercept('/api/comments/1/likes').as('like');
+                        cy.intercept('/api/posts/1/comments?page=1').as('comments_page_1');
+
+                        cy.get('button[aria-label="Like"]').click();
+                        cy.wait('@like');
+                        cy.wait('@comments_page_1');
+                    });
+            });
+
+        cy.relogin(FRIEND_ID);
+
+        cy.get('[data-testid="notifications-trigger"]').within(() => {
+            cy.get('[data-testid="alert"]').should('be.visible');
+        });
+
+        cy.checkNotification(USER_NAME, 'Liked your comment');
+
+        cy.url().should('contain', '/profile/1');
     });
 
     it('see alert when like response return error', () => {
