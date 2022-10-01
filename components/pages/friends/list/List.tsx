@@ -27,7 +27,7 @@ export const List = memo<ListProps>(({ path, type }) => {
     return (
         <InfiniteScroll
             dataLength={ItemsComponents.length}
-            hasMore={!!hasNextPage}
+            hasMore={Boolean(hasNextPage)}
             loader={<Loader testId="friendsList-fetching_loader" />}
             className="w-full flex flex-col gap-2"
             next={fetchNextPage}

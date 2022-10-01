@@ -30,7 +30,7 @@ export const List = memo<ListProps>(({ close }) => {
             <InfiniteScroll
                 dataLength={NotificationsComponents.length}
                 next={fetchNextPage}
-                hasMore={!!hasNextPage}
+                hasMore={Boolean(hasNextPage)}
                 loader={<Loader testId="notifications-loading_loader" />}
                 scrollableTarget="list-of-notifications"
                 className="w-full flex flex-col gap-2"

@@ -1,12 +1,9 @@
 import { memo } from 'react';
-import { useInfiniteData } from '@hooks/useInfiniteData';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Conversation } from '@components/nav/panel/messenger/list/Conversation';
 import { Loader } from '@components/nav/panel/inc/Loader';
 import { ApiError } from '@components/inc/ApiError';
 import { EmptyList } from '@components/inc/EmptyList';
-import type { IUser } from '@utils/types';
-import { getMessengerQK } from '@utils/queryKeys';
 import { useGetUsers } from './useGetUsers';
 
 interface ListProps {
@@ -32,7 +29,7 @@ export const List = memo<ListProps>(({ close }) => {
         >
             <InfiniteScroll
                 dataLength={ConversationsComponents.length}
-                hasMore={!!hasNextPage}
+                hasMore={Boolean(hasNextPage)}
                 scrollableTarget="list-of-messenger-contacts"
                 loader={<Loader testId="messenger-loading_loader" />}
                 className="w-full flex flex-col gap-2"

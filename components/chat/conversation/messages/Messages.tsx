@@ -35,7 +35,7 @@ export const Messages = memo<MessagesProps>(({ friend }) => {
                 next={fetchNextPage}
                 className="w-full flex flex-col-reverse justify-end gap-1 pr-2"
                 inverse
-                hasMore={!!hasNextPage}
+                hasMore={Boolean(hasNextPage)}
                 loader={<Loader testId="messages-loader_fetching" />}
                 scrollableTarget="list-of-messages"
             >

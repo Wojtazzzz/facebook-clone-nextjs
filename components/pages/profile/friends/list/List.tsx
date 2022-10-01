@@ -23,7 +23,7 @@ export const List = ({ userId, query }: ListProps) => {
         <InfiniteScroll
             dataLength={FriendsComponents.length}
             next={fetchNextPage}
-            hasMore={!!hasNextPage}
+            hasMore={Boolean(hasNextPage)}
             loader={<Loader />}
             className="w-full flex flex-col md:flex-row md:flex-wrap items-center justify-center md:justify-start"
         >

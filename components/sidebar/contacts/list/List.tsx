@@ -21,7 +21,7 @@ export const List = memo(() => {
                 dataLength={ContactsComponents.length}
                 next={fetchNextPage}
                 className="flex flex-col gap-1"
-                hasMore={!!hasNextPage}
+                hasMore={Boolean(hasNextPage)}
                 loader={<Loader />}
                 scrollableTarget="sidebar"
             >

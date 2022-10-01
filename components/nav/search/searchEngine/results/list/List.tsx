@@ -21,7 +21,7 @@ export const List = ({ query }: ListProps) => {
     return (
         <InfiniteScroll
             dataLength={HitsComponents.length}
-            hasMore={!!hasNextPage}
+            hasMore={Boolean(hasNextPage)}
             loader={<SpinnerLoader testId="navSearch-fetching_loader" spinnerStyles="w-5" />}
             className="w-full flex flex-col gap-2"
             next={fetchNextPage}
