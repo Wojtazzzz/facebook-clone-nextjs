@@ -1,4 +1,4 @@
-import { SendMessageSchema } from '@validation/SendMessageSchema';
+import { SendMessageSchema } from './SendMessageSchema';
 import { Form, Formik } from 'formik';
 import type { FormikHelpers } from 'formik';
 import type { IChatMessagePayload } from '@utils/types';

@@ -1,5 +1,5 @@
 import { Formik, Form as FormikForm, FormikHelpers } from 'formik';
-import { UpdatePostSchema } from '@validation/UpdatePostSchema';
+import { UpdatePostSchema } from './UpdatePostSchema';
 import type { IPostUpdatePayload } from '@utils/types';
 import { useUpdatePost } from './useUpdatePost';
 import { FormContent } from './formContent/FormContent';

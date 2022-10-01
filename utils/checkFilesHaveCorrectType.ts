@@ -1,4 +1,4 @@
-import { SUPPORTED_FORMATS } from '../validation/supportedImagesFormats';
+import { SUPPORTED_FORMATS } from '@utils/supportedImagesFormats';
 
 export const checkFilesHaveCorrectType = (files: unknown) => {
     if (!files || !Array.isArray(files)) {

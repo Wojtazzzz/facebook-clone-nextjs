@@ -167,7 +167,7 @@ describe('Message and Zoom component', () => {
             />
         );
 
-        const deliveredStatusIcon = screen.getByTitle('Delivered');
+        const deliveredStatusIcon = screen.getByTestId('statusIcon-delivered');
 
         expect(deliveredStatusIcon).toBeInTheDocument();
     });
@@ -187,7 +187,7 @@ describe('Message and Zoom component', () => {
             />
         );
 
-        const sendingStatusIcon = screen.getByTitle('Sending');
+        const sendingStatusIcon = screen.getByTestId('statusIcon-sending');
 
         expect(sendingStatusIcon).toBeInTheDocument();
     });

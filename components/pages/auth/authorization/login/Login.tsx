@@ -1,7 +1,7 @@
 import { Form, Formik } from 'formik';
 import { Input } from './Input';
 import { ResponseError } from '@components/pages/auth/authorization/inc/ResponseError';
-import { LoginSchema } from '@validation/LoginSchema';
+import { LoginSchema } from './LoginSchema';
 import { useLogin } from './useLogin';
 import { SubmitButton } from './SubmitButton';
 import type { ILoginPayload } from '@utils/types';

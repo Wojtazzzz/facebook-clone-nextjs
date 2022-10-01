@@ -1,5 +1,5 @@
 import type { ICommentPayload } from '@utils/types';
-import { CommentSchema } from '@validation/CommentSchema';
+import { CommentSchema } from '@components/inc/comments/CommentSchema';
 import type { FormikHelpers } from 'formik';
 import { Formik, Form as FormikForm } from 'formik';
 import { FormContent } from './formContent/FormContent';

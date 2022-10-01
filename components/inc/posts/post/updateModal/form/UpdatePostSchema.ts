@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { SUPPORTED_FORMATS } from './supportedImagesFormats';
+import { SUPPORTED_FORMATS } from '@utils/supportedImagesFormats';
 
 const checkIfFilesAreTooBig = (files: unknown) => {
     if (!files || !Array.isArray(files)) {

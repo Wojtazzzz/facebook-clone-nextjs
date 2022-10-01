@@ -1,5 +1,5 @@
 import { Formik, Form as FormikForm } from 'formik';
-import { CreatePostSchema } from '@validation/CreatePostSchema';
+import { CreatePostSchema } from './CreatePostSchema';
 import type { IPostCreatePayload } from '@utils/types';
 import { useCreatePost } from './useCreatePost';
 import { FormContent } from './formContent/FormContent';
