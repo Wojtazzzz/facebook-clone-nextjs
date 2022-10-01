@@ -1,7 +1,7 @@
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { screen } from '@testing-library/react';
 import { Options } from './Options';
-import { mock } from '@libs/nock';
+import { mock } from '@utils/nock';
 import RootUserJson from '@mocks/user/root.json';
 
 describe('Options component', () => {

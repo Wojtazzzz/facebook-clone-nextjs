@@ -3,7 +3,7 @@ import { CreateMessage } from '@components/chat/createMessage/CreateMessage';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { generateFile } from '@utils/tests/generateFile';
-import { mock } from '@libs/nock';
+import { mock } from '@utils/nock';
 import RootUserJson from '@mocks/user/root.json';
 import { mockCreateObjectUrl } from '@utils/tests/mockCreateObjectUrl';
 import { mockResizeObserver } from '@utils/tests/mockResizeObserver';

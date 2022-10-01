@@ -3,7 +3,7 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Settings } from './Settings';
 import RootUserJson from '@mocks/user/root.json';
-import { mock } from '@libs/nock';
+import { mock } from '@utils/nock';
 import { mockResizeObserver } from '@utils/tests/mockResizeObserver';
 
 describe('Settings component', () => {

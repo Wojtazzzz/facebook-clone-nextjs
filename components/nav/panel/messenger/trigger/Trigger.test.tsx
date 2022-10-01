@@ -1,4 +1,4 @@
-import { mock } from '@libs/nock';
+import { mock } from '@utils/nock';
 import { screen } from '@testing-library/react';
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { Trigger } from './Trigger';

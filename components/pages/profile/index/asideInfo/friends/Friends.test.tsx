@@ -5,7 +5,7 @@ import NineFriendsJson from '@mocks/profile/friends/getByCount/nineFriends.json'
 import OneFriendJson from '@mocks/profile/friends/getByCount/oneFriend.json';
 import NoFriendsJson from '@mocks/profile/friends/getByCount/empty.json';
 import { screen, within } from '@testing-library/react';
-import { mock } from '@libs/nock';
+import { mock } from '@utils/nock';
 
 describe('Friends tests', () => {
     it('render properly header', () => {

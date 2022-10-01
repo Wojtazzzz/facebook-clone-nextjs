@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import userEvent from '@testing-library/user-event';
-import { mock } from '@libs/nock';
+import { mock } from '@utils/nock';
 import { mockResizeObserver } from '@utils/tests/mockResizeObserver';
 import { Likes } from './Likes';
 import MoreLikeJson from '@mocks/posts/likes/moreLikes.json';

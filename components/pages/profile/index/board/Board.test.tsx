@@ -5,7 +5,7 @@ import SelfPostsFirstPageJson from '@mocks/posts/selfProfileFirstPage.json';
 import EmptyPostsPageJson from '@mocks/posts/empty.json';
 import FriendPostsFirstPageJson from '@mocks/posts/friendProfileFirstPage.json';
 import { screen } from '@testing-library/react';
-import { mock } from '@libs/nock';
+import { mock } from '@utils/nock';
 import userEvent from '@testing-library/user-event';
 import { Board } from './Board';
 

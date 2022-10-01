@@ -2,7 +2,7 @@ import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import RootUserJson from '@mocks/user/root.json';
 import NineFriends from '@mocks/profile/friends/getByCount/nineFriends.json';
 import { screen, within } from '@testing-library/react';
-import { mock } from '@libs/nock';
+import { mock } from '@utils/nock';
 import { User } from './User';
 
 describe('Profile User info tests', () => {

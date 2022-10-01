@@ -2,7 +2,7 @@ import { Menu } from './Menu';
 import { screen } from '@testing-library/react';
 import RootUserJson from '@mocks/user/root.json';
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
-import { mock } from '@libs/nock';
+import { mock } from '@utils/nock';
 
 describe('Menu component', () => {
     beforeEach(() => {

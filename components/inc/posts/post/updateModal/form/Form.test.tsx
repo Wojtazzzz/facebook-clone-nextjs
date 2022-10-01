@@ -1,4 +1,4 @@
-import { mock } from '@libs/nock';
+import { mock } from '@utils/nock';
 import RootUserJson from '@mocks/user/root.json';
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { Form } from './Form';

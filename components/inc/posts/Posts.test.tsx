@@ -3,7 +3,7 @@ import PostsFirstPageJson from '@mocks/posts/firstPage.json';
 import PostsEmptyPageJson from '@mocks/posts/empty.json';
 import RootUserJson from '@mocks/user/root.json';
 import { screen } from '@testing-library/react';
-import { mock } from '@libs/nock';
+import { mock } from '@utils/nock';
 import { Posts } from './Posts';
 import { getPostsQK } from '@utils/queryKeys';
 

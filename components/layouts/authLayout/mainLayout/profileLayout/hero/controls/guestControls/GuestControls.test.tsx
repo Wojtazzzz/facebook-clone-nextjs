@@ -1,7 +1,7 @@
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import RootUserJson from '@mocks/user/root.json';
 import PokesFirstPageJson from '@mocks/friendsList/pokes/firstPage.json';
-import { mock } from '@libs/nock';
+import { mock } from '@utils/nock';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { GuestControls } from './GuestControls';

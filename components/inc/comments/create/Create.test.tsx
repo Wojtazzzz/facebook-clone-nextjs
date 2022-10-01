@@ -1,7 +1,7 @@
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import PostsFirstPageJson from '@mocks/posts/firstPage.json';
 import RootUserJson from '@mocks/user/root.json';
-import { mock } from '@libs/nock';
+import { mock } from '@utils/nock';
 import { screen } from '@testing-library/react';
 import { Create } from './Create';
 

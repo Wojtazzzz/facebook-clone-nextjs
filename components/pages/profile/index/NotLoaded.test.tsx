@@ -1,4 +1,4 @@
-import { mock } from '@libs/nock';
+import { mock } from '@utils/nock';
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import RootUserJson from '@mocks/user/root.json';
 import { screen } from '@testing-library/react';

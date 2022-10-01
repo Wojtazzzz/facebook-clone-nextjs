@@ -1,6 +1,6 @@
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { Panel } from '@components/nav/panel/Panel';
-import { mock } from '@libs/nock';
+import { mock } from '@utils/nock';
 import RootUserJson from '@mocks/user/root.json';
 import NotificationsFirstPageJson from '@mocks/notifications/firstPage.json';
 import MessengerFirstPageJson from '@mocks/messenger/firstPage.json';

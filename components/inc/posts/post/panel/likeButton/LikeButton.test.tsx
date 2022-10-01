@@ -1,7 +1,7 @@
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import PostsFirstPageJson from '@mocks/posts/firstPage.json';
 import { screen } from '@testing-library/react';
-import { mock } from '@libs/nock';
+import { mock } from '@utils/nock';
 import userEvent from '@testing-library/user-event';
 import { LikeButton } from './LikeButton';
 

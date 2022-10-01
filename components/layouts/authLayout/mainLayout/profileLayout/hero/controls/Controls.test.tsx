@@ -1,7 +1,7 @@
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import RootUserJson from '@mocks/user/root.json';
 import JohnDoeUserJson from '@mocks/user/johnDoe.json';
-import { mock } from '@libs/nock';
+import { mock } from '@utils/nock';
 import { screen } from '@testing-library/react';
 import { Controls } from './Controls';
 

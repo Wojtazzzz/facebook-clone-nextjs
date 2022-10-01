@@ -1,4 +1,4 @@
-import { mock } from '@libs/nock';
+import { mock } from '@utils/nock';
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { List } from './List';
 import FriendsFirstPageJson from '@mocks/profile/friends/list/firstPage.json';

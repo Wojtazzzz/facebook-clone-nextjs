@@ -5,7 +5,7 @@ import CommentsFirstPageJson from '@mocks/posts/comments/firstPage.json';
 import CommentsSecondPageJson from '@mocks/posts/comments/secondPage.json';
 import CommentsEmptyPageJson from '@mocks/posts/comments/empty.json';
 import RootUserJson from '@mocks/user/root.json';
-import { mock } from '@libs/nock';
+import { mock } from '@utils/nock';
 import userEvent from '@testing-library/user-event';
 import { Comments } from './Comments';
 

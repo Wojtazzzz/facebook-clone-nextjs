@@ -2,7 +2,7 @@ import { screen } from '@testing-library/react';
 import nock from 'nock';
 import { Item } from '@components/pages/friends/list/item/Item';
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
-import { mock } from '@libs/nock';
+import { mock } from '@utils/nock';
 import SuggestsFirstPageJson from '@mocks/friendsList/suggests/firstPage.json';
 import PokesFirstPageJson from '@mocks/friendsList/pokes/firstPage.json';
 import InvitesFirstPageJson from '@mocks/friendsList/suggests/firstPage.json';

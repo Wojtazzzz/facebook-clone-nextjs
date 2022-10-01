@@ -3,7 +3,7 @@ import PostsFirstPageJson from '@mocks/posts/firstPage.json';
 import CommentSuccessResponseJson from '@mocks/posts/comments/actions/createCommentSuccess.json';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { mock } from '@libs/nock';
+import { mock } from '@utils/nock';
 import { Form } from './Form';
 
 describe('Form component', () => {

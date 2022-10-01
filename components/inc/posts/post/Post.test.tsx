@@ -4,7 +4,7 @@ import RootUserJson from '@mocks/user/root.json';
 import PostsFirstPageJson from '@mocks/posts/firstPage.json';
 import CommentsFirstPageJson from '@mocks/posts/comments/firstPage.json';
 import userEvent from '@testing-library/user-event';
-import { mock } from '@libs/nock';
+import { mock } from '@utils/nock';
 import { Post } from './Post';
 
 describe('Post component', () => {

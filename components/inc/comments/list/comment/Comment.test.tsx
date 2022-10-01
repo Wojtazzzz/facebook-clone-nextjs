@@ -1,7 +1,7 @@
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { screen } from '@testing-library/react';
 import { Comment } from './Comment';
-import { mock } from '@libs/nock';
+import { mock } from '@utils/nock';
 import CommentsFirstPageJson from '@mocks/posts/comments/firstPage.json';
 import RootUserCommentJson from '@mocks/posts/comments/rootUserComment.json';
 import EditedCommentJson from '@mocks/posts/comments/edited.json';

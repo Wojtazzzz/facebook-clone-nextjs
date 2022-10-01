@@ -1,4 +1,4 @@
-import { mock } from '@libs/nock';
+import { mock } from '@utils/nock';
 import RootUserJson from '@mocks/user/root.json';
 import EightFriends from '@mocks/profile/friends/getByCount/eightFriends.json';
 import OneFriend from '@mocks/profile/friends/getByCount/oneFriend.json';

@@ -3,7 +3,7 @@ import RootUserJson from '@mocks/user/root.json';
 import ContactsFirstPageJson from '@mocks/contacts/firstPage.json';
 import ContactsEmptyPageJson from '@mocks/contacts/empty.json';
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
-import { mock } from '@libs/nock';
+import { mock } from '@utils/nock';
 import { List } from './List';
 
 describe('Contacts list component', () => {

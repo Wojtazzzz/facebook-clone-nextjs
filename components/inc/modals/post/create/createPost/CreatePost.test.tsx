@@ -1,6 +1,6 @@
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { CreatePost } from './CreatePost';
-import { mock } from '@libs/nock';
+import { mock } from '@utils/nock';
 import RootUserJson from '@mocks/user/root.json';
 import { screen } from '@testing-library/react';
 

@@ -2,7 +2,7 @@ import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { screen } from '@testing-library/react';
 import CommentsFirstPageJson from '@mocks/posts/firstPage.json';
 import userEvent from '@testing-library/user-event';
-import { mock } from '@libs/nock';
+import { mock } from '@utils/nock';
 import { LoadMore } from './LoadMore';
 
 describe('LoadMore component', () => {

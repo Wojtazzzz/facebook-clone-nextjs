@@ -3,7 +3,7 @@ import { Messages } from '@components/chat/conversation/messages/Messages';
 import JohnDoeJson from '@mocks/user/johnDoe.json';
 import ChatFirstPageJson from '@mocks/chat/firstPage.json';
 import ChatEmptyPageJson from '@mocks/chat/empty.json';
-import { mock } from '@libs/nock';
+import { mock } from '@utils/nock';
 import { screen } from '@testing-library/react';
 
 describe('Messages component', () => {
