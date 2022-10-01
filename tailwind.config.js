@@ -20,6 +20,10 @@ module.exports = {
                 xs: '425px',
                 ...defaultTheme.screens,
             },
+
+            fontFamily: {
+                sans: ['Segoe UI', 'Helvetica'],
+            },
         },
     },
     plugins: [require('tailwind-scrollbar')],

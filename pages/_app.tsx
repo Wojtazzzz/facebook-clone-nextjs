@@ -9,7 +9,6 @@ import '@fortawesome/fontawesome-svg-core/styles.css';
 import { createQueryClient } from '@utils/createQueryClient';
 import '@styles/global.css';
 import '@styles/tailwind.css';
-import '@styles/input-autocomplete.css';
 // Swiper styles
 import 'swiper/swiper.min.css';
 import 'swiper/components/navigation/navigation.min.css';
