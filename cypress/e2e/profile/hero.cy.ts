@@ -42,7 +42,9 @@ describe('Profile hero tests', () => {
         cy.wait('@user');
 
         cy.get('button[aria-label="Edit profile"]').should('not.exist');
+
         cy.contains('1 friend').should('be.visible');
+
         cy.get('[data-testid="profile-friendsList"] img').should('have.length', 1);
 
         cy.get('button[aria-label="Send message"]').click();

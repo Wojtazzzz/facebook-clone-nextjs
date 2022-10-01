@@ -22,6 +22,7 @@ describe('Chat tests', () => {
 
     it('open chat by contacts, conversation should be empty, send new message (by press enter) and wait for it will be loaded on list, send second message (by click on submit button), close chat by close button', () => {
         cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
+        cy.intercept('/api/broadcasting/auth').as('chatAuth');
 
         cy.visit('/');
 
@@ -39,13 +40,12 @@ describe('Chat tests', () => {
         cy.contains('Say hello to your friend!');
 
         // Creating first message
+        cy.wait('@chatAuth');
         cy.intercept('/api/messages').as('messages');
-        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
 
         cy.get('input[aria-label="Message input"]').type('Hello World!{enter}');
 
         cy.wait('@messages');
-        cy.wait('@messages_page_1');
 
         cy.get('[data-testid="chat"]').within(() => {
             cy.contains('Hello World!');
@@ -53,13 +53,11 @@ describe('Chat tests', () => {
 
         // Creating second message
         cy.intercept('/api/messages').as('messages');
-        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
 
         cy.get('input[aria-label="Message input"]').type('Hello World second time');
         cy.get('[aria-label="Submit message"]').click();
 
         cy.wait('@messages');
-        cy.wait('@messages_page_1');
 
         cy.get('[data-testid="chat"]').within(() => {
             cy.contains('Hello World second time');
@@ -71,6 +69,7 @@ describe('Chat tests', () => {
 
     it('open chat, send new message, response return error, message should not exist on list, chat show api error, second message with success response remove api error from chat', () => {
         cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
+        cy.intercept('/api/broadcasting/auth').as('chatAuth');
 
         cy.visit('/');
 
@@ -86,25 +85,22 @@ describe('Chat tests', () => {
         cy.get('[data-testid="chat"]').should('be.visible');
 
         // Creating first message
+        cy.wait('@chatAuth');
         cy.intercept('/api/messages', { statusCode: 500 }).as('messages');
-        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
 
         cy.get('input[aria-label="Message input"]').type('Hello World!{enter}');
 
         cy.wait('@messages');
-        cy.wait('@messages_page_1');
 
         cy.get('[data-testid="chat"]').should('not.contain.text', 'Hello World!');
         cy.get('[data-testid="chat"]').should('contain.text', 'Something went wrong, please try again later');
 
         // Creating second message
         cy.intercept('/api/messages', { statusCode: 201 }).as('messages');
-        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
 
         cy.get('input[aria-label="Message input"]').type('Second approach{enter}');
 
         cy.wait('@messages');
-        cy.wait('@messages_page_1');
 
         cy.get('[data-testid="chat"]').should('contain.text', 'Second approach');
         cy.get('[data-testid="chat"]').should('not.contain.text', 'Something went wrong, please try again later');
@@ -112,6 +108,7 @@ describe('Chat tests', () => {
 
     it('open chat, generate api error, close chat, open same chat, api error is not showing', () => {
         cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
+        cy.intercept('/api/broadcasting/auth').as('chatAuth');
 
         cy.visit('/');
 
@@ -127,13 +124,12 @@ describe('Chat tests', () => {
         cy.get('[data-testid="chat"]').should('be.visible');
 
         // Creating first message
+        cy.wait('@chatAuth');
         cy.intercept('/api/messages', { statusCode: 500 }).as('messages');
-        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
 
         cy.get('input[aria-label="Message input"]').type('Hello World!{enter}');
 
         cy.wait('@messages');
-        cy.wait('@messages_page_1');
 
         cy.get('[data-testid="chat"]').should('not.contain.text', 'Hello World!');
         cy.get('[data-testid="chat"]').should('contain.text', 'Something went wrong, please try again later');
@@ -145,8 +141,6 @@ describe('Chat tests', () => {
             cy.contains(`${friend.first_name} ${friend.last_name}`).click();
         });
 
-        cy.wait('@messages_page_1');
-
         cy.get('[data-testid="chat"]').should('be.visible');
 
         cy.get('[data-testid="chat"]').should('not.contain.text', 'Something went wrong, please try again later');
@@ -154,6 +148,7 @@ describe('Chat tests', () => {
 
     it('create message with emoji', () => {
         cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
+        cy.intercept('/api/broadcasting/auth').as('chatAuth');
 
         cy.visit('/');
 
@@ -168,8 +163,8 @@ describe('Chat tests', () => {
 
         cy.get('[data-testid="chat"]').should('be.visible');
 
+        cy.wait('@chatAuth');
         cy.intercept('/api/messages').as('messages');
-        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
 
         cy.get('input[aria-label="Message input"]').type('Hello ');
 
@@ -184,7 +179,6 @@ describe('Chat tests', () => {
         cy.get('[aria-label="Submit message"]').click();
 
         cy.wait('@messages');
-        cy.wait('@messages_page_1');
 
         cy.get('[data-testid="chat"]').within(() => {
             cy.contains('Hello 👋');
@@ -235,9 +229,6 @@ describe('Chat tests', () => {
 
         cy.get('[data-testid="chat"]').should('be.visible');
 
-        cy.intercept('/api/messages').as('messages');
-        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
-
         cy.get('[aria-label="Choose an emoji"]').click();
 
         cy.get('[aria-label="Emojis list"]').should('be.visible');
@@ -263,9 +254,6 @@ describe('Chat tests', () => {
 
         cy.get('[data-testid="chat"]').should('be.visible');
 
-        cy.intercept('/api/messages').as('messages');
-        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
-
         cy.get('[aria-label="Send like"]').click();
 
         cy.get('[data-testid="chat"]').within(() => {
@@ -275,6 +263,7 @@ describe('Chat tests', () => {
 
     it('send message which contain only emojis', () => {
         cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
+        cy.intercept('/api/broadcasting/auth').as('chatAuth');
 
         cy.visit('/');
 
@@ -289,8 +278,8 @@ describe('Chat tests', () => {
 
         cy.get('[data-testid="chat"]').should('be.visible');
 
+        cy.wait('@chatAuth');
         cy.intercept('/api/messages').as('messages');
-        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
 
         cy.get('[aria-label="Choose an emoji"]').click();
 
@@ -311,6 +300,8 @@ describe('Chat tests', () => {
 
         cy.get('[aria-label="Submit message"]').click();
 
+        cy.wait('@messages');
+
         cy.get('[data-testid="chat"]').within(() => {
             cy.contains('😃😅🤣🙂🥰😝😏😭👍❤️');
         });
@@ -318,6 +309,7 @@ describe('Chat tests', () => {
 
     it('upload image to message, img show in input and in conversation after submit', () => {
         cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
+        cy.intercept('/api/broadcasting/auth').as('chatAuth');
 
         cy.visit('/');
 
@@ -332,8 +324,8 @@ describe('Chat tests', () => {
 
         cy.get('[data-testid="chat"]').should('be.visible');
 
+        cy.wait('@chatAuth');
         cy.intercept('/api/messages').as('messages');
-        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
 
         cy.get('input[type="file"]').attachFile(['/postImage1.jpg']);
 
@@ -342,7 +334,6 @@ describe('Chat tests', () => {
         cy.get('button[aria-label="Submit message"]').click();
 
         cy.wait('@messages');
-        cy.wait('@messages_page_1');
 
         cy.get('[data-testid="chat"]').within(() => {
             cy.get('[aria-label="Message sent"]').within(() => {
@@ -353,6 +344,7 @@ describe('Chat tests', () => {
 
     it('upload 3 images, remove 1, submit, see image with 2 images in conversation', () => {
         cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
+        cy.intercept('/api/broadcasting/auth').as('chatAuth');
 
         cy.visit('/');
 
@@ -363,12 +355,12 @@ describe('Chat tests', () => {
             cy.contains(`${friend.first_name} ${friend.last_name}`).click();
         });
 
-        cy.wait('@messages_page_1');
-
         cy.get('[data-testid="chat"]').should('be.visible');
 
+        cy.wait('@messages_page_1');
+
+        cy.wait('@chatAuth');
         cy.intercept('/api/messages').as('messages');
-        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
 
         cy.get('input[type="file"]').attachFile(['/postImage1.jpg', '/postImage2.jpg', '/postImage3.jpg']);
 
@@ -384,7 +376,6 @@ describe('Chat tests', () => {
         cy.get('button[aria-label="Submit message"]').click();
 
         cy.wait('@messages');
-        cy.wait('@messages_page_1');
 
         cy.get('[data-testid="chat"]').within(() => {
             cy.get('[aria-label="Message sent"]').within(() => {
@@ -395,6 +386,7 @@ describe('Chat tests', () => {
 
     it('create message with text and images', () => {
         cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
+        cy.intercept('/api/broadcasting/auth').as('chatAuth');
 
         cy.visit('/');
 
@@ -409,8 +401,8 @@ describe('Chat tests', () => {
 
         cy.get('[data-testid="chat"]').should('be.visible');
 
+        cy.wait('@chatAuth');
         cy.intercept('/api/messages').as('messages');
-        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
 
         cy.get('input[aria-label="Message input"]').type('Hello World!');
 
@@ -420,7 +412,6 @@ describe('Chat tests', () => {
         cy.get('button[aria-label="Submit message"]').click();
 
         cy.wait('@messages');
-        cy.wait('@messages_page_1');
 
         cy.get('[data-testid="chat"]').within(() => {
             cy.get('[aria-label="Message sent"]').within(() => {
@@ -432,6 +423,7 @@ describe('Chat tests', () => {
 
     it('cannot create message with invalid type of file', () => {
         cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
+        cy.intercept('/api/broadcasting/auth').as('chatAuth');
 
         cy.visit('/');
 
@@ -446,8 +438,8 @@ describe('Chat tests', () => {
 
         cy.get('[data-testid="chat"]').should('be.visible');
 
+        cy.wait('@chatAuth');
         cy.intercept('/api/messages').as('messages');
-        cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
 
         cy.get('input[aria-label="Message input"]').type('Hello World!');
 
@@ -457,7 +449,6 @@ describe('Chat tests', () => {
         cy.get('button[aria-label="Submit message"]').click();
 
         cy.wait('@messages');
-        cy.wait('@messages_page_1');
 
         cy.get('[data-testid="chat"]').within(() => {
             cy.get('[aria-label="Message sent"]').within(() => {
@@ -469,6 +460,7 @@ describe('Chat tests', () => {
 
     it('users can messages to each other', () => {
         cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
+        cy.intercept('/api/broadcasting/auth').as('chatAuth');
 
         cy.visit('/');
 
@@ -483,6 +475,7 @@ describe('Chat tests', () => {
 
         cy.get('[data-testid="chat"]').should('be.visible');
 
+        cy.wait('@chatAuth');
         cy.intercept('/api/messages').as('messages');
 
         cy.get('input[aria-label="Message input"]').type('Hello');
@@ -618,8 +611,9 @@ describe('Chat tests', () => {
         });
     });
 
-    it('message has sent status icon after sent, received status icon after fetching and seen status icon after user read that message', () => {
+    it('message has sent status icon after sent, received status after created, seen status after user read that message', () => {
         cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
+        cy.intercept('/api/broadcasting/auth').as('chatAuth');
 
         cy.visit('/');
 
@@ -634,6 +628,7 @@ describe('Chat tests', () => {
 
         cy.get('[data-testid="chat"]').should('be.visible');
 
+        cy.wait('@chatAuth');
         cy.intercept('/api/messages').as('messages');
 
         cy.get('input[aria-label="Message input"]').type('Hello');
@@ -646,16 +641,14 @@ describe('Chat tests', () => {
         cy.get('[aria-label="Message sent"]')
             .children()
             .filter(':contains("Hello")')
-            .get('[data-testid="message-statusIcon"]')
-            .should('have.attr', 'title', 'Sending');
+            .get('[data-testid="statusIcon-sending"]');
 
         cy.wait('@messages');
 
         cy.get('[aria-label="Message sent"]')
             .children()
             .filter(':contains("Hello")')
-            .get('[data-testid="message-statusIcon"]')
-            .should('have.attr', 'title', 'Delivered');
+            .get('[data-testid="statusIcon-delivered"]');
 
         cy.intercept('/api/messages').as('messages');
 
@@ -666,16 +659,14 @@ describe('Chat tests', () => {
         cy.get('[aria-label="Message sent"]')
             .children()
             .filter(':contains("World")')
-            .get('[data-testid="message-statusIcon"]')
-            .should('have.attr', 'title', 'Sending');
+            .get('[data-testid="statusIcon-sending"]');
 
         cy.wait('@messages');
 
         cy.get('[aria-label="Message sent"]')
             .children()
             .filter(':contains("World")')
-            .get('[data-testid="message-statusIcon"]')
-            .should('have.attr', 'title', 'Delivered');
+            .get('[data-testid="statusIcon-delivered"]');
 
         cy.relogin(999);
 
@@ -693,18 +684,14 @@ describe('Chat tests', () => {
         cy.get('[aria-label="Message received"]')
             .children()
             .filter(':contains("Hello")')
-            .get('[data-testid="message-statusIcon"]')
-            .within(() => {
-                cy.get('[data-testid="statusIcon-empty"]').should('exist');
-            });
+            .get('[data-testid="statusIcon-empty"]')
+            .should('exist');
 
         cy.get('[aria-label="Message received"]')
             .children()
             .filter(':contains("World")')
-            .get('[data-testid="message-statusIcon"]')
-            .within(() => {
-                cy.get('img[title*="Seen at"]').should('be.visible');
-            });
+            .get('[data-testid="statusIcon-seen"]')
+            .should('be.visible');
 
         cy.intercept('/api/contacts?page=1').as('contacts_page_1');
         cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
@@ -722,18 +709,12 @@ describe('Chat tests', () => {
         cy.get('[aria-label="Message sent"]')
             .children()
             .filter(':contains("Hello")')
-            .get('[data-testid="message-statusIcon"]')
-            .within(() => {
-                cy.get('[data-testid="statusIcon-empty"]').should('exist');
-            });
+            .get('[data-testid="statusIcon-empty"]');
 
         cy.get('[aria-label="Message sent"]')
             .children()
             .filter(':contains("World")')
-            .get('[data-testid="message-statusIcon"]')
-            .within(() => {
-                cy.get('img[title*="Seen at"]').should('be.visible');
-            });
+            .get('[data-testid="statusIcon-seen"]');
     });
 
     // it('open chat, conversation should has 15 messages, WIP', () => {

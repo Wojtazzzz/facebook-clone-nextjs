@@ -51,8 +51,8 @@ describe('Friends list tests', () => {
         cy.get('[data-testid="chat"]').should('be.visible');
     });
 
-    it('remove friend from friends list when click on "Remove" button, this same friend show on suggests list, on refreshed friends page his element dissapear from list', () => {
-        cy.create('Friendship', 8, {
+    it('remove friend from friends list by click on "Remove" button, this same friend show on suggests list, on refreshed friends page his element dissapear from list', () => {
+        cy.create('Friendship', 4, {
             user_id: 1,
             status: 'CONFIRMED',
         });
@@ -67,7 +67,7 @@ describe('Friends list tests', () => {
         cy.friendsListItems()
             .first()
             .within(() => {
-                cy.contains('Remove').click();
+                cy.get('button[aria-label="Remove"]').click();
             });
 
         cy.friendsListItems().first().should('not.exist');
@@ -86,7 +86,7 @@ describe('Friends list tests', () => {
 
         cy.wait('@friends_page_1');
 
-        cy.friendsListItems().should('have.length', 7);
+        cy.friendsListItems().should('have.length', 3);
     });
 
     it('render empty component when api return empty data', () => {

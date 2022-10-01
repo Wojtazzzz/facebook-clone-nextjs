@@ -16,10 +16,18 @@ export const Icon = ({ icon, friendAvatar, readAt }: IconProps) => {
     }
 
     if (icon === 'AVATAR') {
-        return <Avatar src={friendAvatar} alt="" title={`Seen at ${readAt}`} styles="w-[14px] h-[14px]" />;
+        return (
+            <Avatar
+                testId="statusIcon-seen"
+                src={friendAvatar}
+                alt=""
+                title={`Seen at ${readAt}`}
+                styles="w-[14px] h-[14px]"
+            />
+        );
     }
 
     const faIcon = icon === 'DELIVERED' ? faCircleCheckSolid : faCircleCheckRegular;
 
-    return <FontAwesomeIcon icon={faIcon} />;
+    return <FontAwesomeIcon data-testid={`statusIcon-${icon.toLocaleLowerCase()}`} icon={faIcon} />;
 };
