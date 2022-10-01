@@ -4,8 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { RoundedButton } from '@components/inc/RoundedButton';
 import type { ReactNode } from 'react';
-import { modalStyles } from '@styles/modalStyles';
-
 ReactModal.setAppElement('body');
 
 interface ModalRootProps {
@@ -20,11 +18,15 @@ export const ModalRoot = ({ label, isOpen, title, closeModal, children }: ModalR
     useKey('Escape', closeModal);
 
     return (
-        <ReactModal isOpen={isOpen} style={modalStyles} onRequestClose={closeModal}>
+        <ReactModal
+            isOpen={isOpen}
+            className="fixed w-screen h-screen top-0 left-0 z-40"
+            overlayClassName="w-full h-full bg-[rgba(58, 59, 60, 0.2)]"
+            onRequestClose={closeModal}
+        >
             <div
                 aria-label={label}
-                className="h-full flex flex-col bg-dark-200 rounded-lg relative z-50 mx-2 md:mx-auto"
-                style={{ maxHeight: '75vh' }}
+                className="w-full max-w-[520px] min-w-[300px] h-fit max-h-[75vh] top-1/2 left-1/2 right-auto bottom-auto -translate-y-1/2 -translate-x-1/2 flex flex-col bg-dark-200 rounded-lg relative z-50 p-0"
             >
                 <div className="w-full flex justify-between items-center text-light-200 border-zinc-600 border-b-[1.5px] p-3">
                     <FontAwesomeIcon className="w-8 text-lg invisible pointer-events-none" icon={faTimes} />
