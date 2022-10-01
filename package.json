@@ -9,7 +9,7 @@
         "test": "jest --watchAll",
         "test:ci": "jest --ci",
         "cypress": "cypress open",
-        "cypress:run": "cypress run"
+        "cypress:run": "cypress run --browser chrome"
     },
     "dependencies": {
         "@fortawesome/fontawesome-svg-core": "^6.1.1",
