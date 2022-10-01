@@ -1,4 +1,4 @@
-import { axios } from '@libs/axios';
+import { axios } from '@utils/axios';
 import { useQuery } from '@tanstack/react-query';
 import { getFriendsByCountQK } from '@utils/queryKeys';
 import type { IFriend } from '@utils/types';

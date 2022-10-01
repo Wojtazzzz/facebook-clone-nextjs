@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo } from 'react';
 import Echo from 'laravel-echo';
-import { axios } from '@libs/axios';
+import { axios } from '@utils/axios';
 import Pusher from 'pusher-js';
 import { useAuth } from '@hooks/useAuth';
 import { useChat } from '@hooks/useChat';

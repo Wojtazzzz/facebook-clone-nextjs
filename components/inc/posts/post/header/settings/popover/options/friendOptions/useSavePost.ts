@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { axios } from '@libs/axios';
+import { axios } from '@utils/axios';
 import type { QueryKey } from '@tanstack/react-query';
 
 export const useSavePost = (queryKey: QueryKey) => {

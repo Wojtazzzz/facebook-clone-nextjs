@@ -1,5 +1,5 @@
 import { useInfiniteData } from '@hooks/useInfiniteData';
-import { axios } from '@libs/axios';
+import { axios } from '@utils/axios';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { getCheckUnreadNotificationsQK, getNotificationsQK } from '@utils/queryKeys';
 import type { INotification } from '@utils/types';

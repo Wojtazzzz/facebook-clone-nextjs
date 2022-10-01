@@ -1,5 +1,5 @@
 import { useAlertModal } from '@hooks/useAlertModal';
-import { axios } from '@libs/axios';
+import { axios } from '@utils/axios';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import type { InfiniteData } from '@tanstack/react-query';
 import type { IComment, ICommentPayload, IPaginatedResponse } from '@utils/types';

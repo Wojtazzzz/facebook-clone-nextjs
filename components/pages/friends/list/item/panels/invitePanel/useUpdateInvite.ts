@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import type { IUpdateInvite } from '@utils/types';
-import { axios } from '@libs/axios';
+import { axios } from '@utils/axios';
 import { getInvitesListQK } from '@utils/queryKeys';
 
 export const useUpdateInvite = () => {

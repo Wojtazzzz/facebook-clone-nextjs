@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import type { QueryKey, UseInfiniteQueryOptions } from '@tanstack/react-query';
-import { axios } from '@libs/axios';
+import { axios } from '@utils/axios';
 import type { IPaginatedResponse } from '@utils/types';
 
 export const useInfiniteData = <T>({ queryKey, endpoint, params, options }: IUseInfiniteDataArgs<T>) => {

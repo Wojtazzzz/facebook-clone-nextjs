@@ -1,4 +1,4 @@
-import { axios } from '@libs/axios';
+import { axios } from '@utils/axios';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { getErrorMessage } from '@utils/getErrorMessage/getErrorMessage';
 import { getPokesListQK } from '@utils/queryKeys';

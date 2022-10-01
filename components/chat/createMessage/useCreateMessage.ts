@@ -1,4 +1,4 @@
-import { axios } from '@libs/axios';
+import { axios } from '@utils/axios';
 import type { IChatMessage, IChatMessagePayload, IPaginatedResponse } from '@utils/types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import type { UseMutationResult } from '@tanstack/react-query';

@@ -1,4 +1,4 @@
-import { axios } from '@libs/axios';
+import { axios } from '@utils/axios';
 import type { ILoginPayload } from '@utils/types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { csrf } from '@utils/csrf';
