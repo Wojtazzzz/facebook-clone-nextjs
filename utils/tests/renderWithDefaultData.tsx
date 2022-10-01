@@ -1,5 +1,5 @@
-import { Provider } from 'react-redux';
-import * as Tooltip from '@radix-ui/react-tooltip';
+import { Provider as ReduxProvider } from 'react-redux';
+import { Provider as TooltipProvider } from '@radix-ui/react-tooltip';
 import { generateStore } from '@redux/store';
 import { render } from '@testing-library/react';
 import type { ReactNode } from 'react';
@@ -11,10 +11,10 @@ export const renderWithDefaultData = (component: ReactNode) => {
     const queryClient = createQueryClient();
 
     return render(
-        <Provider store={store}>
-            <Tooltip.Provider>
+        <ReduxProvider store={store}>
+            <TooltipProvider>
                 <QueryClientProvider client={queryClient}>{component}</QueryClientProvider>
-            </Tooltip.Provider>
-        </Provider>
+            </TooltipProvider>
+        </ReduxProvider>
     );
 };
