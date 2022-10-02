@@ -7,7 +7,7 @@ import type { ReactElement } from 'react';
 const LoginPage: NextPageWithLayout = () => {
     return (
         <>
-            <NextSeo title="Login Or Create Account" />
+            <NextSeo title="Login Or Create Account" description="Welcome in Facebook Clone social app" />
             <Auth />;
         </>
     );

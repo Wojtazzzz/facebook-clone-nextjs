@@ -10,7 +10,7 @@ interface ProfileProps extends IUserProfile {}
 const ProfilePage = (user: ProfileProps) => {
     return (
         <>
-            <NextSeo title={user.name} />
+            <NextSeo title={user.name} description="See how you are presenting in app" />
 
             <ProfileLayout user={user}>
                 <Profile user={user} />;

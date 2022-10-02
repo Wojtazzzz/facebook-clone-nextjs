@@ -8,7 +8,7 @@ import type { ParsedUrlQuery } from 'querystring';
 const FriendsPage = (user: IUserProfile) => {
     return (
         <>
-            <NextSeo title={`Friends - ${user.name}`} />
+            <NextSeo title={`Friends - ${user.name}`} description="See and search on list of your friends" />
 
             <ProfileLayout user={user}>
                 <Friends user={user} />

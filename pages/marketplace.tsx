@@ -7,7 +7,7 @@ import type { ReactElement } from 'react';
 const MarketplacePage: NextPageWithLayout = () => {
     return (
         <>
-            <NextSeo title="Marketplace" />
+            <NextSeo title="Marketplace" description="Buy something new or sell your unused items" />
 
             <Marketplace />
         </>

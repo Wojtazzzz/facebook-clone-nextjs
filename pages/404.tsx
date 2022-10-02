@@ -7,7 +7,7 @@ import { NextSeo } from 'next-seo';
 const NotFoundPage: NextPageWithLayout = () => {
     return (
         <>
-            <NextSeo title="Not Found" description="Page not found, check correctness of url" nofollow noindex />
+            <NextSeo title="Not Found" description="Page not found, check correctness of url" />
 
             <NotFound />
         </>

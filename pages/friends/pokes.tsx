@@ -7,7 +7,7 @@ import type { ReactElement } from 'react';
 const PokesPage: NextPageWithLayout = () => {
     return (
         <>
-            <NextSeo title="Pokes" />
+            <NextSeo title="Pokes" description="See how poke you today" />
             <Friends type="Pokes" />
         </>
     );

@@ -7,7 +7,7 @@ import type { ReactElement } from 'react';
 const FriendsPage: NextPageWithLayout = () => {
     return (
         <>
-            <NextSeo title="Friends" />
+            <NextSeo title="Friends" description="See your list of friends" />
             <Friends type="Friends" />
         </>
     );

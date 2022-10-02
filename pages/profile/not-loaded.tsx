@@ -8,7 +8,7 @@ import type { ReactElement } from 'react';
 const ProfileNotLoadedPage: NextPageWithLayout = () => {
     return (
         <>
-            <NextSeo title="Not Found" />
+            <NextSeo title="Not Loaded" description="xxx" />
             <NotLoaded />;
         </>
     );

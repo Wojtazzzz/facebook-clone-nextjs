@@ -7,7 +7,7 @@ import type { ReactElement } from 'react';
 const InvitesPage: NextPageWithLayout = () => {
     return (
         <>
-            <NextSeo title="Invites" />
+            <NextSeo title="Invites" description="Accept or reject requests from others" />
             <Friends type="Invites" />
         </>
     );

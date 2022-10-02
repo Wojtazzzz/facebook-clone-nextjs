@@ -7,7 +7,7 @@ import type { ReactElement } from 'react';
 const SuggestsPage: NextPageWithLayout = () => {
     return (
         <>
-            <NextSeo title="Suggests" />
+            <NextSeo title="Suggests" description="Search your friends and send requests to them" />
             <Friends type="Suggests" />
         </>
     );
