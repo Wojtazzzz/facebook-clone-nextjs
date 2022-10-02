@@ -1,10 +1,16 @@
 import { MainLayout } from '@components/layouts/authLayout/mainLayout/MainLayout';
 import { Friends } from '@components/pages/friends/Friends';
 import type { NextPageWithLayout } from '@utils/types';
+import { NextSeo } from 'next-seo';
 import type { ReactElement } from 'react';
 
 const PokesPage: NextPageWithLayout = () => {
-    return <Friends type="Pokes" />;
+    return (
+        <>
+            <NextSeo title="Pokes" />
+            <Friends type="Pokes" />
+        </>
+    );
 };
 
 export default PokesPage;

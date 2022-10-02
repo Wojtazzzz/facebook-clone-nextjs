@@ -2,10 +2,16 @@ import { AuthLayout } from '@components/layouts/authLayout/AuthLayout';
 import { ErrorLayout } from '@components/layouts/ErrorLayout';
 import { NotLoaded } from '@components/pages/profile/index/NotLoaded';
 import type { NextPageWithLayout } from '@utils/types';
+import { NextSeo } from 'next-seo';
 import type { ReactElement } from 'react';
 
 const ProfileNotLoadedPage: NextPageWithLayout = () => {
-    return <NotLoaded />;
+    return (
+        <>
+            <NextSeo title="Not Found" />
+            <NotLoaded />;
+        </>
+    );
 };
 
 export default ProfileNotLoadedPage;

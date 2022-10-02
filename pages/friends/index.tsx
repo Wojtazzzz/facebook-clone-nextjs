@@ -1,10 +1,16 @@
 import { MainLayout } from '@components/layouts/authLayout/mainLayout/MainLayout';
 import { Friends } from '@components/pages/friends/Friends';
 import type { NextPageWithLayout } from '@utils/types';
+import { NextSeo } from 'next-seo';
 import type { ReactElement } from 'react';
 
 const FriendsPage: NextPageWithLayout = () => {
-    return <Friends type="Friends" />;
+    return (
+        <>
+            <NextSeo title="Friends" />
+            <Friends type="Friends" />
+        </>
+    );
 };
 
 export default FriendsPage;

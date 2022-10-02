@@ -2,13 +2,18 @@ import { ProfileLayout } from '@components/layouts/authLayout/mainLayout/profile
 import { Friends } from '@components/pages/profile/friends/Friends';
 import type { IUserProfile } from '@utils/types';
 import type { GetStaticPaths, GetStaticProps } from 'next';
+import { NextSeo } from 'next-seo';
 import type { ParsedUrlQuery } from 'querystring';
 
 const FriendsPage = (user: IUserProfile) => {
     return (
-        <ProfileLayout user={user}>
-            <Friends user={user} />
-        </ProfileLayout>
+        <>
+            <NextSeo title={`Friends - ${user.name}`} />
+
+            <ProfileLayout user={user}>
+                <Friends user={user} />
+            </ProfileLayout>
+        </>
     );
 };
 

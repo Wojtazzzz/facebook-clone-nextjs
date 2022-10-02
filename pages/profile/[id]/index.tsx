@@ -3,14 +3,19 @@ import type { ParsedUrlQuery } from 'querystring';
 import type { IUserProfile } from '@utils/types';
 import { ProfileLayout } from '@components/layouts/authLayout/mainLayout/profileLayout/ProfileLayout';
 import { Profile } from '@components/pages/profile/index/Profile';
+import { NextSeo } from 'next-seo';
 
 interface ProfileProps extends IUserProfile {}
 
 const ProfilePage = (user: ProfileProps) => {
     return (
-        <ProfileLayout user={user}>
-            <Profile user={user} />;
-        </ProfileLayout>
+        <>
+            <NextSeo title={user.name} />
+
+            <ProfileLayout user={user}>
+                <Profile user={user} />;
+            </ProfileLayout>
+        </>
     );
 };
 
