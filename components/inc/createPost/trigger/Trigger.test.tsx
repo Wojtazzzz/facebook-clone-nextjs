@@ -1,10 +1,10 @@
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
-import { CreatePost } from './CreatePost';
+import { Trigger } from './Trigger';
 import { mock } from '@utils/nock';
 import RootUserJson from '@mocks/user/root.json';
 import { screen } from '@testing-library/react';
 
-describe('CreatePost component', () => {
+describe('Trigger component', () => {
     beforeEach(() => {
         mock({
             path: '/api/user',
@@ -13,15 +13,15 @@ describe('CreatePost component', () => {
     });
 
     it('render loaders when user not loaded', () => {
-        renderWithDefaultData(<CreatePost />);
+        renderWithDefaultData(<Trigger />);
 
-        const loaders = screen.getByTestId('createPost-loader');
+        const loaders = screen.getByTestId('createPostTrigger-loader');
 
         expect(loaders).toBeInTheDocument();
     });
 
     it('render avatar and text with user name properly', async () => {
-        renderWithDefaultData(<CreatePost />);
+        renderWithDefaultData(<Trigger />);
 
         const avatar = await screen.findByAltText(RootUserJson.name);
         const text = await screen.findByText(`What's on your mind, ${RootUserJson.first_name}?`);

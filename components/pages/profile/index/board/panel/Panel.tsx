@@ -1,8 +1,8 @@
-import { CreatePost } from '@components/inc/modals/post/create/createPost/CreatePost';
 import { useAuth } from '@hooks/useAuth';
 import type { ChangeEvent } from 'react';
 import { ListSwitcher } from './ListSwitcher';
 import type { QueryKey } from '@tanstack/react-query';
+import { CreatePost } from '@components/inc/createPost/CreatePost';
 
 interface PanelProps {
     userId: number;

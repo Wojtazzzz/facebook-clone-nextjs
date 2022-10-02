@@ -1,4 +1,4 @@
-import { CreatePost } from '@components/inc/modals/post/create/createPost/CreatePost';
+import { CreatePost } from '@components/inc/createPost/CreatePost';
 import { Posts as PostsList } from '@components/inc/posts/Posts';
 import { ScrollToTop } from '@components/inc/ScrollToTop';
 import { getPostsEndpoint } from '@utils/getPostsEndpoint';

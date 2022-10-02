@@ -1,24 +1,21 @@
 import { useAuth } from '@hooks/useAuth';
 import { Loader } from './Loader';
 import { Avatar } from '@components/inc/Avatar';
-import { useCreatePostModal } from '../useCreatePostModal';
-import { Modal } from '../modal/Modal';
-import type { QueryKey } from '@tanstack/react-query';
+import * as Dialog from '@radix-ui/react-dialog';
 
-interface CreatePostProps {
-    queryKey: QueryKey;
+interface TriggerProps {
+    open: () => void;
 }
 
-export const CreatePost = ({ queryKey }: CreatePostProps) => {
+export const Trigger = ({ open }: TriggerProps) => {
     const { user } = useAuth();
-    const { isActive, open, close } = useCreatePostModal();
 
     if (!user) return <Loader />;
 
     const { name, first_name, profile_image } = user;
 
     return (
-        <>
+        <Dialog.Trigger asChild>
             <button
                 aria-label="Create a post"
                 className="w-full flex justify-between items-center gap-3 bg-dark-200 rounded-lg p-3"
@@ -32,8 +29,6 @@ export const CreatePost = ({ queryKey }: CreatePostProps) => {
                     What&apos;s on your mind, {first_name}?
                 </div>
             </button>
-
-            <Modal isActive={isActive} queryKey={queryKey} close={close} />
-        </>
+        </Dialog.Trigger>
     );
 };
