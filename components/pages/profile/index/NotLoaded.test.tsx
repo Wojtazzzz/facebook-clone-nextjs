@@ -3,12 +3,11 @@ import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import RootUserJson from '@mocks/user/root.json';
 import { screen } from '@testing-library/react';
 import { NotLoaded } from './NotLoaded';
-
-const useRouter = jest.spyOn(require('next/router'), 'useRouter');
+import { mockUseRouter } from '@utils/tests/mockUseRouter';
 
 describe('NotLoaded component', () => {
     beforeEach(() => {
-        useRouter.mockReturnValue({ push: jest.fn() });
+        mockUseRouter();
 
         mock({
             path: '/api/user',

@@ -3,24 +3,16 @@ import RootUserJson from '@mocks/user/root.json';
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { screen } from '@testing-library/react';
 import { Mobile } from './Mobile';
+import { mockUseRouter } from '@utils/tests/mockUseRouter';
 
 describe('Mobile navigation component', () => {
     beforeEach(() => {
+        mockUseRouter();
+
         mock({
             path: '/api/user',
             data: RootUserJson,
         });
-
-        const useRouter = jest.spyOn(require('next/router'), 'useRouter');
-        useRouter.mockImplementation(() => ({
-            route: '/',
-            pathname: '/',
-            query: '',
-            asPath: '/',
-            prefetch: () => ({
-                catch: jest.fn(),
-            }),
-        }));
     });
 
     it('render user profile link as disabled button and change it to correct user link', async () => {
