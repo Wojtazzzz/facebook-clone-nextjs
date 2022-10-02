@@ -21,8 +21,9 @@ export const Button = ({
         <button
             title={title}
             aria-label={title}
-            type={type}
+            aria-disabled={isDisabled || isLoading}
             disabled={isDisabled || isLoading}
+            type={type}
             className={clsx(
                 `bg-primary hover:opacity-90 text-white font-medium rounded-lg transition-opacity p-2 px-4 ${styles}`,
                 isDisabled && 'opacity-60 hover:opacity-60 cursor-not-allowed',

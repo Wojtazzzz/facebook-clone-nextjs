@@ -27,6 +27,7 @@ export const RoundedButton = ({
         <button
             type={type}
             aria-label={label}
+            aria-disabled={isDisabled || isLoading}
             disabled={isDisabled || isLoading}
             className={clsx(
                 `w-[40px] h-[40px] flex justify-center items-center transition-all rounded-full p-0 ${styles}`,

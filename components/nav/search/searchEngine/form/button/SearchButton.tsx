@@ -7,7 +7,7 @@ interface SearchButtonProps {
 
 export const SearchButton = ({ focus }: SearchButtonProps) => {
     return (
-        <button type="submit" aria-label="Focus input" onClick={focus}>
+        <button type="button" aria-label="Focus input" onClick={focus}>
             <FontAwesomeIcon icon={faSearch} className="text-md" />
         </button>
     );

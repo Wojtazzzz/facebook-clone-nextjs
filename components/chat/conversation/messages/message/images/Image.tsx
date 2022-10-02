@@ -13,8 +13,8 @@ export const Image = ({ image }: ImageProps) => {
     return (
         <>
             <button
-                aria-label="Zoom image"
                 type="button"
+                aria-label="Zoom image"
                 className="w-[200px] h-[150px] relative hover:opacity-80 cursor-pointer"
                 onClick={open}
             >

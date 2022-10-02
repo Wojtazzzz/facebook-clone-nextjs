@@ -10,6 +10,8 @@ export const Share = ({}: ShareProps) => {
         <div className="border-t-2 border-t-dark-100 px-2 md:px-3">
             <button
                 aria-label="Share born"
+                aria-disabled="true"
+                disabled
                 className="w-full flex justify-center items-center gap-1.5 text-light-100 font-medium hover:bg-dark-100 rounded-lg mt-2 py-2"
                 onClick={handleShare}
             >

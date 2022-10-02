@@ -12,7 +12,7 @@ export const SubmitButton = ({ isLoading }: SubmitButtonProps) => {
     }
 
     return (
-        <button type="submit" aria-label="Submit comment">
+        <button type="submit" aria-label="Send comment">
             <FontAwesomeIcon icon={faArrowRight} />
         </button>
     );

@@ -9,6 +9,7 @@ export const ScrollToTop = () => {
     return (
         <button
             aria-label="Scroll page to top"
+            aria-disabled={scrollDistance < 1000}
             className={clsx(
                 'w-12 h-12 flex justify-center items-center fixed bottom-6 right-6 z-30 bg-dark-100 transition-opacity ease-out duration-300 hover:opacity-100 rounded-xl',
                 scrollDistance >= 1000 ? 'opacity-50' : 'opacity-0 pointer-events-none'

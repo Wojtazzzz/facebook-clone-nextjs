@@ -28,7 +28,7 @@ export const FormContent = ({ isLoading, images, error }: FormContentProps) => {
 
             <ErrorMessage error={error} />
 
-            <ToggleImagesUpload toggle={toggleUpload} />
+            <ToggleImagesUpload isUploadActive={isUploadActive} toggle={toggleUpload} />
 
             <UploadedImages images={images} />
 

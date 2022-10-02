@@ -11,6 +11,7 @@ export const ActionButton = ({ title, isLoading = false, styles = '', callback }
     return (
         <button
             aria-label={title}
+            aria-disabled={isLoading}
             disabled={isLoading}
             className={clsx(
                 'text-xs transition-colors font-bold cursor-pointer',

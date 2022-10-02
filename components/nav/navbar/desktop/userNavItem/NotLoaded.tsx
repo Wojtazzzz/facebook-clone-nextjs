@@ -5,8 +5,8 @@ export const NotLoaded = () => {
     return (
         <button
             type="button"
-            aria-label="Loading..."
-            title="Loading..."
+            aria-label="Wait for server response"
+            aria-disabled="true"
             disabled
             className="w-[112px] h-full flex flex-col justify-center items-center gap-2 relative cursor-wait"
         >
