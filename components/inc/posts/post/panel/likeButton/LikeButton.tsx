@@ -1,4 +1,3 @@
-import { SadSmileError } from '@components/inc/SadSmileError';
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { PanelButton } from '../inc/PanelButton';
 import { useLike } from './useLike';
@@ -12,14 +11,12 @@ interface LikeButtonProps {
 }
 
 export const LikeButton = ({ postId, isLiked, queryKey }: LikeButtonProps) => {
-    const { like, isError: isLikeError } = useLike(queryKey);
-    const { unlike, isError: isUnlikeError } = useUnlike(queryKey);
+    const { like } = useLike(queryKey);
+    const { unlike } = useUnlike(queryKey);
 
     const handleLike = () => {
         isLiked ? unlike(postId) : like(postId);
     };
-
-    if (isLikeError || isUnlikeError) return <SadSmileError testId="like-apiError" size="2xl" />;
 
     return <PanelButton title="Like" icon={faThumbsUp} isActive={isLiked} callback={handleLike} />;
 };

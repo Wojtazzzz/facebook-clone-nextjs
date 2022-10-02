@@ -19,7 +19,6 @@ export const AuthLayout = ({ children }: AuthLayoutProps) => {
     return (
         <>
             <Nav toggleMenu={toggle} />
-
             <Menu isActive={isActive} close={close} />
 
             {children}

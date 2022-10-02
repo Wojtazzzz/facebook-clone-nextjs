@@ -9,7 +9,6 @@ interface SadSmileErrorProps {
 export const SadSmileError = ({ testId, size = 'base' }: SadSmileErrorProps) => {
     return (
         <div data-testid={testId} className="w-1/3 flex justify-center items-center">
-            z
             <FontAwesomeIcon icon={faFaceSadTear} className={`text-${size} text-red-400`} />
         </div>
     );

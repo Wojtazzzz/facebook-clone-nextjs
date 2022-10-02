@@ -3,9 +3,11 @@ import type { InfiniteData } from '@tanstack/react-query';
 import { axios } from '@utils/axios';
 import type { IPaginatedResponse, IPost } from '@utils/types';
 import type { QueryKey } from '@tanstack/react-query';
+import { useAlertModal } from '@hooks/useAlertModal';
 
 export const useLike = (queryKey: QueryKey) => {
     const queryClient = useQueryClient();
+    const { alert } = useAlertModal();
 
     const mutation = useMutation(mutationFn, {
         onMutate: async (id) => {
@@ -43,6 +45,7 @@ export const useLike = (queryKey: QueryKey) => {
             return { previousPosts };
         },
 
+        onError: () => alert('Something went wrong, please try again later.'),
         onSettled: () => queryClient.invalidateQueries(queryKey),
     });
 
