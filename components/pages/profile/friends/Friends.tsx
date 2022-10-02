@@ -12,7 +12,11 @@ export const Friends = ({ user }: FriendsProps) => {
     const { query, debounceQuery, changeQuery, clearQuery } = useSearchQuery();
 
     return (
-        <section data-testid="profile-friends" className="w-full flex flex-col gap-5 p-2">
+        <section
+            data-testid="profile-friends"
+            aria-labelledby="friends-heading"
+            className="w-full flex flex-col gap-5 p-2"
+        >
             <Header query={query} changeQuery={changeQuery} clearQuery={clearQuery} />
             <List userId={user.id} query={debounceQuery} />
             <ScrollToTop />

@@ -9,15 +9,19 @@ interface FriendsProps {
 }
 
 export const Friends = ({ userId }: FriendsProps) => {
+    const headingId = 'asideInfo-friends-heading';
+
     return (
         <Container testId="asideInfo-friends">
-            <Header title="Friends">
-                <Link href={`/profile/${userId}/friends`}>
-                    <a className="text-primary hover:underline">See All Friends</a>
-                </Link>
-            </Header>
+            <section id={headingId}>
+                <Header headingId={headingId} title="Friends">
+                    <Link href={`/profile/${userId}/friends`}>
+                        <a className="text-primary hover:underline">See All Friends</a>
+                    </Link>
+                </Header>
 
-            <List userId={userId} />
+                <List userId={userId} />
+            </section>
         </Container>
     );
 };

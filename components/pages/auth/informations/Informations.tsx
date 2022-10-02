@@ -4,10 +4,8 @@ import { About } from './About';
 
 export const Informations = () => {
     return (
-        <section className="w-full md:w-1/2 md:pt-8">
-            <div className="hidden md:block">
-                <Header />
-            </div>
+        <section aria-label="About application" className="w-full md:w-1/2 md:pt-8">
+            <Header />
 
             <aside>
                 <About />

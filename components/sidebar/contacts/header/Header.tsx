@@ -1,9 +1,13 @@
 import { SectionHeader } from '@components/sidebar/SectionHeader';
 import { SearchContact } from './SearchContact';
 
-export const Header = () => {
+interface HeaderProps {
+    headingId: string;
+}
+
+export const Header = ({ headingId }: HeaderProps) => {
     return (
-        <SectionHeader title="Contacts">
+        <SectionHeader headingId={headingId} title="Contacts">
             <SearchContact />
         </SectionHeader>
     );

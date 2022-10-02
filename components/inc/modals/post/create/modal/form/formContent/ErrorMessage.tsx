@@ -1,6 +1,6 @@
 import { ValidationError } from '@components/inc/ValidationError';
 import { getErrorMessage } from '@utils/getErrorMessage/getErrorMessage';
-import { IPostCreatePayload } from '@utils/types';
+import type { IPostCreatePayload } from '@utils/types';
 import { useFormikContext } from 'formik';
 
 interface ErrorMessageProps {
@@ -8,7 +8,7 @@ interface ErrorMessageProps {
 }
 
 export const ErrorMessage = ({ error }: ErrorMessageProps) => {
-    const { errors, touched } = useFormikContext<IPostCreatePayload>();
+    const { errors } = useFormikContext<IPostCreatePayload>();
 
     if (error) {
         const message = getErrorMessage(error);
@@ -21,7 +21,7 @@ export const ErrorMessage = ({ error }: ErrorMessageProps) => {
     }
 
     return (
-        <section data-testid="post-validation" className="w-full p-3">
+        <section data-testid="post-validation" role="alert" className="w-full p-3">
             <ValidationError fieldName="content" />
             <ValidationError fieldName="images" />
         </section>

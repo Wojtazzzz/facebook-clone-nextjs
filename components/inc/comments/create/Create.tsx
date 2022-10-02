@@ -17,6 +17,7 @@ export const Create = ({ postId }: CreateProps) => {
             <div>
                 <Avatar src={user.profile_image} alt="" styles="w-[40px] h-[40px]" />
             </div>
+
             <Form postId={postId} />
         </div>
     );

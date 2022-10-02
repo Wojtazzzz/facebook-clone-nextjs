@@ -19,7 +19,7 @@ export const ImageDrop = ({ close }: ImageDropProps) => {
     return (
         <Dropzone accept="image/*" onDrop={onDrop}>
             {({ getRootProps, getInputProps }) => (
-                <section className="group relative hover:bg-dark-100 border-[1px] border-dark-100 transition-colors active:bg-dark-200 rounded-lg mb-4 py-6">
+                <div className="group relative hover:bg-dark-100 border-[1px] border-dark-100 transition-colors active:bg-dark-200 rounded-lg mb-4 py-6">
                     <CloseButton close={handleClose} />
 
                     <div {...getRootProps()}>
@@ -34,7 +34,7 @@ export const ImageDrop = ({ close }: ImageDropProps) => {
                             </div>
                         </div>
                     </div>
-                </section>
+                </div>
             )}
         </Dropzone>
     );

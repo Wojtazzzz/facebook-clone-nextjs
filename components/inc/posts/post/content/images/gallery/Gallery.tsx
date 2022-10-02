@@ -25,7 +25,7 @@ export const Gallery = ({ images, closeGallery }: GalleryProps) => {
     return (
         <section
             ref={ref}
-            aria-label="Post gallery"
+            aria-label="Gallery of posts images"
             className="w-screen h-screen fixed top-0 left-0 z-50 bg-black overflow-hidden"
         >
             <CloseButton closeGallery={closeGallery} />

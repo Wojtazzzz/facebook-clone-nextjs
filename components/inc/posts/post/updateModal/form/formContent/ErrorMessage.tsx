@@ -13,7 +13,7 @@ export const ErrorMessage = ({ error }: ErrorMessageProps) => {
     }
 
     return (
-        <section data-testid="post-validation" className="w-full mb-3 p-3">
+        <section data-testid="post-validation" role="alert" className="w-full mb-3 p-3">
             <ValidationError fieldName="content" />
             <ValidationError fieldName="images" />
         </section>
