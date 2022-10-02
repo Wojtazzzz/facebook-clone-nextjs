@@ -13,7 +13,7 @@ interface UpdateModalProps {
 
 export const UpdateModal = ({ isActive, close, ...rest }: UpdateModalProps) => {
     return (
-        <ModalRoot label="Update post modal" isOpen={isActive} title="Update post" closeModal={close}>
+        <ModalRoot isOpen={isActive} title="Update post" closeModal={close}>
             <Form {...rest} closeModal={close} />
         </ModalRoot>
     );

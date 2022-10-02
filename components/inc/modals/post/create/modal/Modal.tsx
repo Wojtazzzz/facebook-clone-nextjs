@@ -10,7 +10,7 @@ interface ModalProps {
 
 export const Modal = ({ isActive, queryKey, close }: ModalProps) => {
     return (
-        <ModalRoot label="Create post modal" isOpen={isActive} title="Create post" closeModal={close}>
+        <ModalRoot isOpen={isActive} title="Create post" closeModal={close}>
             <Form queryKey={queryKey} close={close} />
         </ModalRoot>
     );
