@@ -12,10 +12,14 @@ interface PanelProps {
 
 export const Panel = ({ postId, isPostLiked, queryKey, toggleCommentsActive }: PanelProps) => {
     return (
-        <div className="w-full flex justify-evenly gap-1 md:gap-2 p-1 md:p-2">
+        <section
+            role="menubar"
+            aria-label="Post controls"
+            className="w-full flex justify-evenly gap-1 md:gap-2 p-1 md:p-2"
+        >
             <LikeButton postId={postId} isLiked={isPostLiked} queryKey={queryKey} />
             <CommentButton toggleCommentsActive={toggleCommentsActive} />
             <ShareButton />
-        </div>
+        </section>
     );
 };
