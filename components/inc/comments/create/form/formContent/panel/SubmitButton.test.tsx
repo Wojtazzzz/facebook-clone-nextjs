@@ -9,14 +9,14 @@ describe('SubmitButton component', () => {
         const spinner = screen.queryByTestId('commentSubmitButton-loader');
         expect(spinner).not.toBeInTheDocument();
 
-        const button = screen.getByLabelText('Submit comment');
+        const button = screen.getByLabelText('Send comment');
         expect(button).toBeInTheDocument();
     });
 
     it('show submit arrow when state is loading and not showing submit arrow', () => {
         renderWithDefaultData(<SubmitButton isLoading={true} />);
 
-        const button = screen.queryByLabelText('Submit comment');
+        const button = screen.queryByLabelText('Send comment');
         expect(button).not.toBeInTheDocument();
 
         const spinner = screen.getByTestId('commentSubmitButton-loader');

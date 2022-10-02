@@ -1,7 +1,6 @@
 import { mock } from '@utils/nock';
 import RootUserJson from '@mocks/user/root.json';
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
-import { Navbar } from '@components/nav/navbar/desktop/Navbar';
 import { screen } from '@testing-library/react';
 import { Desktop } from './Desktop';
 
@@ -27,7 +26,7 @@ describe('Desktop navigation component', () => {
     it('render user profile link as disabled button and change it to correct user link', async () => {
         renderWithDefaultData(<Desktop />);
 
-        const disabledButton = screen.getByLabelText('Loading...', { selector: 'button' });
+        const disabledButton = screen.getByLabelText('Wait for server response');
         expect(disabledButton).toHaveAttribute('disabled');
 
         const link = await screen.findByLabelText('Profile page', { selector: 'a' });

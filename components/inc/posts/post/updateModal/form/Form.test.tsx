@@ -232,7 +232,7 @@ describe('Form component', () => {
         const inputImage = screen.getByLabelText('Images input');
         await user.upload(inputImage, images);
 
-        const removeSecondimageButton = screen.getByLabelText(`Remove ${images[1].name} from updated images list`);
+        const removeSecondimageButton = screen.getByLabelText(`Remove ${images[1].name} from images list`);
 
         const displayedSecondimageName = screen.getByText(images[1].name);
 
@@ -268,7 +268,7 @@ describe('Form component', () => {
         const inputImage = screen.getByLabelText('Images input');
         await user.upload(inputImage, images);
 
-        const removeSecondimageButton = screen.getByLabelText(`Remove ${images[1].name} from updated images list`);
+        const removeSecondimageButton = screen.getByLabelText(`Remove ${images[1].name} from images list`);
 
         await user.click(removeSecondimageButton);
 

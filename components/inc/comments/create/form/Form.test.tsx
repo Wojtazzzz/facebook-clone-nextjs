@@ -31,7 +31,7 @@ describe('Form component', () => {
         const input = screen.getByLabelText('Write a comment');
         await user.type(input, 'John Doe is super facebook-clone user!');
 
-        const submitButton = screen.getByLabelText('Submit comment');
+        const submitButton = screen.getByLabelText('Send comment');
         await user.click(submitButton);
 
         await waitFor(() => {
@@ -45,7 +45,7 @@ describe('Form component', () => {
         const input = screen.getByLabelText('Write a comment');
         await user.type(input, 'a');
 
-        const submitButton = screen.getByLabelText('Submit comment');
+        const submitButton = screen.getByLabelText('Send comment');
         await user.click(submitButton);
 
         const validationError = await screen.findByText('Comment must be at least 2 characters');
@@ -56,7 +56,7 @@ describe('Form component', () => {
     it('"Comment must contain text" validation error', async () => {
         renderWithDefaultData(<Form postId={post.id} />);
 
-        const submitButton = screen.getByLabelText('Submit comment');
+        const submitButton = screen.getByLabelText('Send comment');
         await user.click(submitButton);
 
         const validationError = await screen.findByText('Comment must contain text');
@@ -72,7 +72,7 @@ describe('Form component', () => {
         const input = screen.getByLabelText('Write a comment');
         await user.type(input, LONG_TEXT);
 
-        const submitButton = screen.getByLabelText('Submit comment');
+        const submitButton = screen.getByLabelText('Send comment');
         await user.click(submitButton);
 
         const validationError = await screen.findByText('Comment must be at most 1000 characters');
@@ -93,7 +93,7 @@ describe('Form component', () => {
         const input = screen.getByLabelText('Write a comment');
         await user.type(input, 'John Doe is super facebook-clone user!');
 
-        const submitButton = screen.getByLabelText('Submit comment');
+        const submitButton = screen.getByLabelText('Send comment');
 
         await user.click(submitButton);
 

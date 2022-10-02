@@ -13,7 +13,7 @@ describe('Images component', () => {
         const showGalleryButton = screen.getByLabelText('Show gallery');
         await user.click(showGalleryButton);
 
-        const gallery = await screen.findByLabelText('Post gallery', { selector: 'section' });
+        const gallery = await screen.findByLabelText('Gallery of post images');
 
         expect(gallery).toBeVisible();
     });

@@ -6,6 +6,7 @@ import CommentsFirstPageJson from '@mocks/posts/comments/firstPage.json';
 import userEvent from '@testing-library/user-event';
 import { mock } from '@utils/nock';
 import { Post } from './Post';
+import { getPostsQK } from '@utils/queryKeys';
 
 describe('Post component', () => {
     const user = userEvent.setup();
@@ -19,7 +20,7 @@ describe('Post component', () => {
     });
 
     it('render like, comment and share buttons', () => {
-        renderWithDefaultData(<Post {...post} type="OWN" />);
+        renderWithDefaultData(<Post queryKey={getPostsQK({ type: 'all' })} {...post} />);
 
         const likeButton = screen.getByLabelText('Like');
         const commentButton = screen.getByLabelText('Comment');
@@ -31,9 +32,9 @@ describe('Post component', () => {
     });
 
     it('not render comments section by default', async () => {
-        renderWithDefaultData(<Post {...post} type="OWN" />);
+        renderWithDefaultData(<Post queryKey={getPostsQK({ type: 'all' })} {...post} />);
 
-        const commentsSection = screen.queryByLabelText('Post comments', { selector: 'section' });
+        const commentsSection = screen.queryByLabelText('Comments');
 
         expect(commentsSection).not.toBeInTheDocument();
     });
@@ -44,12 +45,12 @@ describe('Post component', () => {
             data: CommentsFirstPageJson,
         });
 
-        renderWithDefaultData(<Post {...post} type="OWN" />);
+        renderWithDefaultData(<Post queryKey={getPostsQK({ type: 'all' })} {...post} />);
 
         const commentButton = screen.getByLabelText('Comment');
         await user.click(commentButton);
 
-        const commentsSection = screen.queryByLabelText('Post comments', { selector: 'section' });
+        const commentsSection = screen.queryByLabelText('Comments');
         expect(commentsSection).toBeInTheDocument();
     });
 
@@ -59,12 +60,12 @@ describe('Post component', () => {
             data: CommentsFirstPageJson,
         });
 
-        renderWithDefaultData(<Post {...post} type="OWN" />);
+        renderWithDefaultData(<Post queryKey={getPostsQK({ type: 'all' })} {...post} />);
 
         const commentStats = screen.getByText(`${post.comments_count} comments`);
         await user.click(commentStats);
 
-        const commentsSection = screen.queryByLabelText('Post comments', { selector: 'section' });
+        const commentsSection = screen.queryByLabelText('Comments');
         expect(commentsSection).toBeInTheDocument();
     });
 
@@ -74,12 +75,12 @@ describe('Post component', () => {
             data: CommentsFirstPageJson,
         });
 
-        renderWithDefaultData(<Post {...post} type="OWN" />);
+        renderWithDefaultData(<Post queryKey={getPostsQK({ type: 'all' })} {...post} />);
 
         const commentStats = screen.getByText(`${post.comments_count} comments`);
         await user.click(commentStats);
 
-        const commentsSection = await screen.findByLabelText('Post comments', { selector: 'section' });
+        const commentsSection = await screen.findByLabelText('Comments');
         expect(commentsSection).toBeInTheDocument();
     });
 });

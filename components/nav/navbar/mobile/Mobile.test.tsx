@@ -26,7 +26,7 @@ describe('Mobile navigation component', () => {
     it('render user profile link as disabled button and change it to correct user link', async () => {
         renderWithDefaultData(<Mobile />);
 
-        const disabledButton = screen.getByLabelText('Loading...', { selector: 'button' });
+        const disabledButton = screen.getByLabelText('Wait for server response');
         expect(disabledButton).toHaveAttribute('disabled');
 
         const link = await screen.findByLabelText('Profile page', { selector: 'a' });

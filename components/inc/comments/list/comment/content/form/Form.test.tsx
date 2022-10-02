@@ -30,7 +30,7 @@ describe('Form component', () => {
         await user.clear(input);
         await user.type(input, 'a');
 
-        const submitButton = screen.getByLabelText('Update comment');
+        const submitButton = screen.getByLabelText('Send updated comment');
         await user.click(submitButton);
 
         const validationError = await screen.findByText('Comment must be at least 2 characters');
@@ -46,7 +46,7 @@ describe('Form component', () => {
         const input = screen.getByLabelText('Update a comment');
         await user.clear(input);
 
-        const submitButton = screen.getByLabelText('Update comment');
+        const submitButton = screen.getByLabelText('Send updated comment');
         await user.click(submitButton);
 
         const validationError = await screen.findByText('Comment must contain text');
@@ -64,7 +64,7 @@ describe('Form component', () => {
         const input = screen.getByLabelText('Update a comment');
         await user.type(input, LONG_TEXT);
 
-        const submitButton = screen.getByLabelText('Update comment');
+        const submitButton = screen.getByLabelText('Send updated comment');
         await user.click(submitButton);
 
         const validationError = await screen.findByText('Comment must be at most 1000 characters');
@@ -86,7 +86,7 @@ describe('Form component', () => {
         const input = screen.getByLabelText('Update a comment');
         await user.type(input, 'xJohn Doe is super facebook-clone user!');
 
-        const submitButton = screen.getByLabelText('Update comment');
+        const submitButton = screen.getByLabelText('Send updated comment');
 
         await user.click(submitButton);
 

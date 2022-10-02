@@ -1,229 +1,225 @@
 {
     "data": [
         {
-            "type": "FRIEND",
-            "id": 7,
-            "content": "Reiciendis autem tempore ea officia dicta. Officiis aut est debitis vero voluptates rerum. Omnis molestiae quas dolorum quis et.",
+            "id": 1,
+            "content": "Hic sunt cupiditate nisi distinctio. Quidem in labore impedit facilis recusandae maiores et. Voluptatem illum consequatur itaque molestiae ipsum quibusdam.",
             "images": [
-                "https://picsum.photos/seed/62fd0d5fe74d3/850/350",
-                "https://picsum.photos/seed/62fd0d5fe74d4/850/350",
-                "https://picsum.photos/seed/62fd0d5fe74d6/850/350"
-            ],
-            "author": {
-                "id": 7,
-                "name": "Fay Hodkiewicz",
-                "first_name": "Fay",
-                "profile_image": "https://picsum.photos/seed/62fd0d6001f5e/168/168",
-                "background_image": "https://picsum.photos/seed/62fd0d6001f66/850/350"
-            },
-            "likes_count": 0,
-            "comments_count": 16,
-            "is_liked": false,
-            "is_edited": false,
-            "commenting": true,
-            "created_at": "1m"
-        },
-        {
-            "type": "FRIEND",
-            "id": 8,
-            "content": "Voluptate minima aut error est ducimus qui. In dolor id qui libero. Quisquam sint fugit similique adipisci facilis facilis.",
-            "images": [
-                "https://picsum.photos/seed/62fd0d60d49cc/850/350",
-                "https://picsum.photos/seed/62fd0d60d49cd/850/350"
+                "https://picsum.photos/seed/6339831c17682/850/350",
+                "https://picsum.photos/seed/6339831c17683/850/350"
             ],
             "author": {
                 "id": 8,
-                "name": "Hermina Zboncak",
-                "first_name": "Hermina",
-                "profile_image": "https://picsum.photos/seed/62fd0d60e416f/168/168",
-                "background_image": "https://picsum.photos/seed/62fd0d60e417b/850/350"
+                "name": "Oren Cassin",
+                "first_name": "Oren",
+                "profile_image": "https://picsum.photos/seed/633982ef7f667/168/168",
+                "background_image": "https://picsum.photos/seed/633982ef7f670/850/350"
             },
             "likes_count": 0,
-            "comments_count": 16,
+            "comments_count": 10,
             "is_liked": false,
             "is_edited": false,
+            "type": { "is_saved": false, "is_hidden": false, "is_own": false },
             "commenting": true,
-            "created_at": "1m"
+            "created_at": "16s"
         },
         {
-            "type": "FRIEND",
-            "id": 9,
-            "content": "Et nostrum eligendi consequatur tenetur fugit sed. Quisquam deleniti voluptas aut nobis rerum. Iusto illo dignissimos atque. Natus mollitia quia quia enim. Impedit esse quia impedit sit.",
+            "id": 2,
+            "content": "Aliquid vel quo voluptates. Beatae commodi et enim perferendis atque eaque consectetur. Repellat quo repellendus sint ut id. Ipsum doloribus nemo reprehenderit inventore.",
             "images": [
-                "https://picsum.photos/seed/62fd0d633be76/850/350",
-                "https://picsum.photos/seed/62fd0d633be78/850/350"
+                "https://picsum.photos/seed/6339831c296b0/850/350",
+                "https://picsum.photos/seed/6339831c296b1/850/350",
+                "https://picsum.photos/seed/6339831c296b2/850/350",
+                "https://picsum.photos/seed/6339831c296b3/850/350"
             ],
-            "author": {
-                "id": 9,
-                "name": "Maymie Schmeler",
-                "first_name": "Maymie",
-                "profile_image": "https://picsum.photos/seed/62fd0d634beaa/168/168",
-                "background_image": "https://picsum.photos/seed/62fd0d634beb3/850/350"
-            },
-            "likes_count": 0,
-            "comments_count": 16,
-            "is_liked": false,
-            "is_edited": false,
-            "commenting": true,
-            "created_at": "1m"
-        },
-        {
-            "type": "FRIEND",
-            "id": 10,
-            "content": "Cupiditate iure ut repudiandae vitae natus ipsum. Qui et et laborum temporibus sapiente nisi. Et et iste ex aut.",
-            "images": [],
             "author": {
                 "id": 10,
-                "name": "Deon Windler",
-                "first_name": "Deon",
-                "profile_image": "https://picsum.photos/seed/62fd0d649cfc3/168/168",
-                "background_image": "https://picsum.photos/seed/62fd0d649cfca/850/350"
-            },
-            "likes_count": 0,
-            "comments_count": 16,
-            "is_liked": false,
-            "is_edited": false,
-            "commenting": true,
-            "created_at": "1m"
-        },
-        {
-            "type": "FRIEND",
-            "id": 11,
-            "content": "Rerum quo blanditiis optio veritatis. Consequatur eveniet reiciendis ipsam dolorem soluta voluptatem ab itaque.",
-            "images": [
-                "https://picsum.photos/seed/62fd0d653fee8/850/350",
-                "https://picsum.photos/seed/62fd0d653fee9/850/350",
-                "https://picsum.photos/seed/62fd0d653feea/850/350",
-                "https://picsum.photos/seed/62fd0d653feeb/850/350"
-            ],
-            "author": {
-                "id": 11,
-                "name": "Camylle Schimmel",
-                "first_name": "Camylle",
-                "profile_image": "https://picsum.photos/seed/62fd0d654ef6f/168/168",
-                "background_image": "https://picsum.photos/seed/62fd0d654ef77/850/350"
-            },
-            "likes_count": 0,
-            "comments_count": 16,
-            "is_liked": false,
-            "is_edited": false,
-            "commenting": true,
-            "created_at": "1m"
-        },
-        {
-            "type": "FRIEND",
-            "id": 12,
-            "content": "Est recusandae itaque animi. Impedit molestiae nobis cupiditate voluptatibus quia. Laborum eos rerum nemo dolores doloremque. Aut tenetur et quos sit officia nulla a.",
-            "images": [
-                "https://picsum.photos/seed/62fd0d65a65ed/850/350",
-                "https://picsum.photos/seed/62fd0d65a65ef/850/350",
-                "https://picsum.photos/seed/62fd0d65a65f1/850/350",
-                "https://picsum.photos/seed/62fd0d65a65f3/850/350"
-            ],
-            "author": {
-                "id": 12,
-                "name": "Cyrus Thiel",
-                "first_name": "Cyrus",
-                "profile_image": "https://picsum.photos/seed/62fd0d65b7147/168/168",
-                "background_image": "https://picsum.photos/seed/62fd0d65b7160/850/350"
-            },
-            "likes_count": 0,
-            "comments_count": 16,
-            "is_liked": false,
-            "is_edited": false,
-            "commenting": true,
-            "created_at": "1m"
-        },
-        {
-            "type": "FRIEND",
-            "id": 13,
-            "content": "Quia vero qui enim eos nulla quia nobis. Eum adipisci asperiores est aut exercitationem.",
-            "images": [
-                "https://picsum.photos/seed/62fd0d685214c/850/350",
-                "https://picsum.photos/seed/62fd0d685214f/850/350"
-            ],
-            "author": {
-                "id": 13,
-                "name": "Keagan Will",
-                "first_name": "Keagan",
-                "profile_image": "https://picsum.photos/seed/62fd0d6862e19/168/168",
-                "background_image": "https://picsum.photos/seed/62fd0d6862e23/850/350"
-            },
-            "likes_count": 0,
-            "comments_count": 16,
-            "is_liked": false,
-            "is_edited": false,
-            "commenting": true,
-            "created_at": "1m"
-        },
-        {
-            "type": "FRIEND",
-            "id": 14,
-            "content": "Assumenda pariatur quibusdam omnis autem. Et et repellendus optio enim suscipit. Qui molestias soluta in in. Natus dolor omnis odio minus.",
-            "images": [
-                "https://picsum.photos/seed/62fd0d69af5a3/850/350",
-                "https://picsum.photos/seed/62fd0d69af5a6/850/350",
-                "https://picsum.photos/seed/62fd0d69af5a8/850/350"
-            ],
-            "author": {
-                "id": 14,
-                "name": "Virginie Reynolds",
-                "first_name": "Virginie",
-                "profile_image": "https://picsum.photos/seed/62fd0d69bfb8d/168/168",
-                "background_image": "https://picsum.photos/seed/62fd0d69bfb95/850/350"
+                "name": "Lazaro Blick",
+                "first_name": "Lazaro",
+                "profile_image": "https://picsum.photos/seed/633982ef9fa70/168/168",
+                "background_image": "https://picsum.photos/seed/633982ef9fa8a/850/350"
             },
             "likes_count": 0,
             "comments_count": 0,
             "is_liked": false,
             "is_edited": false,
+            "type": { "is_saved": false, "is_hidden": false, "is_own": false },
             "commenting": true,
-            "created_at": "1m"
+            "created_at": "16s"
         },
         {
-            "type": "FRIEND",
-            "id": 15,
-            "content": "Veritatis qui accusamus expedita at. Temporibus sapiente aut ipsum nisi ratione.",
-            "images": [
-                "https://picsum.photos/seed/62fd0d6a44ced/850/350",
-                "https://picsum.photos/seed/62fd0d6a44cee/850/350",
-                "https://picsum.photos/seed/62fd0d6a44cef/850/350"
-            ],
+            "id": 3,
+            "content": "Ipsa sequi laudantium quia eius eos omnis. Consequatur qui quis in esse. Cumque eaque aperiam molestias qui quia. Sed quae aut labore.",
+            "images": [],
             "author": {
-                "id": 15,
-                "name": "Keyshawn Kozey",
-                "first_name": "Keyshawn",
-                "profile_image": "https://picsum.photos/seed/62fd0d6a53802/168/168",
-                "background_image": "https://picsum.photos/seed/62fd0d6a5380a/850/350"
+                "id": 8,
+                "name": "Oren Cassin",
+                "first_name": "Oren",
+                "profile_image": "https://picsum.photos/seed/633982ef7f667/168/168",
+                "background_image": "https://picsum.photos/seed/633982ef7f670/850/350"
             },
             "likes_count": 0,
             "comments_count": 0,
             "is_liked": false,
             "is_edited": false,
+            "type": { "is_saved": false, "is_hidden": false, "is_own": false },
             "commenting": true,
-            "created_at": "1m"
+            "created_at": "16s"
         },
         {
-            "type": "FRIEND",
-            "id": 16,
-            "content": "Ipsum modi id odit omnis culpa. Molestias mollitia eligendi aut ullam quo. Tempora ut velit temporibus ea sunt. Occaecati quod quod dolor ad ducimus ut.",
-            "images": [
-                "https://picsum.photos/seed/62fd0d6d68e88/850/350",
-                "https://picsum.photos/seed/62fd0d6d68e89/850/350",
-                "https://picsum.photos/seed/62fd0d6d68e8a/850/350"
-            ],
+            "id": 4,
+            "content": "Nobis voluptatem dolor est corrupti dolorem nihil vero. Fugit ab perspiciatis voluptatem repudiandae. Nemo est tenetur quia. Suscipit velit illo officiis aperiam omnis voluptatibus.",
+            "images": [],
             "author": {
-                "id": 16,
-                "name": "Kristoffer Durgan",
-                "first_name": "Kristoffer",
-                "profile_image": "https://picsum.photos/seed/62fd0d6d78f29/168/168",
-                "background_image": "https://picsum.photos/seed/62fd0d6d78f31/850/350"
+                "id": 2,
+                "name": "Shaun Stiedemann",
+                "first_name": "Shaun",
+                "profile_image": "https://picsum.photos/seed/633982ef1d978/168/168",
+                "background_image": "https://picsum.photos/seed/633982ef1d981/850/350"
             },
             "likes_count": 0,
             "comments_count": 0,
             "is_liked": false,
             "is_edited": false,
+            "type": { "is_saved": false, "is_hidden": false, "is_own": false },
             "commenting": true,
-            "created_at": "1m"
+            "created_at": "16s"
+        },
+        {
+            "id": 5,
+            "content": "Veniam aliquid corrupti molestias vitae amet. Est dolorum hic corrupti voluptatem voluptatem dolorem.",
+            "images": [
+                "https://picsum.photos/seed/6339831c5939b/850/350",
+                "https://picsum.photos/seed/6339831c5939c/850/350",
+                "https://picsum.photos/seed/6339831c5939d/850/350",
+                "https://picsum.photos/seed/6339831c5939e/850/350"
+            ],
+            "author": {
+                "id": 10,
+                "name": "Lazaro Blick",
+                "first_name": "Lazaro",
+                "profile_image": "https://picsum.photos/seed/633982ef9fa70/168/168",
+                "background_image": "https://picsum.photos/seed/633982ef9fa8a/850/350"
+            },
+            "likes_count": 0,
+            "comments_count": 0,
+            "is_liked": false,
+            "is_edited": false,
+            "type": { "is_saved": false, "is_hidden": false, "is_own": false },
+            "commenting": true,
+            "created_at": "16s"
+        },
+        {
+            "id": 6,
+            "content": "Dolores rerum ut occaecati perspiciatis consequatur ea incidunt sint. Officiis quas porro iure aut sed voluptate. Illo non exercitationem voluptates pariatur. Et odit amet vitae sit.",
+            "images": [
+                "https://picsum.photos/seed/6339831c697fb/850/350",
+                "https://picsum.photos/seed/6339831c697fc/850/350",
+                "https://picsum.photos/seed/6339831c697fd/850/350"
+            ],
+            "author": {
+                "id": 6,
+                "name": "Meda Abbott",
+                "first_name": "Meda",
+                "profile_image": "https://picsum.photos/seed/633982ef5e630/168/168",
+                "background_image": "https://picsum.photos/seed/633982ef5e637/850/350"
+            },
+            "likes_count": 0,
+            "comments_count": 0,
+            "is_liked": false,
+            "is_edited": false,
+            "type": { "is_saved": false, "is_hidden": false, "is_own": false },
+            "commenting": true,
+            "created_at": "16s"
+        },
+        {
+            "id": 7,
+            "content": "Expedita voluptatem optio sed aliquid iusto. Atque doloremque modi placeat. Praesentium excepturi nesciunt exercitationem dolor dignissimos.",
+            "images": [
+                "https://picsum.photos/seed/6339831c79211/850/350",
+                "https://picsum.photos/seed/6339831c79212/850/350"
+            ],
+            "author": {
+                "id": 8,
+                "name": "Oren Cassin",
+                "first_name": "Oren",
+                "profile_image": "https://picsum.photos/seed/633982ef7f667/168/168",
+                "background_image": "https://picsum.photos/seed/633982ef7f670/850/350"
+            },
+            "likes_count": 0,
+            "comments_count": 0,
+            "is_liked": false,
+            "is_edited": false,
+            "type": { "is_saved": false, "is_hidden": false, "is_own": false },
+            "commenting": true,
+            "created_at": "16s"
+        },
+        {
+            "id": 8,
+            "content": "Similique ut perspiciatis eum perferendis. Aspernatur dolores amet eum minus ratione atque quam consequatur. Similique voluptatum distinctio omnis. Et enim aperiam omnis ducimus officia aut et nihil.",
+            "images": [
+                "https://picsum.photos/seed/6339831c89122/850/350",
+                "https://picsum.photos/seed/6339831c89123/850/350",
+                "https://picsum.photos/seed/6339831c89124/850/350"
+            ],
+            "author": {
+                "id": 5,
+                "name": "Branson Kreiger",
+                "first_name": "Branson",
+                "profile_image": "https://picsum.photos/seed/633982ef4e535/168/168",
+                "background_image": "https://picsum.photos/seed/633982ef4e53d/850/350"
+            },
+            "likes_count": 0,
+            "comments_count": 0,
+            "is_liked": false,
+            "is_edited": false,
+            "type": { "is_saved": false, "is_hidden": false, "is_own": false },
+            "commenting": true,
+            "created_at": "16s"
+        },
+        {
+            "id": 9,
+            "content": "Rerum aliquam cupiditate voluptas eligendi natus et. Voluptas eligendi provident accusamus ut et inventore. Explicabo omnis voluptas sed fugiat. Iure sit iusto ipsam quia ducimus facere ab.",
+            "images": [
+                "https://picsum.photos/seed/6339831c98f1d/850/350",
+                "https://picsum.photos/seed/6339831c98f1e/850/350"
+            ],
+            "author": {
+                "id": 8,
+                "name": "Oren Cassin",
+                "first_name": "Oren",
+                "profile_image": "https://picsum.photos/seed/633982ef7f667/168/168",
+                "background_image": "https://picsum.photos/seed/633982ef7f670/850/350"
+            },
+            "likes_count": 0,
+            "comments_count": 0,
+            "is_liked": false,
+            "is_edited": false,
+            "type": { "is_saved": false, "is_hidden": false, "is_own": false },
+            "commenting": true,
+            "created_at": "16s"
+        },
+        {
+            "id": 10,
+            "content": "Nobis excepturi quos quos nihil quia repellendus qui. Incidunt repellat eius enim. Sunt voluptatibus voluptatem non autem tempora corrupti.",
+            "images": [
+                "https://picsum.photos/seed/6339831ca8f49/850/350",
+                "https://picsum.photos/seed/6339831ca8f4c/850/350",
+                "https://picsum.photos/seed/6339831ca8f4f/850/350"
+            ],
+            "author": {
+                "id": 6,
+                "name": "Meda Abbott",
+                "first_name": "Meda",
+                "profile_image": "https://picsum.photos/seed/633982ef5e630/168/168",
+                "background_image": "https://picsum.photos/seed/633982ef5e637/850/350"
+            },
+            "likes_count": 0,
+            "comments_count": 0,
+            "is_liked": false,
+            "is_edited": false,
+            "type": { "is_saved": false, "is_hidden": false, "is_own": false },
+            "commenting": true,
+            "created_at": "16s"
         }
     ],
     "current_page": 1,
