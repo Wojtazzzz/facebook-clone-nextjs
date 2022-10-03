@@ -1,11 +1,30 @@
-import { Next } from './Next';
-import { Prev } from './Prev';
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { Control } from './Control';
 
-export const Controls = () => {
+interface ControlsProps {
+    isBeginning: boolean;
+    isEnd: boolean;
+    slidePrev: () => void;
+    slideNext: () => void;
+}
+export const Controls = ({ isBeginning, isEnd, slidePrev, slideNext }: ControlsProps) => {
     return (
         <>
-            <Prev />
-            <Next />
+            <Control
+                isDisabled={isBeginning}
+                label="Prev image"
+                icon={faChevronLeft}
+                swiperClass="swiper-button-prev"
+                callback={slidePrev}
+            />
+
+            <Control
+                isDisabled={isEnd}
+                label="Next image"
+                icon={faChevronRight}
+                swiperClass="swiper-button-next"
+                callback={slideNext}
+            />
         </>
     );
 };

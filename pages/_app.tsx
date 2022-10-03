@@ -7,11 +7,11 @@ import '@fortawesome/fontawesome-svg-core/styles.css';
 import { createQueryClient } from '@utils/createQueryClient';
 import '@styles/global.css';
 import '@styles/tailwind.css';
+import type { NextPageWithLayout } from '@utils/types';
+import { DefaultSeo } from 'next-seo';
 import 'swiper/swiper.min.css';
 import 'swiper/components/navigation/navigation.min.css';
 import 'swiper/components/pagination/pagination.min.css';
-import type { NextPageWithLayout } from '@utils/types';
-import { DefaultSeo } from 'next-seo';
 
 const queryClient = createQueryClient();
 

@@ -7,6 +7,7 @@
         "start": "next start",
         "lint": "next lint",
         "test": "jest --watchAll",
+        "test:clearCache": "jest --clearCache",
         "test:ci": "jest --ci",
         "cypress": "cypress open",
         "cypress:run": "cypress run --browser chrome"
@@ -53,6 +54,7 @@
         "@types/uuid": "^8.3.4",
         "autoprefixer": "^10.4.2",
         "babel-jest": "^29.1.2",
+        "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
         "cypress": "^10.9.0",
         "cypress-laravel": "^0.2.1",
         "eslint": "8.24.0",

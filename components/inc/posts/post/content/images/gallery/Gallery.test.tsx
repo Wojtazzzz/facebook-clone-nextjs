@@ -8,15 +8,15 @@ describe('Gallery component', () => {
     const user = userEvent.setup();
 
     it('has close button and execute close function when click on it', async () => {
-        const mockHandleCloseGallery = jest.fn();
+        const mockCloseGallery = jest.fn();
 
-        renderWithDefaultData(<Gallery images={PostWithFiveImages.images} closeGallery={mockHandleCloseGallery} />);
+        renderWithDefaultData(<Gallery images={PostWithFiveImages.images} closeGallery={mockCloseGallery} />);
 
         const closeButton = screen.getByLabelText('Close gallery');
         expect(closeButton).toBeInTheDocument();
 
         await user.click(closeButton);
 
-        expect(mockHandleCloseGallery).toBeCalledTimes(1);
+        expect(mockCloseGallery).toBeCalledTimes(1);
     });
 });
