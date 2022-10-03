@@ -5,13 +5,20 @@ import Image from 'next/future/image';
 interface ThumbProps {
     image: string;
     isActive: boolean;
+    slidesCount: number;
+    index: number;
     slideTo: () => void;
 }
 
-export const Thumb = ({ image, isActive, slideTo }: ThumbProps) => {
+export const Thumb = ({ image, isActive, slidesCount, index, slideTo }: ThumbProps) => {
     return (
         <li className="w-[36px] h-[36px] relative">
-            <button type="button" onClick={slideTo}>
+            <button
+                type="button"
+                aria-label={`Go to ${index} of ${slidesCount} image`}
+                aria-pressed={isActive}
+                onClick={slideTo}
+            >
                 <Image
                     fill
                     src={getStoredImagePath(image)}

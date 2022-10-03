@@ -15,7 +15,8 @@ interface GalleryProps {
 Swiper.use([Keyboard, A11y]);
 
 export const Gallery = ({ images, closeGallery }: GalleryProps) => {
-    const { activeIndex, isBeginning, isEnd, setSwiper, slideNext, slidePrev, slideTo } = useSwiperData();
+    const { activeIndex, isBeginning, isEnd, setSwiper, setSwiperData, slideNext, slidePrev, slideTo } =
+        useSwiperData();
     useKey('Escape', closeGallery);
 
     const SlidesComponents = images.map((image, i) => (
@@ -41,9 +42,10 @@ export const Gallery = ({ images, closeGallery }: GalleryProps) => {
             slidesPerView={1}
             role="region"
             aria-atomic="false"
-            aria-live="polite"
             wrapperTag="ul"
+            onImagesReady={setSwiperData}
             onSwiper={setSwiper}
+            onSlideChange={setSwiperData}
             aria-roledescription="carousel"
             aria-label="Gallery of post images"
             className="w-screen h-screen !fixed top-0 left-0 !z-50 bg-black overflow-hidden"
