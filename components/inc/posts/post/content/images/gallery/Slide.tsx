@@ -2,16 +2,22 @@ import Image from 'next/future/image';
 import { getStoredImagePath } from '@utils/getStoredImagePath';
 
 interface SlideProps {
-    label: string;
     image: string;
 }
 
-export const Slide = ({ label, image }: SlideProps) => {
+export const Slide = ({ image }: SlideProps) => {
+    const path = getStoredImagePath(image);
+
     return (
-        <article aria-label={label} className="w-full h-full flex justify-center">
-            <div className="w-4/5 md:w-2/3 h-full relative">
-                <Image fill src={getStoredImagePath(image)} className="w-full h-full" alt="" />
+        <div
+            className="w-screen h-screen flex justify-center bg-no-repeat bg-cover relative z-50"
+            style={{ backgroundImage: `url(${path})` }}
+        >
+            <div className="w-full h-full backdrop-blur-lg z-[51]">
+                <div className="w-4/5 md:w-2/3 h-full relative mx-auto">
+                    <Image fill src={path} className="w-full h-full" alt="" />
+                </div>
             </div>
-        </article>
+        </div>
     );
 };

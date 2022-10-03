@@ -11,7 +11,7 @@ export const CloseButton = ({ closeGallery }: CloseButtonProps) => {
             <RoundedButton
                 label="Close gallery"
                 icon={faTimes}
-                styles="bg-dark-100 hover:opacity-60"
+                styles="bg-dark-100 hover:brightness-125"
                 callback={closeGallery}
             />
         </div>
