@@ -17,5 +17,6 @@ export default defineConfig({
             // implement node event listeners here
         },
         scrollBehavior: 'center',
+        video: false,
     },
 });
