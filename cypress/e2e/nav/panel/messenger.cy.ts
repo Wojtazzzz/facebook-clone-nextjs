@@ -104,11 +104,15 @@ describe('Messenger tests', () => {
 
         cy.wait('@messages_page_1');
 
-        cy.get('button[aria-label="Click to open conversation"]').should('have.length', 15);
+        cy.get('button').filter(':contains("Click to open chat")').should('have.length', 15);
 
-        cy.get('[id="list-of-messenger-contacts"]').scrollTo('bottom', { ensureScrollable: false });
+        cy.intercept('/api/messages?page=2').as('messages_page_2');
 
-        cy.get('button[aria-label="Click to open conversation"]').should('have.length', 22);
+        cy.get('[id="messenger-list"]').scrollTo('bottom', { ensureScrollable: false });
+
+        cy.wait('@messages_page_2');
+
+        cy.get('button').filter(':contains("Click to open chat")').should('have.length', 22);
     });
 
     it("messenger doesn't have icon and render empty component when api return empty response", () => {

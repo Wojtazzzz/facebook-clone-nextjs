@@ -8,14 +8,7 @@ interface ThumbsProps {
 
 export const Thumbs = ({ images, activeIndex, slideTo }: ThumbsProps) => {
     const ThumbsComponents = images.map((image, i) => (
-        <Thumb
-            key={i}
-            image={image}
-            isActive={activeIndex === i}
-            slidesCount={images.length}
-            index={i + 1}
-            slideTo={() => slideTo(i)}
-        />
+        <Thumb key={i} image={image} isActive={activeIndex === i} index={i + 1} slideTo={() => slideTo(i)} />
     ));
 
     return (

@@ -42,11 +42,11 @@ describe('Notifications tests', () => {
 
         cy.wait('@notifications_page_1');
 
-        cy.get('[id="list-of-notifications"] button').should('have.length', 15);
+        cy.get('[id="notifications-list"] button').should('have.length', 15);
 
-        cy.get('[id="list-of-notifications"]').scrollTo('bottom', { ensureScrollable: false });
+        cy.get('[id="notifications-list"]').scrollTo('bottom', { ensureScrollable: false });
 
-        cy.get('[id="list-of-notifications"] button').should('have.length', 17);
+        cy.get('[id="notifications-list"] button').should('have.length', 17);
     });
 
     it('notifications dissapears when click on outside page element', () => {
@@ -134,8 +134,8 @@ describe('Notifications tests', () => {
         cy.wait('@notifications_page_1');
         cy.wait('@markAsRead');
 
-        cy.get('[id="list-of-notifications"] button').should('have.length', 3);
-        cy.get('[id="list-of-notifications"] button').should('not.have.class', 'opacity-60');
+        cy.get('[id="notifications-list"] button').should('have.length', 3);
+        cy.get('[id="notifications-list"] button').should('not.have.class', 'opacity-60');
 
         cy.get('body').type('{esc}');
 
@@ -146,8 +146,8 @@ describe('Notifications tests', () => {
             cy.get('[aria-label="Notifications"]').click();
         });
 
-        cy.get('[id="list-of-notifications"] button').should('have.length', 3);
-        cy.get('[id="list-of-notifications"] button').should('have.class', 'opacity-60');
+        cy.get('[id="notifications-list"] button').should('have.length', 3);
+        cy.get('[id="notifications-list"] button').should('have.class', 'opacity-60');
     });
 
     it('notifications button has alert icon when api return unread notifications, read that notifications, see that alert icon dissapear', () => {

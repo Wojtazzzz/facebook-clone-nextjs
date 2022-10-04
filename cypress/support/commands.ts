@@ -20,9 +20,9 @@ Cypress.Commands.add('checkNotification', (title: string, label: string, click: 
 
     cy.wait('@notifications_page_1');
 
-    cy.get('[id="list-of-notifications"] button').should('have.length', 1);
+    cy.get('[id="notifications-list"] button').should('have.length', 1);
 
-    cy.get('[id="list-of-notifications"]')
+    cy.get('[id="notifications-list"]')
         .first()
         .within(() => {
             cy.get('button:first').contains(title).should('be.visible');

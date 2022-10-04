@@ -24,7 +24,7 @@ export const List = memo<ListProps>(({ close }) => {
     return (
         <div
             data-testid="notifications-list"
-            id="list-of-notifications"
+            id="notifications-list"
             className="w-full h-full max-h-[350px] sm:max-h-[400px] overflow-y-scroll scrollbar-thin scrollbar-thumb-dark-100"
         >
             <InfiniteScroll
@@ -32,7 +32,7 @@ export const List = memo<ListProps>(({ close }) => {
                 next={fetchNextPage}
                 hasMore={Boolean(hasNextPage)}
                 loader={<Loader testId="notifications-loading_loader" />}
-                scrollableTarget="list-of-notifications"
+                scrollableTarget="notifications-list"
                 className="w-full flex flex-col gap-2"
             >
                 {NotificationsComponents}

@@ -104,7 +104,7 @@ describe('Profile board tests', () => {
         cy.getPosts().should('not.exist');
 
         cy.get('button[aria-label="Create a post"]').click();
-        cy.get('[aria-label="Create post modal"]').should('be.visible');
+        cy.get('[data-testid="createPostModal"]').should('be.visible');
 
         cy.intercept('/api/posts').as('store');
         cy.intercept('/api/users/1/posts?page=1').as('posts_page_1');
@@ -115,7 +115,7 @@ describe('Profile board tests', () => {
         cy.wait('@store');
         cy.wait('@posts_page_1');
 
-        cy.get('[aria-label="Create post modal"]').should('not.exist');
+        cy.get('[data-testid="createPostModal"]').should('not.exist');
 
         cy.getPosts().should('have.length', 1);
         cy.getPosts().first().should('contain.text', 'New post');
@@ -213,7 +213,7 @@ describe('Profile board tests', () => {
             cy.intercept('/api/posts/1/comments?page=1').as('comments_page_1');
 
             cy.get('[aria-label="Write a comment"]').type('New comment');
-            cy.get('[aria-label="Submit comment"]').click();
+            cy.get('[aria-label="Send comment"]').click();
             cy.wait('@comments_page_1');
 
             cy.get('[data-testid="post-comments_list"]').children().should('have.length', 1);
@@ -414,7 +414,7 @@ describe('Profile board tests', () => {
             cy.intercept('/api/posts/1/comments?page=1').as('comments_page_1');
 
             cy.get('[aria-label="Write a comment"]').type('New comment');
-            cy.get('[aria-label="Submit comment"]').click();
+            cy.get('[aria-label="Send comment"]').click();
             cy.wait('@comments_page_1');
 
             cy.get('[data-testid="post-comments_list"]').children().should('have.length', 1);
@@ -443,7 +443,7 @@ describe('Profile board tests', () => {
             cy.intercept('/api/posts/12comments?page=1').as('comments_page_1');
 
             cy.get('[aria-label="Write a comment"]').type('New comment');
-            cy.get('[aria-label="Submit comment"]').click();
+            cy.get('[aria-label="Send comment"]').click();
             cy.wait('@comments_page_1');
 
             cy.get('[data-testid="post-comments_list"]').children().should('have.length', 1);

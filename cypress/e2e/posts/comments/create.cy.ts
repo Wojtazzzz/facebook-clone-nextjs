@@ -134,7 +134,7 @@ describe('Posts comments create tests', () => {
             .within(() => {
                 cy.get('input[aria-label="Write a comment"]').should('have.value', 'Hello 👋');
 
-                cy.get('[aria-label="Submit comment"]').click();
+                cy.get('[aria-label="Send comment"]').click();
 
                 cy.wait('@create');
                 cy.wait('@comments_page_1');
@@ -195,7 +195,7 @@ describe('Posts comments create tests', () => {
             .within(() => {
                 cy.get('input[aria-label="Write a comment"]').should('have.value', '😃😅🤣🙂🥰😝😏😭👍❤️');
 
-                cy.get('[aria-label="Submit comment"]').click();
+                cy.get('[aria-label="Send comment"]').click();
 
                 cy.wait('@create');
                 cy.wait('@comments_page_1');

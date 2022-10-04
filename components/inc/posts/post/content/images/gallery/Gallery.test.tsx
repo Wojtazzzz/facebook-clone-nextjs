@@ -48,7 +48,7 @@ describe('Gallery component', () => {
         expect(nextButton).toBeInTheDocument();
     });
 
-    it('render correcy count of thumbs', async () => {
+    it('render correct count of thumbs', async () => {
         const mockCloseGallery = jest.fn();
 
         renderWithDefaultData(<Gallery images={images} closeGallery={mockCloseGallery} />);

@@ -1,7 +1,6 @@
 import { useDatabaseMigrations } from 'cypress-laravel';
 
-const USER_FIRST_NAME = Cypress.env('USER_FIRST_NAME');
-const USER_LAST_NAME = Cypress.env('USER_LAST_NAME');
+const USER_NAME = `${Cypress.env('USER_FIRST_NAME')} ${Cypress.env('USER_LAST_NAME')}`;
 
 describe('Post tests', () => {
     useDatabaseMigrations();
@@ -10,7 +9,7 @@ describe('Post tests', () => {
         cy.loginRequest();
     });
 
-    it('like post by click on "Like Button" and dislike when click second time', () => {
+    it('like and dislike post', () => {
         cy.create('Post').then((post) => {
             cy.create('Friendship', {
                 user_id: post.author_id,
@@ -51,7 +50,7 @@ describe('Post tests', () => {
             });
     });
 
-    it('click on "Like Button" and see api error component when api return server error', () => {
+    it('try to like post and see error when api return server error', () => {
         cy.create('Post', {
             author_id: 1,
         });
@@ -71,11 +70,12 @@ describe('Post tests', () => {
                 cy.get('button[aria-label="Like"]').click();
 
                 cy.wait('@like');
-                cy.get('[data-testid="like-apiError"]').should('be.visible');
             });
+
+        cy.expectAlert('Something went wrong, please try again later');
     });
 
-    it("click on post's author redirects to his profile", () => {
+    it("redirect to author's profile by click on his name ", () => {
         cy.create('Post', {
             author_id: 1,
         });
@@ -93,7 +93,7 @@ describe('Post tests', () => {
                 cy.intercept('/api/posts/1/likes').as('like');
                 cy.intercept('/api/posts?page=1').as('posts_page_1');
 
-                cy.contains(`${USER_FIRST_NAME} ${USER_LAST_NAME}`).click();
+                cy.contains(USER_NAME).click();
 
                 cy.url().should('contain', '/profile/1');
             });
@@ -138,11 +138,11 @@ describe('Post tests', () => {
 
         cy.wait('@notifications_page_1');
 
-        cy.get('[id="list-of-notifications"] button').should('not.exist');
+        cy.get('[id="notifications-list"] button').should('not.exist');
 
         cy.relogin(2);
 
-        cy.checkNotification(`${USER_FIRST_NAME} ${USER_LAST_NAME}`, 'Liked your post', true);
+        cy.checkNotification(USER_NAME, 'Liked your post', true);
 
         cy.url().should('contain', '/profile/1');
     });
@@ -176,6 +176,6 @@ describe('Post tests', () => {
 
         cy.wait('@notifications_page_1');
 
-        cy.get('[id="list-of-notifications"] button').should('not.exist');
+        cy.get('[id="notifications-list"] button').should('not.exist');
     });
 });

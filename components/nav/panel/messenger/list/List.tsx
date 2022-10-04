@@ -24,13 +24,13 @@ export const List = memo<ListProps>(({ close }) => {
     return (
         <div
             data-testid="messenger-list"
-            id="list-of-messenger-contacts"
+            id="messenger-list"
             className="w-full h-full max-h-[350px] sm:max-h-[400px] overflow-y-auto scrollbar-thin scrollbar-thumb-dark-100"
         >
             <InfiniteScroll
                 dataLength={ConversationsComponents.length}
                 hasMore={Boolean(hasNextPage)}
-                scrollableTarget="list-of-messenger-contacts"
+                scrollableTarget="messenger-list"
                 loader={<Loader testId="messenger-loading_loader" />}
                 className="w-full flex flex-col gap-2"
                 next={fetchNextPage}

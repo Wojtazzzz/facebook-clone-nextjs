@@ -27,7 +27,7 @@ export const Messages = memo<MessagesProps>(({ friend }) => {
     return (
         <div
             data-testid="chat-messages"
-            id="list-of-messages"
+            id="chat-messages"
             className="w-full h-full max-h-[312px] flex flex-col-reverse relative overflow-y-scroll scrollbar-thin scrollbar-thumb-dark-100 scrollbar-track-dark-200 py-2 pb-2"
         >
             <InfiniteScroll
@@ -37,7 +37,7 @@ export const Messages = memo<MessagesProps>(({ friend }) => {
                 inverse
                 hasMore={Boolean(hasNextPage)}
                 loader={<Loader testId="messages-loader_fetching" />}
-                scrollableTarget="list-of-messages"
+                scrollableTarget="chat-messages"
             >
                 {MessagesComponents}
             </InfiniteScroll>

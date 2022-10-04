@@ -63,7 +63,7 @@ describe('Posts comments update tests', () => {
                         cy.get('button[aria-label="Edit"]').click();
 
                         cy.get('[aria-label="Update a comment"]').clear().type(newContent);
-                        cy.get('[aria-label="Update comment"]').click();
+                        cy.get('[aria-label="Send updated comment"]').click();
                     });
 
                 cy.wait('@put');
@@ -108,7 +108,7 @@ describe('Posts comments update tests', () => {
                         cy.get('button[aria-label="Edit"]').click();
 
                         cy.get('[aria-label="Update a comment"]').clear().type('Server error ;(');
-                        cy.get('[aria-label="Update comment"]').click();
+                        cy.get('[aria-label="Send updated comment"]').click();
 
                         cy.wait('@update');
                     });
