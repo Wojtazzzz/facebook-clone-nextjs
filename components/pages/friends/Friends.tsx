@@ -10,10 +10,13 @@ export const Friends = ({ type }: FriendsProps) => {
     const path = getApiPath(type);
 
     return (
-        <div className="w-full max-w-[1200px] relative mx-auto py-1 md:py-3 lg:pl-[250px] xl:pl-[300px] box-content">
+        <section
+            aria-labelledby="friendsList-header"
+            className="w-full max-w-[1200px] relative mx-auto py-1 md:py-3 lg:pl-[250px] xl:pl-[300px] box-content"
+        >
             <Header title={type} />
             <List path={path} type={type} />
-        </div>
+        </section>
     );
 };
 

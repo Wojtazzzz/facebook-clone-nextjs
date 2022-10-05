@@ -20,7 +20,7 @@ export const List = memo<ListProps>(({ path, type }) => {
 
     if (isLoading) return <Loader testId="friendsList-loading_loader" />;
     if (!data || isError) return <ApiError size="xl" styles="mt-8" />;
-    if (isEmpty) return <EmptyList title="No users, maybe this app is so boring..." />;
+    if (isEmpty) return <EmptyList title="No users, maybe this app is so boring..." styles="mt-8" />;
 
     const ItemsComponents = data.map((item) => <Item key={item.friend.id} item={item} type={type} />);
 

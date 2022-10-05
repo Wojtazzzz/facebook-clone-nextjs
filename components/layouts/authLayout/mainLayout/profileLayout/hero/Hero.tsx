@@ -12,7 +12,7 @@ export const Hero = memo<HeroProps>(({ user }) => {
     const { id, first_name, name, profile_image, background_image } = user;
 
     return (
-        <div className="w-full border-b-2 border-dark-100">
+        <header className="w-full border-b-2 border-dark-100">
             <Background firstName={first_name} backgroundImage={background_image} />
 
             <div className="w-full flex flex-col md:flex-row -translate-y-5 md:-translate-y-10 px-3 xs:px-5 sm:px-8 md:px-10 lg:px-12">
@@ -22,7 +22,7 @@ export const Hero = memo<HeroProps>(({ user }) => {
                     <Controls pageUser={user} />
                 </div>
             </div>
-        </div>
+        </header>
     );
 });
 

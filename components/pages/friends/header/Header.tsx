@@ -1,4 +1,4 @@
-import { Nav } from './Nav';
+import { Nav } from './nav/Nav';
 
 interface HeaderProps {
     title: string;
@@ -7,9 +7,13 @@ interface HeaderProps {
 export const Header = ({ title }: HeaderProps) => {
     return (
         <header className="w-full flex justify-between items-center sticky top-0 left-0 z-20 bg-dark-300 p-3">
-            <span data-testid="friendsList-header" className="text-3xl text-light-100 font-bold capitalize">
+            <h2
+                id="friendsList-header"
+                data-testid="friendsList-header"
+                className="text-3xl text-light-100 font-bold capitalize"
+            >
                 {title}
-            </span>
+            </h2>
 
             <Nav />
         </header>

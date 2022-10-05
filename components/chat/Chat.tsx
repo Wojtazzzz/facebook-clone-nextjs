@@ -12,13 +12,13 @@ export const Chat = ({ friend }: ChatProps) => {
     useBroadcasting(friend);
 
     return (
-        <div
+        <section
             data-testid="chat"
             className="w-[300px] h-[420px] max-h-[420px] flex flex-col justify-between bg-dark-200 fixed bottom-0 right-2 md:right-20 z-40 rounded-t-lg shadow-md"
         >
             <Header name={friend.name} profileImage={friend.profile_image} />
             <Conversation friend={friend} />
             <CreateMessage />
-        </div>
+        </section>
     );
 };

@@ -20,11 +20,11 @@ export const User = ({ id, firstName, name, profileImage }: UserProps) => {
                 />
             </div>
 
-            <header className="flex flex-col gap-1.5 mt-12">
+            <div className="flex flex-col gap-1.5 mt-12">
                 <h2 className="text-2xl xl:text-3xl text-light-200 font-bold">{name}</h2>
 
                 <Friends userId={id} />
-            </header>
+            </div>
         </div>
     );
 };
