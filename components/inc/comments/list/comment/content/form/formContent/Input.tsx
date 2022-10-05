@@ -1,4 +1,4 @@
-import { ICommentPayload } from '@utils/types';
+import type { ICommentPayload } from '@utils/types';
 import clsx from 'clsx';
 import { useFormikContext } from 'formik';
 

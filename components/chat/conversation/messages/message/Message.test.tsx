@@ -3,7 +3,7 @@ import { Message } from '@components/chat/conversation/messages/message/Message'
 import { screen } from '@testing-library/react';
 import MessagesFirstPageJson from '@mocks/chat/firstPage.json';
 import FriendJson from '@mocks/user/johnDoe.json';
-import { IChatMessage } from '@utils/types';
+import type { IChatMessage } from '@utils/types';
 import userEvent from '@testing-library/user-event';
 
 describe('Message and Zoom component', () => {
