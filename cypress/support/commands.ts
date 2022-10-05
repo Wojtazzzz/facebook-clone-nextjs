@@ -1,3 +1,4 @@
+import type { Result } from 'axe-core';
 import 'cypress-file-upload';
 import type { IUserExtended } from './types';
 
@@ -125,6 +126,39 @@ Cypress.Commands.add('getScrollToTop', () => {
     cy.get('button[aria-label="Scroll page to top"]');
 });
 
+const callback = (violations: Result[]) => {
+    const severityIndicators = {
+        minor: '⚪',
+        moderate: '🟡',
+        serious: '🟠',
+        critical: '🔴',
+    } as const;
+
+    violations.forEach((violation) => {
+        const nodes = Cypress.$(violation.nodes.map((node: any) => node.target).join(','));
+
+        Cypress.log({
+            name: violation.impact ? `${severityIndicators[violation.impact]} A11Y` : '---',
+            consoleProps: () => violation,
+            $el: nodes,
+            message: `[${violation.help}](${violation.helpUrl})` as any,
+        });
+
+        violation.nodes.forEach(({ target }) => {
+            Cypress.log({
+                name: '🔧',
+                consoleProps: () => violation,
+                $el: Cypress.$(target.join(',')),
+                message: target,
+            });
+        });
+    });
+};
+
+Cypress.Commands.add('checkPageA11y', () => {
+    cy.checkA11y(undefined, undefined, callback);
+});
+
 declare global {
     namespace Cypress {
         interface Chainable {
@@ -140,6 +174,7 @@ declare global {
             createUser(amount?: number, asFriend?: boolean, params?: Partial<IUserExtended>): Chainable<void>;
             createFriendship(amount?: number, forUser?: number): Chainable<void>;
             getScrollToTop(): Chainable<void>;
+            checkPageA11y(): void;
         }
     }
 }
