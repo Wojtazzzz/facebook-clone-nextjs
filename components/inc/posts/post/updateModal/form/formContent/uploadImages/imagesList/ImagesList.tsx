@@ -15,7 +15,7 @@ export const ImagesList = () => {
 
     return (
         <div data-testid="uploaded-images">
-            <h5 className="text-light-100 font-medium">Uploaded images: {images.length}</h5>
+            <p className="text-light-100 font-medium">Uploaded images: {images.length}</p>
 
             <ul aria-label="List of uploaded images" className="list-disc mb-4">
                 {ImagesComponents}
