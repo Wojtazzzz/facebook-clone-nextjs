@@ -27,7 +27,7 @@ describe('Create post tests', () => {
         cy.get('[aria-label="Post content"]').type(newPostContent);
         cy.get('input[type=file]').attachFile('/postImage1.jpg');
 
-        cy.get('h5').contains('Uploaded images: 1');
+        cy.contains('Uploaded images: 1');
         cy.get('ul').contains('postImage1.jpg').should('be.visible');
 
         cy.get('button[aria-label="Create post"]').click();
@@ -88,7 +88,7 @@ describe('Create post tests', () => {
         cy.get('[aria-label="Post content"]').type(newPostContent);
         cy.get('input[type=file]').attachFile('/postImage1.jpg');
 
-        cy.get('h5').contains('Uploaded images: 1');
+        cy.contains('Uploaded images: 1');
         cy.get('ul').contains('postImage1.jpg').should('be.visible');
 
         cy.get('button[aria-label="Create post"]').click();

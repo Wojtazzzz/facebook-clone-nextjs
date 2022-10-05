@@ -21,7 +21,7 @@ describe('Suggests and invites lists tests', () => {
 
         cy.intercept('/api/suggests?page=1').as('suggests_page_1');
 
-        cy.get('[data-testid="friends-nav"] > a').contains('Suggests').click();
+        cy.get('[data-testid="friends-nav"] li').contains('Suggests').click();
 
         cy.wait('@suggests_page_1');
 
@@ -72,7 +72,7 @@ describe('Suggests and invites lists tests', () => {
 
         cy.intercept('/api/invites?page=1').as('invites_page_1');
 
-        cy.get('[data-testid="friends-nav"] > a').contains('Invites').click();
+        cy.get('[data-testid="friends-nav"] li').contains('Invites').click();
 
         cy.url().should('include', '/friends/invites');
 
