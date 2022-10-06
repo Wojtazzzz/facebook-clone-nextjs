@@ -18,9 +18,13 @@ describe('Birthdays tests', () => {
         cy.wait('@user');
         cy.wait('@birthdays');
 
+        cy.injectAxe();
+
         cy.get('[data-testid="birthdays"]').within(() => {
             cy.contains('No one has birthdays today');
         });
+
+        cy.checkPageA11y();
     });
 
     it('see error message when api return error', () => {
@@ -32,10 +36,14 @@ describe('Birthdays tests', () => {
         cy.wait('@user');
         cy.wait('@birthdays');
 
+        cy.injectAxe();
+
         cy.get('[data-testid="birthdays"]').within(() => {
             cy.contains('Something went wrong');
             cy.contains('Please try again later');
         });
+
+        cy.checkPageA11y();
     });
 
     it('see that one user has birthday, redirect to his profile by click on his name', () => {
@@ -50,11 +58,16 @@ describe('Birthdays tests', () => {
 
         cy.visit('/');
 
+        cy.injectAxe();
+
         cy.wait('@user');
         cy.wait('@birthdays');
 
         cy.get('[data-testid="birthdays"]').within(() => {
             cy.contains("John Doe's birthday is today.");
+
+            cy.checkPageA11y();
+
             cy.contains('John Doe').click();
         });
 
@@ -79,11 +92,16 @@ describe('Birthdays tests', () => {
 
         cy.visit('/');
 
+        cy.injectAxe();
+
         cy.wait('@user');
         cy.wait('@birthdays');
 
         cy.get('[data-testid="birthdays"]').within(() => {
             cy.contains('John Doe and Adam Walker have their birthdays today.');
+
+            cy.checkPageA11y();
+
             cy.contains('John Doe').click();
         });
 
@@ -122,11 +140,16 @@ describe('Birthdays tests', () => {
 
         cy.visit('/');
 
+        cy.injectAxe();
+
         cy.wait('@user');
         cy.wait('@birthdays');
 
         cy.get('[data-testid="birthdays"]').within(() => {
             cy.contains('John Doe, Adam Walker and 1 more have their birthdays today.');
+
+            cy.checkPageA11y();
+
             cy.contains('John Doe').click();
         });
 

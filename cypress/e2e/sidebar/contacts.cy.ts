@@ -7,7 +7,7 @@ describe('Contacts tests', () => {
         cy.loginRequest();
     });
 
-    it('open chat when click on user', () => {
+    it('open chat by click on user', () => {
         cy.createUser(1, true, {
             first_name: 'John',
             last_name: 'Doe',
@@ -40,15 +40,21 @@ describe('Contacts tests', () => {
         cy.wait('@user');
         cy.wait('@contacts_page_1');
 
+        cy.injectAxe();
+
         cy.get('[data-testid="contacts-list"]').within(() => {
             cy.get('button[aria-label*="Open chat with"]').should('have.length', 20);
         });
+
+        cy.checkPageA11y();
 
         cy.get('[id="sidebar"]').scrollTo('bottom', { ensureScrollable: false });
 
         cy.get('[data-testid="contacts-list"]').within(() => {
             cy.get('button[aria-label*="Open chat with"]').should('have.length', 23);
         });
+
+        cy.checkPageA11y();
     });
 
     it('list render empty component when api return empty data', () => {
@@ -60,7 +66,11 @@ describe('Contacts tests', () => {
         cy.wait('@user');
         cy.wait('@contacts_page_1');
 
+        cy.injectAxe();
+
         cy.get('[data-testid="empty-list"]').should('be.visible');
+
+        cy.checkPageA11y();
     });
 
     it('list render error component when api return server error', () => {
@@ -72,6 +82,10 @@ describe('Contacts tests', () => {
         cy.wait('@user');
         cy.wait('@contacts_page_1');
 
+        cy.injectAxe();
+
         cy.get('[data-testid="server-error"]').should('be.visible');
+
+        cy.checkPageA11y();
     });
 });
