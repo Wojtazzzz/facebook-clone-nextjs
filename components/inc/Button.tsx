@@ -26,8 +26,8 @@ export const Button = ({
             type={type}
             className={clsx(
                 `bg-primary hover:opacity-90 text-white font-medium rounded-lg transition-opacity p-2 px-4 ${styles}`,
-                isDisabled && 'opacity-60 hover:opacity-60 cursor-not-allowed',
-                isLoading && 'opacity-60 hover:opacity-60 cursor-wait'
+                isDisabled && 'opacity-80 hover:opacity-80 cursor-not-allowed',
+                isLoading && 'opacity-80 hover:opacity-80 cursor-wait'
             )}
             onClick={callback}
         >

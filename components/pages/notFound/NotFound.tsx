@@ -1,5 +1,5 @@
 import { Button } from '@components/inc/Button';
-import Image from 'next/image';
+import Image from 'next/future/image';
 import { useRouter } from 'next/router';
 
 export const NotFound = () => {
