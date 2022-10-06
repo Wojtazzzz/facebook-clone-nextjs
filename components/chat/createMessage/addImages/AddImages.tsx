@@ -1,7 +1,7 @@
 import Dropzone from 'react-dropzone';
 import { faImage } from '@fortawesome/free-solid-svg-icons';
 import { useAddImages } from './useAddImages';
-import { Button } from '@components/chat/inc/Button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const AddImages = () => {
     const { onDrop } = useAddImages();
@@ -9,10 +9,13 @@ export const AddImages = () => {
     return (
         <Dropzone accept="image/*" onDrop={onDrop}>
             {({ getRootProps, getInputProps }) => (
-                <div {...getRootProps()}>
+                <button aria-label="Add images" {...getRootProps()}>
                     <input {...getInputProps()} aria-label="Images" />
-                    <Button type="button" label="Add images" icon={faImage} />
-                </div>
+
+                    <div className="w-[36px] h-[36px] hover:bg-dark-100 flex justify-center items-center transition-colors rounded-full p-0">
+                        <FontAwesomeIcon icon={faImage} className="text-lg text-light-50" />
+                    </div>
+                </button>
             )}
         </Dropzone>
     );

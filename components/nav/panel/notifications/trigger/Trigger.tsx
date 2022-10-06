@@ -1,6 +1,6 @@
 import { faBell } from '@fortawesome/free-solid-svg-icons';
 import * as Popover from '@radix-ui/react-popover';
-import { Button } from '../../inc/Button';
+import { PopoverTrigger } from '../../inc/PopoverTrigger';
 import { useCheckForUnread } from './useCheckForUnread';
 
 interface TriggerProps {
@@ -11,10 +11,8 @@ export const Trigger = ({ open }: TriggerProps) => {
     const { data } = useCheckForUnread();
 
     return (
-        <Popover.Trigger asChild>
-            <div data-testid="notifications-trigger">
-                <Button label="Notifications" icon={faBell} callback={open} withAlert={data} />
-            </div>
+        <Popover.Trigger aria-label="Notifications" onClick={open}>
+            <PopoverTrigger icon={faBell} withAlert={data} />
         </Popover.Trigger>
     );
 };

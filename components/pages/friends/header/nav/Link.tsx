@@ -7,7 +7,7 @@ interface LinkProps {
 
 export const Link = ({ path, name }: LinkProps) => {
     return (
-        <li>
+        <li role="menuitem">
             <NextLink href={path}>
                 <a className="text-xs sm:text-sm text-light-100 hover:text-light-200 transition-colors">{name}</a>
             </NextLink>

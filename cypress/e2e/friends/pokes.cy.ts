@@ -1,7 +1,6 @@
 import { useDatabaseMigrations } from 'cypress-laravel';
 
-const USER_FIRST_NAME = Cypress.env('USER_FIRST_NAME');
-const USER_LAST_NAME = Cypress.env('USER_LAST_NAME');
+const USER_NAME = `${Cypress.env('USER_FIRST_NAME')} ${Cypress.env('USER_LAST_NAME')}`;
 
 describe('Pokes list tests', () => {
     useDatabaseMigrations();
@@ -23,11 +22,15 @@ describe('Pokes list tests', () => {
 
         cy.visit('/');
 
+        cy.injectAxe();
+
         cy.intercept('/api/pokes?page=1').as('pokes_page_1');
 
         cy.get('[data-testid="menu"]').within(() => {
             cy.contains('Pokes').click();
         });
+
+        cy.checkPageA11y();
 
         cy.url().should('include', '/friends/pokes');
 
@@ -35,8 +38,13 @@ describe('Pokes list tests', () => {
 
         cy.friendsListItems().should('have.length', 10);
 
+        cy.checkPageA11y();
+
         cy.window().scrollTo('bottom');
+
         cy.friendsListItems().should('have.length', 17);
+
+        cy.checkPageA11y();
     });
 
     it('poke back friend when click "Poke back" button, poke dissapears after page refresh, relogin as friend, check for notification from user arrived, redirect to pokes page due to notification, poke back user, again relogin as user, check for notification from friend arrived, friend poke show at pokes page', () => {
@@ -58,7 +66,11 @@ describe('Pokes list tests', () => {
         cy.visit('/friends/pokes');
         cy.wait('@pokes_page_1');
 
+        cy.injectAxe();
+
         cy.intercept('/api/pokes').as('poke');
+
+        cy.checkPageA11y();
 
         cy.friendsListItems()
             .should('have.length', 1)
@@ -68,6 +80,8 @@ describe('Pokes list tests', () => {
 
                 cy.wait('@poke');
             });
+
+        cy.checkPageA11y();
 
         cy.friendsListItems().first().should('not.exist');
 
@@ -79,15 +93,24 @@ describe('Pokes list tests', () => {
         cy.intercept('/api/pokes?page=1').as('pokes_page_1');
 
         cy.visit('/friends/pokes');
+
         cy.wait('@pokes_page_1');
+
+        cy.injectAxe();
 
         cy.friendsListItems().should('not.exist');
 
+        cy.checkPageA11y();
+
         cy.relogin(2);
+
+        cy.injectAxe();
 
         cy.intercept('/api/pokes?page=1').as('pokes_page_1');
 
-        cy.checkNotification(`${USER_FIRST_NAME} ${USER_LAST_NAME}`, 'Poked you 2 times in a row');
+        cy.checkNotification(USER_NAME, 'Poked you 2 times in a row');
+
+        cy.checkPageA11y();
 
         cy.url().should('include', '/friends/pokes');
 
@@ -95,10 +118,12 @@ describe('Pokes list tests', () => {
 
         cy.intercept('/api/pokes').as('poke');
 
+        cy.checkPageA11y();
+
         cy.friendsListItems()
             .should('have.length', 1)
             .within(() => {
-                cy.contains(`${USER_FIRST_NAME} ${USER_LAST_NAME}`);
+                cy.contains(USER_NAME);
                 cy.contains('Poke back').click();
 
                 cy.wait('@poke');
@@ -106,7 +131,13 @@ describe('Pokes list tests', () => {
 
         cy.friendsListItems().first().should('not.exist');
 
+        cy.checkPageA11y();
+
         cy.relogin(1);
+
+        cy.injectAxe();
+
+        cy.checkPageA11y();
 
         cy.checkNotification(`${friend.first_name} ${friend.last_name}`, 'Poked you 3 times in a row');
 
@@ -116,6 +147,8 @@ describe('Pokes list tests', () => {
                 cy.contains(`${friend.first_name} ${friend.last_name}`);
                 cy.contains(`${friend.first_name} poked you 3 times in a row`);
             });
+
+        cy.checkPageA11y();
     });
 
     it('render empty component when api return empty data', () => {
@@ -125,8 +158,13 @@ describe('Pokes list tests', () => {
 
         cy.wait('@pokes_page_1');
 
+        cy.injectAxe();
+
         cy.friendsListItems().should('not.exist');
+
         cy.get('[data-testid="empty-list"]').should('be.visible');
+
+        cy.checkPageA11y();
     });
 
     it('render error component when api return server error', () => {
@@ -136,7 +174,12 @@ describe('Pokes list tests', () => {
 
         cy.wait('@pokes_page_1');
 
+        cy.injectAxe();
+
         cy.friendsListItems().should('not.exist');
+
         cy.get('[data-testid="server-error"]').should('be.visible');
+
+        cy.checkPageA11y();
     });
 });

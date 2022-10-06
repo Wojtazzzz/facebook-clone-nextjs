@@ -10,7 +10,8 @@ export const Content = () => {
     const { content, images } = values;
 
     return (
-        <div
+        <section
+            aria-label="Message creator"
             data-testid="message-input-container"
             className={clsx(
                 'h-9 flex flex-col justify-end rounded-[20px] bg-dark-100 relative transition-[width] duration-200',
@@ -20,6 +21,6 @@ export const Content = () => {
         >
             <UploadedImages />
             <AddText />
-        </div>
+        </section>
     );
 };
