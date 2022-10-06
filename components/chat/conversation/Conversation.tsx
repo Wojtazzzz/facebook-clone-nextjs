@@ -8,9 +8,9 @@ interface ConversationProps {
 
 export const Conversation = ({ friend }: ConversationProps) => {
     return (
-        <div className="w-full h-full max-h-[312px] relative">
+        <section aria-label="Conversation" className="w-full h-full max-h-[312px] relative">
             <ErrorMessage />
             <Messages friend={friend} />
-        </div>
+        </section>
     );
 };
