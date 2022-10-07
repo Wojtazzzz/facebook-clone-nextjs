@@ -1,5 +1,4 @@
 import { screen } from '@testing-library/react';
-import nock from 'nock';
 import { Item } from '@components/pages/friends/list/item/Item';
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { mock } from '@utils/nock';
@@ -7,8 +6,6 @@ import SuggestsFirstPageJson from '@mocks/friendsList/suggests/firstPage.json';
 import PokesFirstPageJson from '@mocks/friendsList/pokes/firstPage.json';
 import InvitesFirstPageJson from '@mocks/friendsList/suggests/firstPage.json';
 import FriendsFirstPageJson from '@mocks/friendsList/friends/firstPage.json';
-import InviteAcceptedJson from '@mocks/friendsList/invites/accept.json';
-import InviteRejectedJson from '@mocks/friendsList/invites/reject.json';
 import userEvent from '@testing-library/user-event';
 
 describe('Item component', () => {

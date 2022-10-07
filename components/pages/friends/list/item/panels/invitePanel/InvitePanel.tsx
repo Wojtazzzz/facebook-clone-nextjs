@@ -8,9 +8,7 @@ interface InvitePanelProps extends IUser {}
 export const InvitePanel = ({ id }: InvitePanelProps) => {
     const { updateInvite, isError, isLoading } = useUpdateInvite();
 
-    const handleAccept = (event: FocusEvent) => {
-        event.preventDefault();
-
+    const handleAccept = () => {
         updateInvite({
             friendId: id,
             status: 'CONFIRMED',

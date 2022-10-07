@@ -9,8 +9,7 @@ interface PokePanelProps extends IPoke {}
 export const PokePanel = ({ friend, data }: PokePanelProps) => {
     const { poke, isLoading, isError } = usePokes();
 
-    const handlePoke = (event: FocusEvent) => {
-        event.preventDefault();
+    const handlePoke = () => {
         poke(friend.id);
     };
 

@@ -8,8 +8,7 @@ interface SuggestPanelProps extends IUser {}
 export const SuggestPanel = ({ id }: SuggestPanelProps) => {
     const { invite, isLoading, isError } = useInvite();
 
-    const handleInvite = (event: FocusEvent) => {
-        event.preventDefault();
+    const handleInvite = () => {
         invite(id);
     };
 

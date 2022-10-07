@@ -10,13 +10,11 @@ export const FriendPanel = (friend: FriendPanelProps) => {
     const { openChat } = useChat();
     const { remove, isError, isLoading } = useRemove();
 
-    const handleOpenChat = (event: FocusEvent) => {
-        event.preventDefault();
+    const handleOpenChat = () => {
         openChat(friend);
     };
 
-    const handleRemove = (event: FocusEvent) => {
-        event.preventDefault();
+    const handleRemove = () => {
         remove(friend.id);
     };
 
