@@ -1,5 +1,4 @@
 import * as AlertDialog from '@radix-ui/react-alert-dialog';
-import { Button } from '../Button';
 
 interface PanelProps {
     close: () => void;
@@ -7,10 +6,14 @@ interface PanelProps {
 
 export const Panel = ({ close }: PanelProps) => {
     return (
-        <AlertDialog.Cancel asChild>
-            <div className="w-full flex justify-end mt-5">
-                <Button title="OK" callback={close} />
-            </div>
-        </AlertDialog.Cancel>
+        <div className="w-full flex justify-end mt-5">
+            <AlertDialog.Cancel
+                aria-label="OK"
+                className="bg-primary hover:opacity-90 text-white font-medium rounded-lg transition-opacity p-2 px-4"
+                onClick={close}
+            >
+                OK
+            </AlertDialog.Cancel>
+        </div>
     );
 };

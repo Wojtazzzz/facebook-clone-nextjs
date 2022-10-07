@@ -21,7 +21,7 @@ export const Notification = ({ message, friend, read_at, link, close }: Notifica
         <button
             className={clsx(
                 'w-full h-[72px] flex gap-3 hover:bg-dark-100 transition-colors rounded-lg cursor-pointer p-2',
-                read_at && 'opacity-60'
+                read_at && 'opacity-80'
             )}
             onClick={handleRedirect}
         >

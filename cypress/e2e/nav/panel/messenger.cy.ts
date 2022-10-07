@@ -23,11 +23,15 @@ describe('Messenger tests', () => {
 
         cy.visit('/');
 
+        cy.injectAxe();
+
         cy.wait('@user');
 
         cy.get('[data-testid="nav"]').within(() => {
             cy.get('[aria-label="Messenger"]').click();
         });
+
+        cy.checkPageA11y();
 
         cy.get('[data-testid="messenger-list"]').within(() => {
             cy.contains('John Doe').click();
@@ -38,37 +42,8 @@ describe('Messenger tests', () => {
             .within(() => {
                 cy.contains('John Doe');
             });
-    });
 
-    it('messenger can be closed by pressing esc key', () => {
-        cy.visit('/');
-
-        cy.wait('@user');
-
-        cy.get('[data-testid="nav"]').within(() => {
-            cy.get('[aria-label="Messenger"]').click();
-        });
-
-        cy.get('[data-testid="dropdown"]').should('be.visible');
-
-        cy.get('body').type('{esc}');
-
-        cy.get('[data-testid="dropdown"]').should('not.exist');
-    });
-
-    it('messenger dissapears when click on outside page element', () => {
-        cy.visit('/');
-        cy.wait('@user');
-
-        cy.get('[data-testid="nav"]').within(() => {
-            cy.get('[aria-label="Messenger"]').click();
-        });
-
-        cy.get('[data-testid="dropdown"]').should('be.visible');
-
-        cy.get('main').click();
-
-        cy.get('[data-testid="dropdown"]').should('not.exist');
+        cy.checkPageA11y();
     });
 
     it('messenger dissapears when click on close button', () => {
@@ -78,15 +53,9 @@ describe('Messenger tests', () => {
         cy.get('[data-testid="nav"]').within(() => {
             cy.get('[aria-label="Messenger"]').click();
         });
-
-        cy.get('[data-testid="dropdown"]').within(() => {
-            cy.get('[aria-label="Close dropdown"]').click();
-        });
-
-        cy.get('[data-testid="dropdown"]').should('not.exist');
     });
 
-    it('open messenger, see 15 users, fetch more users by scrolling to bottom', () => {
+    it('open messenger, see 15 users, fetch more users by scrolling to bottom, close dropdown by press esc', () => {
         cy.create('Friendship', 22, {
             user_id: 1,
             status: 'CONFIRMED',
@@ -98,6 +67,8 @@ describe('Messenger tests', () => {
 
         cy.wait('@user');
 
+        cy.injectAxe();
+
         cy.get('[data-testid="nav"]').within(() => {
             cy.get('[aria-label="Messenger"]').click();
         });
@@ -106,6 +77,8 @@ describe('Messenger tests', () => {
 
         cy.get('button').filter(':contains("Click to open chat")').should('have.length', 15);
 
+        cy.checkPageA11y();
+
         cy.intercept('/api/messages?page=2').as('messages_page_2');
 
         cy.get('[id="messenger-list"]').scrollTo('bottom', { ensureScrollable: false });
@@ -113,9 +86,17 @@ describe('Messenger tests', () => {
         cy.wait('@messages_page_2');
 
         cy.get('button').filter(':contains("Click to open chat")').should('have.length', 22);
+
+        cy.checkPageA11y();
+
+        cy.get('[data-testid="dropdown"]').should('be.visible');
+
+        cy.get('body').type('{esc}');
+
+        cy.get('[data-testid="dropdown"]').should('not.exist');
     });
 
-    it("messenger doesn't have icon and render empty component when api return empty response", () => {
+    it("messenger doesn't have icon and render empty component when api return empty response, close messenger by click on outside element", () => {
         cy.intercept('/api/messages?page=1').as('messages_page_1');
         cy.intercept('/api/messages/checkUnread').as('checkUnread');
 
@@ -123,6 +104,8 @@ describe('Messenger tests', () => {
 
         cy.wait('@user');
         cy.wait('@checkUnread');
+
+        cy.injectAxe();
 
         cy.get('[data-testid="nav"]').within(() => {
             cy.get('[aria-label="Messenger"]').click();
@@ -139,6 +122,14 @@ describe('Messenger tests', () => {
         cy.wait('@messages_page_1');
 
         cy.get('[data-testid="empty-list"]').should('be.visible');
+
+        cy.checkPageA11y();
+
+        cy.get('[data-testid="dropdown"]').should('be.visible');
+
+        cy.get('main').click();
+
+        cy.get('[data-testid="dropdown"]').should('not.exist');
     });
 
     it('messenger render error component because api return server error', () => {
@@ -148,6 +139,8 @@ describe('Messenger tests', () => {
 
         cy.wait('@user');
 
+        cy.injectAxe();
+
         cy.get('[data-testid="nav"]').within(() => {
             cy.get('[aria-label="Messenger"]').click();
         });
@@ -155,6 +148,8 @@ describe('Messenger tests', () => {
         cy.wait('@messages_page_1');
 
         cy.get('[data-testid="server-error"]').should('be.visible');
+
+        cy.checkPageA11y();
     });
 
     it('messenger button has alert icon when api return unread messages from one user, read that messages, see that alert in messenger icon dissapear', () => {
@@ -170,6 +165,8 @@ describe('Messenger tests', () => {
         cy.intercept('/api/messages/checkUnread').as('checkUnread');
 
         cy.visit('/');
+
+        cy.injectAxe();
 
         cy.wait('@user');
 
@@ -198,6 +195,8 @@ describe('Messenger tests', () => {
                     cy.get('[data-testid="alert"]').should('not.exist');
                 });
         });
+
+        cy.checkPageA11y();
     });
 
     it("messenger button has alert icon when api return unread messages from many users, read messages from only one user, see that alert in messenger icon doesn't dissapear", () => {

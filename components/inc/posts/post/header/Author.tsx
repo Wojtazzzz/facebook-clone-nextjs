@@ -17,13 +17,13 @@ export const Author = ({ author, createdAt, isEdited }: AuthorProps) => {
             <a data-testid="post-author" aria-label={`${first_name} profile`} className="flex gap-2 md:gap-3 pl-3">
                 <Avatar src={profile_image} alt={`${name} profile image`} styles="w-[40px] h-[40px]" />
 
-                <div className="flex flex-col gap-px">
-                    <span className="text-sm text-light-50 font-medium">{name}</span>
+                <header className="flex flex-col gap-px">
+                    <p className="text-sm text-light-50 font-medium">{name}</p>
 
-                    <span className="text-xs text-light-100">
+                    <small className="text-xs text-light-100">
                         {createdAt} {isEdited && '(Edited)'}
-                    </span>
-                </div>
+                    </small>
+                </header>
             </a>
         </Link>
     );

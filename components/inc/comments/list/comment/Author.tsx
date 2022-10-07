@@ -4,13 +4,14 @@ import Link from 'next/link';
 
 interface AuthorProps {
     id: number;
+    name: string;
     profileImage: string;
 }
 
-export const Author = ({ id, profileImage }: AuthorProps) => {
+export const Author = ({ id, name, profileImage }: AuthorProps) => {
     return (
         <Link href={`/profile/${id}`}>
-            <a>
+            <a aria-label={name}>
                 <Avatar src={profileImage} alt="" styles="w-[36px] h-[36px]" />
             </a>
         </Link>

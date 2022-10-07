@@ -20,8 +20,11 @@ describe('Posts settings tests', () => {
         cy.intercept('/api/posts?page=1').as('posts_page_1');
 
         cy.visit('/');
+
         cy.wait('@user');
         cy.wait('@posts_page_1');
+
+        cy.injectAxe();
 
         cy.getPosts()
             .first()
@@ -29,11 +32,13 @@ describe('Posts settings tests', () => {
                 cy.get('button[aria-label="Show post settings"]').click();
             });
 
-        cy.get('[aria-label="Settings"]').should('be.visible');
+        cy.checkPageA11y();
+
+        cy.get('[data-testid="settings-list"][role="menu"]').should('be.visible');
 
         cy.get('[data-testid="menu"]').click();
 
-        cy.get('[aria-label="Settings"]').should('not.exist');
+        cy.get('[data-testid="settings-list"][role="menu"]').should('not.exist');
     });
 
     it('open post settings on own post, delete post, post dissapears from posts list', () => {
@@ -45,8 +50,11 @@ describe('Posts settings tests', () => {
         cy.intercept('/api/posts?page=1').as('posts_page_1');
 
         cy.visit('/');
+
         cy.wait('@user');
         cy.wait('@posts_page_1');
+
+        cy.injectAxe();
 
         cy.getPosts().should('have.length', 2);
         cy.getPosts()
@@ -58,7 +66,9 @@ describe('Posts settings tests', () => {
                 cy.intercept('/api/posts?page=1').as('posts_page_1');
             });
 
-        cy.get('[aria-label="Settings"]').within(() => {
+        cy.checkPageA11y();
+
+        cy.get('[data-testid="settings-list"][role="menu"]').within(() => {
             cy.get('button[aria-label="Delete"]').click();
         });
 
@@ -77,8 +87,11 @@ describe('Posts settings tests', () => {
         cy.intercept('/api/posts?page=1').as('posts_page_1');
 
         cy.visit('/');
+
         cy.wait('@user');
         cy.wait('@posts_page_1');
+
+        cy.injectAxe();
 
         cy.getPosts().should('have.length', 1);
         cy.getPosts()
@@ -90,7 +103,7 @@ describe('Posts settings tests', () => {
         cy.intercept('/api/posts/1/turn-off-comments').as('turnOffComments');
         cy.intercept('/api/posts?page=1').as('posts_page_1');
 
-        cy.get('[aria-label="Settings"]').within(() => {
+        cy.get('[data-testid="settings-list"][role="menu"]').within(() => {
             cy.get('button[aria-label="Turn on comments"]').should('not.exist');
 
             cy.get('button[aria-label="Turn off comments"]').click();
@@ -106,13 +119,15 @@ describe('Posts settings tests', () => {
                 cy.get('button[aria-label="Comment"]').click();
                 cy.contains(`${USER_FIRST_NAME} ${USER_LAST_NAME} turned off commenting for this post.`);
 
+                cy.checkPageA11y();
+
                 cy.get('button[aria-label="Show post settings"]').click();
             });
 
         cy.intercept('/api/posts/1/turn-on-comments').as('turnOnComments');
         cy.intercept('/api/posts?page=1').as('posts_page_1');
 
-        cy.get('[aria-label="Settings"]').within(() => {
+        cy.get('[data-testid="settings-list"][role="menu"]').within(() => {
             cy.get('button[aria-label="Turn off comments"]').should('not.exist');
 
             cy.get('button[aria-label="Turn on comments"]').click();
@@ -130,6 +145,8 @@ describe('Posts settings tests', () => {
                 );
 
                 cy.get('[aria-label="Write a comment"]').should('be.visible');
+
+                cy.checkPageA11y();
             });
     });
 
@@ -161,7 +178,7 @@ describe('Posts settings tests', () => {
         cy.intercept('/api/hidden/posts').as('hide');
         cy.intercept('/api/posts?page=1').as('posts_page_1');
 
-        cy.get('[aria-label="Settings"]').within(() => {
+        cy.get('[data-testid="settings-list"][role="menu"]').within(() => {
             cy.get('button[aria-label="Hide"]').click();
         });
 
@@ -187,7 +204,7 @@ describe('Posts settings tests', () => {
         cy.intercept('/api/hidden/posts/1').as('unhide');
         cy.intercept('/api/hidden/posts?page=1').as('posts_page_1');
 
-        cy.get('[aria-label="Settings"]').within(() => {
+        cy.get('[data-testid="settings-list"][role="menu"]').within(() => {
             cy.get('button[aria-label="Unhide"]').click();
         });
 
@@ -232,13 +249,13 @@ describe('Posts settings tests', () => {
         cy.intercept('/api/saved/posts').as('save');
         cy.intercept('/api/posts?page=1').as('posts_page_1');
 
-        cy.get('[aria-label="Settings"]').within(() => {
+        cy.get('[data-testid="settings-list"][role="menu"]').within(() => {
             cy.get('button[aria-label="Save"]').click();
         });
 
         cy.wait('@save');
 
-        cy.get('[aria-label="Settings"]').should('not.exist');
+        cy.get('[data-testid="settings-list"][role="menu"]').should('not.exist');
 
         cy.getPosts().should('have.length', 2);
 

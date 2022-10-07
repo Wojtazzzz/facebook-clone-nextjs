@@ -1,8 +1,5 @@
 import { useDatabaseMigrations } from 'cypress-laravel';
 
-const USER_FIRST_NAME = Cypress.env('USER_FIRST_NAME');
-const USER_LAST_NAME = Cypress.env('USER_LAST_NAME');
-
 describe('Update post tests', () => {
     useDatabaseMigrations();
 
@@ -20,12 +17,17 @@ describe('Update post tests', () => {
         cy.intercept('/api/user').as('user');
 
         cy.visit('/');
+
         cy.wait('@user');
+
+        cy.injectAxe();
 
         cy.openUpdatePostModal();
 
         cy.get('[aria-label="Post content"]').should('have.value', 'Test content');
         cy.get('[aria-label="List of already uploaded images"]').children().should('have.length', 2);
+
+        cy.checkPageA11y();
 
         cy.get('body').type('{esc}');
 
@@ -42,7 +44,10 @@ describe('Update post tests', () => {
         cy.intercept('/api/user').as('user');
 
         cy.visit('/');
+
         cy.wait('@user');
+
+        cy.injectAxe();
 
         cy.openUpdatePostModal();
 
@@ -51,6 +56,8 @@ describe('Update post tests', () => {
         cy.get('button[aria-label="Update post"]').click();
 
         cy.contains('Post must be at least 2 characters');
+
+        cy.checkPageA11y();
     });
 
     it('can remove content from post', () => {
@@ -86,13 +93,19 @@ describe('Update post tests', () => {
         cy.intercept('/api/user').as('user');
 
         cy.visit('/');
+
         cy.wait('@user');
+
+        cy.injectAxe();
 
         cy.getPosts().should('not.contain.text', 'New post content');
 
         cy.openUpdatePostModal();
 
         cy.get('[aria-label="Post content"]').type('New post content');
+
+        cy.checkPageA11y();
+
         cy.get('button[aria-label="Update post"]').click();
 
         cy.get('[aria-label="Update post modal"]').should('not.exist');
@@ -110,7 +123,10 @@ describe('Update post tests', () => {
         cy.intercept('/api/user').as('user');
 
         cy.visit('/');
+
         cy.wait('@user');
+
+        cy.injectAxe();
 
         cy.get('button[aria-label="Show gallery"]').within(() => {
             cy.get('img').should('have.length', 1);
@@ -122,6 +138,8 @@ describe('Update post tests', () => {
 
         cy.get('input[type="file"]').attachFile('/postImage1.jpg');
 
+        cy.checkPageA11y();
+
         cy.get('button[aria-label="Update post"]').click();
 
         cy.get('[aria-label="Update post modal"]').should('not.exist');
@@ -129,6 +147,8 @@ describe('Update post tests', () => {
         cy.get('button[aria-label="Show gallery"]').within(() => {
             cy.get('img').should('have.length', 2);
         });
+
+        cy.checkPageA11y();
     });
 
     it('can add images to post which has not images', () => {
@@ -141,7 +161,10 @@ describe('Update post tests', () => {
         cy.intercept('/api/user').as('user');
 
         cy.visit('/');
+
         cy.wait('@user');
+
+        cy.injectAxe();
 
         cy.get('button[aria-label="Show gallery"]').should('not.exist');
 
@@ -150,6 +173,8 @@ describe('Update post tests', () => {
         cy.get('button[aria-label="Show files uploader"]').click();
 
         cy.get('input[type="file"]').attachFile('/postImage1.jpg');
+
+        cy.checkPageA11y();
 
         cy.get('button[aria-label="Update post"]').click();
 
@@ -253,7 +278,10 @@ describe('Update post tests', () => {
         cy.intercept('/api/user').as('user');
 
         cy.visit('/');
+
         cy.wait('@user');
+
+        cy.injectAxe();
 
         cy.openUpdatePostModal();
 
@@ -262,6 +290,8 @@ describe('Update post tests', () => {
         cy.get('button[aria-label="Update post"]').click();
 
         cy.contains('Something went wrong, please try again later');
+
+        cy.checkPageA11y();
     });
 
     it('can add new and remove old images from post', () => {

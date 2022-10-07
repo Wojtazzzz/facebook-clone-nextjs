@@ -12,6 +12,8 @@ describe('Profile intro tests', () => {
 
         cy.wait('@user');
 
+        cy.injectAxe();
+
         cy.get('[data-testid="asideInfo-intro"]').within(() => {
             cy.get('[aria-label="Works at"]').should('contain.text', 'Works at');
             cy.get('[aria-label="Went to"]').should('contain.text', 'Went to');
@@ -20,5 +22,7 @@ describe('Profile intro tests', () => {
             cy.get('[aria-label="Joined on"]').should('contain.text', 'Joined on');
             cy.get('[aria-label="Marital status"]').should('not.be.empty');
         });
+
+        cy.checkPageA11y();
     });
 });

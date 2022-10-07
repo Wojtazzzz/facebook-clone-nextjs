@@ -27,11 +27,9 @@ export const UpdateModal = ({ isActive, close, ...rest }: UpdateModalProps) => {
             >
                 <Header close={close} />
 
-                <div className="overflow-y-scroll scrollbar-thin scrollbar-thumb-dark-100 scrollbar-track-dark-200">
+                <main className="overflow-y-scroll scrollbar-thin scrollbar-thumb-dark-100 scrollbar-track-dark-200">
                     <Form {...rest} closeModal={close} />
-                </div>
-
-                <Dialog.Close />
+                </main>
             </Dialog.Content>
         </Dialog.Portal>
     );

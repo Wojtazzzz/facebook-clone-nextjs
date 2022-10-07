@@ -12,14 +12,14 @@ export const ProfileLink = () => {
     const { id, name, profile_image } = user;
 
     return (
-        <li>
+        <li role="menuitem">
             <Link href={`/profile/${id}`}>
                 <a
                     rel="_self"
                     className="h-12 flex items-center gap-2 hover:bg-dark-100 transition-colors rounded-md p-1"
                 >
                     <div className="w-12 flex justify-center items-center text-light-200 text-xl">
-                        <Avatar src={profile_image} alt={name} styles="w-[36px] h-[36px]" />
+                        <Avatar src={profile_image} alt="" styles="w-[36px] h-[36px]" />
                     </div>
 
                     <div className="w-full text-light-200 font-medium">{name}</div>

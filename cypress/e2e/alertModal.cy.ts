@@ -10,11 +10,15 @@ describe('AlertModal tests', () => {
     it('modal display properly title and message, can be closed by OK button', () => {
         cy.showAlertModal();
 
+        cy.injectAxe();
+
         cy.get('div[role="alertdialog"]').within(() => {
             cy.contains('App Error');
             cy.contains('Something went wrong, please try again later.');
 
-            cy.get('button[aria-label="OK"]').click();
+            cy.checkA11y();
+
+            cy.get('button[aria-label="OK"]').should('be.focused').click();
         });
 
         cy.get('div[role="alertdialog"]').should('not.exist');

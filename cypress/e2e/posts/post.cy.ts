@@ -22,8 +22,11 @@ describe('Post tests', () => {
         cy.intercept('/api/posts?page=1').as('posts_page_1');
 
         cy.visit('/');
+
         cy.wait('@user');
         cy.wait('@posts_page_1');
+
+        cy.injectAxe();
 
         cy.getPosts()
             .first()
@@ -38,6 +41,8 @@ describe('Post tests', () => {
 
                 cy.get('[data-testid="post-likesCount"]').contains('1').should('be.visible');
 
+                cy.checkPageA11y();
+
                 cy.intercept('/api/posts/1/likes').as('like');
                 cy.intercept('/api/posts?page=1').as('posts_page_1');
 
@@ -47,6 +52,8 @@ describe('Post tests', () => {
                 cy.wait('@posts_page_1');
 
                 cy.get('[data-testid="post-likesCount"]').should('not.exist');
+
+                cy.checkPageA11y();
             });
     });
 
@@ -59,8 +66,11 @@ describe('Post tests', () => {
         cy.intercept('/api/posts?page=1').as('posts_page_1');
 
         cy.visit('/');
+
         cy.wait('@user');
         cy.wait('@posts_page_1');
+
+        cy.injectAxe();
 
         cy.getPosts()
             .first()
@@ -73,6 +83,8 @@ describe('Post tests', () => {
             });
 
         cy.expectAlert('Something went wrong, please try again later');
+
+        cy.checkPageA11y();
     });
 
     it("redirect to author's profile by click on his name ", () => {
@@ -84,6 +96,7 @@ describe('Post tests', () => {
         cy.intercept('/api/posts?page=1').as('posts_page_1');
 
         cy.visit('/');
+
         cy.wait('@user');
         cy.wait('@posts_page_1');
 
@@ -113,6 +126,7 @@ describe('Post tests', () => {
         cy.intercept('/api/posts?page=1').as('posts_page_1');
 
         cy.visit('/');
+
         cy.wait('@user');
         cy.wait('@posts_page_1');
 
@@ -156,6 +170,7 @@ describe('Post tests', () => {
         cy.intercept('/api/posts?page=1').as('posts_page_1');
 
         cy.visit('/');
+
         cy.wait('@user');
         cy.wait('@posts_page_1');
 

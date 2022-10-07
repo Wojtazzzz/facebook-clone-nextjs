@@ -32,7 +32,7 @@ export const Post = ({
     const { isModalActive, openUpdateModal, closeUpdateModal } = useUpdateModalActive();
 
     return (
-        <article aria-label="Post" className="w-full bg-dark-200 rounded-lg">
+        <article aria-label={`${author.name}'s post`} className="w-full bg-dark-200 rounded-lg">
             <Dialog.Root open={isModalActive} modal={true}>
                 <Header
                     commenting={commenting}
@@ -54,12 +54,7 @@ export const Post = ({
                     toggleCommentsActive={toggleCommentsActive}
                 />
 
-                <Panel
-                    postId={id}
-                    isPostLiked={is_liked}
-                    queryKey={queryKey}
-                    toggleCommentsActive={toggleCommentsActive}
-                />
+                <Panel postId={id} isLiked={is_liked} queryKey={queryKey} toggleCommentsActive={toggleCommentsActive} />
 
                 {areCommentsActive && <Comments authorName={author.name} postId={id} commenting={commenting} />}
 

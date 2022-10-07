@@ -10,7 +10,7 @@ export const Header = ({ headingId, title, children }: HeaderProps) => {
     return (
         <div className="flex justify-between items-center">
             <header className="text-xl text-light-200 font-bold mb-3">
-                <h4 id={headingId}>{title}</h4>
+                <h2 id={headingId}>{title}</h2>
             </header>
 
             {children}

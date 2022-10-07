@@ -15,9 +15,13 @@ describe('Suggests and invites lists tests', () => {
 
         cy.visit('/');
 
+        cy.injectAxe();
+
         cy.get('[data-testid="menu"]').within(() => {
             cy.contains('Friends').click();
         });
+
+        cy.checkPageA11y();
 
         cy.intercept('/api/suggests?page=1').as('suggests_page_1');
 
@@ -25,11 +29,15 @@ describe('Suggests and invites lists tests', () => {
 
         cy.wait('@suggests_page_1');
 
+        cy.checkPageA11y();
+
         cy.url().should('include', '/friends/suggests');
 
         cy.window().scrollTo('bottom');
 
         cy.friendsListItems().should('have.length', 17);
+
+        cy.checkPageA11y();
     });
 
     it('suggests list render empty component when api return empty data', () => {
@@ -37,12 +45,17 @@ describe('Suggests and invites lists tests', () => {
 
         cy.visit('/friends/suggests');
 
+        cy.injectAxe();
+
         cy.url().should('include', '/friends/suggests');
 
         cy.wait('@suggests_page_1');
 
         cy.friendsListItems().should('not.exist');
+
         cy.get('[data-testid="empty-list"]').should('be.visible');
+
+        cy.checkPageA11y();
     });
 
     it('suggests list render error component when api return server error', () => {
@@ -50,12 +63,17 @@ describe('Suggests and invites lists tests', () => {
 
         cy.visit('/friends/suggests');
 
+        cy.injectAxe();
+
         cy.url().should('include', '/friends/suggests');
 
         cy.wait('@suggests_page_1');
 
         cy.get('[id="friends-list"] a[href*="/profile"]').should('not.exist');
+
         cy.get('[data-testid="server-error"]').should('be.visible');
+
+        cy.checkPageA11y();
     });
 
     it('go to invites page due to sidebar and list navigation, fetch more invites users by scroll to bottom', () => {
@@ -66,9 +84,13 @@ describe('Suggests and invites lists tests', () => {
 
         cy.visit('/');
 
+        cy.injectAxe();
+
         cy.get('[data-testid="menu"]').within(() => {
             cy.contains('Friends').click();
         });
+
+        cy.checkPageA11y();
 
         cy.intercept('/api/invites?page=1').as('invites_page_1');
 
@@ -80,9 +102,13 @@ describe('Suggests and invites lists tests', () => {
 
         cy.friendsListItems().should('have.length', 10);
 
+        cy.checkPageA11y();
+
         cy.window().scrollTo('bottom');
 
         cy.friendsListItems().should('have.length', 13);
+
+        cy.checkPageA11y();
     });
 
     it('invites list render empty component when api return empty data', () => {
@@ -90,12 +116,17 @@ describe('Suggests and invites lists tests', () => {
 
         cy.visit('/friends/invites');
 
+        cy.injectAxe();
+
         cy.url().should('include', '/friends/invites');
 
         cy.wait('@invites_page_1');
 
         cy.friendsListItems().should('not.exist');
+
         cy.get('[data-testid="empty-list"]').should('be.visible');
+
+        cy.checkPageA11y();
     });
 
     it('invites list render error component when api return server error', () => {
@@ -103,12 +134,17 @@ describe('Suggests and invites lists tests', () => {
 
         cy.visit('/friends/invites');
 
+        cy.injectAxe();
+
         cy.url().should('include', '/friends/invites');
 
         cy.wait('@invites_page_1');
 
         cy.friendsListItems().should('not.exist');
+
         cy.get('[data-testid="server-error"]').should('be.visible');
+
+        cy.checkPageA11y();
     });
 
     it('invite friend by click on "Invite" button, relogin as friend account, check for notification from user arrived, redirect to invites page due to notification, accept request from user, check that user displays in friends list, again relogin as user, check for notification from friend arrived, check that user displays in friends list', () => {
@@ -120,6 +156,7 @@ describe('Suggests and invites lists tests', () => {
         cy.intercept('/api/suggests?page=1').as('suggests_page_1');
 
         cy.visit('/friends/suggests');
+
         cy.wait('@suggests_page_1');
 
         cy.intercept('/api/invites').as('invite');
@@ -225,6 +262,7 @@ describe('Suggests and invites lists tests', () => {
         cy.wait('@friends_page_1');
 
         cy.friendsListItems().should('not.exist');
+
         cy.get('[data-testid="empty-list"]').should('be.visible');
     });
 
@@ -235,6 +273,7 @@ describe('Suggests and invites lists tests', () => {
 
         cy.visit('/friends/suggests');
         cy.wait('@suggests_page_1');
+        cy.injectAxe();
 
         cy.intercept('/api/invites', { statusCode: 500 }).as('invite');
 
@@ -246,16 +285,23 @@ describe('Suggests and invites lists tests', () => {
                 cy.wait('@invite');
 
                 cy.contains('Something went wrong, try again later').should('be.visible');
+
+                cy.checkPageA11y();
             });
 
         cy.relogin(2);
+        cy.injectAxe();
 
         cy.visit('/friends/invites');
+        cy.injectAxe();
 
         cy.intercept('/api/invites/1').as('reject');
 
         cy.friendsListItems().should('not.exist');
+
         cy.get('[data-testid="empty-list"]').should('be.visible');
+
+        cy.checkPageA11y();
     });
 
     it('Accept invite but api return server error, invitation displays after page refresh', () => {
@@ -268,6 +314,7 @@ describe('Suggests and invites lists tests', () => {
 
         cy.visit('/friends/invites');
         cy.wait('@invites_page_1');
+        cy.injectAxe();
 
         cy.intercept('/api/invites/2', { statusCode: 500 }).as('accept');
 
@@ -279,11 +326,16 @@ describe('Suggests and invites lists tests', () => {
                 cy.wait('@accept');
 
                 cy.contains('Something went wrong, try again later').should('be.visible');
+
+                cy.checkPageA11y();
             });
 
         cy.visit('/friends/invites');
+        cy.injectAxe();
 
         cy.friendsListItems().should('have.length', 1);
+
+        cy.checkPageA11y();
     });
 
     it('Reject invite but api return server error, invitation displays after page refresh', () => {
@@ -296,6 +348,7 @@ describe('Suggests and invites lists tests', () => {
 
         cy.visit('/friends/invites');
         cy.wait('@invites_page_1');
+        cy.injectAxe();
 
         cy.intercept('/api/invites/2', { statusCode: 500 }).as('reject');
 
@@ -307,10 +360,15 @@ describe('Suggests and invites lists tests', () => {
                 cy.wait('@reject');
 
                 cy.contains('Something went wrong, try again later').should('be.visible');
+
+                cy.checkPageA11y();
             });
 
         cy.visit('/friends/invites');
+        cy.injectAxe();
 
         cy.friendsListItems().should('have.length', 1);
+
+        cy.checkPageA11y();
     });
 });

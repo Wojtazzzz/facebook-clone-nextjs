@@ -15,15 +15,20 @@ describe('Login tests', () => {
 
     it('successful login to app redirects to main page', () => {
         cy.intercept('/api/user').as('user');
-
         cy.intercept('/api/login').as('login');
 
         cy.visit('/');
 
         cy.wait('@user');
 
+        cy.injectAxe();
+        cy.checkPageA11y();
+
         cy.get('input[aria-label="Email"]').type(USER_EMAIL);
         cy.get('input[aria-label="Password"]').type(USER_PASSWORD);
+
+        cy.checkPageA11y();
+
         cy.get('button[aria-label="Login"]').click();
 
         cy.intercept('/api/user').as('user');
@@ -40,6 +45,8 @@ describe('Login tests', () => {
         cy.intercept('/api/login').as('login');
 
         cy.visit('/');
+
+        cy.wait('@user');
 
         cy.get('input[aria-label="Email"]').type(`WRONG_EMAIL@GMAIL.COM`);
         cy.get('input[aria-label="Password"]').type('WRONG_PASSWORD');

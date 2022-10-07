@@ -71,8 +71,11 @@ describe('Posts comments delete tests', () => {
         cy.intercept('/api/posts?page=1').as('posts_page_1');
 
         cy.visit('/');
+
         cy.wait('@user');
         cy.wait('@posts_page_1');
+
+        cy.injectAxe();
 
         cy.getPosts()
             .first()
@@ -95,6 +98,8 @@ describe('Posts comments delete tests', () => {
             cy.contains('App Error');
             cy.contains('Something went wrong, please try again later.');
         });
+
+        cy.checkPageA11y();
     });
 
     it("cannot see Delete button on somebody's comment", () => {
