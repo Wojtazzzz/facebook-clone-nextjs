@@ -65,7 +65,7 @@ describe('Posts comments like tests', () => {
                         cy.wait('@like');
                         cy.wait('@comments_page_1');
 
-                        cy.get('button[aria-label="Like"]').should('have.class', 'text-[#4f8dff]');
+                        cy.get('button[aria-label="Like"]').should('have.class', 'text-primary');
 
                         cy.get('[data-testid="comment-faTooltipIcon"]').should('be.visible');
                         cy.get('[data-testid="comment-likesCount"]').should('not.exist');
@@ -74,7 +74,7 @@ describe('Posts comments like tests', () => {
                 cy.get('article[aria-label="Comment"]')
                     .filter(`:contains("Second comment")`)
                     .within(() => {
-                        cy.get('button[aria-label="Like"]').should('not.have.class', 'text-[#4f8dff]');
+                        cy.get('button[aria-label="Like"]').should('not.have.class', 'text-primary');
 
                         cy.get('[data-testid="comment-faTooltipIcon"]').should('not.exist');
                         cy.get('[data-testid="comment-likesCount"]').should('not.exist');
@@ -83,7 +83,7 @@ describe('Posts comments like tests', () => {
                 cy.get('article[aria-label="Comment"]')
                     .filter(`:contains("Third comment")`)
                     .within(() => {
-                        cy.get('button[aria-label="Like"]').should('not.have.class', 'text-[#4f8dff]');
+                        cy.get('button[aria-label="Like"]').should('not.have.class', 'text-primary');
 
                         cy.get('[data-testid="comment-faTooltipIcon"]').should('not.exist');
                         cy.get('[data-testid="comment-likesCount"]').should('not.exist');
@@ -102,7 +102,7 @@ describe('Posts comments like tests', () => {
                         cy.wait('@unlike');
                         cy.wait('@comments_page_1');
 
-                        cy.get('button[aria-label="Like"]').should('not.have.class', 'text-[#4f8dff]');
+                        cy.get('button[aria-label="Like"]').should('not.have.class', 'text-primary');
 
                         cy.get('[data-testid="comment-faTooltipIcon"]').should('not.exist');
                         cy.get('[data-testid="comment-likesCount"]').should('not.exist');
@@ -111,7 +111,7 @@ describe('Posts comments like tests', () => {
                 cy.get('article[aria-label="Comment"]')
                     .filter(`:contains("Second comment")`)
                     .within(() => {
-                        cy.get('button[aria-label="Like"]').should('not.have.class', 'text-[#4f8dff]');
+                        cy.get('button[aria-label="Like"]').should('not.have.class', 'text-primary');
 
                         cy.get('[data-testid="comment-faTooltipIcon"]').should('not.exist');
                         cy.get('[data-testid="comment-likesCount"]').should('not.exist');
@@ -120,7 +120,7 @@ describe('Posts comments like tests', () => {
                 cy.get('article[aria-label="Comment"]')
                     .filter(`:contains("Third comment")`)
                     .within(() => {
-                        cy.get('button[aria-label="Like"]').should('not.have.class', 'text-[#4f8dff]');
+                        cy.get('button[aria-label="Like"]').should('not.have.class', 'text-primary');
 
                         cy.get('[data-testid="comment-faTooltipIcon"]').should('not.exist');
                         cy.get('[data-testid="comment-likesCount"]').should('not.exist');

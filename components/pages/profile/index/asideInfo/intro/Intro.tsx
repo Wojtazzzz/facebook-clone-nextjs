@@ -24,7 +24,7 @@ export const Intro = ({ works_at, went_to, lives_in, from, created_at, marital_s
 
     return (
         <Container testId="asideInfo-intro">
-            <section id={headingId}>
+            <section aria-labelledby={headingId}>
                 <Header headingId={headingId} title="Intro" />
 
                 <ul className="flex flex-col gap-2">

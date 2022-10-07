@@ -19,6 +19,8 @@ describe('Profile friends tests', () => {
         cy.get('[data-testid="menu"]').contains(USER_NAME).click();
         cy.url().should('contain', '/profile/1');
 
+        cy.injectAxe();
+
         cy.intercept('/api/users/1/friends?search=&page=1').as('friends_page_1');
 
         cy.get('header a').contains('0 friends').click();
@@ -36,6 +38,8 @@ describe('Profile friends tests', () => {
                 cy.contains('No friends to display');
             });
         });
+
+        cy.checkPageA11y();
     });
 
     it('go to own friends page due to aside friends info, see error when api return server error', () => {
@@ -44,6 +48,8 @@ describe('Profile friends tests', () => {
         cy.visit('/');
 
         cy.wait('@user');
+
+        cy.injectAxe();
 
         cy.get('[data-testid="menu"]').contains(USER_NAME).click();
         cy.url().should('contain', '/profile/1');
@@ -64,6 +70,8 @@ describe('Profile friends tests', () => {
                 cy.contains('Please try again later');
             });
         });
+
+        cy.checkPageA11y();
     });
 
     it("go to friend's profile by searching, go to his friends list due to aside info, see 20 friends, fetch more friends by scroll page to bottom, click on ScrollToTop button", () => {
@@ -75,21 +83,27 @@ describe('Profile friends tests', () => {
 
         cy.createFriendship(28, 999);
 
-        cy.visit('/');
-
         cy.intercept('/api/user').as('user');
 
+        cy.visit('/');
+
         cy.wait('@user');
+
+        cy.injectAxe();
 
         cy.get('[data-testid="nav-search"]').within(() => {
             cy.get('input[aria-label="Search user"]').type('Joh');
 
             cy.get('[data-testid="navSearch-results"]').within(() => {
+                cy.checkPageA11y();
+
                 cy.contains('John Doe').click();
             });
         });
 
         cy.url().should('include', '/profile/999');
+
+        cy.checkPageA11y();
 
         cy.intercept('/api/users/999/friends?search=&page=1').as('friends_page_1');
 
@@ -98,15 +112,21 @@ describe('Profile friends tests', () => {
 
         cy.wait('@friends_page_1');
 
+        cy.checkPageA11y();
+
         cy.get('section[data-testid="profile-friends"]').within(() => {
             cy.get('article[aria-label="Friend"]').should('have.length', 20);
         });
+
+        cy.checkPageA11y();
 
         cy.window().scrollTo('bottom');
 
         cy.get('section[data-testid="profile-friends"]').within(() => {
             cy.get('article[aria-label="Friend"]').should('have.length', 28 + 1);
         });
+
+        cy.checkPageA11y();
 
         cy.getScrollToTop().click();
 
@@ -131,11 +151,20 @@ describe('Profile friends tests', () => {
         cy.wait('@user');
         cy.wait('@friends_page_1');
 
+        cy.injectAxe();
+
         cy.get('section[data-testid="profile-friends"]').within(() => {
             cy.get('article[aria-label="Friend"]').should('have.length', 1).contains('John Doe').click();
+
+            cy.checkPageA11y();
+
+            cy.get('article[aria-label="Friend"]').contains('John Doe').click();
         });
 
         cy.url().should('include', '/profile/999');
+
+        cy.injectAxe();
+        cy.checkPageA11y();
 
         cy.intercept('/api/users/999/friends?search=&page=1').as('friends_page_1');
 
@@ -174,6 +203,8 @@ describe('Profile friends tests', () => {
         cy.wait('@user');
         cy.wait('@friends_page_1');
 
+        cy.injectAxe();
+
         cy.get('section[data-testid="profile-friends"]').within(() => {
             cy.get('article[aria-label="Friend"]').should('have.length', 20);
 
@@ -194,10 +225,17 @@ describe('Profile friends tests', () => {
             cy.get('input[aria-label="Search friend"]').should('have.value', 'John Doe');
 
             cy.get('article[aria-label="Friend"]').should('have.length', 1);
+
+            cy.checkPageA11y();
+
             cy.get('article[aria-label="Friend"]').first().contains('John Doe').click();
 
             cy.url().should('contain', '/profile/999');
         });
+
+        cy.injectAxe();
+
+        cy.checkPageA11y();
     });
 
     it("see 4 friends in list, type only part of friend's name in search, see friend in friends list", () => {

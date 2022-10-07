@@ -13,10 +13,10 @@ export const Friends = ({ userId }: FriendsProps) => {
 
     return (
         <Container testId="asideInfo-friends">
-            <section id={headingId}>
+            <section aria-labelledby={headingId}>
                 <Header headingId={headingId} title="Friends">
                     <Link href={`/profile/${userId}/friends`}>
-                        <a className="text-primary hover:underline">See All Friends</a>
+                        <a className="text-primary-light hover:underline">See All Friends</a>
                     </Link>
                 </Header>
 

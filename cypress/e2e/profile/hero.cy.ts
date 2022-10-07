@@ -14,15 +14,19 @@ describe('Profile hero tests', () => {
     it('visit self profile, cannot edit profile because button is disabled, see all friends count and 8 friends images, redirect to friend profile by click on his image', () => {
         cy.createFriendship(13);
 
-        cy.visit('/profile/1');
-
         cy.intercept('/api/user').as('user');
 
+        cy.visit('/profile/1');
+
         cy.wait('@user');
+
+        cy.injectAxe();
 
         cy.get('button[aria-label="Edit profile"]').should('be.disabled');
         cy.contains('13 friends').should('be.visible');
         cy.get('[data-testid="profile-friendsList"] img').should('have.length', 8);
+
+        cy.checkPageA11y();
 
         cy.get('[data-testid="profile-friendsList"] img').first().click({ force: true });
 
@@ -92,9 +96,9 @@ describe('Profile hero tests', () => {
     it('visit friend\'s profile, click "Poke" button, see server error', () => {
         cy.createFriendship(1);
 
-        cy.visit('/profile/2');
-
         cy.intercept('/api/user').as('user');
+
+        cy.visit('/profile/2');
 
         cy.wait('@user');
 
@@ -117,9 +121,9 @@ describe('Profile hero tests', () => {
             count: 1,
         });
 
-        cy.visit('/profile/2');
-
         cy.intercept('/api/user').as('user');
+
+        cy.visit('/profile/2');
 
         cy.wait('@user');
 
@@ -146,8 +150,6 @@ describe('Profile hero tests', () => {
         cy.get('button[aria-label="Poke"]').click();
 
         cy.wait('@poke');
-
-        cy.expectAlert('This user is not your friend.');
     });
 
     it('visit random user\'s profile which already poke you, click "Poke" button, see error with message "This user is not your friend."', () => {
