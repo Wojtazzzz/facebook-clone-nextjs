@@ -6,6 +6,7 @@ import { ApiError } from '@components/inc/ApiError';
 import type { IChatFriend, IChatMessage } from '@utils/types';
 import { Loader } from './Loader';
 import { useMessages } from './useMessages';
+import { FriendInfo } from './FriendInfo';
 
 interface MessagesProps {
     friend: IChatFriend;
@@ -17,7 +18,7 @@ export const Messages = memo<MessagesProps>(({ friend }) => {
 
     if (isLoading) return <Loader testId="messages-loader_loading" />;
     if (!data || isError) return <ApiError />;
-    if (isEmpty) return <EmptyChat name={name} />;
+    if (isEmpty) return <EmptyChat name={name} profileImage={profile_image} />;
 
     const lastReadIndex = getLastReadIndex(data);
 
@@ -41,6 +42,8 @@ export const Messages = memo<MessagesProps>(({ friend }) => {
                 scrollableTarget="chat-messages"
             >
                 {MessagesComponents}
+
+                <FriendInfo name={name} profileImage={profile_image} />
             </InfiniteScroll>
         </div>
     );

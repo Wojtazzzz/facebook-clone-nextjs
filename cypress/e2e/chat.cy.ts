@@ -41,7 +41,10 @@ describe('Chat tests', () => {
 
         cy.get('[data-testid="chat"]').should('be.visible');
         cy.get('[data-testid="chat"] header').contains(`${friend.first_name} ${friend.last_name}`);
-        cy.contains('Say hello to your friend!');
+        cy.get('[data-testid="chat-friendInfo"]').within(() => {
+            cy.get(`img[alt="${friend.first_name} ${friend.last_name}"]`).should('exist');
+            cy.contains(`${friend.first_name} ${friend.last_name}`);
+        });
 
         cy.checkPageA11y();
 
@@ -55,6 +58,11 @@ describe('Chat tests', () => {
 
         cy.get('[data-testid="chat"]').within(() => {
             cy.contains('Hello World!');
+        });
+
+        cy.get('[data-testid="chat-friendInfo"]').within(() => {
+            cy.get(`img[alt="${friend.first_name} ${friend.last_name}"]`).should('exist');
+            cy.contains(`${friend.first_name} ${friend.last_name}`);
         });
 
         cy.checkPageA11y();
@@ -72,6 +80,11 @@ describe('Chat tests', () => {
 
         cy.get('[data-testid="chat"]').within(() => {
             cy.contains('Hello World second time');
+        });
+
+        cy.get('[data-testid="chat-friendInfo"]').within(() => {
+            cy.get(`img[alt="${friend.first_name} ${friend.last_name}"]`).should('exist');
+            cy.contains(`${friend.first_name} ${friend.last_name}`);
         });
 
         cy.checkPageA11y();

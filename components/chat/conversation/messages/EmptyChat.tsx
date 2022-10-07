@@ -1,15 +1,14 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHandshake } from '@fortawesome/free-solid-svg-icons';
+import { FriendInfo } from './FriendInfo';
 
 interface EmptyChatProps {
     name: string;
+    profileImage: string;
 }
 
-export const EmptyChat = ({ name }: EmptyChatProps) => {
+export const EmptyChat = ({ name, profileImage }: EmptyChatProps) => {
     return (
-        <div className="w-full h-full flex flex-col justify-between items-center pt-32 p-6">
-            <FontAwesomeIcon icon={faHandshake} className="text-5xl text-light-100" />
-            <span className="text-sm text-light-100 font-medium">Say hello to {name}!</span>
+        <div className="w-full h-full flex justify-center items-center pr-2">
+            <FriendInfo name={name} profileImage={profileImage} />
         </div>
     );
 };
