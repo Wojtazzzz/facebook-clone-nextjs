@@ -11,7 +11,7 @@ export const Content = () => {
 
     return (
         <section
-            aria-label="Message creator"
+            aria-label="Message"
             data-testid="message-input-container"
             className={clsx(
                 'h-9 flex flex-col justify-end rounded-[20px] bg-dark-100 relative transition-[width] duration-200',

@@ -3,9 +3,7 @@ import type { IChatMessagePayload } from '@utils/types';
 import { useFormikContext } from 'formik';
 import { useAddEmojiToMessage } from './co/useAddEmojiToMessage';
 
-interface AddTextProps {}
-
-export const AddText = ({}: AddTextProps) => {
+export const AddText = () => {
     const { values, handleBlur, handleChange } = useFormikContext<IChatMessagePayload>();
     const { addEmojiToMessage } = useAddEmojiToMessage();
 
