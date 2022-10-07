@@ -38,8 +38,11 @@ describe('Posts comments like tests', () => {
         cy.intercept('/api/posts?page=1').as('posts_page_1');
 
         cy.visit('/');
+
         cy.wait('@user');
         cy.wait('@posts_page_1');
+
+        cy.injectAxe();
 
         cy.getPosts()
             .first()
@@ -58,10 +61,11 @@ describe('Posts comments like tests', () => {
                         cy.intercept('/api/posts/1/comments?page=1').as('comments_page_1');
 
                         cy.get('button[aria-label="Like"]').click();
+
                         cy.wait('@like');
                         cy.wait('@comments_page_1');
 
-                        cy.get('button[aria-label="Like"]').should('have.class', 'text-primary');
+                        cy.get('button[aria-label="Like"]').should('have.class', 'text-[#4f8dff]');
 
                         cy.get('[data-testid="comment-faTooltipIcon"]').should('be.visible');
                         cy.get('[data-testid="comment-likesCount"]').should('not.exist');
@@ -70,7 +74,7 @@ describe('Posts comments like tests', () => {
                 cy.get('article[aria-label="Comment"]')
                     .filter(`:contains("Second comment")`)
                     .within(() => {
-                        cy.get('button[aria-label="Like"]').should('not.have.class', 'text-primary');
+                        cy.get('button[aria-label="Like"]').should('not.have.class', 'text-[#4f8dff]');
 
                         cy.get('[data-testid="comment-faTooltipIcon"]').should('not.exist');
                         cy.get('[data-testid="comment-likesCount"]').should('not.exist');
@@ -79,11 +83,13 @@ describe('Posts comments like tests', () => {
                 cy.get('article[aria-label="Comment"]')
                     .filter(`:contains("Third comment")`)
                     .within(() => {
-                        cy.get('button[aria-label="Like"]').should('not.have.class', 'text-primary');
+                        cy.get('button[aria-label="Like"]').should('not.have.class', 'text-[#4f8dff]');
 
                         cy.get('[data-testid="comment-faTooltipIcon"]').should('not.exist');
                         cy.get('[data-testid="comment-likesCount"]').should('not.exist');
                     });
+
+                cy.checkPageA11y();
 
                 cy.get('article[aria-label="Comment"]')
                     .filter(`:contains("First comment")`)
@@ -92,10 +98,11 @@ describe('Posts comments like tests', () => {
                         cy.intercept('/api/posts/1/comments?page=1').as('comments_page_1');
 
                         cy.get('button[aria-label="Like"]').click();
+
                         cy.wait('@unlike');
                         cy.wait('@comments_page_1');
 
-                        cy.get('button[aria-label="Like"]').should('not.have.class', 'text-primary');
+                        cy.get('button[aria-label="Like"]').should('not.have.class', 'text-[#4f8dff]');
 
                         cy.get('[data-testid="comment-faTooltipIcon"]').should('not.exist');
                         cy.get('[data-testid="comment-likesCount"]').should('not.exist');
@@ -104,7 +111,7 @@ describe('Posts comments like tests', () => {
                 cy.get('article[aria-label="Comment"]')
                     .filter(`:contains("Second comment")`)
                     .within(() => {
-                        cy.get('button[aria-label="Like"]').should('not.have.class', 'text-primary');
+                        cy.get('button[aria-label="Like"]').should('not.have.class', 'text-[#4f8dff]');
 
                         cy.get('[data-testid="comment-faTooltipIcon"]').should('not.exist');
                         cy.get('[data-testid="comment-likesCount"]').should('not.exist');
@@ -113,11 +120,13 @@ describe('Posts comments like tests', () => {
                 cy.get('article[aria-label="Comment"]')
                     .filter(`:contains("Third comment")`)
                     .within(() => {
-                        cy.get('button[aria-label="Like"]').should('not.have.class', 'text-primary');
+                        cy.get('button[aria-label="Like"]').should('not.have.class', 'text-[#4f8dff]');
 
                         cy.get('[data-testid="comment-faTooltipIcon"]').should('not.exist');
                         cy.get('[data-testid="comment-likesCount"]').should('not.exist');
                     });
+
+                cy.checkPageA11y();
             });
     });
 
@@ -158,6 +167,7 @@ describe('Posts comments like tests', () => {
                         cy.intercept('/api/posts/1/comments?page=1').as('comments_page_1');
 
                         cy.get('button[aria-label="Like"]').click();
+
                         cy.wait('@like');
                         cy.wait('@comments_page_1');
 
@@ -165,6 +175,7 @@ describe('Posts comments like tests', () => {
                         cy.intercept('/api/posts/1/comments?page=1').as('comments_page_1');
 
                         cy.get('button[aria-label="Like"]').click();
+
                         cy.wait('@unlike');
                         cy.wait('@comments_page_1');
 
@@ -172,6 +183,7 @@ describe('Posts comments like tests', () => {
                         cy.intercept('/api/posts/1/comments?page=1').as('comments_page_1');
 
                         cy.get('button[aria-label="Like"]').click();
+
                         cy.wait('@like');
                         cy.wait('@comments_page_1');
                     });
@@ -198,8 +210,11 @@ describe('Posts comments like tests', () => {
         cy.intercept('/api/posts?page=1').as('posts_page_1');
 
         cy.visit('/');
+
         cy.wait('@user');
         cy.wait('@posts_page_1');
+
+        cy.injectAxe();
 
         cy.getPosts()
             .first()
@@ -219,6 +234,8 @@ describe('Posts comments like tests', () => {
             });
 
         cy.expectAlert('Something went wrong, please try again later.');
+
+        cy.checkPageA11y();
     });
 
     it('see alert when unlike response return error', () => {
@@ -231,8 +248,11 @@ describe('Posts comments like tests', () => {
         cy.intercept('/api/posts?page=1').as('posts_page_1');
 
         cy.visit('/');
+
         cy.wait('@user');
         cy.wait('@posts_page_1');
+
+        cy.injectAxe();
 
         cy.getPosts()
             .first()
@@ -262,5 +282,7 @@ describe('Posts comments like tests', () => {
             });
 
         cy.expectAlert('Something went wrong, please try again later.');
+
+        cy.checkPageA11y();
     });
 });

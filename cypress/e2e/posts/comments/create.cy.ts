@@ -1,7 +1,6 @@
 import { useDatabaseMigrations } from 'cypress-laravel';
 
-const USER_LAST_NAME = Cypress.env('USER_LAST_NAME');
-const USER_FIRST_NAME = Cypress.env('USER_FIRST_NAME');
+const USER_NAME = `${Cypress.env('USER_FIRST_NAME')} ${Cypress.env('USER_LAST_NAME')}`;
 
 describe('Posts comments create tests', () => {
     useDatabaseMigrations();
@@ -26,8 +25,11 @@ describe('Posts comments create tests', () => {
         cy.intercept('/api/posts?page=1').as('posts_page_1');
 
         cy.visit('/');
+
         cy.wait('@user');
         cy.wait('@posts_page_1');
+
+        cy.injectAxe();
 
         cy.getPosts()
             .first()
@@ -48,10 +50,10 @@ describe('Posts comments create tests', () => {
                 cy.wait('@comments_page_1');
 
                 cy.get('article[aria-label="Comment"]').should('have.length', 2);
-                cy.get('article[aria-label="Comment"]')
-                    .contains(`${USER_FIRST_NAME} ${USER_LAST_NAME}`)
-                    .should('be.visible');
+                cy.get('article[aria-label="Comment"]').contains(USER_NAME).should('be.visible');
                 cy.get('article[aria-label="Comment"]').contains(newCommentContent).should('be.visible');
+
+                cy.checkPageA11y();
             });
     });
 
@@ -67,8 +69,11 @@ describe('Posts comments create tests', () => {
         cy.intercept('/api/posts?page=1').as('posts_page_1');
 
         cy.visit('/');
+
         cy.wait('@user');
         cy.wait('@posts_page_1');
+
+        cy.injectAxe();
 
         cy.getPosts()
             .first()
@@ -85,6 +90,7 @@ describe('Posts comments create tests', () => {
                 cy.get('[aria-label="Write a comment"]').type(`${newCommentContent}{enter}`);
 
                 cy.wait('@create');
+
                 cy.get('article[aria-label="Comment"]').should('have.length', 1);
             });
 
@@ -92,6 +98,8 @@ describe('Posts comments create tests', () => {
             cy.contains('App Error');
             cy.contains('Something went wrong, please try again later.');
         });
+
+        cy.checkPageA11y();
     });
 
     it('create comment with text and emoji', () => {
@@ -104,8 +112,11 @@ describe('Posts comments create tests', () => {
         cy.intercept('/api/posts?page=1').as('posts_page_1');
 
         cy.visit('/');
+
         cy.wait('@user');
         cy.wait('@posts_page_1');
+
+        cy.injectAxe();
 
         cy.getPosts()
             .first()
@@ -122,12 +133,18 @@ describe('Posts comments create tests', () => {
 
                 cy.get('[aria-label="Write a comment"]').type(`Hello `);
 
+                cy.checkPageA11y();
+
                 cy.get('[aria-label="Choose an emoji"]').click();
+
+                cy.checkPageA11y();
             });
 
         cy.get('[aria-label="Emojis list"]').within(() => {
             cy.get('button').contains('👋').click();
         });
+
+        cy.checkPageA11y();
 
         cy.getPosts()
             .first()
@@ -140,12 +157,12 @@ describe('Posts comments create tests', () => {
                 cy.wait('@comments_page_1');
 
                 cy.get('article[aria-label="Comment"]').should('have.length', 2);
-                cy.get('article[aria-label="Comment"]')
-                    .contains(`${USER_FIRST_NAME} ${USER_LAST_NAME}`)
-                    .should('be.visible');
+                cy.get('article[aria-label="Comment"]').contains(USER_NAME).should('be.visible');
 
                 cy.get('article[aria-label="Comment"]').filter(':contains("Hello 👋")').should('be.visible');
             });
+
+        cy.checkPageA11y();
     });
 
     it('create comment with only emoji', () => {
@@ -158,8 +175,11 @@ describe('Posts comments create tests', () => {
         cy.intercept('/api/posts?page=1').as('posts_page_1');
 
         cy.visit('/');
+
         cy.wait('@user');
         cy.wait('@posts_page_1');
+
+        cy.injectAxe();
 
         cy.getPosts()
             .first()
@@ -195,19 +215,21 @@ describe('Posts comments create tests', () => {
             .within(() => {
                 cy.get('input[aria-label="Write a comment"]').should('have.value', '😃😅🤣🙂🥰😝😏😭👍❤️');
 
+                cy.checkPageA11y();
+
                 cy.get('[aria-label="Send comment"]').click();
 
                 cy.wait('@create');
                 cy.wait('@comments_page_1');
 
                 cy.get('article[aria-label="Comment"]').should('have.length', 2);
-                cy.get('article[aria-label="Comment"]')
-                    .contains(`${USER_FIRST_NAME} ${USER_LAST_NAME}`)
-                    .should('be.visible');
+                cy.get('article[aria-label="Comment"]').contains(USER_NAME).should('be.visible');
 
                 cy.get('article[aria-label="Comment"]')
                     .filter(':contains("😃😅🤣🙂🥰😝😏😭👍❤️")')
                     .should('be.visible');
             });
+
+        cy.checkPageA11y();
     });
 });

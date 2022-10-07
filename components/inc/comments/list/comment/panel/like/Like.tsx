@@ -18,7 +18,7 @@ export const Like = ({ isLiked, commentId, postId }: LikeProps) => {
     return (
         <ActionButton
             title="Like"
-            styles={isLiked ? 'text-primary hover:text-primary' : ''}
+            styles={isLiked ? 'text-[#4f8dff] hover:text-primary' : ''}
             callback={isLiked ? handleUnlike : handleLike}
         />
     );

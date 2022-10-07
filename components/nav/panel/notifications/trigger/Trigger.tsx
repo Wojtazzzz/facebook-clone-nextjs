@@ -11,7 +11,7 @@ export const Trigger = ({ open }: TriggerProps) => {
     const { data } = useCheckForUnread();
 
     return (
-        <Popover.Trigger aria-label="Notifications" onClick={open}>
+        <Popover.Trigger data-testid="notifications-trigger" aria-label="Notifications" onClick={open}>
             <PopoverTrigger icon={faBell} withAlert={data} />
         </Popover.Trigger>
     );
