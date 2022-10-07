@@ -41,9 +41,7 @@ Cypress.Commands.add('relogin', (id: number, path: string = '/') => {
     cy.visit(path);
 });
 
-Cypress.Commands.add('friendsListItems', () =>
-    cy.get('a[href*="/profile"][aria-label^="See "][aria-label$=" profile"]')
-);
+Cypress.Commands.add('friendsListItems', () => cy.get('[data-testid="friendsList-container"] article'));
 
 Cypress.Commands.add('getPosts', () => cy.get('article[aria-label*="\'s post"]'));
 Cypress.Commands.add('getNavSearch', () => cy.get('nav[data-testid="nav"] [data-testid="nav-search"]'));

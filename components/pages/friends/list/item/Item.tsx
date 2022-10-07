@@ -13,7 +13,10 @@ export const Item = ({ item, type }: ItemProps) => {
     const { id, name, profile_image } = item.friend;
 
     return (
-        <article className="flex items-center gap-2 md:gap-5 hover:bg-dark-100 rounded-lg transition-colors py-1 md:py-3 px-2 sm:px-3 md:px-4 lg:px-5 xl:px-6">
+        <article
+            aria-label={name}
+            className="flex items-center gap-2 md:gap-5 hover:bg-dark-100 rounded-lg transition-colors py-1 md:py-3 px-2 sm:px-3 md:px-4 lg:px-5 xl:px-6"
+        >
             <Link href={`/profile/${id}`}>
                 <a>
                     <Avatar

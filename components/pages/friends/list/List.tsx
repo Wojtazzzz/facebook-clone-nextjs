@@ -25,15 +25,17 @@ export const List = memo<ListProps>(({ path, type }) => {
     const ItemsComponents = data.map((item) => <Item key={item.friend.id} item={item} type={type} />);
 
     return (
-        <InfiniteScroll
-            dataLength={ItemsComponents.length}
-            hasMore={Boolean(hasNextPage)}
-            loader={<Loader testId="friendsList-fetching_loader" />}
-            className="w-full flex flex-col gap-2"
-            next={fetchNextPage}
-        >
-            {ItemsComponents}
-        </InfiniteScroll>
+        <div data-testid="friendsList-container">
+            <InfiniteScroll
+                dataLength={ItemsComponents.length}
+                hasMore={Boolean(hasNextPage)}
+                loader={<Loader testId="friendsList-fetching_loader" />}
+                className="w-full flex flex-col gap-2"
+                next={fetchNextPage}
+            >
+                {ItemsComponents}
+            </InfiniteScroll>
+        </div>
     );
 });
 
