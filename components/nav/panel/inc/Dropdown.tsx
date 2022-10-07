@@ -12,6 +12,7 @@ export const Dropdown = ({ type, close }: DropdownProps) => {
     return (
         <Popover.Portal>
             <Popover.Content
+                aria-labelledby="nav-popover-header"
                 align="end"
                 className="z-50"
                 onEscapeKeyDown={close}

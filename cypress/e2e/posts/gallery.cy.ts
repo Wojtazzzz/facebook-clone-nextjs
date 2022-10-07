@@ -1,6 +1,6 @@
 import { useDatabaseMigrations } from 'cypress-laravel';
 
-describe('Post tests', () => {
+describe('Post gallery tests', () => {
     useDatabaseMigrations();
 
     beforeEach(() => {
@@ -24,6 +24,8 @@ describe('Post tests', () => {
         cy.wait('@user');
         cy.wait('@posts_page_1');
 
+        cy.injectAxe();
+
         cy.getPosts()
             .first()
             .within(() => {
@@ -43,6 +45,8 @@ describe('Post tests', () => {
                     cy.get('img[src*="62caeb938b8c6"]').should('not.exist');
                 });
 
+                cy.checkPageA11y();
+
                 cy.get('button[aria-label="Next image"]').click();
 
                 /* 2/3 slide */
@@ -51,6 +55,8 @@ describe('Post tests', () => {
                     cy.get('img[src*="62caeb938b8ca"]').should('be.visible');
                     cy.get('img[src*="62caeb938b8c6"]').should('not.exist');
                 });
+
+                cy.checkPageA11y();
 
                 cy.get('button[aria-label="Next image"]').click();
 
@@ -75,6 +81,8 @@ describe('Post tests', () => {
                     cy.get('img[src*="62caeb938b8ca"]').should('be.visible');
                     cy.get('img[src*="62caeb938b8c6"]').should('not.exist');
                 });
+
+                cy.checkPageA11y();
 
                 cy.get('button[aria-label="Prev image"]').click();
 
@@ -219,6 +227,7 @@ describe('Post tests', () => {
         cy.visit('/');
         cy.wait('@user');
         cy.wait('@posts_page_1');
+        cy.injectAxe();
 
         cy.getPosts()
             .first()
@@ -236,6 +245,8 @@ describe('Post tests', () => {
                     cy.get('img[src*="62caeb2286cc3"]').should('be.visible');
                 });
 
+                cy.checkPageA11y();
+
                 cy.get('button[aria-label="Prev image"]').click({ force: true });
 
                 cy.get('button[aria-label="Prev image"]').should('have.attr', 'disabled');
@@ -248,6 +259,8 @@ describe('Post tests', () => {
                     cy.get('img[src*="62caeb2286cc3"]').should('be.visible');
                 });
 
+                cy.checkPageA11y();
+
                 cy.get('button[aria-label="Next image"]').click({ force: true });
 
                 cy.get('button[aria-label="Prev image"]').should('have.attr', 'disabled');
@@ -259,6 +272,8 @@ describe('Post tests', () => {
                 cy.get('[class*="swiper-slide-active"]').within(() => {
                     cy.get('img[src*="62caeb2286cc3"]').should('be.visible');
                 });
+
+                cy.checkPageA11y();
             });
     });
 

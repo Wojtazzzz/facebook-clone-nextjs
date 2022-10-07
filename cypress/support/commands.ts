@@ -1,3 +1,4 @@
+import type { Result } from 'axe-core';
 import 'cypress-file-upload';
 import type { IUserExtended } from './types';
 
@@ -44,7 +45,7 @@ Cypress.Commands.add('friendsListItems', () =>
     cy.get('a[href*="/profile"][aria-label^="See "][aria-label$=" profile"]')
 );
 
-Cypress.Commands.add('getPosts', () => cy.get('article[aria-label="Post"]'));
+Cypress.Commands.add('getPosts', () => cy.get('article[aria-label*="\'s post"]'));
 Cypress.Commands.add('getNavSearch', () => cy.get('nav[data-testid="nav"] [data-testid="nav-search"]'));
 
 Cypress.Commands.add('showAlertModal', () => {
@@ -65,7 +66,7 @@ Cypress.Commands.add('showAlertModal', () => {
     cy.wait('@user');
     cy.wait('@posts_page_1');
 
-    cy.get('article[aria-label="Post"]')
+    cy.get('article[aria-label*="\'s post"]')
         .first()
         .within(() => {
             cy.intercept('/api/posts/1/comments?page=1').as('comments_page_1');
@@ -91,7 +92,7 @@ Cypress.Commands.add('expectAlert', (message: string) => {
 });
 
 Cypress.Commands.add('openUpdatePostModal', () => {
-    cy.get('article[aria-label="Post"]')
+    cy.get('article[aria-label*="\'s post"]')
         .first()
         .within(() => {
             cy.get('[aria-label="Show post settings"]').click();
@@ -125,6 +126,39 @@ Cypress.Commands.add('getScrollToTop', () => {
     cy.get('button[aria-label="Scroll page to top"]');
 });
 
+const callback = (violations: Result[]) => {
+    const severityIndicators = {
+        minor: '⚪',
+        moderate: '🟡',
+        serious: '🟠',
+        critical: '🔴',
+    } as const;
+
+    violations.forEach((violation) => {
+        const nodes = Cypress.$(violation.nodes.map((node: any) => node.target).join(','));
+
+        Cypress.log({
+            name: violation.impact ? `${severityIndicators[violation.impact]} A11Y` : '---',
+            consoleProps: () => violation,
+            $el: nodes,
+            message: `[${violation.help}](${violation.helpUrl})` as any,
+        });
+
+        violation.nodes.forEach(({ target }) => {
+            Cypress.log({
+                name: '🔧',
+                consoleProps: () => violation,
+                $el: Cypress.$(target.join(',')),
+                message: target,
+            });
+        });
+    });
+};
+
+Cypress.Commands.add('checkPageA11y', () => {
+    cy.checkA11y(undefined, undefined, callback);
+});
+
 declare global {
     namespace Cypress {
         interface Chainable {
@@ -140,6 +174,7 @@ declare global {
             createUser(amount?: number, asFriend?: boolean, params?: Partial<IUserExtended>): Chainable<void>;
             createFriendship(amount?: number, forUser?: number): Chainable<void>;
             getScrollToTop(): Chainable<void>;
+            checkPageA11y(): void;
         }
     }
 }

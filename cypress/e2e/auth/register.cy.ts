@@ -16,7 +16,12 @@ describe('Register tests', () => {
 
         cy.wait('@user');
 
+        cy.injectAxe();
+
         cy.contains("Don't have an account?").click();
+
+        cy.checkPageA11y();
+
         cy.get('button').contains('Create random user').click();
 
         cy.intercept('/api/user').as('secondUser');
@@ -42,6 +47,7 @@ describe('Register tests', () => {
         cy.wait('@register');
 
         cy.url().should('eq', `${APP_URL}/login`);
+
         cy.contains('Something went wrong, please try again later');
     });
 });

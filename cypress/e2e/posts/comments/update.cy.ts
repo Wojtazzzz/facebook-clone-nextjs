@@ -42,8 +42,11 @@ describe('Posts comments update tests', () => {
         cy.intercept('/api/posts?page=1').as('posts_page_1');
 
         cy.visit('/');
+
         cy.wait('@user');
         cy.wait('@posts_page_1');
+
+        cy.injectAxe();
 
         cy.getPosts()
             .first()
@@ -51,6 +54,7 @@ describe('Posts comments update tests', () => {
                 cy.intercept('/api/posts/1/comments?page=1').as('comments_page_1');
 
                 cy.get('[aria-label="Comment"]').click();
+
                 cy.wait('@comments_page_1');
 
                 cy.get('article[aria-label="Comment"]').should('have.length', 3);
@@ -63,6 +67,9 @@ describe('Posts comments update tests', () => {
                         cy.get('button[aria-label="Edit"]').click();
 
                         cy.get('[aria-label="Update a comment"]').clear().type(newContent);
+
+                        cy.checkPageA11y();
+
                         cy.get('[aria-label="Send updated comment"]').click();
                     });
 
@@ -73,6 +80,8 @@ describe('Posts comments update tests', () => {
                 cy.get('article[aria-label="Comment"]').contains(initialContent).should('not.exist');
                 cy.get('article[aria-label="Comment"]').contains(firstComment).should('be.visible');
                 cy.get('article[aria-label="Comment"]').contains(secondComment).should('be.visible');
+
+                cy.checkPageA11y();
             });
     });
 
@@ -87,8 +96,11 @@ describe('Posts comments update tests', () => {
         cy.intercept('/api/posts?page=1').as('posts_page_1');
 
         cy.visit('/');
+
         cy.wait('@user');
         cy.wait('@posts_page_1');
+
+        cy.injectAxe();
 
         cy.getPosts()
             .first()
@@ -118,6 +130,8 @@ describe('Posts comments update tests', () => {
             cy.contains('App Error');
             cy.contains('Something went wrong, please try again later.');
         });
+
+        cy.checkPageA11y();
     });
 
     it("cannot see Edit button on somebody's comment", () => {

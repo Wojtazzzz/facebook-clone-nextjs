@@ -6,5 +6,5 @@ interface TriggerProps {
 }
 
 export const Trigger = ({ children }: TriggerProps) => {
-    return <ReactTooltip.Trigger>{children}</ReactTooltip.Trigger>;
+    return <ReactTooltip.Trigger aria-label="Show likes">{children}</ReactTooltip.Trigger>;
 };

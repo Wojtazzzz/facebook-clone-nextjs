@@ -15,8 +15,8 @@ export const PanelButton = ({ title, icon, isActive = false, callback }: PanelBu
             aria-label={title}
             title={title}
             className={clsx(
-                'w-1/3 flex justify-center items-center gap-1.5 text-sm md:text-base font-medium hover:bg-dark-100 rounded-lg py-2',
-                isActive ? 'text-primary' : 'text-light-100'
+                'w-1/3 flex justify-center items-center gap-1.5 text-sm md:text-base font-medium tracking-wide hover:bg-dark-100 rounded-lg py-2',
+                isActive ? 'text-primary-light' : 'text-light-100'
             )}
             onClick={callback}
         >

@@ -12,7 +12,7 @@ interface LinkProps {
 
 export const Link = ({ title, link, icon, target = '_self' }: LinkProps) => {
     return (
-        <li>
+        <li role="menuitem">
             <NextLink href={link}>
                 <a
                     target={target}

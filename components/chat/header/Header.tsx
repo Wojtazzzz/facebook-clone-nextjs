@@ -8,9 +8,9 @@ interface HeaderProps {
 
 export const Header = ({ name, profileImage }: HeaderProps) => {
     return (
-        <header className="w-full flex justify-between text-light-200 shadow-md p-3">
+        <section aria-label="Chat header" className="w-full flex justify-between text-light-200 shadow-md p-3">
             <FriendInfo name={name} profileImage={profileImage} />
             <CloseChat />
-        </header>
+        </section>
     );
 };

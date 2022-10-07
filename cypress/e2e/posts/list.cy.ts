@@ -8,13 +8,13 @@ describe('Posts list tests', () => {
     });
 
     it("user see own post and friend's post but can't see stranger's post", () => {
-        // User's post
+        /* User's post */
         cy.create('Post', {
             author_id: 1,
             content: 'Users post',
         });
 
-        // Friend's post
+        /* Friend's post */
         cy.create('Post', {
             content: 'Friends post',
         }).then((post) => {
@@ -25,7 +25,7 @@ describe('Posts list tests', () => {
             });
         });
 
-        // Stranger's post
+        /* Stranger's post */
         cy.create('Post', {
             content: 'Strangers post',
         });
@@ -34,12 +34,17 @@ describe('Posts list tests', () => {
         cy.intercept('/api/posts?page=1').as('posts_page_1');
 
         cy.visit('/');
+
         cy.wait('@user');
         cy.wait('@posts_page_1');
 
+        cy.injectAxe();
+
         cy.getPosts().filter(`:contains("Users post")`).should('be.visible');
         cy.getPosts().filter(`:contains("Friends post")`).should('be.visible');
-        cy.getPosts().filter(`:contains("Stranges post")`).should('not.exist');
+        cy.getPosts().filter(`:contains("Strangers post")`).should('not.exist');
+
+        cy.checkPageA11y();
     });
 
     it('hidden posts are not displayed on list', () => {
@@ -111,8 +116,13 @@ describe('Posts list tests', () => {
         cy.wait('@user');
         cy.wait('@posts_page_1');
 
+        cy.injectAxe();
+
         cy.getPosts().should('not.exist');
+
         cy.get('[data-testid="empty-list"]').should('be.visible');
+
+        cy.checkPageA11y();
     });
 
     it('list render error component when api return server error', () => {
@@ -124,8 +134,13 @@ describe('Posts list tests', () => {
         cy.wait('@user');
         cy.wait('@posts_page_1');
 
+        cy.injectAxe();
+
         cy.getPosts().should('not.exist');
+
         cy.get('[data-testid="server-error"]').should('be.visible');
+
+        cy.checkPageA11y();
     });
 
     it('see 10 posts, load more by scrolling to bottom, click on ScrollToTop button', () => {
@@ -141,6 +156,8 @@ describe('Posts list tests', () => {
         cy.wait('@user');
         cy.wait('@posts_page_1');
 
+        cy.injectAxe();
+
         cy.getPosts().should('have.length', 10);
 
         cy.window().scrollTo('bottom');
@@ -150,6 +167,8 @@ describe('Posts list tests', () => {
         cy.window().scrollTo('bottom');
 
         cy.getPosts().should('have.length', 30);
+
+        cy.checkPageA11y();
 
         cy.getScrollToTop().click();
 

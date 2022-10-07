@@ -1,3 +1,4 @@
+import { injectAxe } from 'cypress-axe';
 import { useDatabaseMigrations } from 'cypress-laravel';
 
 const months = [
@@ -51,9 +52,13 @@ describe('Profile board tests', () => {
         cy.wait('@user');
         cy.wait('@posts');
 
+        cy.injectAxe();
+
         cy.get('button[aria-label="Create a post"]').should('be.visible');
         cy.get('[aria-label="Change list of posts"]').should('be.visible');
         cy.getPosts().should('have.length', 2);
+
+        cy.checkPageA11y();
     });
 
     it('see empty list of own posts, change list to hidden posts and see 3 hidden post, change list to saved posts and see 4 saved posts, change list to own posts and again see 0 posts', () => {
@@ -75,17 +80,25 @@ describe('Profile board tests', () => {
         cy.wait('@user');
         cy.wait('@posts');
 
+        cy.injectAxe();
+
         cy.getPosts().should('not.exist');
+
+        cy.checkPageA11y();
 
         cy.get('[aria-label="Change list of posts"]').select('Hidden posts');
         cy.wait('@hiddenPosts');
 
         cy.getPosts().should('have.length', 3);
 
+        cy.checkPageA11y();
+
         cy.get('[aria-label="Change list of posts"]').select('Saved posts');
         cy.wait('@savedPosts');
 
         cy.getPosts().should('have.length', 4);
+
+        cy.checkPageA11y();
 
         cy.get('[aria-label="Change list of posts"]').select('Own posts');
 
@@ -101,7 +114,11 @@ describe('Profile board tests', () => {
         cy.wait('@user');
         cy.wait('@posts');
 
+        cy.injectAxe();
+
         cy.getPosts().should('not.exist');
+
+        cy.checkPageA11y();
 
         cy.get('button[aria-label="Create a post"]').click();
         cy.get('[data-testid="createPostModal"]').should('be.visible');
@@ -119,6 +136,8 @@ describe('Profile board tests', () => {
 
         cy.getPosts().should('have.length', 1);
         cy.getPosts().first().should('contain.text', 'New post');
+
+        cy.checkPageA11y();
     });
 
     it('see 10 own posts on list, fetch more by scroll to bottom, click on ScrollToTop button', () => {
@@ -134,11 +153,17 @@ describe('Profile board tests', () => {
         cy.wait('@user');
         cy.wait('@posts_page_1');
 
+        cy.injectAxe();
+
         cy.getPosts().should('have.length', 10);
+
+        cy.checkPageA11y();
 
         cy.window().scrollTo('bottom');
 
         cy.getPosts().should('have.length', 19);
+
+        cy.checkPageA11y();
 
         cy.getScrollToTop().click();
 
@@ -193,10 +218,14 @@ describe('Profile board tests', () => {
         cy.wait('@user');
         cy.wait('@posts_page_1');
 
+        cy.injectAxe();
+
         cy.getPosts().should('have.length', 1);
         cy.getPosts().within(() => {
             cy.intercept('/api/posts/1/likes').as('like');
             cy.intercept('/api/posts/?page=1').as('posts_page_1');
+
+            cy.checkPageA11y();
 
             cy.get('[aria-label="Like"]').click();
 
@@ -204,6 +233,8 @@ describe('Profile board tests', () => {
             cy.wait('@posts_page_1');
 
             cy.get('[data-testid="post-likesCount"]').should('contain.text', 1);
+
+            cy.checkPageA11y();
 
             cy.intercept('/api/posts/1/comments?page=1').as('comments_page_1');
 
@@ -213,10 +244,16 @@ describe('Profile board tests', () => {
             cy.intercept('/api/posts/1/comments?page=1').as('comments_page_1');
 
             cy.get('[aria-label="Write a comment"]').type('New comment');
+
+            cy.checkPageA11y();
+
             cy.get('[aria-label="Send comment"]').click();
+
             cy.wait('@comments_page_1');
 
             cy.get('[data-testid="post-comments_list"]').children().should('have.length', 1);
+
+            cy.checkPageA11y();
         });
     });
 
@@ -266,12 +303,16 @@ describe('Profile board tests', () => {
         cy.wait('@user');
         cy.wait('@posts_page_1');
 
+        cy.injectAxe();
+
         cy.intercept('/api/saved/posts').as('save');
 
         cy.getPosts().should('have.length', 1);
         cy.getPosts().within(() => {
             cy.get('[aria-label="Show post settings"]').click();
         });
+
+        cy.checkPageA11y();
 
         cy.get('[aria-label="Settings"]').within(() => {
             cy.get('[aria-label="Save"]').click();
@@ -281,6 +322,8 @@ describe('Profile board tests', () => {
 
         cy.visit('/profile/1');
 
+        cy.injectAxe();
+
         cy.intercept('/api/saved/posts?page=1').as('posts_page_1');
 
         cy.get('[aria-label="Change list of posts"]').select('Saved posts');
@@ -288,6 +331,8 @@ describe('Profile board tests', () => {
 
         cy.intercept('/api/saved/posts/1').as('unsave');
         cy.intercept('/api/saved/posts?page=1').as('posts_page_1');
+
+        cy.checkPageA11y();
 
         cy.getPosts().should('have.length', 1);
         cy.getPosts().within(() => {
@@ -302,6 +347,8 @@ describe('Profile board tests', () => {
         cy.wait('@posts_page_1');
 
         cy.getPosts().should('have.length', 0);
+
+        cy.checkPageA11y();
     });
 
     it("visit friend's profile, hide post, wait for post dissapear from list, check that post displays on list of hidden posts, unhide post, check for post dissapear from list, check post displays on friends profile", () => {
@@ -318,6 +365,8 @@ describe('Profile board tests', () => {
 
         cy.wait('@user');
         cy.wait('@posts_page_1');
+
+        cy.injectAxe();
 
         cy.intercept('/api/hidden/posts').as('hide');
         cy.intercept('/api/users/2/posts?page=1').as('posts_page_1');
@@ -336,7 +385,11 @@ describe('Profile board tests', () => {
 
         cy.getPosts().should('have.length', 0);
 
+        cy.checkPageA11y();
+
         cy.visit('/profile/1');
+
+        cy.injectAxe();
 
         cy.intercept('/api/hidden/posts?page=1').as('posts_page_1');
 
@@ -360,6 +413,8 @@ describe('Profile board tests', () => {
 
         cy.getPosts().should('have.length', 0);
 
+        cy.checkPageA11y();
+
         cy.intercept('/api/users/2/posts?page=1').as('posts_page_1');
 
         cy.visit('/profile/2');
@@ -367,7 +422,11 @@ describe('Profile board tests', () => {
         cy.wait('@user');
         cy.wait('@posts_page_1');
 
+        cy.injectAxe();
+
         cy.getPosts().should('have.length', 1);
+
+        cy.checkPageA11y();
     });
 
     it('change list to hidden posts, like hidden post, comment hidden post, change list to saved posts, like saved post, comment saved post', () => {

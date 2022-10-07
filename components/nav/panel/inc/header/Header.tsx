@@ -8,7 +8,9 @@ interface HeaderProps {
 export const Header = ({ title, close }: HeaderProps) => {
     return (
         <header className="w-full flex justify-between">
-            <span className="text-2xl text-gray-300 font-bold">{title}</span>
+            <h3 id="nav-popover-header" className="text-2xl text-gray-300 font-bold">
+                {title}
+            </h3>
 
             <Close close={close} />
         </header>

@@ -1,7 +1,7 @@
 {
     "extends": "../tsconfig.json",
     "compilerOptions": {
-        "types": ["node", "cypress", "cypress-file-upload"]
+        "types": ["node", "cypress", "cypress-file-upload", "cypress-axe"]
     },
     "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "../cypress.config.ts"],
     "exclude": ["node_modules", "tests/e2e"]

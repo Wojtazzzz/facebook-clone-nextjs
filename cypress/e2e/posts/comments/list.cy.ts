@@ -25,8 +25,11 @@ describe('Posts comments list tests', () => {
         cy.intercept('/api/posts?page=1').as('posts_page_1');
 
         cy.visit('/');
+
         cy.wait('@user');
         cy.wait('@posts_page_1');
+
+        cy.injectAxe();
 
         cy.getPosts()
             .first()
@@ -40,12 +43,16 @@ describe('Posts comments list tests', () => {
 
                 cy.intercept('/api/posts/1/comments?page=2').as('comments_page_2');
 
+                cy.checkPageA11y();
+
                 cy.get('button[aria-label="Load more comments"]').click();
 
                 cy.wait('@comments_page_2');
 
                 cy.get('[data-testid="post-comments_list"]').children().should('have.length', 15);
                 cy.get('button[aria-label="Load more comments"]').should('not.exist');
+
+                cy.checkPageA11y();
             });
     });
 
@@ -54,8 +61,11 @@ describe('Posts comments list tests', () => {
         cy.intercept('/api/posts?page=1').as('posts_page_1');
 
         cy.visit('/');
+
         cy.wait('@user');
         cy.wait('@posts_page_1');
+
+        cy.injectAxe();
 
         cy.getPosts()
             .first()
@@ -68,6 +78,8 @@ describe('Posts comments list tests', () => {
                 cy.get('article[aria-label="Comment"]').should('not.exist');
                 cy.get('[data-testid="empty-list"]').should('not.exist');
             });
+
+        cy.checkPageA11y();
     });
 
     it('list render error component when api return server error', () => {
@@ -75,8 +87,11 @@ describe('Posts comments list tests', () => {
         cy.intercept('/api/posts?page=1').as('posts_page_1');
 
         cy.visit('/');
+
         cy.wait('@user');
         cy.wait('@posts_page_1');
+
+        cy.injectAxe();
 
         cy.getPosts()
             .first()
@@ -89,6 +104,8 @@ describe('Posts comments list tests', () => {
                 cy.get('article[aria-label="Comment"]').should('not.exist');
                 cy.get('[data-testid="server-error"]').should('be.visible');
             });
+
+        cy.checkPageA11y();
     });
 
     it('cannot see comments and create new one when post has disabled commenting', () => {
@@ -109,8 +126,11 @@ describe('Posts comments list tests', () => {
         cy.intercept('/api/posts?page=1').as('posts_page_1');
 
         cy.visit('/');
+
         cy.wait('@user');
         cy.wait('@posts_page_1');
+
+        cy.injectAxe();
 
         cy.getPosts()
             .filter(':contains("Post with disabled commenting")')
@@ -122,6 +142,8 @@ describe('Posts comments list tests', () => {
                 cy.get('article[aria-label="Comment"]').should('not.exist');
                 cy.get('[aria-label="Write a comment"]').should('not.exist');
             });
+
+        cy.checkPageA11y();
     });
 
     it("cannot see 'Delete' and 'Edit' buttons on somebody's comment but see 'Like' and 'Reply' buttons", () => {

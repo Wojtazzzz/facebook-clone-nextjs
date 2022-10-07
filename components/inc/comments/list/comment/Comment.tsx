@@ -20,7 +20,7 @@ export const Comment = ({
 
     return (
         <article aria-label="Comment" className="w-full flex gap-2 px-2 md:px-3 py-1">
-            <Author id={author.id} profileImage={author.profile_image} />
+            <Author id={author.id} name={author.name} profileImage={author.profile_image} />
 
             <div className="w-full flex flex-col gap-1">
                 <Content

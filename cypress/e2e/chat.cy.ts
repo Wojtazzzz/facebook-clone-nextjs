@@ -29,6 +29,10 @@ describe('Chat tests', () => {
         cy.wait('@user');
         cy.wait('@contacts_page_1');
 
+        cy.injectAxe();
+
+        cy.checkPageA11y();
+
         cy.get('[data-testid="contacts-list"]').within(() => {
             cy.contains(`${friend.first_name} ${friend.last_name}`).click();
         });
@@ -38,6 +42,8 @@ describe('Chat tests', () => {
         cy.get('[data-testid="chat"]').should('be.visible');
         cy.get('[data-testid="chat"] header').contains(`${friend.first_name} ${friend.last_name}`);
         cy.contains('Say hello to your friend!');
+
+        cy.checkPageA11y();
 
         // Creating first message
         cy.wait('@chatAuth');
@@ -51,10 +57,15 @@ describe('Chat tests', () => {
             cy.contains('Hello World!');
         });
 
+        cy.checkPageA11y();
+
         // Creating second message
         cy.intercept('/api/messages').as('messages');
 
         cy.get('input[aria-label="Message input"]').type('Hello World second time');
+
+        cy.checkPageA11y();
+
         cy.get('[aria-label="Submit message"]').click();
 
         cy.wait('@messages');
@@ -62,6 +73,8 @@ describe('Chat tests', () => {
         cy.get('[data-testid="chat"]').within(() => {
             cy.contains('Hello World second time');
         });
+
+        cy.checkPageA11y();
 
         cy.get('[aria-label="Close chat"]').click();
         cy.get('[data-testid="chat"]').should('not.exist');
@@ -72,6 +85,8 @@ describe('Chat tests', () => {
         cy.intercept('/api/broadcasting/auth').as('chatAuth');
 
         cy.visit('/');
+
+        cy.injectAxe();
 
         cy.wait('@user');
         cy.wait('@contacts_page_1');
@@ -84,6 +99,8 @@ describe('Chat tests', () => {
 
         cy.get('[data-testid="chat"]').should('be.visible');
 
+        cy.checkPageA11y();
+
         // Creating first message
         cy.wait('@chatAuth');
         cy.intercept('/api/messages', { statusCode: 500 }).as('messages');
@@ -95,6 +112,8 @@ describe('Chat tests', () => {
         cy.get('[data-testid="chat"]').should('not.contain.text', 'Hello World!');
         cy.get('[data-testid="chat"]').should('contain.text', 'Something went wrong, please try again later');
 
+        cy.checkPageA11y();
+
         // Creating second message
         cy.intercept('/api/messages', { statusCode: 201 }).as('messages');
 
@@ -104,6 +123,8 @@ describe('Chat tests', () => {
 
         cy.get('[data-testid="chat"]').should('contain.text', 'Second approach');
         cy.get('[data-testid="chat"]').should('not.contain.text', 'Something went wrong, please try again later');
+
+        cy.checkPageA11y();
     });
 
     it('open chat, generate api error, close chat, open same chat, api error is not showing', () => {
@@ -155,6 +176,8 @@ describe('Chat tests', () => {
         cy.wait('@user');
         cy.wait('@contacts_page_1');
 
+        cy.injectAxe();
+
         cy.get('[data-testid="contacts-list"]').within(() => {
             cy.contains(`${friend.first_name} ${friend.last_name}`).click();
         });
@@ -170,11 +193,15 @@ describe('Chat tests', () => {
 
         cy.get('[aria-label="Choose an emoji"]').click();
 
+        cy.checkPageA11y();
+
         cy.get('[aria-label="Emojis list"]').within(() => {
             cy.get('button').contains('👋').click();
         });
 
         cy.get('input[aria-label="Message input"]').should('have.value', 'Hello 👋');
+
+        cy.checkPageA11y();
 
         cy.get('[aria-label="Submit message"]').click();
 
@@ -183,6 +210,8 @@ describe('Chat tests', () => {
         cy.get('[data-testid="chat"]').within(() => {
             cy.contains('Hello 👋');
         });
+
+        cy.checkPageA11y();
     });
 
     it('emojis list can be closed by pressing esc', () => {
@@ -246,6 +275,8 @@ describe('Chat tests', () => {
         cy.wait('@user');
         cy.wait('@contacts_page_1');
 
+        cy.injectAxe();
+
         cy.get('[data-testid="contacts-list"]').within(() => {
             cy.contains(`${friend.first_name} ${friend.last_name}`).click();
         });
@@ -254,11 +285,15 @@ describe('Chat tests', () => {
 
         cy.get('[data-testid="chat"]').should('be.visible');
 
+        cy.checkPageA11y();
+
         cy.get('[aria-label="Send like"]').click();
 
         cy.get('[data-testid="chat"]').within(() => {
             cy.contains('👍');
         });
+
+        cy.checkPageA11y();
     });
 
     it('send message which contain only emojis', () => {
@@ -269,6 +304,8 @@ describe('Chat tests', () => {
 
         cy.wait('@user');
         cy.wait('@contacts_page_1');
+
+        cy.injectAxe();
 
         cy.get('[data-testid="contacts-list"]').within(() => {
             cy.contains(`${friend.first_name} ${friend.last_name}`).click();
@@ -282,6 +319,8 @@ describe('Chat tests', () => {
         cy.intercept('/api/messages').as('messages');
 
         cy.get('[aria-label="Choose an emoji"]').click();
+
+        cy.checkPageA11y();
 
         cy.get('[aria-label="Emojis list"]').within(() => {
             cy.get('button').contains('😃').click();
@@ -298,6 +337,8 @@ describe('Chat tests', () => {
 
         cy.get('input[aria-label="Message input"]').should('have.value', '😃😅🤣🙂🥰😝😏😭👍❤️');
 
+        cy.checkPageA11y();
+
         cy.get('[aria-label="Submit message"]').click();
 
         cy.wait('@messages');
@@ -305,6 +346,8 @@ describe('Chat tests', () => {
         cy.get('[data-testid="chat"]').within(() => {
             cy.contains('😃😅🤣🙂🥰😝😏😭👍❤️');
         });
+
+        cy.checkPageA11y();
     });
 
     it('upload image to message, img show in input and in conversation after submit', () => {
@@ -315,6 +358,8 @@ describe('Chat tests', () => {
 
         cy.wait('@user');
         cy.wait('@contacts_page_1');
+
+        cy.injectAxe();
 
         cy.get('[data-testid="contacts-list"]').within(() => {
             cy.contains(`${friend.first_name} ${friend.last_name}`).click();
@@ -331,6 +376,8 @@ describe('Chat tests', () => {
 
         cy.get('[data-testid="chat-uploadedImages"]').children().should('have.length', 1);
 
+        cy.checkPageA11y();
+
         cy.get('button[aria-label="Submit message"]').click();
 
         cy.wait('@messages');
@@ -340,6 +387,8 @@ describe('Chat tests', () => {
                 cy.get('img').should('exist');
             });
         });
+
+        cy.checkPageA11y();
     });
 
     it('upload 3 images, remove 1, submit, see image with 2 images in conversation', () => {
@@ -350,6 +399,8 @@ describe('Chat tests', () => {
 
         cy.wait('@user');
         cy.wait('@contacts_page_1');
+
+        cy.injectAxe();
 
         cy.get('[data-testid="contacts-list"]').within(() => {
             cy.contains(`${friend.first_name} ${friend.last_name}`).click();
@@ -373,6 +424,8 @@ describe('Chat tests', () => {
             });
         cy.get('[data-testid="chat-uploadedImages"]').children().should('have.length', 2);
 
+        cy.checkPageA11y();
+
         cy.get('button[aria-label="Submit message"]').click();
 
         cy.wait('@messages');
@@ -382,6 +435,8 @@ describe('Chat tests', () => {
                 cy.get('img').should('have.length', 2);
             });
         });
+
+        cy.checkPageA11y();
     });
 
     it('create message with text and images', () => {
@@ -392,6 +447,8 @@ describe('Chat tests', () => {
 
         cy.wait('@user');
         cy.wait('@contacts_page_1');
+
+        cy.injectAxe();
 
         cy.get('[data-testid="contacts-list"]').within(() => {
             cy.contains(`${friend.first_name} ${friend.last_name}`).click();
@@ -409,6 +466,8 @@ describe('Chat tests', () => {
         cy.get('input[type="file"]').attachFile(['/postImage1.jpg', '/postImage2.jpg']);
         cy.get('[data-testid="chat-uploadedImages"]').children().should('have.length', 2);
 
+        cy.checkPageA11y();
+
         cy.get('button[aria-label="Submit message"]').click();
 
         cy.wait('@messages');
@@ -419,6 +478,8 @@ describe('Chat tests', () => {
                 cy.get('img').should('have.length', 2);
             });
         });
+
+        cy.checkPageA11y();
     });
 
     it('cannot create message with invalid type of file', () => {
@@ -467,6 +528,8 @@ describe('Chat tests', () => {
         cy.wait('@user');
         cy.wait('@contacts_page_1');
 
+        cy.injectAxe();
+
         cy.get('[data-testid="contacts-list"]').within(() => {
             cy.contains(`${friend.first_name} ${friend.last_name}`).click();
         });
@@ -479,6 +542,9 @@ describe('Chat tests', () => {
         cy.intercept('/api/messages').as('messages');
 
         cy.get('input[aria-label="Message input"]').type('Hello');
+
+        cy.checkPageA11y();
+
         cy.get('button[aria-label="Submit message"]').click();
 
         cy.wait('@messages');
@@ -487,14 +553,16 @@ describe('Chat tests', () => {
             cy.get('article[aria-label="Message sent"]').contains('Hello');
         });
 
-        cy.relogin(999);
+        cy.checkPageA11y();
 
         cy.intercept(`/api/messages/1?page=1`).as('messages_page_1');
 
-        cy.visit('/');
+        cy.relogin(999);
 
         cy.wait('@user');
         cy.wait('@contacts_page_1');
+
+        cy.injectAxe();
 
         cy.get('[data-testid="contacts-list"]').within(() => {
             cy.contains(USER_NAME).click();
@@ -509,6 +577,9 @@ describe('Chat tests', () => {
         });
 
         cy.get('input[aria-label="Message input"]').type('Hi');
+
+        cy.checkPageA11y();
+
         cy.get('button[aria-label="Submit message"]').click();
 
         cy.wait('@messages');
@@ -518,14 +589,16 @@ describe('Chat tests', () => {
             cy.get('article[aria-label="Message sent"]').contains('Hi');
         });
 
-        cy.relogin(1);
+        cy.checkPageA11y();
 
         cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
 
-        cy.visit('/');
+        cy.relogin(1);
 
         cy.wait('@user');
         cy.wait('@contacts_page_1');
+
+        cy.injectAxe();
 
         cy.get('[data-testid="contacts-list"]').within(() => {
             cy.contains(`${friend.first_name} ${friend.last_name}`).click();
@@ -541,6 +614,9 @@ describe('Chat tests', () => {
         });
 
         cy.get('input[aria-label="Message input"]').type('How are you?');
+
+        cy.checkPageA11y();
+
         cy.get('button[aria-label="Submit message"]').click();
 
         cy.wait('@messages');
@@ -551,14 +627,14 @@ describe('Chat tests', () => {
             cy.get('article[aria-label="Message sent"]').contains('How are you?');
         });
 
-        cy.relogin(999);
-
         cy.intercept(`/api/messages/1?page=1`).as('messages_page_1');
 
-        cy.visit('/');
+        cy.relogin(999);
 
         cy.wait('@user');
         cy.wait('@contacts_page_1');
+
+        cy.injectAxe();
 
         cy.get('[data-testid="contacts-list"]').within(() => {
             cy.contains(USER_NAME).click();
@@ -586,14 +662,16 @@ describe('Chat tests', () => {
             cy.get('article[aria-label="Message sent"]').contains('Nice thanks');
         });
 
-        cy.relogin(1);
+        cy.checkPageA11y();
 
         cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
 
-        cy.visit('/');
+        cy.relogin(1);
 
         cy.wait('@user');
         cy.wait('@contacts_page_1');
+
+        cy.injectAxe();
 
         cy.get('[data-testid="contacts-list"]').within(() => {
             cy.contains(`${friend.first_name} ${friend.last_name}`).click();
@@ -609,6 +687,8 @@ describe('Chat tests', () => {
             cy.get('article[aria-label="Message sent"]').contains('How are you');
             cy.get('article[aria-label="Message received"]').contains('Nice thanks');
         });
+
+        cy.checkPageA11y();
     });
 
     it('message has sent status icon after sent, received status after created, seen status after user read that message', () => {

@@ -29,11 +29,15 @@ describe('Profile friends tests', () => {
 
         cy.wait('@user');
 
+        cy.injectAxe();
+
         cy.get('[data-testid="asideInfo-friends"]').within(() => {
             cy.get('ul')
                 .children()
                 .should('have.length', 2 + 1);
         });
+
+        cy.checkPageA11y();
 
         cy.intercept('/api/user').as('user');
 
@@ -41,11 +45,15 @@ describe('Profile friends tests', () => {
 
         cy.wait('@user');
 
+        cy.injectAxe();
+
         cy.get('[data-testid="asideInfo-friends"]').within(() => {
             cy.get('ul')
                 .children()
                 .should('have.length', 3 + 1);
         });
+
+        cy.checkPageA11y();
 
         cy.intercept('/api/user').as('user');
 
@@ -53,9 +61,13 @@ describe('Profile friends tests', () => {
 
         cy.wait('@user');
 
+        cy.injectAxe();
+
         cy.get('[data-testid="asideInfo-friends"]').within(() => {
             cy.get('ul').children().should('have.length', 5);
         });
+
+        cy.checkPageA11y();
     });
 
     it("see one friend in friend's profile, redirect to his profile by click on him", () => {
@@ -84,10 +96,14 @@ describe('Profile friends tests', () => {
 
         cy.wait('@user');
 
+        cy.injectAxe();
+
         cy.get('[data-testid="asideInfo-friends"]').within(() => {
             cy.get('img[alt="List is empty"]').should('be.visible');
             cy.contains('No friends to display');
         });
+
+        cy.checkPageA11y();
     });
 
     it('see error component instead of list of friends when api return server error', () => {
@@ -97,11 +113,15 @@ describe('Profile friends tests', () => {
 
         cy.wait('@friends');
 
+        cy.injectAxe();
+
         cy.get('[data-testid="asideInfo-friends"]').within(() => {
             cy.get('img[alt="Server error"]').should('be.visible');
             cy.contains('Something went wrong');
             cy.contains('Please try again later');
         });
+
+        cy.checkPageA11y();
     });
 
     it('render max 9 friends', () => {
@@ -115,8 +135,12 @@ describe('Profile friends tests', () => {
         cy.wait('@user');
         cy.wait('@friends');
 
+        cy.injectAxe();
+
         cy.get('[data-testid="asideInfo-friends"]').within(() => {
             cy.get('ul').children().should('have.length', 9);
         });
+
+        cy.checkPageA11y();
     });
 });

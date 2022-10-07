@@ -25,7 +25,7 @@ export const List = ({ data, isLoading, isError }: ListProps) => {
 
     return (
         <div className="flex flex-col">
-            {LikeComponents}
+            <ul aria-label="Who's like this post">{LikeComponents}</ul>
             {isMore && <span className="text-xs text-light-100">and {data.length - maxCount} more...</span>}
         </div>
     );

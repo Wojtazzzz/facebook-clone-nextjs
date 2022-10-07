@@ -20,13 +20,7 @@ export const Gallery = ({ images, closeGallery }: GalleryProps) => {
     useKey('Escape', closeGallery);
 
     const SlidesComponents = images.map((image, i) => (
-        <SwiperSlide
-            key={i}
-            tag="li"
-            aria-label={`${i + 1} of ${images.length}`}
-            role="group"
-            aria-roledescription="slide"
-        >
+        <SwiperSlide key={i} aria-label={`${i + 1} of ${images.length}`} role="group" aria-roledescription="slide">
             <Slide image={image} />
         </SwiperSlide>
     ));
@@ -42,7 +36,7 @@ export const Gallery = ({ images, closeGallery }: GalleryProps) => {
             slidesPerView={1}
             role="region"
             aria-atomic="false"
-            wrapperTag="ul"
+            wrapperTag="section"
             onImagesReady={setSwiperData}
             onSwiper={setSwiper}
             onSlideChange={setSwiperData}
