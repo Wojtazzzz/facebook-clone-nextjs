@@ -45,7 +45,7 @@ Cypress.Commands.add('friendsListItems', () =>
     cy.get('a[href*="/profile"][aria-label^="See "][aria-label$=" profile"]')
 );
 
-Cypress.Commands.add('getPosts', () => cy.get('article[aria-label="Post"]'));
+Cypress.Commands.add('getPosts', () => cy.get('article[aria-label*="\'s post"]'));
 Cypress.Commands.add('getNavSearch', () => cy.get('nav[data-testid="nav"] [data-testid="nav-search"]'));
 
 Cypress.Commands.add('showAlertModal', () => {
@@ -66,7 +66,7 @@ Cypress.Commands.add('showAlertModal', () => {
     cy.wait('@user');
     cy.wait('@posts_page_1');
 
-    cy.get('article[aria-label="Post"]')
+    cy.get('article[aria-label*="\'s post"]')
         .first()
         .within(() => {
             cy.intercept('/api/posts/1/comments?page=1').as('comments_page_1');
@@ -92,7 +92,7 @@ Cypress.Commands.add('expectAlert', (message: string) => {
 });
 
 Cypress.Commands.add('openUpdatePostModal', () => {
-    cy.get('article[aria-label="Post"]')
+    cy.get('article[aria-label*="\'s post"]')
         .first()
         .within(() => {
             cy.get('[aria-label="Show post settings"]').click();

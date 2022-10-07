@@ -6,8 +6,8 @@ interface DescriptionProps {
 
 export const Description = ({ description }: DescriptionProps) => {
     return (
-        <AlertDialog.Description id="alertDialog-description" className="text-light-100 mt-2">
-            {description}
+        <AlertDialog.Description id="alertDialog-description">
+            <main className="text-light-100 mt-2">{description}</main>
         </AlertDialog.Description>
     );
 };

@@ -17,8 +17,12 @@ describe('Create post tests', () => {
         cy.visit('/');
         cy.wait('@user');
 
+        cy.injectAxe();
+
         cy.get('button[aria-label="Create a post"]').click();
         cy.get('[data-testid="createPostModal"]').should('be.visible');
+
+        cy.checkPageA11y();
 
         cy.intercept('/api/posts').as('create');
         cy.intercept('/api/posts?page=1').as('posts_page_1');
@@ -30,6 +34,8 @@ describe('Create post tests', () => {
         cy.contains('Uploaded images: 1');
         cy.get('ul').contains('postImage1.jpg').should('be.visible');
 
+        cy.checkPageA11y();
+
         cy.get('button[aria-label="Create post"]').click();
 
         cy.wait('@create');
@@ -40,6 +46,8 @@ describe('Create post tests', () => {
         cy.getPosts().first().contains(newPostContent).should('be.visible');
         cy.getPosts().first().contains(USER_NAME);
         cy.get('button[aria-label="Show gallery"] img').should('have.length', 1);
+
+        cy.checkPageA11y();
     });
 
     it('see validation error when try to create post without any content, close modal by click on close button, on refreshed page can see empty list', () => {
@@ -47,6 +55,7 @@ describe('Create post tests', () => {
 
         cy.visit('/');
         cy.wait('@user');
+        cy.injectAxe();
 
         cy.get('button[aria-label="Create a post"]').click();
 
@@ -54,6 +63,8 @@ describe('Create post tests', () => {
             cy.get('button[aria-label="Create post"]').click();
 
             cy.contains('Post must contain text or image(s)').should('be.visible');
+
+            cy.checkPageA11y();
 
             cy.get('button[aria-label="Close modal"]').should('be.visible').click();
         });
@@ -69,8 +80,12 @@ describe('Create post tests', () => {
 
         cy.wait('@posts_page_1');
 
+        cy.injectAxe();
+
         cy.get('[id="posts-list"] article[aria-label="Post"]').should('not.exist');
         cy.get('[data-testid="empty-list"]').should('be.visible');
+
+        cy.checkPageA11y();
     });
 
     it('create new post, response return server error, modal not hide and render api error component, hide modal by press esc', () => {
@@ -78,6 +93,7 @@ describe('Create post tests', () => {
 
         cy.visit('/');
         cy.wait('@user');
+        cy.injectAxe();
 
         cy.get('button[aria-label="Create a post"]').click();
         cy.get('[data-testid="createPostModal"]').should('be.visible');
@@ -99,6 +115,8 @@ describe('Create post tests', () => {
             cy.contains('Something went wrong, please try again later');
         });
 
+        cy.checkPageA11y();
+
         cy.get('[data-testid="createPostModal"]').should('be.visible');
 
         cy.get('body').type('{esc}');
@@ -111,6 +129,8 @@ describe('Create post tests', () => {
 
         cy.visit('/');
         cy.wait('@user');
+
+        cy.injectAxe();
 
         cy.get('button[aria-label="Create a post"]').click();
 
@@ -132,6 +152,8 @@ describe('Create post tests', () => {
                 cy.get('[data-testid="post-author"]').contains(USER_NAME);
                 cy.get('[aria-label="Show gallery"]').should('not.exist');
             });
+
+        cy.checkPageA11y();
     });
 
     it('create post with only images, new post on list not display text content', () => {
@@ -139,6 +161,7 @@ describe('Create post tests', () => {
 
         cy.visit('/');
         cy.wait('@user');
+        cy.injectAxe();
 
         cy.get('button[aria-label="Create a post"]').click();
 
@@ -152,6 +175,8 @@ describe('Create post tests', () => {
             '/postImage3.jpg',
             '/postImage4.jpg',
         ]);
+
+        cy.checkPageA11y();
 
         cy.get('button[aria-label="Create post"]').click();
 
@@ -168,6 +193,8 @@ describe('Create post tests', () => {
                 cy.get('button[aria-label="Show gallery"] img').should('have.length', 2);
                 cy.get('button[aria-label="Show gallery"]').contains('+2');
             });
+
+        cy.checkPageA11y();
     });
 
     it('upload 5 images during creating post and remove 3 before submit, created post contains 3 images', () => {
@@ -175,6 +202,7 @@ describe('Create post tests', () => {
 
         cy.visit('/');
         cy.wait('@user');
+        cy.injectAxe();
 
         cy.get('button[aria-label="Create a post"]').click();
 
@@ -199,6 +227,8 @@ describe('Create post tests', () => {
             cy.contains('postImage5.jpg').should('be.visible');
         });
 
+        cy.checkPageA11y();
+
         cy.get(`button[aria-label="Remove postImage3.jpg from images list"]`).click({ force: true });
         cy.get(`button[aria-label="Remove postImage5.jpg from images list"]`).click({ force: true });
 
@@ -210,6 +240,8 @@ describe('Create post tests', () => {
             cy.contains('postImage4.jpg').should('be.visible');
             cy.contains('postImage5.jpg').should('not.exist');
         });
+
+        cy.checkPageA11y();
 
         cy.get('button[aria-label="Create post"]').click();
 
@@ -224,5 +256,7 @@ describe('Create post tests', () => {
                 cy.get('button[aria-label="Show gallery"] img').should('have.length', 2);
                 cy.get('button[aria-label="Show gallery"]').contains('+1');
             });
+
+        cy.checkPageA11y();
     });
 });

@@ -11,6 +11,7 @@ export const Posts = () => {
     return (
         <div className="w-full max-w-[700px] lg:max-w-[550px] xl:max-w-[700px] flex flex-col gap-3 mx-auto p-3 md:p-5">
             <h1 className="absolute -top-[9999px] -left-[9999px]">Home</h1>
+
             <CreatePost queryKey={queryKey} />
             <PostsList queryKey={queryKey} endpoint={endpoint} />
             <ScrollToTop />

@@ -16,6 +16,7 @@ export const Button = ({
     isDisabled = false,
     isLoading = false,
     callback = undefined,
+    ...rest
 }: ButtonProps) => {
     return (
         <button
@@ -30,6 +31,7 @@ export const Button = ({
                 isLoading && 'opacity-80 hover:opacity-80 cursor-wait'
             )}
             onClick={callback}
+            {...rest}
         >
             {title}
         </button>
