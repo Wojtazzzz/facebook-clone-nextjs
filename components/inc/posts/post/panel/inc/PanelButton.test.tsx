@@ -27,7 +27,7 @@ describe('PanelButton component', () => {
 
         const button = screen.getByRole('button');
 
-        expect(button).toHaveClass('text-primary');
+        expect(button).toHaveClass('text-primary-light');
     });
 
     it('has white text color class when is deactive', () => {

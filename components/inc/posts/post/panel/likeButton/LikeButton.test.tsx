@@ -12,7 +12,7 @@ describe('LikeButton component', () => {
 
         const button = screen.getByLabelText('Like');
 
-        expect(button).toHaveClass('text-primary');
+        expect(button).toHaveClass('text-primary-light');
     });
 
     it('has deactive (white) button when post is not liked', () => {
