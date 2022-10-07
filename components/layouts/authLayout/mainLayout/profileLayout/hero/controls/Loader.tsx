@@ -1,9 +1,5 @@
-import { SpinnerLoader } from '@components/inc/SpinnerLoader';
+import { SkeletonLoading } from '@components/inc/SkeletonLoading';
 
 export const Loader = () => {
-    return (
-        <div className="w-full flex justify-center items-center">
-            <SpinnerLoader containerStyles="w-12" />
-        </div>
-    );
+    return <SkeletonLoading classNames="w-[130px] xl:w-[155px] h-[40px]" />;
 };
