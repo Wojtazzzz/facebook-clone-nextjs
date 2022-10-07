@@ -45,7 +45,7 @@ describe('Messages component', () => {
 
         renderWithDefaultData(<Messages friend={friend} />);
 
-        const emptyComponent = await screen.findByText('Say hello to your friend!');
+        const emptyComponent = await screen.findByText(`Say hello to ${friend.name}!`);
         expect(emptyComponent).toBeInTheDocument();
     });
 

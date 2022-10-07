@@ -12,16 +12,17 @@ interface MessagesProps {
 }
 
 export const Messages = memo<MessagesProps>(({ friend }) => {
-    const { data, isLoading, isError, isEmpty, hasNextPage, fetchNextPage } = useMessages(friend.id);
+    const { id, name, profile_image } = friend;
+    const { data, isLoading, isError, isEmpty, hasNextPage, fetchNextPage } = useMessages(id);
 
     if (isLoading) return <Loader testId="messages-loader_loading" />;
     if (!data || isError) return <ApiError />;
-    if (isEmpty) return <EmptyChat />;
+    if (isEmpty) return <EmptyChat name={name} />;
 
     const lastReadIndex = getLastReadIndex(data);
 
     const MessagesComponents = data.map((message, i) => (
-        <Message senderAvatar={friend.profile_image} isLastRead={i === lastReadIndex} key={message.id} {...message} />
+        <Message senderAvatar={profile_image} isLastRead={i === lastReadIndex} key={message.id} {...message} />
     ));
 
     return (
