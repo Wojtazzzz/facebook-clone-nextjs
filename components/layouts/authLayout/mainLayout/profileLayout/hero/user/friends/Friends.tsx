@@ -23,7 +23,10 @@ export const Friends = ({ userId }: FriendsProps) => {
     return (
         <>
             <Link href={`/profile/${userId}/friends`}>
-                <a className="w-fit xl:text-lg text-light-100 font-medium hover:underline -mt-1.5 mb-1">
+                <a
+                    data-testid="profile-friendsList-count"
+                    className="w-fit xl:text-lg text-light-100 font-medium hover:underline -mt-1.5 mb-1"
+                >
                     {data.count} {data.count === 1 ? 'friend' : 'friends'}
                 </a>
             </Link>

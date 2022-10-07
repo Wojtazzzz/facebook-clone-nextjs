@@ -16,17 +16,23 @@ describe('Profile friends tests', () => {
 
         cy.wait('@user');
 
+        cy.intercept('/api/users/1/friends/getByCount?count=9').as('getByCount');
+
         cy.get('[data-testid="menu"]').contains(USER_NAME).click();
+
+        cy.wait('@getByCount');
+
         cy.url().should('contain', '/profile/1');
 
         cy.injectAxe();
 
         cy.intercept('/api/users/1/friends?search=&page=1').as('friends_page_1');
 
-        cy.get('header a').contains('0 friends').click();
-        cy.url().should('contain', '/profile/1/friends');
+        cy.get('[data-testid="profile-friendsList-count"]').contains('0 friends').click();
 
         cy.wait('@friends_page_1');
+
+        cy.url().should('contain', '/profile/1/friends');
 
         cy.get('section[data-testid="profile-friends"]').within(() => {
             cy.get('header h2').contains('Friends').should('be.visible');
@@ -49,17 +55,18 @@ describe('Profile friends tests', () => {
 
         cy.wait('@user');
 
-        cy.injectAxe();
-
         cy.get('[data-testid="menu"]').contains(USER_NAME).click();
         cy.url().should('contain', '/profile/1');
 
         cy.intercept('/api/users/1/friends?search=&page=1', { statusCode: 500 }).as('friends_page_1');
 
         cy.get('[data-testid="asideInfo-friends"]').contains('See All Friends').click();
-        cy.url().should('contain', '/profile/1/friends');
 
         cy.wait('@friends_page_1');
+
+        cy.url().should('contain', '/profile/1/friends');
+
+        cy.injectAxe();
 
         cy.get('section[data-testid="profile-friends"]').within(() => {
             cy.get('article[aria-label="Friend"]').should('not.exist');
@@ -101,16 +108,17 @@ describe('Profile friends tests', () => {
             });
         });
 
-        cy.url().should('include', '/profile/999');
+        cy.injectAxe();
 
         cy.checkPageA11y();
 
         cy.intercept('/api/users/999/friends?search=&page=1').as('friends_page_1');
 
         cy.get('[data-testid="asideInfo-friends"]').contains('See All Friends').click();
-        cy.url().should('include', '/profile/999/friends');
 
         cy.wait('@friends_page_1');
+
+        cy.injectAxe();
 
         cy.checkPageA11y();
 
@@ -154,25 +162,22 @@ describe('Profile friends tests', () => {
         cy.injectAxe();
 
         cy.get('section[data-testid="profile-friends"]').within(() => {
-            cy.get('article[aria-label="Friend"]').should('have.length', 1).contains('John Doe').click();
+            cy.get('article[aria-label="Friend"]').should('have.length', 1);
+            cy.get('article[aria-label="Friend"]').first().contains('John Doe');
 
             cy.checkPageA11y();
 
-            cy.get('article[aria-label="Friend"]').contains('John Doe').click();
+            cy.get('article[aria-label="Friend"]').first().contains('John Doe').click();
         });
-
-        cy.url().should('include', '/profile/999');
 
         cy.injectAxe();
         cy.checkPageA11y();
 
         cy.intercept('/api/users/999/friends?search=&page=1').as('friends_page_1');
 
-        cy.get('header a').contains('1 friend').click();
+        cy.get('[data-testid="profile-friendsList-count"]').contains('1 friend').click();
 
         cy.wait('@friends_page_1');
-
-        cy.url().should('contain', '/profile/999/friends');
 
         cy.get('section[data-testid="profile-friends"]').within(() => {
             cy.get('article[aria-label="Friend"]')
@@ -224,11 +229,14 @@ describe('Profile friends tests', () => {
             cy.get('input[aria-label="Search friend"]').type('John Doe');
             cy.get('input[aria-label="Search friend"]').should('have.value', 'John Doe');
 
-            cy.get('article[aria-label="Friend"]').should('have.length', 1);
-
             cy.checkPageA11y();
 
-            cy.get('article[aria-label="Friend"]').first().contains('John Doe').click();
+            cy.get('article[aria-label="Friend"]')
+                .should('have.length', 1)
+                .first()
+                .within(() => {
+                    cy.contains('John Doe').click();
+                });
 
             cy.url().should('contain', '/profile/999');
         });
