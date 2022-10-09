@@ -51,12 +51,15 @@ describe('Profile hero tests', () => {
 
         cy.get('[data-testid="profile-friendsList"] img').should('have.length', 1);
 
+        cy.intercept('/api/messages/2?page=1').as('messages_page_1');
+
         cy.get('button[aria-label="Send message"]').click();
 
         cy.get('[data-testid="chat"]').should('be.visible');
-        cy.get('[data-testid="chat"]').within(() => {
-            cy.contains('Say hello to your friend!').should('be.visible');
-        });
+
+        cy.wait('@messages_page_1');
+
+        cy.get('[data-testid="chat-friendInfo"]').should('be.visible');
     });
 
     it('visit friend\'s profile, click "Poke" button, relogin to friend\'s account, see poke in notifications and in pokes list', () => {
