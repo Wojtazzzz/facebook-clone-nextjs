@@ -33,10 +33,10 @@ describe('Profile hero tests', () => {
         cy.url().should('not.eq', `${APP_URL}/profile/1`);
         cy.url().should('include', `${APP_URL}/profile/`);
 
-        cy.get('button[aria-label="Send message"]').should('be.visible');
+        cy.get('button[aria-label="Message"]').should('be.visible');
     });
 
-    it('visit friend\'s profile, see his friends (only one), open chat with him by click on "Send message" button', () => {
+    it('visit friend\'s profile, see his friends (only one), open chat with him by click on "Message" button', () => {
         cy.createFriendship(1);
 
         cy.visit('/profile/2');
@@ -53,7 +53,7 @@ describe('Profile hero tests', () => {
 
         cy.intercept('/api/messages/2?page=1').as('messages_page_1');
 
-        cy.get('button[aria-label="Send message"]').click();
+        cy.get('button[aria-label="Message"]').click();
 
         cy.get('[data-testid="chat"]').should('be.visible');
 
