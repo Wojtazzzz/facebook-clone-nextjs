@@ -10,7 +10,7 @@ export const Header = ({ title }: HeaderProps) => {
             <h1
                 id="friendsList-header"
                 data-testid="friendsList-header"
-                className="text-3xl text-light-100 font-bold capitalize"
+                className="text-xl md:text-2xl lg:text-3xl text-light-100 font-bold capitalize"
             >
                 {title}
             </h1>
