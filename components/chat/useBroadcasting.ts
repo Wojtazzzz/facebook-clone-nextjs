@@ -6,7 +6,7 @@ import { useAuth } from '@hooks/useAuth';
 import { useChat } from '@hooks/useChat';
 import type { IChatFriend } from '@utils/types';
 
-//@todo to refactor
+// @todo to refactor
 if (typeof window !== 'undefined') {
     (window as any).Pusher = Pusher;
 }
@@ -58,8 +58,12 @@ export const useBroadcasting = (friend: IChatFriend) => {
         if (!user) return;
 
         startListen(`messages.${user.id}.${friend.id}`, 'ChatMessageSent', revalidateMessages);
+        startListen(`messages.${friend.id}.${user.id}`, 'ChatMessageSent', revalidateMessages);
 
-        return () => stopListen(`messages.${user.id}.${friend.id}`, 'ChatMessageSent');
+        return () => {
+            stopListen(`messages.${user.id}.${friend.id}`, 'ChatMessageSent');
+            stopListen(`messages.${friend.id}.${user.id}`, 'ChatMessageSent');
+        };
     }, [friend.id, revalidateMessages, startListen, stopListen, user]);
 
     return {
