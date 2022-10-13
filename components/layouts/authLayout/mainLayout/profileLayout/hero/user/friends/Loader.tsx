@@ -1,19 +1,13 @@
+import { ListLoader } from '@components/inc/ListLoader';
 import { SkeletonLoading } from '@components/inc/SkeletonLoading';
 
 export const Loader = () => (
     <div data-testid="hero-friends-loader" className="flex flex-col gap-3">
         <SkeletonLoading classNames="w-[100px] h-[20px]" />
 
-        <div className="flex">
+        <ListLoader count={6} styles="flex">
             <SingleAvatarLoader />
-            <SingleAvatarLoader />
-            <SingleAvatarLoader />
-            <SingleAvatarLoader />
-            <SingleAvatarLoader />
-            <SingleAvatarLoader />
-            <SingleAvatarLoader />
-            <SingleAvatarLoader />
-        </div>
+        </ListLoader>
     </div>
 );
 
