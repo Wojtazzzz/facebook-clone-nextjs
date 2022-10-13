@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import { useAuth } from '@hooks/useAuth';
 import Link from 'next/link';
 import { Loader } from '@components/menu/profileLink/Loader';

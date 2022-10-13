@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import type { IFriend } from '@utils/types';
 import { Name } from './Name';
 import { ProfileImage } from './ProfileImage';

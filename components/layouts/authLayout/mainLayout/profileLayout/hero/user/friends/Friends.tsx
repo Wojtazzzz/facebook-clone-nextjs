@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import { useGetFriendsByCount } from '@hooks/useGetFriendsByCount';
 import Link from 'next/link';
 import { ApiError } from './ApiError';

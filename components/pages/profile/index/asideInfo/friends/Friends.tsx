@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import Link from 'next/link';
 import { Container } from '../inc/Container';
 import { Header } from '../inc/Header';
