@@ -7,7 +7,7 @@ interface ContainerProps {
 
 export const Container = ({ testId, children }: ContainerProps) => {
     return (
-        <div data-testid={testId} className="w-full bg-dark-200 shadow-sm rounded-lg p-2 md:p-4">
+        <div data-testid={testId} className="w-full bg-dark-200 shadow-sm rounded-lg p-3 md:p-4">
             {children}
         </div>
     );
