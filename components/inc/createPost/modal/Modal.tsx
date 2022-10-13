@@ -11,7 +11,10 @@ interface ModalProps {
 export const Modal = ({ queryKey, close }: ModalProps) => {
     return (
         <Dialog.Portal>
-            <Dialog.Overlay className="w-screen h-screen fixed top-0 left-0 z-[49] bg-dark-300 bg-opacity-70" />
+            <Dialog.Overlay
+                className="w-screen h-screen fixed top-0 left-0 z-[49] bg-dark-300 bg-opacity-70"
+                onClick={close}
+            />
 
             <Dialog.Content
                 onEscapeKeyDown={close}
@@ -19,13 +22,15 @@ export const Modal = ({ queryKey, close }: ModalProps) => {
                 data-testid="createPostModal"
                 aria-modal="true"
                 aria-labelledby="createPostModal-heading"
-                className="w-full max-w-[520px] min-w-[300px] h-fit max-h-[75vh] fixed top-1/2 left-1/2 right-auto bottom-auto -translate-y-1/2 -translate-x-1/2 flex flex-col text-light-50 bg-dark-200 rounded-lg z-50"
+                className="w-full fixed top-1/2 left-1/2 right-auto bottom-auto -translate-y-1/2 -translate-x-1/2 flex flex-col text-light-50 z-50 p-1.5"
             >
-                <Header close={close} />
+                <div className="w-full max-w-[520px] min-w-[300px] h-fit max-h-[75vh] bg-dark-200 box-content rounded-lg">
+                    <Header close={close} />
 
-                <main className="overflow-y-scroll scrollbar-thin scrollbar-thumb-dark-100 scrollbar-track-dark-200">
-                    <Form queryKey={queryKey} close={close} />
-                </main>
+                    <main className="overflow-y-scroll scrollbar-thin scrollbar-thumb-dark-100 scrollbar-track-dark-200">
+                        <Form queryKey={queryKey} close={close} />
+                    </main>
+                </div>
             </Dialog.Content>
         </Dialog.Portal>
     );
