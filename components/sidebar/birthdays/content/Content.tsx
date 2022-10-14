@@ -14,7 +14,7 @@ export const Content = () => {
     if (!data.length) return <Empty />;
 
     return (
-        <div className="w-full flex items-center text-light-200 font-medium px-2">
+        <div className="w-full flex items-center text-light-200 px-2">
             <FontAwesomeIcon icon={faBirthdayCake} className="text-3xl text-light-100 mr-3" />
             <Users birthdays={data} />
         </div>
