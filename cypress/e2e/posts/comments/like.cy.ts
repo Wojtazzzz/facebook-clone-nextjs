@@ -54,7 +54,7 @@ describe('Posts comments like tests', () => {
 
                 cy.get('[data-testid="post-comments_list"]').children().should('have.length', 3);
 
-                cy.get('article[aria-label="Comment"]')
+                cy.getComments()
                     .filter(':contains("First comment")')
                     .within(() => {
                         cy.intercept('/api/comments/1/likes').as('like');
@@ -71,7 +71,7 @@ describe('Posts comments like tests', () => {
                         cy.get('[data-testid="comment-likesCount"]').should('not.exist');
                     });
 
-                cy.get('article[aria-label="Comment"]')
+                cy.getComments()
                     .filter(':contains("Second comment")')
                     .within(() => {
                         cy.get('button[aria-label="Like"]').should('not.have.class', 'text-primary-light');
@@ -80,7 +80,7 @@ describe('Posts comments like tests', () => {
                         cy.get('[data-testid="comment-likesCount"]').should('not.exist');
                     });
 
-                cy.get('article[aria-label="Comment"]')
+                cy.getComments()
                     .filter(':contains("Third comment")')
                     .within(() => {
                         cy.get('button[aria-label="Like"]').should('not.have.class', 'text-primary-light');
@@ -91,7 +91,7 @@ describe('Posts comments like tests', () => {
 
                 cy.checkPageA11y();
 
-                cy.get('article[aria-label="Comment"]')
+                cy.getComments()
                     .filter(':contains("First comment")')
                     .within(() => {
                         cy.intercept('/api/comments/1/likes').as('unlike');
@@ -108,7 +108,7 @@ describe('Posts comments like tests', () => {
                         cy.get('[data-testid="comment-likesCount"]').should('not.exist');
                     });
 
-                cy.get('article[aria-label="Comment"]')
+                cy.getComments()
                     .filter(':contains("Second comment")')
                     .within(() => {
                         cy.get('button[aria-label="Like"]').should('not.have.class', 'text-primary-light');
@@ -117,7 +117,7 @@ describe('Posts comments like tests', () => {
                         cy.get('[data-testid="comment-likesCount"]').should('not.exist');
                     });
 
-                cy.get('article[aria-label="Comment"]')
+                cy.getComments()
                     .filter(':contains("Third comment")')
                     .within(() => {
                         cy.get('button[aria-label="Like"]').should('not.have.class', 'text-primary-light');
@@ -160,7 +160,7 @@ describe('Posts comments like tests', () => {
 
                 cy.get('[data-testid="post-comments_list"]').children().should('have.length', 1);
 
-                cy.get('article[aria-label="Comment"]')
+                cy.getComments()
                     .first()
                     .within(() => {
                         cy.intercept('/api/comments/1/likes').as('like');
@@ -224,7 +224,7 @@ describe('Posts comments like tests', () => {
                 cy.get('[aria-label="Comment"]').click();
                 cy.wait('@comments_page_1');
 
-                cy.get('article[aria-label="Comment"]').within(() => {
+                cy.getComments().within(() => {
                     cy.intercept('/api/comments/1/likes', { statusCode: 500 }).as('like');
 
                     cy.get('button[aria-label="Like"]').click();
@@ -262,7 +262,7 @@ describe('Posts comments like tests', () => {
                 cy.get('[aria-label="Comment"]').click();
                 cy.wait('@comments_page_1');
 
-                cy.get('article[aria-label="Comment"]').within(() => {
+                cy.getComments().within(() => {
                     cy.intercept('/api/comments/1/likes').as('like');
                     cy.intercept('/api/posts/1/comments?page=1').as('comments_page_1');
 

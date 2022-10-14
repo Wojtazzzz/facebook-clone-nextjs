@@ -57,8 +57,8 @@ describe('Posts comments update tests', () => {
 
                 cy.wait('@comments_page_1');
 
-                cy.get('article[aria-label="Comment"]').should('have.length', 3);
-                cy.get('article[aria-label="Comment"]')
+                cy.getComments().should('have.length', 3);
+                cy.getComments()
                     .filter(`:contains("${initialContent}")`)
                     .within(() => {
                         cy.intercept('/api/posts/1/comments?page=1').as('comments_page_1');
@@ -76,10 +76,10 @@ describe('Posts comments update tests', () => {
                 cy.wait('@put');
                 cy.wait('@comments_page_1');
 
-                cy.get('article[aria-label="Comment"]').contains(newContent).should('be.visible');
-                cy.get('article[aria-label="Comment"]').contains(initialContent).should('not.exist');
-                cy.get('article[aria-label="Comment"]').contains(firstComment).should('be.visible');
-                cy.get('article[aria-label="Comment"]').contains(secondComment).should('be.visible');
+                cy.getComments().contains(newContent).should('be.visible');
+                cy.getComments().contains(initialContent).should('not.exist');
+                cy.getComments().contains(firstComment).should('be.visible');
+                cy.getComments().contains(secondComment).should('be.visible');
 
                 cy.checkPageA11y();
             });
@@ -110,8 +110,8 @@ describe('Posts comments update tests', () => {
                 cy.get('[aria-label="Comment"]').click();
                 cy.wait('@comments_page_1');
 
-                cy.get('article[aria-label="Comment"]').should('have.length', 1);
-                cy.get('article[aria-label="Comment"]')
+                cy.getComments().should('have.length', 1);
+                cy.getComments()
                     .first()
                     .within(() => {
                         cy.intercept('/api/posts/1/comments?page=1').as('comments_page_1');
@@ -155,7 +155,7 @@ describe('Posts comments update tests', () => {
                 cy.get('[aria-label="Comment"]').click();
                 cy.wait('@comments_page_1');
 
-                cy.get('article[aria-label="Comment"]')
+                cy.getComments()
                     .first()
                     .within(() => {
                         cy.get('button[aria-label="Edit"]').should('not.exist');

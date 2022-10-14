@@ -160,11 +160,19 @@ describe('Posts list tests', () => {
 
         cy.getPosts().should('have.length', 10);
 
+        cy.intercept('/api/posts?page=2').as('posts_page_2');
+
         cy.window().scrollTo('bottom');
+
+        cy.wait('@posts_page_2');
 
         cy.getPosts().should('have.length', 20);
 
+        cy.intercept('/api/posts?page=3').as('posts_page_3');
+
         cy.window().scrollTo('bottom');
+
+        cy.wait('@posts_page_3');
 
         cy.getPosts().should('have.length', 30);
 

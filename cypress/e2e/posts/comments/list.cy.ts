@@ -39,7 +39,7 @@ describe('Posts comments list tests', () => {
                 cy.get('[aria-label="Comment"]').click();
                 cy.wait('@comments_page_1');
 
-                cy.get('[data-testid="post-comments_list"]').children().should('have.length', 10);
+                cy.getComments().should('have.length', 10);
 
                 cy.intercept('/api/posts/1/comments?page=2').as('comments_page_2');
 
@@ -49,7 +49,7 @@ describe('Posts comments list tests', () => {
 
                 cy.wait('@comments_page_2');
 
-                cy.get('[data-testid="post-comments_list"]').children().should('have.length', 15);
+                cy.getComments().should('have.length', 15);
                 cy.get('button[aria-label="Load more comments"]').should('not.exist');
 
                 cy.checkPageA11y();
@@ -139,7 +139,7 @@ describe('Posts comments list tests', () => {
 
                 cy.contains(`${USER_FIRST_NAME} ${USER_LAST_NAME} turned off commenting for this post.`);
 
-                cy.get('article[aria-label="Comment"]').should('not.exist');
+                cy.getComments().should('not.exist');
                 cy.get('[aria-label="Write a comment"]').should('not.exist');
             });
 
@@ -156,6 +156,7 @@ describe('Posts comments list tests', () => {
         cy.intercept('/api/posts?page=1').as('posts_page_1');
 
         cy.visit('/');
+
         cy.wait('@user');
         cy.wait('@posts_page_1');
 
@@ -167,7 +168,7 @@ describe('Posts comments list tests', () => {
                 cy.get('[aria-label="Comment"]').click();
                 cy.wait('@comments_page_1');
 
-                cy.get('article[aria-label="Comment"]')
+                cy.getComments()
                     .first()
                     .within(() => {
                         cy.get('button[aria-label="Like"]').should('be.visible');

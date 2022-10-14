@@ -126,7 +126,7 @@ describe('Profile board tests', () => {
         cy.intercept('/api/posts').as('store');
         cy.intercept('/api/users/1/posts?page=1').as('posts_page_1');
 
-        cy.get('[aria-label="Post content"]').type('New post');
+        cy.get('[aria-label="Post content"]').click().type('New post');
         cy.get('button').contains('Create post').click();
 
         cy.wait('@store');
@@ -281,6 +281,8 @@ describe('Profile board tests', () => {
         cy.get('[aria-label="Settings"]').within(() => {
             cy.get('[aria-label="Delete"]').click();
         });
+
+        cy.expectConfirm('Are you sure you want to delete this post?', 'yes');
 
         cy.wait('@delete');
         cy.wait('@posts_page_1');

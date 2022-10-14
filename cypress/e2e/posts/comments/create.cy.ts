@@ -39,7 +39,7 @@ describe('Posts comments create tests', () => {
                 cy.get('[aria-label="Comment"]').click();
                 cy.wait('@comments_page_1');
 
-                cy.get('article[aria-label="Comment"]').should('have.length', 1);
+                cy.getComments().should('have.length', 1);
 
                 cy.intercept('/api/posts/1/comments').as('create');
                 cy.intercept('/api/posts/1/comments?page=1').as('comments_page_1');
@@ -49,9 +49,9 @@ describe('Posts comments create tests', () => {
                 cy.wait('@create');
                 cy.wait('@comments_page_1');
 
-                cy.get('article[aria-label="Comment"]').should('have.length', 2);
-                cy.get('article[aria-label="Comment"]').contains(USER_NAME).should('be.visible');
-                cy.get('article[aria-label="Comment"]').contains(newCommentContent).should('be.visible');
+                cy.getComments().should('have.length', 2);
+                cy.getComments().contains(USER_NAME).should('be.visible');
+                cy.getComments().contains(newCommentContent).should('be.visible');
 
                 cy.checkPageA11y();
             });
@@ -83,7 +83,7 @@ describe('Posts comments create tests', () => {
                 cy.get('[aria-label="Comment"]').click();
                 cy.wait('@comments_page_1');
 
-                cy.get('article[aria-label="Comment"]').should('have.length', 1);
+                cy.getComments().should('have.length', 1);
 
                 cy.intercept('/api/posts/1/comments', { statusCode: 500 }).as('create');
 
@@ -91,7 +91,7 @@ describe('Posts comments create tests', () => {
 
                 cy.wait('@create');
 
-                cy.get('article[aria-label="Comment"]').should('have.length', 1);
+                cy.getComments().should('have.length', 1);
             });
 
         cy.get('div[role="alertdialog"]').within(() => {
@@ -126,7 +126,7 @@ describe('Posts comments create tests', () => {
                 cy.get('[aria-label="Comment"]').click();
                 cy.wait('@comments_page_1');
 
-                cy.get('article[aria-label="Comment"]').should('have.length', 1);
+                cy.getComments().should('have.length', 1);
 
                 cy.intercept('/api/posts/1/comments').as('create');
                 cy.intercept('/api/posts/1/comments?page=1').as('comments_page_1');
@@ -156,10 +156,10 @@ describe('Posts comments create tests', () => {
                 cy.wait('@create');
                 cy.wait('@comments_page_1');
 
-                cy.get('article[aria-label="Comment"]').should('have.length', 2);
-                cy.get('article[aria-label="Comment"]').contains(USER_NAME).should('be.visible');
+                cy.getComments().should('have.length', 2);
+                cy.getComments().contains(USER_NAME).should('be.visible');
 
-                cy.get('article[aria-label="Comment"]').filter(':contains("Hello 👋")').should('be.visible');
+                cy.getComments().filter(':contains("Hello 👋")').should('be.visible');
             });
 
         cy.checkPageA11y();
@@ -189,7 +189,7 @@ describe('Posts comments create tests', () => {
                 cy.get('[aria-label="Comment"]').click();
                 cy.wait('@comments_page_1');
 
-                cy.get('article[aria-label="Comment"]').should('have.length', 1);
+                cy.getComments().should('have.length', 1);
 
                 cy.intercept('/api/posts/1/comments').as('create');
                 cy.intercept('/api/posts/1/comments?page=1').as('comments_page_1');
@@ -222,12 +222,10 @@ describe('Posts comments create tests', () => {
                 cy.wait('@create');
                 cy.wait('@comments_page_1');
 
-                cy.get('article[aria-label="Comment"]').should('have.length', 2);
-                cy.get('article[aria-label="Comment"]').contains(USER_NAME).should('be.visible');
+                cy.getComments().should('have.length', 2);
+                cy.getComments().contains(USER_NAME).should('be.visible');
 
-                cy.get('article[aria-label="Comment"]')
-                    .filter(':contains("😃😅🤣🙂🥰😝😏😭👍❤️")')
-                    .should('be.visible');
+                cy.getComments().filter(':contains("😃😅🤣🙂🥰😝😏😭👍❤️")').should('be.visible');
             });
 
         cy.checkPageA11y();

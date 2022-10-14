@@ -29,6 +29,8 @@ describe('Friends list tests', () => {
 
         cy.wait('@friends_page_1');
 
+        cy.injectAxe();
+
         cy.checkPageA11y();
 
         cy.window().scrollTo('bottom');
