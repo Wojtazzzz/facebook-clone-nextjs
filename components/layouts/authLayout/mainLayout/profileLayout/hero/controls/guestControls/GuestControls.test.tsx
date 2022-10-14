@@ -17,7 +17,7 @@ describe('Profile GuestPanel tests', () => {
     it('render send message and poke buttons button which are enabled', async () => {
         renderWithDefaultData(<GuestControls user={RootUserJson} />);
 
-        const sendMessageButton = await screen.findByLabelText('Send message');
+        const sendMessageButton = await screen.findByLabelText('Message');
         const pokeButton = await screen.findByLabelText('Poke');
 
         expect(sendMessageButton).toBeInTheDocument();

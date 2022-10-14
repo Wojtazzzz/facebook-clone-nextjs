@@ -17,7 +17,7 @@ describe('Controls component', () => {
         renderWithDefaultData(<Controls pageUser={RootUserJson} />);
 
         const editButton = await screen.findByLabelText('Edit profile');
-        const sendMessageButton = screen.queryByLabelText('Send message');
+        const sendMessageButton = screen.queryByLabelText('Message');
         const pokeButton = screen.queryByLabelText('Poke');
 
         expect(editButton).toBeInTheDocument();
@@ -29,7 +29,7 @@ describe('Controls component', () => {
         renderWithDefaultData(<Controls pageUser={JohnDoeUserJson} />);
 
         const editButton = screen.queryByLabelText('Edit profile');
-        const sendMessageButton = await screen.findByLabelText('Send message');
+        const sendMessageButton = await screen.findByLabelText('Message');
         const pokeButton = await screen.findByLabelText('Poke');
 
         expect(editButton).not.toBeInTheDocument();
