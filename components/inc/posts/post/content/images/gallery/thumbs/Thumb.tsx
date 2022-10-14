@@ -11,18 +11,24 @@ interface ThumbProps {
 
 export const Thumb = ({ image, isActive, index, slideTo }: ThumbProps) => {
     return (
-        <li className="w-[36px] h-[36px] relative">
-            <button type="button" aria-label={`Go to ${index} slide`} aria-pressed={isActive} onClick={slideTo}>
-                <Image
-                    fill
-                    src={getStoredImagePath(image)}
-                    className={clsx(
-                        'hover:opacity-100 transition-opacity rounded-lg shadow-md',
-                        isActive ? 'opacity-100' : 'opacity-60'
-                    )}
-                    alt=""
-                />
-            </button>
-        </li>
+        <button
+            type="button"
+            aria-label={String(index)}
+            aria-disabled={isActive}
+            aria-pressed={isActive}
+            disabled={isActive}
+            className="w-[36px] h-[36px] relative"
+            onClick={slideTo}
+        >
+            <Image
+                fill
+                src={getStoredImagePath(image)}
+                className={clsx(
+                    'hover:opacity-100 transition-opacity rounded-lg shadow-md',
+                    isActive ? 'opacity-100' : 'opacity-60'
+                )}
+                alt=""
+            />
+        </button>
     );
 };

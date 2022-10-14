@@ -55,7 +55,7 @@ describe('Gallery component', () => {
 
         const thumbsContainer = screen.getByTestId('gallery-thumbs');
 
-        const thumbs = within(thumbsContainer).getAllByRole('listitem');
+        const thumbs = within(thumbsContainer).getAllByRole('button');
 
         expect(thumbs).toHaveLength(images.length);
     });

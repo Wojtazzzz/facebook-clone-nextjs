@@ -310,23 +310,20 @@ describe('Post gallery tests', () => {
                 cy.get('[data-testid="gallery-thumbs"]')
                     .children()
                     .eq(0)
-                    .within(() => {
-                        cy.get('button').should('have.attr', 'aria-pressed', 'true');
-                    });
+                    .should('have.attr', 'aria-pressed', 'true')
+                    .should('have.attr', 'aria-disabled', 'true');
 
                 cy.get('[data-testid="gallery-thumbs"]')
                     .children()
                     .eq(1)
-                    .within(() => {
-                        cy.get('button').should('have.attr', 'aria-pressed', 'false');
-                    });
+                    .should('have.attr', 'aria-pressed', 'false')
+                    .should('have.attr', 'aria-disabled', 'false');
 
                 cy.get('[data-testid="gallery-thumbs"]')
                     .children()
                     .eq(2)
-                    .within(() => {
-                        cy.get('button').should('have.attr', 'aria-pressed', 'false');
-                    });
+                    .should('have.attr', 'aria-pressed', 'false')
+                    .should('have.attr', 'aria-disabled', 'false');
 
                 cy.get('[data-testid="gallery-thumbs"]').children().eq(1).click();
 
@@ -338,23 +335,20 @@ describe('Post gallery tests', () => {
                 cy.get('[data-testid="gallery-thumbs"]')
                     .children()
                     .eq(0)
-                    .within(() => {
-                        cy.get('button').should('have.attr', 'aria-pressed', 'false');
-                    });
+                    .should('have.attr', 'aria-pressed', 'false')
+                    .should('have.attr', 'aria-disabled', 'false');
 
                 cy.get('[data-testid="gallery-thumbs"]')
                     .children()
                     .eq(1)
-                    .within(() => {
-                        cy.get('button').should('have.attr', 'aria-pressed', 'true');
-                    });
+                    .should('have.attr', 'aria-pressed', 'true')
+                    .should('have.attr', 'aria-disabled', 'true');
 
                 cy.get('[data-testid="gallery-thumbs"]')
                     .children()
                     .eq(2)
-                    .within(() => {
-                        cy.get('button').should('have.attr', 'aria-pressed', 'false');
-                    });
+                    .should('have.attr', 'aria-pressed', 'false')
+                    .should('have.attr', 'aria-disabled', 'false');
 
                 cy.get('[data-testid="gallery-thumbs"]').children().eq(2).click();
 
@@ -366,23 +360,20 @@ describe('Post gallery tests', () => {
                 cy.get('[data-testid="gallery-thumbs"]')
                     .children()
                     .eq(0)
-                    .within(() => {
-                        cy.get('button').should('have.attr', 'aria-pressed', 'false');
-                    });
+                    .should('have.attr', 'aria-pressed', 'false')
+                    .should('have.attr', 'aria-disabled', 'false');
 
                 cy.get('[data-testid="gallery-thumbs"]')
                     .children()
                     .eq(1)
-                    .within(() => {
-                        cy.get('button').should('have.attr', 'aria-pressed', 'false');
-                    });
+                    .should('have.attr', 'aria-pressed', 'false')
+                    .should('have.attr', 'aria-disabled', 'false');
 
                 cy.get('[data-testid="gallery-thumbs"]')
                     .children()
                     .eq(2)
-                    .within(() => {
-                        cy.get('button').should('have.attr', 'aria-pressed', 'true');
-                    });
+                    .should('have.attr', 'aria-pressed', 'true')
+                    .should('have.attr', 'aria-disabled', 'true');
 
                 cy.get('[data-testid="gallery-thumbs"]').children().eq(0).click();
 
@@ -394,23 +385,20 @@ describe('Post gallery tests', () => {
                 cy.get('[data-testid="gallery-thumbs"]')
                     .children()
                     .eq(0)
-                    .within(() => {
-                        cy.get('button').should('have.attr', 'aria-pressed', 'true');
-                    });
+                    .should('have.attr', 'aria-pressed', 'true')
+                    .should('have.attr', 'aria-disabled', 'true');
 
                 cy.get('[data-testid="gallery-thumbs"]')
                     .children()
                     .eq(1)
-                    .within(() => {
-                        cy.get('button').should('have.attr', 'aria-pressed', 'false');
-                    });
+                    .should('have.attr', 'aria-pressed', 'false')
+                    .should('have.attr', 'aria-disabled', 'false');
 
                 cy.get('[data-testid="gallery-thumbs"]')
                     .children()
                     .eq(2)
-                    .within(() => {
-                        cy.get('button').should('have.attr', 'aria-pressed', 'false');
-                    });
+                    .should('have.attr', 'aria-pressed', 'false')
+                    .should('have.attr', 'aria-disabled', 'false');
             });
     });
 });
