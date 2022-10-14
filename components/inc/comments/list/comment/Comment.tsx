@@ -19,7 +19,7 @@ export const Comment = ({
     const { isEditModeActive, toggleEditMode, closeEditMode } = useEditMode();
 
     return (
-        <article aria-label="Comment" className="w-full flex gap-2 px-2 md:px-3 py-1">
+        <article aria-label={`${author.name}'s comment`} className="w-full flex gap-2 px-2 md:px-3 py-1">
             <Author id={author.id} name={author.name} profileImage={author.profile_image} />
 
             <div className="w-full flex flex-col gap-1">
