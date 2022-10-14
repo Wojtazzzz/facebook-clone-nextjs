@@ -11,7 +11,7 @@ describe('Posts comments delete tests', () => {
         });
     });
 
-    it('click on delete button, comment dissapear from list', () => {
+    it('click on delete button, see confirm alert, confirm, comment dissapear from list', () => {
         const commentContent = 'Simple comment';
 
         cy.create('Comment', {
@@ -49,18 +49,20 @@ describe('Posts comments delete tests', () => {
 
                 cy.get('[data-testid="post-comments_list"]').children().should('have.length', 3);
 
-                cy.get('article[aria-label="Comment"]')
+                cy.getComments()
                     .filter(`:contains("${commentContent}")`)
                     .within(() => {
                         cy.get('button[aria-label="Delete"]').click();
                     });
             });
 
+        cy.expectConfirm('Are you sure you want to delete this comment?', 'yes');
+
         cy.get('[data-testid="post-comments_list"]').children().should('have.length', 2);
         cy.get('[data-testid="post-comments_list"]').children().contains(commentContent).should('not.exist');
     });
 
-    it('click on delete button, see App Error', () => {
+    it('click on delete button, see confirm alert, click no, delete again, confirm, see App Error', () => {
         cy.create('Comment', {
             author_id: 1,
             commentable_id: 1,
@@ -85,14 +87,30 @@ describe('Posts comments delete tests', () => {
                 cy.get('[aria-label="Comment"]').click();
                 cy.wait('@comments_page_1');
 
-                cy.get('article[aria-label="Comment"]')
+                cy.getComments()
                     .first()
                     .within(() => {
-                        cy.intercept('/api/posts/1/comments/1', { statusCode: 500 }).as('delete');
-
                         cy.get('button[aria-label="Delete"]').click();
                     });
             });
+
+        cy.intercept('/api/posts/1/comments/1', { statusCode: 500 }).as('delete');
+
+        cy.expectConfirm('Are you sure you want to delete this comment?', 'no');
+
+        cy.get('div[role="alertdialog"]').should('not.exist');
+
+        cy.getPosts()
+            .first()
+            .within(() => {
+                cy.getComments()
+                    .first()
+                    .within(() => {
+                        cy.get('button[aria-label="Delete"]').click();
+                    });
+            });
+
+        cy.expectConfirm('Are you sure you want to delete this comment?', 'yes');
 
         cy.get('div[role="alertdialog"]').within(() => {
             cy.contains('App Error');
@@ -123,7 +141,7 @@ describe('Posts comments delete tests', () => {
                 cy.get('[aria-label="Comment"]').click();
                 cy.wait('@comments_page_1');
 
-                cy.get('article[aria-label="Comment"]')
+                cy.getComments()
                     .first()
                     .within(() => {
                         cy.get('button[aria-label="Delete"]').should('not.exist');

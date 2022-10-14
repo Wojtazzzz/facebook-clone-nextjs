@@ -14,14 +14,11 @@ interface OptionsProps {
     close: () => void;
 }
 
-export const Options = ({ postId, type, commenting, queryKey, close, openUpdateModal }: OptionsProps) => {
+export const Options = ({ type, commenting, close, openUpdateModal, ...rest }: OptionsProps) => {
     const { is_saved, is_hidden, is_own } = type;
 
-    if (is_saved) return <SavedOptions queryKey={queryKey} postId={postId} />;
-    if (is_hidden) return <HiddenOptions queryKey={queryKey} postId={postId} />;
-    if (is_own)
-        return (
-            <OwnOptions queryKey={queryKey} commenting={commenting} postId={postId} openUpdateModal={openUpdateModal} />
-        );
-    return <FriendOptions queryKey={queryKey} postId={postId} closeMenu={close} />;
+    if (is_saved) return <SavedOptions {...rest} />;
+    if (is_hidden) return <HiddenOptions {...rest} />;
+    if (is_own) return <OwnOptions commenting={commenting} openUpdateModal={openUpdateModal} {...rest} />;
+    return <FriendOptions closeMenu={close} {...rest} />;
 };

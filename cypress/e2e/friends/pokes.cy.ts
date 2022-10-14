@@ -83,8 +83,6 @@ describe('Pokes list tests', () => {
 
         cy.checkPageA11y();
 
-        cy.friendsListItems().first().should('not.exist');
-
         cy.intercept('/api/friends?page=1').as('friends_page_1');
 
         cy.get('[data-testid="friends-nav"]').contains('Friends').click();
@@ -128,8 +126,6 @@ describe('Pokes list tests', () => {
 
                 cy.wait('@poke');
             });
-
-        cy.friendsListItems().first().should('not.exist');
 
         cy.checkPageA11y();
 

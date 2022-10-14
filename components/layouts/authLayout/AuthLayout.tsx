@@ -6,6 +6,7 @@ import { useAuthMiddleware } from '../useAuthMiddleware';
 import { AlertModal } from '@components/inc/alertModal/AlertModal';
 import { useMenu } from './useMenu';
 import { useChat } from '@hooks/useChat';
+import { ConfirmModal } from '@components/inc/confirmModal/ConfirmModal';
 
 interface AuthLayoutProps {
     children: ReactNode;
@@ -24,6 +25,7 @@ export const AuthLayout = ({ children }: AuthLayoutProps) => {
             {children}
 
             <AlertModal />
+            <ConfirmModal />
 
             {friend && <Chat friend={friend} />}
         </>

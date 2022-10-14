@@ -1,12 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 import ChatReducer from '@redux/slices/ChatSlice';
 import AlertModalReducer from '@redux/slices/AlertModalSlice';
+import ConfirmModalReducer from '@redux/slices/ConfirmModalSlice';
 
 export const generateStore = () =>
     configureStore({
         reducer: {
             chat: ChatReducer,
             alertModal: AlertModalReducer,
+            confirmModal: ConfirmModalReducer,
         },
     });
 

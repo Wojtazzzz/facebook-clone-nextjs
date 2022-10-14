@@ -2,10 +2,12 @@ import { useAlertModal } from '@hooks/useAlertModal';
 import { axios } from '@utils/axios';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { getPostCommentsQK } from '@utils/queryKeys';
+import { useConfirmModal } from '@hooks/useConfirmModal';
 
 export const useRemove = () => {
     const queryClient = useQueryClient();
     const { alert } = useAlertModal();
+    const { confirm } = useConfirmModal();
 
     const mutation = useMutation(mutationFn, {
         onSuccess: (response, data) => queryClient.invalidateQueries(getPostCommentsQK(data.resourceId)),
@@ -15,7 +17,7 @@ export const useRemove = () => {
     const remove = (data: IRemovePayload) => {
         if (mutation.isLoading) return;
 
-        mutation.mutate(data);
+        confirm('Are you sure you want to delete this comment?', () => mutation.mutate(data));
     };
 
     return {

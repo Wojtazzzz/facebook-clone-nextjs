@@ -147,7 +147,7 @@ describe('Suggests and invites lists tests', () => {
         cy.checkPageA11y();
     });
 
-    it('invite friend by click on "Invite" button, relogin as friend account, check for notification from user arrived, redirect to invites page due to notification, accept request from user, check that user displays in friends list, again relogin as user, check for notification from friend arrived, check that user displays in friends list', () => {
+    it('invite friend by click on "Invite" button, relogin as friend account, check for notification from user arrived, redirect to invites page due to notification, accept request from user, again relogin as user, check for notification from friend arrived', () => {
         cy.create('User', {
             first_name: 'John',
             last_name: 'Doe',
@@ -159,6 +159,8 @@ describe('Suggests and invites lists tests', () => {
 
         cy.wait('@suggests_page_1');
 
+        cy.injectAxe();
+
         cy.intercept('/api/invites').as('invite');
 
         cy.friendsListItems()
@@ -167,9 +169,13 @@ describe('Suggests and invites lists tests', () => {
                 cy.contains('Invite').click();
 
                 cy.wait('@invite');
+
+                cy.contains('User successfully invited');
             });
 
-        cy.friendsListItems().first().should('not.exist');
+        cy.friendsListItems().should('have.length', 1);
+
+        cy.checkPageA11y();
 
         cy.relogin(2);
 
@@ -179,15 +185,21 @@ describe('Suggests and invites lists tests', () => {
 
         cy.intercept('/api/invites/1').as('accept');
 
+        cy.injectAxe();
+
         cy.friendsListItems()
             .should('have.length', 1)
             .within(() => {
                 cy.contains('Accept').click();
 
                 cy.wait('@accept');
+
+                cy.contains('Response successfully sent');
             });
 
-        cy.friendsListItems().first().should('not.exist');
+        cy.friendsListItems().should('have.length', 1);
+
+        cy.checkPageA11y();
 
         cy.intercept('/api/friends?page=1').as('friends_page_1');
 
@@ -205,10 +217,14 @@ describe('Suggests and invites lists tests', () => {
         cy.visit('/friends');
         cy.wait('@friends_page_1');
 
+        cy.injectAxe();
+
         cy.friendsListItems().should('have.length', 1).contains('John Doe');
+
+        cy.checkPageA11y();
     });
 
-    it('invite friend when click "Invite" button, relogin as friend account, check for notification from user arrived, redirect to invites page due to arrived notification, reject request from user, check that user not displays in friends list, again relogin as user, check for notification from friend not arrived, check that user not displays in friends list', () => {
+    it('invite friend when click "Invite" button, relogin as friend account, check for notification from user arrived, redirect to invites page due to arrived notification, reject request from user, see confirm alert, click no, reject again, see confirm alert, click confirm, again relogin as user, check for notification from friend not arrived', () => {
         cy.create('User');
 
         cy.intercept('/api/suggests?page=1').as('suggests_page_1');
@@ -224,9 +240,9 @@ describe('Suggests and invites lists tests', () => {
                 cy.contains('Invite').click();
 
                 cy.wait('@invite');
-            });
 
-        cy.friendsListItems().first().should('not.exist');
+                cy.contains('User successfully invited');
+            });
 
         cy.relogin(2);
 
@@ -240,11 +256,20 @@ describe('Suggests and invites lists tests', () => {
             .should('have.length', 1)
             .within(() => {
                 cy.contains('Reject').click();
-
-                cy.wait('@reject');
             });
 
-        cy.friendsListItems().first().should('not.exist');
+        cy.expectConfirm('Are you sure you want to reject request from this user?', 'no');
+
+        cy.friendsListItems()
+            .should('have.length', 1)
+            .within(() => {
+                cy.contains('Reject').should('not.be.disabled');
+                cy.contains('Reject').click();
+            });
+
+        cy.expectConfirm('Are you sure you want to reject request from this user?', 'yes');
+
+        cy.wait('@reject');
 
         cy.intercept('/api/friends?page=1').as('friends_page_1');
 
@@ -266,7 +291,7 @@ describe('Suggests and invites lists tests', () => {
         cy.get('[data-testid="empty-list"]').should('be.visible');
     });
 
-    it('invite friend by "Invite" button, api return server error', () => {
+    it('invite friend by "Invite" button, see server error', () => {
         cy.create('User');
 
         cy.intercept('/api/suggests?page=1').as('suggests_page_1');
@@ -304,7 +329,7 @@ describe('Suggests and invites lists tests', () => {
         cy.checkPageA11y();
     });
 
-    it('Accept invite but api return server error, invitation displays after page refresh', () => {
+    it('accept invite, see server error, invitation displays after page refresh', () => {
         cy.create('Friendship', {
             friend_id: 1,
             status: 'PENDING',
@@ -338,7 +363,7 @@ describe('Suggests and invites lists tests', () => {
         cy.checkPageA11y();
     });
 
-    it('Reject invite but api return server error, invitation displays after page refresh', () => {
+    it('reject invite, see server error, invitation displays after page refresh', () => {
         cy.create('Friendship', {
             friend_id: 1,
             status: 'PENDING',
@@ -356,13 +381,20 @@ describe('Suggests and invites lists tests', () => {
             .should('have.length', 1)
             .within(() => {
                 cy.contains('Reject').click();
-
-                cy.wait('@reject');
-
-                cy.contains('Something went wrong, try again later').should('be.visible');
-
-                cy.checkPageA11y();
             });
+
+        cy.expectConfirm('Are you sure you want to reject request from this user?', 'yes');
+
+        cy.wait('@reject');
+
+        cy.friendsListItems()
+            .should('have.length', 1)
+            .first()
+            .within(() => {
+                cy.contains('Something went wrong, try again later').should('be.visible');
+            });
+
+        cy.checkPageA11y();
 
         cy.visit('/friends/invites');
         cy.injectAxe();

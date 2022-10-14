@@ -44,6 +44,7 @@ Cypress.Commands.add('relogin', (id: number, path: string = '/') => {
 Cypress.Commands.add('friendsListItems', () => cy.get('[data-testid="friendsList-container"] article'));
 
 Cypress.Commands.add('getPosts', () => cy.get('article[aria-label*="\'s post"]'));
+Cypress.Commands.add('getComments', () => cy.get('article[aria-label*="\'s comment"]'));
 Cypress.Commands.add('getNavSearch', () => cy.get('nav[data-testid="nav"] [data-testid="nav-search"]'));
 
 Cypress.Commands.add('showAlertModal', () => {
@@ -86,6 +87,19 @@ Cypress.Commands.add('expectAlert', (message: string) => {
     cy.get('div[role="alertdialog"]').within(() => {
         cy.contains('App Error');
         cy.contains(message);
+    });
+});
+
+Cypress.Commands.add('expectConfirm', (message: string, button: 'no' | 'yes') => {
+    cy.get('div[role="alertdialog"]').within(() => {
+        cy.contains('Please confirm');
+        cy.contains(message);
+
+        if (button === 'no') {
+            cy.get('button').contains('NO').click();
+        } else {
+            cy.get('button').contains('YES, SURE!').click();
+        }
     });
 });
 
@@ -165,9 +179,11 @@ declare global {
             relogin(id: number, path?: string): Chainable<void>;
             friendsListItems(): Chainable<void>;
             getPosts(): Chainable<void>;
+            getComments(): Chainable<void>;
             getNavSearch(): Chainable<void>;
             showAlertModal(): Chainable<void>;
             expectAlert(message: string): Chainable<void>;
+            expectConfirm(message: string, button: 'no' | 'yes'): Chainable<void>;
             openUpdatePostModal(): Chainable<void>;
             createUser(amount?: number, asFriend?: boolean, params?: Partial<IUserExtended>): Chainable<void>;
             createFriendship(amount?: number, forUser?: number): Chainable<void>;

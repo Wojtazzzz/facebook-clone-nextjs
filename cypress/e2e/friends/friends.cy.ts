@@ -63,7 +63,7 @@ describe('Friends list tests', () => {
         cy.checkPageA11y();
     });
 
-    it('remove friend from friends list by click on "Remove" button, this same friend show on suggests list, on refreshed friends page his element dissapear from list', () => {
+    it('remove friend from friends list by click on "Remove" button, see confirm alert, click confirm, this same friend show on suggests list, on refreshed friends page his element dissapear from list', () => {
         cy.create('Friendship', 4, {
             user_id: 1,
             status: 'CONFIRMED',
@@ -84,7 +84,10 @@ describe('Friends list tests', () => {
                 cy.get('button[aria-label="Remove"]').click();
             });
 
-        cy.friendsListItems().first().should('not.exist');
+        cy.expectConfirm('Are you sure you want to delete this user from friends?', 'yes');
+
+        cy.friendsListItems().first().contains('User successfully removed');
+        cy.friendsListItems().should('have.length', 4);
 
         cy.checkPageA11y();
 
@@ -104,6 +107,85 @@ describe('Friends list tests', () => {
 
         cy.wait('@friends_page_1');
 
+        cy.friendsListItems().should('have.length', 3);
+
+        cy.checkPageA11y();
+    });
+
+    it('remove friend from friends list by click on "Remove" button, see confirm alert, click no, this same friend is not showing on suggests list, on refreshed friends page his element not dissapear from list', () => {
+        cy.create('Friendship', 4, {
+            user_id: 1,
+            status: 'CONFIRMED',
+        });
+
+        cy.intercept('/api/friends?page=1').as('friends_page_1');
+        cy.intercept('/api/friends/2').as('destroy');
+
+        cy.visit('/friends');
+
+        cy.wait('@friends_page_1');
+
+        cy.injectAxe();
+
+        cy.friendsListItems()
+            .first()
+            .within(() => {
+                cy.get('button[aria-label="Remove"]').click();
+            });
+
+        cy.expectConfirm('Are you sure you want to delete this user from friends?', 'no');
+
+        cy.friendsListItems().first().should('not.contain.text', 'User successfully removed');
+        cy.friendsListItems().first().should('not.contain.text', 'Something went wrong, please try again later');
+        cy.friendsListItems().should('have.length', 4);
+
+        cy.checkPageA11y();
+
+        cy.intercept('/api/suggests?page=1').as('suggests_page_1');
+
+        cy.get('[data-testid="friends-nav"]').contains('Suggests').click();
+
+        cy.wait('@suggests_page_1');
+
+        cy.checkPageA11y();
+
+        cy.friendsListItems().should('not.exist');
+
+        cy.intercept('/api/friends?page=1').as('friends_page_1');
+
+        cy.get('[data-testid="friends-nav"]').contains('Friends').click();
+
+        cy.wait('@friends_page_1');
+
+        cy.friendsListItems().should('have.length', 4);
+
+        cy.checkPageA11y();
+    });
+
+    it('try remove friend, see api error', () => {
+        cy.create('Friendship', 3, {
+            user_id: 1,
+            status: 'CONFIRMED',
+        });
+
+        cy.intercept('/api/friends?page=1').as('friends_page_1');
+        cy.intercept('/api/friends/2', { statusCode: 500 }).as('destroy');
+
+        cy.visit('/friends');
+
+        cy.wait('@friends_page_1');
+
+        cy.injectAxe();
+
+        cy.friendsListItems()
+            .first()
+            .within(() => {
+                cy.get('button[aria-label="Remove"]').click();
+            });
+
+        cy.expectConfirm('Are you sure you want to delete this user from friends?', 'yes');
+
+        cy.friendsListItems().first().contains('Something went wrong, try again later');
         cy.friendsListItems().should('have.length', 3);
 
         cy.checkPageA11y();
