@@ -2,11 +2,12 @@ import { ErrorMessage } from '@components/pages/friends/list/item/panels/ErrorMe
 import type { IUser } from '@utils/types';
 import { useUpdateInvite } from './useUpdateInvite';
 import { PanelButton } from '../PanelButton';
+import { SuccessMessage } from '../SuccessMessage';
 
 interface InvitePanelProps extends IUser {}
 
 export const InvitePanel = ({ id }: InvitePanelProps) => {
-    const { updateInvite, isError, isLoading } = useUpdateInvite();
+    const { updateInvite, isError, isSuccess, isLoading } = useUpdateInvite();
 
     const handleAccept = () => {
         updateInvite({
@@ -25,6 +26,7 @@ export const InvitePanel = ({ id }: InvitePanelProps) => {
     };
 
     if (isError) return <ErrorMessage message="Something went wrong, try again later" />;
+    if (isSuccess) return <SuccessMessage message="Response successfully sent" />;
 
     return (
         <div className="flex gap-3">

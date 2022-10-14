@@ -1,14 +1,9 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import type { IUpdateInvite } from '@utils/types';
 import { axios } from '@utils/axios';
-import { getInvitesListQK } from '@utils/queryKeys';
 
 export const useUpdateInvite = () => {
-    const queryClient = useQueryClient();
-
-    const mutation = useMutation(mutationFn, {
-        onSuccess: () => queryClient.invalidateQueries(getInvitesListQK()),
-    });
+    const mutation = useMutation(mutationFn);
 
     const updateInvite = (data: IUpdateInvite) => {
         if (mutation.isLoading) return;

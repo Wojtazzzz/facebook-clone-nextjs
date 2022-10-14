@@ -1,14 +1,15 @@
 import { ErrorMessage } from '@components/pages/friends/list/item/panels/ErrorMessage';
 import type { IUser } from '@utils/types';
-import { useRemove } from './useRemove';
+import { useRemoveFriend } from './useRemoveFriend';
 import { useChat } from '@hooks/useChat';
 import { PanelButton } from '../PanelButton';
+import { SuccessMessage } from '../SuccessMessage';
 
 interface FriendPanelProps extends IUser {}
 
 export const FriendPanel = (friend: FriendPanelProps) => {
     const { openChat } = useChat();
-    const { remove, isError, isLoading } = useRemove();
+    const { remove, isError, isSuccess, isLoading } = useRemoveFriend();
 
     const handleOpenChat = () => {
         openChat(friend);
@@ -19,6 +20,7 @@ export const FriendPanel = (friend: FriendPanelProps) => {
     };
 
     if (isError) return <ErrorMessage message="Something went wrong, try again later" />;
+    if (isSuccess) return <SuccessMessage message="User successfully removed" />;
 
     return (
         <div className="flex flex-col xs:flex-row gap-1.5 md:gap-3">
