@@ -76,7 +76,7 @@ describe('Item component', () => {
 
             await user.click(pokeButton);
 
-            const errorMessage = await screen.findByText('Something went wrong');
+            const errorMessage = await screen.findByText('Something went wrong, try again later');
             expect(errorMessage).toBeInTheDocument();
         });
     });
@@ -97,38 +97,6 @@ describe('Item component', () => {
             expect(rejectButton).toBeInTheDocument();
             expect(acceptButton).toBeInTheDocument();
         });
-
-        it('render error message on failed reject invite', async () => {
-            renderWithDefaultData(<Item type="Invites" item={item} />);
-
-            mock({
-                path: `/api/invites/${item.friend.id}`,
-                status: 500,
-                method: 'put',
-            });
-
-            const rejectButton = await screen.findByTitle('Reject');
-            await user.click(rejectButton);
-
-            const successMessage = await screen.findByText('Something went wrong, try again later');
-            expect(successMessage).toBeInTheDocument();
-        });
-
-        it('render error message on failed reject invite', async () => {
-            renderWithDefaultData(<Item type="Invites" item={item} />);
-
-            mock({
-                path: `/api/invites/${item.friend.id}`,
-                status: 500,
-                method: 'put',
-            });
-
-            const acceptButton = await screen.findByTitle('Accept');
-            await user.click(acceptButton);
-
-            const successMessage = await screen.findByText('Something went wrong, try again later');
-            expect(successMessage).toBeInTheDocument();
-        });
     });
 
     describe('User from friends list', () => {
@@ -146,22 +114,6 @@ describe('Item component', () => {
             expect(userName).toBeInTheDocument();
             expect(sendMessageButton).toBeInTheDocument();
             expect(removeButton).toBeInTheDocument();
-        });
-
-        it('render error message on failed destroying friendship', async () => {
-            renderWithDefaultData(<Item type="Friends" item={item} />);
-
-            mock({
-                path: `/api/friends/${item.friend.id}`,
-                status: 500,
-                method: 'delete',
-            });
-
-            const removeButton = await screen.findByTitle('Remove');
-            await user.click(removeButton);
-
-            const errorMessage = await screen.findByText('Something went wrong, try again later');
-            expect(errorMessage).toBeInTheDocument();
         });
     });
 });
