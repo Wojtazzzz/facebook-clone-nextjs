@@ -10,19 +10,19 @@
 -   pokes
 -   own profiles
 
-## Requirements
+## Requirements - frontend
 
 | Name                            | Version |
 | ------------------------------- | ------- |
 | [PHP](https://www.php.net/)     | ^8.1    |
 | [MySQL](https://www.mysql.com/) | ^8.0    |
 
-## Run Locally
+## Run Locally - frontend
 
 Clone the project
 
 ```bash
-  php artisan serve
+  npm run dev
 ```
 
 ## Todo
