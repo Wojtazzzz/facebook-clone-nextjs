@@ -1,5 +1,5 @@
 import { Input } from './Input';
-import { ResponseError } from '@components/pages/auth/authorization/inc/ResponseError';
+import { ResponseError } from '../inc/ResponseError';
 import { Button } from '@components/inc/Button';
 import { useRegister } from './useRegister';
 

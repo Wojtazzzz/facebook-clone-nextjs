@@ -1,5 +1,5 @@
 import { Github } from './Github';
-import { Header } from '../inc/Header';
+import { Header } from './Header';
 import { About } from './About';
 
 export const Informations = () => {
