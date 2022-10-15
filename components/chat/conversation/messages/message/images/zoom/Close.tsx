@@ -8,7 +8,12 @@ interface CloseProps {
 export const Close = ({ close }: CloseProps) => {
     return (
         <div className="w-full flex justify-end absolute top-0 left-0 z-20 p-3">
-            <RoundedButton label="Close zoom" icon={faTimes} styles="bg-dark-100 hover:opacity-60" callback={close} />
+            <RoundedButton
+                label="Close zoom"
+                icon={faTimes}
+                styles="bg-dark-100 hover:bg-dark-100/60"
+                callback={close}
+            />
         </div>
     );
 };

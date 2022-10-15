@@ -15,10 +15,7 @@ interface UpdateModalProps {
 export const UpdateModal = ({ isActive, close, ...rest }: UpdateModalProps) => {
     return (
         <Dialog.Portal>
-            <Dialog.Overlay
-                className="w-screen h-screen fixed top-0 left-0 z-[49] bg-dark-300 bg-opacity-40"
-                onClick={close}
-            />
+            <Dialog.Overlay className="w-screen h-screen fixed top-0 left-0 z-[49] bg-dark-300/40" onClick={close} />
 
             <Dialog.Content
                 aria-labelledby="updateModal-heading"

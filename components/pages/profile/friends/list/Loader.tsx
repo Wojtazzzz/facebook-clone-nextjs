@@ -21,7 +21,7 @@ const SingleLoader = () => {
     return (
         <div
             data-testid="loading"
-            className="flex items-center gap-3 m-1.5 py-2 md:py-4 px-3 md:px-5 border-dark-100 border-[1px] border-opacity-30 rounded-xl"
+            className="flex items-center gap-3 m-1.5 py-2 md:py-4 px-3 md:px-5 border-dark-100/30 border-[1px] rounded-xl"
         >
             <div className="flex justify-center items-center relative w-[60px] h-[60px] md:w-[80px] md:h-[80px] rounded-xl">
                 <SkeletonLoading classNames="w-full h-full" />

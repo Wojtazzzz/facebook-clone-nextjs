@@ -25,7 +25,7 @@ export const Trigger = ({ open }: TriggerProps) => {
                     <Avatar src={profile_image} alt={name} styles="w-[45px] h-[45px] md:w-[58px] md:h-[58px]" />
                 </div>
 
-                <div className="w-full h-full bg-dark-100 text-sm md:text-base text-light-100 text-left hover:opacity-70 rounded-3xl cursor-pointer px-3 py-4">
+                <div className="w-full h-full bg-dark-100 text-sm md:text-base text-light-100 text-left hover:bg-dark-100/70 transition-colors rounded-3xl cursor-pointer px-3 py-4">
                     What&apos;s on your mind, {first_name}?
                 </div>
             </button>

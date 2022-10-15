@@ -11,10 +11,7 @@ interface ModalProps {
 export const Modal = ({ queryKey, close }: ModalProps) => {
     return (
         <Dialog.Portal>
-            <Dialog.Overlay
-                className="w-screen h-screen fixed top-0 left-0 z-[49] bg-dark-300 bg-opacity-70"
-                onClick={close}
-            />
+            <Dialog.Overlay className="w-screen h-screen fixed top-0 left-0 z-[49] bg-dark-300/70" onClick={close} />
 
             <Dialog.Content
                 onEscapeKeyDown={close}

@@ -25,8 +25,8 @@ export const Input = ({ label, type, name, placeholder, isLoading }: InputProps)
                 required
                 disabled={isLoading}
                 className={clsx(
-                    'tracking-wide bg-dark-200 focus:outline-none ring-2 ring-dark-100 text-light-50 placeholder-light-50 focus:ring-primary placeholder-opacity-60 rounded-md py-2 px-4',
-                    isLoading && 'opacity-60 cursor-wait'
+                    'tracking-wide bg-dark-200 focus:outline-none ring-2 ring-dark-100 text-light-50 placeholder-light-50/60 focus:ring-primary rounded-md py-2 px-4',
+                    isLoading && 'bg-dark-200/60 cursor-wait'
                 )}
                 onChange={handleChange}
                 onBlur={handleBlur}

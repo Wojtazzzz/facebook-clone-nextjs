@@ -15,7 +15,7 @@ export const Button = ({ label, icon, styles, isLoading = false, callback }: But
         <RoundedButton
             label={label}
             icon={icon}
-            styles={clsx(`bg-dark-100 hover:opacity-60`, isLoading && 'cursor-wait opacity-60', styles)}
+            styles={clsx(`bg-dark-100 hover:bg-dark-100/60`, isLoading && 'cursor-wait bg-dark-100/60', styles)}
             isLoading={isLoading}
             callback={callback}
         />

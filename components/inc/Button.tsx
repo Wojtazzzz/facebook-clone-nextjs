@@ -26,9 +26,9 @@ export const Button = ({
             disabled={isDisabled || isLoading}
             type={type}
             className={clsx(
-                `bg-primary hover:opacity-90 text-white font-medium rounded-lg transition-opacity p-2 px-4 ${styles}`,
-                isDisabled && 'opacity-80 hover:opacity-80 cursor-not-allowed',
-                isLoading && 'opacity-80 hover:opacity-80 cursor-wait'
+                `bg-primary hover:bg-primary/90 text-white font-medium rounded-lg transition-colors p-2 px-4 ${styles}`,
+                isDisabled && 'bg-primary/80 hover:bg-primary/80 cursor-not-allowed',
+                isLoading && 'bg-primary/80 hover:bg-primary/80 cursor-wait'
             )}
             onClick={callback}
             {...rest}

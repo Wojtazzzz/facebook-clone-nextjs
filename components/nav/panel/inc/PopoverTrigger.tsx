@@ -9,7 +9,7 @@ interface PopoverTriggerProps {
 export const PopoverTrigger = ({ icon, withAlert }: PopoverTriggerProps) => {
     return (
         <div className="relative">
-            <div className="w-[40px] h-[40px] flex justify-center items-center bg-dark-100 hover:opacity-60 transition-all rounded-full p-0">
+            <div className="w-[40px] h-[40px] flex justify-center items-center bg-dark-100 hover:bg-dark-100/60 transition-all rounded-full p-0">
                 <FontAwesomeIcon icon={icon} className="text-lg text-light-50" />
             </div>
 
