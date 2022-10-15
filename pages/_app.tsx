@@ -25,15 +25,15 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     return (
         <>
             <DefaultSeo
-                defaultTitle="Facebook Clone"
-                titleTemplate="%s - Facebook Clone"
-                description="Create posts, text with friends, share your emotions with others. Facebook Clone."
+                defaultTitle={process.env.NEXT_PUBLIC_APP_NAME}
+                titleTemplate={`%s - ${process.env.NEXT_PUBLIC_APP_NAME}`}
+                description={`Create posts, text with friends, share your emotions with others - ${process.env.NEXT_PUBLIC_APP_NAME}.`}
                 canonical={process.env.NEXT_PUBLIC_URL}
                 additionalMetaTags={[
                     {
                         name: 'keywords',
                         content:
-                            'facebook, facebook-clone, clone, social, media, socialmedia, friends, pokes, posts, messages, test, chat',
+                            'surfaceapp, surface-app, social, media, socialmedia, friends, pokes, posts, messages, test, chat',
                     },
 
                     {

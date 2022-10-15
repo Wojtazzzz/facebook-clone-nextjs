@@ -84,7 +84,7 @@ describe('Form component', () => {
         renderWithDefaultData(<Form content="x" commentId={1} closeEditMode={mockCloseEditMode} postId={post.id} />);
 
         const input = screen.getByLabelText('Update a comment');
-        await user.type(input, 'xJohn Doe is super facebook-clone user!');
+        await user.type(input, 'xJohn Doe is super surface app user!');
 
         const submitButton = screen.getByLabelText('Send updated comment');
 

@@ -1,4 +1,4 @@
-import { Login } from '@components/pages/auth/authorization/login/Login';
+import { Login } from '@components/pages/login/authorization/login/Login';
 import CannotLoginResponse from '@mocks/user/cannotLogin.json';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';

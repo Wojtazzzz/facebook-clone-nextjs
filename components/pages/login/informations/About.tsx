@@ -1,7 +1,7 @@
 export const About = () => {
     return (
         <span className="md:text-lg text-light-100 font-medium">
-            Welcome to Facebook-clone app! This is noncommercial and nonofficial version of
+            Welcome to Surface App! This is noncommercial and nonofficial version of
             <a
                 target="_blank"
                 rel="noreferrer"

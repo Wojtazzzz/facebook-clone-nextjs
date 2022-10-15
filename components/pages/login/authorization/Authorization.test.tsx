@@ -1,4 +1,4 @@
-import { Authorization } from '@components/pages/auth/authorization/Authorization';
+import { Authorization } from '@components/pages/login/authorization/Authorization';
 import { mock } from '@utils/nock';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';

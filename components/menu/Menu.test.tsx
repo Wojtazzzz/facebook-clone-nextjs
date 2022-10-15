@@ -41,7 +41,7 @@ describe('Menu component', () => {
 
         renderWithDefaultData(<Menu isActive={true} close={mockClose} />);
 
-        const footer = screen.getByText(`· No-Meta © ${year}`);
+        const footer = screen.getByTestId('app-footer');
 
         expect(footer).toBeInTheDocument();
     });

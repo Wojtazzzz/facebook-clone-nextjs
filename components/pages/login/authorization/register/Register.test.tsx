@@ -1,4 +1,4 @@
-import { Register } from '@components/pages/auth/authorization/register/Register';
+import { Register } from '@components/pages/login/authorization/register/Register';
 import { mock } from '@utils/nock';
 import { screen } from '@testing-library/react';
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';

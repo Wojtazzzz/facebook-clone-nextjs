@@ -29,13 +29,13 @@ describe('Form component', () => {
         renderWithDefaultData(<Form postId={post.id} />);
 
         const input = screen.getByLabelText('Write a comment');
-        await user.type(input, 'John Doe is super facebook-clone user!');
+        await user.type(input, 'John Doe is super surface app user!');
 
         const submitButton = screen.getByLabelText('Send comment');
         await user.click(submitButton);
 
         await waitFor(() => {
-            expect(input).toHaveValue('John Doe is super facebook-clone user!');
+            expect(input).toHaveValue('John Doe is super surface app user!');
         });
     });
 
@@ -91,7 +91,7 @@ describe('Form component', () => {
         renderWithDefaultData(<Form postId={post.id} />);
 
         const input = screen.getByLabelText('Write a comment');
-        await user.type(input, 'John Doe is super facebook-clone user!');
+        await user.type(input, 'John Doe is super surface app user!');
 
         const submitButton = screen.getByLabelText('Send comment');
 

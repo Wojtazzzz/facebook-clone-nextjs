@@ -1,4 +1,4 @@
-import { Informations } from '@components/pages/auth/informations/Informations';
+import { Informations } from '@components/pages/login/informations/Informations';
 import { screen } from '@testing-library/react';
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 
@@ -8,7 +8,9 @@ describe('Informations component', () => {
 
         const header = screen.getByRole('heading');
 
-        expect(header).toHaveTextContent('Facebook');
+        expect(header).toHaveTextContent(
+            process.env.NEXT_PUBLIC_APP_NAME ?? 'this-string-will-throw-error-when-no-env-set'
+        );
     });
 
     it('render about info', () => {
