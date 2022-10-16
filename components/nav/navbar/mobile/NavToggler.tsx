@@ -14,7 +14,8 @@ export const NavToggler = ({ isActive, toggle }: NavTogglerProps) => {
         <RoundedButton
             label={label}
             icon={icon}
-            styles="w-[45px] h-[45px] lg:hidden fixed bottom-3 right-3 z-40 bg-dark-100"
+            styles="w-[35px] md:w-[45px] h-[35px] md:h-[45px] lg:hidden fixed bottom-3 right-3 z-40 bg-dark-100 border-[1px] border-light-100/20"
+            iconStyles="!text-sm md:!text-xl"
             callback={toggle}
         />
     );
