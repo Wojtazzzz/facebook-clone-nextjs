@@ -9,7 +9,7 @@ export const AddImages = () => {
     return (
         <Dropzone accept="image/*" onDrop={onDrop}>
             {({ getRootProps, getInputProps }) => (
-                <button type="button" aria-label="Add images" {...getRootProps()} onClick={() => console.log('XD')}>
+                <button type="button" aria-label="Add images" {...getRootProps()}>
                     <input {...getInputProps()} aria-label="Images" />
 
                     <div className="w-[36px] h-[36px] hover:bg-dark-100 flex justify-center items-center transition-colors rounded-full p-0">
