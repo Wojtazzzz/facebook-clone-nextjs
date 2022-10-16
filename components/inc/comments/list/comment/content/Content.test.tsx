@@ -4,20 +4,21 @@ import CommentFirstPageJson from '@mocks/posts/comments/firstPage.json';
 import { screen } from '@testing-library/react';
 
 describe('Content component', () => {
-    const { content: commentContent, resource_id, id, likes_count, author } = CommentFirstPageJson.data[0];
+    const { content: commentContent, commentable_id, id, likes_count, author } = CommentFirstPageJson.data[0];
 
-    it('display properly author name and comment content', () => {
+    it('display properly author name (as link) and comment content', () => {
         const mockCloseEditMode = jest.fn();
 
         renderWithDefaultData(
             <Content
                 content={commentContent}
-                resourceId={resource_id}
                 commentId={id}
                 likesCount={likes_count}
                 authorName={author.name}
                 isEditModeActive={false}
                 closeEditMode={mockCloseEditMode}
+                authorId={author.id}
+                postId={commentable_id}
             />
         );
 
@@ -25,6 +26,7 @@ describe('Content component', () => {
         const content = screen.getByText(commentContent);
 
         expect(authorName).toBeInTheDocument();
+        expect(authorName).toHaveAttribute('href', `/profile/${author.id}`);
         expect(content).toBeInTheDocument();
     });
 
@@ -34,7 +36,8 @@ describe('Content component', () => {
         renderWithDefaultData(
             <Content
                 content={commentContent}
-                resourceId={resource_id}
+                authorId={author.id}
+                postId={commentable_id}
                 commentId={id}
                 likesCount={0}
                 authorName={author.name}
@@ -56,7 +59,8 @@ describe('Content component', () => {
         renderWithDefaultData(
             <Content
                 content={commentContent}
-                resourceId={resource_id}
+                authorId={author.id}
+                postId={commentable_id}
                 commentId={id}
                 likesCount={1}
                 authorName={author.name}
@@ -78,7 +82,8 @@ describe('Content component', () => {
         renderWithDefaultData(
             <Content
                 content={commentContent}
-                resourceId={resource_id}
+                authorId={author.id}
+                postId={commentable_id}
                 commentId={id}
                 likesCount={2}
                 authorName={author.name}

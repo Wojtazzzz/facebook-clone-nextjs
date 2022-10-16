@@ -1,13 +1,13 @@
 import { Avatar } from '@components/inc/Avatar';
 import Link from 'next/link';
 
-interface AuthorProps {
+interface AuthorImageProps {
     id: number;
     name: string;
     profileImage: string;
 }
 
-export const Author = ({ id, name, profileImage }: AuthorProps) => {
+export const AuthorImage = ({ id, name, profileImage }: AuthorImageProps) => {
     return (
         <Link href={`/profile/${id}`}>
             <a aria-label={name}>

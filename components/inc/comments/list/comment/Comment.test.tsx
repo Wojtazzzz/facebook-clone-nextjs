@@ -21,12 +21,14 @@ describe('Comment component', () => {
         });
     });
 
-    it("has link to author's profile", () => {
+    it("has two links to author's profile", () => {
         renderWithDefaultData(<Comment {...comment} />);
 
-        const link = screen.getByRole('link');
+        const links = screen.getAllByRole('link');
 
-        expect(link).toHaveAttribute('href', `/profile/${comment.author.id}`);
+        expect(links).toHaveLength(2);
+        expect(links[0]).toHaveAttribute('href', `/profile/${comment.author.id}`);
+        expect(links[1]).toHaveAttribute('href', `/profile/${comment.author.id}`);
     });
 
     it('display author name and comment content properly', () => {
@@ -49,7 +51,7 @@ describe('Comment component', () => {
 
     it('turn on edit mode when click on edit button', async () => {
         mock({
-            path: `/api/posts/${comment.resource_id}/comments?page=1`,
+            path: `/api/posts/${comment.commentable_id}/comments?page=1`,
             data: CommentsFirstPageJson,
         });
 

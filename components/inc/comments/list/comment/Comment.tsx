@@ -1,5 +1,5 @@
 import type { IComment } from '@utils/types';
-import { Author } from './Author';
+import { AuthorImage } from './AuthorImage';
 import { Panel } from './panel/Panel';
 import { Content } from './content/Content';
 import { useEditMode } from './useEditMode';
@@ -20,7 +20,7 @@ export const Comment = ({
 
     return (
         <article aria-label={`${author.name}'s comment`} className="w-full flex gap-2 px-2 md:px-3 py-1">
-            <Author id={author.id} name={author.name} profileImage={author.profile_image} />
+            <AuthorImage id={author.id} name={author.name} profileImage={author.profile_image} />
 
             <div className="w-full flex flex-col gap-1">
                 <Content
@@ -29,6 +29,7 @@ export const Comment = ({
                     content={content}
                     postId={commentable_id}
                     commentId={id}
+                    authorId={author.id}
                     authorName={author.name}
                     closeEditMode={closeEditMode}
                 />
