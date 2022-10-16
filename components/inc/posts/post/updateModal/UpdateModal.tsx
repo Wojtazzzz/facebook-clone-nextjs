@@ -15,18 +15,23 @@ interface UpdateModalProps {
 export const UpdateModal = ({ isActive, close, ...rest }: UpdateModalProps) => {
     return (
         <Dialog.Portal>
-            <Dialog.Overlay className="w-screen h-screen fixed top-0 left-0 z-[49] bg-dark-300/40" onClick={close} />
+            <Dialog.Overlay className="w-screen h-screen fixed top-0 left-0 z-[49] bg-dark-300/70" onClick={close} />
 
             <Dialog.Content
-                aria-labelledby="updateModal-heading"
+                data-testid="updatePostModal"
                 aria-modal="true"
-                className="w-full max-w-[520px] min-w-[300px] h-fit max-h-[75vh] fixed top-1/2 left-1/2 right-auto bottom-auto -translate-y-1/2 -translate-x-1/2 flex flex-col text-light-50 bg-dark-200 rounded-lg z-50"
+                aria-labelledby="updatePostModal-header"
+                className="w-full max-w-[520px] min-w-[300px] h-fit max-h-[75vh] fixed top-1/2 left-1/2 right-auto bottom-auto -translate-y-1/2 -translate-x-1/2 box-content flex flex-col text-light-50 z-50 p-1.5"
+                onEscapeKeyDown={close}
+                onPointerDownOutside={close}
             >
-                <Header close={close} />
+                <div className="bg-dark-200 rounded-lg m-2">
+                    <Header close={close} />
 
-                <main className="overflow-y-scroll scrollbar-thin scrollbar-thumb-dark-100 scrollbar-track-dark-200">
-                    <Form {...rest} closeModal={close} />
-                </main>
+                    <main className="overflow-y-scroll scrollbar-thin scrollbar-thumb-dark-100 scrollbar-track-dark-200">
+                        <Form {...rest} closeModal={close} />
+                    </main>
+                </div>
             </Dialog.Content>
         </Dialog.Portal>
     );
