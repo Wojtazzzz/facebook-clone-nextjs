@@ -17,6 +17,7 @@ Swiper.use([Keyboard, A11y]);
 export const Gallery = ({ images, closeGallery }: GalleryProps) => {
     const { activeIndex, isBeginning, isEnd, setSwiper, setSwiperData, slideNext, slidePrev, slideTo } =
         useSwiperData();
+
     useKey('Escape', closeGallery);
 
     const SlidesComponents = images.map((image, i) => (

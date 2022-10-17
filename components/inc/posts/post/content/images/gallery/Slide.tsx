@@ -14,8 +14,8 @@ export const Slide = ({ image }: SlideProps) => {
             style={{ backgroundImage: `url(${path})` }}
         >
             <div className="w-full h-full backdrop-blur-lg z-[51]">
-                <div className="w-4/5 md:w-2/3 h-full relative mx-auto">
-                    <Image fill src={path} className="w-full h-full" alt="" />
+                <div className="w-full md:w-2/3 h-full relative mx-auto">
+                    <Image fill src={path} className="object-contain" alt="" />
                 </div>
             </div>
         </div>
