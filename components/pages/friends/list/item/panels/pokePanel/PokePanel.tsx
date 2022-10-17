@@ -18,7 +18,7 @@ export const PokePanel = ({ friend, data }: PokePanelProps) => {
     if (isSuccess) return <SuccessMessage message="User successfully poked" />;
 
     return (
-        <div className="w-[220px] flex flex-col items-center gap-1">
+        <div className="w-[220px] flex flex-col items-end gap-1 overflow-hidden">
             <PanelButton title="Poke back" isLoading={isLoading} callback={handlePoke} />
 
             <Info firstName={friend.first_name} count={data.count} updatedAt={data.updated_at} />
