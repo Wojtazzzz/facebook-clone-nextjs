@@ -1,4 +1,5 @@
 import { useDatabaseMigrations } from 'cypress-laravel';
+import { xorBy } from 'cypress/types/lodash';
 
 const USER_NAME = `${Cypress.env('USER_FIRST_NAME')} ${Cypress.env('USER_LAST_NAME')}`;
 
@@ -28,7 +29,7 @@ describe('Create post tests', () => {
         cy.intercept('/api/posts?page=1').as('posts_page_1');
 
         cy.get('button[aria-label="Show files uploader"]').click();
-        cy.get('[aria-label="Post content"]').type(newPostContent);
+        cy.get('[aria-label="Post content"]').click().type(newPostContent);
         cy.get('input[type=file]').attachFile('/postImage1.jpg');
 
         cy.contains('Uploaded images: 1');
@@ -217,6 +218,8 @@ describe('Create post tests', () => {
             '/postImage4.jpg',
             '/postImage5.jpg',
         ]);
+
+        cy.get('[data-testid="createPostModal-scrollableWrapper"]').scrollTo('bottom', { ensureScrollable: false });
 
         cy.get('[data-testid="uploaded-images"]').within(() => {
             cy.contains('Uploaded images: 5');

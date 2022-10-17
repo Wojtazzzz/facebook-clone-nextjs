@@ -21,13 +21,18 @@ export const FormContent = ({ isLoading, error }: FormContentProps) => {
 
     return (
         <div className="m-1 md:m-3">
-            <Textarea />
+            <div
+                data-testid="createPostModal-scrollableWrapper"
+                className="max-h-[50vh] overflow-y-scroll scrollbar-thin scrollbar-thumb-dark-100"
+            >
+                <Textarea />
 
-            {isUploadActive && <UploadImages close={closeUpload} />}
+                {isUploadActive && <UploadImages close={closeUpload} />}
 
-            <ToggleImagesUpload isUploadActive={isUploadActive} toggle={toggleUpload} />
+                <ToggleImagesUpload isUploadActive={isUploadActive} toggle={toggleUpload} />
 
-            <ErrorMessage error={error} />
+                <ErrorMessage error={error} />
+            </div>
 
             <Button type="submit" title="Create post" isLoading={isLoading} styles="w-full mt-5" />
         </div>

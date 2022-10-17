@@ -103,11 +103,7 @@ describe('Friends list tests', () => {
 
         cy.friendsListItems().should('have.length', 1);
 
-        cy.intercept('/api/friends?page=1').as('friends_page_1');
-
         cy.get('[data-testid="friends-nav"]').contains('Friends').click();
-
-        cy.wait('@friends_page_1');
 
         cy.friendsListItems().should('have.length', 3);
 
@@ -153,11 +149,7 @@ describe('Friends list tests', () => {
 
         cy.friendsListItems().should('not.exist');
 
-        cy.intercept('/api/friends?page=1').as('friends_page_1');
-
         cy.get('[data-testid="friends-nav"]').contains('Friends').click();
-
-        cy.wait('@friends_page_1');
 
         cy.friendsListItems().should('have.length', 4);
 

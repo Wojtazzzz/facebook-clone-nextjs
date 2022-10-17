@@ -16,7 +16,7 @@ export const Modal = ({ queryKey, close }: ModalProps) => {
             <Dialog.Content
                 data-testid="createPostModal"
                 aria-modal="true"
-                aria-labelledby="createPostModal-heading"
+                aria-labelledby="createPostModal-header"
                 className="w-full max-w-[520px] min-w-[300px] h-fit max-h-[75vh] fixed top-1/2 left-1/2 right-auto bottom-auto -translate-y-1/2 -translate-x-1/2 box-content flex flex-col text-light-50 z-50 p-1.5"
                 onEscapeKeyDown={close}
                 onPointerDownOutside={close}
@@ -24,7 +24,7 @@ export const Modal = ({ queryKey, close }: ModalProps) => {
                 <div className="bg-dark-200 rounded-lg m-2">
                     <Header close={close} />
 
-                    <main className="overflow-y-scroll scrollbar-thin scrollbar-thumb-dark-100 scrollbar-track-dark-200">
+                    <main>
                         <Form queryKey={queryKey} close={close} />
                     </main>
                 </div>

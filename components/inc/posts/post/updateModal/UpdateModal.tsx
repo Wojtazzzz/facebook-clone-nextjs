@@ -28,7 +28,7 @@ export const UpdateModal = ({ isActive, close, ...rest }: UpdateModalProps) => {
                 <div className="bg-dark-200 rounded-lg m-2">
                     <Header close={close} />
 
-                    <main className="overflow-y-scroll scrollbar-thin scrollbar-thumb-dark-100 scrollbar-track-dark-200">
+                    <main>
                         <Form {...rest} closeModal={close} />
                     </main>
                 </div>
