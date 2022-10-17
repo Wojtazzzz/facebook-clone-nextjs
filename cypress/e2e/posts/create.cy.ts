@@ -219,6 +219,8 @@ describe('Create post tests', () => {
             '/postImage5.jpg',
         ]);
 
+        cy.get('[data-testid="createPostModal-scrollableWrapper"]').scrollTo('bottom', { ensureScrollable: false });
+
         cy.get('[data-testid="uploaded-images"]').within(() => {
             cy.contains('Uploaded images: 5');
             cy.contains('postImage1.jpg').should('exist');
