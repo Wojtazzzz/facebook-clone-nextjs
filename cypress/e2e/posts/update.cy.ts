@@ -51,7 +51,7 @@ describe('Update post tests', () => {
 
         cy.openUpdatePostModal();
 
-        cy.get('[aria-label="Post content"]').clear().type('T');
+        cy.get('[aria-label="Post content"]').click().clear().type('T');
 
         cy.get('button[aria-label="Update post"]').click();
 
@@ -76,7 +76,7 @@ describe('Update post tests', () => {
 
         cy.openUpdatePostModal();
 
-        cy.get('[aria-label="Post content"]').clear();
+        cy.get('[aria-label="Post content"]').click().clear();
         cy.get('button[aria-label="Update post"]').click();
 
         cy.get('[aria-label="Update post modal"]').should('not.exist');
@@ -102,7 +102,7 @@ describe('Update post tests', () => {
 
         cy.openUpdatePostModal();
 
-        cy.get('[aria-label="Post content"]').type('New post content');
+        cy.get('[aria-label="Post content"]').click().type('New post content');
 
         cy.checkPageA11y();
 
@@ -258,7 +258,7 @@ describe('Update post tests', () => {
             .within(() => {
                 cy.get('[aria-label="Remove image"]').click();
             });
-        cy.get('[aria-label="Post content"]').clear();
+        cy.get('[aria-label="Post content"]').click().clear();
 
         cy.get('button[aria-label="Update post"]').click();
 

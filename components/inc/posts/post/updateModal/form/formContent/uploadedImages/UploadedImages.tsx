@@ -17,7 +17,7 @@ export const UploadedImages = ({ images }: UploadedImagesProps) => {
     return (
         <div
             aria-label="List of already uploaded images"
-            className="flex flex-col gap-2 h-full border-1px border-light-100 rounded-xl overflow-y-auto p-3"
+            className="w-full h-full flex flex-col gap-2 border-1px border-light-100 rounded-xl p-3"
         >
             {ImagesComponents}
         </div>

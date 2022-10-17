@@ -226,8 +226,12 @@ describe('Profile friends tests', () => {
 
             cy.get('input[aria-label="Search friend"]').should('have.value', '');
 
+            cy.intercept('/api/users/1/friends?search=John+Doe&page=1').as('search_friends');
+
             cy.get('input[aria-label="Search friend"]').type('John Doe');
             cy.get('input[aria-label="Search friend"]').should('have.value', 'John Doe');
+
+            cy.wait('@search_friends');
 
             cy.checkPageA11y();
 

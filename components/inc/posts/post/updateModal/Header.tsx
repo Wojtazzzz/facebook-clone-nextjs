@@ -9,7 +9,7 @@ export const Header = ({ close }: HeaderProps) => {
         <header className="w-full flex justify-between items-center text-light-200 border-zinc-600 border-b-[1.5px] p-3">
             <div className="w-[40px] h-[40px] invisible pointer-events-none"></div>
 
-            <h1 id="updateModal-heading" className="text-2xl text-center font-bold">
+            <h1 id="updatePostModal-header" className="text-2xl text-center font-bold">
                 Update Post
             </h1>
 

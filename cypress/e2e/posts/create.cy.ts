@@ -1,4 +1,5 @@
 import { useDatabaseMigrations } from 'cypress-laravel';
+import { xorBy } from 'cypress/types/lodash';
 
 const USER_NAME = `${Cypress.env('USER_FIRST_NAME')} ${Cypress.env('USER_LAST_NAME')}`;
 
@@ -28,7 +29,7 @@ describe('Create post tests', () => {
         cy.intercept('/api/posts?page=1').as('posts_page_1');
 
         cy.get('button[aria-label="Show files uploader"]').click();
-        cy.get('[aria-label="Post content"]').type(newPostContent);
+        cy.get('[aria-label="Post content"]').click().type(newPostContent);
         cy.get('input[type=file]').attachFile('/postImage1.jpg');
 
         cy.contains('Uploaded images: 1');
@@ -220,11 +221,11 @@ describe('Create post tests', () => {
 
         cy.get('[data-testid="uploaded-images"]').within(() => {
             cy.contains('Uploaded images: 5');
-            cy.contains('postImage1.jpg').should('be.visible');
-            cy.contains('postImage2.jpg').should('be.visible');
-            cy.contains('postImage3.jpg').should('be.visible');
-            cy.contains('postImage4.jpg').should('be.visible');
-            cy.contains('postImage5.jpg').should('be.visible');
+            cy.contains('postImage1.jpg').should('exist');
+            cy.contains('postImage2.jpg').should('exist');
+            cy.contains('postImage3.jpg').should('exist');
+            cy.contains('postImage4.jpg').should('exist');
+            cy.contains('postImage5.jpg').should('exist');
         });
 
         cy.checkPageA11y();
@@ -234,10 +235,10 @@ describe('Create post tests', () => {
 
         cy.get('[data-testid="uploaded-images"]').within(() => {
             cy.contains('Uploaded images: 3');
-            cy.contains('postImage1.jpg').should('be.visible');
-            cy.contains('postImage2.jpg').should('be.visible');
+            cy.contains('postImage1.jpg').should('exist');
+            cy.contains('postImage2.jpg').should('exist');
             cy.contains('postImage3.jpg').should('not.exist');
-            cy.contains('postImage4.jpg').should('be.visible');
+            cy.contains('postImage4.jpg').should('exist');
             cy.contains('postImage5.jpg').should('not.exist');
         });
 
