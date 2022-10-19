@@ -91,6 +91,9 @@ describe('Friends list tests', () => {
         cy.friendsListItems().first().contains('User successfully removed');
         cy.friendsListItems().should('have.length', 4);
 
+        /* wait for TRQ will mark data as stale */
+        cy.wait(5000);
+
         cy.checkPageA11y();
 
         cy.intercept('/api/suggests?page=1').as('suggests_page_1');

@@ -61,7 +61,7 @@ describe('Messenger tests', () => {
             status: 'CONFIRMED',
         });
 
-        cy.intercept('/api/messages?page=1').as('messages_page_1');
+        cy.intercept('/api/messenger?page=1').as('messenger_page_1');
 
         cy.visit('/');
 
@@ -73,17 +73,17 @@ describe('Messenger tests', () => {
             cy.get('[aria-label="Messenger"]').click();
         });
 
-        cy.wait('@messages_page_1');
+        cy.wait('@messenger_page_1');
 
         cy.get('button').filter(':contains("Click to open chat")').should('have.length', 15);
 
         cy.checkPageA11y();
 
-        cy.intercept('/api/messages?page=2').as('messages_page_2');
+        cy.intercept('/api/messenger?page=2').as('messenger_page_2');
 
         cy.get('[id="messenger-list"]').scrollTo('bottom', { ensureScrollable: false });
 
-        cy.wait('@messages_page_2');
+        cy.wait('@messenger_page_2');
 
         cy.get('button').filter(':contains("Click to open chat")').should('have.length', 22);
 
@@ -97,8 +97,8 @@ describe('Messenger tests', () => {
     });
 
     it("messenger doesn't have icon and render empty component when api return empty response, close messenger by click on outside element", () => {
-        cy.intercept('/api/messages?page=1').as('messages_page_1');
-        cy.intercept('/api/messages/checkUnread').as('checkUnread');
+        cy.intercept('/api/messenger?page=1').as('messenger_page_1');
+        cy.intercept('/api/messenger/check-unread').as('checkUnread');
 
         cy.visit('/');
 
@@ -119,7 +119,7 @@ describe('Messenger tests', () => {
                 });
         });
 
-        cy.wait('@messages_page_1');
+        cy.wait('@messenger_page_1');
 
         cy.get('[data-testid="empty-list"]').should('be.visible');
 
@@ -133,7 +133,7 @@ describe('Messenger tests', () => {
     });
 
     it('messenger render error component because api return server error', () => {
-        cy.intercept('/api/messages?page=1', { statusCode: 500 }).as('messages_page_1');
+        cy.intercept('/api/messenger?page=1', { statusCode: 500 }).as('messenger_page_1');
 
         cy.visit('/');
 
@@ -145,7 +145,7 @@ describe('Messenger tests', () => {
             cy.get('[aria-label="Messenger"]').click();
         });
 
-        cy.wait('@messages_page_1');
+        cy.wait('@messenger_page_1');
 
         cy.get('[data-testid="server-error"]').should('be.visible');
 
@@ -162,7 +162,7 @@ describe('Messenger tests', () => {
             sender_id: 999,
         });
 
-        cy.intercept('/api/messages/checkUnread').as('checkUnread');
+        cy.intercept('/api/messenger/check-unread').as('checkUnread');
 
         cy.visit('/');
 
@@ -178,7 +178,7 @@ describe('Messenger tests', () => {
                 });
         });
 
-        cy.intercept('/api/messages/999/update').as('markAsRead');
+        cy.intercept('/api/messages/999').as('markAsRead');
 
         cy.get('[data-testid="contacts-list"]').within(() => {
             cy.get('button[aria-label*="Open chat with"]').click();
@@ -220,7 +220,7 @@ describe('Messenger tests', () => {
             sender_id: 99999,
         });
 
-        cy.intercept('/api/messages/checkUnread').as('checkUnread');
+        cy.intercept('/api/messenger/check-unread').as('checkUnread');
 
         cy.visit('/');
 
@@ -234,7 +234,7 @@ describe('Messenger tests', () => {
                 });
         });
 
-        cy.intercept('/api/messages/999/update').as('markAsRead');
+        cy.intercept('/api/messages/999').as('markAsRead');
 
         cy.get('[data-testid="contacts-list"]').within(() => {
             cy.get('button[aria-label="Open chat with John Doe"]').click();

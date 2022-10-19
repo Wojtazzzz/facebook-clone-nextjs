@@ -24,4 +24,4 @@ export const useUnhidePost = (queryKey: QueryKey) => {
     };
 };
 
-const mutationFn = (id: number) => axios.delete(`/api/hidden/posts/${id}`);
+const mutationFn = (id: number) => axios.delete(`/api/hidden/${id}`);

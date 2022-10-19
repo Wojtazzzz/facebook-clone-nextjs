@@ -6,4 +6,4 @@ export const useCheckForUnread = () => {
     return useQuery(getCheckUnreadNotificationsQK(), queryFn);
 };
 
-const queryFn = () => axios.get<boolean>('/api/notifications/checkUnread').then((response) => response.data);
+const queryFn = () => axios.get<boolean>('/api/notifications/check-unread').then((response) => response.data);

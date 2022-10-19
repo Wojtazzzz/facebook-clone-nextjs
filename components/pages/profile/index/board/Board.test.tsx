@@ -91,7 +91,7 @@ describe('Board component', () => {
         });
 
         mock({
-            path: '/api/hidden/posts?page=1',
+            path: '/api/hidden?page=1',
             data: EmptyPostsPageJson,
         });
 
@@ -114,7 +114,7 @@ describe('Board component', () => {
         });
 
         mock({
-            path: '/api/saved/posts?page=1',
+            path: '/api/saved?page=1',
             data: EmptyPostsPageJson,
         });
 

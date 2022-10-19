@@ -24,4 +24,4 @@ export const useUnsavePost = (queryKey: QueryKey) => {
     };
 };
 
-const mutationFn = (id: number) => axios.delete(`/api/saved/posts/${id}`);
+const mutationFn = (id: number) => axios.delete(`/api/saved/${id}`);

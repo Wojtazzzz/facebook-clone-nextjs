@@ -1,5 +1,4 @@
-import { TurnOffComments } from './turnOffComments/TurnOffComments';
-import { TurnOnComments } from './turnOnComments/TurnOnComments';
+import { ToggleCommenting } from './toggleCommenting/ToggleCommenting';
 import { Delete } from './delete/Delete';
 import { Update } from './update/Update';
 import type { QueryKey } from '@tanstack/react-query';
@@ -15,13 +14,7 @@ export const OwnOptions = ({ postId, commenting, queryKey, openUpdateModal }: Ow
     return (
         <>
             <Update openUpdateModal={openUpdateModal} />
-
-            {commenting ? (
-                <TurnOffComments postId={postId} queryKey={queryKey} />
-            ) : (
-                <TurnOnComments postId={postId} queryKey={queryKey} />
-            )}
-
+            <ToggleCommenting postId={postId} commenting={commenting} queryKey={queryKey} />
             <Delete postId={postId} queryKey={queryKey} />
         </>
     );

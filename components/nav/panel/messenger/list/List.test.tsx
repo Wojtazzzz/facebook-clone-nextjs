@@ -20,7 +20,7 @@ describe('List component', () => {
         const mockClose = jest.fn();
 
         mock({
-            path: '/api/messages?page=1',
+            path: '/api/messenger?page=1',
             data: MessengerFirstPageJson,
         });
 
@@ -35,7 +35,7 @@ describe('List component', () => {
         const mockClose = jest.fn();
 
         mock({
-            path: '/api/messages?page=1',
+            path: '/api/messenger?page=1',
             data: MessengerFirstPageJson,
         });
 
@@ -52,7 +52,7 @@ describe('List component', () => {
         const mockClose = jest.fn();
 
         mock({
-            path: '/api/messages?page=1',
+            path: '/api/messenger?page=1',
             data: MessengerEmptyPageJson,
         });
 
@@ -66,7 +66,7 @@ describe('List component', () => {
         const mockClose = jest.fn();
 
         mock({
-            path: '/api/messages?page=1',
+            path: '/api/messenger?page=1',
             status: 500,
         });
 

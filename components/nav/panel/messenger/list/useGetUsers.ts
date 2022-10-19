@@ -5,6 +5,6 @@ import type { IFriend } from '@utils/types';
 export const useGetUsers = () => {
     return useInfiniteData<IFriend>({
         queryKey: getMessengerQK(),
-        endpoint: '/api/messages',
+        endpoint: '/api/messenger',
     });
 };

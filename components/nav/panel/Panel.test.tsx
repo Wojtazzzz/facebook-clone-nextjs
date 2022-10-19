@@ -20,12 +20,12 @@ describe('Panel component', () => {
         });
 
         mock({
-            path: '/api/messages/checkUnread',
+            path: '/api/messenger/check-unread',
             data: [false],
         });
 
         mock({
-            path: '/api/notifications/checkUnread',
+            path: '/api/notifications/check-unread',
             data: [false],
         });
     });
@@ -34,7 +34,7 @@ describe('Panel component', () => {
         const mockToggleMenu = jest.fn();
 
         mock({
-            path: '/api/messages?page=1',
+            path: '/api/messenger?page=1',
             data: MessengerFirstPageJson,
         });
 

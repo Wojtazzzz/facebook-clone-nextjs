@@ -24,4 +24,4 @@ export const useHidePost = (queryKey: QueryKey) => {
     };
 };
 
-const mutationFn = (id: number) => axios.post('/api/hidden/posts', { post_id: id });
+const mutationFn = (id: number) => axios.post('/api/hidden', { post_id: id });

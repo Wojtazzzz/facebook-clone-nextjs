@@ -765,7 +765,7 @@ describe('Chat tests', () => {
 
         cy.intercept('/api/contacts?page=1').as('contacts_page_1');
         cy.intercept('/api/messages/1?page=1').as('messages_page_1');
-        cy.intercept('/api/messages/1/update').as('read');
+        cy.intercept('/api/messages/1').as('read');
 
         cy.get('[data-testid="contacts-list"]').within(() => {
             cy.contains(USER_NAME).click();
@@ -809,41 +809,4 @@ describe('Chat tests', () => {
             .filter(':contains("World")')
             .get('[data-testid="statusIcon-seen"]');
     });
-
-    // it('open chat, conversation should has 15 messages, WIP', () => {
-    //     cy.create('Message', 22, {
-    //         sender_id: 1,
-    //         receiver_id: friend.id,
-    //     });
-
-    //     cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
-
-    //     cy.visit('/');
-
-    //     cy.wait('@user');
-    //     cy.wait('@contacts_page_1');
-
-    //     cy.get('[data-testid="contacts-list"]').within(() => {
-    //         cy.contains(`${friend.first_name} ${friend.last_name}`).click();
-    //     });
-
-    //     cy.wait('@messages_page_1');
-
-    //     cy.get('[data-testid="chat"]').should('not.include.text', 'Say hello to your friend!');
-    //     cy.get('[data-testid="chat-messages"]').within(() => {
-    //         cy.get('[aria-label$=" message"]').should('have.length', 15);
-    //     });
-
-    //     cy.intercept(`/api/messages/${friend.id}?page=1`).as('messages_page_1');
-    //     cy.intercept('/api/messages/2?page=2').as('messages_page_2');
-
-    //     cy.get('[id="list-of-messages"]').scrollTo('top', { ensureScrollable: false });
-
-    //     cy.wait('@messages_page_1');
-    //     cy.wait('@messages_page_2');
-
-    //     cy.get('[data-testid="chat-messages"]').within(() => {
-    //         cy.get('[aria-label$=" message"]').should('have.length', 22);
-    //     });
-    // });
 });

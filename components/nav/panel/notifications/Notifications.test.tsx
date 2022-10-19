@@ -23,7 +23,7 @@ describe('Notifications component', () => {
         });
 
         mock({
-            path: '/api/notifications/checkUnread',
+            path: '/api/notifications/check-unread',
             data: [false],
         });
     });

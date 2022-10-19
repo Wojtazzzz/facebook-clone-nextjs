@@ -16,7 +16,7 @@ describe('Profile friends tests', () => {
 
         cy.wait('@user');
 
-        cy.intercept('/api/users/1/friends/getByCount?count=9').as('getByCount');
+        cy.intercept('/api/users/1/friends/get-by-count?count=9').as('getByCount');
 
         cy.get('[data-testid="menu"]').contains(USER_NAME).click();
 

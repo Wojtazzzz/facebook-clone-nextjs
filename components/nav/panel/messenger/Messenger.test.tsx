@@ -13,12 +13,12 @@ describe('Messenger component', () => {
         mockResizeObserver();
 
         mock({
-            path: '/api/messages?page=1',
+            path: '/api/messenger?page=1',
             data: MessengerFirstPageJson,
         });
 
         mock({
-            path: '/api/messages/checkUnread',
+            path: '/api/messenger/check-unread',
             data: [false],
         });
     });

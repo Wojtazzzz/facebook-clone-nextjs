@@ -3,7 +3,7 @@ import { axios } from '@utils/axios';
 import type { QueryKey } from '@tanstack/react-query';
 import { useAlertModal } from '@hooks/useAlertModal';
 
-export const useTurnOnComments = (queryKey: QueryKey) => {
+export const useToggleCommenting = (queryKey: QueryKey) => {
     const queryClient = useQueryClient();
     const { alert } = useAlertModal();
 
@@ -12,16 +12,16 @@ export const useTurnOnComments = (queryKey: QueryKey) => {
         onError: () => alert('Something went wrong, try again later'),
     });
 
-    const turnOnComments = (id: number) => {
+    const toggleCommenting = (id: number) => {
         if (mutation.isLoading) return;
 
         mutation.mutate(id);
     };
 
     return {
-        turnOnComments,
+        toggleCommenting,
         ...mutation,
     };
 };
 
-const mutationFn = (id: number) => axios.put(`/api/posts/${id}/turn-on-comments`);
+const mutationFn = (id: number) => axios.put(`/api/posts/${id}/commenting`);

@@ -33,12 +33,12 @@ describe('Profile board tests', () => {
         cy.create('Post', 4, {
             author_id: 1,
         }).then(([firstPost, secondPost]) => {
-            cy.create('HiddenPost', {
+            cy.create('Hidden', {
                 user_id: 1,
                 post_id: firstPost.id,
             });
 
-            cy.create('HiddenPost', {
+            cy.create('Hidden', {
                 user_id: 1,
                 post_id: secondPost.id,
             });
@@ -62,18 +62,18 @@ describe('Profile board tests', () => {
     });
 
     it('see empty list of own posts, change list to hidden posts and see 3 hidden post, change list to saved posts and see 4 saved posts, change list to own posts and again see 0 posts', () => {
-        cy.create('HiddenPost', 3, {
+        cy.create('Hidden', 3, {
             user_id: 1,
         });
 
-        cy.create('SavedPost', 4, {
+        cy.create('Saved', 4, {
             user_id: 1,
         });
 
         cy.intercept('/api/user').as('user');
         cy.intercept('/api/users/1/posts?page=1').as('posts');
-        cy.intercept('/api/hidden/posts?page=1').as('hiddenPosts');
-        cy.intercept('/api/saved/posts?page=1').as('savedPosts');
+        cy.intercept('/api/hidden?page=1').as('hiddenPosts');
+        cy.intercept('/api/saved?page=1').as('savedPosts');
 
         cy.visit('/profile/1');
 
@@ -179,11 +179,11 @@ describe('Profile board tests', () => {
             author_id: 2,
         });
 
-        cy.create('HiddenPost', 2, {
+        cy.create('Hidden', 2, {
             user_id: 2,
         });
 
-        cy.create('SavedPost', 2, {
+        cy.create('Saved', 2, {
             user_id: 2,
         });
 
@@ -307,7 +307,7 @@ describe('Profile board tests', () => {
 
         cy.injectAxe();
 
-        cy.intercept('/api/saved/posts').as('save');
+        cy.intercept('/api/saved').as('save');
 
         cy.getPosts().should('have.length', 1);
         cy.getPosts().within(() => {
@@ -326,13 +326,13 @@ describe('Profile board tests', () => {
 
         cy.injectAxe();
 
-        cy.intercept('/api/saved/posts?page=1').as('posts_page_1');
+        cy.intercept('/api/saved?page=1').as('posts_page_1');
 
         cy.get('[aria-label="Change list of posts"]').select('Saved posts');
         cy.wait('@posts_page_1');
 
-        cy.intercept('/api/saved/posts/1').as('unsave');
-        cy.intercept('/api/saved/posts?page=1').as('posts_page_1');
+        cy.intercept('/api/saved/1').as('unsave');
+        cy.intercept('/api/saved?page=1').as('posts_page_1');
 
         cy.checkPageA11y();
 
@@ -370,7 +370,7 @@ describe('Profile board tests', () => {
 
         cy.injectAxe();
 
-        cy.intercept('/api/hidden/posts').as('hide');
+        cy.intercept('/api/hidden').as('hide');
         cy.intercept('/api/users/2/posts?page=1').as('posts_page_1');
 
         cy.getPosts().should('have.length', 1);
@@ -393,13 +393,13 @@ describe('Profile board tests', () => {
 
         cy.injectAxe();
 
-        cy.intercept('/api/hidden/posts?page=1').as('posts_page_1');
+        cy.intercept('/api/hidden?page=1').as('posts_page_1');
 
         cy.get('[aria-label="Change list of posts"]').select('Hidden posts');
         cy.wait('@posts_page_1');
 
-        cy.intercept('/api/hidden/posts/1').as('unhide');
-        cy.intercept('/api/hidden/posts?page=1').as('posts_page_1');
+        cy.intercept('/api/hidden/1').as('unhide');
+        cy.intercept('/api/hidden?page=1').as('posts_page_1');
 
         cy.getPosts().should('have.length', 1);
         cy.getPosts().within(() => {
@@ -432,18 +432,18 @@ describe('Profile board tests', () => {
     });
 
     it('change list to hidden posts, like hidden post, comment hidden post, change list to saved posts, like saved post, comment saved post', () => {
-        cy.create('HiddenPost', {
+        cy.create('Hidden', {
             user_id: 1,
         });
 
-        cy.create('SavedPost', {
+        cy.create('Saved', {
             user_id: 1,
         });
 
         cy.intercept('/api/user').as('user');
         cy.intercept('/api/users/1/posts?page=1').as('posts');
-        cy.intercept('/api/hidden/posts?page=1').as('hiddenPosts');
-        cy.intercept('/api/saved/posts?page=1').as('savedPosts');
+        cy.intercept('/api/hidden?page=1').as('hiddenPosts');
+        cy.intercept('/api/saved?page=1').as('savedPosts');
 
         cy.visit('/profile/1');
 
@@ -458,7 +458,7 @@ describe('Profile board tests', () => {
         cy.getPosts().should('have.length', 1);
         cy.getPosts().within(() => {
             cy.intercept('/api/posts/1/likes').as('like');
-            cy.intercept('/api/hidden/posts?page=1').as('posts_page_1');
+            cy.intercept('/api/hidden?page=1').as('posts_page_1');
 
             cy.get('[aria-label="Like"]').click();
 
@@ -487,7 +487,7 @@ describe('Profile board tests', () => {
         cy.getPosts().should('have.length', 1);
         cy.getPosts().within(() => {
             cy.intercept('/api/posts/2/likes').as('like');
-            cy.intercept('/api/saved/posts?page=1').as('posts_page_1');
+            cy.intercept('/api/saved?page=1').as('posts_page_1');
 
             cy.get('[aria-label="Like"]').click();
 
@@ -514,8 +514,8 @@ describe('Profile board tests', () => {
     it('see born at info with correct date instead of empty list within own posts, change list to hidden posts and see empty list instead of born at, change list to saved posts and see empty list instead of born at', () => {
         cy.intercept('/api/user').as('user');
         cy.intercept('/api/users/1/posts?page=1').as('posts');
-        cy.intercept('/api/hidden/posts?page=1').as('hiddenPosts');
-        cy.intercept('/api/saved/posts?page=1').as('savedPosts');
+        cy.intercept('/api/hidden?page=1').as('hiddenPosts');
+        cy.intercept('/api/saved?page=1').as('savedPosts');
 
         cy.visit('/profile/1');
 

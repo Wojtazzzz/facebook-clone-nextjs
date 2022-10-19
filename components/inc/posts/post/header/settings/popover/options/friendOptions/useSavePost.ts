@@ -26,4 +26,4 @@ export const useSavePost = (queryKey: QueryKey) => {
     };
 };
 
-const mutationFn = (id: number) => axios.post('/api/saved/posts', { post_id: id });
+const mutationFn = (id: number) => axios.post('/api/saved', { post_id: id });

@@ -28,7 +28,7 @@ interface IParams extends ParsedUrlQuery {
 export const getStaticProps: GetStaticProps = async (context) => {
     const { id } = context.params as IParams;
 
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/next/profiles/${id}`);
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/ssg/profiles/${id}`);
 
     if (response.status === 404) {
         return {
@@ -49,7 +49,7 @@ type UserId = {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/next/profiles`);
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/ssg/profiles`);
     const data = await response.json();
 
     const paths = data.map(({ id }: UserId) => ({

@@ -6,4 +6,4 @@ export const useCheckForUnread = () => {
     return useQuery(getCheckUnreadMessengerQK(), queryFn);
 };
 
-const queryFn = () => axios.get<boolean>('/api/messages/checkUnread').then((response) => response.data);
+const queryFn = () => axios.get<boolean>('/api/messenger/check-unread').then((response) => response.data);

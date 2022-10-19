@@ -10,10 +10,10 @@ type IGetPostsEndpointArgs =
 export const getPostsEndpoint = (args: IGetPostsEndpointArgs) => {
     switch (args.type) {
         case 'hidden':
-            return '/api/hidden/posts';
+            return '/api/hidden';
 
         case 'saved':
-            return '/api/saved/posts';
+            return '/api/saved';
 
         case 'own':
             return `/api/users/${args.userId}/posts`;

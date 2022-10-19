@@ -8,7 +8,7 @@ import { User } from './User';
 describe('Profile User info tests', () => {
     beforeEach(() => {
         mock({
-            path: `/api/users/${RootUserJson.id}/friends/getByCount?count=8`,
+            path: `/api/users/${RootUserJson.id}/friends/get-by-count?count=8`,
             data: NineFriends,
         });
     });

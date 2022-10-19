@@ -107,7 +107,7 @@ describe('Profile friends tests', () => {
     });
 
     it('see error component instead of list of friends when api return server error', () => {
-        cy.intercept('/api/users/1/friends/getByCount?count=9', { statusCode: 500 }).as('friends');
+        cy.intercept('/api/users/1/friends/get-by-count?count=9', { statusCode: 500 }).as('friends');
 
         cy.visit('/profile/1');
 
@@ -128,7 +128,7 @@ describe('Profile friends tests', () => {
         cy.createFriendship(14);
 
         cy.intercept('/api/user').as('user');
-        cy.intercept('/api/users/1/friends/getByCount?count=9').as('friends');
+        cy.intercept('/api/users/1/friends/get-by-count?count=9').as('friends');
 
         cy.visit('/profile/1');
 

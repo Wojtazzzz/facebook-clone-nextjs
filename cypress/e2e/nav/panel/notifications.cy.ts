@@ -65,7 +65,7 @@ describe('Notifications tests', () => {
 
     it('notifications render empty component when api return empty data, close notification by click on close button', () => {
         cy.intercept('/api/notifications?page=1').as('notifications_page_1');
-        cy.intercept('/api/notifications/checkUnread').as('checkUnread');
+        cy.intercept('/api/notifications/check-unread').as('checkUnread');
 
         cy.visit('/');
 
@@ -159,7 +159,7 @@ describe('Notifications tests', () => {
     it('notifications button has alert icon when api return unread notifications, read that notifications, see that alert icon dissapear', () => {
         cy.artisan('data:notification 1 3');
 
-        cy.intercept('/api/notifications/checkUnread').as('checkUnread');
+        cy.intercept('/api/notifications/check-unread').as('checkUnread');
 
         cy.visit('/');
 
@@ -175,7 +175,7 @@ describe('Notifications tests', () => {
 
             cy.intercept('/api/notifications?page=1').as('notifications_page_1');
             cy.intercept('/api/notifications').as('markAsRead');
-            cy.intercept('/api/notifications/checkUnread').as('checkUnread');
+            cy.intercept('/api/notifications/check-unread').as('checkUnread');
 
             cy.get('[aria-label="Notifications"]').click();
 

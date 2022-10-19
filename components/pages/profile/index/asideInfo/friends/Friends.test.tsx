@@ -10,7 +10,7 @@ import { mock } from '@utils/nock';
 describe('Friends tests', () => {
     it('render properly header', () => {
         mock({
-            path: `/api/users/${RootUserJson.id}/friends/getByCount?count=9`,
+            path: `/api/users/${RootUserJson.id}/friends/get-by-count?count=9`,
             data: NineFriendsJson,
         });
 
@@ -23,7 +23,7 @@ describe('Friends tests', () => {
 
     it('can render 9 friends', async () => {
         mock({
-            path: `/api/users/${RootUserJson.id}/friends/getByCount?count=9`,
+            path: `/api/users/${RootUserJson.id}/friends/get-by-count?count=9`,
             data: NineFriendsJson,
         });
 
@@ -38,7 +38,7 @@ describe('Friends tests', () => {
 
     it('can render 1 friend', async () => {
         mock({
-            path: `/api/users/${RootUserJson.id}/friends/getByCount?count=9`,
+            path: `/api/users/${RootUserJson.id}/friends/get-by-count?count=9`,
             data: OneFriendJson,
         });
 
@@ -53,7 +53,7 @@ describe('Friends tests', () => {
 
     it('render friend name and image', async () => {
         mock({
-            path: `/api/users/${RootUserJson.id}/friends/getByCount?count=9`,
+            path: `/api/users/${RootUserJson.id}/friends/get-by-count?count=9`,
             data: OneFriendJson,
         });
 
@@ -70,7 +70,7 @@ describe('Friends tests', () => {
 
     it('friend element is link to his profile page', async () => {
         mock({
-            path: `/api/users/${RootUserJson.id}/friends/getByCount?count=9`,
+            path: `/api/users/${RootUserJson.id}/friends/get-by-count?count=9`,
             data: OneFriendJson,
         });
 
@@ -85,7 +85,7 @@ describe('Friends tests', () => {
 
     it('render empty component when api return empty response', async () => {
         mock({
-            path: `/api/users/${RootUserJson.id}/friends/getByCount?count=9`,
+            path: `/api/users/${RootUserJson.id}/friends/get-by-count?count=9`,
             data: NoFriendsJson,
         });
 
@@ -100,7 +100,7 @@ describe('Friends tests', () => {
 
     it('render error component when api return server error', async () => {
         mock({
-            path: `/api/users/${RootUserJson.id}/friends/getByCount?count=9`,
+            path: `/api/users/${RootUserJson.id}/friends/get-by-count?count=9`,
             status: 500,
         });
 

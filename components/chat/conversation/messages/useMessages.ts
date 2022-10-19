@@ -35,4 +35,4 @@ export const useMessages = (friendId: number) => {
     });
 };
 
-const mutationFn = (friendId: number) => axios.put(`/api/messages/${friendId}/update`);
+const mutationFn = (friendId: number) => axios.put(`/api/messages/${friendId}`);

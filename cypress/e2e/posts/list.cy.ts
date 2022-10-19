@@ -56,12 +56,12 @@ describe('Posts list tests', () => {
                 author_id: friendship.friend_id,
             });
 
-            cy.create('HiddenPost', {
+            cy.create('Hidden', {
                 user_id: 1,
                 post_id: 1,
             });
 
-            cy.create('HiddenPost', {
+            cy.create('Hidden', {
                 user_id: 1,
                 post_id: 2,
             });
@@ -89,7 +89,7 @@ describe('Posts list tests', () => {
             }).then((posts) => {
                 const [firstPost] = posts;
 
-                cy.create('HiddenPost', {
+                cy.create('Hidden', {
                     user_id: secondFS.friend_id,
                     post_id: firstPost.id,
                 });

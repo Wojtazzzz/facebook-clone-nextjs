@@ -14,5 +14,5 @@ type IFriendsWithCount = {
 
 const queryFn = (userId: number, count: number) =>
     axios
-        .get<IFriendsWithCount>(`/api/users/${userId}/friends/getByCount?count=${count}`)
+        .get<IFriendsWithCount>(`/api/users/${userId}/friends/get-by-count?count=${count}`)
         .then((response) => response.data);

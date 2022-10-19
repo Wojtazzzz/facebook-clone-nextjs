@@ -10,7 +10,7 @@ import { Friends } from './Friends';
 describe('Friends component', () => {
     it('render loader when fetching friends', () => {
         mock({
-            path: `/api/users/${RootUserJson.id}/friends/getByCount?count=8`,
+            path: `/api/users/${RootUserJson.id}/friends/get-by-count?count=8`,
             data: EightFriends,
         });
 
@@ -26,7 +26,7 @@ describe('Friends component', () => {
 
     it('render error when response return server error', async () => {
         mock({
-            path: `/api/users/${RootUserJson.id}/friends/getByCount?count=8`,
+            path: `/api/users/${RootUserJson.id}/friends/get-by-count?count=8`,
             data: EightFriends,
             status: 500,
         });
@@ -43,7 +43,7 @@ describe('Friends component', () => {
 
     it('render 1 avatar and correct text when 1 friend fetched', async () => {
         mock({
-            path: `/api/users/${RootUserJson.id}/friends/getByCount?count=8`,
+            path: `/api/users/${RootUserJson.id}/friends/get-by-count?count=8`,
             data: OneFriend,
         });
 
@@ -58,7 +58,7 @@ describe('Friends component', () => {
 
     it('render 0 avatar and correct text when 0 friends fetched', async () => {
         mock({
-            path: `/api/users/${RootUserJson.id}/friends/getByCount?count=8`,
+            path: `/api/users/${RootUserJson.id}/friends/get-by-count?count=8`,
             data: ZeroFriends,
         });
 
@@ -73,7 +73,7 @@ describe('Friends component', () => {
 
     it('render 8 avatars and correct text when 8 friends fetched', async () => {
         mock({
-            path: `/api/users/${RootUserJson.id}/friends/getByCount?count=8`,
+            path: `/api/users/${RootUserJson.id}/friends/get-by-count?count=8`,
             data: EightFriends,
         });
 

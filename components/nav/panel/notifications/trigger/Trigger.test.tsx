@@ -12,7 +12,7 @@ describe('Trigger component', () => {
         const mockOpen = jest.fn();
 
         mock({
-            path: '/api/notifications/checkUnread',
+            path: '/api/notifications/check-unread',
             data: false,
         });
 
@@ -31,7 +31,7 @@ describe('Trigger component', () => {
         const mockOpen = jest.fn();
 
         mock({
-            path: '/api/notifications/checkUnread',
+            path: '/api/notifications/check-unread',
             data: false,
         });
 
@@ -52,7 +52,7 @@ describe('Trigger component', () => {
         const mockOpen = jest.fn();
 
         mock({
-            path: '/api/notifications/checkUnread',
+            path: '/api/notifications/check-unread',
             data: false,
         });
 
@@ -71,7 +71,7 @@ describe('Trigger component', () => {
         const mockOpen = jest.fn();
 
         mock({
-            path: '/api/notifications/checkUnread',
+            path: '/api/notifications/check-unread',
             data: true,
         });
 
