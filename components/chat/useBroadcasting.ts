@@ -5,8 +5,8 @@ import Pusher from 'pusher-js';
 import { useAuth } from '@hooks/useAuth';
 import { useChat } from '@hooks/useChat';
 import type { IChatFriend } from '@utils/types';
+import { BACKEND_URL } from '@utils/env';
 
-// @todo to refactor
 if (typeof window !== 'undefined') {
     (window as any).Pusher = Pusher;
 }
@@ -22,20 +22,8 @@ export const useBroadcasting = (friend: IChatFriend) => {
                 key: process.env.NEXT_PUBLIC_PUSHER_APP_KEY,
                 cluster: process.env.NEXT_PUBLIC_PUSHER_APP_CLUSTER,
                 forceTLS: true,
-                authEndpoint: `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/broadcasting/auth`,
-                authorizer: (channel: { name: string }) => {
-                    return {
-                        authorize: (socketId: any, callback: (arg0: boolean, arg1: any) => void) => {
-                            axios
-                                .post('/api/broadcasting/auth', {
-                                    socket_id: socketId,
-                                    channel_name: channel.name,
-                                })
-                                .then((response) => callback(false, response.data))
-                                .catch((error) => callback(true, error));
-                        },
-                    };
-                },
+                authEndpoint: `${BACKEND_URL}/api/broadcasting/auth`,
+                authorizer,
             }),
         []
     );
@@ -67,3 +55,21 @@ export const useBroadcasting = (friend: IChatFriend) => {
         stopListen,
     };
 };
+
+type IChannel = {
+    name: string;
+};
+
+type IAuthorizeCallback = (arg0: boolean, arg1: any) => void;
+
+const authorizer = (channel: IChannel) => ({
+    authorize: (socketId: string, callback: IAuthorizeCallback) => {
+        axios
+            .post('/api/broadcasting/auth', {
+                socket_id: socketId,
+                channel_name: channel.name,
+            })
+            .then((response) => callback(false, response.data))
+            .catch((error) => callback(true, error));
+    },
+});

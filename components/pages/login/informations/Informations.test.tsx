@@ -1,5 +1,6 @@
 import { Informations } from '@components/pages/login/informations/Informations';
 import { screen } from '@testing-library/react';
+import { APP_NAME } from '@utils/env';
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 
 describe('Informations component', () => {
@@ -8,9 +9,7 @@ describe('Informations component', () => {
 
         const header = screen.getByRole('heading');
 
-        expect(header).toHaveTextContent(
-            process.env.NEXT_PUBLIC_APP_NAME ?? 'this-string-will-throw-error-when-no-env-set'
-        );
+        expect(header).toHaveTextContent(APP_NAME);
     });
 
     it('render about info', () => {

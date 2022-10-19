@@ -4,6 +4,7 @@ import type { IUserProfile } from '@utils/types';
 import { ProfileLayout } from '@components/layouts/authLayout/mainLayout/profileLayout/ProfileLayout';
 import { Profile } from '@components/pages/profile/index/Profile';
 import { NextSeo } from 'next-seo';
+import { BACKEND_URL } from '@utils/env';
 
 interface ProfileProps extends IUserProfile {}
 
@@ -28,7 +29,7 @@ interface IParams extends ParsedUrlQuery {
 export const getStaticProps: GetStaticProps = async (context) => {
     const { id } = context.params as IParams;
 
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/ssg/profiles/${id}`);
+    const response = await fetch(`${BACKEND_URL}/api/ssg/profiles/${id}`);
 
     if (response.status === 404) {
         return {
@@ -49,7 +50,7 @@ type UserId = {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/ssg/profiles`);
+    const response = await fetch(`${BACKEND_URL}/api/ssg/profiles`);
     const data = await response.json();
 
     const paths = data.map(({ id }: UserId) => ({

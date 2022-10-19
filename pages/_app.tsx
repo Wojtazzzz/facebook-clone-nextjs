@@ -12,6 +12,7 @@ import { DefaultSeo } from 'next-seo';
 import 'swiper/swiper.min.css';
 import 'swiper/components/navigation/navigation.min.css';
 import 'swiper/components/pagination/pagination.min.css';
+import { APP_NAME, APP_URL } from '@utils/env';
 
 const queryClient = createQueryClient();
 
@@ -25,10 +26,10 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     return (
         <>
             <DefaultSeo
-                defaultTitle={process.env.NEXT_PUBLIC_APP_NAME}
-                titleTemplate={`%s - ${process.env.NEXT_PUBLIC_APP_NAME}`}
-                description={`Create posts, text with friends, share your emotions with others - ${process.env.NEXT_PUBLIC_APP_NAME}.`}
-                canonical={process.env.NEXT_PUBLIC_URL}
+                defaultTitle={APP_NAME}
+                titleTemplate={`%s - ${APP_NAME}`}
+                description={`Create posts, text with friends, share your emotions with others - ${APP_NAME}.`}
+                canonical={APP_URL}
                 additionalMetaTags={[
                     {
                         name: 'keywords',

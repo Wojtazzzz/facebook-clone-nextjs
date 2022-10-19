@@ -1,3 +1,4 @@
+import { APP_NAME } from '@utils/env';
 import Image from 'next/future/image';
 import AppLogo from '../../public/img/Logo.svg';
 
@@ -8,7 +9,7 @@ interface LogoProps {
 export const Logo = ({ size }: LogoProps) => {
     return (
         <div className="flex justify-center items-center">
-            <Image width={size} height={size} src={AppLogo} alt={`${process.env.NEXT_PUBLIC_APP_NAME}`} />
+            <Image width={size} height={size} src={AppLogo} alt={APP_NAME} />
         </div>
     );
 };

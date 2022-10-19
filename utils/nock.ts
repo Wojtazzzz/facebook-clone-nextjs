@@ -1,4 +1,5 @@
 import nock from 'nock';
+import { BACKEND_URL } from './env';
 
 const allowedHeaders = ['ClientName', 'ClientVersion', 'Content-Type', 'Authorization', 'X-Requested-With'];
 
@@ -13,8 +14,6 @@ type IUserError = 400 | 401 | 403 | 404 | 405 | 408 | 413 | 422;
 type IServerError = 500 | 501 | 502 | 503 | 504;
 type IStatus = ISuccess | IUserError | IServerError;
 type IMethod = 'get' | 'post' | 'delete' | 'put';
-
-const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL ?? 'http://localhost:8000';
 
 type IMockFunctionArguments = {
     path: string;
