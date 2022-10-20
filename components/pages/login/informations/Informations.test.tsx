@@ -12,14 +12,6 @@ describe('Informations component tests', () => {
         expect(header).toHaveTextContent(APP_NAME);
     });
 
-    it('render about info', () => {
-        renderWithDefaultData(<Informations />);
-
-        const about = screen.getByTestId('informations-facebook_link');
-
-        expect(about).toBeInTheDocument();
-    });
-
     it('render github info', () => {
         renderWithDefaultData(<Informations />);
 
