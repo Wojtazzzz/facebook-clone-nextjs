@@ -7,6 +7,7 @@ import { mock } from '@utils/nock';
 import RootUserJson from '@mocks/user/root.json';
 import { mockCreateObjectUrl } from '@utils/tests/mockCreateObjectUrl';
 import { mockResizeObserver } from '@utils/tests/mockResizeObserver';
+import nock from 'nock';
 
 describe('CreateMessage component tests', () => {
     const user = userEvent.setup();
@@ -15,11 +16,6 @@ describe('CreateMessage component tests', () => {
         mock({
             path: '/api/user',
             data: RootUserJson,
-        });
-
-        mock({
-            path: '/api/broadcasting/auth',
-            method: 'post',
         });
 
         mockCreateObjectUrl();
