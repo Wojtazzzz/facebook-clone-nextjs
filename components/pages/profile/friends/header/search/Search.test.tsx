@@ -3,13 +3,14 @@ import userEvent from '@testing-library/user-event';
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { Search } from './Search';
 
-describe('Search component', () => {
+describe('Search component tests', () => {
     const user = userEvent.setup();
+
+    const mockChangeQuery = () => jest.fn();
+    const mockClearQuery = () => jest.fn();
 
     it("render search button instead of clear button when input doesn't have value", () => {
         const query = '';
-        const mockChangeQuery = () => jest.fn();
-        const mockClearQuery = () => jest.fn();
 
         renderWithDefaultData(<Search query={query} changeQuery={mockChangeQuery} clearQuery={mockClearQuery} />);
 
@@ -26,8 +27,6 @@ describe('Search component', () => {
 
     it('render clear button instead of search button when input has value', () => {
         const query = 'test';
-        const mockChangeQuery = () => jest.fn();
-        const mockClearQuery = () => jest.fn();
 
         renderWithDefaultData(<Search query={query} changeQuery={mockChangeQuery} clearQuery={mockClearQuery} />);
 
@@ -44,8 +43,6 @@ describe('Search component', () => {
 
     it('focus input by click on search button', async () => {
         const query = '';
-        const mockChangeQuery = () => jest.fn();
-        const mockClearQuery = () => jest.fn();
 
         renderWithDefaultData(<Search query={query} changeQuery={mockChangeQuery} clearQuery={mockClearQuery} />);
 

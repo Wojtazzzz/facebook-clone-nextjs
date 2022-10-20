@@ -5,12 +5,11 @@ import { Trigger } from './Trigger';
 import * as Popover from '@radix-ui/react-popover';
 import userEvent from '@testing-library/user-event';
 
-describe('Trigger component', () => {
+describe('Trigger component tests', () => {
     const user = userEvent.setup();
+    const mockOpen = jest.fn();
 
     it('have properly label', () => {
-        const mockOpen = jest.fn();
-
         mock({
             path: '/api/messenger/check-unread',
             data: false,
@@ -28,8 +27,6 @@ describe('Trigger component', () => {
     });
 
     it('execute open function by click', async () => {
-        const mockOpen = jest.fn();
-
         mock({
             path: '/api/messenger/check-unread',
             data: false,
@@ -49,8 +46,6 @@ describe('Trigger component', () => {
     });
 
     it('not render alert when api return false', () => {
-        const mockOpen = jest.fn();
-
         mock({
             path: '/api/messenger/check-unread',
             data: false,
@@ -68,8 +63,6 @@ describe('Trigger component', () => {
     });
 
     it('render alert when api return true', async () => {
-        const mockOpen = jest.fn();
-
         mock({
             path: '/api/messenger/check-unread',
             data: true,

@@ -5,12 +5,11 @@ import { List } from '@components/nav/panel/notifications/list/List';
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { mock } from '@utils/nock';
 
-describe('List component', () => {
+describe('List component tests', () => {
     const notifications = NotificationsFirstPageJson.data;
+    const mockClose = jest.fn();
 
     it('render loaders on initial fetching notifications', () => {
-        const mockClose = jest.fn();
-
         mock({
             path: '/api/notifications?page=1',
             data: NotificationsFirstPageJson,
@@ -29,8 +28,6 @@ describe('List component', () => {
     });
 
     it('render properly first list of notifications', async () => {
-        const mockClose = jest.fn();
-
         mock({
             path: '/api/notifications?page=1',
             data: NotificationsFirstPageJson,
@@ -51,8 +48,6 @@ describe('List component', () => {
     });
 
     it('render properly empty component when response return empty array', async () => {
-        const mockClose = jest.fn();
-
         mock({
             path: '/api/notifications?page=1',
             data: NotificationsEmptyPageJson,
@@ -65,8 +60,6 @@ describe('List component', () => {
     });
 
     it('render properly error component when api return error', async () => {
-        const mockClose = jest.fn();
-
         mock({
             path: '/api/notifications?page=1',
             status: 500,
@@ -79,8 +72,6 @@ describe('List component', () => {
     });
 
     it('renders properly notifications labels', () => {
-        const mockClose = jest.fn();
-
         mock({
             path: '/api/notifications?page=1',
             data: NotificationsFirstPageJson,

@@ -6,9 +6,10 @@ import FriendshipRequestSentNotificationJson from '@mocks/notifications/requestS
 import { Notification } from '@components/nav/panel/notifications/list/Notification';
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 
-describe('Notification component', () => {
+describe('Notification component tests', () => {
+    const mockClose = jest.fn();
+
     it('render user avatar, name and message', () => {
-        const mockClose = jest.fn();
         const notification = NotificationsFirstPageJson.data[0];
 
         renderWithDefaultData(<Notification {...notification} close={mockClose} />);
@@ -23,7 +24,6 @@ describe('Notification component', () => {
     });
 
     it('poked notification renders properly message', () => {
-        const mockClose = jest.fn();
         const notification = PokeNotificationJson;
 
         renderWithDefaultData(<Notification {...notification} close={mockClose} />);
@@ -34,7 +34,6 @@ describe('Notification component', () => {
     });
 
     it('friendship request accepted notification renders properly message', () => {
-        const mockClose = jest.fn();
         const notification = FriendshipRequestAcceptedNotificationJson;
 
         renderWithDefaultData(<Notification {...notification} close={mockClose} />);
@@ -45,7 +44,6 @@ describe('Notification component', () => {
     });
 
     it('friendship request sent notification renders properly message', () => {
-        const mockClose = jest.fn();
         const notification = FriendshipRequestSentNotificationJson;
 
         renderWithDefaultData(<Notification {...notification} close={mockClose} />);

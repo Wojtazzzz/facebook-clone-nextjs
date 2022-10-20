@@ -6,7 +6,7 @@ import FriendJson from '@mocks/user/johnDoe.json';
 import type { IChatMessage } from '@utils/types';
 import userEvent from '@testing-library/user-event';
 
-describe('Message and Zoom component', () => {
+describe('Message and Zoom component tests', () => {
     const { id, status, read_at, created_at } = MessagesFirstPageJson.data[0] as IChatMessage;
     const friend = FriendJson;
 

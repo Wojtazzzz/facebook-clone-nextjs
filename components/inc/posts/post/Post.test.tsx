@@ -8,9 +8,10 @@ import { mock } from '@utils/nock';
 import { Post } from './Post';
 import { getPostsQK } from '@utils/queryKeys';
 
-describe('Post component', () => {
+describe('Post component tests', () => {
     const user = userEvent.setup();
     const post = PostsFirstPageJson.data[0];
+    const queryKey = getPostsQK({ type: 'all' });
 
     beforeEach(() => {
         mock({
@@ -20,7 +21,7 @@ describe('Post component', () => {
     });
 
     it('render like, comment and share buttons', () => {
-        renderWithDefaultData(<Post queryKey={getPostsQK({ type: 'all' })} {...post} />);
+        renderWithDefaultData(<Post queryKey={queryKey} {...post} />);
 
         const likeButton = screen.getByLabelText('Like');
         const commentButton = screen.getByLabelText('Comment');
@@ -32,7 +33,7 @@ describe('Post component', () => {
     });
 
     it('not render comments section by default', async () => {
-        renderWithDefaultData(<Post queryKey={getPostsQK({ type: 'all' })} {...post} />);
+        renderWithDefaultData(<Post queryKey={queryKey} {...post} />);
 
         const commentsSection = screen.queryByLabelText('Comments');
 
@@ -45,7 +46,7 @@ describe('Post component', () => {
             data: CommentsFirstPageJson,
         });
 
-        renderWithDefaultData(<Post queryKey={getPostsQK({ type: 'all' })} {...post} />);
+        renderWithDefaultData(<Post queryKey={queryKey} {...post} />);
 
         const commentButton = screen.getByLabelText('Comment');
         await user.click(commentButton);
@@ -60,7 +61,7 @@ describe('Post component', () => {
             data: CommentsFirstPageJson,
         });
 
-        renderWithDefaultData(<Post queryKey={getPostsQK({ type: 'all' })} {...post} />);
+        renderWithDefaultData(<Post queryKey={queryKey} {...post} />);
 
         const commentStats = screen.getByText(`${post.comments_count} comments`);
         await user.click(commentStats);
@@ -75,7 +76,7 @@ describe('Post component', () => {
             data: CommentsFirstPageJson,
         });
 
-        renderWithDefaultData(<Post queryKey={getPostsQK({ type: 'all' })} {...post} />);
+        renderWithDefaultData(<Post queryKey={queryKey} {...post} />);
 
         const commentStats = screen.getByText(`${post.comments_count} comments`);
         await user.click(commentStats);

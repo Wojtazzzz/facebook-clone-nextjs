@@ -3,7 +3,7 @@ import { screen } from '@testing-library/react';
 import { SavedOptions } from './SavedOptions';
 import { getPostsQK } from '@utils/queryKeys';
 
-describe('SavedOptions component', () => {
+describe('SavedOptions component tests', () => {
     const queryKey = getPostsQK({ type: 'all' });
 
     it('render unsave option', () => {

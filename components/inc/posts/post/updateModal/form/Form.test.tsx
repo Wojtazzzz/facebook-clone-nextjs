@@ -7,8 +7,9 @@ import userEvent from '@testing-library/user-event';
 import { generateFile } from '@utils/tests/generateFile';
 import { getPostsQK } from '@utils/queryKeys';
 
-describe('Form component', () => {
+describe('Form component tests', () => {
     const user = userEvent.setup();
+    const mockCloseModal = jest.fn();
 
     jest.setTimeout(30000);
 
@@ -20,8 +21,6 @@ describe('Form component', () => {
     });
 
     it('render too short text validation message', async () => {
-        const mockCloseModal = jest.fn();
-
         renderWithDefaultData(
             <Form
                 queryKey={getPostsQK({ type: 'all' })}
@@ -45,8 +44,6 @@ describe('Form component', () => {
     });
 
     it('render too long text validation message', async () => {
-        const mockCloseModal = jest.fn();
-
         renderWithDefaultData(
             <Form
                 queryKey={getPostsQK({ type: 'all' })}
@@ -75,8 +72,6 @@ describe('Form component', () => {
             method: 'post',
         });
 
-        const mockCloseModal = jest.fn();
-
         renderWithDefaultData(
             <Form
                 queryKey={getPostsQK({ type: 'all' })}
@@ -99,8 +94,6 @@ describe('Form component', () => {
     });
 
     it('render input file when click on render button', async () => {
-        const mockCloseModal = jest.fn();
-
         renderWithDefaultData(
             <Form
                 queryKey={getPostsQK({ type: 'all' })}
@@ -121,8 +114,6 @@ describe('Form component', () => {
     });
 
     it('render uploaded image name', async () => {
-        const mockCloseModal = jest.fn();
-
         const image = generateFile('testImage.png', 'image/png');
 
         renderWithDefaultData(
@@ -147,8 +138,6 @@ describe('Form component', () => {
     });
 
     it('cannot upload image which has illegal extenstion', async () => {
-        const mockCloseModal = jest.fn();
-
         const image = generateFile('testimage.pdf', 'application/pdf');
 
         renderWithDefaultData(
@@ -174,8 +163,6 @@ describe('Form component', () => {
     });
 
     it('can upload multiple images', async () => {
-        const mockCloseModal = jest.fn();
-
         const images = [
             generateFile('firstimage.png', 'image/png'),
             generateFile('secondimage.jpg', 'image/jpg'),
@@ -208,8 +195,6 @@ describe('Form component', () => {
     });
 
     it('can remove image from uploaded images list', async () => {
-        const mockCloseModal = jest.fn();
-
         const images = [
             generateFile('firstimage.png', 'image/png'),
             generateFile('secondimage.jpg', 'image/jpg'),
@@ -244,8 +229,6 @@ describe('Form component', () => {
     });
 
     it('removing one image cannot remove another image(s) from list', async () => {
-        const mockCloseModal = jest.fn();
-
         const images = [
             generateFile('firstimage.png', 'image/png'),
             generateFile('secondimage.jpg', 'image/jpg'),
@@ -289,8 +272,6 @@ describe('Form component', () => {
     });
 
     it('render properly count of uploaded images', async () => {
-        const mockCloseModal = jest.fn();
-
         const images = [
             generateFile('firstimage.png', 'image/png'),
             generateFile('secondimage.jpg', 'image/jpg'),
@@ -322,8 +303,6 @@ describe('Form component', () => {
     });
 
     it('list of uploaded images render properly count of images', async () => {
-        const mockCloseModal = jest.fn();
-
         renderWithDefaultData(
             <Form
                 queryKey={getPostsQK({ type: 'all' })}
@@ -340,8 +319,6 @@ describe('Form component', () => {
     });
 
     it('can remove image from uploaded images', async () => {
-        const mockCloseModal = jest.fn();
-
         renderWithDefaultData(
             <Form
                 queryKey={getPostsQK({ type: 'all' })}

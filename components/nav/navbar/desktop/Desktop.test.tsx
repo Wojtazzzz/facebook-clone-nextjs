@@ -5,7 +5,7 @@ import { screen } from '@testing-library/react';
 import { Desktop } from './Desktop';
 import { mockUseRouter } from '@utils/tests/mockUseRouter';
 
-describe('Desktop navigation component', () => {
+describe('Desktop navigation component tests', () => {
     beforeEach(() => {
         mockUseRouter();
 

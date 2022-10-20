@@ -2,7 +2,7 @@ import { screen } from '@testing-library/react';
 import { Header } from '@components/pages/friends/header/Header';
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 
-describe('Friends Header component', () => {
+describe('Header component tests', () => {
     it('renders properly Friends title', () => {
         renderWithDefaultData(<Header title="Friends" />);
 

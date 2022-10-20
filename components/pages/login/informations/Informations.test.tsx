@@ -3,7 +3,7 @@ import { screen } from '@testing-library/react';
 import { APP_NAME } from '@utils/env';
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 
-describe('Informations component', () => {
+describe('Informations component tests', () => {
     it('render header info', () => {
         renderWithDefaultData(<Informations />);
 

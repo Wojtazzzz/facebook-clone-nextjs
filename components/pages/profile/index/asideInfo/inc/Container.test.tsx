@@ -2,7 +2,7 @@ import { screen, within } from '@testing-library/react';
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { Container } from './Container';
 
-describe('Container tests', () => {
+describe('Container component tests', () => {
     it('render correct header and content', () => {
         renderWithDefaultData(
             <Container testId="section-test">

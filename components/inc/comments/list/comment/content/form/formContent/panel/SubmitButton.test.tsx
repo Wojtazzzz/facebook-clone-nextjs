@@ -2,7 +2,7 @@ import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { screen } from '@testing-library/react';
 import { SubmitButton } from './SubmitButton';
 
-describe('SubmitButton component', () => {
+describe('SubmitButton component tests', () => {
     it('show submit arrow when state is empty and not showing spinner loader', () => {
         renderWithDefaultData(<SubmitButton isLoading={false} />);
 

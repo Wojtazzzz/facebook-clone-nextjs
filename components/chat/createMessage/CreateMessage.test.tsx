@@ -8,7 +8,7 @@ import RootUserJson from '@mocks/user/root.json';
 import { mockCreateObjectUrl } from '@utils/tests/mockCreateObjectUrl';
 import { mockResizeObserver } from '@utils/tests/mockResizeObserver';
 
-describe('CreateMessage component', () => {
+describe('CreateMessage component tests', () => {
     const user = userEvent.setup();
 
     beforeEach(() => {

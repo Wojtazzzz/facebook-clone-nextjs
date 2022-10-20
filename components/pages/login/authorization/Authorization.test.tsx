@@ -4,7 +4,7 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 
-describe('Authorization component', () => {
+describe('Authorization component tests', () => {
     const user = userEvent.setup();
 
     beforeEach(() => {

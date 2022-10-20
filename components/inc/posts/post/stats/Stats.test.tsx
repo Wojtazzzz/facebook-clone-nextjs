@@ -3,7 +3,7 @@ import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import userEvent from '@testing-library/user-event';
 import { Stats } from './Stats';
 
-describe('Stats component', () => {
+describe('Stats component tests', () => {
     const user = userEvent.setup();
     const mockToggleCommentsActive = jest.fn();
 

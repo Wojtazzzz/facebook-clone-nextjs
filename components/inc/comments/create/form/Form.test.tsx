@@ -6,7 +6,7 @@ import userEvent from '@testing-library/user-event';
 import { mock } from '@utils/nock';
 import { Form } from './Form';
 
-describe('Form component', () => {
+describe('Form component tests', () => {
     const user = userEvent.setup();
     const post = PostsFirstPageJson.data[0];
 

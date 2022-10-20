@@ -3,7 +3,7 @@ import { screen } from '@testing-library/react';
 import { faHome } from '@fortawesome/free-solid-svg-icons';
 import { Info } from './Info';
 
-describe('Info tests', () => {
+describe('Info component tests', () => {
     it('render properly title and value', () => {
         renderWithDefaultData(<Info label="Simple label" icon={faHome} title="Simple title" info="Simple value" />);
 

@@ -3,12 +3,11 @@ import userEvent from '@testing-library/user-event';
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { NavToggler } from './NavToggler';
 
-describe('NavToggler component', () => {
+describe('NavToggler component tests', () => {
     const user = userEvent.setup();
+    const mockToggle = jest.fn();
 
     it('has properly label when is active', () => {
-        const mockToggle = jest.fn();
-
         renderWithDefaultData(<NavToggler isActive={true} toggle={mockToggle} />);
 
         const toggler = screen.getByRole('button');
@@ -17,8 +16,6 @@ describe('NavToggler component', () => {
     });
 
     it('has properly label when is inactive', () => {
-        const mockToggle = jest.fn();
-
         renderWithDefaultData(<NavToggler isActive={false} toggle={mockToggle} />);
 
         const toggler = screen.getByRole('button');

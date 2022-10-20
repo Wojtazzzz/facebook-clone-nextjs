@@ -6,7 +6,7 @@ import { Messenger } from './Messenger';
 import MessengerFirstPageJson from '@mocks/messenger/firstPage.json';
 import { mockResizeObserver } from '@utils/tests/mockResizeObserver';
 
-describe('Messenger component', () => {
+describe('Messenger component tests', () => {
     const user = userEvent.setup();
 
     beforeEach(() => {

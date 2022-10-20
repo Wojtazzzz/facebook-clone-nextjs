@@ -3,12 +3,11 @@ import { screen } from '@testing-library/react';
 import { Panel } from './Panel';
 import { getPostsQK } from '@utils/queryKeys';
 
-describe('Panel component', () => {
+describe('Panel component tests', () => {
     const queryKey = getPostsQK({ type: 'all' });
+    const mockToggleCommentsActive = jest.fn();
 
     it('render LikeButton', async () => {
-        const mockToggleCommentsActive = jest.fn();
-
         renderWithDefaultData(
             <Panel postId={1} isLiked={false} queryKey={queryKey} toggleCommentsActive={mockToggleCommentsActive} />
         );
@@ -19,8 +18,6 @@ describe('Panel component', () => {
     });
 
     it('render CommentButton', async () => {
-        const mockToggleCommentsActive = jest.fn();
-
         renderWithDefaultData(
             <Panel postId={1} isLiked={false} queryKey={queryKey} toggleCommentsActive={mockToggleCommentsActive} />
         );
@@ -31,8 +28,6 @@ describe('Panel component', () => {
     });
 
     it('render ShareButton', async () => {
-        const mockToggleCommentsActive = jest.fn();
-
         renderWithDefaultData(
             <Panel postId={1} isLiked={false} queryKey={queryKey} toggleCommentsActive={mockToggleCommentsActive} />
         );

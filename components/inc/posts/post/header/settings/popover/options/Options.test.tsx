@@ -5,11 +5,11 @@ import { mock } from '@utils/nock';
 import RootUserJson from '@mocks/user/root.json';
 import { getPostsQK } from '@utils/queryKeys';
 
-describe('Options component', () => {
+describe('Options component tests', () => {
     const queryKey = getPostsQK({ type: 'all' });
+    const mockOpenUpdateModal = jest.fn();
 
     it("render options for friend's post when is_own is false type passed", async () => {
-        const mockOpenUpdateModal = jest.fn();
         const mockClose = jest.fn();
 
         const type = {
@@ -35,7 +35,6 @@ describe('Options component', () => {
     });
 
     it('render options for hidden post when is_hidden is true type passed', async () => {
-        const mockOpenUpdateModal = jest.fn();
         const mockClose = jest.fn();
 
         const type = {
@@ -61,7 +60,6 @@ describe('Options component', () => {
     });
 
     it('render options for saved post when is_saved is true type passed', async () => {
-        const mockOpenUpdateModal = jest.fn();
         const mockClose = jest.fn();
 
         const type = {
@@ -87,7 +85,6 @@ describe('Options component', () => {
     });
 
     it('render options for own post when is_own true type passed', async () => {
-        const mockOpenUpdateModal = jest.fn();
         const mockClose = jest.fn();
 
         const type = {

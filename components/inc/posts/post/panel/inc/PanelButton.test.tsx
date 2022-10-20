@@ -4,7 +4,8 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { PanelButton } from './PanelButton';
 
-describe('PanelButton component', () => {
+describe('PanelButton component tests', () => {
+    const mockHandleLikePost = jest.fn();
     const user = userEvent.setup();
 
     it('execute callback on click', async () => {
@@ -19,8 +20,6 @@ describe('PanelButton component', () => {
     });
 
     it('has blue text color class when is active', () => {
-        const mockHandleLikePost = jest.fn();
-
         renderWithDefaultData(
             <PanelButton title="Like" isActive={true} icon={faThumbsUp} callback={mockHandleLikePost} />
         );
@@ -31,8 +30,6 @@ describe('PanelButton component', () => {
     });
 
     it('has white text color class when is deactive', () => {
-        const mockHandleLikePost = jest.fn();
-
         renderWithDefaultData(
             <PanelButton title="Like" isActive={false} icon={faThumbsUp} callback={mockHandleLikePost} />
         );
@@ -43,8 +40,6 @@ describe('PanelButton component', () => {
     });
 
     it('render title properly', () => {
-        const mockHandleLikePost = jest.fn();
-
         renderWithDefaultData(<PanelButton title="UNEXPECTED_TITLE" icon={faThumbsUp} callback={mockHandleLikePost} />);
 
         const title = screen.getByText('UNEXPECTED_TITLE');

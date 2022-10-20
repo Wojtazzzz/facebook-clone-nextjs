@@ -2,7 +2,7 @@ import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { ApiError } from '@components/inc/ApiError';
 import { screen } from '@testing-library/react';
 
-describe('ApiError component', () => {
+describe('ApiError component tests', () => {
     it('render image and text properly', () => {
         renderWithDefaultData(<ApiError />);
 

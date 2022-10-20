@@ -3,7 +3,7 @@ import { screen } from '@testing-library/react';
 import { HiddenOptions } from './HiddenOptions';
 import { getPostsQK } from '@utils/queryKeys';
 
-describe('HiddenOptions component', () => {
+describe('HiddenOptions component tests', () => {
     const queryKey = getPostsQK({ type: 'all' });
 
     it('render unhide option', () => {

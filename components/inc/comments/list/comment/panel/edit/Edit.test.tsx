@@ -3,7 +3,7 @@ import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import userEvent from '@testing-library/user-event';
 import { Edit } from './Edit';
 
-describe('Edit button', () => {
+describe('Edit button tests', () => {
     const user = userEvent.setup();
     const mockToggleEditMode = jest.fn();
 

@@ -3,10 +3,11 @@ import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import userEvent from '@testing-library/user-event';
 import { Comments } from './Comments';
 
-describe('Comments component', () => {
-    it('display properly count', () => {
-        const mockToggleCommentsActive = jest.fn();
+describe('Comments component tests', () => {
+    const user = userEvent.setup();
+    const mockToggleCommentsActive = jest.fn();
 
+    it('display properly count', () => {
         renderWithDefaultData(<Comments count={1} toggleCommentsActive={mockToggleCommentsActive} />);
 
         const count = screen.getByText('1 comments');
@@ -15,7 +16,6 @@ describe('Comments component', () => {
 
     it('display properly count', async () => {
         const mockToggleCommentsActive = jest.fn();
-        const user = userEvent.setup();
 
         renderWithDefaultData(<Comments count={1} toggleCommentsActive={mockToggleCommentsActive} />);
 

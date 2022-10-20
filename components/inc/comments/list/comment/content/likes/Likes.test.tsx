@@ -6,10 +6,12 @@ import { mockResizeObserver } from '@utils/tests/mockResizeObserver';
 import { Likes } from './Likes';
 import MoreLikeJson from '@mocks/posts/likes/moreLikes.json';
 
-describe('Likes component', () => {
-    mockResizeObserver();
-
+describe('Likes component tests', () => {
     const user = userEvent.setup();
+
+    beforeEach(() => {
+        mockResizeObserver();
+    });
 
     it('display properly count', () => {
         renderWithDefaultData(<Likes commentId={1} contentLength={20} count={3} />);

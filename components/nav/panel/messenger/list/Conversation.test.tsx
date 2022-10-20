@@ -3,9 +3,10 @@ import MessengerFirstPageJson from '@mocks/messenger/firstPage.json';
 import { Conversation } from '@components/nav/panel/messenger/list/Conversation';
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 
-describe('Conversation component', () => {
+describe('Conversation component tests', () => {
+    const mockClose = jest.fn();
+
     it('render user avatar, name, label', () => {
-        const mockClose = jest.fn();
         const user = MessengerFirstPageJson.data[0];
 
         renderWithDefaultData(<Conversation friend={user} close={mockClose} />);

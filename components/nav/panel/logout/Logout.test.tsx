@@ -5,7 +5,7 @@ import RootUserJson from '@mocks/user/root.json';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-describe('Logout component', () => {
+describe('Logout component tests', () => {
     const user = userEvent.setup();
 
     beforeEach(() => {

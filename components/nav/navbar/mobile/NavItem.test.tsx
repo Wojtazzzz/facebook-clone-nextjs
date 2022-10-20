@@ -4,7 +4,7 @@ import { NavItem } from './NavItem';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { mockUseRouter } from '@utils/tests/mockUseRouter';
 
-describe('NavItem component', () => {
+describe('NavItem component tests', () => {
     beforeEach(() => {
         mockUseRouter();
     });

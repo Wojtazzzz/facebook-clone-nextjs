@@ -7,7 +7,7 @@ import ChatEmptyPageJson from '@mocks/chat/empty.json';
 import { mock } from '@utils/nock';
 import { screen, within } from '@testing-library/react';
 
-describe('Messages component', () => {
+describe('Messages component tests', () => {
     const messages = ChatFirstPageJson.data;
     const friend = JohnDoeJson;
 

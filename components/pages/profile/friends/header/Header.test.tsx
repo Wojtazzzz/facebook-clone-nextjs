@@ -2,7 +2,7 @@ import { screen } from '@testing-library/react';
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { Header } from './Header';
 
-describe('Header component', () => {
+describe('Header component tests', () => {
     const mockChangeQuery = jest.fn();
     const mockClearQuery = jest.fn();
 

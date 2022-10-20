@@ -6,7 +6,7 @@ import { Search } from './Search';
 import UserHitsFirstPageJson from '@mocks/search/usersFirstPage.json';
 import UserHitsEmptyPageJson from '@mocks/search/empty.json';
 
-describe('Search component', () => {
+describe('Search component tests', () => {
     const user = userEvent.setup();
 
     it('not render hits by default', () => {

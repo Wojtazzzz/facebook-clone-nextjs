@@ -2,7 +2,7 @@ import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { screen } from '@testing-library/react';
 import { Text } from './Text';
 
-describe('Text component', () => {
+describe('Text component tests', () => {
     const content = 'Test content';
 
     it('render text when content is passed', () => {

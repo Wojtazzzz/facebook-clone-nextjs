@@ -4,7 +4,7 @@ import PostsFirstPageJson from '@mocks/posts/firstPage.json';
 import PostEditedJson from '@mocks/posts/editedPost.json';
 import { screen } from '@testing-library/react';
 
-describe('Author component', () => {
+describe('Author component tests', () => {
     it('has link to user profile', () => {
         const post = PostsFirstPageJson.data[0];
         const author = post.author;

@@ -7,7 +7,7 @@ import NoFriendsJson from '@mocks/profile/friends/getByCount/empty.json';
 import { screen, within } from '@testing-library/react';
 import { mock } from '@utils/nock';
 
-describe('Friends tests', () => {
+describe('Friends component tests', () => {
     it('render properly header', () => {
         mock({
             path: `/api/users/${RootUserJson.id}/friends/get-by-count?count=9`,

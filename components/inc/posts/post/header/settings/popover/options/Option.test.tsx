@@ -4,10 +4,10 @@ import { faBan } from '@fortawesome/free-solid-svg-icons';
 import userEvent from '@testing-library/user-event';
 import { Option } from './Option';
 
-describe('Option component', () => {
-    it('title used as text and aria-label', () => {
-        const mockCallback = jest.fn();
+describe('Option component tests', () => {
+    const mockCallback = jest.fn();
 
+    it('title used as text and aria-label', () => {
         renderWithDefaultData(<Option icon={faBan} title="Test title" callback={mockCallback} />);
 
         const label = screen.getByLabelText('Test title');
@@ -30,8 +30,6 @@ describe('Option component', () => {
     });
 
     it('option with isLoading show loading cursor', async () => {
-        const mockCallback = jest.fn();
-
         renderWithDefaultData(<Option icon={faBan} title="Test title" isLoading callback={mockCallback} />);
 
         const button = screen.getByLabelText('Test title');
@@ -52,8 +50,6 @@ describe('Option component', () => {
     });
 
     it('option with isDisabled prop show block cursor', async () => {
-        const mockCallback = jest.fn();
-
         renderWithDefaultData(<Option icon={faBan} title="Test title" isDisabled callback={mockCallback} />);
 
         const button = screen.getByLabelText('Test title');

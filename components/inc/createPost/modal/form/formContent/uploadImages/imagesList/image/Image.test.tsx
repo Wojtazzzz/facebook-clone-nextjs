@@ -4,7 +4,7 @@ import { Image as ImageComponent } from './Image';
 import { generateFile } from '@utils/tests/generateFile';
 import { mockFormikContext } from '@utils/tests/mockFormikContext';
 
-describe('Image component', () => {
+describe('Image component tests', () => {
     beforeEach(() => {
         mockFormikContext();
     });

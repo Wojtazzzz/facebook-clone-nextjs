@@ -5,13 +5,12 @@ import userEvent from '@testing-library/user-event';
 import { mock } from '@utils/nock';
 import { Form } from './Form';
 
-describe('Form component', () => {
+describe('Form component tests', () => {
     const user = userEvent.setup();
     const post = PostsFirstPageJson.data[0];
+    const mockCloseEditMode = jest.fn();
 
     it('can write on input', async () => {
-        const mockCloseEditMode = jest.fn();
-
         renderWithDefaultData(<Form content="x" commentId={1} closeEditMode={mockCloseEditMode} postId={post.id} />);
 
         const input = screen.getByLabelText('Update a comment');
@@ -21,8 +20,6 @@ describe('Form component', () => {
     });
 
     it('"Comment must be at least 2 characters" validation error', async () => {
-        const mockCloseEditMode = jest.fn();
-
         renderWithDefaultData(<Form content="x" commentId={1} closeEditMode={mockCloseEditMode} postId={post.id} />);
 
         const input = screen.getByLabelText('Update a comment');
@@ -39,8 +36,6 @@ describe('Form component', () => {
     });
 
     it('"Comment must contain text" validation error', async () => {
-        const mockCloseEditMode = jest.fn();
-
         renderWithDefaultData(<Form content="x" commentId={1} closeEditMode={mockCloseEditMode} postId={post.id} />);
 
         const input = screen.getByLabelText('Update a comment');
@@ -57,8 +52,6 @@ describe('Form component', () => {
     jest.setTimeout(30000);
 
     it('"Comment must be at most 1000 characters" validation error', async () => {
-        const mockCloseEditMode = jest.fn();
-
         renderWithDefaultData(<Form content="x" commentId={1} closeEditMode={mockCloseEditMode} postId={post.id} />);
 
         const input = screen.getByLabelText('Update a comment');

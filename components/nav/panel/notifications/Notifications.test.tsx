@@ -6,7 +6,7 @@ import { Notifications } from './Notifications';
 import NotificationsFirstPageJson from '@mocks/notifications/firstPage.json';
 import { mockResizeObserver } from '@utils/tests/mockResizeObserver';
 
-describe('Notifications component', () => {
+describe('Notifications component tests', () => {
     const user = userEvent.setup();
 
     beforeEach(() => {

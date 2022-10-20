@@ -5,7 +5,7 @@ import { mock } from '@utils/nock';
 import { screen } from '@testing-library/react';
 import { Create } from './Create';
 
-describe('Create component', () => {
+describe('Create component tests', () => {
     const post = PostsFirstPageJson.data[0];
 
     beforeEach(() => {

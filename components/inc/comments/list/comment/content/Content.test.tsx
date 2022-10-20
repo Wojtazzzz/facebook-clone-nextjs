@@ -3,12 +3,11 @@ import { Content } from './Content';
 import CommentFirstPageJson from '@mocks/posts/comments/firstPage.json';
 import { screen } from '@testing-library/react';
 
-describe('Content component', () => {
+describe('Content component tests', () => {
     const { content: commentContent, commentable_id, id, likes_count, author } = CommentFirstPageJson.data[0];
+    const mockCloseEditMode = jest.fn();
 
     it('display properly author name (as link) and comment content', () => {
-        const mockCloseEditMode = jest.fn();
-
         renderWithDefaultData(
             <Content
                 content={commentContent}
@@ -31,8 +30,6 @@ describe('Content component', () => {
     });
 
     it('not display likes icon and amount when comment has no likes', () => {
-        const mockCloseEditMode = jest.fn();
-
         renderWithDefaultData(
             <Content
                 content={commentContent}
@@ -54,8 +51,6 @@ describe('Content component', () => {
     });
 
     it('display only likes icon when comment has only one like', () => {
-        const mockCloseEditMode = jest.fn();
-
         renderWithDefaultData(
             <Content
                 content={commentContent}
@@ -77,8 +72,6 @@ describe('Content component', () => {
     });
 
     it('display likes icon and count when comment has more than one like', () => {
-        const mockCloseEditMode = jest.fn();
-
         renderWithDefaultData(
             <Content
                 content={commentContent}

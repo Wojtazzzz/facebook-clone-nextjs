@@ -5,7 +5,7 @@ import FriendsFirstPageJson from '@mocks/profile/friends/list/firstPage.json';
 import FriendsEmptyPageJson from '@mocks/profile/friends/list/empty.json';
 import { screen } from '@testing-library/react';
 
-describe('List component', () => {
+describe('List component tests', () => {
     it('render loader when is loading friends', () => {
         mock({
             path: '/api/users/1/friends?search=&page=1',

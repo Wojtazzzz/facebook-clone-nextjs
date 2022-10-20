@@ -4,7 +4,9 @@ import RootUserJson from '@mocks/user/root.json';
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { mock } from '@utils/nock';
 
-describe('Menu component', () => {
+describe('Menu component tests', () => {
+    const mockClose = jest.fn();
+
     beforeEach(() => {
         mock({
             path: '/api/user',
@@ -13,8 +15,6 @@ describe('Menu component', () => {
     });
 
     it('loads logged user', async () => {
-        const mockClose = jest.fn();
-
         renderWithDefaultData(<Menu isActive={true} close={mockClose} />);
 
         const loggedUser = await screen.findByText(RootUserJson.name);
@@ -22,8 +22,6 @@ describe('Menu component', () => {
     });
 
     it('renders friends, pokes, github link properly', () => {
-        const mockClose = jest.fn();
-
         renderWithDefaultData(<Menu isActive={true} close={mockClose} />);
 
         const friendsElement = screen.getByRole('link', { name: 'Friends' });
@@ -36,7 +34,6 @@ describe('Menu component', () => {
     });
 
     it('render footer', () => {
-        const year = new Date().getFullYear();
         const mockClose = jest.fn();
 
         renderWithDefaultData(<Menu isActive={true} close={mockClose} />);

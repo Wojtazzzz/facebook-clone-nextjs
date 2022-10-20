@@ -3,7 +3,7 @@ import { Button } from '@components/inc/Button';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-describe('Button component', () => {
+describe('Button component tests', () => {
     const user = userEvent.setup();
 
     it('renders with properly attributes', () => {

@@ -4,10 +4,12 @@ import { NavItem } from './NavItem';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { mockUseRouter } from '@utils/tests/mockUseRouter';
 
-describe('NavItem component', () => {
-    it('renders aria-label, title, href attributes and text properly', () => {
+describe('NavItem component tests', () => {
+    beforeEach(() => {
         mockUseRouter();
+    });
 
+    it('renders aria-label, title, href attributes and text properly', () => {
         const name = 'Custom NavItem name';
         const path = '/custom/navitem/path';
 

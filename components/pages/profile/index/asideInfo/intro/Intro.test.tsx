@@ -2,7 +2,7 @@ import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { screen } from '@testing-library/react';
 import { Intro } from './Intro';
 
-describe('Intro tests', () => {
+describe('Intro component tests', () => {
     it('renders properly section title', () => {
         renderWithDefaultData(<Intro created_at="January 2020" />);
 

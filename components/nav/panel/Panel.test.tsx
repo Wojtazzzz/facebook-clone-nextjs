@@ -8,8 +8,9 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { mockResizeObserver } from '@utils/tests/mockResizeObserver';
 
-describe('Panel component', () => {
+describe('Panel component tests', () => {
     const user = userEvent.setup();
+    const mockToggleMenu = jest.fn();
 
     beforeEach(() => {
         mockResizeObserver();
@@ -31,8 +32,6 @@ describe('Panel component', () => {
     });
 
     it('open messenger dropdown when click on messenger button and close when click one more time', async () => {
-        const mockToggleMenu = jest.fn();
-
         mock({
             path: '/api/messenger?page=1',
             data: MessengerFirstPageJson,
@@ -49,8 +48,6 @@ describe('Panel component', () => {
     });
 
     it('open notifications dropdown when click on notifications button and close when click one more time', async () => {
-        const mockToggleMenu = jest.fn();
-
         mock({
             path: '/api/notifications?page=1',
             data: NotificationsFirstPageJson,

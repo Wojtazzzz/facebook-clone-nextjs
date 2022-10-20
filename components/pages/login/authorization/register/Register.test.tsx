@@ -3,7 +3,7 @@ import { mock } from '@utils/nock';
 import { screen } from '@testing-library/react';
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 
-describe('Register component', () => {
+describe('Register component tests', () => {
     beforeEach(() => {
         mock({
             path: '/api/user',

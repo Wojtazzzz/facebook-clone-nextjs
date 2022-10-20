@@ -5,7 +5,7 @@ import { Trigger } from './Trigger';
 import * as Popover from '@radix-ui/react-popover';
 import userEvent from '@testing-library/user-event';
 
-describe('Trigger component', () => {
+describe('Trigger component tests', () => {
     const user = userEvent.setup();
 
     it('have properly label', () => {

@@ -9,7 +9,7 @@ import { mock } from '@utils/nock';
 import userEvent from '@testing-library/user-event';
 import { Board } from './Board';
 
-describe('Board component', () => {
+describe('Board component tests', () => {
     const user = userEvent.setup();
 
     beforeEach(() => {

@@ -3,7 +3,8 @@ import { screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Gallery } from './Gallery';
 
-describe('Gallery component', () => {
+describe('Gallery component tests', () => {
+    const mockCloseGallery = jest.fn();
     const user = userEvent.setup();
     const images = [
         'https://picsum.photos/seed/62fd0d6ea9cac/850/350',
@@ -27,8 +28,6 @@ describe('Gallery component', () => {
     });
 
     it('render correct count of slides', async () => {
-        const mockCloseGallery = jest.fn();
-
         renderWithDefaultData(<Gallery images={images} closeGallery={mockCloseGallery} />);
 
         const slides = screen.getAllByLabelText(`of ${images.length}`, { exact: false });
@@ -37,8 +36,6 @@ describe('Gallery component', () => {
     });
 
     it('render prev and next image button', async () => {
-        const mockCloseGallery = jest.fn();
-
         renderWithDefaultData(<Gallery images={images} closeGallery={mockCloseGallery} />);
 
         const prevButton = screen.getByLabelText('Prev image', { selector: 'button' });
@@ -49,8 +46,6 @@ describe('Gallery component', () => {
     });
 
     it('render correct count of thumbs', async () => {
-        const mockCloseGallery = jest.fn();
-
         renderWithDefaultData(<Gallery images={images} closeGallery={mockCloseGallery} />);
 
         const thumbsContainer = screen.getByTestId('gallery-thumbs');

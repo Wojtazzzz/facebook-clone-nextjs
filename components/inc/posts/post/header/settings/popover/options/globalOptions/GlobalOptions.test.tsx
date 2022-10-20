@@ -2,7 +2,7 @@ import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { screen } from '@testing-library/react';
 import { GlobalOptions } from './GlobalOptions';
 
-describe('GlobalOptions component', () => {
+describe('GlobalOptions component tests', () => {
     it('render report option which is disabled', () => {
         renderWithDefaultData(<GlobalOptions />);
 

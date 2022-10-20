@@ -11,8 +11,8 @@ import InvitesEmptyPageJson from '@mocks/friendsList/invites/empty.json';
 import FriendsFirstPageJson from '@mocks/friendsList/friends/firstPage.json';
 import FriendsEmptyPageJson from '@mocks/friendsList/friends/empty.json';
 
-describe('List component', () => {
-    describe('Suggests list', () => {
+describe('List component tests', () => {
+    describe('Suggests list tests', () => {
         const users = SuggestsFirstPageJson.data;
 
         it('render loaders on initial loading', async () => {
@@ -71,7 +71,7 @@ describe('List component', () => {
         });
     });
 
-    describe('Pokes list', () => {
+    describe('Pokes list tests', () => {
         const pokes = PokesFirstPageJson.data;
 
         it('render loaders on initial loading', async () => {
@@ -130,7 +130,7 @@ describe('List component', () => {
         });
     });
 
-    describe('Invites list', () => {
+    describe('Invites list tests', () => {
         const users = InvitesFirstPageJson.data;
 
         it('render loaders on initial loading', async () => {
@@ -189,7 +189,7 @@ describe('List component', () => {
         });
     });
 
-    describe('Friends list', () => {
+    describe('Friends list tests', () => {
         const users = FriendsFirstPageJson.data;
 
         it('render loaders on initial loading', async () => {

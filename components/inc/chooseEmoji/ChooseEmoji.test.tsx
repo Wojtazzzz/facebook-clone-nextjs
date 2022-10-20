@@ -5,7 +5,7 @@ import { ChooseEmoji } from './ChooseEmoji';
 import { mockResizeObserver } from '@utils/tests/mockResizeObserver';
 import { mockFormikContext } from '@utils/tests/mockFormikContext';
 
-describe('ChooseEmoji component', () => {
+describe('ChooseEmoji component tests', () => {
     const mockAddToContent = jest.fn();
 
     const user = userEvent.setup();

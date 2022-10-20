@@ -3,12 +3,11 @@ import { screen } from '@testing-library/react';
 import { OwnOptions } from './OwnOptions';
 import { getPostsQK } from '@utils/queryKeys';
 
-describe('OwnOptions component', () => {
+describe('OwnOptions component tests', () => {
     const queryKey = getPostsQK({ type: 'all' });
+    const mockOpenUpdateModal = jest.fn();
 
     it('render delete option', () => {
-        const mockOpenUpdateModal = jest.fn();
-
         renderWithDefaultData(
             <OwnOptions postId={1} commenting={true} queryKey={queryKey} openUpdateModal={mockOpenUpdateModal} />
         );
@@ -19,8 +18,6 @@ describe('OwnOptions component', () => {
     });
 
     it('render turnOffCommenting option when commenting is active', () => {
-        const mockOpenUpdateModal = jest.fn();
-
         renderWithDefaultData(
             <OwnOptions postId={1} commenting={true} queryKey={queryKey} openUpdateModal={mockOpenUpdateModal} />
         );
@@ -33,8 +30,6 @@ describe('OwnOptions component', () => {
     });
 
     it('render turnOnCommenting option when commenting is inactive', () => {
-        const mockOpenUpdateModal = jest.fn();
-
         renderWithDefaultData(
             <OwnOptions postId={1} commenting={false} queryKey={queryKey} openUpdateModal={mockOpenUpdateModal} />
         );

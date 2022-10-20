@@ -5,7 +5,7 @@ import { screen } from '@testing-library/react';
 import { Mobile } from './Mobile';
 import { mockUseRouter } from '@utils/tests/mockUseRouter';
 
-describe('Mobile navigation component', () => {
+describe('Mobile navigation component tests', () => {
     beforeEach(() => {
         mockUseRouter();
 

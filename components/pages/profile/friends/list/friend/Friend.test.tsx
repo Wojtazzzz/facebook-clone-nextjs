@@ -3,7 +3,7 @@ import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { Friend } from './Friend';
 import JohnDoeJson from '@mocks/user/johnDoe.json';
 
-describe('Friend tests', () => {
+describe('Friend component tests', () => {
     const { id, name, profile_image } = JohnDoeJson;
 
     it('render correct friend name', () => {

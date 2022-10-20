@@ -2,7 +2,7 @@ import { screen, within } from '@testing-library/react';
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { Loader } from './Loader';
 
-describe('Loader component', () => {
+describe('Loader component tests', () => {
     it('render 6 loaders', () => {
         renderWithDefaultData(<Loader />);
 

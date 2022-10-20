@@ -6,8 +6,9 @@ import { List } from '@components/nav/panel/messenger/list/List';
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { mock } from '@utils/nock';
 
-describe('List component', () => {
+describe('List component tests', () => {
     const messages = MessengerFirstPageJson.data;
+    const mockClose = jest.fn();
 
     beforeEach(() => {
         mock({
@@ -17,8 +18,6 @@ describe('List component', () => {
     });
 
     it('render loaders on initial fetching users to text', () => {
-        const mockClose = jest.fn();
-
         mock({
             path: '/api/messenger?page=1',
             data: MessengerFirstPageJson,
@@ -32,8 +31,6 @@ describe('List component', () => {
     });
 
     it('render properly first list of users to text', async () => {
-        const mockClose = jest.fn();
-
         mock({
             path: '/api/messenger?page=1',
             data: MessengerFirstPageJson,
@@ -49,8 +46,6 @@ describe('List component', () => {
     });
 
     it('render properly empty component when response return empty array', async () => {
-        const mockClose = jest.fn();
-
         mock({
             path: '/api/messenger?page=1',
             data: MessengerEmptyPageJson,
@@ -63,8 +58,6 @@ describe('List component', () => {
     });
 
     it('render properly error component when api return error', async () => {
-        const mockClose = jest.fn();
-
         mock({
             path: '/api/messenger?page=1',
             status: 500,

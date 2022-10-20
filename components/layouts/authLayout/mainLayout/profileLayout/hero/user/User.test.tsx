@@ -5,7 +5,7 @@ import { screen, within } from '@testing-library/react';
 import { mock } from '@utils/nock';
 import { User } from './User';
 
-describe('Profile User info tests', () => {
+describe('User info tests', () => {
     beforeEach(() => {
         mock({
             path: `/api/users/${RootUserJson.id}/friends/get-by-count?count=8`,

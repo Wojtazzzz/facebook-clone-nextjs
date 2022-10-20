@@ -5,7 +5,9 @@ import RootUserJson from '@mocks/user/root.json';
 import { screen } from '@testing-library/react';
 import { Root } from '@radix-ui/react-dialog';
 
-describe('Trigger component', () => {
+describe('Trigger component tests', () => {
+    const mockOpen = jest.fn();
+
     beforeEach(() => {
         mock({
             path: '/api/user',
@@ -14,8 +16,6 @@ describe('Trigger component', () => {
     });
 
     it('render loaders when user not loaded', () => {
-        const mockOpen = jest.fn();
-
         renderWithDefaultData(
             <Root>
                 <Trigger open={mockOpen} />
@@ -28,8 +28,6 @@ describe('Trigger component', () => {
     });
 
     it('render avatar and text with user name properly', async () => {
-        const mockOpen = jest.fn();
-
         renderWithDefaultData(
             <Root>
                 <Trigger open={mockOpen} />

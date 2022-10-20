@@ -5,11 +5,11 @@ import userEvent from '@testing-library/user-event';
 import { mock } from '@utils/nock';
 import { LoadMore } from './LoadMore';
 
-describe('LoadMore component', () => {
+describe('LoadMore component tests', () => {
     const user = userEvent.setup();
+    const mockFetchNextPage = jest.fn();
 
     it('render "View more comments" when don\'t fetch all comments', () => {
-        const mockFetchNextPage = jest.fn();
         const isEmpty = false;
         const hasNextPage = true;
         const isFetchingNextPage = false;
@@ -55,7 +55,6 @@ describe('LoadMore component', () => {
     });
 
     it('render loaders without View more comments when comments are fetching', () => {
-        const mockFetchNextPage = jest.fn();
         const isEmpty = false;
         const hasNextPage = true;
         const isFetchingNextPage = true;
@@ -77,7 +76,6 @@ describe('LoadMore component', () => {
     });
 
     it('render nothing when isEmpty is true', () => {
-        const mockFetchNextPage = jest.fn();
         const isEmpty = true;
         const hasNextPage = true;
         const isFetchingNextPage = true;
@@ -97,7 +95,6 @@ describe('LoadMore component', () => {
     });
 
     it('render nothing when hasNextPage is false', () => {
-        const mockFetchNextPage = jest.fn();
         const isEmpty = true;
         const hasNextPage = false;
         const isFetchingNextPage = true;

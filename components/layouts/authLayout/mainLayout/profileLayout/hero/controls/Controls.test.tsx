@@ -5,7 +5,7 @@ import { mock } from '@utils/nock';
 import { screen } from '@testing-library/react';
 import { Controls } from './Controls';
 
-describe('Controls component', () => {
+describe('Controls component tests', () => {
     beforeEach(() => {
         mock({
             path: '/api/user',

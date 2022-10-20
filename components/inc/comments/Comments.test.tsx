@@ -9,7 +9,7 @@ import { mock } from '@utils/nock';
 import userEvent from '@testing-library/user-event';
 import { Comments } from './Comments';
 
-describe('Comments component', () => {
+describe('Comments component tests', () => {
     const user = userEvent.setup();
     const post = PostsFirstPageJson.data[0];
     const commentsFirstPage = CommentsFirstPageJson.data;

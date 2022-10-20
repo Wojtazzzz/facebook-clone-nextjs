@@ -8,7 +8,7 @@ import EditedCommentJson from '@mocks/posts/comments/edited.json';
 import RootUserJson from '@mocks/user/root.json';
 import userEvent from '@testing-library/user-event';
 
-describe('Comment component', () => {
+describe('Comment component tests', () => {
     const user = userEvent.setup();
     const comment = CommentsFirstPageJson.data[0];
     const editedComment = EditedCommentJson;

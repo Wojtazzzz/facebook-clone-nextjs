@@ -2,7 +2,7 @@ import { screen } from '@testing-library/react';
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { Footer } from './Footer';
 
-describe('Footer component', () => {
+describe('Footer component tests', () => {
     it('has link to github', () => {
         renderWithDefaultData(<Footer />);
 

@@ -8,10 +8,10 @@ import InvitesFirstPageJson from '@mocks/friendsList/suggests/firstPage.json';
 import FriendsFirstPageJson from '@mocks/friendsList/friends/firstPage.json';
 import userEvent from '@testing-library/user-event';
 
-describe('Item component', () => {
+describe('Item component tests', () => {
     const user = userEvent.setup();
 
-    describe('Item from suggests list', () => {
+    describe('Item from suggests list tests', () => {
         const item = SuggestsFirstPageJson.data[0];
 
         it('render user image, name, poked data, invite button', async () => {
@@ -43,7 +43,7 @@ describe('Item component', () => {
         });
     });
 
-    describe('User from pokes list', () => {
+    describe('User from pokes list tests', () => {
         const poke = PokesFirstPageJson.data[0];
 
         it('render user image, name, poke data', async () => {
@@ -81,7 +81,7 @@ describe('Item component', () => {
         });
     });
 
-    describe('User from invites list', () => {
+    describe('User from invites list tests', () => {
         const item = InvitesFirstPageJson.data[0];
 
         it('render user image, name, invite button', async () => {
@@ -99,7 +99,7 @@ describe('Item component', () => {
         });
     });
 
-    describe('User from friends list', () => {
+    describe('User from friends list tests', () => {
         const item = FriendsFirstPageJson.data[0];
 
         it('render user image, name, poked data, buttons', async () => {

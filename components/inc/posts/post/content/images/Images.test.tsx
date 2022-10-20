@@ -4,7 +4,7 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Images } from './Images';
 
-describe('Images component', () => {
+describe('Images component tests', () => {
     const user = userEvent.setup();
 
     it('open gallery on click', async () => {

@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { mock } from '@utils/nock';
 
-describe('Login component', () => {
+describe('Login component tests', () => {
     const user = userEvent.setup();
 
     beforeEach(() => {

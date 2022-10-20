@@ -3,7 +3,7 @@ import PostWithFiveImagesJson from '@mocks/posts/postWithFiveImages.json';
 import { screen } from '@testing-library/react';
 import { Content } from './Content';
 
-describe('Content component', () => {
+describe('Content component tests', () => {
     const { content, images } = PostWithFiveImagesJson;
 
     it('render text and images', () => {

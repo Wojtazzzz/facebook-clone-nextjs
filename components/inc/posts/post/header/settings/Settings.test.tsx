@@ -7,7 +7,7 @@ import { mock } from '@utils/nock';
 import { mockResizeObserver } from '@utils/tests/mockResizeObserver';
 import { getPostsQK } from '@utils/queryKeys';
 
-describe('Settings component', () => {
+describe('Settings component tests', () => {
     const mockOpenUpdateModal = jest.fn();
     const queryKey = getPostsQK({ type: 'all' });
     const user = userEvent.setup();

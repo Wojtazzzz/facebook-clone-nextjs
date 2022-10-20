@@ -2,7 +2,7 @@ import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { screen } from '@testing-library/react';
 import { AuthControls } from './AuthControls';
 
-describe('AuthControls component', () => {
+describe('AuthControls component tests', () => {
     it('render edit profile button which is disabled', async () => {
         renderWithDefaultData(<AuthControls />);
 
