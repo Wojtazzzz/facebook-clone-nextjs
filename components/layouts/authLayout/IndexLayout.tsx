@@ -9,7 +9,7 @@ interface IndexLayoutProps {
 export const IndexLayout = ({ children }: IndexLayoutProps) => {
     return (
         <AuthLayout>
-            <main className="w-full pb-4 mt-14">{children}</main>
+            <main className="w-full mt-14">{children}</main>
 
             <Sidebar />
         </AuthLayout>
