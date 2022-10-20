@@ -20,12 +20,14 @@ export const Notification = ({ message, friend, read_at, link, close }: Notifica
     return (
         <button
             className={clsx(
-                'w-full h-[72px] flex gap-3 hover:bg-dark-100 transition-colors rounded-lg cursor-pointer p-2',
+                'w-full h-[72px] flex gap-3 hover:bg-dark-100 transition-colors rounded-lg cursor-pointer p-1 md:p-2',
                 read_at && 'opacity-80'
             )}
             onClick={handleRedirect}
         >
-            <Avatar src={profile_image} alt="" styles="w-[56px] h-[56px]" />
+            <div>
+                <Avatar src={profile_image} alt="" styles="w-[56px] h-[56px]" />
+            </div>
 
             <div className="flex flex-col text-left">
                 <span className="text-light-200">{name}</span>

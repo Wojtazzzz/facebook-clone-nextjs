@@ -22,7 +22,9 @@ export const Conversation = ({ friend, close }: ConversationProps) => {
             className="w-full h-[72px] flex gap-3 hover:bg-dark-100 transition-colors rounded-lg cursor-pointer p-2"
             onClick={handleOpenChat}
         >
-            <Avatar src={profile_image} alt="" styles="w-[56px] h-[56px]" />
+            <div>
+                <Avatar src={profile_image} alt="" styles="w-[56px] h-[56px]" />
+            </div>
 
             <div className="flex flex-col text-left">
                 <span className="text-light-200">{name}</span>
