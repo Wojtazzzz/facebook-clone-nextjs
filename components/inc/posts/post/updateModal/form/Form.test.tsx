@@ -19,54 +19,54 @@ describe('Form component', () => {
         });
     });
 
-    // it('render too short text validation message', async () => {
-    //     const mockCloseModal = jest.fn();
+    it('render too short text validation message', async () => {
+        const mockCloseModal = jest.fn();
 
-    //     renderWithDefaultData(
-    //         <Form
-    //             queryKey={getPostsQK({ type: 'all' })}
-    //             postId={1}
-    //             content="Test content"
-    //             images={[]}
-    //             closeModal={mockCloseModal}
-    //         />
-    //     );
+        renderWithDefaultData(
+            <Form
+                queryKey={getPostsQK({ type: 'all' })}
+                postId={1}
+                content="Test content"
+                images={[]}
+                closeModal={mockCloseModal}
+            />
+        );
 
-    //     const input = screen.getByLabelText('Post content');
-    //     const submitButton = screen.getByLabelText('Update post');
+        const input = screen.getByLabelText('Post content');
+        const submitButton = screen.getByLabelText('Update post');
 
-    //     await user.clear(input);
-    //     await user.type(input, 'f');
-    //     await user.click(submitButton);
+        await user.clear(input);
+        await user.type(input, 'f');
+        await user.click(submitButton);
 
-    //     const tooShortValidationMessage = await screen.findByText('Post must be at least 2 characters');
+        const tooShortValidationMessage = await screen.findByText('Post must be at least 2 characters');
 
-    //     expect(tooShortValidationMessage).toBeInTheDocument();
-    // });
+        expect(tooShortValidationMessage).toBeInTheDocument();
+    });
 
-    // it('render too long text validation message', async () => {
-    //     const mockCloseModal = jest.fn();
+    it('render too long text validation message', async () => {
+        const mockCloseModal = jest.fn();
 
-    //     renderWithDefaultData(
-    //         <Form
-    //             queryKey={getPostsQK({ type: 'all' })}
-    //             postId={1}
-    //             content="Test content"
-    //             images={[]}
-    //             closeModal={mockCloseModal}
-    //         />
-    //     );
+        renderWithDefaultData(
+            <Form
+                queryKey={getPostsQK({ type: 'all' })}
+                postId={1}
+                content="Test content"
+                images={[]}
+                closeModal={mockCloseModal}
+            />
+        );
 
-    //     const submitButton = screen.getByLabelText('Update post');
-    //     const input = screen.getByLabelText('Post content');
+        const submitButton = screen.getByLabelText('Update post');
+        const input = screen.getByLabelText('Post content');
 
-    //     await user.type(input, LONG_TEXT);
-    //     await user.click(submitButton);
+        await user.type(input, LONG_TEXT);
+        await user.click(submitButton);
 
-    //     const emptyPostValidationMessage = await screen.findByText('Post must be at most 1000 characters');
+        const emptyPostValidationMessage = await screen.findByText('Post must be at most 1000 characters');
 
-    //     expect(emptyPostValidationMessage).toBeInTheDocument();
-    // });
+        expect(emptyPostValidationMessage).toBeInTheDocument();
+    });
 
     it('can pass empty content', async () => {
         mock({

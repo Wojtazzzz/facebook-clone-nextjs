@@ -4,7 +4,8 @@ import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { NavToggler } from './NavToggler';
 
 describe('NavToggler component', () => {
-    const user = userEvent;
+    const user = userEvent.setup();
+
     it('has properly label when is active', () => {
         const mockToggle = jest.fn();
 

@@ -9,7 +9,10 @@ describe('Create component', () => {
     const post = PostsFirstPageJson.data[0];
 
     beforeEach(() => {
-        mock('/api/user', 200, RootUserJson);
+        mock({
+            path: '/api/user',
+            data: RootUserJson,
+        });
     });
 
     it('show loaders when logged user is loading', () => {

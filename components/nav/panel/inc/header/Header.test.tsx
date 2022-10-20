@@ -4,7 +4,9 @@ import { Header } from './Header';
 
 describe('Header component', () => {
     it('render properly title', () => {
-        renderWithDefaultData(<Header title="Test title" />);
+        const mockClose = jest.fn();
+
+        renderWithDefaultData(<Header title="Test title" close={mockClose} />);
 
         const title = screen.getByText('Test title');
 

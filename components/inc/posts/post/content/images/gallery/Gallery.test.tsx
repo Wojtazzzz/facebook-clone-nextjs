@@ -1,5 +1,5 @@
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
-import { prettyDOM, screen, within } from '@testing-library/react';
+import { screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { Gallery } from './Gallery';
 

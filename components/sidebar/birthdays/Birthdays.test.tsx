@@ -1,5 +1,5 @@
 import { mock } from '@utils/nock';
-import { findByText, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 import { Birthdays } from './Birthdays';
 import SingleBirthday from '@mocks/birthdays/single.json';
@@ -10,7 +10,10 @@ import { mockResizeObserver } from '@utils/tests/mockResizeObserver';
 
 describe('Birthdays component', () => {
     const user = userEvent.setup();
-    mockResizeObserver();
+
+    beforeEach(() => {
+        mockResizeObserver();
+    });
 
     it('display properly header', () => {
         mock({

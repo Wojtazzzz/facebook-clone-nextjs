@@ -8,9 +8,10 @@ import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 
 describe('Notification component', () => {
     it('render user avatar, name and message', () => {
+        const mockClose = jest.fn();
         const notification = NotificationsFirstPageJson.data[0];
 
-        renderWithDefaultData(<Notification {...notification} />);
+        renderWithDefaultData(<Notification {...notification} close={mockClose} />);
 
         const avatar = screen.getByRole('img');
         const name = screen.getByText(notification.friend.name);
@@ -22,9 +23,10 @@ describe('Notification component', () => {
     });
 
     it('poked notification renders properly message', () => {
+        const mockClose = jest.fn();
         const notification = PokeNotificationJson;
 
-        renderWithDefaultData(<Notification {...notification} />);
+        renderWithDefaultData(<Notification {...notification} close={mockClose} />);
 
         const message = screen.getByText(notification.message);
 
@@ -32,9 +34,10 @@ describe('Notification component', () => {
     });
 
     it('friendship request accepted notification renders properly message', () => {
+        const mockClose = jest.fn();
         const notification = FriendshipRequestAcceptedNotificationJson;
 
-        renderWithDefaultData(<Notification {...notification} />);
+        renderWithDefaultData(<Notification {...notification} close={mockClose} />);
 
         const message = screen.getByText('Accepted your friendship invitation');
 
@@ -42,9 +45,10 @@ describe('Notification component', () => {
     });
 
     it('friendship request sent notification renders properly message', () => {
+        const mockClose = jest.fn();
         const notification = FriendshipRequestSentNotificationJson;
 
-        renderWithDefaultData(<Notification {...notification} />);
+        renderWithDefaultData(<Notification {...notification} close={mockClose} />);
 
         const message = screen.getByText('Sent you a friendship invitation');
 

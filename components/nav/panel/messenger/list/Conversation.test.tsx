@@ -5,9 +5,10 @@ import { renderWithDefaultData } from '@utils/tests/renderWithDefaultData';
 
 describe('Conversation component', () => {
     it('render user avatar, name, label', () => {
+        const mockClose = jest.fn();
         const user = MessengerFirstPageJson.data[0];
 
-        renderWithDefaultData(<Conversation friend={user} />);
+        renderWithDefaultData(<Conversation friend={user} close={mockClose} />);
 
         const avatar = screen.getByRole('img');
         const name = screen.getByText(user.name);
