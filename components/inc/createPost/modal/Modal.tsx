@@ -1,7 +1,6 @@
-import * as Dialog from '@radix-ui/react-dialog';
 import type { QueryKey } from '@tanstack/react-query';
 import { Form } from './form/Form';
-import { Header } from './Header';
+import { Modal as RootModal } from '../../modal/Modal';
 
 interface ModalProps {
     queryKey: QueryKey;
@@ -10,25 +9,8 @@ interface ModalProps {
 
 export const Modal = ({ queryKey, close }: ModalProps) => {
     return (
-        <Dialog.Portal>
-            <Dialog.Overlay className="w-screen h-screen fixed top-0 left-0 z-[49] bg-dark-300/70" onClick={close} />
-
-            <Dialog.Content
-                data-testid="createPostModal"
-                aria-modal="true"
-                aria-labelledby="createPostModal-header"
-                className="w-full max-w-[520px] min-w-[300px] h-fit max-h-[75vh] fixed top-1/2 left-1/2 right-auto bottom-auto -translate-y-1/2 -translate-x-1/2 box-content flex flex-col text-light-50 z-50 p-1.5"
-                onEscapeKeyDown={close}
-                onPointerDownOutside={close}
-            >
-                <div className="bg-dark-200 rounded-lg m-2">
-                    <Header close={close} />
-
-                    <main>
-                        <Form queryKey={queryKey} close={close} />
-                    </main>
-                </div>
-            </Dialog.Content>
-        </Dialog.Portal>
+        <RootModal close={close} title="Create Post">
+            <Form queryKey={queryKey} close={close} />
+        </RootModal>
     );
 };

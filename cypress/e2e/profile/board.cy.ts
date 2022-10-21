@@ -121,7 +121,7 @@ describe('Profile board tests', () => {
         cy.checkPageA11y();
 
         cy.get('button[aria-label="Create a post"]').click();
-        cy.get('[data-testid="createPostModal"]').should('be.visible');
+        cy.get('[role="dialog"]').should('be.visible');
 
         cy.intercept('/api/posts').as('store');
         cy.intercept('/api/users/1/posts?page=1').as('posts_page_1');
@@ -132,7 +132,7 @@ describe('Profile board tests', () => {
         cy.wait('@store');
         cy.wait('@posts_page_1');
 
-        cy.get('[data-testid="createPostModal"]').should('not.exist');
+        cy.get('[role="dialog"]').should('not.exist');
 
         cy.getPosts().should('have.length', 1);
         cy.getPosts().first().should('contain.text', 'New post');

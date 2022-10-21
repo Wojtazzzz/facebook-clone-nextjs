@@ -21,7 +21,7 @@ describe('Create post tests', () => {
         cy.injectAxe();
 
         cy.get('button[aria-label="Create a post"]').click();
-        cy.get('[data-testid="createPostModal"]').should('be.visible');
+        cy.get('[role="dialog"]').should('be.visible');
 
         cy.checkPageA11y();
 
@@ -42,7 +42,7 @@ describe('Create post tests', () => {
         cy.wait('@create');
         cy.wait('@posts_page_1');
 
-        cy.get('[data-testid="createPostModal"]').should('not.exist');
+        cy.get('[role="dialog"]').should('not.exist');
 
         cy.getPosts().first().contains(newPostContent).should('be.visible');
         cy.getPosts().first().contains(USER_NAME);
@@ -60,7 +60,7 @@ describe('Create post tests', () => {
 
         cy.get('button[aria-label="Create a post"]').click();
 
-        cy.get('[data-testid="createPostModal"]').within(() => {
+        cy.get('[role="dialog"]').within(() => {
             cy.get('button[aria-label="Create post"]').click();
 
             cy.contains('Post must contain text or image(s)').should('be.visible');
@@ -70,7 +70,7 @@ describe('Create post tests', () => {
             cy.get('button[aria-label="Close modal"]').should('be.visible').click();
         });
 
-        cy.get('[data-testid="createPostModal"]').should('not.exist');
+        cy.get('[role="dialog"]').should('not.exist');
 
         cy.get('[id="posts-list"] article[aria-label="Post"]').should('not.exist');
         cy.get('[data-testid="empty-list"]').should('be.visible');
@@ -97,7 +97,7 @@ describe('Create post tests', () => {
         cy.injectAxe();
 
         cy.get('button[aria-label="Create a post"]').click();
-        cy.get('[data-testid="createPostModal"]').should('be.visible');
+        cy.get('[role="dialog"]').should('be.visible');
 
         cy.intercept('/api/posts', { statusCode: 500 }).as('create');
 
@@ -112,17 +112,17 @@ describe('Create post tests', () => {
 
         cy.wait('@create');
 
-        cy.get('[data-testid="createPostModal"]').within(() => {
+        cy.get('[role="dialog"]').within(() => {
             cy.contains('Something went wrong, please try again later');
         });
 
         cy.checkPageA11y();
 
-        cy.get('[data-testid="createPostModal"]').should('be.visible');
+        cy.get('[role="dialog"]').should('be.visible');
 
         cy.get('body').type('{esc}');
 
-        cy.get('[data-testid="createPostModal"]').should('not.exist');
+        cy.get('[role="dialog"]').should('not.exist');
     });
 
     it('create post with only content, new post on list not display images', () => {
@@ -144,7 +144,7 @@ describe('Create post tests', () => {
         cy.wait('@create');
         cy.wait('@posts_page_1');
 
-        cy.get('[data-testid="createPostModal"]').should('not.exist');
+        cy.get('[role="dialog"]').should('not.exist');
 
         cy.getPosts()
             .first()

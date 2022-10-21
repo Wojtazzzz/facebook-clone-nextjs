@@ -28,7 +28,7 @@ describe('Credentials component tests', () => {
         const button = screen.getByLabelText('Credentials');
         await user.click(button);
 
-        const modal = screen.getByTestId('credentialsModal');
+        const modal = screen.getByRole('dialog');
 
         expect(modal).toBeInTheDocument();
     });
