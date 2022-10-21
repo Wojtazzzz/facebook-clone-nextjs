@@ -11,4 +11,13 @@ describe('AuthControls component tests', () => {
         expect(editButton).toBeInTheDocument();
         expect(editButton).toBeDisabled();
     });
+
+    it('render credentials button which is enabled', async () => {
+        renderWithDefaultData(<AuthControls />);
+
+        const credentialsButton = await screen.findByLabelText('Credentials');
+
+        expect(credentialsButton).toBeInTheDocument();
+        expect(credentialsButton).toBeEnabled();
+    });
 });

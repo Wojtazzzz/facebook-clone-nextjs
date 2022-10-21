@@ -11,6 +11,7 @@ export const getContactsQK = () => ['contacts'];
 export const getChatQK = (friendId: number) => ['chat', friendId];
 export const getBirthdaysQK = () => ['birthdays'];
 export const getUserQK = () => ['user'];
+export const getUserEmailQK = () => ['userEmail'];
 
 export const getMessengerQK = () => ['messenger'];
 export const getCheckUnreadMessengerQK = () => ['messenger', 'checkUnread'];

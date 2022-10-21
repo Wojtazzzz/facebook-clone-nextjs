@@ -12,7 +12,10 @@ export const Controls = ({ pageUser }: ControlsProps) => {
     const { user } = useAuth();
 
     if (!user) return <Loader />;
-    if (user.id === pageUser.id) return <AuthControls />;
 
-    return <GuestControls user={pageUser} />;
+    return (
+        <div className="w-full flex justify-end items-end gap-3 mt-5 md:mt-0 px-4 md:px-8 lg:px-12">
+            {user.id === pageUser.id ? <AuthControls /> : <GuestControls user={pageUser} />}
+        </div>
+    );
 };
