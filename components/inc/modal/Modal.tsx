@@ -26,7 +26,7 @@ export const Modal = ({ title, close, children }: ModalProps) => {
                 <main className="bg-dark-200 rounded-lg m-2">
                     <Header id={id} title={title} close={close} />
 
-                    {children}
+                    <div className="m-1 md:m-3">{children}</div>
                 </main>
             </Content>
         </Portal>

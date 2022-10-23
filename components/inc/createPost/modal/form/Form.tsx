@@ -19,7 +19,7 @@ export const Form = ({ queryKey, close }: FormProps) => {
 
     return (
         <Formik initialValues={initialValues} validationSchema={CreatePostSchema} onSubmit={handleSubmit}>
-            <FormikForm className="p-2 md:p-4">
+            <FormikForm>
                 <FormContent isLoading={isLoading} error={error} />
             </FormikForm>
         </Formik>

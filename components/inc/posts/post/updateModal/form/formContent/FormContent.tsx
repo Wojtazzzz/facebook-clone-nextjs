@@ -21,7 +21,7 @@ export const FormContent = ({ isLoading, images, error }: FormContentProps) => {
     if (isLoading) return <SpinnerLoader testId="updatePost-loader" containerStyles="w-[100px] my-10 mx-auto" />;
 
     return (
-        <div className="m-1 md:m-3">
+        <div>
             <div
                 data-testid="updatePostModal-scrollableWrapper"
                 className="max-h-[50vh] overflow-y-scroll scrollbar-thin scrollbar-thumb-dark-100"

@@ -20,7 +20,7 @@ export const FormContent = ({ isLoading, error }: FormContentProps) => {
         return <SpinnerLoader testId="createPost-loader" containerStyles="w-[64px] md:w-[80px] my-10 mx-auto" />;
 
     return (
-        <div className="m-1 md:m-3">
+        <div>
             <div
                 data-testid="createPostModal-scrollableWrapper"
                 className="max-h-[50vh] overflow-y-scroll scrollbar-thin scrollbar-thumb-dark-100"
