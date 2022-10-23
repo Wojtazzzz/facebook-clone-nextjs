@@ -16,7 +16,7 @@ export const Header = ({ id, title, close }: HeaderProps) => {
                 {title}
             </h1>
 
-            <RoundedButton label="Close modal" icon={faTimes} callback={close} />
+            <RoundedButton label="Close modal" icon={faTimes} styles="hover:bg-dark-100" callback={close} />
         </header>
     );
 };

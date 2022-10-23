@@ -10,7 +10,7 @@ interface RoundedButtonProps {
     isLoading?: boolean;
     styles?: string;
     iconStyles?: string;
-    callback: () => void;
+    callback?: () => void;
 }
 
 export const RoundedButton = ({
@@ -21,7 +21,7 @@ export const RoundedButton = ({
     isLoading = false,
     styles = '',
     iconStyles = '',
-    callback,
+    callback = () => null,
 }: RoundedButtonProps) => {
     return (
         <button

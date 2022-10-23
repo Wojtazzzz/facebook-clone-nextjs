@@ -18,6 +18,7 @@ export const Control = ({ label, icon, isDisabled, swiperClass, callback }: Cont
             icon={icon}
             styles={clsx(
                 "!w-[40px] !h-[40px] md:!w-[48px] md:!h-[48px] bg-dark-100 after:!content-[''] hover:brightness-110",
+                isDisabled && 'brightness-110',
                 swiperClass
             )}
             iconStyles="text-light-50"

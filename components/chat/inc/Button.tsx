@@ -16,7 +16,7 @@ export const Button = ({ type, label, icon, styles, callback }: ButtonProps) => 
             label={label}
             icon={icon}
             styles={`w-[36px] h-[36px] hover:bg-dark-100 ${styles}`}
-            callback={callback ?? (() => null)}
+            callback={callback}
         />
     );
 };
