@@ -17,7 +17,7 @@ export const Author = ({ author, createdAt, isEdited }: AuthorProps) => {
                 <Avatar src={profile_image} alt={`${name} profile image`} styles="w-[40px] h-[40px]" />
 
                 <header className="flex flex-col gap-px">
-                    <p className="text-sm text-light-50 font-medium">{name}</p>
+                    <p className="text-sm text-light-50 font-medium hover:underline">{name}</p>
 
                     <small className="text-xs text-light-100">
                         {createdAt} {isEdited && '(Edited)'}
