@@ -1,7 +1,7 @@
 import { ChooseEmoji } from '@components/inc/chooseEmoji/ChooseEmoji';
 import type { IChatMessagePayload } from '@utils/types';
 import { useFormikContext } from 'formik';
-import { useAddEmojiToMessage } from './co/useAddEmojiToMessage';
+import { useAddEmojiToMessage } from './useAddEmojiToMessage';
 
 export const AddText = () => {
     const { values, handleBlur, handleChange } = useFormikContext<IChatMessagePayload>();

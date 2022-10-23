@@ -1,8 +1,8 @@
 import type { IChatMessagePayload } from '@utils/types';
 import clsx from 'clsx';
 import { useFormikContext } from 'formik';
-import { AddText } from './AddText';
-import { UploadedImages } from './co/uploadedImages/UploadedImages';
+import { AddText } from './addText/AddText';
+import { UploadedImages } from './uploadedImages/UploadedImages';
 
 export const Content = () => {
     const { values } = useFormikContext<IChatMessagePayload>();
