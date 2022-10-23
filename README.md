@@ -32,10 +32,27 @@
 
 ## Run Locally - frontend
 
-Clone the project
+- Clone github repository
 
 ```bash
-  npm run dev
+gh repo clone Wojtazzzz/facebook-clone-nextjs
+```
+
+- Install dependencies
+
+```bash
+cd facebook-clone-nextjs
+```
+
+```bash
+npm install
+```
+
+- Duplicate **.env.example** as **.env.local**, fill it by your own variables. You can also create **.env.test** for tests environment
+- Run local server
+
+```bash
+npm run dev
 ```
 
 ## Todo
