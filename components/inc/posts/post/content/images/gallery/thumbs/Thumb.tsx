@@ -22,6 +22,7 @@ export const Thumb = ({ image, isActive, index, slideTo }: ThumbProps) => {
         >
             <Image
                 fill
+                sizes="36px"
                 src={getStoredImagePath(image)}
                 className={clsx(
                     'hover:opacity-100 transition-opacity rounded-lg shadow-md',

@@ -13,6 +13,7 @@ export const EmptyList = ({ title, size = 'base', styles = '' }: EmptyListProps)
             <Image
                 width={clsx(size === 'sm' && '90', size === 'base' && '120', size === 'lg' && '150')}
                 height={clsx(size === 'sm' && '90', size === 'base' && '120', size === 'lg' && '150')}
+                sizes="(max-width: 768px) 90px, (max-width: 1560px) 120px, (max-width: 2560px) 150px, 200px"
                 src="/img/empty_list.svg"
                 alt="List is empty"
             />

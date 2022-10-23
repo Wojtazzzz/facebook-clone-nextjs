@@ -11,9 +11,11 @@ interface UserProps {
 export const User = ({ id, firstName, name, profileImage }: UserProps) => {
     return (
         <div className="w-full flex items-center gap-3 md:gap-5">
-            <div className="w-[120px] min-w-[120px] sm:w-[140px] lg:w-[168px] h-[120px] sm:h-[140px] lg:h-[168px] relative">
+            <div className="min-w-[120px] w-[120px] sm:w-[140px] lg:w-[168px] h-[120px] sm:h-[140px] lg:h-[168px] relative">
                 <Image
+                    priority
                     fill
+                    sizes="(max-width: 640px) 140px, (max-width: 1024px) 168px, 120px"
                     src={profileImage}
                     alt={`${firstName} profile image`}
                     className="w-full h-full rounded-full border-4 border-dark-200"

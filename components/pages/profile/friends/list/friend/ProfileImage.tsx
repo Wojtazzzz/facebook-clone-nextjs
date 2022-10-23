@@ -14,7 +14,13 @@ export const ProfileImage = ({ id, name, profileImage }: ProfileImageProps) => {
                 aria-label={name}
                 className="flex justify-center relative items-center w-[60px] h-[60px] md:w-[80px] md:h-[80px] rounded-xl"
             >
-                <Image src={profileImage} fill alt="" className="w-full h-full rounded-xl" />
+                <Image
+                    src={profileImage}
+                    fill
+                    sizes="(max-width: 640px) 60px, 80px"
+                    alt=""
+                    className="w-full h-full rounded-xl"
+                />
             </a>
         </Link>
     );

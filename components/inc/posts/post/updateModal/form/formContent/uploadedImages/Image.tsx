@@ -18,7 +18,7 @@ export const Image = ({ path, remove }: ImageProps) => {
             aria-label="Uploaded image"
             className="w-full h-[300px] relative transition hover:brightness-110 cursor-pointer"
         >
-            <NextImage fill src={getStoredImagePath(path)} alt="" />
+            <NextImage fill sizes="300px" src={getStoredImagePath(path)} alt="" />
 
             <RoundedButton
                 label="Remove image"

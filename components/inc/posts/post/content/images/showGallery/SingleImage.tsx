@@ -8,7 +8,7 @@ interface SingleImageProps {
 export const SingleImage = ({ image }: SingleImageProps) => {
     return (
         <div className="w-full min-h-[300px] relative transition hover:brightness-110 cursor-pointer">
-            <Image src={getStoredImagePath(image)} alt="" fill className="object-cover" />
+            <Image src={getStoredImagePath(image)} alt="" fill sizes="350px" className="object-cover" />
         </div>
     );
 };

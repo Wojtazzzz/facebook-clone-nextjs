@@ -15,7 +15,7 @@ export const Image = ({ image }: ImageProps) => {
 
     return (
         <div className="w-[48px] h-[48px] relative">
-            <NextImage fill src={src} className="w-full h-full rounded-xl" alt="" />
+            <NextImage fill sizes="48px" src={src} className="w-full h-full rounded-xl" alt="" />
             <RemoveImage callback={handleRemoveImage} />
         </div>
     );

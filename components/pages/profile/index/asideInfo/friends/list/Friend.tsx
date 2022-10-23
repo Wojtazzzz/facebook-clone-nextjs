@@ -14,7 +14,7 @@ export const Friend = ({ id, name, profile_image }: FriendProps) => {
                 <Link href={`/profile/${id}`}>
                     <a>
                         <div className="w-full aspect-square relative hover:brightness-110 transition-filter">
-                            <Image fill src={profile_image} alt="" className="w-full h-full rounded-lg" />
+                            <Image fill sizes="150px" src={profile_image} alt="" className="w-full h-full rounded-lg" />
                         </div>
 
                         <span className="text-[11px] font-semibold leading-[0.5] truncate text-light-50 mt-1">

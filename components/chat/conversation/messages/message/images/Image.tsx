@@ -18,7 +18,13 @@ export const Image = ({ image }: ImageProps) => {
                 className="w-[200px] h-[150px] relative hover:opacity-80 cursor-pointer"
                 onClick={open}
             >
-                <NextImage fill src={getStoredImagePath(image)} alt="" className="w-full h-full rounded-xl" />
+                <NextImage
+                    fill
+                    sizes="200px"
+                    src={getStoredImagePath(image)}
+                    alt=""
+                    className="w-full h-full rounded-xl"
+                />
             </button>
 
             {isActive && <Zoom image={image} close={close} />}

@@ -15,7 +15,7 @@ export const Slide = ({ image }: SlideProps) => {
         >
             <div className="w-full h-full backdrop-blur-lg z-[51]">
                 <div className="w-full md:w-2/3 h-full relative mx-auto">
-                    <Image fill src={path} className="object-contain" alt="" />
+                    <Image fill sizes="66vw" src={path} className="object-contain" alt="" />
                 </div>
             </div>
         </div>
