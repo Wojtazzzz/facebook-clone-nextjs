@@ -10,7 +10,7 @@ export const AuthData = () => {
     if (!email || isError) return <ApiError />;
 
     return (
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-1 m-4 ">
             <SingleValue name="Email" value={email} />
             <SingleValue name="Password" value="password" />
         </div>
