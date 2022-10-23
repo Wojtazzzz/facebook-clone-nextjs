@@ -13,7 +13,7 @@ export const Textarea = () => {
                 onBlur={handleBlur}
                 value={values.content}
                 placeholder="What's on your mind?"
-                className="w-full text-lg text-light-100 bg-transparent outline-none resize-none scrollbar-thin scrollbar-thumb-dark-200 p-3"
+                className="w-full min-h-[150px] text-lg text-light-100 resize-none bg-transparent scrollbar-thin scrollbar-track-dark-100 outline-none p-3"
             ></textarea>
         </div>
     );
