@@ -14,7 +14,7 @@ const ProfilePage = (user: ProfileProps) => {
             <NextSeo title={user.name} description="See how you are presenting in app" />
 
             <ProfileLayout user={user}>
-                <Profile user={user} />;
+                <Profile user={user} />
             </ProfileLayout>
         </>
     );
