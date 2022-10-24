@@ -61,13 +61,13 @@ describe('Messenger tests', () => {
             status: 'CONFIRMED',
         });
 
-        cy.intercept('/api/messenger?page=1').as('messenger_page_1');
-
         cy.visit('/');
 
         cy.wait('@user');
 
         cy.injectAxe();
+
+        cy.intercept('/api/messenger?page=1').as('messenger_page_1');
 
         cy.get('[data-testid="nav"]').within(() => {
             cy.get('[aria-label="Messenger"]').click();
@@ -79,11 +79,10 @@ describe('Messenger tests', () => {
 
         cy.checkPageA11y();
 
-        cy.intercept('/api/messenger?page=2').as('messenger_page_2');
-
         cy.get('[id="messenger-list"]').scrollTo('bottom', { ensureScrollable: false });
 
-        cy.wait('@messenger_page_2');
+        /* Wait for fetch */
+        cy.wait(10000);
 
         cy.get('button').filter(':contains("Click to open chat")').should('have.length', 22);
 

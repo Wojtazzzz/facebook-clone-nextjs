@@ -6,9 +6,9 @@ describe('Profile intro tests', () => {
     it("visit friend's profile, check intro section shows all required data", () => {
         cy.loginRequest();
 
-        cy.visit('/profile/1');
-
         cy.intercept('/api/user').as('user');
+
+        cy.visit('/profile/1');
 
         cy.wait('@user');
 

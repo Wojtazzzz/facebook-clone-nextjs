@@ -1,23 +1,6 @@
-import { injectAxe } from 'cypress-axe';
 import { useDatabaseMigrations } from 'cypress-laravel';
 
-const months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-];
-
 const bornDate = new Date();
-const formatedDate = `${bornDate.getDate()} ${months[bornDate.getMonth()]} ${bornDate.getFullYear()}`;
 const isoDate = bornDate.toISOString();
 
 describe('Profile board tests', () => {
@@ -514,8 +497,6 @@ describe('Profile board tests', () => {
     it('see born at info with correct date instead of empty list within own posts, change list to hidden posts and see empty list instead of born at, change list to saved posts and see empty list instead of born at', () => {
         cy.intercept('/api/user').as('user');
         cy.intercept('/api/users/1/posts?page=1').as('posts');
-        cy.intercept('/api/hidden?page=1').as('hiddenPosts');
-        cy.intercept('/api/saved?page=1').as('savedPosts');
 
         cy.visit('/profile/1');
 
@@ -523,20 +504,23 @@ describe('Profile board tests', () => {
         cy.wait('@posts');
 
         cy.getPosts().should('not.exist');
-        cy.get('[data-testid="empty-list"]').should('not.exist');
-        cy.get('article[aria-label="Born at"]').within(() => {
-            cy.get('[data-testid="born-img"]').should('exist');
-            cy.contains(`Born on ${formatedDate}`);
-        });
+
+        cy.get('[data-testid="born-img"]').should('exist');
+
+        cy.intercept('/api/hidden?page=1').as('hiddenPosts');
 
         cy.get('[aria-label="Change list of posts"]').select('Hidden posts');
+
         cy.wait('@hiddenPosts');
 
         cy.getPosts().should('not.exist');
         cy.get('article[aria-label="Born at"]').should('not.exist');
         cy.get('[data-testid="empty-list"]').should('be.visible');
 
+        cy.intercept('/api/saved?page=1').as('savedPosts');
+
         cy.get('[aria-label="Change list of posts"]').select('Saved posts');
+
         cy.wait('@savedPosts');
 
         cy.getPosts().should('not.exist');

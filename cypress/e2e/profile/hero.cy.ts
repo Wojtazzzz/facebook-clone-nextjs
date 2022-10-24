@@ -40,9 +40,9 @@ describe('Profile hero tests', () => {
     it('visit friend\'s profile, see his friends (only one), open chat with him by click on "Message" button', () => {
         cy.createFriendship(1);
 
-        cy.visit('/profile/2');
-
         cy.intercept('/api/user').as('user');
+
+        cy.visit('/profile/2');
 
         cy.wait('@user');
 
@@ -66,9 +66,9 @@ describe('Profile hero tests', () => {
     it('visit friend\'s profile, click "Poke" button, relogin to friend\'s account, see poke in notifications and in pokes list', () => {
         cy.createFriendship(1);
 
-        cy.visit('/profile/2');
-
         cy.intercept('/api/user').as('user');
+
+        cy.visit('/profile/2');
 
         cy.wait('@user');
 
@@ -143,9 +143,9 @@ describe('Profile hero tests', () => {
     it('visit random user\'s profile, click "Poke" button, see error with message "This user is not your friend."', () => {
         cy.createUser(1, false);
 
-        cy.visit('/profile/2');
-
         cy.intercept('/api/user').as('user');
+
+        cy.visit('/profile/2');
 
         cy.wait('@user');
 
@@ -166,9 +166,9 @@ describe('Profile hero tests', () => {
             count: 1,
         });
 
-        cy.visit('/profile/2');
-
         cy.intercept('/api/user').as('user');
+
+        cy.visit('/profile/2');
 
         cy.wait('@user');
 
